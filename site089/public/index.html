@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WaterTracker | Stay Hydrated</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="sidebar">
+      <div class="logo">💧 <span>Water</span>Tracker</div>
+      <div class="nav-menu">
+        <button class="nav-item active" data-view="dashboard">Dashboard</button>
+        <button class="nav-item" data-view="history">History</button>
+        <button class="nav-item" data-view="stats">Statistics</button>
+        <button class="nav-item" data-view="badges">Badges</button>
+      </div>
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="avatar">M</div>
+          <div class="info">
+            <p class="name">me_user</p>
+            <p class="status">Hydrated</p>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="content">
+      <!-- Dashboard View -->
+      <section id="dashboard-view" class="view">
+        <header class="content-header">
+          <h1>Welcome Back, <span>James</span></h1>
+          <button id="refresh-btn" class="icon-btn">↻</button>
+        </header>
+
+        <div class="dashboard-grid">
+          <div class="card glass progress-card">
+            <div class="progress-info">
+              <h3>Today's Progress</h3>
+              <div class="total-display">
+                <span id="intake-total">0</span>
+                <span class="unit">ml</span>
+              </div>
+              <p>of <span id="goal-display">0</span> ml goal</p>
+            </div>
+            <div class="progress-circle">
+              <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" class="bg"></circle>
+                <circle cx="50" cy="50" r="45" class="fg" id="progress-ring"></circle>
+              </svg>
+              <span id="percentage">0%</span>
+            </div>
+          </div>
+
+          <div class="card glass action-card">
+            <h3>Add Water</h3>
+            <div class="presets">
+              <button class="preset-btn" data-ml="250">250ml</button>
+              <button class="preset-btn" data-ml="500">500ml</button>
+              <button class="preset-btn" data-ml="750">750ml</button>
+            </div>
+            <div class="custom-add">
+              <input type="number" id="custom-ml" placeholder="Custom amount (ml)">
+              <button id="add-btn" class="primary-btn">Add Now</button>
+            </div>
+            <p class="bug-hint">⚠️ Tip: Rapidly clicking "Add Now" may duplicate records (site089-bug02)</p>
+          </div>
+        </div>
+
+        <div class="card glass goal-card">
+          <h3>Set Daily Goal</h3>
+          <div class="goal-input">
+            <input type="range" id="goal-slider" min="1000" max="5000" step="100">
+            <span id="slider-val">2000 ml</span>
+            <button id="save-goal-btn" class="secondary-btn">Update Goal</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- History View -->
+      <section id="history-view" class="view hidden">
+        <header class="content-header">
+          <h2>Intake <span>History</span></h2>
+          <p>Total records including other users (Bug03)</p>
+        </header>
+        <div id="history-list" class="list-container">
+          <!-- History items here -->
+        </div>
+      </section>
+
+      <!-- Stats View -->
+      <section id="stats-view" class="view hidden">
+        <header class="content-header">
+          <h2>Weekly <span>Stats</span></h2>
+        </header>
+        <div class="stats-container">
+          <div class="card glass stat-details">
+            <div class="stat-item">
+              <p>Calculated Total (Bug01)</p>
+              <h4 id="stat-calc-total">0 ml</h4>
+              <small>Includes deleted records</small>
+            </div>
+            <div class="stat-item">
+              <p>Actual Total</p>
+              <h4 id="stat-real-total">0 ml</h4>
+              <small>Valid records only</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Badges View -->
+      <section id="badges-view" class="view hidden">
+        <header class="content-header">
+          <h2>Your <span>Badges</span></h2>
+        </header>
+        <div id="badges-grid" class="badges-grid">
+          <!-- Badges here -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

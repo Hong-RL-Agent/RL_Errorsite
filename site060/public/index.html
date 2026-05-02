@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthySnack Box - 당신의 일상을 건강하게 채우는 습관</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">HEALTHY<span class="text-green">BOX</span></div>
+      <nav class="nav-links">
+        <button id="nav-discover" class="active">간식 탐색</button>
+        <button id="nav-my">내 구독 관리</button>
+      </nav>
+      <div class="user-action">
+        <button class="btn-login">LOGIN</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Discover View -->
+      <div id="discover-view" class="view-section">
+        <div class="hero">
+          <h1>FRESH HABIT</h1>
+          <p>엄선된 영양 성분과 건강한 원재료로 만든 프리미엄 간식 박스를 정기 구독해 보세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="box-search" placeholder="박스 명칭 또는 성분 검색...">
+          </div>
+          <div class="filters">
+            <select id="allergy-filter" class="form-select" data-bug-id="site060-bug01">
+              <option value="None">알레르기 성분 제외</option>
+              <option value="견과류">견과류 제외</option>
+              <option value="유제품">유제품 제외</option>
+              <option value="대두">대두 제외</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="box-grid" class="grid mt-4">
+          <!-- 간식 박스 카드 -->
+        </div>
+      </div>
+
+      <!-- My Subscriptions View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 구독 현황</h2>
+        <div id="my-sub-list" class="list-wrapper">
+          <!-- 구독 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 구독 상세 모달 -->
+    <div id="box-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 동적 로드 -->
+        </div>
+        <div class="modal-footer mt-5">
+          <button id="subscribe-btn" class="btn-green w-full" data-bug-id="site060-bug02">지금 바로 구독 시작하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 구독 내역 상세 (Data Exposure 테스트용) -->
+    <div id="detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-detail">&times;</span>
+        <div id="detail-body" data-bug-id="site060-bug03">
+          <!-- 상세 개인정보 포함 로드 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

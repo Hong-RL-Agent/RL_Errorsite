@@ -1,0 +1,93 @@
+:root {
+  --orange: #FF7E5F; /* Peach Orange */
+  --green: #2D5A27;  /* Forest Green */
+  --bg: #FDFCFB;
+  --white: #FFFFFF;
+  --text: #333333;
+  --text-muted: #777777;
+  --border: #EEEEEE;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Sans', 'Noto Sans KR', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.header-flex { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
+
+.logo { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.5px; }
+.text-orange { color: var(--orange); }
+
+nav button {
+  background: none; border: none; font-weight: 600; color: var(--text-muted);
+  margin-left: 2rem; cursor: pointer; font-size: 1rem;
+}
+nav button.active { color: var(--orange); border-bottom: 2px solid var(--orange); }
+
+.hero-section { text-align: center; padding: 3rem 0; }
+.hero-section h1 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--green); }
+
+.search-filter { display: flex; gap: 15px; justify-content: center; }
+.search-filter input, .search-filter select {
+  padding: 12px 20px; border-radius: 30px; border: 1px solid var(--border);
+  outline: none; font-family: inherit; font-size: 0.95rem;
+}
+.search-filter input { width: 400px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+
+.v-card {
+  background: var(--white); border-radius: 20px; padding: 30px; border: 1px solid var(--border);
+  transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;
+}
+.v-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+
+.card-area { display: inline-block; padding: 4px 12px; background: #FFF0ED; color: var(--orange); border-radius: 6px; font-size: 0.8rem; font-weight: 700; margin-bottom: 15px; }
+.card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; }
+.card-date { font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+
+.status-badge { padding: 4px 10px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; }
+.status-badge.open { background: #E6FFFA; color: #319795; }
+.status-badge.closed { background: #FED7D7; color: #C53030; }
+
+.org-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.org-card { background: white; padding: 25px; border-radius: 16px; border: 1px solid var(--border); text-align: center; }
+.org-card h3 { color: var(--green); margin-bottom: 10px; }
+
+.my-list { display: flex; flex-direction: column; gap: 15px; }
+.app-item { background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
+.modal-content { background: white; margin: 10% auto; padding: 3rem; border-radius: 24px; width: 450px; position: relative; }
+.close { position: absolute; right: 25px; top: 20px; font-size: 24px; cursor: pointer; }
+
+.btn-primary {
+  background: var(--orange); color: white; border: none; padding: 15px;
+  border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 1.1rem;
+}
+
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333;
+  color: white; padding: 12px 30px; border-radius: 30px; font-weight: 700; opacity: 0; transition: opacity 0.3s; z-index: 2000;
+}
+.toast.show { opacity: 1; }
+
+.py-5 { padding-top: 3rem; padding-bottom: 3rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.w-full { width: 100%; }
+.text-xs { font-size: 0.75rem; }
+.text-muted { color: var(--text-muted); }
+.info-alert { background: #EDF2F7; padding: 1rem; border-radius: 12px; color: #2D3748; font-size: 0.9rem; }
+.view-title { font-size: 2rem; border-bottom: 3px solid var(--orange); display: inline-block; padding-bottom: 10px; margin-bottom: 2rem; }

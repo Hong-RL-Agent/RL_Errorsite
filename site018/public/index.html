@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobStarter</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo-icon">JS</div>
+        <h1>JobStarter</h1>
+      </div>
+      <nav class="side-nav">
+        <button id="nav-explore" class="active">공고 탐색</button>
+        <button id="nav-saved">북마크</button>
+        <button id="nav-status">지원 현황</button>
+        <button id="nav-checklist">이력서 체크리스트</button>
+      </nav>
+      <div class="sidebar-footer">
+        <p class="text-xs text-muted">© 2024 JobStarter Inc.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-bar">
+        <div class="search-container">
+          <input type="text" id="job-search" placeholder="회사명, 직무 키워드 검색...">
+        </div>
+        <div class="user-menu">
+          <span class="badge badge-blue">Newbie</span>
+          <span class="user-name">김신입님</span>
+        </div>
+      </header>
+
+      <!-- Explore View -->
+      <div id="explore-view" class="view-container">
+        <div class="view-header">
+          <h2>채용 공고 탐색</h2>
+          <div class="filters">
+            <button class="filter-chip active" data-val="all">전체</button>
+            <button class="filter-chip" data-val="Backend" data-bug-id="site018-bug02">백엔드</button>
+            <button class="filter-chip" data-val="Frontend" data-bug-id="site018-bug02">프론트엔드</button>
+          </div>
+        </div>
+
+        <div id="job-list" class="job-grid">
+          <!-- 공고 카드 렌더링 -->
+        </div>
+
+        <div class="pagination mt-5" data-bug-id="site018-bug01">
+          <button id="prev-page" class="btn-icon">←</button>
+          <span id="page-info">Page 1</span>
+          <button id="next-page" class="btn-icon">→</button>
+        </div>
+      </div>
+
+      <!-- Saved Jobs View -->
+      <div id="saved-view" class="view-container" style="display:none;">
+        <h2 class="mb-4">북마크한 공고</h2>
+        <div id="saved-list" class="job-grid"></div>
+      </div>
+
+      <!-- Application Status View -->
+      <div id="status-view" class="view-container" style="display:none;">
+        <div class="view-header">
+          <h2>지원 현황</h2>
+          <button id="test-auth-btn" class="btn-outline btn-sm" data-bug-id="site018-bug03">비인가 조회 테스트 (Bug 03)</button>
+        </div>
+        <div id="app-status-list" class="status-container">
+          <!-- 지원 내역 -->
+        </div>
+      </div>
+
+      <!-- Checklist View -->
+      <div id="checklist-view" class="view-container" style="display:none;">
+        <h2 class="mb-4">이력서 체크리스트</h2>
+        <div class="card checklist-card">
+          <div class="check-item">
+            <input type="checkbox" id="c1"> <label for="c1">기술 스택 구체화 (Spring, React 등)</label>
+          </div>
+          <div class="check-item">
+            <input type="checkbox" id="c2"> <label for="c2">GitHub 프로젝트 링크 확인</label>
+          </div>
+          <div class="check-item">
+            <input type="checkbox" id="c3"> <label for="c3">자기소개서 오탈자 교정</label>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- 상세 모달 -->
+  <div id="job-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

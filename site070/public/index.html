@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PuzzleRank - 글로벌 퍼즐 랭킹 시스템</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">PUZZLE<span class="text-neon">RANK</span></div>
+      <nav class="nav-links">
+        <button id="nav-puzzles" class="active">퍼즐 보드</button>
+        <button id="nav-ranking">글로벌 랭킹</button>
+        <button id="nav-profile">마이 프로필</button>
+      </nav>
+      <div class="user-info">
+        <div class="score-display">
+          <span class="label">MY SCORE</span>
+          <span id="my-total-score" class="value">0</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Puzzle Board View -->
+      <div id="puzzles-view" class="view-section">
+        <div class="hero">
+          <h1>DAILY CHALLENGE</h1>
+          <p>오늘의 퍼즐을 풀고 전 세계 플레이어들과 경쟁하세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="filter-group">
+            <button class="filter-btn active" data-diff="all">ALL</button>
+            <button class="filter-btn" data-diff="Easy">EASY</button>
+            <button class="filter-btn" data-diff="Normal">NORMAL</button>
+            <button class="filter-btn" data-diff="Hard">HARD</button>
+          </div>
+          <div class="search-box">
+            <input type="text" id="puzzle-search" placeholder="퍼즐 제목 검색...">
+          </div>
+        </div>
+
+        <div id="puzzle-grid" class="grid mt-4">
+          <!-- 퍼즐 카드 로드 -->
+        </div>
+      </div>
+
+      <!-- Ranking View -->
+      <div id="ranking-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">GLOBAL RANKING</h2>
+        <div class="ranking-filters mb-4">
+          <select id="rank-diff-filter" class="form-select" data-bug-id="site070-bug02">
+            <option value="all">전체 랭킹</option>
+            <option value="Easy">EASY 리그</option>
+            <option value="Normal">NORMAL 리그</option>
+            <option value="Hard">HARD 리그</option>
+          </select>
+        </div>
+        <div class="table-wrapper">
+          <table class="ranking-table">
+            <thead>
+              <tr>
+                <th>순위</th>
+                <th>플레이어</th>
+                <th>풀이 수</th>
+                <th>총 점수</th>
+              </tr>
+            </thead>
+            <tbody id="ranking-list">
+              <!-- 랭킹 리스트 로드 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Profile View -->
+      <div id="profile-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">COLLECTION</h2>
+        <div class="badge-grid" id="badge-list">
+          <!-- 뱃지 로드 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 퍼즐 상세/풀이 모달 -->
+    <div id="puzzle-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 상세 내용 -->
+        </div>
+        <div class="puzzle-action mt-5">
+          <div class="answer-box">
+            <input type="text" id="answer-input" class="form-input" placeholder="정답을 입력하세요">
+          </div>
+          <button id="submit-btn" class="btn-neon w-full mt-4" data-bug-id="site070-bug01 site070-bug03">정답 제출하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

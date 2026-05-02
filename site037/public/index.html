@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhotoPrint Lab - 당신의 순간을 영원히</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">PhotoPrint<span class="text-rose">Lab</span></div>
+      <nav class="nav-links">
+        <button id="nav-print" class="active">인화하기</button>
+        <button id="nav-cart">장바구니 <span id="cart-count" class="badge">0</span></button>
+        <button id="nav-history">주문 내역</button>
+      </nav>
+    </header>
+
+    <main class="content">
+      <!-- Printing View -->
+      <div id="print-view" class="view-section">
+        <div class="upload-area">
+          <div class="upload-box" id="upload-btn">
+            <span class="icon">📸</span>
+            <p>사진을 드래그하거나 클릭하여 업로드하세요</p>
+            <span class="text-xs text-muted">(최대 1MB 지원)</span>
+          </div>
+        </div>
+
+        <div class="options-panel mt-5">
+          <h3>인화 옵션 선택</h3>
+          <div id="options-grid" class="grid mt-3">
+            <!-- 옵션 카드 -->
+          </div>
+        </div>
+
+        <div id="selected-photos" class="mt-5">
+          <h3>업로드된 사진 <span id="photo-count" class="text-muted">0</span></h3>
+          <div id="photo-grid" class="grid mt-3">
+            <!-- 사진 미리보기 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Cart View -->
+      <div id="cart-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">장바구니</h2>
+        <div id="cart-list" class="list-wrapper">
+          <!-- 장바구니 품목 -->
+        </div>
+        <div class="cart-footer mt-5">
+          <div class="address-section">
+            <label>배송지 입력</label>
+            <input type="text" id="order-address" class="form-input mt-1" placeholder="배송 주소를 입력해 주세요">
+          </div>
+          <div class="checkout-summary mt-4">
+            <div class="total-row">
+              <span>총 주문 금액</span>
+              <span id="cart-total">0원</span>
+            </div>
+            <button id="submit-order-btn" class="btn-rose w-full mt-4" data-bug-id="site037-bug02">주문 완료하기</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- History View -->
+      <div id="history-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">최근 주문 내역</h2>
+        <div id="history-list" class="grid" data-bug-id="site037-bug03">
+          <!-- 주문 내역 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 상세 모달 -->
+    <div id="detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

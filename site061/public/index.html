@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniBank Budget - 당신의 똑똑한 금융 파트너</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">MINI<span class="text-blue">BANK</span></div>
+      <nav class="nav-links">
+        <button id="nav-dashboard" class="active">대시보드</button>
+        <button id="nav-transfer">송금하기</button>
+        <button id="nav-budget">예산 관리</button>
+      </nav>
+      <div class="user-profile">
+        <div class="avatar">JP</div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Dashboard View -->
+      <div id="dashboard-view" class="view-section">
+        <div class="account-card" data-bug-id="site061-bug03">
+          <div class="acc-header">
+            <span id="acc-no">000-000-000000</span>
+            <button class="btn-copy">복사</button>
+          </div>
+          <div class="balance-wrapper">
+            <h1 id="acc-balance">0</h1>
+            <span>원</span>
+          </div>
+          <div class="acc-actions">
+            <button class="btn-primary" onclick="switchTab(navTransfer, transferView)">보내기</button>
+            <button class="btn-secondary">채우기</button>
+          </div>
+        </div>
+
+        <div class="history-section mt-5">
+          <div class="flex-between mb-4">
+            <h2>거래 내역</h2>
+            <div class="filters">
+              <select id="category-filter" class="form-select">
+                <option value="All">전체 카테고리</option>
+                <option value="Food">식비</option>
+                <option value="Income">수입</option>
+                <option value="Transfer">이체</option>
+              </select>
+            </div>
+          </div>
+          <div id="transaction-list" class="list-wrapper">
+            <!-- 거래 내역 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Transfer View -->
+      <div id="transfer-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">송금하기</h2>
+        <div class="form-card">
+          <div class="form-group">
+            <label>받는 분 계좌번호</label>
+            <input type="text" id="target-acc" class="form-input w-full" placeholder="계좌번호 입력">
+          </div>
+          <div class="form-group mt-3">
+            <label>보낼 금액</label>
+            <input type="number" id="transfer-amount" class="form-input w-full" placeholder="0">
+          </div>
+          <div class="form-group mt-3">
+            <label>받는 분에게 표기</label>
+            <input type="text" id="transfer-desc" class="form-input w-full" placeholder="내역 입력">
+          </div>
+          <div class="info-text mt-3">
+            <p>※ 이체 수수료 500원이 별도 부과됩니다.</p>
+          </div>
+          <button id="confirm-transfer-btn" class="btn-blue w-full mt-4" data-bug-id="site061-bug01 site061-bug02">송금 완료</button>
+        </div>
+      </div>
+
+      <!-- Budget View -->
+      <div id="budget-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">이번 달 예산</h2>
+        <div id="budget-list" class="grid">
+          <!-- 예산 카드 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 내역 상세 모달 -->
+    <div id="tx-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 상세 정보 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

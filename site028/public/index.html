@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindLog - 나의 마음 기록</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="logo">🌿</span>
+        <span class="brand-name">MindLog</span>
+      </div>
+      <nav class="nav-menu">
+        <button id="nav-write" class="active">일기 쓰기</button>
+        <button id="nav-list">기록 목록</button>
+        <button id="nav-stats">마음 통계</button>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <!-- Write View -->
+      <div id="write-view" class="view-section">
+        <header class="view-header">
+          <h1>오늘 당신의 마음은 어떤가요?</h1>
+          <p>솔직한 감정을 기록하고 마음의 평온을 찾아보세요.</p>
+        </header>
+
+        <div class="write-card mt-5">
+          <div class="mood-selector">
+            <label>감정 선택</label>
+            <div id="mood-options" class="mood-options mt-2">
+              <!-- 감정 아이콘 버튼 -->
+            </div>
+          </div>
+
+          <div class="input-group mt-4">
+            <label>날짜 선택</label>
+            <input type="date" id="entry-date" class="form-input mt-1" data-bug-id="site028-bug01">
+          </div>
+
+          <div class="input-group mt-4">
+            <label>일기 내용</label>
+            <textarea id="entry-content" class="form-input mt-1" rows="6" placeholder="오늘 하루는 어땠나요? 당신의 이야기를 들려주세요."></textarea>
+          </div>
+
+          <div class="input-group mt-4">
+            <label>태그 (쉼표로 구분)</label>
+            <input type="text" id="entry-tags" class="form-input mt-1" placeholder="예: 산책, 날씨, 독서">
+          </div>
+
+          <div class="form-actions mt-5">
+            <button id="save-btn" class="btn-primary w-full">기록 저장하기</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- List View -->
+      <div id="list-view" class="view-section" style="display:none;">
+        <h2 class="view-title">지난 기록들</h2>
+        <div class="filter-bar mt-3">
+          <input type="text" id="search-input" placeholder="내용이나 태그 검색...">
+        </div>
+        <div id="entry-grid" class="grid mt-4">
+          <!-- 일기 카드 -->
+        </div>
+        <div class="mt-5 privacy-action" data-bug-id="site028-bug03">
+          <button id="test-idor-btn" class="btn-ghost btn-sm">다른 일기 상세 보기 (테스트)</button>
+        </div>
+      </div>
+
+      <!-- Stats View -->
+      <div id="stats-view" class="view-section" style="display:none;">
+        <h2 class="view-title">마음 통계 리포트</h2>
+        <div id="stats-loader" class="loader-box mt-5" style="display:none;" data-bug-id="site028-bug02">
+          <div class="spinner"></div>
+          <p class="mt-3">마음 데이터를 분석하고 있습니다...</p>
+        </div>
+        <div id="stats-content" class="stats-grid mt-5">
+          <!-- 통계 차트/카드 -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

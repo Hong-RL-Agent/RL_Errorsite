@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TinyInvoice — 청구서 관리</title>
+  <meta name="description" content="TinyInvoice: 소규모 사업자를 위한 견적서/청구서 발행 및 관리 서비스."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="hi">
+    <a href="#" class="logo">
+      <span class="logo-icon">🧾</span>
+      <span class="logo-text">Tiny<strong>Invoice</strong></span>
+    </a>
+    <nav class="gnav" id="gnav">
+      <a href="#" class="nl active" data-view="invoices">청구서</a>
+      <a href="#" class="nl" data-view="create">새 청구서</a>
+      <a href="#" class="nl" data-view="customers">고객</a>
+      <a href="#" class="nl" data-view="reports">리포트</a>
+    </nav>
+    <div class="hright">
+      <button class="hbtn" id="btn-refresh">↻</button>
+      <div class="uchip"><span class="uav">M</span><span>user_maya</span></div>
+      <button class="burger" id="burger">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ══ VIEW: INVOICES ══ -->
+  <section class="view active" id="view-invoices">
+    <div class="vi">
+      <!-- Hero KPI strip -->
+      <div class="kpi-strip" id="kpi-strip">
+        <div class="kpi-card"><div class="kpi-label">총 청구액</div><div class="kpi-val" id="kpi-total">-</div></div>
+        <div class="kpi-card kpi-green"><div class="kpi-label">수금 완료</div><div class="kpi-val" id="kpi-paid">-</div></div>
+        <div class="kpi-card kpi-amber"><div class="kpi-label">결제 대기</div><div class="kpi-val" id="kpi-pending">-</div></div>
+        <div class="kpi-card kpi-red"><div class="kpi-label">연체</div><div class="kpi-val" id="kpi-overdue">-</div></div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="tsearch">
+          <span>🔍</span>
+          <input type="text" id="inv-search" placeholder="청구서 번호, 고객, 메모..." class="tsearch-inp"/>
+        </div>
+        <select class="tsel" id="inv-status-filter">
+          <option value="all">전체 상태</option>
+          <option value="pending">대기중</option>
+          <option value="paid">결제완료</option>
+          <option value="overdue">연체</option>
+          <option value="cancelled">취소</option>
+        </select>
+        <select class="tsel" id="inv-sort">
+          <option value="">기본</option>
+          <option value="date_desc">최신순</option>
+          <option value="amount_desc">금액 높은순</option>
+          <option value="amount_asc">금액 낮은순</option>
+          <option value="due">마감일순</option>
+        </select>
+        <span class="rcnt" id="inv-cnt"></span>
+      </div>
+
+      <!-- IDOR panel -->
+      <div class="idor-panel">
+        <span class="idor-label">🔍 invoiceId 직접 조회 (IDOR 테스트)</span>
+        <div class="idor-row">
+          <input type="number" id="idor-id" placeholder="4" min="1" class="idor-inp"/>
+          <button class="btn-idor" id="btn-idor">조회</button>
+        </div>
+        <div class="idor-result" id="idor-result"></div>
+      </div>
+
+      <div class="invoice-list" id="invoice-list"></div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: CREATE ══ -->
+  <section class="view" id="view-create">
+    <div class="vi">
+      <h2 class="view-title">📝 새 청구서 발행</h2>
+
+      <!-- bug02 notice -->
+      <div class="bug02-notice">
+        ⚠️ [bug02] 발행 버튼을 연속 클릭하면 중복 청구서가 생성됩니다 (멱등성 처리 없음)
+      </div>
+
+      <div class="create-card">
+        <form class="cform" id="create-form">
+          <!-- Customer & meta -->
+          <div class="cform-section">
+            <h3 class="cfs-title">고객 정보</h3>
+            <div class="cfs-grid">
+              <div class="ff"><label>고객 선택 *</label><select id="f-customer" class="fasel" required><option value="">선택하세요</option></select></div>
+              <div class="ff"><label>마감일 *</label><input type="date" id="f-due" required/></div>
+              <div class="ff full"><label>메모</label><input type="text" id="f-note" placeholder="청구서 메모" maxlength="100"/></div>
+            </div>
+          </div>
+
+          <!-- Items -->
+          <div class="cform-section">
+            <div class="cfs-head">
+              <h3 class="cfs-title">청구 항목</h3>
+              <button type="button" class="btn-add-item" id="btn-add-item">+ 항목 추가</button>
+            </div>
+            <div class="items-table-wrap">
+              <table class="items-table">
+                <thead><tr><th>항목명</th><th>수량</th><th>단가 (₩)</th><th>소계</th><th></th></tr></thead>
+                <tbody id="items-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Rates -->
+          <div class="cform-section rates-section">
+            <div class="rate-row">
+              <div class="ff"><label>할인율 (%)</label><input type="number" id="f-discount" value="0" min="0" max="100" step="1"/></div>
+              <div class="ff"><label>세율 (%)</label><input type="number" id="f-tax" value="10" min="0" max="30" step="1"/></div>
+            </div>
+          </div>
+
+          <!-- Preview -->
+          <div class="price-preview" id="price-preview"></div>
+
+          <div class="cform-actions">
+            <button type="submit" class="btn-primary" id="btn-submit-invoice">📤 청구서 발행</button>
+            <button type="button" class="btn-secondary btn-sm" id="btn-preview-calc">💰 금액 계산</button>
+          </div>
+          <div class="cform-msg" id="cform-msg"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: CUSTOMERS ══ -->
+  <section class="view" id="view-customers">
+    <div class="vi">
+      <h2 class="view-title">👥 고객 목록</h2>
+      <div class="cust-search-bar">
+        <input type="text" id="cust-search" placeholder="고객명, 이메일 검색..." class="tsearch-inp"/>
+        <button class="btn-secondary btn-sm" id="btn-cust-search">검색</button>
+      </div>
+      <div class="customer-grid" id="customer-grid"></div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: REPORTS ══ -->
+  <section class="view" id="view-reports">
+    <div class="vi">
+      <div class="reports-hdr">
+        <h2 class="view-title">📊 리포트</h2>
+        <button class="btn-secondary btn-sm" id="btn-refresh-reports">↻ 새로고침</button>
+      </div>
+      <div class="tax-notice" id="tax-notice"></div>
+      <div class="report-grid" id="report-grid"></div>
+      <div class="report-breakdown" id="report-breakdown"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- MODAL -->
+<div class="modal-ov" id="modal-ov">
+  <div class="modal-box">
+    <button class="modal-x" id="modal-x">✕</button>
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/js/app.js"></script>
+</body>
+</html>

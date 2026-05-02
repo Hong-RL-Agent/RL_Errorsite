@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Habit - 당신만의 지적 정원</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;800&family=Noto+Serif+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="logo">Reading<span class="text-green">Habit</span></div>
+      <nav class="nav-menu">
+        <button id="nav-home" class="active">📚 독서 대시보드</button>
+        <button id="nav-logs">🗓️ 기록 달력</button>
+        <button id="nav-stats">📊 독서 통계</button>
+      </nav>
+      <div class="user-card">
+        <div class="user-info">
+          <strong>지적탐구자</strong>
+          <p>Lv.5 독서가</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <!-- Dashboard View -->
+      <div id="home-view" class="view-section">
+        <section class="section-top">
+          <h2>지금 읽고 있는 책</h2>
+          <button class="btn-outline">+ 새 책 등록</button>
+        </section>
+        
+        <div id="book-grid" class="grid mt-4">
+          <!-- 책 카드 -->
+        </div>
+
+        <section class="section-bottom mt-5">
+          <div class="card-wide">
+            <h3>오늘의 독서 목표</h3>
+            <div class="goal-progress">
+              <div class="progress-bar"><div class="fill" style="width: 40%"></div></div>
+              <span class="text-sm">오늘 20 / 목표 50 페이지 (40%)</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Logs View -->
+      <div id="logs-view" class="view-section" style="display:none;">
+        <div class="section-top">
+          <h2>독서 기록 달력</h2>
+          <div class="date-filters">
+            <input type="date" id="log-date-filter" value="2024-05-01">
+          </div>
+        </div>
+        <div id="log-list" class="log-list mt-4" data-bug-id="site038-bug02">
+          <!-- 기록 리스트 -->
+        </div>
+      </div>
+
+      <!-- Stats View -->
+      <div id="stats-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">독서 데이터 분석</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="label">이번 달 누적</span>
+            <span class="value">452 페이지</span>
+          </div>
+          <div class="stat-card">
+            <span class="label">독서 연속 일수</span>
+            <span class="value">12일</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 기록 추가 모달 -->
+    <div id="log-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-title">독서 기록하기</h2>
+        <form id="log-form" class="mt-4">
+          <div class="form-group">
+            <label>오늘 읽은 페이지 수</label>
+            <input type="number" id="log-pages" class="form-input" placeholder="예: 30" required data-bug-id="site038-bug01">
+          </div>
+          <div class="form-group mt-3">
+            <label>기록 날짜</label>
+            <input type="date" id="log-date" class="form-input" required>
+          </div>
+          <button type="submit" class="btn-green w-full mt-4">기록 저장</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

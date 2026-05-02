@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Connect</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="logo">Volunteer<span class="text-orange">Connect</span></div>
+      <nav>
+        <button id="nav-list" class="active">봉사활동 찾기</button>
+        <button id="nav-org">참여 기관</button>
+        <button id="nav-my">내 신청 현황</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <!-- List View -->
+    <div id="list-view">
+      <div class="hero-section">
+        <h1>세상을 바꾸는 따뜻한 한 걸음</h1>
+        <p>당신의 관심이 누군가에게는 큰 희망이 됩니다.</p>
+      </div>
+
+      <div class="search-filter mt-5">
+        <input type="text" id="v-search" placeholder="봉사 활동명 검색...">
+        <select id="area-filter">
+          <option value="all">전국 지역</option>
+          <option value="서울">서울</option>
+          <option value="경기">경기</option>
+          <option value="인천">인천</option>
+        </select>
+      </div>
+
+      <div id="v-grid" class="grid mt-4">
+        <!-- 봉사 카드 -->
+      </div>
+    </div>
+
+    <!-- Organizations View -->
+    <div id="org-view" style="display:none;">
+      <h2 class="view-title">파트너 기관 소개</h2>
+      <div id="org-list" class="org-grid mt-4">
+        <!-- 기관 카드 -->
+      </div>
+      <div class="mt-5 privacy-box" data-bug-id="site023-bug03">
+        <p class="text-xs text-muted">⚠️ (Bug 03 테스트) 기관 목록 응답에 관리자 이메일과 메모가 포함되어 있습니다. Network 탭을 확인해 보세요.</p>
+      </div>
+    </div>
+
+    <!-- My Applications View -->
+    <div id="my-view" style="display:none;">
+      <h2 class="view-title">나의 봉사 신청 내역</h2>
+      <div id="my-app-list" class="my-list mt-4">
+        <!-- 내 신청 목록 -->
+      </div>
+      <div class="info-alert mt-4" data-bug-id="site023-bug01">
+        <p>💡 같은 활동에 여러 번 신청할 수 있는 오류가 있습니다. [신청하기]를 여러 번 눌러 확인해 보세요.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- 상세/신청 모달 -->
+  <div id="v-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-body"></div>
+      <div class="modal-footer mt-4">
+        <button id="submit-app-btn" class="btn-primary w-full" data-bug-id="site023-bug02">지금 신청하기</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

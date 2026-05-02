@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MentorCircle - 당신의 커리어를 이끄는 원형의 연결</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">MENTOR<span class="text-navy">CIRCLE</span></div>
+      <nav class="nav-links">
+        <button id="nav-mentors" class="active">멘토 탐색</button>
+        <button id="nav-sessions">상담 일정</button>
+        <button id="nav-my">내 신청 현황</button>
+      </nav>
+      <div class="user-action">
+        <span class="user-status">Candidate_A</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Mentor Discovery View -->
+      <div id="mentors-view" class="view-section">
+        <div class="hero">
+          <h1>GROW WITH EXPERTS</h1>
+          <p>현직 전문가와의 1:1 멘토링을 통해 당신의 커리어에 추진력을 더하세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="filter-group">
+            <button class="filter-btn active" data-field="All">전체분야</button>
+            <button class="filter-btn" data-field="개발">개발</button>
+            <button class="filter-btn" data-field="디자인">디자인</button>
+            <button class="filter-btn" data-field="마케팅">마케팅</button>
+          </div>
+          <div class="search-box">
+            <input type="text" id="mentor-search" placeholder="멘토 이름이나 회사명 검색...">
+          </div>
+        </div>
+
+        <div id="mentor-grid" class="grid mt-4">
+          <!-- 멘토 카드 로드 -->
+        </div>
+      </div>
+
+      <!-- Sessions View -->
+      <div id="sessions-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">상담 가능 시간대</h2>
+        <div id="session-list" class="session-grid">
+          <!-- 세션 리스트 로드 -->
+        </div>
+      </div>
+
+      <!-- My Applications View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 멘토링 여정</h2>
+        <div id="application-list" class="list-wrapper">
+          <!-- 신청 내역 로드 -->
+        </div>
+        <div class="admin-link mt-5" data-bug-id="site075-bug03">
+          <button id="view-all-apps" class="btn-outline">전체 신청 현황 (관리자 전용)</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- 멘토 상세/신청 모달 -->
+    <div id="mentor-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 상세 내용 -->
+        </div>
+        <div class="apply-section mt-5">
+          <h3 class="section-subtitle">상담 신청하기</h3>
+          <div class="form-group mt-3">
+            <label>상담 내용</label>
+            <textarea id="apply-content" class="form-input" placeholder="상담받고 싶은 내용을 적어주세요."></textarea>
+          </div>
+          <button id="apply-btn" class="btn-navy w-full mt-4" data-bug-id="site075-bug01 site075-bug02">멘토링 신청 완료</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

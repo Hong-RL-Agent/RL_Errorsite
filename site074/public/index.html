@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarketRecipe - 내 냉장고 속 재료로 만드는 완벽한 한 끼</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">MARKET<span class="text-green">RECIPE</span></div>
+      <nav class="nav-links">
+        <button id="nav-recipes" class="active">레시피 탐색</button>
+        <button id="nav-prices">가격 비교</button>
+        <button id="nav-saved">저장 목록</button>
+      </nav>
+      <div class="user-action">
+        <span class="user-status">Chef_A</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Recipe Discovery View -->
+      <div id="recipes-view" class="view-section">
+        <div class="hero">
+          <h1>WHAT'S IN YOUR FRIDGE?</h1>
+          <p>오늘 장본 재료를 선택해 보세요. 가장 잘 어울리는 레시피를 추천해 드립니다.</p>
+        </div>
+
+        <div class="ingredient-selector mt-5">
+          <h3 class="section-title">재료 선택</h3>
+          <div id="ingredient-chips" class="chip-container mt-3">
+            <!-- 재료 칩 로드 -->
+          </div>
+        </div>
+
+        <div class="toolbar mt-5">
+          <h3 class="section-title">추천 레시피</h3>
+          <div class="search-box">
+            <input type="text" id="recipe-search" placeholder="레시피 이름으로 검색...">
+          </div>
+        </div>
+
+        <div id="recipe-grid" class="grid mt-4" data-bug-id="site074-bug01">
+          <!-- 레시피 카드 로드 -->
+        </div>
+      </div>
+
+      <!-- Price Comparison View -->
+      <div id="prices-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">우리 동네 최저가 비교</h2>
+        <div class="table-wrapper" data-bug-id="site074-bug02">
+          <table class="price-table">
+            <thead>
+              <tr>
+                <th>재료명</th>
+                <th>판매처</th>
+                <th>가격</th>
+                <th>상태</th>
+              </tr>
+            </thead>
+            <tbody id="price-list">
+              <!-- 가격 리스트 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Saved View -->
+      <div id="saved-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 영감 보드</h2>
+        <div id="saved-list" class="list-wrapper" data-bug-id="site074-bug03">
+          <!-- 저장된 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 레시피 상세 모달 -->
+    <div id="detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 상세 내용 -->
+        </div>
+        <div class="modal-footer mt-5">
+          <button class="btn-green w-full">레시피 저장하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

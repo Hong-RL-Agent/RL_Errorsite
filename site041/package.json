@@ -1,0 +1,13 @@
+{
+  "name": "babycare-log",
+  "version": "1.0.0",
+  "description": "BabyCare Log - RL Training Dataset",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

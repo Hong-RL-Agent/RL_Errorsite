@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Pocket</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">Budget<span class="text-sage">Pocket</span></div>
+    <nav>
+      <button class="nav-item active" id="nav-dashboard">대시보드</button>
+      <button class="nav-item" id="nav-transactions">지출 내역</button>
+      <button class="nav-item" id="nav-report">리포트</button>
+    </nav>
+    <div class="user-profile mt-auto">
+      <div class="avatar">U</div>
+      <div class="user-info">
+        <p class="name">user_123</p>
+        <p class="role">Personal Account</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="content">
+    <!-- Dashboard View -->
+    <div id="dashboard-view">
+      <div class="summary-cards">
+        <div class="card summary-card">
+          <p class="label">이번 달 총 지출</p>
+          <h2 id="total-spent">0원</h2>
+          <div class="progress-container">
+            <div class="progress-bar" id="budget-progress"></div>
+          </div>
+          <p class="text-xs mt-1" id="budget-text">예산 대비 0% 사용</p>
+        </div>
+        <div class="card summary-card">
+          <p class="label">남은 예산</p>
+          <h2 id="remaining-budget" class="text-sage">0원</h2>
+        </div>
+      </div>
+
+      <div class="section-header mt-4">
+        <h3>최근 지출</h3>
+        <button class="btn-primary" id="add-expense-btn">+ 추가</button>
+      </div>
+      <div id="recent-list" class="transaction-list card mt-2">
+        <!-- 거래 목록 -->
+      </div>
+    </div>
+
+    <!-- Transactions View -->
+    <div id="transactions-view" style="display:none;">
+      <div class="view-header">
+        <h2>지출 내역 상세</h2>
+        <div class="controls">
+          <select id="sort-filter" data-bug-id="site016-bug01">
+            <option value="date_desc">최신순</option>
+            <option value="amount_desc">금액 높은순 (Bug 01)</option>
+          </select>
+          <button id="idor-test-btn" class="btn-outline btn-sm" data-bug-id="site016-bug03">타인 데이터 조회 (Bug 03)</button>
+        </div>
+      </div>
+      <div id="all-transaction-list" class="transaction-list card mt-3">
+        <!-- 전체 거래 목록 -->
+      </div>
+    </div>
+
+    <!-- Report View -->
+    <div id="report-view" style="display:none;">
+      <h2 class="mb-4">소비 분석 리포트</h2>
+      <div class="card report-card">
+        <div class="report-header">
+          <h3>월간 소비 리포트</h3>
+          <button id="refresh-report-btn" class="btn-sage" data-bug-id="site016-bug02">리포트 새로고침 (Bug 02)</button>
+        </div>
+        <div id="report-content" class="mt-4">
+          <p class="text-muted">데이터를 분석 중입니다...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 거래 추가 모달 -->
+  <div id="add-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>새로운 지출 추가</h2>
+      <form id="expense-form">
+        <div class="form-group">
+          <label>카테고리</label>
+          <select id="exp-category" class="form-input">
+            <option value="Food">식비</option>
+            <option value="Trans">교통</option>
+            <option value="Life">생활</option>
+            <option value="Lux">사치/쇼핑</option>
+          </select>
+        </div>
+        <div class="form-group mt-2">
+          <label>금액 (원)</label>
+          <input type="number" id="exp-amount" class="form-input" placeholder="0" required>
+        </div>
+        <div class="form-group mt-2">
+          <label>메모</label>
+          <input type="text" id="exp-note" class="form-input" placeholder="무엇에 쓰셨나요?">
+        </div>
+        <div class="form-group mt-2">
+          <label>날짜</label>
+          <input type="date" id="exp-date" class="form-input" required>
+        </div>
+        <button type="submit" class="btn-primary w-full mt-4">지출 등록</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

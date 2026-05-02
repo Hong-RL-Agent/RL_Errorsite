@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TicketLine Sports - 경기 예매</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-wrapper">
+    <header class="navbar">
+      <div class="logo">TicketLine<span class="text-red">Sports</span></div>
+      <div class="user-menu">
+        <span class="user-info">UA_SportsFan</span>
+        <button id="nav-bookings" class="btn-outline">My Tickets</button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="hero">
+        <h1>Victory Awaits.</h1>
+        <p>당신이 응원하는 팀의 승리를 현장에서 함께하세요.</p>
+      </section>
+
+      <!-- Game List View -->
+      <div id="game-view" class="view-section">
+        <div class="filter-bar">
+          <button class="filter-chip active" data-team="all">All Games</button>
+          <button class="filter-chip" data-team="Lions">Lions</button>
+          <button class="filter-chip" data-team="Bears">Bears</button>
+          <button class="filter-chip" data-team="Wizards">Wizards</button>
+        </div>
+
+        <div id="game-grid" class="grid mt-4">
+          <!-- 경기 카드 -->
+        </div>
+      </div>
+
+      <!-- Bookings View -->
+      <div id="bookings-view" class="view-section" style="display:none;">
+        <div class="section-header">
+          <button id="back-to-games" class="btn-back">← Back to Games</button>
+          <h2>나의 예매 내역</h2>
+        </div>
+        <div id="booking-list" class="booking-list mt-4">
+          <!-- 예매 내역 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 좌석 선택 모달 -->
+    <div id="seat-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-header">
+          <h2 id="modal-game-title">경기 좌석 선택</h2>
+          <p id="modal-game-info" class="text-muted"></p>
+        </div>
+        
+        <div class="stadium-map mt-4">
+          <div class="pitch">FIELD</div>
+          <div id="seat-grid" class="seat-grid">
+            <!-- 좌석 버튼 (A1 ~ D10) -->
+          </div>
+        </div>
+
+        <div class="booking-summary mt-4">
+          <div class="summary-row">
+            <span>선택한 좌석</span>
+            <span id="selected-seat-id" class="font-bold">-</span>
+          </div>
+          <div class="summary-row mt-2">
+            <span>티켓 가격</span>
+            <span id="ticket-price" class="font-bold">0원</span>
+          </div>
+          <div class="discount-box mt-3">
+            <input type="text" id="discount-code" placeholder="할인 코드 입력" class="form-input">
+            <button id="apply-discount-btn" class="btn-sm" data-bug-id="site031-bug03">적용</button>
+          </div>
+          <div class="summary-row mt-3 total">
+            <span>최종 결제 금액</span>
+            <span id="final-price" class="text-red font-black">0원</span>
+          </div>
+          <button id="confirm-booking-btn" class="btn-primary w-full mt-4" data-bug-id="site031-bug02">지금 예매하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

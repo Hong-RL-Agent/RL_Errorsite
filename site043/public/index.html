@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RunCrew - 함께 달릴 때 더 즐겁다</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">RUN<span class="text-neon">CREW</span></div>
+      <nav class="nav-links">
+        <button id="nav-runs" class="active">모임 찾기</button>
+        <button id="nav-records">내 활동</button>
+        <button id="nav-ranking">랭킹</button>
+      </nav>
+      <div class="user-profile">
+        <span class="lvl">LV.15</span>
+        <span class="uname">RUNNER_A</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Runs View -->
+      <div id="runs-view" class="view-section">
+        <div class="hero-banner">
+          <h1>BREAK YOUR LIMITS</h1>
+          <p>전국의 러너들과 함께 최고의 코스를 달려보세요.</p>
+        </div>
+
+        <div class="filter-bar mt-5">
+          <div class="search-box">
+            <input type="text" id="run-search" placeholder="지역 또는 모임 검색...">
+          </div>
+          <div class="filters">
+            <select id="dist-filter" class="form-input">
+              <option value="all">모든 거리</option>
+              <option value="5km">5km</option>
+              <option value="8km">8km</option>
+              <option value="10km">10km</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="runs-grid" class="grid mt-4">
+          <!-- 러닝 모임 카드 -->
+        </div>
+      </div>
+
+      <!-- Records View -->
+      <div id="records-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 러닝 히스토리</h2>
+        <div id="record-list" class="list-wrapper">
+          <!-- 러닝 기록 리스트 -->
+        </div>
+      </div>
+
+      <!-- Ranking View -->
+      <div id="ranking-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">크루 랭킹</h2>
+        <div class="ranking-board">
+          <div class="rank-item gold">
+            <span class="pos">1</span>
+            <span class="name">SPEED_KING</span>
+            <span class="val">420.5km</span>
+          </div>
+          <div class="rank-item">
+            <span class="pos">2</span>
+            <span class="name">RUNNER_A</span>
+            <span class="val">380.2km</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 기록 수정 모달 -->
+    <div id="edit-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="text-neon">EDIT RECORD</h2>
+        <form id="edit-form" class="mt-4" data-bug-id="site043-bug03">
+          <input type="hidden" id="edit-rec-id">
+          <div class="form-group">
+            <label>제목</label>
+            <input type="text" id="edit-title" class="form-input" required>
+          </div>
+          <div class="form-group mt-3">
+            <label>거리 (km)</label>
+            <input type="text" id="edit-dist" class="form-input" required>
+          </div>
+          <div class="form-group mt-3">
+            <label>시간 (MM:SS)</label>
+            <input type="text" id="edit-time" class="form-input" required>
+          </div>
+          <button type="submit" class="btn-neon w-full mt-5">기록 수정 완료</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

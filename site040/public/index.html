@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoChallenge - 지구를 위한 작은 한 걸음</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">Eco<span class="text-blue">Challenge</span></div>
+      <nav class="nav-links">
+        <button id="nav-home" class="active">챌린지</button>
+        <button id="nav-ranking">랭킹</button>
+        <button id="nav-badges">마이 뱃지</button>
+        <button id="nav-my">참여 내역</button>
+      </nav>
+      <div class="user-info">
+        <span class="user-id">eco_warrior</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/1177/1177568.png" class="avatar">
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Challenge View -->
+      <div id="home-view" class="view-section">
+        <div class="hero">
+          <h1>지구를 지키는 1일 1도전</h1>
+          <p>작은 실천이 모여 큰 변화를 만듭니다.</p>
+        </div>
+        <div id="challenge-grid" class="grid mt-5">
+          <!-- 챌린지 카드 -->
+        </div>
+      </div>
+
+      <!-- Ranking View -->
+      <div id="ranking-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">명예의 전당</h2>
+        <p class="text-sm text-muted mb-4">가장 활발하게 환경을 보호한 챌린저들입니다.</p>
+        <div id="ranking-list" class="list-wrapper" data-bug-id="site040-bug01">
+          <!-- 랭킹 리스트 -->
+        </div>
+      </div>
+
+      <!-- Badges View -->
+      <div id="badges-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 활동 배지</h2>
+        <div id="badge-grid" class="grid" data-bug-id="site040-bug02">
+          <!-- 뱃지 목록 -->
+        </div>
+      </div>
+
+      <!-- My Records View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 챌린지 기록</h2>
+        <div id="my-records" class="list-wrapper">
+          <!-- 참여 기록 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 챌린지 상세 및 인증 모달 -->
+    <div id="challenge-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 동적 로드 -->
+        </div>
+        <div class="modal-footer mt-5">
+          <form id="submission-form" data-bug-id="site040-bug03">
+            <input type="text" id="target-user-id" class="form-input mb-3" placeholder="제출자 ID (본인 확인용)" required>
+            <button type="submit" class="btn-green w-full">챌린지 인증 사진 제출</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

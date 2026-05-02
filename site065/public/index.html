@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DogWalk Club - 우리 강아지의 즐거운 산책 친구 찾기</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">DOGWALK<span class="text-sage">CLUB</span></div>
+      <nav class="nav-links">
+        <button id="nav-discover" class="active">모임 탐색</button>
+        <button id="nav-my-dogs">내 반려견</button>
+        <button id="nav-reviews">후기</button>
+      </nav>
+      <div class="user-action">
+        <button class="btn-profile">MY PAGE</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Discover View -->
+      <div id="discover-view" class="view-section">
+        <div class="hero">
+          <h1>HAPPY TAILS</h1>
+          <p>혼자 하는 산책보다 친구와 함께하는 산책이 더 즐거워요. 우리 동네 산책 메이트를 만나보세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="walk-search" placeholder="모임 제목 또는 장소 검색...">
+          </div>
+          <div class="filters">
+            <select id="location-filter" class="form-select">
+              <option value="All">전체 지역</option>
+              <option value="서울">서울</option>
+              <option value="경기">경기</option>
+              <option value="인천">인천</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="walk-grid" class="grid mt-4">
+          <!-- 모임 카드 -->
+        </div>
+      </div>
+
+      <!-- My Dogs View -->
+      <div id="dogs-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">등록된 나의 반려견</h2>
+        <div id="dog-list" class="grid">
+          <!-- 강아지 프로필 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 모임 상세 모달 -->
+    <div id="walk-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body" data-bug-id="site065-bug02">
+          <!-- 상세 내용 -->
+        </div>
+        <div class="modal-footer mt-5">
+          <div class="dog-select-group mb-3">
+            <label>참가할 반려견 선택</label>
+            <select id="apply-dog-id" class="form-select w-full mt-1">
+              <!-- 내 강아지 목록 로드 -->
+            </select>
+          </div>
+          <button id="join-btn" class="btn-brown w-full" data-bug-id="site065-bug01">산책 참가 신청하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 반려견 상세 모달 (IDOR 테스트용) -->
+    <div id="dog-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-dog">&times;</span>
+        <div id="dog-modal-body" data-bug-id="site065-bug03">
+          <!-- 상세 개인정보 포함 로드 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookNest Library</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <h1 class="logo">BookNest</h1>
+      <nav>
+        <button id="nav-home" class="nav-btn active">도서관 홈</button>
+        <button id="nav-dashboard" class="nav-btn">내 서재 (대시보드)</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-view">
+    <!-- Section 1: Recommended Books -->
+    <section class="hero-section" id="section-recommended">
+      <div class="hero-text">
+        <h2>당신을 위한 <br><span class="accent">이달의 추천 도서</span></h2>
+        <p>BookNest가 엄선한 최고의 지식을 만나보세요.</p>
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="도서명 검색...">
+          <button id="search-btn" class="btn-primary">검색</button>
+        </div>
+      </div>
+      <div class="hero-refresh">
+        <button id="refresh-recommend-btn" class="btn-secondary">추천 새로고침</button>
+      </div>
+    </section>
+
+    <!-- Section 2 & 3: Genres & Available Books combined in a layout -->
+    <div class="content-layout">
+      <!-- Section 2: Genres -->
+      <aside class="sidebar" id="section-genres">
+        <h3>장르 필터</h3>
+        <ul class="genre-list" id="genre-list">
+          <li class="genre-item active" data-genre="전체">전체보기</li>
+          <li class="genre-item" data-genre="IT/프로그래밍">IT/프로그래밍</li>
+          <li class="genre-item" data-genre="자기계발">자기계발</li>
+          <li class="genre-item" data-genre="인문학">인문학</li>
+        </ul>
+      </aside>
+
+      <!-- Section 3: Available Books -->
+      <section class="book-list-section" id="section-available">
+        <div class="list-header">
+          <h3>대여 가능 도서</h3>
+          <div class="controls">
+            <!-- Bug 01 attached to sort selection -->
+            <select id="sort-select" data-bug-id="site002-bug01">
+              <option value="latest">최신 등록순</option>
+              <option value="rating">평점순 (추천)</option>
+            </select>
+          </div>
+        </div>
+        <div class="book-grid" id="book-container">
+          <!-- Book cards injected here -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Section 6: User Dashboard (Hidden by default) -->
+  <main id="dashboard-view" style="display: none;">
+    <section class="dashboard-section" id="section-dashboard">
+      <h3>내 서재 (이용자 대시보드)</h3>
+      <div class="dashboard-card" id="user-info-container">
+        <!-- Bug 03 attached here since it will fetch and expose vulnerable data -->
+        <p>사용자 정보를 불러오는 중...</p>
+      </div>
+      <div class="dashboard-actions">
+        <button id="fetch-user-btn" class="btn-primary" data-bug-id="site002-bug03">사용자 정보 새로고침 (네트워크 탭 확인)</button>
+        <button id="return-reminder-btn" class="btn-secondary">반납 예정 알림 확인</button>
+      </div>
+      <div class="rental-list">
+        <h4>현재 대여 중인 도서</h4>
+        <ul id="active-rentals">
+          <li>클린 코드 (Clean Code) - 반납 예정일: 2026-05-15</li>
+          <li>모던 자바스크립트 Deep Dive - 반납 예정일: 2026-05-20</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Section 4 & 5: Book Detail & Rent Form (Modal) -->
+  <div class="modal-overlay" id="book-modal">
+    <div class="modal-container">
+      <button class="close-modal" id="close-modal-btn">&times;</button>
+      <!-- Section 4: Book Detail -->
+      <div class="book-detail" id="modal-detail-content">
+        <!-- Details injected here -->
+      </div>
+      
+      <!-- Section 5: Rent Form -->
+      <div class="rent-form-container">
+        <h4>대여 신청</h4>
+        <form id="rent-form">
+          <label for="rent-period">대여 기간:</label>
+          <select id="rent-period">
+            <option value="7">7일</option>
+            <option value="14">14일</option>
+            <option value="30">30일</option>
+          </select>
+          <!-- Bug 02 attached here for submitting rental -->
+          <button type="submit" class="btn-primary w-full" id="submit-rent-btn" data-bug-id="site002-bug02">대여하기</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-message" class="toast">알림 메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

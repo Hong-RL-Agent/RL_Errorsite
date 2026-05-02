@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitTrack Studio</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <h1 class="logo">FITTRACK<span class="neon">.STUDIO</span></h1>
+      <nav>
+        <button id="nav-dashboard" class="nav-btn active">대시보드</button>
+        <button id="nav-profile" class="nav-btn">프로필</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-view">
+    <div class="dashboard-grid">
+      <!-- Left Column -->
+      <div class="grid-left">
+        <!-- Section 1: 오늘의 루틴 -->
+        <section class="card" id="section-routine">
+          <div class="card-header">
+            <h2>오늘의 루틴</h2>
+            <div class="filter-group">
+              <button class="filter-btn active" data-type="전체">전체</button>
+              <button class="filter-btn" data-type="상체">상체</button>
+              <button class="filter-btn" data-type="하체">하체</button>
+            </div>
+          </div>
+          <div class="routine-list" id="routine-container">
+            <!-- Workouts injected here -->
+          </div>
+          
+          <!-- Hacking Input for Bug 3 -->
+          <div class="hack-panel">
+            <input type="text" id="target-user-id" placeholder="유저 ID 입력 (기본: user-001)">
+            <button id="fetch-other-user-btn" class="btn-outline" data-bug-id="site003-bug03">기록 불러오기</button>
+          </div>
+        </section>
+
+        <!-- Section 2: 운동 기록 (추가 폼) -->
+        <section class="card" id="section-record">
+          <h2>새 운동 기록하기</h2>
+          <form id="add-workout-form">
+            <input type="text" id="workout-name" placeholder="예: 스쿼트 5세트" required>
+            <select id="workout-type">
+              <option value="상체">상체</option>
+              <option value="하체">하체</option>
+              <option value="전신">전신</option>
+              <option value="유산소">유산소</option>
+            </select>
+            <button type="submit" class="btn-primary">운동 추가</button>
+          </form>
+        </section>
+      </div>
+
+      <!-- Right Column -->
+      <div class="grid-right">
+        <!-- Section 4: 통계 카드 -->
+        <section class="card stats-card" id="section-stats">
+          <div class="card-header">
+            <h2>내 통계</h2>
+            <button id="refresh-stats-btn" class="btn-icon" data-bug-id="site003-bug02">↻ 갱신</button>
+          </div>
+          <div class="stats-grid" id="stats-container">
+            <div class="stat-item">
+              <span class="stat-label">총 운동 횟수</span>
+              <span class="stat-value" id="stat-workouts">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">누적 시간 (분)</span>
+              <span class="stat-value" id="stat-minutes">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">소모 칼로리</span>
+              <span class="stat-value" id="stat-calories">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">연속 달성</span>
+              <span class="stat-value" id="stat-streak">-</span>
+            </div>
+          </div>
+          <div id="stats-error" class="error-msg" style="display: none;">통계를 불러오지 못했습니다. (503)</div>
+        </section>
+
+        <!-- Section 3: 목표 관리 -->
+        <section class="card" id="section-goals">
+          <h2>목표 관리</h2>
+          <form id="goal-form">
+            <div class="goal-input-group">
+              <label>현재 체중 (kg)</label>
+              <input type="number" id="current-weight" value="70">
+            </div>
+            <div class="goal-input-group">
+              <label>목표 체중 (kg)</label>
+              <input type="number" id="target-weight" value="65">
+            </div>
+            <button type="button" id="save-goal-btn" class="btn-primary">목표 저장</button>
+          </form>
+        </section>
+
+        <!-- Section 5: 루틴 추천 -->
+        <section class="card" id="section-recommend">
+          <h2>맞춤 루틴 추천</h2>
+          <div class="recommend-tabs">
+            <button class="rec-tab active" data-level="초급">초급</button>
+            <button class="rec-tab" data-level="중급">중급</button>
+            <button class="rec-tab" data-level="고급">고급</button>
+          </div>
+          <div class="recommend-content" id="recommend-content">
+            <p>초급자를 위한 전신 무분할 루틴을 추천합니다!</p>
+            <ul>
+              <li>맨몸 스쿼트 3세트</li>
+              <li>푸시업 3세트</li>
+              <li>플랭크 1분</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Section 6: Profile (Hidden by default) -->
+  <main id="profile-view" style="display: none;">
+    <section class="card profile-card" id="section-profile">
+      <div class="profile-header">
+        <div class="profile-avatar"></div>
+        <div class="profile-info">
+          <h2 id="profile-name">이름</h2>
+          <p id="profile-level" class="neon">레벨</p>
+          <p id="profile-status">상태 메시지</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast-message" class="toast">알림 메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MovieClub Seat - 영화, 그 이상의 감동</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">MOVIE<span class="text-red">CLUB</span></div>
+      <nav class="nav-links">
+        <button id="nav-movies" class="active">상영 영화</button>
+        <button id="nav-my">나의 예매</button>
+      </nav>
+      <div class="user-action">
+        <span class="location">CINEMA AUBURN</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Movies View -->
+      <div id="movies-view" class="view-section">
+        <div class="hero">
+          <h1>NOW PLAYING</h1>
+          <p>엄선된 명작 영화들과 함께하는 특별한 저녁을 예약하세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="movie-search" placeholder="영화 제목 검색...">
+          </div>
+          <div class="date-filter">
+            <button class="filter-btn active" data-date="2024-05-20">5/20 (월)</button>
+            <button class="filter-btn" data-date="2024-05-21">5/21 (화)</button>
+          </div>
+        </div>
+
+        <div id="movie-grid" class="grid mt-4">
+          <!-- 영화 카드 -->
+        </div>
+      </div>
+
+      <!-- My Reservations View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 예매 내역</h2>
+        <div id="my-res-list" class="list-wrapper">
+          <!-- 예매 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 좌석 선택 모달 -->
+    <div id="seat-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 동적 로드 -->
+        </div>
+        <div class="seat-map-container mt-4">
+          <div class="screen">SCREEN</div>
+          <div id="seat-grid" class="seat-grid mt-4" data-bug-id="site055-bug01">
+            <!-- 좌석 배치 -->
+          </div>
+        </div>
+        <div class="modal-footer mt-5">
+          <button id="reserve-btn" class="btn-red w-full" data-bug-id="site055-bug02">선택한 좌석 예약하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 예매 상세 모달 (IDOR 테스트용) -->
+    <div id="detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-detail">&times;</span>
+        <div id="detail-body" data-bug-id="site055-bug03">
+          <!-- 예매 상세 정보 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeFix Request</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">Home<span class="text-orange">Fix</span></div>
+    <nav>
+      <button id="nav-home" class="active">서비스 신청</button>
+      <button id="nav-requests">내 요청 내역</button>
+      <button id="nav-reviews">이용 후기</button>
+    </nav>
+  </div>
+
+  <main class="content">
+    <!-- Home / Request View -->
+    <div id="home-view" class="view-section">
+      <header class="section-header">
+        <h1>전문 기사 매칭</h1>
+        <p>어떤 수리가 필요하신가요? 검증된 전문가를 추천해 드립니다.</p>
+      </header>
+
+      <div class="category-grid mt-4">
+        <button class="cat-card active" data-cat="all">전체</button>
+        <button class="cat-card" data-cat="Electrical">💡 전기</button>
+        <button class="cat-card" data-cat="Plumbing">🚰 배관</button>
+        <button class="cat-card" data-cat="Interior">🏠 인테리어</button>
+      </div>
+
+      <div class="technician-container mt-5">
+        <div class="container-title">
+          <h3>신규 평점 높은 기사님</h3>
+          <input type="text" id="tech-search" placeholder="기사님 성함 검색...">
+        </div>
+        <div id="tech-grid" class="grid mt-3">
+          <!-- 기기 카드 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- My Requests View -->
+    <div id="requests-view" class="view-section" style="display:none;">
+      <h2 class="mb-4">나의 수리 요청 내역</h2>
+      <div id="request-list" class="req-list">
+        <!-- 요청 리스트 -->
+      </div>
+      <div class="mt-5 private-test" data-bug-id="site027-bug03">
+        <button id="test-idor-btn" class="btn-outline btn-sm">다른 요청 상세 조회 (테스트)</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- 수리 요청 모달 -->
+  <div id="request-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modal-tech-name">기사님께 요청하기</h2>
+      <p id="modal-tech-cat" class="text-muted text-sm"></p>
+      <form id="request-form" class="mt-4">
+        <div class="form-group">
+          <label>수리 요청 내용</label>
+          <textarea id="repair-desc" class="form-input" rows="4" placeholder="수리가 필요한 부분과 증상을 자세히 적어주세요." data-bug-id="site027-bug02"></textarea>
+        </div>
+        <div class="form-footer mt-4">
+          <button type="submit" id="submit-request-btn" class="btn-primary w-full" data-bug-id="site027-bug01">매칭 요청 보내기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

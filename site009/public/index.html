@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenShop</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <h1 class="logo">Green<span style="color:var(--brown);">Shop</span></h1>
+      <nav>
+        <button class="nav-btn active" id="nav-shop">스토어</button>
+        <button class="nav-btn" id="nav-brand">브랜드 스토리</button>
+        <button class="nav-btn" id="nav-orders">내 주문</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Store View -->
+  <main id="shop-view">
+    <div class="shop-layout">
+      <!-- Left: Products -->
+      <div class="shop-main">
+        <!-- Section 1: Products -->
+        <section class="section mb-4">
+          <div class="section-header">
+            <h2>친환경 상품</h2>
+            <div class="filter-group">
+              <input type="text" id="search-item" placeholder="상품명 검색..." class="form-input" style="width:180px;">
+              <select id="brand-filter" class="form-select">
+                <option value="all">모든 브랜드</option>
+                <option value="EcoLife">EcoLife</option>
+                <option value="NatureSoap">NatureSoap</option>
+                <option value="EcoWrap">EcoWrap</option>
+              </select>
+              <select id="price-sort" class="form-select">
+                <option value="asc">낮은 가격순</option>
+                <option value="desc">높은 가격순</option>
+              </select>
+            </div>
+          </div>
+          <p class="text-sm text-muted mb-3">* 결제 금액 5만원 이상 시 알 수 없는 에러(Bug 02)가 발생합니다.</p>
+          <div class="item-grid" id="item-grid">
+            <!-- Items injected here -->
+          </div>
+        </section>
+
+        <!-- Section 6: Reviews -->
+        <section class="section">
+          <h2>고객 리뷰</h2>
+          <div class="review-box mt-3">
+            <div class="review-item">
+              <div style="font-weight:bold;">eco_lover <span class="text-olive text-sm">★★★★★</span></div>
+              <p class="text-sm mt-1">대나무 칫솔 너무 부드럽고 좋아요! 포장도 종이라서 분리수거하기 편합니다.</p>
+            </div>
+            <div class="review-item">
+              <div style="font-weight:bold;">nature_123 <span class="text-olive text-sm">★★★★☆</span></div>
+              <p class="text-sm mt-1">샴푸바 거품이 생각보다 잘 나네요. 향도 은은합니다.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right: Cart & Coupon -->
+      <div class="shop-sidebar">
+        <!-- Section 3: Cart -->
+        <section class="card mb-4" id="section-cart">
+          <h2>장바구니 🛒</h2>
+          <div id="cart-items" class="cart-items mt-3">
+            <p class="text-center text-muted" style="padding: 1rem 0;">장바구니가 비어있습니다.</p>
+          </div>
+          <div class="cart-summary mt-3">
+            <div class="summary-row">
+              <span>상품 금액</span>
+              <span id="cart-subtotal">0원</span>
+            </div>
+            <div class="summary-row text-brown">
+              <span>할인 금액</span>
+              <span id="cart-discount">-0원</span>
+            </div>
+            <div class="summary-row total-row mt-2 pt-2">
+              <span>총 결제금액</span>
+              <span id="cart-total" class="text-olive" style="font-size:1.3rem;">0원</span>
+            </div>
+          </div>
+
+          <!-- Section 4: Coupon -->
+          <div class="coupon-box mt-3 mb-3">
+            <div style="display:flex; gap:0.5rem;">
+              <input type="text" id="coupon-code" class="form-input flex-1" placeholder="쿠폰 코드 입력">
+              <button class="btn-outline" id="apply-coupon-btn" data-bug-id="site009-bug01">적용</button>
+            </div>
+            <p class="text-xs text-muted mt-1">* 테스트용 만료 쿠폰: <code>ECO2025</code> (Bug 01)</p>
+          </div>
+
+          <!-- Checkout Form -->
+          <form id="checkout-form">
+            <input type="text" id="order-address" class="form-input mb-2" placeholder="배송지 입력 (예: 서울시 녹색로)" required>
+            
+            <div class="hack-box mb-3">
+              <label class="text-xs text-muted">결제 금액 변조 (Bug 03)</label>
+              <input type="number" id="hack-price" class="form-input" placeholder="서버로 보낼 조작된 금액">
+            </div>
+
+            <button type="submit" class="btn-primary w-full" id="checkout-btn" data-bug-id="site009-bug02 site009-bug03">결제하기</button>
+          </form>
+          <div id="checkout-error" class="error-msg mt-2 text-center" style="display:none;"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Brand Story View -->
+  <main id="brand-view" style="display:none;">
+    <!-- Section 2: Brand -->
+    <section class="section text-center">
+      <h2 style="font-family: 'Playfair Display', serif; font-size:2.5rem; margin-bottom:1rem;">Earth First, Profit Second.</h2>
+      <p class="text-muted" style="max-width:600px; margin:0 auto 2rem;">
+        GreenShop은 지속 가능한 지구를 위해 자연에서 분해되는 친환경 소재만을 고집합니다. 플라스틱 프리(Plastic-Free) 패키징과 탄소 발자국을 줄이는 로컬 생산을 통해 자연과 인간이 공존하는 삶을 제안합니다.
+      </p>
+      <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800&h=400" style="width:100%; max-width:800px; border-radius:12px; object-fit:cover;">
+    </section>
+  </main>
+
+  <!-- Orders View -->
+  <main id="orders-view" style="display:none;">
+    <!-- Section 5: Orders -->
+    <section class="section">
+      <div class="section-header">
+        <h2>내 주문 내역</h2>
+        <button class="btn-text" id="refresh-orders-btn">↻ 새로고침</button>
+      </div>
+      <div class="order-list" id="order-list">
+        <!-- Orders injected here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

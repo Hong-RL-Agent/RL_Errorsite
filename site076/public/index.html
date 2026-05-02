@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TownNotice - 깨끗하고 안전한 우리 동네 소통 포털</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&family=Work+Sans:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">TOWN<span class="text-green">NOTICE</span></div>
+      <nav class="nav-links">
+        <button id="nav-notices" class="active">동네 소식</button>
+        <button id="nav-complaints">민원 접수</button>
+        <button id="nav-faq">자주 묻는 질문</button>
+      </nav>
+      <div class="user-action">
+        <span class="user-status">압구정동 주민_A</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Notices View -->
+      <div id="notices-view" class="view-section">
+        <div class="hero">
+          <h1>CONNECTING OUR COMMUNITY</h1>
+          <p>동네의 새로운 소식과 중요한 행정 정보를 가장 빠르게 확인하세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="notice-search" placeholder="공지사항 검색...">
+          </div>
+          <div class="filters">
+            <select id="region-filter" class="form-select">
+              <option value="전체">전체 지역</option>
+              <option value="신사동">신사동</option>
+              <option value="압구정동">압구정동</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="notice-list" class="list-wrapper mt-4">
+          <!-- 공지 리스트 로드 -->
+        </div>
+      </div>
+
+      <!-- Complaints View -->
+      <div id="complaints-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">민원 접수 및 현황</h2>
+        <div class="complaint-dashboard">
+          <div class="form-card">
+            <h3>민원 신청</h3>
+            <div class="form-group mt-3">
+              <label>민원 제목</label>
+              <input type="text" id="complaint-title" class="form-input" placeholder="짧고 명확한 제목을 입력하세요.">
+            </div>
+            <div class="form-group mt-3">
+              <label>상세 내용</label>
+              <textarea id="complaint-content" class="form-input" placeholder="불편 사항을 상세히 적어주세요."></textarea>
+            </div>
+            <button id="submit-complaint" class="btn-green w-full mt-4" data-bug-id="site076-bug02">민원 접수하기</button>
+          </div>
+          
+          <div class="status-card mt-5">
+            <h3>나의 민원 내역</h3>
+            <div id="my-complaint-list" class="list-wrapper mt-3" data-bug-id="site076-bug01 site076-bug03">
+              <!-- 내 민원 리스트 -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ View -->
+      <div id="faq-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">주민 참여 도움말</h2>
+        <div id="faq-list" class="grid mt-4">
+          <!-- FAQ 로드 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 상세 모달 -->
+    <div id="detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 상세 내용 -->
+        </div>
+        <div id="modal-actions" class="mt-5" style="display:none;">
+          <button id="resolve-btn" class="btn-outline w-full">처리 완료로 변경</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeskPlant Office - 초록빛 사무실의 시작</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">DESK<span class="text-green">PLANT</span></div>
+      <nav class="nav-links">
+        <button id="nav-plans" class="active">구독 플랜</button>
+        <button id="nav-my">내 구독 관리</button>
+        <button id="nav-support">고객 센터</button>
+      </nav>
+      <div class="user-profile">
+        <span class="company-tag">AG CORP</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Plans View -->
+      <div id="plans-view" class="view-section">
+        <div class="hero">
+          <h1>GREEN WORKSPACE</h1>
+          <p>전문가가 큐레이션한 사무실 전용 식물 구독 서비스를 경험해 보세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="plan-search" placeholder="상품명 또는 키워드 검색...">
+          </div>
+          <div class="filter-group">
+            <button class="filter-btn active" data-level="All">전체 난이도</button>
+            <button class="filter-btn" data-level="Easy">초보자용</button>
+            <button class="filter-btn" data-level="Hard">전문가용</button>
+          </div>
+        </div>
+
+        <div id="plan-grid" class="grid mt-4">
+          <!-- 플랜 카드 -->
+        </div>
+      </div>
+
+      <!-- My Subscription View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 구독 현황</h2>
+        <div id="sub-list" class="list-wrapper">
+          <!-- 구독 리스트 -->
+        </div>
+
+        <h2 class="mt-5 mb-4">다가오는 배송 일정</h2>
+        <div class="delivery-card p-4">
+          <div class="flex-between">
+            <div>
+              <p class="font-bold">정기 배송 예정일</p>
+              <input type="date" id="delivery-date" class="form-input mt-2" value="2024-05-25" data-bug-id="site056-bug02">
+            </div>
+            <button id="update-delivery-btn" class="btn-green">일정 변경하기</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 플랜 상세 모달 -->
+    <div id="plan-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 동적 로드 -->
+        </div>
+        <div class="modal-footer mt-5">
+          <div class="price-summary mb-4">
+            <span>월 구독료</span>
+            <span id="modal-price" class="font-bold text-lg">0원</span>
+          </div>
+          <button id="subscribe-btn" class="btn-green w-full" data-bug-id="site056-bug01">이 플랜으로 구독 시작하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevSnippet Vault - 최고의 코드를 안전하게 보관하세요</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="logo">DEV<span class="text-purple">VAULT</span></div>
+      <nav class="side-nav">
+        <button id="nav-all" class="active">모든 스니펫</button>
+        <button id="nav-new">새 스니펫 작성</button>
+        <button id="nav-fav">즐겨찾기</button>
+      </nav>
+      <div class="language-filter mt-5">
+        <p class="section-title">LANGUAGES</p>
+        <ul id="lang-list">
+          <li data-lang="All" class="active">All</li>
+          <li data-lang="JavaScript">JavaScript</li>
+          <li data-lang="TypeScript">TypeScript</li>
+          <li data-lang="Python">Python</li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="top-bar">
+        <div class="search-box">
+          <input type="text" id="snippet-search" placeholder="제목이나 태그로 검색 (Cmd + K)">
+        </div>
+        <div class="user-meta">
+          <div class="user-badge">DEV_MODE</div>
+        </div>
+      </header>
+
+      <!-- Snippets Grid -->
+      <div id="snippets-view" class="view-section">
+        <div id="snippet-grid" class="grid mt-4">
+          <!-- 스니펫 카드 -->
+        </div>
+      </div>
+
+      <!-- New Snippet Form -->
+      <div id="new-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">새 스니펫 저장</h2>
+        <div class="form-container">
+          <div class="form-group">
+            <label>스니펫 제목</label>
+            <input type="text" id="new-title" class="form-input" placeholder="예: Node.js Logger Utility">
+          </div>
+          <div class="flex-row mt-3">
+            <div class="form-group flex-1 mr-3">
+              <label>언어</label>
+              <select id="new-lang" class="form-input">
+                <option value="JavaScript">JavaScript</option>
+                <option value="TypeScript">TypeScript</option>
+                <option value="Python">Python</option>
+                <option value="CSS">CSS</option>
+              </select>
+            </div>
+            <div class="form-group flex-1">
+              <label>공개 설정</label>
+              <select id="new-private" class="form-input">
+                <option value="false">전체 공개</option>
+                <option value="true">비공개 (Private)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>코드 (Code Editor)</label>
+            <textarea id="new-code" class="form-input code-area" placeholder="코드를 여기에 붙여넣으세요..."></textarea>
+          </div>
+          <div class="form-group mt-3">
+            <label>태그 선택 (다중 선택 가능)</label>
+            <div id="tag-selector" class="tag-cloud" data-bug-id="site062-bug02">
+              <!-- API로 로드된 태그들 -->
+            </div>
+          </div>
+          <button id="save-snippet-btn" class="btn-purple mt-4 w-full" data-bug-id="site062-bug01">스니펫 저장하기</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- 스니펫 상세 모달 -->
+    <div id="detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body" data-bug-id="site062-bug03">
+          <!-- 상세 내용 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

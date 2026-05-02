@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MealPrep Calendar - 당신의 건강한 식단 파트너</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">MEALPREP<span class="text-mint">CALENDAR</span></div>
+      <nav class="nav-links">
+        <button id="nav-meals" class="active">식단 기록</button>
+        <button id="nav-shopping">장보기 목록</button>
+        <button id="nav-recipes">레시피</button>
+      </nav>
+      <div class="user-profile">
+        <span class="user-name">Minjee Kim</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Meals View -->
+      <div id="meals-view" class="view-section">
+        <div class="calendar-header flex-between mb-5">
+          <div class="date-selector">
+            <button id="prev-date" class="btn-icon">←</button>
+            <h2 id="current-date-display">2024-05-01</h2>
+            <button id="next-date" class="btn-icon">→</button>
+          </div>
+          <div class="calorie-summary" data-bug-id="site067-bug01">
+            <span class="text-muted">오늘의 총 칼로리</span>
+            <span id="total-kcal" class="kcal-value">0 kcal</span>
+          </div>
+        </div>
+
+        <div class="meal-board">
+          <div class="section-title flex-between">
+            <h3>오늘의 식단</h3>
+            <button id="add-meal-btn" class="btn-mint-small">+ 식단 추가</button>
+          </div>
+          <div id="meal-list" class="grid mt-4" data-bug-id="site067-bug02 site067-bug03">
+            <!-- 식단 카드 로드 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Shopping View -->
+      <div id="shopping-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">장보기 체크리스트</h2>
+        <div id="shopping-list" class="list-wrapper">
+          <!-- 장보기 아이템 -->
+        </div>
+      </div>
+
+      <!-- Recipe View -->
+      <div id="recipe-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">건강 레시피 탐색</h2>
+        <div id="recipe-grid" class="grid">
+          <!-- 레시피 카드 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 식단 추가 모달 -->
+    <div id="meal-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="mb-4">식단 기록하기</h2>
+        <div class="form-group">
+          <label>식사 구분</label>
+          <select id="meal-type" class="form-input">
+            <option value="Breakfast">아침</option>
+            <option value="Lunch">점심</option>
+            <option value="Dinner">저녁</option>
+            <option value="Snack">간식</option>
+          </select>
+        </div>
+        <div class="form-group mt-3">
+          <label>메뉴 이름</label>
+          <input type="text" id="meal-name" class="form-input" placeholder="예: 구운 채소 샐러드">
+        </div>
+        <div class="form-group mt-3">
+          <label>칼로리 (kcal)</label>
+          <input type="number" id="meal-kcal" class="form-input" placeholder="0">
+        </div>
+        <button id="save-meal-btn" class="btn-mint w-full mt-5">기록 완료</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

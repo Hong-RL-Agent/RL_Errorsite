@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MemoryBox | Collect Your Moments</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="sidebar">
+    <div class="logo">🕯️ <span>Memory</span>Box</div>
+    <div class="nav-links">
+      <button class="nav-btn active" data-view="memories">Memories</button>
+      <button class="nav-btn" data-view="favorites">Favorites</button>
+      <button class="nav-btn" data-view="stats">Statistics</button>
+      <button class="nav-btn" data-view="settings">Settings</button>
+    </div>
+    <div class="sidebar-bottom">
+      <button id="write-btn" class="primary-btn">Write Record</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Memories View -->
+    <section id="memories-view" class="view">
+      <header class="view-header">
+        <h1>Your <span>Memories</span></h1>
+        <div class="search-bar">
+          <input type="text" id="memory-search" placeholder="Search by title or content...">
+          <button id="search-btn">Find</button>
+        </div>
+      </header>
+
+      <div class="filter-row">
+        <div class="tags-container" id="tags-list">
+          <button class="tag-btn active" data-tag="">All</button>
+          <!-- Tags loaded here -->
+        </div>
+        <select id="sort-select" class="sort-select">
+          <option value="desc">Newest First</option>
+          <option value="asc">Oldest First</option>
+        </select>
+      </div>
+
+      <div id="memories-grid" class="grid">
+        <!-- Memories loaded here -->
+      </div>
+    </section>
+
+    <!-- Favorites View -->
+    <section id="favorites-view" class="view hidden">
+      <header class="view-header">
+        <h2>Treasured <span>Favorites</span></h2>
+      </header>
+      <div id="favorites-grid" class="grid">
+        <!-- Favorites loaded here -->
+      </div>
+    </section>
+
+    <!-- Stats View -->
+    <section id="stats-view" class="view hidden">
+      <header class="view-header">
+        <h2>Memory <span>Insights</span></h2>
+      </header>
+      <div id="stats-content" class="stats-container">
+        <!-- Stats loaded here -->
+      </div>
+      <div class="bug-notice">
+        ⚠️ Notice: The stats data format may be unusual (site090-bug02)
+      </div>
+    </section>
+
+    <!-- Settings View -->
+    <section id="settings-view" class="view hidden">
+      <header class="view-header">
+        <h2>Box <span>Settings</span></h2>
+      </header>
+      <div class="settings-card">
+        <h3>Security & Privacy</h3>
+        <p>Private memories are hidden from the main grid but can be accessed via direct link.</p>
+        <div class="debug-access">
+          <p>Access memory by ID (Try ID 3 for site090-bug03):</p>
+          <div class="debug-input">
+            <input type="number" id="debug-id" placeholder="Memory ID">
+            <button id="debug-access-btn" class="secondary-btn">Access</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Write Modal -->
+  <div id="write-modal" class="modal hidden">
+    <div class="modal-content paper">
+      <span class="close-modal">&times;</span>
+      <h2>New Memory</h2>
+      <form id="write-form">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" id="m-title" required placeholder="What happened?">
+        </div>
+        <div class="form-group">
+          <label>Content</label>
+          <textarea id="m-content" required rows="6" placeholder="Write your heart out..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Tags (Comma separated)</label>
+          <input type="text" id="m-tags" placeholder="Nature, Summer, etc.">
+        </div>
+        <div class="form-group checkbox">
+          <input type="checkbox" id="m-private">
+          <label for="m-private">Private Memory</label>
+        </div>
+        <button type="submit" class="primary-btn wide">Save to Box</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Detail Modal -->
+  <div id="detail-modal" class="modal hidden">
+    <div class="modal-content paper detail-paper">
+      <span class="close-detail">&times;</span>
+      <div id="detail-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

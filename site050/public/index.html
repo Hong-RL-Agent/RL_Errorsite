@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalTour Guide - 당신의 특별한 로컬 여행</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">LOCAL<span class="text-blue">TOUR</span></div>
+      <nav class="nav-links">
+        <button id="nav-home" class="active">코스 탐색</button>
+        <button id="nav-places">장소 목록</button>
+        <button id="nav-my">저장한 코스</button>
+      </nav>
+      <div class="user-action">
+        <button class="btn-invite">친구 초대</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Home View (Routes) -->
+      <div id="home-view" class="view-section">
+        <div class="hero">
+          <h1>EXPLORE LOCAL VIBES</h1>
+          <p>현지인이 추천하는 가장 완벽한 하루 코스를 만나보세요.</p>
+        </div>
+
+        <div class="section-title mt-5">
+          <h2>추천 테마 코스</h2>
+        </div>
+        <div id="route-grid" class="grid mt-4">
+          <!-- 코스 카드 -->
+        </div>
+      </div>
+
+      <!-- Places View -->
+      <div id="places-view" class="view-section" style="display:none;">
+        <div class="toolbar mt-4">
+          <div class="search-box">
+            <input type="text" id="place-search" placeholder="어디로 떠나고 싶으신가요?">
+          </div>
+          <div class="filter-group">
+            <button class="filter-btn active" data-region="all">전체</button>
+            <button class="filter-btn" data-region="서울">서울</button>
+            <button class="filter-btn" data-region="강원">강원</button>
+            <button class="filter-btn" data-region="부산">부산</button>
+          </div>
+        </div>
+        <div id="place-grid" class="grid mt-4">
+          <!-- 장소 카드 -->
+        </div>
+      </div>
+
+      <!-- My Saved Routes View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">내가 저장한 여행 코스</h2>
+        <div id="saved-list" class="list-wrapper">
+          <!-- 저장된 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 코스 상세 모달 -->
+    <div id="route-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body" data-bug-id="site050-bug01">
+          <!-- 동적 로드 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 나만의 일정 상세 모달 (IDOR 테스트용) -->
+    <div id="saved-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-saved">&times;</span>
+        <div id="saved-body" data-bug-id="site050-bug03">
+          <!-- 상세 정보 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

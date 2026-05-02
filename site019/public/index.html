@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClinicDesk</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo">Clinic<span class="text-blue">Desk</span></h1>
+      <nav>
+        <button id="nav-book" class="active">진료 예약</button>
+        <button id="nav-my">내 예약 확인</button>
+        <button id="nav-info">병원 안내</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Booking View -->
+    <div id="book-view">
+      <div class="step-indicator">
+        <span class="step active">1. 진료과 선택</span>
+        <span class="step">2. 의사 선택</span>
+        <span class="step">3. 시간 확정</span>
+      </div>
+
+      <div class="section mt-4">
+        <h3>진료과를 선택해 주세요</h3>
+        <div id="dept-list" class="tag-group mt-2">
+          <!-- 진료과 태그 -->
+        </div>
+      </div>
+
+      <div class="section mt-4" id="doctor-section" style="display:none;">
+        <h3>의사 선생님을 선택해 주세요</h3>
+        <div id="doctor-grid" class="grid mt-2">
+          <!-- 의사 카드 -->
+        </div>
+      </div>
+
+      <div class="section mt-4" id="time-section" style="display:none;">
+        <h3>예약 시간을 선택해 주세요</h3>
+        <div class="date-picker-box">
+          <input type="date" id="reserve-date">
+        </div>
+        <div id="time-grid" class="time-grid mt-2">
+          <button class="time-btn" data-time="09:00">09:00</button>
+          <button class="time-btn" data-time="10:00">10:00</button>
+          <button class="time-btn" data-time="11:00">11:00</button>
+          <button class="time-btn" data-time="14:00">14:00</button>
+          <button class="time-btn" data-time="15:00">15:00</button>
+          <button class="time-btn" data-time="16:00">16:00</button>
+        </div>
+        <button id="submit-booking" class="btn-primary w-full mt-4" data-bug-id="site019-bug01">예약 확정하기</button>
+      </div>
+    </div>
+
+    <!-- My Appointments View -->
+    <div id="my-view" style="display:none;">
+      <h2 class="view-title">내 예약 현황</h2>
+      <div class="search-box mb-4">
+        <input type="text" id="user-name-input" placeholder="이름을 입력하세요 (예: 홍길동)">
+        <button id="search-my-btn" class="btn-primary">조회</button>
+      </div>
+      <div id="my-app-list">
+        <p class="text-muted">이름을 입력하여 예약 내역을 조회하세요.</p>
+      </div>
+      <div class="security-warning mt-5" data-bug-id="site019-bug03">
+        <p class="text-xs text-muted">⚠️ (Bug 03 테스트) 브라우저 개발자 도구의 Network 탭에서 응답값을 확인해 보세요. 주민번호가 포함되어 있는지 확인할 수 있습니다.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- 상세 모달 -->
+  <div id="info-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

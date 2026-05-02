@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Museum Pass</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="gallery-wrapper">
+    <header class="gallery-header">
+      <div class="logo">MUSEUM <span class="thin">PASS</span></div>
+      <nav>
+        <button id="nav-exhibitions" class="active">EXHIBITIONS</button>
+        <button id="nav-my-tickets">MY TICKETS</button>
+        <button id="nav-artists">ARTISTS</button>
+      </nav>
+    </header>
+
+    <main class="gallery-main">
+      <!-- Exhibitions View -->
+      <div id="ex-view">
+        <section class="hero-section">
+          <h1>Experience Eternal Art</h1>
+          <p>시간을 초월한 예술의 감동, 뮤지엄 패스와 함께하세요.</p>
+        </section>
+
+        <div class="search-bar">
+          <input type="text" id="ex-search" placeholder="전시회 명칭 또는 작가 검색...">
+        </div>
+
+        <div id="ex-grid" class="grid mt-5">
+          <!-- 전시 카드 -->
+        </div>
+      </div>
+
+      <!-- My Tickets View -->
+      <div id="tickets-view" style="display:none;">
+        <h2 class="view-title">나의 예매 내역</h2>
+        <div id="ticket-list" class="ticket-list mt-5">
+          <!-- 티켓 리스트 -->
+        </div>
+        <div class="mt-5 idor-box" data-bug-id="site025-bug03">
+          <button id="test-idor-btn" class="btn-outline btn-sm">타인 티켓 무단 조회 (Bug 03)</button>
+        </div>
+      </div>
+
+      <!-- Artists View -->
+      <div id="artists-view" style="display:none;">
+        <h2 class="view-title">참여 작가 소개</h2>
+        <div id="artist-grid" class="grid mt-5">
+          <!-- 작가 카드 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 예매 모달 -->
+    <div id="book-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-title">전시 예매</h2>
+        <p id="modal-artist" class="text-muted"></p>
+        <div class="remaining-tag mt-2" data-bug-id="site025-bug02">
+          잔여 티켓: <span id="modal-remaining">조회 중...</span>
+        </div>
+        <div class="booking-form mt-4">
+          <label>관람 인원 선택</label>
+          <div class="qty-control">
+            <button id="qty-minus">-</button>
+            <input type="number" id="ticket-qty" value="1" min="1">
+            <button id="qty-plus">+</button>
+          </div>
+          <p class="total-price mt-3">총 결제 금액: <span id="modal-total">0</span>원</p>
+          <button id="submit-booking" class="btn-primary w-full mt-4" data-bug-id="site025-bug01">예매 확정하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalFarm Direct</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo">LocalFarm <span class="text-accent">Direct</span></h1>
+      <nav>
+        <button id="nav-home" class="active">홈</button>
+        <button id="nav-group">공동구매</button>
+        <button id="nav-cart">장바구니 (<span id="cart-count">0</span>)</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 홈 뷰 -->
+    <div id="home-view">
+      <div class="hero-card">
+        <h2>농장에서 집으로, <br><span class="text-highlight">가장 신선한 순간</span></h2>
+        <p>우리 지역 농업인과 직접 만나는 건강한 거래</p>
+      </div>
+
+      <div class="section-header mt-4">
+        <h2>오늘의 농산물</h2>
+        <div class="filters">
+          <input type="text" id="search-input" placeholder="품목 검색...">
+          <select id="region-filter">
+            <option value="all">전국</option>
+            <option value="경북">경북</option>
+            <option value="전남">전남</option>
+            <option value="충남">충남</option>
+          </select>
+        </div>
+      </div>
+      
+      <div id="produce-grid" class="grid mt-2">
+        <!-- 상품 카드 렌더링 -->
+      </div>
+    </div>
+
+    <!-- 공동구매 뷰 -->
+    <div id="group-view" style="display:none;">
+      <h2 class="section-title">함께 사면 더 싸요! 🤝</h2>
+      <div id="group-order-list" class="group-container">
+        <!-- 공동구매 목록 -->
+      </div>
+    </div>
+
+    <!-- 장바구니 뷰 -->
+    <div id="cart-view" style="display:none;">
+      <h2 class="section-title">내 장바구니</h2>
+      <div id="cart-items" class="cart-list">
+        <!-- 장바구니 목록 -->
+      </div>
+      <div class="cart-footer mt-4">
+        <div class="total-price">총 결제금액: <span id="total-price">0</span>원</div>
+        <button id="checkout-btn" class="btn-primary" data-bug-id="site014-bug02">주문하기</button>
+      </div>
+    </div>
+
+    <!-- 보안 테스트 존 -->
+    <div class="debug-panel mt-5">
+      <h3 class="text-xs text-muted">Dev Tools</h3>
+      <button id="test-disclosure-btn" class="btn-outline btn-xs" data-bug-id="site014-bug03">에러 강제 발생 (정보 노출 테스트)</button>
+    </div>
+  </main>
+
+  <!-- 공동구매 참여 모달 -->
+  <div id="group-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modal-title">공동구매 참여</h2>
+      <p class="text-muted mb-3" id="modal-desc"></p>
+      
+      <div class="form-group">
+        <label>참여 수량</label>
+        <div class="qty-control">
+          <button id="qty-minus">-</button>
+          <input type="number" id="qty-input" value="1" readonly>
+          <button id="qty-plus">+</button>
+        </div>
+        <p class="text-xs text-danger mt-1" id="stock-warning"></p>
+      </div>
+
+      <button id="join-group-btn" class="btn-primary w-full mt-4" data-bug-id="site014-bug01">공동구매 참여하기</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

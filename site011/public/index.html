@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garden Planner</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo">Garden <span class="text-accent">Planner</span></h1>
+      <nav>
+        <button id="nav-plants" class="active">내 식물</button>
+        <button id="nav-tips">관리 팁</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="plants-view">
+      <div class="view-header">
+        <h2>내 식물 목록</h2>
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="식물 검색...">
+          <select id="type-filter">
+            <option value="all">전체 종류</option>
+            <option value="관엽식물">관엽식물</option>
+            <option value="다육식물">다육식물</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="plant-grid" class="grid">
+        <!-- 식물 카드 렌더링 -->
+      </div>
+    </div>
+
+    <div id="tips-view" style="display:none;">
+      <h2>가드닝 팁</h2>
+      <div id="tip-list" class="tip-container">
+        <!-- 팁 렌더링 -->
+      </div>
+    </div>
+  </main>
+
+  <!-- 상세 모달 -->
+  <div id="detail-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-body">
+        <div class="modal-header">
+          <img id="modal-img" src="" alt="">
+          <div class="modal-title-info">
+            <h2 id="modal-name">식물 이름</h2>
+            <p id="modal-type" class="badge">종류</p>
+            <div class="status-row">
+              <span>마지막 물준 날: <strong id="modal-last-watered"></strong></span>
+              <button id="water-btn" class="btn-primary" data-bug-id="site011-bug01">물주기 완료</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="growth-section">
+          <h3>성장 기록</h3>
+          <div id="growth-list" class="growth-list" data-bug-id="site011-bug02">
+            <!-- 성장 기록 렌더링 -->
+          </div>
+          <form id="growth-form" class="growth-form">
+            <input type="text" id="growth-height" placeholder="키 (cm)" required>
+            <textarea id="growth-note" placeholder="오늘의 상태는 어떤가요?" required></textarea>
+            <button type="submit" class="btn-accent" data-bug-id="site011-bug03">기록 추가</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

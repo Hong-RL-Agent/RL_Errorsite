@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExamTimer - 최고의 집중력을 위한 기록 도구</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">EXAM<span class="text-blue">TIMER</span></div>
+      <nav class="nav-links">
+        <button id="nav-timer" class="active">공부 타이머</button>
+        <button id="nav-stats">학습 통계</button>
+        <button id="nav-subjects">과목 관리</button>
+      </nav>
+      <div class="user-action">
+        <span class="user-status">공부 중인 Reader_A</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Timer View -->
+      <div id="timer-view" class="view-section">
+        <div class="timer-display-container">
+          <div class="subject-tag" id="current-subject-tag">과목을 선택하세요</div>
+          <div class="timer-clock" id="timer-clock">00:00:00</div>
+          <div class="timer-controls">
+            <button id="start-btn" class="btn-blue">시작</button>
+            <button id="pause-btn" class="btn-outline" style="display:none;">일시정지</button>
+            <button id="stop-btn" class="btn-danger" style="display:none;">종료 및 저장</button>
+          </div>
+        </div>
+
+        <div class="goal-widget mt-5">
+          <div class="flex-between">
+            <h3>오늘의 목표 달성률</h3>
+            <span id="goal-percent">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats View -->
+      <div id="stats-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">학습 데이터 아카이브</h2>
+        <div id="session-history" class="list-wrapper" data-bug-id="site073-bug02 site073-bug03">
+          <!-- 공부 기록 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 과목 선택 모달 -->
+    <div id="subject-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="mb-4">과목 선택</h2>
+        <div id="subject-list" class="grid-subjects">
+          <!-- 과목 리스트 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

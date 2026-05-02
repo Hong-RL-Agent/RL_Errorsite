@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickSurvey HR - 목소리를 들려주세요</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">QUICK<span class="text-mint">SURVEY</span> HR</div>
+      <nav class="nav-links">
+        <button id="nav-home" class="active">진행 중 설문</button>
+        <button id="nav-my">참여 내역</button>
+      </nav>
+      <div class="user-info">
+        <span class="user-role">STAFF MEMBER</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Home View -->
+      <div id="home-view" class="view-section">
+        <div class="hero">
+          <h1>당신의 의견이 회사를 바꿉니다</h1>
+          <p>모든 설문은 익명으로 처리되며, 더 나은 조직 문화를 위해 활용됩니다.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="survey-search" placeholder="설문 제목 검색...">
+          </div>
+          <div class="dept-filter">
+            <button class="filter-btn active" data-dept="All">전체 부서</button>
+            <button class="filter-btn" data-dept="Tech">기술본부</button>
+            <button class="filter-btn" data-dept="Support">지원본부</button>
+          </div>
+        </div>
+
+        <div id="survey-grid" class="grid mt-4">
+          <!-- 설문 카드 -->
+        </div>
+      </div>
+
+      <!-- My Participation View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 설문 참여 현황</h2>
+        <div id="my-res-list" class="list-wrapper">
+          <!-- 참여 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 설문 응답 모달 -->
+    <div id="survey-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 동적 로드 -->
+        </div>
+        <div class="survey-form mt-5">
+          <label class="form-label">답변 작성</label>
+          <textarea id="survey-answer" class="form-input" placeholder="여기에 답변을 입력하세요..."></textarea>
+          <button id="submit-res-btn" class="btn-navy w-full mt-4" data-bug-id="site051-bug01">익명으로 제출하기</button>
+          <p class="text-xs text-center mt-2 text-muted">※ 제출 후에는 수정이 불가능합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 결과 조회 모달 -->
+    <div id="result-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-result">&times;</span>
+        <div id="result-body" data-bug-id="site051-bug03">
+          <!-- 결과 요약 로드 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

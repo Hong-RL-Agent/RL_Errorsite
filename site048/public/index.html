@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Meal Vote - 오늘 뭐 먹지?</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">CAMPUS<span class="text-orange">MEAL</span></div>
+      <nav class="nav-links">
+        <button id="nav-home" class="active">오늘의 식단</button>
+        <button id="nav-results">투표 결과</button>
+        <button id="nav-info">영양 정보</button>
+      </nav>
+      <div class="user-profile">
+        <span class="sid">SID: 2024****</span>
+        <span class="user-status">STU</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Home View -->
+      <div id="home-view" class="view-section">
+        <div class="hero">
+          <h1>오늘의 메뉴, 직접 골라주세요!</h1>
+          <p>가장 먹고 싶은 메뉴에 투표하면 다음 주 메뉴에 반영됩니다.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="menu-search" placeholder="메뉴 또는 식당 검색...">
+          </div>
+          <div class="filter-group">
+            <button class="filter-btn active" data-cafe="all">전체</button>
+            <button class="filter-btn" data-cafe="학생회관">학생회관</button>
+            <button class="filter-btn" data-cafe="중앙식당">중앙식당</button>
+            <button class="filter-btn" data-cafe="기숙사식당">기숙사</button>
+          </div>
+        </div>
+
+        <div id="menu-grid" class="grid mt-4">
+          <!-- 메뉴 카드 -->
+        </div>
+      </div>
+
+      <!-- Results View -->
+      <div id="results-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">실시간 투표 현황</h2>
+        <div id="result-list" class="list-wrapper">
+          <!-- 투표 결과 그래프 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 메뉴 상세 모달 -->
+    <div id="menu-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 동적 로드 -->
+        </div>
+        <div class="vote-section mt-5">
+          <button id="submit-vote-btn" class="btn-navy w-full" data-bug-id="site048-bug01">이 메뉴에 투표하기</button>
+          <p class="text-xs text-center mt-2 text-muted">※ 1일 1회 투표 가능합니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

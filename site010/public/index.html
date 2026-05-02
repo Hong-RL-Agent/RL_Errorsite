@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MusicLoop</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">Music<span class="text-neon">Loop</span></div>
+      
+      <div class="user-status mt-4 mb-4">
+        <div class="avatar"></div>
+        <div>
+          <div style="font-weight:bold; color:var(--white);">user123</div>
+          <div class="text-xs text-muted">Premium Member</div>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <button class="nav-btn active" id="nav-home">홈 (추천 & 인기)</button>
+        <button class="nav-btn" id="nav-explore">장르 & 아티스트</button>
+        <button class="nav-btn" id="nav-library">내 라이브러리</button>
+      </nav>
+
+      <div class="mt-5">
+        <div class="text-xs text-muted mb-2" style="padding:0 1rem; text-transform:uppercase;">Admin / Test Tools</div>
+        <div class="test-controls">
+          <label style="display:flex; align-items:center; gap:0.5rem; color:var(--white); font-size:0.85rem;">
+            <input type="checkbox" id="corrupt-toggle" data-bug-id="site010-bug02">
+            데이터 손상 응답 (Bug 02)
+          </label>
+          <button class="btn-outline btn-sm w-full mt-2" id="test-private-btn" data-bug-id="site010-bug03">
+            비공개 플리(ID:999) 훔쳐보기 (Bug 03)
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Home View -->
+      <div id="home-view">
+        <!-- Section 1: Recommended Playlists -->
+        <section class="section">
+          <div class="section-header">
+            <h2>추천 플레이리스트</h2>
+            <button class="btn-text" id="refresh-recommend">↻ 새로고침</button>
+          </div>
+          <div class="playlist-grid" id="recommend-grid">
+            <!-- Playlists loaded here -->
+          </div>
+        </section>
+
+        <!-- Section 3: Popular Songs -->
+        <section class="section">
+          <h2>실시간 인기 곡 TOP</h2>
+          <div class="song-list" id="popular-list">
+            <!-- Popular songs loaded here -->
+          </div>
+        </section>
+        
+        <!-- Section 6: Recently Played -->
+        <section class="section">
+          <h2>최근 재생한 곡</h2>
+          <div class="song-list" id="recent-list">
+            <!-- Recent songs loaded here -->
+          </div>
+        </section>
+      </div>
+
+      <!-- Explore View -->
+      <div id="explore-view" style="display:none;">
+        <section class="section">
+          <div class="section-header">
+            <h2>곡 검색 및 탐색</h2>
+            <div class="search-bar">
+              <input type="text" id="search-input" class="form-input" placeholder="곡 제목, 아티스트 검색...">
+            </div>
+          </div>
+          
+          <!-- Section 2: Genre -->
+          <div class="genre-tags mt-3 mb-4">
+            <button class="tag-btn active" data-genre="all">전체</button>
+            <button class="tag-btn" data-genre="Electronic">일렉트로닉</button>
+            <button class="tag-btn" data-genre="Synthpop">신스팝</button>
+            <button class="tag-btn" data-genre="Rock">락</button>
+          </div>
+
+          <div class="song-list" id="explore-song-list">
+            <!-- Explored songs loaded here -->
+          </div>
+        </section>
+
+        <!-- Section 5: Artists -->
+        <section class="section">
+          <h2>추천 아티스트</h2>
+          <div class="artist-grid" id="artist-grid">
+            <!-- Artists loaded here -->
+          </div>
+        </section>
+      </div>
+
+      <!-- Library View -->
+      <div id="library-view" style="display:none;">
+        <section class="section">
+          <h2>내 플레이리스트 보관함</h2>
+          <div class="playlist-grid" id="library-grid">
+            <!-- My playlists loaded here -->
+          </div>
+        </section>
+      </div>
+      
+    </main>
+  </div>
+
+  <!-- Player Bar -->
+  <div class="player-bar">
+    <div class="player-info">
+      <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=100&h=100" id="player-img" alt="cover">
+      <div>
+        <div id="player-title" style="font-weight:bold;">선택된 곡 없음</div>
+        <div id="player-artist" class="text-xs text-muted">-</div>
+      </div>
+    </div>
+    <div class="player-controls">
+      <button class="control-btn">⏮</button>
+      <button class="control-btn play-btn" id="play-pause-btn">▶</button>
+      <button class="control-btn">⏭</button>
+    </div>
+    <div class="player-extra">
+      <button class="control-btn" id="like-btn">♡</button>
+    </div>
+  </div>
+
+  <!-- Playlist Detail Modal -->
+  <div class="modal-overlay" id="playlist-modal">
+    <div class="modal-content">
+      <button class="close-btn" id="close-modal">&times;</button>
+      <div class="modal-header-info">
+        <img src="" id="modal-pl-img" class="modal-cover">
+        <div>
+          <div class="text-xs text-neon mb-1" id="modal-pl-type">PLAYLIST</div>
+          <h2 id="modal-pl-title" style="font-size:2.5rem; margin-bottom:0.5rem;">제목</h2>
+          <div class="text-muted">Made by <span id="modal-pl-owner" style="color:var(--white);">owner</span></div>
+        </div>
+      </div>
+      
+      <p class="text-xs text-danger mt-3 mb-2">* (Bug 01 테스트) 이 플레이리스트에 속하지 않은 엉뚱한(최근 재생한) 곡들이 불러와집니다.</p>
+
+      <div class="song-list mt-4" id="modal-pl-songs" data-bug-id="site010-bug01">
+        <!-- Playlist songs injected here -->
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

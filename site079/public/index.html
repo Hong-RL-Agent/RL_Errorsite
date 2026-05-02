@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyFlash — 스마트 플래시카드 학습</title>
+  <meta name="description" content="StudyFlash: 나만의 플래시카드로 효율적인 학습을. 덱 생성, 학습 모드, 오답 노트를 한곳에서." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<!-- ── SIDEBAR NAV ── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span class="logo-icon">⚡</span>
+    <span class="logo-text">Study<strong>Flash</strong></span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#" class="snav-item active" data-view="decks" id="nav-decks">
+      <span class="snav-icon">🗂</span><span>덱 목록</span>
+    </a>
+    <a href="#" class="snav-item" data-view="study" id="nav-study">
+      <span class="snav-icon">📖</span><span>학습 모드</span>
+    </a>
+    <a href="#" class="snav-item" data-view="wrong" id="nav-wrong">
+      <span class="snav-icon">❌</span><span>오답 노트</span>
+    </a>
+    <a href="#" class="snav-item" data-view="progress" id="nav-progress">
+      <span class="snav-icon">📊</span><span>진행률</span>
+    </a>
+    <a href="#" class="snav-item" data-view="profile" id="nav-profile">
+      <span class="snav-icon">👤</span><span>프로필</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-pill">
+      <span class="user-av">U</span>
+      <div>
+        <div class="user-nm">user01</div>
+        <div class="user-role">학습자</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ── MAIN ── -->
+<main class="main-area" id="main-area">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="사이드바 토글">☰</button>
+    <div class="topbar-title" id="topbar-title">덱 목록</div>
+    <div class="topbar-right">
+      <button class="btn-icon" id="btn-refresh" title="새로고침">↻</button>
+      <div class="status-pill" id="status-pill">
+        <span class="status-dot"></span>연결됨
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ VIEW: DECKS ══ -->
+  <section class="view active" id="view-decks">
+    <div class="view-inner">
+      <!-- Search & Filter -->
+      <div class="deck-toolbar">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="deck-search" class="deck-search" placeholder="덱 이름, 태그 검색..." />
+        </div>
+        <div class="tag-chips" id="tag-chips">
+          <button class="tag-chip active" data-tag="all">전체</button>
+        </div>
+      </div>
+      <div class="deck-stats" id="deck-stats">
+        <span id="deck-count-label">덱 로딩 중...</span>
+      </div>
+      <div class="deck-grid" id="deck-grid">
+        <!-- JS render -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: STUDY MODE ══ -->
+  <section class="view" id="view-study">
+    <div class="view-inner study-view-inner">
+      <div class="study-deck-selector" id="study-deck-selector">
+        <h2 class="view-title">📖 학습할 덱을 선택하세요</h2>
+        <div class="study-deck-list" id="study-deck-list"></div>
+      </div>
+
+      <div class="study-session hidden" id="study-session">
+        <div class="study-header">
+          <button class="btn-back-decks" id="btn-back-decks">← 덱 선택</button>
+          <div class="study-deck-name" id="study-deck-name"></div>
+          <div class="study-progress-bar-wrap">
+            <div class="study-progress-bar" id="study-progress-bar"></div>
+          </div>
+          <div class="study-counter" id="study-counter">0 / 0</div>
+        </div>
+
+        <div class="flashcard-wrap" id="flashcard-wrap">
+          <div class="flashcard" id="flashcard">
+            <div class="card-face card-front" id="card-front">
+              <div class="card-tag" id="card-tag"></div>
+              <div class="card-question" id="card-question">로딩 중...</div>
+              <div class="card-hint" id="card-hint"></div>
+              <button class="btn-flip" id="btn-flip">뒤집기 🔄</button>
+            </div>
+            <div class="card-face card-back hidden" id="card-back">
+              <div class="card-answer" id="card-answer"></div>
+              <div class="card-example" id="card-example"></div>
+              <div class="card-actions">
+                <button class="btn-wrong" id="btn-wrong-mark">❌ 틀렸음</button>
+                <button class="btn-correct" id="btn-correct-mark">✅ 맞았음</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="study-nav-btns">
+          <button class="btn-prev-card" id="btn-prev-card" disabled>← 이전</button>
+          <button class="btn-next-card" id="btn-next-card">다음 →</button>
+        </div>
+
+        <div class="study-session-stats" id="study-session-stats">
+          <div class="sess-stat"><span id="sess-correct">0</span><small>맞춤</small></div>
+          <div class="sess-stat"><span id="sess-wrong">0</span><small>틀림</small></div>
+          <div class="sess-stat"><span id="sess-remain">0</span><small>남음</small></div>
+        </div>
+      </div>
+
+      <!-- 학습 완료 화면 -->
+      <div class="study-done hidden" id="study-done">
+        <div class="done-icon">🎉</div>
+        <h2>학습 완료!</h2>
+        <p id="done-summary"></p>
+        <div class="done-btns">
+          <button class="btn-primary" id="btn-retry">다시 학습</button>
+          <button class="btn-secondary" id="btn-done-back">덱 목록으로</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: WRONG NOTES ══ -->
+  <section class="view" id="view-wrong">
+    <div class="view-inner">
+      <h2 class="view-title">❌ 오답 노트</h2>
+      <div class="wrong-list" id="wrong-list"></div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: PROGRESS ══ -->
+  <section class="view" id="view-progress">
+    <div class="view-inner">
+      <h2 class="view-title">📊 학습 진행률</h2>
+      <div class="progress-notice" id="progress-notice"></div>
+      <div class="progress-grid" id="progress-grid"></div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: PROFILE ══ -->
+  <section class="view" id="view-profile">
+    <div class="view-inner">
+      <div class="profile-card">
+        <div class="profile-avatar">U</div>
+        <div class="profile-info">
+          <h2 class="profile-name">user01</h2>
+          <p class="profile-role">일반 학습자</p>
+          <p class="profile-joined">가입일: 2026-03-01</p>
+        </div>
+      </div>
+      <div class="profile-stats-grid" id="profile-stats-grid">
+        <div class="pstat"><span class="pstat-num" id="pstat-decks">0</span><span class="pstat-label">학습 덱</span></div>
+        <div class="pstat"><span class="pstat-num" id="pstat-cards">0</span><span class="pstat-label">학습 카드</span></div>
+        <div class="pstat"><span class="pstat-num" id="pstat-correct">0</span><span class="pstat-label">총 정답</span></div>
+        <div class="pstat"><span class="pstat-num" id="pstat-wrong">0</span><span class="pstat-label">오답 노트</span></div>
+      </div>
+      <div class="profile-section">
+        <h3>내 설정</h3>
+        <div class="setting-row">
+          <span>학습 알림</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-notif" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <span>다크 테마</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-theme" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <span>자동 저장</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-save" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── DECK DETAIL MODAL ── -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div class="modal-deck-header" id="modal-deck-header"></div>
+    <div class="modal-tabs">
+      <button class="mtab active" data-mtab="cards" id="mtab-cards">카드 목록</button>
+      <button class="mtab" data-mtab="info" id="mtab-info">덱 정보</button>
+    </div>
+    <div class="mtab-content" id="mtab-content-cards"></div>
+    <div class="mtab-content hidden" id="mtab-content-info"></div>
+    <div class="modal-footer">
+      <button class="btn-primary" id="btn-study-this">📖 이 덱 학습하기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyCloset - 당신의 디지털 스타일 아카이브</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">MY<span class="text-serif">CLOSET</span></div>
+      <nav class="nav-links">
+        <button id="nav-closet" class="active">옷장 목록</button>
+        <button id="nav-outfit">코디 추천</button>
+        <button id="nav-history">착용 기록</button>
+      </nav>
+      <div class="user-action">
+        <button class="btn-profile">STYLE PROFILE</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Closet View -->
+      <div id="closet-view" class="view-section">
+        <div class="hero">
+          <h1>CURATED STYLE</h1>
+          <p>지속 가능한 패션의 시작, 당신의 옷장을 더 스마트하게 관리하세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="cloth-search" placeholder="옷 이름이나 브랜드로 검색...">
+          </div>
+          <div class="filters">
+            <select id="category-filter" class="form-select">
+              <option value="All">전체 카테고리</option>
+              <option value="Top">Top</option>
+              <option value="Outer">Outer</option>
+              <option value="Pants">Pants</option>
+              <option value="Skirts">Skirts</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="cloth-grid" class="grid mt-4" data-bug-id="site072-bug03">
+          <!-- 옷장 리스트 로드 -->
+        </div>
+
+        <div class="fab-container">
+          <button id="add-cloth-btn" class="btn-fab">+</button>
+        </div>
+      </div>
+
+      <!-- Outfit Recommendation View -->
+      <div id="outfit-view" class="view-section" style="display:none;">
+        <h2 class="mb-4 text-serif">DAILY RECOMMENDATIONS</h2>
+        <div id="outfit-grid" class="grid-large" data-bug-id="site072-bug02">
+          <!-- 코디 추천 카드 -->
+        </div>
+      </div>
+
+      <!-- History View -->
+      <div id="history-view" class="view-section" style="display:none;">
+        <h2 class="mb-4 text-serif">WEARING ARCHIVE</h2>
+        <div id="history-list" class="list-wrapper">
+          <!-- 착용 기록 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 옷 추가 모달 -->
+    <div id="cloth-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="mb-4 text-serif">ADD NEW ITEM</h2>
+        <div class="form-group">
+          <label>옷 이름</label>
+          <input type="text" id="cloth-name" class="form-input" placeholder="예: 핸드메이드 울 코트">
+        </div>
+        <div class="form-group mt-3">
+          <label>카테고리</label>
+          <select id="cloth-category" class="form-input" data-bug-id="site072-bug01">
+            <option value="Top">Top</option>
+            <option value="Outer">Outer</option>
+            <option value="Pants">Pants</option>
+            <option value="Skirts">Skirts</option>
+          </select>
+        </div>
+        <div class="form-group mt-3">
+          <label>계절</label>
+          <select id="cloth-season" class="form-input">
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+            <option value="Autumn">Autumn</option>
+            <option value="Winter">Winter</option>
+            <option value="All">All Season</option>
+          </select>
+        </div>
+        <button id="save-cloth-btn" class="btn-black w-full mt-5">옷장에 추가하기</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HabitGarden - 매일의 작은 습관이 피어나는 나의 정원</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">HABIT<span class="text-green">GARDEN</span></div>
+      <nav class="nav-links">
+        <button id="nav-garden" class="active">나의 정원</button>
+        <button id="nav-habits">오늘의 습관</button>
+        <button id="nav-stats">성장 통계</button>
+      </nav>
+      <div class="user-action">
+        <span class="user-status">Garden_A</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Garden View -->
+      <div id="garden-view" class="view-section">
+        <div class="hero">
+          <h1>BLOOM YOUR DREAMS</h1>
+          <p>작은 습관이 모여 아름다운 숲을 이룹니다. 오늘도 식물을 돌봐주세요.</p>
+        </div>
+        <div id="plant-grid" class="grid mt-5">
+          <!-- 식물 시각화 -->
+        </div>
+      </div>
+
+      <!-- Habits View -->
+      <div id="habits-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">오늘 돌볼 식물들</h2>
+        <div id="habit-list" class="list-wrapper">
+          <!-- 습관 리스트 -->
+        </div>
+        <button id="add-habit-btn" class="btn-green w-full mt-4">+ 새로운 습관 심기</button>
+      </div>
+
+      <!-- Stats View -->
+      <div id="stats-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 성장 기록</h2>
+        <div id="stats-cards" class="stats-grid">
+          <!-- 통계 카드 -->
+        </div>
+        <div class="badge-section mt-5">
+          <h3>수집한 뱃지</h3>
+          <div id="badge-list" class="badge-grid mt-3">
+            <!-- 뱃지 리스트 -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 상세 모달 -->
+    <div id="detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 상세 내용 -->
+        </div>
+        <div class="modal-footer mt-5">
+          <button id="checkin-btn" class="btn-green w-full" data-bug-id="site077-bug02">오늘 완료 체크하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

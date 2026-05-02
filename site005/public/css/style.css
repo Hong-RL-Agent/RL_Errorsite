@@ -1,0 +1,329 @@
+:root {
+  --primary: #5BC0EB; /* Sky Blue */
+  --primary-hover: #48A9D4;
+  --secondary: #FDE74C; /* Yellow accent */
+  --coral: #FF7B89; /* Coral Pink */
+  --bg-color: #F4F9F9;
+  --card-bg: #FFFFFF;
+  --text-main: #333333;
+  --text-muted: #777777;
+  --border-color: #E2E8F0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Utils */
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mb-4 { margin-bottom: 1rem; }
+.w-full { width: 100%; }
+.text-white { color: white; }
+.bg-coral { background-color: var(--coral) !important; border: none; }
+
+/* Header */
+header {
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-left: 2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-btn.active, .nav-btn:hover {
+  color: var(--primary);
+}
+
+/* Main */
+main {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section h2 {
+  font-size: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background-color: var(--coral);
+}
+
+/* Card */
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  border: 1px solid var(--border-color);
+}
+
+/* Forms & Inputs */
+input, select, textarea {
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.input-group > * { flex: 1; }
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-white {
+  background-color: white;
+  color: var(--coral);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+/* Destinations */
+.filter-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.destination-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.dest-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.dest-card:hover { transform: translateY(-5px); }
+
+.dest-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.dest-info { padding: 1rem; }
+.dest-info h3 { margin-bottom: 0.5rem; }
+.dest-badge {
+  display: inline-block;
+  background: #E0F2FE;
+  color: var(--primary);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Plan Layout */
+.plan-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .plan-layout { grid-template-columns: 1fr; }
+}
+
+.plan-left, .plan-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Itinerary List */
+.itinerary-list { list-style: none; }
+.itinerary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  background: #FAFAFA;
+  border-left: 4px solid var(--primary);
+  margin-bottom: 0.5rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.idor-hack {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.idor-hack input {
+  padding: 0.4rem;
+  width: 120px;
+}
+
+/* Budget Display */
+.budget-display {
+  font-size: 1.8rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+/* Checklist */
+.checklist { list-style: none; }
+.checklist li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-color);
+}
+.checklist label { cursor: pointer; display: flex; align-items: center; gap: 0.5rem; }
+.checklist input[type="checkbox"] { width: auto; margin: 0; }
+
+/* Accommodations */
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.tab-btn {
+  background: none; border: none; color: var(--text-muted);
+  font-weight: bold; cursor: pointer; padding-bottom: 0.3rem;
+}
+.tab-btn.active {
+  color: var(--coral);
+  border-bottom: 2px solid var(--coral);
+}
+
+.accom-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: white;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%; max-width: 500px;
+  position: relative;
+}
+.close-btn {
+  position: absolute; top: 1rem; right: 1rem;
+  background: none; border: none; font-size: 1.5rem; cursor: pointer;
+}
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 20px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(0,0,0,0.8); color: white;
+  padding: 0.8rem 2rem; border-radius: 30px;
+  transition: transform 0.3s; z-index: 2000;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }

@@ -1,0 +1,103 @@
+:root {
+  --blue: #2563EB; /* Electric Blue */
+  --red: #E11D48;  /* Racing Red */
+  --dark: #0F172A;
+  --bg: #F8FAFC;
+  --white: #FFFFFF;
+  --text-muted: #64748B;
+  --border: #E2E8F0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+  background-color: var(--bg);
+  color: var(--dark);
+  line-height: 1.5;
+}
+
+.navbar {
+  background: var(--white); padding: 1.5rem 4rem; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 100;
+}
+
+.logo { font-family: 'Poppins', sans-serif; font-size: 1.6rem; font-weight: 800; letter-spacing: -1px; }
+.text-red { color: var(--red); }
+
+.user-info { font-weight: 700; margin-right: 1.5rem; font-size: 0.9rem; }
+
+.main-content { max-width: 1200px; margin: 0 auto; padding: 3rem 4rem; }
+
+.hero { margin-bottom: 3rem; }
+.hero h1 { font-family: 'Poppins', sans-serif; font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+.hero p { font-size: 1.2rem; color: var(--text-muted); }
+
+.filter-bar { display: flex; gap: 12px; margin-bottom: 2rem; }
+.filter-chip {
+  background: var(--white); border: 1px solid var(--border); padding: 10px 24px;
+  border-radius: 30px; font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.filter-chip.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+
+.game-card {
+  background: var(--white); border-radius: 24px; padding: 2rem; border: 1px solid var(--border);
+  transition: all 0.3s; cursor: pointer;
+}
+.game-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); border-color: var(--blue); }
+
+.game-teams { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; }
+.game-meta { font-size: 0.9rem; color: var(--text-muted); font-weight: 600; margin-bottom: 1.5rem; }
+.game-price { font-size: 1.1rem; font-weight: 800; color: var(--red); }
+
+/* Modal & Stadium Map */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); }
+.modal-content { background: white; margin: 5% auto; padding: 3rem; border-radius: 32px; width: 600px; position: relative; }
+.close { position: absolute; right: 30px; top: 25px; font-size: 24px; cursor: pointer; }
+
+.stadium-map { background: #F1F5F9; padding: 2rem; border-radius: 20px; text-align: center; }
+.pitch { background: #10B981; color: white; padding: 10px; border-radius: 4px; font-weight: 800; margin-bottom: 2rem; font-size: 0.8rem; letter-spacing: 2px; }
+
+.seat-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 8px; }
+.seat {
+  width: 100%; aspect-ratio: 1; background: var(--white); border: 1px solid var(--border);
+  border-radius: 6px; font-size: 0.7rem; font-weight: 700; cursor: pointer;
+}
+.seat:hover { border-color: var(--blue); background: #EFF6FF; }
+.seat.selected { background: var(--blue); color: white; border-color: var(--blue); }
+.seat.reserved { background: #CBD5E1; color: #94A3B8; cursor: not-allowed; border: none; }
+
+.summary-row { display: flex; justify-content: space-between; align-items: center; font-size: 1rem; }
+.summary-row.total { font-size: 1.4rem; border-top: 2px solid var(--border); padding-top: 1rem; }
+
+.discount-box { display: flex; gap: 8px; }
+.form-input { flex: 1; padding: 10px 16px; border-radius: 10px; border: 1px solid var(--border); outline: none; }
+
+.btn-primary {
+  background: var(--dark); color: white; border: none; padding: 18px;
+  border-radius: 16px; font-weight: 800; cursor: pointer; font-size: 1.1rem;
+}
+
+.booking-list { display: flex; flex-direction: column; gap: 16px; }
+.booking-card { background: white; padding: 1.5rem 2rem; border-radius: 20px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--dark);
+  color: white; padding: 12px 32px; border-radius: 30px; font-weight: 700; opacity: 0; transition: all 0.3s; z-index: 2000;
+}
+.toast.show { opacity: 1; bottom: 50px; }
+
+.btn-outline { background: none; border: 1px solid var(--border); padding: 8px 16px; border-radius: 12px; cursor: pointer; font-weight: 700; font-size: 0.85rem; }
+.btn-back { background: none; border: none; color: var(--blue); font-weight: 800; cursor: pointer; margin-bottom: 1rem; display: block; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-2 { margin-top: 0.5rem; }
+.text-muted { color: var(--text-muted); }
+.text-red { color: var(--red); }
+.font-bold { font-weight: 700; }
+.font-black { font-weight: 900; }
+.w-full { width: 100%; }
+.btn-sm { background: var(--blue); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 700; }

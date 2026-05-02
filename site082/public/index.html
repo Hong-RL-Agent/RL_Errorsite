@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GarageSale Map — 동네 플리마켓 찾기</title>
+  <meta name="description" content="GarageSale Map: 내 주변 플리마켓과 동네 장터를 찾고 참가 신청까지 한번에."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="top">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">🛍️</span>
+      <span class="logo-text">GarageSale<strong>Map</strong></span>
+    </a>
+    <nav class="gnav" id="gnav">
+      <a href="#" class="gnav-link active" data-tab="markets">마켓 목록</a>
+      <a href="#" class="gnav-link" data-tab="map">지도 카드</a>
+      <a href="#" class="gnav-link" data-tab="favorites">즐겨찾기</a>
+      <a href="#" class="gnav-link" data-tab="apply">참가 신청</a>
+    </nav>
+    <div class="hdr-right">
+      <button class="hbtn" id="btn-hdr-refresh" title="새로고침">↻</button>
+      <div class="hdr-user">
+        <span class="huav">G</span><span>guest_user</span>
+      </div>
+      <button class="nav-burger" id="nav-burger">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ══ TAB: MARKETS ══ -->
+  <section class="tab active" id="tab-markets">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-body">
+        <span class="hero-tag">📍 실시간 마켓 정보</span>
+        <h1 class="hero-h">동네 플리마켓을<br/><em>지금 바로 찾아보세요</em></h1>
+        <p class="hero-p">지역별, 날짜별 마켓을 검색하고 참가 신청까지 한번에!</p>
+        <div class="hero-search">
+          <input type="text" id="mkt-search" placeholder="마켓 이름, 지역, 태그 검색..." class="hsearch"/>
+          <button class="btn-search" id="btn-mkt-search">검색</button>
+        </div>
+      </div>
+      <div class="hero-deco" aria-hidden="true">🛍️🎨🌿🪡♻️🌙</div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="tf-group">
+        <span class="tf-label">지역</span>
+        <div class="chip-row" id="region-chips">
+          <button class="chip active" data-region="all">전체</button>
+        </div>
+      </div>
+      <div class="tf-group">
+        <span class="tf-label">상태</span>
+        <select class="tsel" id="sel-status">
+          <option value="all">전체</option>
+          <option value="open">모집중</option>
+          <option value="closed">마감</option>
+        </select>
+      </div>
+      <div class="tf-group">
+        <span class="tf-label">정렬</span>
+        <select class="tsel" id="sel-sort">
+          <option value="">기본</option>
+          <option value="date">날짜순</option>
+          <option value="rating">평점순</option>
+          <option value="popular">인기순</option>
+        </select>
+      </div>
+      <span class="result-cnt" id="result-cnt">로딩 중...</span>
+    </div>
+
+    <div class="market-grid" id="market-grid"></div>
+  </section>
+
+  <!-- ══ TAB: MAP ══ -->
+  <section class="tab" id="tab-map">
+    <h2 class="tab-title">🗺️ 지도 카드</h2>
+    <div class="map-layout">
+      <div class="map-canvas" id="map-canvas">
+        <div class="map-grid-bg"></div>
+        <div id="map-pins"></div>
+        <div class="map-legend">
+          <span class="leg"><span class="ldot green"></span>정상좌표</span>
+          <span class="leg"><span class="ldot red"></span>좌표없음(bug02)</span>
+        </div>
+      </div>
+      <div class="map-info" id="map-info">
+        <p class="map-hint">핀을 클릭하면 정보가 표시됩니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TAB: FAVORITES ══ -->
+  <section class="tab" id="tab-favorites">
+    <h2 class="tab-title">⭐ 즐겨찾기</h2>
+    <div class="fav-grid" id="fav-grid"></div>
+  </section>
+
+  <!-- ══ TAB: APPLY ══ -->
+  <section class="tab" id="tab-apply">
+    <h2 class="tab-title">📋 참가 신청</h2>
+
+    <!-- bug03 demo panel -->
+    <div class="bug03-panel">
+      <div class="bug03-label">⚠️ [bug03 재현] x-user-id 헤더 위조 신청 테스트</div>
+      <div class="bug03-row">
+        <input type="text" id="fake-uid" placeholder="위조할 userId (예: admin)" class="bug03-inp"/>
+        <select id="apply-market-select" class="tsel">
+          <option value="">마켓 선택</option>
+        </select>
+        <input type="text" id="apply-items" placeholder="판매 품목" class="bug03-inp"/>
+        <button class="btn-apply-debug" id="btn-apply-debug">위조 신청</button>
+      </div>
+      <div class="bug03-result" id="bug03-result"></div>
+    </div>
+
+    <!-- Normal apply form -->
+    <div class="apply-section">
+      <h3 class="apply-sub">일반 참가 신청</h3>
+      <form class="apply-form" id="apply-form">
+        <div class="aform-row">
+          <div class="aform-field">
+            <label>마켓 선택</label>
+            <select id="apply-market-normal" class="asel">
+              <option value="">선택하세요</option>
+            </select>
+          </div>
+          <div class="aform-field">
+            <label>판매 품목</label>
+            <input type="text" id="apply-items-normal" placeholder="예: 빈티지 의류 20벌" maxlength="80"/>
+          </div>
+        </div>
+        <button type="submit" class="btn-primary">신청 보내기</button>
+        <div class="aform-msg" id="aform-msg"></div>
+      </form>
+    </div>
+
+    <h3 class="apply-sub" style="margin-top:28px">신청 현황</h3>
+    <div class="app-list" id="app-list"></div>
+  </section>
+
+</main>
+
+<!-- MODAL -->
+<div class="modal-ov" id="modal-ov">
+  <div class="modal-box">
+    <button class="modal-x" id="modal-x">✕</button>
+    <div class="modal-hero" id="modal-hero"></div>
+    <div class="modal-tabs">
+      <button class="mtab active" data-mt="info">정보</button>
+      <button class="mtab" data-mt="items">판매품목</button>
+      <button class="mtab" data-mt="reviews">후기</button>
+    </div>
+    <div class="mpane active" id="mp-info"></div>
+    <div class="mpane hidden" id="mp-items"></div>
+    <div class="mpane hidden" id="mp-reviews">
+      <div class="rlist" id="modal-rlist"></div>
+      <div class="rform-wrap">
+        <h4>후기 작성</h4>
+        <form class="rform" id="review-form">
+          <input type="hidden" id="rev-mkt-id"/>
+          <div class="rfrow">
+            <input type="text" id="rev-author" placeholder="닉네임" maxlength="20" required/>
+            <select id="rev-rating">
+              <option value="5">⭐⭐⭐⭐⭐</option>
+              <option value="4">⭐⭐⭐⭐</option>
+              <option value="3">⭐⭐⭐</option>
+              <option value="2">⭐⭐</option>
+              <option value="1">⭐</option>
+            </select>
+          </div>
+          <textarea id="rev-content" placeholder="마켓 후기를 남겨주세요." rows="3" maxlength="200"></textarea>
+          <button type="submit" class="btn-primary btn-sm">등록</button>
+        </form>
+        <div class="rev-msg" id="rev-msg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/js/app.js"></script>
+</body>
+</html>

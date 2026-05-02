@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Pantry - 냉장고 관리</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <nav class="side-nav">
+      <div class="logo">Smart<span class="text-green">Pantry</span></div>
+      <div class="menu-items">
+        <button id="nav-pantry" class="active">🧊 냉장고</button>
+        <button id="nav-expiring">⏰ 임박 재료</button>
+        <button id="nav-recipes">🥗 레시피</button>
+        <button id="nav-shopping">🛒 장보기</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <div class="search-bar">
+          <input type="text" id="item-search" placeholder="재료 이름 검색...">
+        </div>
+        <button id="open-add-modal" class="btn-add">+ 재료 추가</button>
+      </header>
+
+      <!-- Pantry View -->
+      <div id="pantry-view" class="view-section">
+        <div class="section-title">
+          <h2>나의 냉장고</h2>
+          <div class="sort-box">
+            <select id="sort-select">
+              <option value="name">이름순</option>
+              <option value="expiry">유통기한순</option>
+            </select>
+          </div>
+        </div>
+        <div id="item-grid" class="grid mt-4">
+          <!-- 재료 카드 -->
+        </div>
+      </div>
+
+      <!-- Expiring View -->
+      <div id="expiring-view" class="view-section" style="display:none;">
+        <div class="section-title">
+          <h2>유통기한 임박 및 만료</h2>
+          <p class="text-muted text-sm">3일 이내 만료되는 재료입니다.</p>
+        </div>
+        <div id="expiring-list" class="grid mt-4" data-bug-id="site030-bug01">
+          <!-- 임박 재료 리스트 -->
+        </div>
+      </div>
+
+      <!-- Recipes View -->
+      <div id="recipes-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">오늘의 추천 레시피</h2>
+        <div id="recipe-grid" class="grid">
+          <!-- 레시피 카드 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 재료 추가 모달 -->
+    <div id="add-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>새 재료 등록</h2>
+        <form id="add-form" class="mt-4">
+          <div class="form-group">
+            <label>재료명</label>
+            <input type="text" id="item-name" class="form-input" placeholder="예: 우유, 사과" required>
+          </div>
+          <div class="form-row mt-3">
+            <div class="form-group">
+              <label>수량</label>
+              <input type="text" id="item-qty" class="form-input" placeholder="숫자 입력" required data-bug-id="site030-bug02">
+            </div>
+            <div class="form-group">
+              <label>카테고리</label>
+              <select id="item-cat" class="form-input">
+                <option value="Vegetable">채소</option>
+                <option value="Dairy">유제품</option>
+                <option value="Meat">육류</option>
+                <option value="Protein">단백질</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>유통기한</label>
+            <input type="date" id="item-expiry" class="form-input" required>
+          </div>
+          <button type="submit" class="btn-primary w-full mt-4">냉장고에 넣기</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

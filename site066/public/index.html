@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelance Board - 프로페셔널을 위한 프로젝트 매칭</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">FREELANCE<span class="text-indigo">BOARD</span></div>
+      <nav class="nav-links">
+        <button id="nav-discover" class="active">프로젝트 찾기</button>
+        <button id="nav-my">내 지원 현황</button>
+        <button id="nav-clients">클라이언트</button>
+      </nav>
+      <div class="user-action">
+        <button class="btn-profile">MY PROFILE</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Discover View -->
+      <div id="discover-view" class="view-section">
+        <div class="hero">
+          <h1>HIRE TOP TALENT</h1>
+          <p>검증된 클라이언트와 열정적인 프리랜서가 만나는 가장 똑똑한 아웃소싱 플랫폼입니다.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="project-search" placeholder="기술 스택이나 제목으로 검색...">
+          </div>
+          <div class="filters">
+            <select id="skill-filter" class="form-select">
+              <option value="All">전체 기술</option>
+              <option value="React">React</option>
+              <option value="Node.js">Node.js</option>
+              <option value="Python">Python</option>
+              <option value="Figma">Figma</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="project-grid" class="grid mt-4" data-bug-id="site066-bug03">
+          <!-- 프로젝트 카드 -->
+        </div>
+      </div>
+
+      <!-- My Proposals View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 지원 내역</h2>
+        <div id="proposal-list" class="list-wrapper">
+          <!-- 지원 내역 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 제안서 작성 모달 -->
+    <div id="proposal-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 상세 내용 -->
+        </div>
+        <div class="proposal-form mt-5">
+          <div class="form-group">
+            <label>희망 프로젝트 금액 (원)</label>
+            <input type="number" id="prop-price" class="form-input" placeholder="0">
+          </div>
+          <div class="form-group mt-3">
+            <label>제안 메시지</label>
+            <textarea id="prop-message" class="form-input" style="height:120px;" placeholder="프로젝트에 기여할 수 있는 강점을 어필해 보세요."></textarea>
+          </div>
+          <button id="submit-btn" class="btn-indigo w-full mt-4" data-bug-id="site066-bug01 site066-bug02">프로젝트 지원하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

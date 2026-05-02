@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtClass Studio</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="overlay"></div>
+  
+  <header>
+    <div class="container">
+      <h1 class="logo">ArtClass <span class="text-serif">Studio</span></h1>
+      <nav>
+        <a href="#" id="nav-classes" class="active">CLASSES</a>
+        <a href="#" id="nav-reviews">REVIEWS</a>
+        <a href="#" id="nav-my">MY PAGE</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="classes-view">
+      <div class="hero-section">
+        <h2>Unleash Your <br><span class="text-accent">Creativity</span></h2>
+        <p>현대 미술의 정수를 경험하는 프라이빗 아뜰리에</p>
+      </div>
+
+      <div class="filter-bar">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="관심 있는 클래스 검색...">
+        </div>
+        <div class="difficulty-filters">
+          <button class="diff-btn active" data-val="all">ALL</button>
+          <button class="diff-btn" data-val="초급">초급</button>
+          <button class="diff-btn" data-val="중급">중급</button>
+          <button class="diff-btn" data-val="고급">고급</button>
+        </div>
+      </div>
+
+      <div id="class-grid" class="grid">
+        <!-- 클래스 리스트 -->
+      </div>
+    </div>
+
+    <div id="reviews-view" style="display:none;">
+      <h2 class="section-title">Class Reviews</h2>
+      <div id="review-list" class="review-container">
+        <!-- 후기 리스트 -->
+      </div>
+    </div>
+
+    <div id="my-view" style="display:none;">
+      <h2 class="section-title">My Reservations</h2>
+      <div id="my-reservations" class="reservation-list">
+        <!-- 예약 현황 -->
+      </div>
+      
+      <div class="bug-test-zone mt-5">
+        <h3>Bug Testing Tools</h3>
+        <div class="test-buttons">
+          <button id="test-integrity-btn" class="btn-outline" data-bug-id="site013-bug01">가짜 ID 예약 시도 (Bug 01)</button>
+          <button id="test-csrf-btn" class="btn-outline" data-bug-id="site013-bug03">CSRF 공격 시뮬레이션 (Bug 03)</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 예약 모달 -->
+  <div id="reserve-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-grid">
+        <div id="modal-img-box" class="modal-img-box"></div>
+        <div class="modal-form-box">
+          <h2 id="modal-title">클래스명</h2>
+          <p id="modal-difficulty" class="badge">난이도</p>
+          <p class="price-tag" id="modal-price">0원</p>
+          
+          <div class="form-group mt-4">
+            <label>예약 날짜</label>
+            <input type="date" id="reserve-date" class="form-input">
+          </div>
+          <div class="form-group mt-2">
+            <label>예약자 성함</label>
+            <input type="text" id="reserve-user" class="form-input" placeholder="성함을 입력하세요">
+          </div>
+
+          <button id="submit-reservation" class="btn-primary w-full mt-4" data-bug-id="site013-bug03">예약 신청하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

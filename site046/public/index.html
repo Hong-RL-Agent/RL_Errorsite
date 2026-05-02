@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RentTool - 전문가의 공구를 빌려쓰세요</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">RENT<span class="text-orange">TOOL</span></div>
+      <nav class="nav-links">
+        <button id="nav-home" class="active">공구 대여</button>
+        <button id="nav-my">내 대여 현황</button>
+        <button id="nav-safety">안전 가이드</button>
+      </nav>
+      <div class="user-status">
+        <span class="badge">PRO MEMBER</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Home View -->
+      <div id="home-view" class="view-section">
+        <div class="hero">
+          <h1>BUILT FOR PROFESSIONALS</h1>
+          <p>고성능 산업용 공구부터 가정용 장비까지, 필요한 기간만큼만 대여하세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="tool-search" placeholder="필요한 공구 검색 (예: 드릴, 사다리)">
+          </div>
+          <div class="category-tabs">
+            <button class="cat-tab active" data-cat="all">전체</button>
+            <button class="cat-tab" data-cat="Power Tools">전동공구</button>
+            <button class="cat-tab" data-cat="Cleaning">청소장비</button>
+            <button class="cat-tab" data-cat="Maintenance">유지보수</button>
+          </div>
+        </div>
+
+        <div id="tool-grid" class="grid mt-4">
+          <!-- 공구 카드 -->
+        </div>
+      </div>
+
+      <!-- My Rentals View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 대여 히스토리</h2>
+        <div id="rental-list" class="list-wrapper">
+          <!-- 대여 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 대여 예약 및 상세 모달 -->
+    <div id="tool-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 동적 로드 -->
+        </div>
+        <div id="booking-form-section" class="mt-5">
+          <h3 class="mb-3">대여 일정 예약</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>대여 시작일</label>
+              <input type="date" id="start-date" class="form-input" value="2024-05-20">
+            </div>
+            <div class="form-group mt-3">
+              <label>반납 예정일</label>
+              <input type="date" id="end-date" class="form-input" data-bug-id="site046-bug02">
+            </div>
+          </div>
+          <button id="confirm-booking-btn" class="btn-orange w-full mt-4" data-bug-id="site046-bug01">예약 확정하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 대여 상세조회 모달 (IDOR 테스트용) -->
+    <div id="detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-detail">&times;</span>
+        <div id="detail-body" data-bug-id="site046-bug03">
+          <!-- 상세 정보 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

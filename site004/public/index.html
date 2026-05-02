@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetCare Hub</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Jua&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="paw-icon">🐾</span> PetCare Hub
+      </div>
+      <nav>
+        <button id="nav-home" class="nav-btn active">홈</button>
+        <button id="nav-hospital" class="nav-btn">병원/예약</button>
+      </nav>
+      <!-- Notifications bell -->
+      <div class="noti-bell" id="noti-bell">
+        🔔 <span class="badge" id="noti-badge">3</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-view">
+    <div class="layout-grid">
+      <!-- Section 1: Pet Profile -->
+      <section class="card profile-section" id="section-profile">
+        <h2 class="section-title">내 반려동물</h2>
+        <div class="pet-selector" id="pet-selector">
+          <!-- Pets injected here -->
+        </div>
+        <div class="pet-detail-card" id="pet-detail-card">
+          <!-- Active pet detail -->
+          <p class="placeholder-text">반려동물을 선택해주세요.</p>
+        </div>
+      </section>
+
+      <!-- Section 4: Health Records -->
+      <section class="card records-section" id="section-records">
+        <h2 class="section-title">최근 건강 기록</h2>
+        <div class="record-list" id="record-list">
+          <!-- Records injected here -->
+        </div>
+        <form id="add-record-form" class="mt-4">
+          <input type="text" id="record-symptom" placeholder="주요 증상 (예: 기침, 식욕부진)" required>
+          <textarea id="record-note" placeholder="상세 메모 작성..."></textarea>
+          <button type="submit" class="btn-primary">기록 추가</button>
+        </form>
+      </section>
+
+      <!-- Section 2: Vaccines -->
+      <section class="card vaccine-section" id="section-vaccines">
+        <div class="card-header">
+          <h2 class="section-title">예방접종 일정</h2>
+          <!-- Bug 01 attached to this filter button -->
+          <button class="btn-outline btn-sm" id="upcoming-vaccine-btn" data-bug-id="site004-bug01">다가오는 일정 보기</button>
+        </div>
+        <ul class="vaccine-list" id="vaccine-list">
+          <li class="placeholder-text">불러오는 중...</li>
+        </ul>
+      </section>
+
+      <!-- Section 5: Food Recommendation -->
+      <section class="card food-section" id="section-food">
+        <div class="card-header">
+          <h2 class="section-title">맞춤 사료 추천</h2>
+          <button class="btn-icon" id="refresh-food-btn">🔄</button>
+        </div>
+        <div class="food-recommend-card" id="food-content">
+          <div class="food-badge">다이어트용</div>
+          <h3 class="mt-2">로얄캐닌 웨이트 케어</h3>
+          <p class="text-sm">현재 체중 관리가 필요한 우리 아이를 위한 추천 사료입니다.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Hospital & Appointments View (Hidden initially) -->
+  <main id="hospital-view" style="display: none;">
+    <div class="layout-grid">
+      <!-- Section 3: Hospital Appointments -->
+      <section class="card appointment-section" id="section-appointment">
+        <h2 class="section-title">동물병원 예약하기</h2>
+        
+        <div class="auth-hack-panel mb-4">
+          <p class="text-sm">테스트용 헤더 설정 (Bug 03 테스트)</p>
+          <input type="text" id="auth-token" value="EXPIRED-TOKEN" class="w-full">
+          <p class="text-xs text-danger mt-1" data-bug-id="site004-bug03">
+            * 세션이 만료된 토큰을 사용해도 예약 생성이 허용되는 취약점 확인용
+          </p>
+        </div>
+
+        <form id="appointment-form">
+          <label>동물병원 검색</label>
+          <input type="text" id="apt-hospital" placeholder="병원 이름 입력 (예: 해피 동물병원)">
+          
+          <label>예약 날짜</label>
+          <input type="date" id="apt-date">
+          
+          <label>예약 시간</label>
+          <input type="time" id="apt-time">
+          
+          <!-- Bug 02 attached to submit button -->
+          <button type="submit" class="btn-primary mt-2" id="submit-apt-btn" data-bug-id="site004-bug02">
+            빈 폼으로 예약 전송 (검증 우회 테스트)
+          </button>
+        </form>
+      </section>
+
+      <section class="card" id="section-apt-list">
+        <h2 class="section-title">나의 예약 내역</h2>
+        <ul class="appointment-list" id="appointment-list">
+          <li class="placeholder-text">예약 내역이 없습니다.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <!-- Section 6: Notification Center (Sidebar/Overlay) -->
+  <div class="noti-overlay" id="noti-overlay">
+    <div class="noti-sidebar">
+      <div class="noti-header">
+        <h2 class="section-title">알림 센터</h2>
+        <button class="btn-icon" id="close-noti-btn">✖</button>
+      </div>
+      <div class="noti-content" id="noti-content">
+        <div class="noti-card unread">
+          <div class="noti-title">예방접종 알림</div>
+          <div class="noti-desc">초코의 종합백신 예정일이 7일 남았습니다!</div>
+          <button class="btn-outline btn-sm mt-2 read-btn">읽음 처리</button>
+        </div>
+        <div class="noti-card unread">
+          <div class="noti-title">사료 급여 팁</div>
+          <div class="noti-desc">여름철 사료 보관법을 확인해보세요.</div>
+          <button class="btn-outline btn-sm mt-2 read-btn">읽음 처리</button>
+        </div>
+        <div class="noti-card">
+          <div class="noti-title">건강 기록 등록</div>
+          <div class="noti-desc">어제 나비의 건강 기록이 성공적으로 저장되었습니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

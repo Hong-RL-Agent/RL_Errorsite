@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neighborhood Trade | Local Bartering</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">🏘️ Neighborhood <span>Trade</span></div>
+    <div class="nav-links">
+      <button class="nav-btn active" data-view="explore">Explore</button>
+      <button class="nav-btn" data-view="my-offers">My Offers</button>
+      <button class="nav-btn" data-view="reviews">Reviews</button>
+      <button class="nav-btn" data-view="safety">Safety Guide</button>
+    </div>
+    <div class="user-info">
+      <span>me_user</span>
+      <div class="avatar">ME</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Explore View -->
+    <section id="explore-view" class="view">
+      <div class="hero">
+        <h1>Trade Items with <span>Your Neighbors</span></h1>
+        <p>Give what you don't need, get what you want. No money involved!</p>
+        <div class="search-box">
+          <input type="text" id="item-search" placeholder="Search items or what people want...">
+          <button id="search-btn">Find</button>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Electronics</button>
+        <button class="filter-btn">Home</button>
+        <button class="filter-btn">Music</button>
+        <button class="filter-btn">Kitchen</button>
+        <button class="filter-btn">Hobbies</button>
+      </div>
+
+      <div id="items-grid" class="grid">
+        <!-- Items loaded here -->
+      </div>
+    </section>
+
+    <!-- My Offers View -->
+    <section id="my-offers-view" class="view hidden">
+      <div class="header-section">
+        <h2>Your <span>Trade Offers</span></h2>
+        <p>Manage the items you've offered or received.</p>
+      </div>
+      
+      <div class="tabs">
+        <button class="tab-btn active" data-status="pending">Pending</button>
+        <button class="tab-btn" data-status="accepted">Accepted</button>
+        <button class="tab-btn" data-status="rejected">Rejected</button>
+      </div>
+
+      <div id="offers-list" class="offers-container">
+        <!-- Offers loaded here -->
+      </div>
+
+      <div class="security-debug-panel">
+        <h3>IDOR Testing Panel</h3>
+        <p>Directly access any offer by ID to test security control (site088-bug03)</p>
+        <div class="debug-input">
+          <input type="number" id="debug-offer-id" placeholder="Offer ID (try 101, 102...)">
+          <button id="debug-offer-btn">View Details</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews View -->
+    <section id="reviews-view" class="view hidden">
+      <div class="header-section">
+        <h2>Community <span>Feedback</span></h2>
+        <p>Trust is the foundation of our neighborhood.</p>
+      </div>
+      <div id="reviews-list" class="reviews-grid">
+        <!-- Reviews loaded here -->
+      </div>
+    </section>
+
+    <!-- Safety View -->
+    <section id="safety-view" class="view hidden">
+      <div class="header-section">
+        <h2>Safety <span>Guidelines</span></h2>
+      </div>
+      <div class="safety-content">
+        <div class="safety-card">
+          <h3>🤝 Meet in Public</h3>
+          <p>Always meet your trade partner in a well-lit, public space like a park or cafe.</p>
+        </div>
+        <div class="safety-card">
+          <h3>📦 Inspect the Item</h3>
+          <p>Check the condition of the item thoroughly before finalizing the trade.</p>
+        </div>
+        <div class="safety-card">
+          <h3>💬 Commmunicate Early</h3>
+          <p>Discuss the details clearly in the offer message to avoid misunderstandings.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modals -->
+  <div id="item-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div id="modal-item-body"></div>
+      <div class="offer-form">
+        <h3>Make an Offer</h3>
+        <input type="text" id="offer-item" placeholder="What item are you offering?">
+        <textarea id="offer-message" placeholder="Send a friendly message..."></textarea>
+        <button id="send-offer-btn" class="primary-btn">Send Trade Proposal</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="detail-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-modal-detail">&times;</span>
+      <div id="detail-modal-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

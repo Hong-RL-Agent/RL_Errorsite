@@ -1,0 +1,99 @@
+:root {
+  --green: #4CAF50;
+  --green-dark: #388E3C;
+  --green-light: #E8F5E9;
+  --beige: #F5F5DC;
+  --beige-dark: #E8E8C8;
+  --black: #1B1F1C;
+  --white: #FFFFFF;
+  --text: #3E4540;
+  --text-muted: #8A938C;
+  --border: #E0E4E1;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #FAFBF9;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.navbar {
+  background: white; padding: 1.2rem 4rem; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 1000;
+}
+
+.logo { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; }
+.text-green { color: var(--green); }
+
+.nav-links button {
+  background: none; border: none; font-weight: 700; cursor: pointer; color: var(--text-muted);
+  margin-left: 2.5rem; font-size: 0.95rem; transition: color 0.2s;
+}
+.nav-links button.active { color: var(--green); border-bottom: 3px solid var(--green); padding-bottom: 5px; }
+
+.btn-login {
+  background: var(--black); color: white; border: none; padding: 8px 18px;
+  border-radius: 50px; font-weight: 700; font-size: 0.75rem; cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.container { max-width: 1050px; margin: 0 auto; padding: 4rem 2rem; }
+
+.hero { margin-bottom: 4rem; }
+.hero h1 { font-family: 'Montserrat', sans-serif; font-size: 4rem; line-height: 1; color: var(--black); }
+.hero p { font-size: 1.1rem; color: var(--text-muted); margin-top: 15px; max-width: 600px; }
+
+.toolbar { display: flex; justify-content: space-between; align-items: center; background: var(--green-light); padding: 20px; border-radius: 12px; }
+.search-box input {
+  width: 320px; padding: 12px 20px; border-radius: 8px; border: 1px solid var(--border);
+  outline: none; font-family: inherit; font-size: 0.95rem;
+}
+
+.form-select { padding: 10px 15px; border-radius: 8px; border: 1px solid var(--border); background: white; cursor: pointer; font-family: inherit; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+
+.box-card {
+  background: white; border-radius: 20px; overflow: hidden; border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;
+}
+.box-card:hover { transform: translateY(-8px); border-color: var(--green); box-shadow: 0 15px 40px rgba(76, 175, 80, 0.12); }
+
+.box-img { height: 200px; background: var(--beige); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+
+.box-body { padding: 1.8rem; }
+.box-body h3 { font-size: 1.4rem; font-weight: 700; color: var(--black); margin-bottom: 8px; }
+.box-price { font-size: 1.1rem; color: var(--green); font-weight: 700; margin-bottom: 12px; }
+.ingredients { display: flex; flex-wrap: wrap; gap: 6px; }
+.badge { background: var(--green-light); color: var(--green); font-size: 0.7rem; font-weight: 700; padding: 2px 10px; border-radius: 4px; }
+
+.list-wrapper { background: white; border-radius: 16px; border: 1px solid var(--border); overflow: hidden; }
+.list-item { padding: 1.8rem 2.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+
+.btn-green {
+  background: var(--green); color: white; border: none; padding: 16px;
+  border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s;
+}
+.btn-green:hover { background: var(--green-dark); }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); }
+.modal-content { background: white; margin: 8% auto; padding: 4rem; border-radius: 24px; width: 600px; position: relative; }
+.close, .close-detail { position: absolute; right: 30px; top: 30px; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--black);
+  color: white; padding: 12px 40px; border-radius: 50px; font-weight: 600; opacity: 0; transition: all 0.3s; z-index: 3000;
+}
+.toast.show { opacity: 1; bottom: 50px; }
+
+.mt-5 { margin-top: 3rem; }
+.mt-4 { margin-top: 2rem; }
+.mb-4 { margin-bottom: 2rem; }
+.w-full { width: 100%; }
+.text-green { color: var(--green); }
+.text-sm { font-size: 0.875rem; }

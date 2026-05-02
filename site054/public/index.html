@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GiftBox Picker - 소중한 사람을 위한 완벽한 선물</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">GIFT<span class="text-pink">BOX</span></div>
+      <nav class="nav-links">
+        <button id="nav-discover" class="active">선물 탐색</button>
+        <button id="nav-wish">위시리스트</button>
+      </nav>
+      <div class="user-action">
+        <button class="btn-wish-count">WISH (2)</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Discover View -->
+      <div id="discover-view" class="view-section">
+        <div class="hero">
+          <h1>PICK YOUR HAPPINESS</h1>
+          <p>예산과 대상에 딱 맞는 최고의 선물을 골라보세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="gift-search" placeholder="브랜드 또는 상품명 검색...">
+          </div>
+          <div class="filters">
+            <select id="budget-filter" class="form-select" data-bug-id="site054-bug01">
+              <option value="">예산 선택</option>
+              <option value="30000">3만원 이하</option>
+              <option value="50000">5만원 이하</option>
+              <option value="100000">10만원 이하</option>
+            </select>
+            <select id="target-filter" class="form-select">
+              <option value="All">대상 전체</option>
+              <option value="Friend">친구</option>
+              <option value="Lover">연인</option>
+              <option value="Parents">부모님</option>
+              <option value="Self">나에게</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="gift-grid" class="grid mt-4">
+          <!-- 선물 카드 -->
+        </div>
+      </div>
+
+      <!-- Wishlist View -->
+      <div id="wish-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 위시리스트</h2>
+        <div id="wish-grid" class="grid" data-bug-id="site054-bug02">
+          <!-- 위시리스트 아이템 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 선물 상세 모달 -->
+    <div id="gift-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 동적 로드 -->
+        </div>
+        <div class="modal-actions mt-5">
+          <button class="btn-pink w-full" onclick="showToast('위시리스트에 담겼습니다!')">WISH 추가</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 타인 위시리스트 모달 (IDOR 테스트용) -->
+    <div id="secret-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-secret">&times;</span>
+        <div id="secret-body" data-bug-id="site054-bug03">
+          <!-- 비공개 데이터 로드 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

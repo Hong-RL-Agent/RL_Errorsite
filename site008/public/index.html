@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoviePick</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <h1 class="logo">Movie<span class="text-red">Pick</span></h1>
+      <nav>
+        <button class="nav-btn active" id="nav-home">홈</button>
+        <button class="nav-btn" id="nav-genres">장르별</button>
+        <button class="nav-btn" id="nav-fav">찜 목록</button>
+        <button class="nav-btn" id="nav-pref">취향 분석</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main View: Home -->
+  <main id="home-view">
+    <!-- Section 1: Today's Recommendation -->
+    <section class="section">
+      <div class="section-header">
+        <h2>🔥 오늘의 추천 (맞춤형)</h2>
+        <button class="btn-text" id="refresh-recommend-btn">↻ 새로운 추천 받기</button>
+      </div>
+      <div class="hero-banner" id="hero-banner">
+        <div class="hero-content">
+          <h1 id="hero-title">인터스텔라 2</h1>
+          <p class="text-muted mt-2" id="hero-genre">SF | 2026</p>
+          <div class="mt-4" style="display:flex; gap:10px;">
+            <button class="btn-primary" id="hero-play-btn">▶ 재생</button>
+            <button class="btn-outline hero-detail-btn" data-id="mv1">상세 정보</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Popular Reviews -->
+    <section class="section mt-5">
+      <h2>실시간 인기 리뷰</h2>
+      <div class="review-carousel" id="popular-reviews">
+        <!-- Reviews loaded here -->
+      </div>
+      <div id="review-error-msg" class="text-danger mt-2" style="display:none; font-size:0.85rem;" data-bug-id="site008-bug02">
+        리뷰 데이터를 불러오는 중 오류가 발생했습니다. (Console: Unexpected token in JSON...)
+      </div>
+    </section>
+  </main>
+
+  <!-- View: Genres -->
+  <main id="genres-view" style="display:none;">
+    <!-- Section 2: Movies by Genre -->
+    <section class="section">
+      <div class="section-header">
+        <h2>영화 탐색</h2>
+        <div class="filter-controls">
+          <input type="text" id="search-movie" placeholder="제목 검색..." class="form-input" style="width:200px;">
+          <select id="genre-filter" class="form-select">
+            <option value="전체">모든 장르</option>
+            <option value="SF">SF</option>
+            <option value="액션">액션</option>
+            <option value="로맨스">로맨스</option>
+          </select>
+          <select id="sort-filter" class="form-select">
+            <option value="latest">최신순</option>
+            <option value="rating">평점순</option>
+          </select>
+        </div>
+      </div>
+      
+      <p class="text-xs text-muted mb-3">* 일부 영화는 평점 집계 오류(Bug 01)가 있을 수 있습니다.</p>
+      
+      <div class="movie-grid" id="movie-grid">
+        <!-- Movies injected here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- View: Favorites -->
+  <main id="fav-view" style="display:none;">
+    <section class="section">
+      <h2>나의 찜 목록</h2>
+      <div class="movie-grid" id="fav-grid">
+        <!-- Fav Movies injected here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- View: Preferences -->
+  <main id="pref-view" style="display:none;">
+    <section class="section card bg-dark2">
+      <h2>당신의 취향은?</h2>
+      <p class="text-muted mb-4">선호하는 장르 태그를 선택하여 맞춤 추천을 받아보세요.</p>
+      <div class="tag-cloud" id="pref-tags">
+        <button class="tag-btn" data-tag="SF">#SF</button>
+        <button class="tag-btn" data-tag="액션">#액션</button>
+        <button class="tag-btn" data-tag="로맨스">#로맨스</button>
+        <button class="tag-btn" data-tag="코미디">#코미디</button>
+        <button class="tag-btn" data-tag="스릴러">#스릴러</button>
+      </div>
+      <button class="btn-primary mt-4" id="save-pref-btn">취향 저장하기</button>
+    </section>
+  </main>
+
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="movie-modal">
+    <div class="modal-content">
+      <button class="close-btn" id="close-modal">&times;</button>
+      <div id="modal-body">
+        <div style="display:flex; gap:20px;">
+          <img src="" id="modal-poster" style="width:150px; border-radius:8px;">
+          <div>
+            <h2 id="modal-title">영화 제목</h2>
+            <p class="text-muted" id="modal-meta">장르 | 연도</p>
+            <div class="mt-2 text-red" style="font-size:1.5rem; font-weight:bold;">
+              ★ <span id="modal-rating" data-bug-id="site008-bug01">0.0</span> 
+              <span class="text-muted text-sm">(리뷰 <span id="modal-review-cnt">0</span>개)</span>
+            </div>
+            <button class="btn-outline mt-3" id="modal-fav-btn">♡ 찜하기</button>
+          </div>
+        </div>
+        
+        <!-- Section 4: Rating Registration -->
+        <hr style="border-color:#333; margin:20px 0;">
+        <h3>리뷰 남기기</h3>
+        <form id="review-form" class="mt-3">
+          <input type="hidden" id="review-movie-id">
+          <div style="display:flex; gap:10px; margin-bottom:10px;">
+            <select id="review-rating" class="form-select w-auto">
+              <option value="5">⭐⭐⭐⭐⭐ 5점</option>
+              <option value="4">⭐⭐⭐⭐ 4점</option>
+              <option value="3">⭐⭐⭐ 3점</option>
+              <option value="2">⭐⭐ 2점</option>
+              <option value="1">⭐ 1점</option>
+            </select>
+          </div>
+          <textarea id="review-content" class="form-input" placeholder="영화에 대한 솔직한 평가를 남겨주세요." required></textarea>
+          <div class="text-xs text-muted mt-1 mb-2">
+            * XSS 취약점 테스트(Bug 03): <code>&lt;img src="x" onerror="alert('XSS')"&gt;</code> 입력 가능
+          </div>
+          <button type="submit" class="btn-primary w-full" data-bug-id="site008-bug03">리뷰 등록</button>
+        </form>
+
+        <hr style="border-color:#333; margin:20px 0;">
+        <h3>리뷰 목록</h3>
+        <div id="modal-reviews-list" class="mt-3">
+          <!-- Reviews list -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

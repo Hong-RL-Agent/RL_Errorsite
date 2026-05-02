@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeddingPlan Mini - 당신의 특별한 날을 위한 완벽한 동반자</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">WEDDING<span class="text-rose">PLAN</span></div>
+      <nav class="nav-links">
+        <button id="nav-checklist" class="active">체크리스트</button>
+        <button id="nav-budget">예산 관리</button>
+        <button id="nav-guests">하객 명단</button>
+      </nav>
+      <div class="couple-profile">
+        <span class="couple-names">Jihun & Soomin</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Checklist View -->
+      <div id="checklist-view" class="view-section">
+        <div class="hero">
+          <h1>THE PERFECT DAY</h1>
+          <p>꿈꾸던 결혼식을 위한 모든 준비 단계를 하나씩 체크해 보세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="task-search" placeholder="준비 항목 검색...">
+          </div>
+          <div class="plan-id-display">
+            <span class="text-xs text-muted">PLAN ID: <span id="current-plan-id">plan-101</span></span>
+          </div>
+        </div>
+
+        <div id="task-list" class="list-wrapper mt-4" data-bug-id="site063-bug03">
+          <!-- 일정 리스트 -->
+        </div>
+      </div>
+
+      <!-- Budget View -->
+      <div id="budget-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">예산 요약</h2>
+        <div class="budget-summary-card p-5 mb-5" data-bug-id="site063-bug01">
+          <div class="flex-between">
+            <div>
+              <p class="text-muted">총 예상 지출액</p>
+              <h1 id="total-budget" class="text-rose">0</h1>
+            </div>
+            <div class="text-right">
+              <p class="text-muted">항목 수</p>
+              <h2 id="budget-count">0</h2>
+            </div>
+          </div>
+        </div>
+
+        <h3>지출 내역</h3>
+        <div id="budget-items" class="list-wrapper mt-3">
+          <!-- 예산 항목 -->
+        </div>
+      </div>
+
+      <!-- Guest View -->
+      <div id="guest-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">초대 명단</h2>
+        <div class="add-guest-form p-4 mb-4">
+          <div class="flex-row">
+            <input type="text" id="guest-name" class="form-input flex-2" placeholder="하객 이름">
+            <select id="guest-relation" class="form-select flex-1 mx-2">
+              <option value="Family">가족</option>
+              <option value="Friend">친구</option>
+              <option value="Colleague">직장동료</option>
+            </select>
+            <button id="add-guest-btn" class="btn-rose" data-bug-id="site063-bug02">추가하기</button>
+          </div>
+        </div>
+        <div id="guest-list" class="list-wrapper">
+          <!-- 하객 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 상세 모달 -->
+    <div id="detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 상세 내용 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

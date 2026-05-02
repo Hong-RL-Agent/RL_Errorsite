@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laundry Now</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <header class="main-header">
+      <div class="logo">Laundry<span class="text-blue">Now</span></div>
+      <div class="user-info">
+        <span class="badge">강남점</span>
+        <button id="nav-history" class="btn-circle">📋</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="status-summary card">
+        <div class="summary-item">
+          <p class="label">세탁기</p>
+          <p class="value" id="washer-count">0/2 사용가능</p>
+        </div>
+        <div class="summary-item divider"></div>
+        <div class="summary-item">
+          <p class="label">건조기</p>
+          <p class="value" id="dryer-count">0/2 사용가능</p>
+        </div>
+      </section>
+
+      <div class="view-tabs mt-4">
+        <button class="tab active" data-type="Washer">세탁기</button>
+        <button class="tab" data-type="Dryer">건조기</button>
+      </div>
+
+      <div id="machine-grid" class="grid mt-3">
+        <!-- 기기 카드 -->
+      </div>
+    </main>
+
+    <!-- History View (Overlay) -->
+    <div id="history-overlay" class="overlay" style="display:none;">
+      <div class="overlay-content">
+        <div class="overlay-header">
+          <h2>이용 기록</h2>
+          <button id="close-history" class="btn-close">&times;</button>
+        </div>
+        <div id="history-list" class="mt-3">
+          <!-- 이용 내역 -->
+        </div>
+        <div class="mt-4 security-test" data-bug-id="site024-bug03">
+          <button id="test-idor-btn" class="btn-outline btn-sm">타인 기록 조회 테스트 (Bug 03)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 예약 확인 모달 -->
+    <div id="reserve-modal" class="modal">
+      <div class="modal-content">
+        <h3>기기 예약</h3>
+        <p id="modal-machine-name" class="mt-2 font-bold"></p>
+        <p class="text-sm text-muted">선택하신 기기를 15분간 예약하시겠습니까?</p>
+        <div class="modal-actions mt-4">
+          <button id="confirm-reserve" class="btn-primary" data-bug-id="site024-bug01">예약하기</button>
+          <button id="cancel-reserve" class="btn-secondary">취소</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast">메시지</div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

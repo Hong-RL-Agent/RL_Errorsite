@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UsedCar Note - 완벽한 비교, 스마트한 선택</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">USEDCAR <span class="text-silver">NOTE</span></div>
+      <nav class="nav-links">
+        <button id="nav-home" class="active">차량 탐색</button>
+        <button id="nav-compare">비교 분석</button>
+        <button id="nav-notes">나의 메모</button>
+      </nav>
+      <div class="user-status">
+        <span class="badge">PLATINUM USER</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Home View -->
+      <div id="home-view" class="view-section">
+        <div class="hero">
+          <h1>THE PREMIUM SELECTION</h1>
+          <p>엄선된 프리미엄 중고차 매물을 한눈에 비교하고 관리하세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="car-search" placeholder="모델명 검색...">
+          </div>
+          <div class="filters">
+            <select id="year-filter" class="form-select" data-bug-id="site052-bug02">
+              <option value="0">연식 전체</option>
+              <option value="2020">2020년식 이상</option>
+              <option value="2022">2022년식 이상</option>
+            </select>
+            <select id="price-sort" class="form-select" data-bug-id="site052-bug01">
+              <option value="default">추천순</option>
+              <option value="price_asc">가격 낮은순</option>
+              <option value="price_desc">가격 높은순</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="car-grid" class="grid mt-4">
+          <!-- 차량 카드 -->
+        </div>
+      </div>
+
+      <!-- Notes View -->
+      <div id="notes-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 차량 비교 메모</h2>
+        <div id="note-list" class="list-wrapper">
+          <!-- 메모 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 차량 상세 모달 -->
+    <div id="car-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 동적 로드 -->
+        </div>
+        <div class="modal-actions mt-5">
+          <button class="btn-silver w-full" onclick="showToast('비교함에 추가되었습니다.')">비교함 담기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 메모 상세 모달 (IDOR 테스트용) -->
+    <div id="note-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-note">&times;</span>
+        <div id="note-body" data-bug-id="site052-bug03">
+          <!-- 메모 상세 로드 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

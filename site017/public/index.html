@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Cloud</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo">Recipe <span class="text-primary">Cloud</span></h1>
+      <div class="search-bar">
+        <input type="text" id="ingredient-input" placeholder="재료로 검색 (예: 소고기, 파)...">
+        <button id="search-btn">🔍</button>
+      </div>
+      <nav>
+        <button id="nav-home" class="active">HOME</button>
+        <button id="nav-saved">SAVED</button>
+        <button id="nav-reviews">REVIEWS</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="home-view">
+      <div class="hero-banner">
+        <h2>What's Cooking <br>Today?</h2>
+        <p>당신의 주방을 구름처럼 가볍게 해줄 특별한 레시피</p>
+      </div>
+
+      <div class="section-title">
+        <h3>Popular Recipes</h3>
+        <p class="text-xs text-muted">(Bug 01 테스트: '소고'로 검색하면 결과가 나오지 않습니다)</p>
+      </div>
+      <div id="recipe-grid" class="grid">
+        <!-- 레시피 리스트 -->
+      </div>
+    </div>
+
+    <div id="saved-view" style="display:none;">
+      <h2 class="view-title">My Saved Recipes</h2>
+      <div id="saved-grid" class="grid">
+        <!-- 저장된 레시피 -->
+      </div>
+    </div>
+
+    <div id="reviews-view" style="display:none;">
+      <h2 class="view-title">Community Reviews</h2>
+      <div class="review-write card mb-4">
+        <h4>후기 작성하기</h4>
+        <div class="form-group mt-2">
+          <input type="text" id="review-user" placeholder="닉네임" class="form-input">
+          <textarea id="review-content" placeholder="레시피는 어땠나요? (Bug 03: XSS 공격 가능)" class="form-input mt-1"></textarea>
+        </div>
+        <button id="submit-review" class="btn-primary mt-2">작성 완료</button>
+      </div>
+      <div id="review-list">
+        <!-- 후기 목록 -->
+      </div>
+    </div>
+  </main>
+
+  <!-- 상세 모달 -->
+  <div id="recipe-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-body">
+        <!-- 상세 내용 -->
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

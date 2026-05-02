@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SleepCoach — 수면 기록 & 루틴 추천</title>
+  <meta name="description" content="SleepCoach: 수면 기록을 분석하고 맞춤 루틴으로 수면의 질을 높이세요."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <span class="logo-icon">🌙</span>
+      <span class="logo-text">Sleep<strong>Coach</strong></span>
+    </a>
+    <nav class="gnav" id="gnav">
+      <a href="#" class="nl active" data-view="records">수면 기록</a>
+      <a href="#" class="nl" data-view="routines">루틴 추천</a>
+      <a href="#" class="nl" data-view="stats">통계</a>
+      <a href="#" class="nl" data-view="goals">목표</a>
+      <a href="#" class="nl" data-view="history">히스토리</a>
+    </nav>
+    <div class="hright">
+      <div class="sleep-alert" id="sleep-alert" title="수면 목표 알림">🔔<span class="alert-dot" id="alert-dot"></span></div>
+      <button class="hbtn" id="btn-refresh">↻</button>
+      <div class="user-chip"><span class="uav">J</span><span>user_james</span></div>
+      <button class="burger" id="burger">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ══ VIEW: RECORDS ══ -->
+  <section class="view active" id="view-records">
+    <div class="view-inner">
+
+      <div class="page-hero">
+        <div>
+          <div class="hero-pill">🌙 수면 추적</div>
+          <h1 class="hero-h">오늘의 수면을<br/><span class="hac">기록하세요</span></h1>
+          <p class="hero-p">취침·기상 시간과 수면 품질을 기록하고 패턴을 분석합니다.</p>
+        </div>
+        <div class="hero-clock" id="hero-clock">00:00</div>
+      </div>
+
+      <!-- Add record form -->
+      <div class="add-card">
+        <h3 class="card-title">📝 수면 기록 추가</h3>
+        <form class="add-form" id="add-form">
+          <div class="arow">
+            <div class="af">
+              <label>날짜</label>
+              <input type="date" id="f-date" required/>
+            </div>
+            <div class="af">
+              <label>취침 시간</label>
+              <input type="time" id="f-bed" required/>
+            </div>
+            <div class="af">
+              <label>기상 시간</label>
+              <input type="time" id="f-wake" required/>
+            </div>
+            <div class="af">
+              <label>수면 품질</label>
+              <select id="f-quality">
+                <option value="5">⭐⭐⭐⭐⭐ 최고</option>
+                <option value="4">⭐⭐⭐⭐ 좋음</option>
+                <option value="3" selected>⭐⭐⭐ 보통</option>
+                <option value="2">⭐⭐ 나쁨</option>
+                <option value="1">⭐ 최악</option>
+              </select>
+            </div>
+          </div>
+          <div class="arow">
+            <div class="af wide">
+              <label>메모</label>
+              <input type="text" id="f-notes" placeholder="수면 메모 (선택)" maxlength="100"/>
+            </div>
+            <div class="af">
+              <label>기분</label>
+              <select id="f-mood">
+                <option value="🌟">🌟 최고</option>
+                <option value="😊">😊 좋음</option>
+                <option value="😐" selected>😐 보통</option>
+                <option value="😴">😴 졸림</option>
+                <option value="😫">😫 피곤</option>
+              </select>
+            </div>
+            <div class="af">
+              <label>태그 (쉼표 구분)</label>
+              <input type="text" id="f-tags" placeholder="숙면, 운동" maxlength="60"/>
+            </div>
+          </div>
+          <div class="add-actions">
+            <button type="submit" class="btn-primary">기록 추가</button>
+            <div class="add-msg" id="add-msg"></div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <div class="fb-group">
+          <label>기간</label>
+          <input type="date" id="filter-from" class="fdate"/>
+          <span style="color:var(--text-muted)">~</span>
+          <input type="date" id="filter-to" class="fdate"/>
+        </div>
+        <div class="fb-group">
+          <label>검색</label>
+          <div class="fsearch-box">
+            <input type="text" id="record-search" placeholder="메모, 태그 검색..." class="fsearch"/>
+          </div>
+        </div>
+        <button class="btn-secondary btn-sm" id="btn-filter">필터 적용</button>
+        <span class="rcnt" id="rcnt"></span>
+      </div>
+
+      <!-- Record list -->
+      <div class="record-list" id="record-list"></div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: ROUTINES ══ -->
+  <section class="view" id="view-routines">
+    <div class="view-inner">
+      <h2 class="view-title">🧘 루틴 추천</h2>
+      <div class="routine-grid" id="routine-grid"></div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: STATS ══ -->
+  <section class="view" id="view-stats">
+    <div class="view-inner">
+      <div class="stats-hdr">
+        <h2 class="view-title">📊 수면 통계</h2>
+        <button class="btn-secondary btn-sm" id="btn-refresh-stats">↻ 새로고침</button>
+      </div>
+      <div class="schema-notice" id="schema-notice"></div>
+      <div class="stats-cards" id="stats-cards"></div>
+      <div class="stats-chart-wrap">
+        <h3 class="chart-title">최근 수면 기록 (막대)</h3>
+        <div class="sleep-bars" id="sleep-bars"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: GOALS ══ -->
+  <section class="view" id="view-goals">
+    <div class="view-inner">
+      <h2 class="view-title">🎯 수면 목표</h2>
+      <div class="goals-card">
+        <form class="goals-form" id="goals-form">
+          <div class="gform-grid">
+            <div class="gf"><label>목표 수면 시간 (h)</label><input type="number" id="g-hours" min="4" max="12" step="0.5"/></div>
+            <div class="gf"><label>목표 취침 시간</label><input type="time" id="g-bedtime"/></div>
+            <div class="gf"><label>목표 기상 시간</label><input type="time" id="g-wake"/></div>
+            <div class="gf"><label>목표 수면 품질</label><select id="g-quality"><option value="5">5 최고</option><option value="4">4 좋음</option><option value="3">3 보통</option></select></div>
+          </div>
+          <button type="submit" class="btn-primary">목표 저장</button>
+          <div class="gform-msg" id="gform-msg"></div>
+        </form>
+        <div class="goal-progress" id="goal-progress"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: HISTORY ══ -->
+  <section class="view" id="view-history">
+    <div class="view-inner">
+      <div class="history-hdr">
+        <h2 class="view-title">📅 히스토리</h2>
+        <div class="idor-panel">
+          <span class="idor-label">🔍 recordId 직접 조회 (IDOR 테스트)</span>
+          <div class="idor-row">
+            <input type="number" id="idor-id" placeholder="6" min="1" class="idor-inp"/>
+            <button class="btn-idor" id="btn-idor">조회</button>
+          </div>
+          <div class="idor-result" id="idor-result"></div>
+        </div>
+      </div>
+      <div class="history-table-wrap">
+        <table class="history-table" id="history-table">
+          <thead>
+            <tr><th>날짜</th><th>취침</th><th>기상</th><th>수면(h)</th><th>품질</th><th>기분</th><th>메모</th></tr>
+          </thead>
+          <tbody id="history-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- MODAL -->
+<div class="modal-ov" id="modal-ov">
+  <div class="modal-box">
+    <button class="modal-x" id="modal-x">✕</button>
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/js/app.js"></script>
+</body>
+</html>

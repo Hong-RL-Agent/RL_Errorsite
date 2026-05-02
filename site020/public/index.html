@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewsBrief</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="newspaper-layout">
+    <header class="header">
+      <div class="date-header">Saturday, May 11, 2024</div>
+      <h1 class="site-title">News<span class="text-ink">Brief</span></h1>
+      <nav class="top-nav">
+        <button id="nav-home" class="active">Today's News</button>
+        <button id="nav-bookmarks">Bookmarks</button>
+        <button id="nav-settings">Subscriptions</button>
+      </nav>
+    </header>
+
+    <div class="main-container">
+      <aside class="left-sidebar">
+        <div class="section-box">
+          <h3 class="section-label">Trend Keywords</h3>
+          <div id="trend-list" class="trend-keywords" data-bug-id="site020-bug02">
+            <!-- 트렌드 로딩 -->
+          </div>
+          <button id="refresh-trends" class="btn-refresh">Update Trends</button>
+        </div>
+        
+        <div class="section-box mt-4">
+          <h3 class="section-label">Categories</h3>
+          <ul class="cat-list">
+            <li class="active" data-cat="all">All Stories</li>
+            <li data-cat="Tech">Technology</li>
+            <li data-cat="Biz">Business</li>
+            <li data-cat="Env">Environment</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="news-content">
+        <!-- Home View -->
+        <div id="home-view">
+          <div class="view-header">
+            <h2 class="ink-title">Front Page</h2>
+            <input type="text" id="news-search" placeholder="Search articles...">
+          </div>
+          <div id="news-list" class="articles-grid">
+            <!-- 뉴스 카드 -->
+          </div>
+        </div>
+
+        <!-- Bookmarks View -->
+        <div id="bookmarks-view" style="display:none;">
+          <h2 class="ink-title">Saved for Later</h2>
+          <div id="bookmark-list" class="articles-grid mt-3">
+            <!-- 북마크 리스트 -->
+          </div>
+        </div>
+
+        <!-- Settings View -->
+        <div id="settings-view" style="display:none;">
+          <div class="view-header">
+            <h2 class="ink-title">Subscription Settings</h2>
+            <button id="idor-test-btn" class="btn-outline btn-sm" data-bug-id="site020-bug03">타인 구독정보 조회 (Bug 03)</button>
+          </div>
+          <div id="subscription-card" class="card config-card mt-3">
+            <p class="text-muted">설정을 불러오는 중...</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- 뉴스 상세 모달 -->
+  <div id="news-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+:root {
+  --orange: #FF6D00; /* Emergency Orange */
+  --orange-dark: #E65100;
+  --black: #121212;
+  --dark-grey: #212121;
+  --grey: #424242;
+  --light-grey: #BDBDBD;
+  --white: #FFFFFF;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: var(--black);
+  color: var(--white);
+  line-height: 1.6;
+}
+
+.navbar {
+  background: var(--dark-grey); padding: 1.2rem 4rem; border-bottom: 2px solid var(--orange);
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 1000;
+}
+
+.logo { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 900; letter-spacing: 1px; }
+.text-orange { color: var(--orange); }
+
+.nav-links button {
+  background: none; border: none; font-weight: 700; cursor: pointer; color: var(--light-grey);
+  margin-left: 3rem; font-size: 1rem; text-transform: uppercase; transition: color 0.2s;
+}
+.nav-links button.active { color: var(--orange); border-bottom: 3px solid var(--orange); padding-bottom: 5px; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+
+.hero { border-left: 8px solid var(--orange); padding-left: 2rem; margin-bottom: 4rem; }
+.hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 4.5rem; line-height: 1; margin-bottom: 0.5rem; }
+.hero p { font-size: 1.2rem; color: var(--light-grey); max-width: 600px; }
+
+.toolbar { display: flex; justify-content: space-between; align-items: center; }
+.search-box input {
+  width: 400px; background: var(--dark-grey); border: 1px solid var(--grey); padding: 14px 20px;
+  border-radius: 4px; color: white; outline: none; font-family: inherit;
+}
+
+.category-tabs { display: flex; gap: 10px; }
+.cat-tab {
+  background: var(--dark-grey); border: 1px solid var(--grey); padding: 10px 20px; border-radius: 4px;
+  font-weight: 700; cursor: pointer; color: var(--light-grey); transition: all 0.2s;
+}
+.cat-tab.active { border-color: var(--orange); color: var(--orange); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+
+.tool-card {
+  background: var(--dark-grey); border-radius: 8px; padding: 2rem; border: 1px solid var(--grey);
+  transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden;
+}
+.tool-card:hover { border-color: var(--orange); transform: translateY(-5px); }
+.tool-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--orange); opacity: 0; transition: opacity 0.3s; }
+.tool-card:hover::before { opacity: 1; }
+
+.tool-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; }
+.price-info { font-weight: 700; color: var(--orange); font-size: 1.1rem; }
+.specs { font-size: 0.85rem; color: var(--light-grey); margin-top: 10px; }
+
+.list-wrapper { background: var(--dark-grey); border-radius: 8px; border: 1px solid var(--grey); overflow: hidden; }
+.list-item { padding: 1.5rem 2rem; border-bottom: 1px solid var(--grey); display: flex; justify-content: space-between; align-items: center; }
+
+.btn-orange {
+  background: var(--orange); color: white; border: none; padding: 16px;
+  border-radius: 4px; font-weight: 800; cursor: pointer; font-size: 1rem; text-transform: uppercase;
+}
+.btn-orange:hover { background: var(--orange-dark); }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
+.modal-content { background: var(--dark-grey); margin: 8% auto; padding: 4rem; border-radius: 4px; width: 550px; position: relative; border: 1px solid var(--grey); }
+.close, .close-detail { position: absolute; right: 30px; top: 25px; font-size: 24px; cursor: pointer; }
+
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--orange);
+  color: white; padding: 14px 40px; border-radius: 4px; font-weight: 800; opacity: 0; transition: all 0.3s; z-index: 3000;
+}
+.toast.show { opacity: 1; bottom: 50px; }
+
+.form-input { width: 100%; padding: 12px; border-radius: 4px; border: 1px solid var(--grey); background: var(--black); color: white; outline: none; font-family: inherit; }
+
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 2.5rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.w-full { width: 100%; }

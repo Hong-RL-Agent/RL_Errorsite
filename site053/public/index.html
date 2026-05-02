@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmDiary - 땅의 정직함을 기록합니다</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">FARM<span class="text-brown">DIARY</span></div>
+      <nav class="nav-links">
+        <button id="nav-crops" class="active">나의 작물</button>
+        <button id="nav-tasks">작업 일지</button>
+        <button id="nav-stats">수확 통계</button>
+      </nav>
+      <div class="weather-widget">
+        <span>☀️ 24°C 맑음</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Crops View -->
+      <div id="crops-view" class="view-section">
+        <div class="hero">
+          <h1>건강한 대지의 기록</h1>
+          <p>오늘 우리 농장의 작물들은 얼마나 자랐을까요? 꼼꼼하게 기록해 보세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="crop-search" placeholder="작물 이름 검색...">
+          </div>
+          <button class="btn-green">+ 새 작물 등록</button>
+        </div>
+
+        <div id="crop-grid" class="grid mt-4">
+          <!-- 작물 카드 -->
+        </div>
+      </div>
+
+      <!-- Stats View -->
+      <div id="stats-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">연간 수확 통계 분석</h2>
+        <div class="stats-selector">
+          <select id="stat-crop-select" class="form-select">
+            <option value="">작물 선택...</option>
+          </select>
+        </div>
+        <div id="stats-content" class="mt-4">
+          <div class="stats-card" data-bug-id="site053-bug01">
+            <h3 id="stat-title">수확량 요약</h3>
+            <div id="stat-total" class="stat-value">0 <span class="unit">kg</span></div>
+            <p class="text-sm text-muted mt-2">전년 동기 대비 12% 증가 예상</p>
+          </div>
+          <div id="stat-loader" class="loader" style="display:none;" data-bug-id="site053-bug02">데이터를 불러오는 중입니다...</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 작물 상세 모달 -->
+    <div id="crop-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body" data-bug-id="site053-bug03">
+          <!-- 동적 로드 -->
+        </div>
+        <div class="modal-actions mt-5">
+          <button class="btn-brown w-full">오늘의 작업 기록하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+:root {
+  --mint: #4DB6AC;
+  --mint-dark: #00897B;
+  --mint-light: #E0F2F1;
+  --wood: #8D6E63;
+  --white: #FFFFFF;
+  --grey-bg: #F8F9FA;
+  --text-main: #2C3E50;
+  --text-muted: #7F8C8D;
+  --border: #E0E0E0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Pretendard', sans-serif;
+  background-color: var(--grey-bg);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.navbar {
+  background: white; padding: 0 4rem; height: 80px; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 1000;
+}
+
+.logo { font-weight: 800; font-size: 1.3rem; letter-spacing: -0.5px; }
+.text-mint { color: var(--mint); }
+
+.nav-links button {
+  background: none; border: none; font-weight: 600; cursor: pointer; color: var(--text-muted);
+  margin-left: 3rem; font-size: 1rem; transition: color 0.2s;
+}
+.nav-links button.active { color: var(--mint); border-bottom: 2px solid var(--mint); padding-bottom: 5px; }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+
+.date-selector { display: flex; align-items: center; gap: 20px; }
+.date-selector h2 { font-size: 1.8rem; font-weight: 800; color: var(--text-main); }
+.btn-icon { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--mint); font-weight: 800; }
+
+.calorie-summary { background: white; padding: 1.5rem 2.5rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: right; }
+.kcal-value { display: block; font-size: 2.2rem; font-weight: 800; color: var(--mint); margin-top: 5px; }
+
+.section-title h3 { font-size: 1.4rem; font-weight: 700; }
+.btn-mint-small { background: var(--mint-light); color: var(--mint-dark); border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+
+.meal-card { background: white; border-radius: 16px; padding: 1.8rem; border: 1px solid var(--border); transition: all 0.2s; }
+.meal-card:hover { transform: translateY(-5px); border-color: var(--mint); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+
+.meal-type { font-size: 0.75rem; font-weight: 800; color: var(--mint); text-transform: uppercase; margin-bottom: 8px; display: block; }
+.meal-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; display: block; }
+.meal-kcal-tag { background: var(--grey-bg); padding: 4px 10px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+
+.list-wrapper { background: white; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+.list-item { padding: 1.2rem 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+
+.btn-mint { background: var(--mint); color: white; border: none; padding: 16px; border-radius: 12px; font-weight: 700; font-size: 1.1rem; cursor: pointer; }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); }
+.modal-content { background: white; margin: 10% auto; padding: 3.5rem; border-radius: 24px; width: 500px; position: relative; }
+.close { position: absolute; right: 25px; top: 25px; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+
+.form-group label { display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; }
+.form-input { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; outline: none; }
+
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333;
+  color: white; padding: 12px 40px; border-radius: 50px; font-weight: 600; opacity: 0; transition: all 0.3s; z-index: 3000;
+}
+.toast.show { opacity: 1; bottom: 50px; }
+
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.mt-5 { margin-top: 3rem; }
+.mt-4 { margin-top: 2rem; }
+.mt-3 { margin-top: 1rem; }
+.mb-5 { margin-bottom: 3rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.w-full { width: 100%; }
+.text-muted { font-size: 0.9rem; color: var(--text-muted); }

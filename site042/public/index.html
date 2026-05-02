@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CraftMarket - 손으로 만든 따스함</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Noto+Serif+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">Craft<span class="text-brown">Market</span></div>
+      <nav class="nav-links">
+        <button id="nav-home" class="active">작품 둘러보기</button>
+        <button id="nav-custom">주문 제작</button>
+        <button id="nav-my">내 주문 내역</button>
+      </nav>
+      <div class="user-badge">
+        <span>Handmade Lover</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Home View -->
+      <div id="home-view" class="view-section">
+        <div class="hero">
+          <h1>당신만을 위한 특별한 작품</h1>
+          <p>전 세계 작가들의 숨결이 담긴 핸드메이드 마켓</p>
+        </div>
+        
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="item-search" placeholder="작품 또는 작가 검색...">
+          </div>
+          <div class="filter-group">
+            <button class="filter-btn active" data-cat="all">전체</button>
+            <button class="filter-btn" data-cat="Stationery">문구</button>
+            <button class="filter-btn" data-cat="Living">리빙</button>
+            <button class="filter-btn" data-cat="Fashion">패션</button>
+          </div>
+        </div>
+
+        <div id="item-grid" class="grid mt-4">
+          <!-- 작품 카드 -->
+        </div>
+      </div>
+
+      <!-- Custom Order View -->
+      <div id="custom-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">작가에게 주문 제작 요청하기</h2>
+        <div class="custom-order-form">
+          <div class="form-group">
+            <label>작가 선택</label>
+            <select id="artist-select" class="form-input">
+              <option value="art-1">김장인 (가죽공예)</option>
+              <option value="art-2">박수작 (도자기)</option>
+            </select>
+          </div>
+          <div class="form-group mt-3">
+            <label>제작 요청 상세</label>
+            <textarea id="order-desc" class="form-input" rows="6" placeholder="디자인, 크기, 소재 등 상세 내용을 입력해 주세요."></textarea>
+          </div>
+          <button id="submit-custom-btn" class="btn-brown w-full mt-4" data-bug-id="site042-bug02">제작 요청 보내기</button>
+        </div>
+      </div>
+
+      <!-- My Orders View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 주문 현황</h2>
+        <div id="order-list" class="list-wrapper">
+          <!-- 주문 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 작품 상세 모달 -->
+    <div id="item-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body" data-bug-id="site042-bug03">
+          <!-- 동적 로드 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

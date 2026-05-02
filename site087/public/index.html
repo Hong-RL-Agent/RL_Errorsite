@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MicroLearn Quiz | Master Your Knowledge</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+  <nav class="navbar">
+    <div class="logo">MicroLearn <span>Quiz</span></div>
+    <div class="nav-links">
+      <button class="nav-btn active" data-view="quiz">Today's Quiz</button>
+      <button class="nav-btn" data-view="notes">Wrong Notes</button>
+      <button class="nav-btn" data-view="ranking">Ranking</button>
+      <button class="nav-btn" data-view="profile">Profile</button>
+    </div>
+    <div class="score-pill">
+      <span id="nav-score">0</span> pts
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Quiz View -->
+    <section id="quiz-view" class="view">
+      <div class="header-section">
+        <h1>Challenge <span>Yourself</span></h1>
+        <p>Short quizzes to keep your brain sharp every day.</p>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Programming</button>
+        <button class="filter-btn">Science</button>
+        <button class="filter-btn">History</button>
+      </div>
+
+      <div id="quiz-container" class="grid-container">
+        <!-- Quizzes will be loaded here -->
+      </div>
+    </section>
+
+    <!-- Wrong Notes View -->
+    <section id="notes-view" class="view hidden">
+      <div class="header-section">
+        <h1>Learn from <span>Mistakes</span></h1>
+        <p>Review the questions you missed to improve your score.</p>
+      </div>
+      <div id="notes-container" class="grid-container">
+        <!-- Wrong notes will be loaded here -->
+      </div>
+    </section>
+
+    <!-- Ranking View -->
+    <section id="ranking-view" class="view hidden">
+      <div class="header-section">
+        <h1>Top <span>Performers</span></h1>
+        <p>See how you compare with the best learners.</p>
+      </div>
+      <div class="ranking-card">
+        <ul id="ranking-list">
+          <!-- Rankings will be loaded here -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- Profile View -->
+    <section id="profile-view" class="view hidden">
+      <div class="header-section">
+        <h1>Your <span>Progress</span></h1>
+        <p>Manage your account and see your achievements.</p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-header">
+          <div class="avatar">Y</div>
+          <div>
+            <h2>User_James</h2>
+            <p>Level 14 | Quiz Master</p>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <h3 id="stat-total-score">0</h3>
+            <p>Total Score</p>
+          </div>
+          <div class="stat-box">
+            <h3 id="stat-solved">0</h3>
+            <p>Quizzes Solved</p>
+          </div>
+        </div>
+        <div class="security-debug">
+          <h3>Security Testing Panel</h3>
+          <p>Test point modification (For PPO Training)</p>
+          <div class="tamper-box">
+            <input type="number" id="tamper-input" placeholder="Enter score delta">
+            <button id="tamper-btn" class="action-btn">Apply Delta</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

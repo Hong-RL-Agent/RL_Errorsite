@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillMap Academy</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="logo">Skill<span class="text-purple">Map</span></div>
+      <nav>
+        <button id="nav-courses" class="nav-item active">📚 강의 탐색</button>
+        <button id="nav-my-learning" class="nav-item">🏠 내 학습함</button>
+        <button id="nav-quizzes" class="nav-item">📝 퀴즈 센터</button>
+        <button id="nav-profile" class="nav-item">👤 마이페이지</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="user-card">
+          <p class="user-name">김학습 님</p>
+          <p class="user-points">✨ 1,250 points</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <div class="search-box">
+          <input type="text" id="course-search" placeholder="배우고 싶은 기술을 검색하세요...">
+        </div>
+        <div class="header-actions">
+          <button id="refresh-api" class="btn-icon">🔄</button>
+          <div class="notif">🔔</div>
+        </div>
+      </header>
+
+      <!-- Courses View -->
+      <div id="courses-view" class="view-section">
+        <div class="hero-card">
+          <h2>오늘의 추천 강의</h2>
+          <p>내 커리어 맵을 완성할 최고의 강의를 만나보세요.</p>
+        </div>
+
+        <div class="filter-bar mt-4">
+          <button class="filter-btn active" data-cat="all">전체</button>
+          <button class="filter-btn" data-cat="Dev">개발</button>
+          <button class="filter-btn" data-cat="Data">데이터</button>
+          <button class="filter-btn" data-cat="Design">디자인</button>
+        </div>
+
+        <div id="course-grid" class="grid mt-4">
+          <!-- 강의 카드 -->
+        </div>
+      </div>
+
+      <!-- My Learning View -->
+      <div id="learning-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">수강 중인 강의</h2>
+        <div id="progress-list" class="progress-container">
+          <!-- 진도율 리스트 -->
+        </div>
+        <div class="mt-5 info-banner" data-bug-id="site021-bug01">
+          <p class="text-xs">⚠️ (Bug 01 테스트) 진도율 계산 시 전체 강의 수가 10으로 고정되어 계산됩니다.</p>
+        </div>
+      </div>
+
+      <!-- Quizzes View -->
+      <div id="quizzes-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">데일리 퀴즈</h2>
+        <div class="card quiz-card">
+          <h3>Q1. 리액트의 Virtual DOM에 대한 설명으로 옳은 것은?</h3>
+          <div class="options mt-2">
+            <label><input type="radio" name="q1" value="a"> 직접 DOM을 조작한다.</label><br>
+            <label><input type="radio" name="q1" value="b"> 변경된 부분만 골라 반영한다.</label>
+          </div>
+          <h3 class="mt-4">Q2. 파이썬의 리스트와 튜플의 차이점은?</h3>
+          <div class="options mt-2">
+            <label><input type="radio" name="q2" value="a"> 튜플은 변경이 가능하다.</label><br>
+            <label><input type="radio" name="q2" value="b"> 튜플은 변경이 불가능하다.</label>
+          </div>
+          <h3 class="mt-4">Q3. UI 디자인의 7대 원칙이 아닌 것은?</h3>
+          <div class="options mt-2">
+            <label><input type="radio" name="q3" value="a"> 일관성</label><br>
+            <label><input type="radio" name="q3" value="b"> 복잡성</label>
+          </div>
+          <button id="submit-quiz" class="btn-primary mt-4" data-bug-id="site021-bug02">퀴즈 제출하기</button>
+        </div>
+        <div id="quiz-result" class="mt-4"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- 강의 상세 모달 -->
+  <div id="course-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-body">
+        <!-- 상세 내용 -->
+      </div>
+      <div class="modal-footer mt-4">
+        <button id="access-content-btn" class="btn-outline" data-bug-id="site021-bug03">강의 콘텐츠 보기 (Bug 03)</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

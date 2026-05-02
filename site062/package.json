@@ -1,0 +1,13 @@
+{
+  "name": "devsnippet-vault",
+  "version": "1.0.0",
+  "description": "DevSnippet Vault - RL Training Dataset",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlantShop - 초록빛 일상을 선물하세요</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">Plant<span class="text-green">Shop</span></div>
+      <nav class="nav-links">
+        <button id="nav-home" class="active">식물 탐색</button>
+        <button id="nav-cart">장바구니 <span id="cart-count">0</span></button>
+        <button id="nav-my">주문 내역</button>
+      </nav>
+      <div class="user-info">
+        <span class="username">Green Lover</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Home View -->
+      <div id="home-view" class="view-section">
+        <div class="hero">
+          <h1>일상에 초록을 더하다</h1>
+          <p>공간을 환하게 밝혀줄 반려 식물을 만나보세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="plant-search" placeholder="식물 이름 검색...">
+          </div>
+          <div class="filter-group">
+            <button class="filter-btn active" data-diff="all">전체</button>
+            <button class="filter-btn" data-diff="Easy">초보자용</button>
+            <button class="filter-btn" data-diff="Medium">중급자용</button>
+            <button class="filter-btn" data-diff="Hard">매니아용</button>
+          </div>
+        </div>
+
+        <div id="plant-grid" class="grid mt-4">
+          <!-- 식물 카드 -->
+        </div>
+      </div>
+
+      <!-- Cart View -->
+      <div id="cart-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">장바구니 내역</h2>
+        <div id="cart-list" class="list-wrapper">
+          <!-- 장바구니 아이템 -->
+        </div>
+        <div class="cart-summary mt-5">
+          <div class="summary-row">
+            <span>총 주문 금액</span>
+            <span id="total-price">0원</span>
+          </div>
+          <div class="summary-row mt-2">
+            <span>특별 할인 (오픈 기념)</span>
+            <span class="text-red">-5,000원</span>
+          </div>
+          <div class="summary-row total mt-4">
+            <span>최종 결제 금액</span>
+            <span id="final-price">0원</span>
+          </div>
+          <button id="checkout-btn" class="btn-green w-full mt-5" data-bug-id="site045-bug03">주문 결제하기</button>
+        </div>
+      </div>
+
+      <!-- Order View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 주문 기록</h2>
+        <div id="order-list" class="list-wrapper">
+          <!-- 주문 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 식물 상세 모달 -->
+    <div id="plant-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 동적 로드 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

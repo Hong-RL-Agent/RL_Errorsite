@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IndieGame Shelf - 창의적인 인디게임의 보관함</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">INDIE<span class="text-yellow">SHELF</span></div>
+      <nav class="nav-links">
+        <button id="nav-discover" class="active">탐색하기</button>
+        <button id="nav-upcoming">출시 예정</button>
+        <button id="nav-fav">내 찜 목록</button>
+      </nav>
+      <div class="user-action">
+        <button class="btn-retro">LOGIN</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Discover View -->
+      <div id="discover-view" class="view-section">
+        <div class="hero">
+          <h1>PIXEL REALITY</h1>
+          <p>세상의 모든 개성 넘치는 인디게임들을 한곳에서 만나보세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="game-search" placeholder="게임 제목 또는 개발사 검색...">
+          </div>
+          <div class="filters">
+            <select id="genre-filter" class="form-select">
+              <option value="All">전체 장르</option>
+              <option value="Action">액션</option>
+              <option value="Adventure">어드벤처</option>
+              <option value="Strategy">전략</option>
+              <option value="RPG">RPG</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="game-grid" class="grid mt-4" data-bug-id="site059-bug01">
+          <!-- 게임 카드 -->
+        </div>
+      </div>
+
+      <!-- Upcoming View -->
+      <div id="upcoming-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">UPCOMING RELEASES</h2>
+        <div id="upcoming-list" class="grid" data-bug-id="site059-bug02">
+          <!-- 출시 예정 목록 -->
+        </div>
+      </div>
+
+      <!-- Favorites View -->
+      <div id="fav-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">MY WISHLIST</h2>
+        <div id="fav-grid" class="grid">
+          <!-- 찜 목록 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 게임 상세 모달 -->
+    <div id="game-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 동적 로드 -->
+        </div>
+        <div class="modal-footer mt-5">
+          <button id="fav-btn" class="btn-yellow w-full" data-bug-id="site059-bug03">관심 게임으로 찜하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

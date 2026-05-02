@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CafeStudy Pass - 집중이 깊어지는 시간</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">CAFE<span class="text-green">STUDY</span></div>
+      <nav class="nav-links">
+        <button id="nav-seats" class="active">좌석 현황</button>
+        <button id="nav-passes">이용권 구매</button>
+        <button id="nav-my">내 이용권</button>
+      </nav>
+      <div class="user-info">
+        <span class="user-id">USER_A</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Seats View -->
+      <div id="seats-view" class="view-section">
+        <div class="hero">
+          <h1>STAY FOCUSED</h1>
+          <p>조용한 대화가 어울리는 카페 공간과 완전한 몰입을 위한 포커스 존이 마련되어 있습니다.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="legend">
+            <span class="dot available"></span> 선택 가능
+            <span class="dot occupied"></span> 이용 중
+          </div>
+        </div>
+
+        <div id="seat-grid" class="seat-grid mt-4">
+          <!-- 좌석 배치 -->
+        </div>
+      </div>
+
+      <!-- Passes View -->
+      <div id="passes-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">이용권 선택</h2>
+        <div class="grid">
+          <div class="pass-card">
+            <h3>50시간권</h3>
+            <p class="price">₩65,000</p>
+            <button class="btn-green mt-3" onclick="buyPass('50시간권', 65000)">구매하기</button>
+          </div>
+          <div class="pass-card premium">
+            <div class="badge">BEST</div>
+            <h3>100시간권</h3>
+            <p class="price">₩120,000</p>
+            <button class="btn-green mt-3" onclick="buyPass('100시간권', 120000)" data-bug-id="site058-bug02">구매하기</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Page View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 이용권 현황</h2>
+        <div id="my-pass-list" class="list-wrapper">
+          <!-- 이용권 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 예약 모달 -->
+    <div id="res-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 동적 로드 -->
+        </div>
+        <div class="mt-4">
+          <label class="d-block mb-2">사용할 이용권 선택</label>
+          <select id="pass-select" class="form-select w-full" data-bug-id="site058-bug01">
+            <!-- 사용 가능한 이용권 목록 -->
+          </select>
+        </div>
+        <button id="confirm-res-btn" class="btn-green w-full mt-4">예약 확정</button>
+      </div>
+    </div>
+
+    <!-- 이용권 상세 모달 (IDOR 테스트용) -->
+    <div id="detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-detail">&times;</span>
+        <div id="detail-body" data-bug-id="site058-bug03">
+          <!-- 상세 정보 로드 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

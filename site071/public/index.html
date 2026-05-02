@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalClass Finder - 취향을 잇는 가장 가까운 원데이 클래스</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">LOCALCLASS<span class="text-coral">FINDER</span></div>
+      <nav class="nav-links">
+        <button id="nav-discover" class="active">클래스 탐색</button>
+        <button id="nav-my-bookings">내 예약</button>
+        <button id="nav-instructors">강사 찾기</button>
+      </nav>
+      <div class="user-action">
+        <button class="btn-profile">MY PAGE</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Discover View -->
+      <div id="discover-view" class="view-section">
+        <div class="hero">
+          <h1>DISCOVER NEW HOBBIES</h1>
+          <p>지루한 일상에 생기를 불어넣는 나만의 취향 클래스를 우리 동네에서 만나보세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="class-search" placeholder="클래스나 카테고리 검색...">
+          </div>
+          <div class="filters">
+            <select id="region-filter" class="form-select">
+              <option value="All">전체 지역</option>
+              <option value="서울 성수">서울 성수</option>
+              <option value="경기 수원">경기 수원</option>
+              <option value="서울 홍대">서울 홍대</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="class-grid" class="grid mt-4" data-bug-id="site071-bug02">
+          <!-- 클래스 카드 로드 -->
+        </div>
+      </div>
+
+      <!-- My Bookings View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 수강 대기 목록</h2>
+        <div id="booking-list" class="list-wrapper">
+          <!-- 예약 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 클래스 상세 모달 -->
+    <div id="detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 상세 내용 -->
+        </div>
+        <div class="booking-form mt-5">
+          <div class="form-group">
+            <label>예약자 성함</label>
+            <input type="text" id="booking-name" class="form-input" placeholder="성함을 입력하세요">
+          </div>
+          <button id="book-btn" class="btn-coral w-full mt-4" data-bug-id="site071-bug01 site071-bug03">원데이 클래스 예약하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

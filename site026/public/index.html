@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Buddy</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="header">
+      <div class="logo">Language<span class="text-blue">Buddy</span></div>
+      <nav class="nav-icons">
+        <button id="nav-discover" class="active">🔍 Discover</button>
+        <button id="nav-chat">💬 Chat</button>
+        <button id="nav-profile">👤 Profile</button>
+      </nav>
+    </header>
+
+    <main class="container">
+      <!-- Discover View -->
+      <div id="discover-view">
+        <section class="filters-section">
+          <div class="filter-group">
+            <span class="filter-label">Study Language</span>
+            <div class="chips">
+              <button class="chip active" data-lang="all">All</button>
+              <button class="chip" data-lang="French">French</button>
+              <button class="chip" data-lang="Japanese">Japanese</button>
+              <button class="chip" data-lang="Spanish">Spanish</button>
+            </div>
+          </div>
+        </section>
+
+        <div id="partner-grid" class="grid mt-4">
+          <!-- 파트너 카드 -->
+        </div>
+      </div>
+
+      <!-- Chat/Matches View -->
+      <div id="chat-view" style="display:none;">
+        <h2 class="mb-4">Matching Requests</h2>
+        <div id="match-list" class="match-list">
+          <!-- 매칭 요청 목록 -->
+        </div>
+      </div>
+
+      <!-- Profile View -->
+      <div id="profile-view" style="display:none;">
+        <div class="profile-header card">
+          <div class="avatar-large">UA</div>
+          <div class="profile-info">
+            <h2 id="profile-name">User_Alpha</h2>
+            <p class="text-muted">Native: Korean | Target: French</p>
+          </div>
+        </div>
+        <div class="stats-row mt-4">
+          <div class="stat-card">
+            <span class="stat-val" id="match-count">0</span>
+            <span class="stat-label">Matches</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 파트너 상세 모달 -->
+    <div id="partner-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body"></div>
+        <div class="modal-footer mt-4">
+          <button id="send-match-btn" class="btn-primary w-full" data-bug-id="site026-bug02">매칭 신청하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetSitter Match - 믿을 수 있는 반려동물 돌봄</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <nav class="side-nav">
+      <div class="logo">PetSitter<span class="text-orange">Match</span></div>
+      <div class="nav-links">
+        <button id="nav-home" class="active">🏠 홈</button>
+        <button id="nav-pets">🐾 우리 아이들</button>
+        <button id="nav-bookings">📅 예약 내역</button>
+      </div>
+      <div class="profile-summary">
+        <div class="avatar">👤</div>
+        <div class="info">
+          <strong>홍길동</strong>
+          <p>반려인</p>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <header class="top-bar">
+        <div class="search-box">
+          <input type="text" id="sitter-search" placeholder="지역 또는 펫시터 이름 검색...">
+        </div>
+      </header>
+
+      <!-- Home View -->
+      <div id="home-view" class="view-section">
+        <div class="section-title">
+          <h2>맞춤 펫시터 찾기</h2>
+          <select id="sort-select">
+            <option value="rating">평점 높은순</option>
+            <option value="rate">가격 낮은순</option>
+          </select>
+        </div>
+        <div id="sitter-grid" class="grid mt-4">
+          <!-- 펫시터 카드 -->
+        </div>
+      </div>
+
+      <!-- Pets View -->
+      <div id="pets-view" class="view-section" style="display:none;">
+        <div class="section-title">
+          <h2>우리 아이들</h2>
+          <button class="btn-add">+ 추가</button>
+        </div>
+        <div id="pet-grid" class="grid mt-4">
+          <!-- 반려동물 카드 -->
+        </div>
+      </div>
+
+      <!-- Bookings View -->
+      <div id="bookings-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">나의 예약 내역</h2>
+        <div id="booking-list" class="booking-list">
+          <!-- 예약 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 예약 모달 -->
+    <div id="booking-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-title">펫시터 예약</h2>
+        <form id="booking-form" class="mt-4">
+          <div class="form-group">
+            <label>반려동물 선택</label>
+            <select id="booking-pet" class="form-input" data-bug-id="site034-bug02">
+              <option value="">아이를 선택해 주세요</option>
+              <!-- 동적 로드 -->
+            </select>
+          </div>
+          <div class="form-row mt-3">
+            <div class="form-group">
+              <label>시작일</label>
+              <input type="date" id="booking-start" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label>종료일</label>
+              <input type="date" id="booking-end" class="form-input" required data-bug-id="site034-bug01">
+            </div>
+          </div>
+          <button type="submit" class="btn-primary w-full mt-4">예약 신청하기</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 펫 상세 모달 (IDOR 테스트용) -->
+    <div id="pet-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="pet-detail-body" data-bug-id="site034-bug03">
+          <!-- 동적 로드 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

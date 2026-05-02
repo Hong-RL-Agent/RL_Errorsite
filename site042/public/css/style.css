@@ -1,0 +1,96 @@
+:root {
+  --brown: #6D4C41;
+  --brown-dark: #4E342E;
+  --oatmeal: #F5F5F0;
+  --beige: #EFEBE9;
+  --white: #FFFFFF;
+  --text: #3E2723;
+  --text-muted: #8D6E63;
+  --border: #D7CCC8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Serif KR', serif;
+  background-color: var(--oatmeal);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.navbar {
+  background: var(--white); padding: 1.5rem 4rem; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 1000;
+}
+
+.logo { font-family: 'Marcellus', serif; font-size: 1.8rem; font-weight: 400; letter-spacing: -0.5px; }
+.text-brown { color: var(--brown); font-weight: 700; }
+
+.nav-links button {
+  background: none; border: none; font-weight: 700; cursor: pointer; color: var(--text-muted);
+  margin-left: 2.5rem; font-size: 1rem; transition: color 0.2s;
+}
+.nav-links button.active { color: var(--brown); border-bottom: 2px solid var(--brown); padding-bottom: 5px; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+
+.hero { text-align: center; margin-bottom: 4rem; }
+.hero h1 { font-size: 3rem; font-weight: 700; color: var(--brown-dark); }
+.hero p { font-size: 1.2rem; color: var(--text-muted); margin-top: 10px; }
+
+.toolbar { display: flex; justify-content: space-between; align-items: center; }
+.search-box input {
+  width: 350px; padding: 12px 20px; border-radius: 8px; border: 1px solid var(--border);
+  background: white; outline: none; font-family: inherit;
+}
+
+.filter-group { display: flex; gap: 10px; }
+.filter-btn {
+  background: white; border: 1px solid var(--border); padding: 8px 20px; border-radius: 4px;
+  font-weight: 700; cursor: pointer; color: var(--text-muted);
+}
+.filter-btn.active { background: var(--brown); color: white; border-color: var(--brown); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+
+.item-card {
+  background: white; border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border);
+  transition: all 0.3s; cursor: pointer; position: relative;
+}
+.item-card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(62, 39, 35, 0.08); }
+
+.item-thumb { width: 100%; aspect-ratio: 1; background: var(--beige); border-radius: 8px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+
+.price { font-weight: 700; color: var(--brown); font-size: 1.1rem; }
+
+.custom-order-form { background: white; padding: 3rem; border-radius: 20px; border: 1px solid var(--border); max-width: 700px; margin: 0 auto; }
+
+.list-wrapper { background: white; border-radius: 16px; border: 1px solid var(--border); overflow: hidden; }
+.list-item { padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+
+.btn-brown {
+  background: var(--brown); color: white; border: none; padding: 16px;
+  border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1rem;
+}
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); }
+.modal-content { background: white; margin: 8% auto; padding: 3.5rem; border-radius: 24px; width: 550px; position: relative; border: 1px solid var(--brown); }
+.close { position: absolute; right: 25px; top: 25px; font-size: 24px; cursor: pointer; }
+
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--brown-dark);
+  color: white; padding: 14px 40px; border-radius: 40px; font-weight: 600; opacity: 0; transition: all 0.3s; z-index: 3000;
+}
+.toast.show { opacity: 1; bottom: 50px; }
+
+.form-input { width: 100%; padding: 14px; border-radius: 8px; border: 1px solid var(--border); outline: none; font-family: inherit; }
+
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 2.5rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.w-full { width: 100%; }
+.text-sm { font-size: 0.85rem; }
+.text-muted { color: var(--text-muted); }

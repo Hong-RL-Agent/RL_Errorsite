@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelMate Planner</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <h1 class="logo">TravelMate ✈️</h1>
+      <nav>
+        <button id="nav-home" class="nav-btn active">탐색</button>
+        <button id="nav-plan" class="nav-btn">내 일정</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Home View -->
+  <main id="home-view">
+    <!-- Section 1: Destinations -->
+    <section class="section" id="section-destinations">
+      <div class="section-header">
+        <h2>어디로 떠나볼까요?</h2>
+        <div class="filter-controls">
+          <input type="text" id="search-dest" placeholder="도시명 검색...">
+          <select id="region-filter">
+            <option value="전체">모든 지역</option>
+            <option value="유럽">유럽</option>
+            <option value="동남아">동남아</option>
+            <option value="동아시아">동아시아</option>
+            <option value="아메리카">아메리카</option>
+          </select>
+        </div>
+      </div>
+      <div class="destination-grid" id="dest-container">
+        <!-- Destinations injected here -->
+      </div>
+    </section>
+
+    <!-- Section 4: Accommodations -->
+    <section class="section" id="section-accom">
+      <h2>인기 숙소 추천</h2>
+      <div class="tabs">
+        <button class="tab-btn active" data-sort="price">가격순</button>
+        <button class="tab-btn" data-sort="rating">평점순</button>
+      </div>
+      <div class="accom-list" id="accom-list">
+        <div class="accom-card">
+          <div class="accom-info">
+            <h3>선셋 비치 리조트</h3>
+            <p>1박 150,000원 / ★ 4.8</p>
+          </div>
+          <button class="btn-primary btn-sm">예약하기</button>
+        </div>
+        <div class="accom-card">
+          <div class="accom-info">
+            <h3>센트럴 시티 호스텔</h3>
+            <p>1박 30,000원 / ★ 4.2</p>
+          </div>
+          <button class="btn-primary btn-sm">예약하기</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Plan View (Hidden by default) -->
+  <main id="plan-view" style="display: none;">
+    <div class="plan-layout">
+      <!-- Left Column -->
+      <div class="plan-left">
+        <!-- Section 2: Itinerary -->
+        <section class="section card" id="section-itinerary">
+          <div class="section-header">
+            <h2>나의 일정표</h2>
+            <div class="idor-hack">
+              <input type="text" id="target-user-id" value="user-123" title="유저 ID 조작">
+              <button id="fetch-itinerary-btn" class="btn-secondary btn-sm" data-bug-id="site005-bug03">일정 불러오기</button>
+            </div>
+          </div>
+          
+          <form id="add-itinerary-form" class="mb-4">
+            <div class="input-group">
+              <input type="date" id="iti-date" required>
+              <input type="time" id="iti-time" required>
+            </div>
+            <div class="input-group">
+              <input type="text" id="iti-place" placeholder="장소 입력 (예: 에펠탑)" required>
+              <!-- Bug 01 attached to submit button -->
+              <button type="submit" class="btn-primary" data-bug-id="site005-bug01">일정 추가</button>
+            </div>
+          </form>
+
+          <ul class="itinerary-list" id="itinerary-list">
+            <!-- Itinerary injected here -->
+          </ul>
+        </section>
+      </div>
+
+      <!-- Right Column -->
+      <div class="plan-right">
+        <!-- Section 3: Budget -->
+        <section class="section card bg-coral" id="section-budget">
+          <h2 class="text-white">예산 관리</h2>
+          <div class="budget-display text-white">
+            현재 예산: <span id="current-budget">0</span>원
+          </div>
+          <form id="budget-form" class="mt-4">
+            <input type="number" id="budget-input" placeholder="새 예산 입력" required>
+            <!-- Bug 02 attached to save budget button -->
+            <button type="submit" class="btn-white w-full" id="save-budget-btn" data-bug-id="site005-bug02">예산 저장</button>
+          </form>
+          <div id="budget-loader" class="loader mt-2" style="display: none; color: white;">저장 중... (응답 지연 테스트용)</div>
+        </section>
+
+        <!-- Section 5: Checklist -->
+        <section class="section card" id="section-checklist">
+          <h2>준비물 체크리스트</h2>
+          <ul class="checklist">
+            <li><label><input type="checkbox"> 여권 및 비자 사본</label></li>
+            <li><label><input type="checkbox"> 여행용 어댑터</label></li>
+            <li><label><input type="checkbox"> 상비약 (소화제 등)</label></li>
+          </ul>
+        </section>
+
+        <!-- Section 6: Notes -->
+        <section class="section card" id="section-notes">
+          <h2>여행 노트</h2>
+          <textarea id="note-text" placeholder="기억하고 싶은 메모나 예약 번호를 적어두세요." rows="4"></textarea>
+          <button id="save-note-btn" class="btn-secondary w-full mt-2">메모 임시 저장</button>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="dest-modal">
+    <div class="modal-content">
+      <button class="close-btn" id="close-modal">&times;</button>
+      <div id="modal-body">
+        <!-- Destination details -->
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">알림</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Club - 대학교 동아리 정보</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="logo">Campus<span class="text-yellow">Club</span></div>
+    <div class="nav-links">
+      <button id="nav-clubs" class="active">동아리 찾기</button>
+      <button id="nav-apps">내 신청 현황</button>
+      <button id="nav-notices">공지사항</button>
+    </div>
+    <div class="user-badge">
+      <span class="user-name">홍길동 (학번: 20241234)</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Club Discovery View -->
+    <div id="club-view" class="view-section">
+      <div class="hero-banner">
+        <h1>나만의 동아리를 찾아보세요</h1>
+        <p>함께 배우고 즐기는 캠퍼스 라이프의 시작</p>
+      </div>
+
+      <div class="toolbar mt-5">
+        <div class="search-box">
+          <input type="text" id="club-search" placeholder="동아리 이름 또는 분야 검색...">
+        </div>
+        <div class="filter-group">
+          <button class="filter-btn active" data-cat="all">전체</button>
+          <button class="filter-btn" data-cat="Academic">학술</button>
+          <button class="filter-btn" data-cat="Art">예술</button>
+          <button class="filter-btn" data-cat="Sports">운동</button>
+        </div>
+      </div>
+
+      <div id="club-grid" class="grid mt-4">
+        <!-- 동아리 카드 -->
+      </div>
+    </div>
+
+    <!-- Applications View -->
+    <div id="apps-view" class="view-section" style="display:none;">
+      <h2 class="mb-4">가입 신청 내역</h2>
+      <div id="app-list" class="list-wrapper">
+        <!-- 신청 리스트 -->
+      </div>
+    </div>
+
+    <!-- Notices View -->
+    <div id="notices-view" class="view-section" style="display:none;">
+      <div class="section-header">
+        <h2>공지사항</h2>
+        <button id="open-notice-modal" class="btn-admin-only">관리자 공지 작성</button>
+      </div>
+      <div id="notice-list" class="notice-list mt-4">
+        <!-- 공지 리스트 -->
+      </div>
+    </div>
+  </main>
+
+  <!-- 동아리 상세 모달 -->
+  <div id="club-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-body">
+        <!-- 동적 로드 -->
+      </div>
+      <div class="modal-footer mt-4">
+        <button id="apply-btn" class="btn-primary w-full">가입 신청하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 공지 작성 모달 (인가 취약점 테스트) -->
+  <div id="notice-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>공지사항 등록</h2>
+      <p class="text-sm text-muted mb-4">※ 이 기능은 관리자 전용입니다.</p>
+      <form id="notice-form" data-bug-id="site036-bug03">
+        <div class="form-group">
+          <label>제목</label>
+          <input type="text" id="notice-title" class="form-input" required>
+        </div>
+        <div class="form-group mt-3">
+          <label>내용</label>
+          <textarea id="notice-content" class="form-input" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full mt-4">공지 등록</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

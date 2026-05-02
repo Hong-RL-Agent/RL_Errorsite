@@ -1,0 +1,117 @@
+:root {
+  --primary: #E74C3C; /* Tomato Red */
+  --bg: #F9F7F2; /* Warm Beige */
+  --white: #FFFFFF;
+  --text: #2C3E50;
+  --text-muted: #7F8C8D;
+  --border: #E0DED8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+h1, h2, h3, .hero-banner h2 { font-family: 'Playfair Display', serif; }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+header {
+  background: var(--white);
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo { font-size: 2rem; color: var(--text); }
+.text-primary { color: var(--primary); }
+
+.search-bar { display: flex; background: #F1F0EA; border-radius: 30px; padding: 5px 15px; width: 350px; }
+.search-bar input { background: none; border: none; flex: 1; padding: 8px; outline: none; font-family: inherit; }
+.search-bar button { background: none; border: none; cursor: pointer; font-size: 1.1rem; }
+
+nav button {
+  background: none; border: none; font-weight: 700; color: var(--text-muted);
+  margin-left: 1.5rem; cursor: pointer; letter-spacing: 1px; font-size: 0.85rem;
+}
+nav button.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+
+.hero-banner {
+  padding: 80px 0;
+  text-align: center;
+}
+.hero-banner h2 { font-size: 4.5rem; line-height: 1; margin-bottom: 20px; }
+.hero-banner p { font-size: 1.1rem; font-weight: 300; color: var(--text-muted); }
+
+.section-title { margin-bottom: 2rem; border-bottom: 2px solid var(--text); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: flex-end; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: var(--white); border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+  transition: transform 0.3s; cursor: pointer;
+}
+.card:hover { transform: translateY(-8px); }
+
+.card-img { width: 100%; height: 200px; object-fit: cover; }
+.card-body { padding: 20px; }
+.card h4 { font-size: 1.3rem; margin-bottom: 10px; }
+.info-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-top: 15px; }
+
+.badge { background: #FDECEC; color: var(--primary); padding: 3px 10px; border-radius: 5px; font-weight: 700; font-size: 0.75rem; }
+
+.btn-primary {
+  background: var(--primary); color: white; border: none; padding: 12px 24px;
+  border-radius: 8px; font-weight: 700; cursor: pointer;
+}
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+.modal-content {
+  background: var(--white); margin: 5% auto; padding: 40px; border-radius: 20px;
+  width: 90%; max-width: 600px; position: relative;
+}
+.close { position: absolute; right: 25px; top: 20px; font-size: 28px; cursor: pointer; }
+
+.review-card { background: white; padding: 20px; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 15px; }
+.review-card strong { color: var(--primary); margin-bottom: 5px; display: block; }
+
+.toast {
+  position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background: #333; color: white;
+  padding: 12px 24px; border-radius: 30px; font-weight: 700; opacity: 0; transition: all 0.3s; z-index: 2000;
+}
+.toast.show { opacity: 1; bottom: 60px; }
+
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.w-full { width: 100%; }
+.text-xs { font-size: 0.75rem; }
+.text-muted { color: var(--text-muted); }
+.form-input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; }
+textarea.form-input { min-height: 100px; }
+.view-title { font-size: 2.5rem; margin: 40px 0; border-bottom: 1px solid var(--text); padding-bottom: 10px; }

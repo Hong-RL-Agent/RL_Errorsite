@@ -1,0 +1,113 @@
+:root {
+  --lavender: #A78BFA;
+  --green: #6EE7B7;
+  --bg: #F5F3FF;
+  --white: #FFFFFF;
+  --text: #4B5563;
+  --text-light: #9CA3AF;
+  --border: #E5E7EB;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans KR', 'Quicksand', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.app-shell {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background: var(--white);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+}
+
+.brand { display: flex; align-items: center; gap: 12px; margin-bottom: 4rem; }
+.logo { font-size: 2rem; }
+.brand-name { font-size: 1.5rem; font-weight: 800; color: var(--lavender); letter-spacing: -1px; }
+
+.nav-menu { display: flex; flex-direction: column; gap: 8px; }
+.nav-menu button {
+  background: none; border: none; text-align: left; padding: 14px 20px;
+  border-radius: 14px; font-size: 1rem; font-weight: 600; color: var(--text-light);
+  cursor: pointer; transition: all 0.2s;
+}
+.nav-menu button:hover, .nav-menu button.active { background: var(--bg); color: var(--lavender); }
+.nav-menu button.active { font-weight: 700; }
+
+/* Main Content */
+.main-content { flex: 1; overflow-y: auto; padding: 4rem 6rem; }
+
+.view-header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.view-header p { color: var(--text-light); font-size: 1.1rem; }
+
+.write-card {
+  background: var(--white); border-radius: 30px; padding: 3rem;
+  box-shadow: var(--shadow); border: 1px solid rgba(167, 139, 250, 0.1);
+}
+
+.mood-options { display: flex; gap: 12px; flex-wrap: wrap; }
+.mood-btn {
+  background: var(--white); border: 1px solid var(--border); padding: 10px 20px;
+  border-radius: 12px; cursor: pointer; transition: all 0.2s; font-weight: 600;
+}
+.mood-btn.active { background: var(--lavender); color: white; border-color: var(--lavender); }
+
+.form-input {
+  width: 100%; padding: 14px 18px; border-radius: 14px; border: 1px solid var(--border);
+  font-family: inherit; font-size: 1rem; outline: none; transition: border-color 0.2s;
+}
+.form-input:focus { border-color: var(--lavender); }
+
+.btn-primary {
+  background: var(--lavender); color: white; border: none; padding: 18px;
+  border-radius: 16px; font-weight: 700; cursor: pointer; font-size: 1.1rem;
+}
+
+/* List View */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+.entry-card {
+  background: white; padding: 24px; border-radius: 24px; box-shadow: var(--shadow);
+  border: 1px solid var(--border); cursor: pointer; transition: transform 0.2s;
+}
+.entry-card:hover { transform: translateY(-5px); border-color: var(--lavender); }
+.card-date { font-size: 0.85rem; color: var(--text-light); margin-bottom: 8px; }
+.card-mood { font-weight: 800; color: var(--lavender); margin-bottom: 12px; display: block; }
+.card-content { font-size: 0.95rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Stats Loader */
+.loader-box { text-align: center; padding: 4rem; }
+.spinner {
+  width: 40px; height: 40px; border: 4px solid rgba(167, 139, 250, 0.1);
+  border-top-color: var(--lavender); border-radius: 50%;
+  margin: 0 auto; animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+  background: #1F2937; color: white; padding: 12px 30px; border-radius: 30px;
+  font-weight: 700; opacity: 0; transition: all 0.3s; z-index: 2000;
+}
+.toast.show { opacity: 1; bottom: 45px; }
+
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+.w-full { width: 100%; }
+.btn-ghost { background: none; border: 1px solid var(--border); padding: 8px 16px; border-radius: 10px; cursor: pointer; color: var(--text-light); }
+.btn-sm { font-size: 0.85rem; }

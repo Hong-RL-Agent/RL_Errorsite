@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus LostFound - 잃어버린 물건, 따뜻한 마음으로 찾아요</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="logo">CAMPUS<span class="text-yellow">LOSTFOUND</span></div>
+      <nav class="nav-links">
+        <button id="nav-home" class="active">모든 게시글</button>
+        <button id="nav-report">습득물 신고</button>
+        <button id="nav-my">내 게시글</button>
+      </nav>
+      <div class="user-info">
+        <span class="badge-student">Student_ID: 20240001</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Home View -->
+      <div id="home-view" class="view-section">
+        <div class="hero">
+          <h1>FIND MY STUFF</h1>
+          <p>캠퍼스 곳곳에서 발견된 습득물을 확인하거나 잃어버린 물건을 찾아보세요.</p>
+        </div>
+
+        <div class="toolbar mt-5">
+          <div class="search-box">
+            <input type="text" id="item-search" placeholder="물품명 검색 (에어팟, 지갑 등)...">
+          </div>
+          <div class="filters">
+            <select id="status-filter" class="form-select" data-bug-id="site064-bug01">
+              <option value="all">전체 상태</option>
+              <option value="found">습득 완료 (Found)</option>
+              <option value="lost">분실 신고 (Lost)</option>
+            </select>
+            <select id="location-filter" class="form-select ml-2">
+              <option value="All">전체 장소</option>
+              <!-- API로 장소 로드 -->
+            </select>
+          </div>
+        </div>
+
+        <div id="item-grid" class="grid mt-4">
+          <!-- 게시글 카드 -->
+        </div>
+      </div>
+
+      <!-- Report View -->
+      <div id="report-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">습득물/분실물 등록</h2>
+        <div class="form-card">
+          <div class="form-group">
+            <label>게시글 제목</label>
+            <input type="text" id="new-title" class="form-input" placeholder="예: 중앙도서관 1층 에어팟 습득">
+          </div>
+          <div class="flex-row mt-3">
+            <div class="form-group flex-1 mr-3">
+              <label>카테고리</label>
+              <select id="new-category" class="form-input">
+                <option value="Electronics">전자기기</option>
+                <option value="Wallet">지갑/카드</option>
+                <option value="Bag">가방/소지품</option>
+                <option value="Etc">기타</option>
+              </select>
+            </div>
+            <div class="form-group flex-1">
+              <label>장소</label>
+              <select id="new-location" class="form-input">
+                <!-- API 장소 목록 -->
+              </select>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label>구분</label>
+            <div class="radio-group">
+              <label><input type="radio" name="new-status" value="found" checked> 제가 주웠어요 (Found)</label>
+              <label class="ml-4"><input type="radio" name="new-status" value="lost"> 제가 잃어버렸어요 (Lost)</label>
+            </div>
+          </div>
+          <button id="submit-item-btn" class="btn-blue mt-4 w-full" data-bug-id="site064-bug02">게시글 등록하기</button>
+        </div>
+      </div>
+
+      <!-- My Posts View -->
+      <div id="my-view" class="view-section" style="display:none;">
+        <h2 class="mb-4">내가 쓴 게시글</h2>
+        <div id="my-list" class="list-wrapper">
+          <!-- 내 게시글 리스트 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 상세 모달 -->
+    <div id="detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- 상세 내용 -->
+        </div>
+        <div class="modal-footer mt-5">
+          <button id="resolve-btn" class="btn-yellow w-full" data-bug-id="site064-bug03">주인 찾음 / 해결 처리</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

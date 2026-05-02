@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyRoom Booking</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <h1 class="logo">FOCUS<span class="logo-sub">STUDIO</span></h1>
+      <nav>
+        <button class="nav-btn active" id="nav-book">예약하기</button>
+        <button class="nav-btn" id="nav-my">내 예약</button>
+        <button class="nav-btn" id="nav-info">이용 안내</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Book View -->
+  <main id="book-view">
+    <div class="layout-grid">
+      <!-- Left Column: Rooms & Info -->
+      <div class="col-left">
+        <!-- Section 1: Rooms -->
+        <section class="card mb-4">
+          <div class="section-header">
+            <h2>스터디룸 선택</h2>
+            <select id="room-filter" class="form-select w-auto">
+              <option value="all">모든 타입</option>
+              <option value="개인실">개인실 (1~2인)</option>
+              <option value="미팅룸">미팅룸 (3~4인)</option>
+              <option value="세미나실">세미나실 (5인이상)</option>
+            </select>
+          </div>
+          <div class="room-list" id="room-list">
+            <!-- Rooms injected here -->
+          </div>
+        </section>
+
+        <!-- Section 6: Notices (Bug 02 trigger) -->
+        <section class="card">
+          <div class="section-header">
+            <h2>공지사항</h2>
+            <button class="btn-text" id="refresh-notices" data-bug-id="site007-bug02">↻ 새로고침</button>
+          </div>
+          <ul class="notice-list" id="notice-list">
+            <li class="text-muted">공지사항을 불러오는 중...</li>
+          </ul>
+          <div id="notice-error" class="error-msg" style="display:none;">
+            CORS 정책으로 인해 데이터를 불러올 수 없습니다. (개발자 도구 콘솔 확인)
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column: Timeslots & Form -->
+      <div class="col-right">
+        <!-- Section 2: Timeslots -->
+        <section class="card mb-4" id="section-timeslots" style="opacity: 0.5; pointer-events: none;">
+          <h2>시간표 조회</h2>
+          <p class="text-sm text-muted mb-3" id="selected-room-name">스터디룸을 먼저 선택해주세요.</p>
+          
+          <div class="date-picker-wrap mb-3">
+            <label>날짜 선택:</label>
+            <input type="date" id="date-picker" value="2026-05-01" class="form-input">
+          </div>
+
+          <div class="time-grid" id="time-grid">
+            <!-- Timeslots injected here -->
+          </div>
+        </section>
+
+        <!-- Section 3: Booking Form -->
+        <section class="card bg-navy text-white">
+          <h2 class="text-white">예약 신청</h2>
+          <form id="booking-form" class="mt-3">
+            <div class="selected-info mb-3">
+              <div id="info-room">-</div>
+              <div id="info-datetime">-</div>
+            </div>
+            
+            <!-- Bug 01 attached to submit button -->
+            <button type="submit" class="btn-primary w-full" id="submit-booking-btn" data-bug-id="site007-bug01" disabled>
+              예약 확정하기
+            </button>
+            <p class="text-xs mt-2 text-center" style="color: rgba(255,255,255,0.7);">
+              * 테스트: 이미 '예약 불가'인 시간도 강제로 선택하여 중복 예약을 발생시켜 볼 수 있습니다.
+            </p>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- My Bookings View (Hidden initially) -->
+  <main id="my-view" style="display: none;">
+    <section class="card mb-4">
+      <div class="section-header">
+        <h2>나의 예약 내역</h2>
+        <!-- Bug 03 trigger -->
+        <div class="admin-hack">
+          <button class="btn-outline btn-sm" id="fetch-all-btn" data-bug-id="site007-bug03">전체 예약 보기 (관리자 권한 검증 우회)</button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="booking-table">
+          <thead>
+            <tr>
+              <th>상태</th>
+              <th>예약번호 / 유저</th>
+              <th>스터디룸</th>
+              <th>일시</th>
+              <th>관리</th>
+            </tr>
+          </thead>
+          <tbody id="my-booking-tbody">
+            <!-- Bookings injected here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Info View -->
+  <main id="info-view" style="display: none;">
+    <section class="card">
+      <!-- Section 5: Info -->
+      <h2>이용 안내 및 규정</h2>
+      <div class="info-content mt-3">
+        <h3>영업 시간</h3>
+        <p>매일 09:00 ~ 18:00 (연중무휴)</p>
+        <h3 class="mt-3">예약 규정</h3>
+        <p>- 예약 취소는 예약 시간 1시간 전까지만 가능합니다.<br>- 쾌적한 환경을 위해 외부 음식물 반입을 금지합니다.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

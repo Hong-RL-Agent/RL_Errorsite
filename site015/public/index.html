@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventBridge</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo">Event<span class="text-neon">Bridge</span></h1>
+      <nav>
+        <button id="nav-home" class="active">EXPLORE</button>
+        <button id="nav-notice">NOTICES</button>
+        <button id="nav-my">MY APPS</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Explore View -->
+    <div id="home-view">
+      <div class="hero-section">
+        <h2>Find Your Next <br><span class="text-gradient">Experience</span></h2>
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="행사명, 장소 검색...">
+          <select id="category-filter">
+            <option value="all">모든 카테고리</option>
+            <option value="Culture">문화/예술</option>
+            <option value="Business">비즈니스</option>
+            <option value="Education">교육</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h3>Upcoming Events</h3>
+        <button id="refresh-events" class="btn-text">데이터 새로고침 (Bug 02 확인)</button>
+      </div>
+      <div id="event-grid" class="grid">
+        <!-- 행사 리스트 -->
+      </div>
+    </div>
+
+    <!-- Notices View -->
+    <div id="notice-view" style="display:none;">
+      <h2 class="page-title">Notice Board</h2>
+      <div id="notice-list" class="notice-container">
+        <!-- 공지사항 -->
+      </div>
+    </div>
+
+    <!-- My Applications View -->
+    <div id="my-view" style="display:none;">
+      <div class="view-header">
+        <h2 class="page-title">My Applications</h2>
+        <button id="admin-bypass-btn" class="btn-outline btn-sm" data-bug-id="site015-bug03">관리자 모드 접속 (Bug 03)</button>
+      </div>
+      <div id="application-list" class="app-container">
+        <!-- 신청 목록 -->
+      </div>
+    </div>
+  </main>
+
+  <!-- 신청 모달 -->
+  <div id="apply-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-header">
+        <h2 id="modal-title">행사 신청하기</h2>
+        <p id="modal-seats" class="badge">잔여석 00석</p>
+      </div>
+      
+      <div class="form-group mt-4">
+        <label>신청자 성함</label>
+        <input type="text" id="user-name" class="form-input" placeholder="성함을 입력하세요">
+      </div>
+      <div class="form-group mt-2">
+        <label>연락처</label>
+        <input type="text" id="user-phone" class="form-input" placeholder="010-0000-0000">
+      </div>
+
+      <p class="text-xs text-muted mt-3">* (Bug 01 테스트) 신청 후에도 잔여석 숫자가 줄어들지 않는지 확인해 보세요.</p>
+      
+      <button id="submit-apply" class="btn-primary w-full mt-4" data-bug-id="site015-bug01">참가 신청 완료</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">메시지</div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

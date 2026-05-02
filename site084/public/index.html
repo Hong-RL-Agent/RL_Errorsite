@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PlantClinic — 식물 병해 진단 상담</title>
+  <meta name="description" content="PlantClinic: 식물 증상을 선택하면 AI가 병해를 진단하고 전문가 상담을 연결합니다."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="hi">
+    <a href="#" class="logo">
+      <span class="logo-icon">🌿</span>
+      <span class="logo-text">Plant<strong>Clinic</strong></span>
+    </a>
+    <nav class="gnav" id="gnav">
+      <a href="#" class="nl active" data-view="diagnose">진단</a>
+      <a href="#" class="nl" data-view="plants">식물 목록</a>
+      <a href="#" class="nl" data-view="tips">관리 팁</a>
+      <a href="#" class="nl" data-view="consultations">상담 기록</a>
+    </nav>
+    <div class="hright">
+      <button class="hbtn" id="btn-refresh">↻</button>
+      <div class="uchip"><span class="uav">G</span><span>user_green</span></div>
+      <button class="burger" id="burger">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ══ VIEW: DIAGNOSE ══ -->
+  <section class="view active" id="view-diagnose">
+    <div class="vi">
+
+      <!-- Hero -->
+      <div class="hero">
+        <div class="hero-body">
+          <div class="hero-pill">🔬 AI 진단</div>
+          <h1 class="hero-h">식물 증상으로<br/><em>정확한 진단</em>을 받으세요</h1>
+          <p class="hero-p">증상을 선택하고 식물을 지정하면 즉시 병해 진단과 처치 방법을 제공합니다.</p>
+        </div>
+        <div class="hero-plants" aria-hidden="true">🌿🌵🌺🍃🌱🌸</div>
+      </div>
+
+      <!-- Symptom selector -->
+      <div class="section-card">
+        <h2 class="sc-title">📋 증상 선택</h2>
+        <p class="sc-sub">현재 나타나는 증상을 선택하세요 (다중 선택 불가)</p>
+        <div class="symptom-grid" id="symptom-grid"></div>
+        <div class="plant-select-row">
+          <label class="psl-label">🪴 식물 선택 (선택)</label>
+          <select id="plant-select" class="psel">
+            <option value="">선택 안 함</option>
+          </select>
+        </div>
+        <div class="diag-actions">
+          <button class="btn-primary" id="btn-diagnose">🔬 진단 시작</button>
+          <button class="btn-secondary btn-sm" id="btn-clear-sym">초기화</button>
+          <div class="diag-status" id="diag-status"></div>
+        </div>
+      </div>
+
+      <!-- Diagnosis result -->
+      <div class="result-card" id="result-card" style="display:none">
+        <div class="result-header">
+          <h2 class="sc-title">📊 진단 결과</h2>
+          <div class="confidence-pill" id="conf-pill"></div>
+        </div>
+        <div class="result-body" id="result-body"></div>
+        <div class="result-actions">
+          <button class="btn-primary" id="btn-request-consult">💬 전문가 상담 신청</button>
+        </div>
+      </div>
+
+      <!-- Consult form -->
+      <div class="consult-form-card" id="consult-form-card" style="display:none">
+        <h2 class="sc-title">💬 상담 신청</h2>
+        <form class="cform" id="cform">
+          <input type="hidden" id="cform-symptom-id"/>
+          <div class="cf-row">
+            <div class="cf"><label>식물 이름 *</label><input type="text" id="cf-plant" placeholder="예: 몬스테라" maxlength="30" required/></div>
+            <div class="cf"><label>증상 (자동)</label><input type="text" id="cf-symptom" readonly class="readonly"/></div>
+          </div>
+          <div class="cf full"><label>추가 메시지</label><textarea id="cf-msg" placeholder="증상이 언제부터 나타났는지, 환경 정보 등을 적어주세요." rows="3" maxlength="300"></textarea></div>
+          <div class="cform-actions">
+            <button type="submit" class="btn-primary">상담 신청 보내기</button>
+            <button type="button" class="btn-secondary btn-sm" id="btn-cancel-consult">취소</button>
+          </div>
+          <div class="cform-msg" id="cform-msg"></div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ VIEW: PLANTS ══ -->
+  <section class="view" id="view-plants">
+    <div class="vi">
+      <div class="plants-hdr">
+        <h2 class="view-title">🪴 식물 목록</h2>
+        <select class="psel" id="plant-type-filter">
+          <option value="all">전체 유형</option>
+          <option value="관엽">관엽</option>
+          <option value="다육">다육</option>
+          <option value="화초">화초</option>
+          <option value="허브">허브</option>
+        </select>
+      </div>
+      <div class="plants-grid" id="plants-grid"></div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: TIPS ══ -->
+  <section class="view" id="view-tips">
+    <div class="vi">
+      <h2 class="view-title">💡 관리 팁</h2>
+      <div class="tips-filter" id="tips-filter">
+        <button class="fchip active" data-cat="all">전체</button>
+        <button class="fchip" data-cat="물 주기">물 주기</button>
+        <button class="fchip" data-cat="빛">빛</button>
+        <button class="fchip" data-cat="토양">토양</button>
+        <button class="fchip" data-cat="해충">해충</button>
+        <button class="fchip" data-cat="비료">비료</button>
+        <button class="fchip" data-cat="분갈이">분갈이</button>
+      </div>
+      <div class="tips-list" id="tips-list"></div>
+    </div>
+  </section>
+
+  <!-- ══ VIEW: CONSULTATIONS ══ -->
+  <section class="view" id="view-consultations">
+    <div class="vi">
+      <div class="consult-hdr">
+        <h2 class="view-title">📋 상담 기록</h2>
+        <div class="idor-panel">
+          <span class="idor-label">🔍 consultationId 직접 조회 (IDOR 테스트)</span>
+          <div class="idor-row">
+            <input type="number" id="idor-id" placeholder="3" min="1" class="idor-inp"/>
+            <button class="btn-idor" id="btn-idor">조회</button>
+          </div>
+          <div class="idor-result" id="idor-result"></div>
+        </div>
+      </div>
+      <div class="consult-list" id="consult-list"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- MODAL -->
+<div class="modal-ov" id="modal-ov">
+  <div class="modal-box">
+    <button class="modal-x" id="modal-x">✕</button>
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/js/app.js"></script>
+</body>
+</html>
