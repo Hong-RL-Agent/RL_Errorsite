@@ -1,0 +1,71 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background: white;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 500;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.nav-item.active {
+  color: var(--primary);
+}
+
+/* INTENTIONAL GUI BUG: site025-bug01
+   Type: too-small-touch-target
+   Description: 모바일 수량 조절 버튼의 터치 영역이 지나치게 작아 누르기 어려움.
+*/
+.qty-btn-tiny {
+  width: 22px !important;
+  height: 22px !important;
+  padding: 0 !important;
+  font-size: 12px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px dotted #eee;
+}
+
+.coupon-list {
+  padding: 20px;
+}
+
+.coupon-card {
+  background: #fff8e1;
+  border: 1px dashed #ffc107;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  position: relative;
+  transition: transform 0.2s;
+  cursor: grab;
+}
+
+.coupon-card:active {
+  cursor: grabbing;
+}

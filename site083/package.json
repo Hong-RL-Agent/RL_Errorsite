@@ -1,0 +1,14 @@
+{
+  "name": "site083-rosegold",
+  "version": "1.0.0",
+  "description": "Rose & Gold Luxury - Online Accessory Shopping",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

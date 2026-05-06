@@ -1,0 +1,382 @@
+.booking-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 780px) 360px;
+  gap: 22px;
+  align-items: start;
+}
+
+.booking-panel {
+  position: relative;
+  min-height: 620px;
+  border: 1px solid #e0e0da;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 24px;
+  overflow: visible;
+}
+
+.booking-form {
+  position: relative;
+  z-index: 1;
+  width: 520px;
+}
+
+.route-search-form {
+  display: grid;
+  gap: 14px;
+}
+
+.route-field-grid {
+  display: grid;
+  grid-template-columns: 1fr 44px 1fr;
+  gap: 10px;
+  align-items: end;
+}
+
+.field-block {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.field-block span,
+.stepper-card > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #565650;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.field-block input {
+  height: 46px;
+  padding: 0 12px;
+}
+
+.swap-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 46px;
+  border: 1px solid #d8d8d2;
+  border-radius: 8px;
+  background: #ffdd3b;
+  color: #111111;
+}
+
+.quick-route-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quick-route-row button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  border: 1px solid #deded8;
+  border-radius: 8px;
+  background: #f7f7f3;
+  padding: 0 10px;
+  font-weight: 800;
+  color: #333333;
+}
+
+.booking-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.time-row {
+  position: relative;
+  z-index: 2;
+}
+
+.booking-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.stepper-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 74px;
+  border: 1px solid #e0e0da;
+  border-radius: 8px;
+  background: #fafaf8;
+  padding: 14px;
+}
+
+.stepper {
+  display: inline-grid;
+  grid-template-columns: 34px 34px 34px;
+  align-items: center;
+  border: 1px solid #d8d8d2;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.stepper button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  border: 0;
+  background: #ffffff;
+}
+
+.stepper strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  border-left: 1px solid #e0e0da;
+  border-right: 1px solid #e0e0da;
+}
+
+.toggle-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.switch-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  border: 1px solid #deded8;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 0 12px;
+  font-weight: 800;
+}
+
+.switch-option input {
+  width: 16px;
+  height: 16px;
+  accent-color: #ffdd3b;
+}
+
+.switch-option span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fare-summary-card {
+  position: sticky;
+  top: 92px;
+  display: grid;
+  gap: 16px;
+  border: 1px solid #d7d7cf;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: 0 18px 50px rgba(20, 20, 20, 0.08);
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.summary-header strong {
+  border-radius: 999px;
+  background: #fff1a8;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.summary-route {
+  display: grid;
+  gap: 8px;
+  border-radius: 8px;
+  background: #f4f4f1;
+  padding: 14px;
+}
+
+.summary-route span,
+.summary-route strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.summary-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.summary-list div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid #eeeeea;
+  padding-bottom: 10px;
+}
+
+.summary-list dt {
+  color: #686862;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.summary-list dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 800;
+}
+
+.summary-total {
+  display: grid;
+  gap: 4px;
+  border-radius: 8px;
+  background: #161616;
+  color: #ffffff;
+  padding: 18px;
+}
+
+.summary-total span {
+  color: #ffdd3b;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.summary-total strong {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.summary-total small {
+  color: #d8d8d2;
+}
+
+.summary-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.call-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  border: 0;
+  border-radius: 8px;
+  background: #ffdd3b;
+  color: #111111;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.summary-note {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin: 0;
+  color: #5d5d57;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(17, 17, 17, 0.58);
+  padding: 24px;
+}
+
+.fare-modal {
+  width: min(560px, 100%);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 24px;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.22);
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.modal-header h2 {
+  margin: 4px 0 0;
+  font-size: 26px;
+}
+
+.modal-route {
+  display: grid;
+  gap: 8px;
+  border-radius: 8px;
+  background: #f4f4f1;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.modal-route strong {
+  font-size: 18px;
+}
+
+.modal-route small {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #62625c;
+}
+
+.fare-breakdown {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.fare-breakdown div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 42px;
+  border-bottom: 1px solid #eeeeea;
+}
+
+.fare-breakdown dt {
+  color: #676761;
+  font-weight: 800;
+}
+
+.fare-breakdown dd {
+  margin: 0;
+  font-weight: 900;
+}
+
+.fare-breakdown-total {
+  margin-top: 8px;
+  border: 0 !important;
+  border-radius: 8px;
+  background: #ffdd3b;
+  padding: 0 14px;
+}

@@ -1,0 +1,40 @@
+.desktop-main-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr 340px;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.filter-sidebar {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.filter-group {
+  margin-bottom: 30px;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.coupon-drag-area {
+  padding: 15px;
+  background: #fff8e1;
+  border: 1px dashed #ffc107;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: grab;
+  position: relative;
+}
+
+.coupon-drag-area:active { cursor: grabbing; }
+
+.coupon-drag-area p { margin: 0; font-size: 13px; font-weight: 600; }
+.coupon-drag-area span { font-size: 11px; color: #ff9800; }

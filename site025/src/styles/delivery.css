@@ -1,0 +1,56 @@
+.hero-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.promo-card {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 12px;
+  padding: 40px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.coupon-download-card {
+  background: var(--dark);
+  border-radius: 12px;
+  padding: 30px;
+  color: white;
+}
+
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.restaurant-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.restaurant-card:hover { transform: translateY(-5px); }
+
+.restaurant-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.restaurant-card-content { padding: 15px; }
+
+.sidebar-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--primary);
+  display: inline-block;
+}

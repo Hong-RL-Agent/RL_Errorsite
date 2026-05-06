@@ -1,0 +1,14 @@
+{
+  "name": "site085-certihub",
+  "version": "1.0.0",
+  "description": "CertiHub - Online Certification Exam Schedule Portal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

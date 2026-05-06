@@ -1,0 +1,77 @@
+.subscription-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 50px;
+}
+
+.summary-panel {
+  background-color: var(--bg-light);
+  padding: 30px;
+  border-radius: 12px;
+  position: sticky;
+  top: 110px;
+  border: 1px solid var(--border);
+}
+
+.summary-title {
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  color: var(--accent);
+  border-bottom: 2px solid var(--secondary);
+  padding-bottom: 10px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.summary-label {
+  color: var(--text-muted);
+}
+
+.summary-value {
+  font-weight: 600;
+}
+
+/* INTENTIONAL GUI BUG UI styling for site041-bug01 highlighting */
+.bug-summary-val {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.summary-total {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--accent);
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* Frequency Selector */
+.freq-grid {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.freq-option {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.freq-option.active {
+  border-color: var(--accent);
+  background-color: var(--secondary);
+  color: var(--accent);
+}

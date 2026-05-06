@@ -1,0 +1,40 @@
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid rgba(193, 94, 125, 0.18);
+  box-shadow: 0 -10px 40px rgba(80, 49, 68, 0.08);
+}
+
+.sticky-cta div span {
+  display: block;
+  color: #8c7482;
+  margin-bottom: 4px;
+}
+
+.sticky-cta div strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.sticky-cta div small {
+  color: #7a616e;
+}
+
+.sticky-cta button {
+  padding: 16px 28px;
+  border: none;
+  border-radius: 999px;
+  background: #c15e7d;
+  color: #fff;
+  font-weight: 700;
+}

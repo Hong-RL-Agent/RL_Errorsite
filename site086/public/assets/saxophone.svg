@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240" role="img" aria-label="Saxophone">
+  <rect width="320" height="240" fill="#f7f4ee"/>
+  <path d="M152 58c42 2 54 30 36 61l-28 46c-12 21 7 39 32 31 20-6 30-25 20-41" fill="none" stroke="#c99a3a" stroke-width="24" stroke-linecap="round"/>
+  <path d="M204 150c48 2 68 28 56 56-38 0-63-14-78-39z" fill="#c99a3a"/>
+  <circle cx="152" cy="106" r="8" fill="#4b2f20"/>
+  <circle cx="170" cy="132" r="8" fill="#4b2f20"/>
+  <rect x="118" y="46" width="52" height="18" rx="9" fill="#4b2f20"/>
+</svg>

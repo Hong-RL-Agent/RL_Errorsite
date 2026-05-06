@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanDrop - 문 앞 세탁 수거 예약</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <span class="logo-icon">🧼</span>
+                    <span class="logo-text">CleanDrop</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">서비스</a></li>
+                    <li><a href="#" onclick="alert('가격표 페이지 준비 중입니다.')">가격표</a></li>
+                    <li><a href="#" onclick="alert('수거 지역 확인 준비 중입니다.')">수거 지역</a></li>
+                    <li><a href="#" onclick="alert('예약 조회 페이지 준비 중입니다.')">예약 조회</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn-reserve-nav" onclick="document.getElementById('booking-section').scrollIntoView({behavior: 'smooth'})">지금 예약하기</button>
+                    <button class="btn-login" onclick="alert('로그인 준비 중입니다.')">로그인</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>문 앞 세탁 수거 예약</h1>
+                    <p>복잡한 세탁소 방문 대신, 집 앞에서 편하게 맡기고 깨끗하게 받으세요.</p>
+                    <button class="btn-primary" onclick="document.getElementById('booking-section').scrollIntoView({behavior: 'smooth'})">빠른 예약하기</button>
+                </div>
+            </div>
+        </section>
+
+        <div id="booking-section" class="container main-layout">
+            <div class="booking-area">
+                <section class="item-selection">
+                    <h2>세탁 품목 선택</h2>
+                    <div id="item-grid" class="item-grid">
+                        <div class="loading">세탁 품목을 불러오는 중...</div>
+                    </div>
+                </section>
+
+                <section class="reservation-form" data-bug-id="site065-bug02">
+                    <h2>수거 정보 입력</h2>
+                    <div class="form-grid">
+                        <div class="form-group address-group">
+                            <label>수거 주소</label>
+                            <input type="text" id="address-input" placeholder="주소를 입력해주세요 (예: 서울시 강남구...)">
+                        </div>
+                        <div class="form-group time-group">
+                            <label>수거 희망 날짜 및 시간</label>
+                            <select id="pickup-date">
+                                <option value="">날짜 선택</option>
+                                <!-- Dates loaded here -->
+                            </select>
+                            <select id="pickup-time" style="margin-top: 10px;">
+                                <option value="">시간 선택</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label>공동현관 출입번호</label>
+                        <input type="text" placeholder="예: #1234 (없을 시 비워두세요)">
+                    </div>
+                </section>
+
+                <section class="pricing-accordion">
+                    <h2>서비스 가격 안내</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">생활 세탁 <span>+</span></button>
+                            <div class="accordion-content">
+                                <p>와이셔츠: 2,500원 / 바지: 3,500원 / 니트: 4,500원</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">드라이클리닝 <span>+</span></button>
+                            <div class="accordion-content">
+                                <p>정장 세트: 10,000원 / 코트: 15,000원 / 패딩: 20,000원</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="sidebar">
+                <div class="summary-panel sticky">
+                    <h3>예약 요약</h3>
+                    <div id="selected-items-list" class="selected-items-list">
+                        <p class="empty-msg">선택된 품목이 없습니다.</p>
+                    </div>
+                    <div class="summary-footer">
+                        <div class="price-box" data-bug-id="site065-bug01">
+                            <span class="label">예상 결제 금액</span>
+                            <span class="price-value" id="total-price">0원</span>
+                        </div>
+                        <!-- INTENTIONAL GUI BUG: site065-bug03 (ID mismatch) -->
+                        <button id="reserve-btn" class="btn-submit-order" data-bug-id="site065-bug03">수거 예약하기</button>
+                    </div>
+                </div>
+
+                <div class="guide-panel">
+                    <h4>세탁 불가 품목 안내</h4>
+                    <ul class="guide-list">
+                        <li>천연 모피 / 가죽 의류</li>
+                        <li>카펫 / 대형 러그</li>
+                        <li>심하게 오염된 의류</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <h4>CleanDrop</h4>
+                    <p>당신의 소중한 시간을 더 가치있게.</p>
+                </div>
+                <div class="footer-links">
+                    <h5>바로가기</h5>
+                    <ul>
+                        <li><a href="#" onclick="alert('배송 안내입니다.')">배송 안내</a></li>
+                        <li><a href="#" onclick="alert('환불 규정 안내입니다.')">환불 규정</a></li>
+                        <li><a href="#" onclick="alert('고객센터 연결 중입니다.')">고객센터</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2024 CleanDrop Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Detail Modal -->
+    <div id="reserve-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body">
+                <h2>예약이 완료되었습니다!</h2>
+                <p>배정된 기사님이 지정하신 시간에 방문할 예정입니다.</p>
+                <button class="btn-primary" style="margin-top: 20px; width: 100%;" onclick="location.reload()">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

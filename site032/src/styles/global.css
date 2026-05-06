@@ -1,0 +1,20 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, "Segoe UI", serif; color: #2c1b16; background: #f7f0e4; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+.app-shell { min-height: 100vh; background: linear-gradient(180deg, #fff9ed 0%, #f7f0e4 55%, #efe0cf 100%); }
+.site-header { position: sticky; top: 0; z-index: 20; display: grid; grid-template-columns: auto repeat(4, minmax(130px, 1fr)) auto auto; gap: 12px; align-items: center; min-width: 1120px; padding: 16px 34px; border-bottom: 1px solid #e1cfb7; background: rgba(255, 249, 237, 0.94); backdrop-filter: blur(14px); }
+.logo { color: #7b1e2b; font-size: 25px; font-weight: 900; }
+.site-header label, .reservation-search label { display: grid; gap: 5px; color: #77594b; font-size: 12px; font-weight: 800; }
+.site-header select, .site-header input, .reservation-search select { border: 1px solid #d5b98d; border-radius: 8px; color: #2c1b16; background: #fffdf7; padding: 9px 10px; }
+.site-header button, .hero-copy button, .reservation-summary button, .card-actions button, .restaurant-modal button { border: 0; border-radius: 8px; color: #fff9ed; background: #7b1e2b; padding: 11px 14px; font-weight: 900; }
+.site-header button:last-child, .card-actions button:first-child { border: 1px solid #d5b98d; color: #2c1b16; background: #fffdf7; }
+main { width: 1360px; margin: 0 auto; }
+.status-panel { margin: 64px 0; padding: 28px; border: 1px solid #e1cfb7; border-radius: 8px; background: #fffdf7; }
+.status-panel.error { border-color: #7b1e2b; color: #7b1e2b; }
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin: 34px 0 16px; }
+.section-heading span { color: #9b742c; font-size: 13px; font-weight: 900; text-transform: uppercase; }
+.section-heading h2 { margin: 0; font-size: 30px; }
+.site-footer { display: flex; justify-content: center; gap: 28px; margin-top: 58px; padding: 34px; border-top: 1px solid #e1cfb7; background: #fff9ed; }
+.site-footer button { border: 0; color: #77594b; background: transparent; font-weight: 900; }

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240" role="img" aria-label="Santoku knife">
+  <rect width="320" height="240" fill="#f4f7f3"/>
+  <path d="M72 126c52-42 116-66 192-72 13-1 18 16 7 24L142 169c-20 14-49 9-62-12l-15-24c-2-3 3-5 7-7z" fill="#d8dedc"/>
+  <path d="M92 152l58-41 20 30-57 42c-15 10-35 6-45-9l-5-8 29-14z" fill="#8f9a9a"/>
+  <rect x="42" y="148" width="92" height="32" rx="16" transform="rotate(35 42 148)" fill="#6f4a2f"/>
+  <circle cx="91" cy="179" r="5" fill="#d8dedc"/>
+</svg>

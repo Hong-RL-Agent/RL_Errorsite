@@ -1,0 +1,71 @@
+.calendar-section {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* INTENTIONAL GUI BUG: site044-bug02
+   Type: calendar-grid-layout-break
+   Description: 달력 컨테이너 높이를 5주 기준으로 고정해 6주차 날짜 셀이 아래 섹션과 겹침.
+*/
+.calendar-grid-container {
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 350px; /* 5 rows * 70px */
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: var(--border-light);
+  gap: 1px;
+}
+
+.calendar-cell {
+  background: var(--white);
+  height: 70px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calendar-cell.header-cell {
+  background: #f8f8f8;
+  height: 40px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-cell.inactive {
+  background: #fafafa;
+  color: #ccc;
+}
+
+.date-num {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.site-count {
+  font-size: 0.7rem;
+  color: var(--sky-blue);
+  font-weight: 700;
+}
+
+.calendar-price {
+  font-size: 0.75rem;
+  color: var(--brown);
+  font-weight: 700;
+}

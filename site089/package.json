@@ -1,0 +1,14 @@
+{
+  "name": "site089-kids-class",
+  "version": "1.0.0",
+  "description": "Little Explorers - Online Kids Class Reservation Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

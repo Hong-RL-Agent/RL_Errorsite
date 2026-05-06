@@ -1,0 +1,17 @@
+{
+  "name": "site070-meeting-room-booking",
+  "version": "1.0.0",
+  "description": "회의실 예약 웹사이트 - site070 (PPO 학습 데이터용)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build step required for vanilla JS project'"
+  },
+  "keywords": ["meeting-room", "booking", "reservation", "vanilla-js"],
+  "author": "site070",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

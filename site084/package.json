@@ -1,0 +1,14 @@
+{
+  "name": "site084-shared-kitchen-booking",
+  "version": "1.0.0",
+  "description": "Shared kitchen booking desktop website with intentional frontend GUI bugs for PPO training.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node -e \"console.log('site084 static frontend build check passed')\""
+  },
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}

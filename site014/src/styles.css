@@ -1,0 +1,271 @@
+/* =============================================
+   site014 - News Portal
+   Newspaper Style Layout
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #000000;
+  --secondary: #666666;
+  --bg: #FFFFFF;
+  --gray-light: #F4F4F4;
+  --gray-border: #DDDDDD;
+  --accent: #CC0000;
+  --font-serif: 'Libre Baskerville', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--primary);
+}
+
+/* ---- Toast ---- */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: slide-down 0.3s ease forwards;
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Header & Nav ---- */
+.site-header {
+  border-bottom: 4px solid var(--primary);
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.site-logo {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.breaking-bar {
+  background: var(--gray-light);
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--gray-border);
+  display: flex;
+  gap: 15px;
+}
+
+.breaking-label {
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.nav-item {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.nav-item:hover, .nav-item.active {
+  color: var(--accent);
+}
+
+/* ---- Layout Grid ---- */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* ---- News List ---- */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--gray-border);
+  cursor: pointer;
+}
+
+.news-card:hover .title {
+  text-decoration: underline;
+}
+
+.news-card .category {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.news-card .title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* INTENTIONAL GUI BUG: site014-bug02 (Title rendered as empty string in Card) */
+
+.news-card .summary {
+  font-size: 0.95rem;
+  color: var(--secondary);
+  line-height: 1.5;
+}
+
+.news-card .date {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.btn-more {
+  grid-column: 1 / -1;
+  padding: 15px;
+  border: 1px solid var(--gray-border);
+  background: var(--bg);
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.btn-more:hover {
+  background: var(--gray-light);
+}
+
+/* ---- Sidebar & Ad ---- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.sidebar-section h3 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.trending-item {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  cursor: pointer;
+}
+
+.trending-item span {
+  color: #CCC;
+  margin-right: 10px;
+  font-style: italic;
+}
+
+.ad-box {
+  background: #EEE;
+  padding: 40px 20px;
+  text-align: center;
+  border: 1px solid var(--gray-border);
+  color: #888;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* INTENTIONAL GUI BUG: site014-bug03
+   Type: css-layout
+   Description: 광고 박스에 비정상적인 위치 설정을 하여 본문 컨텐츠 위로 겹치게 함.
+*/
+.ad-buggy {
+  position: absolute;
+  top: 400px;
+  right: 150px;
+  width: 200px;
+  background: rgba(238, 238, 238, 0.9);
+  border: 2px solid var(--accent);
+  z-index: 5;
+}
+
+/* ---- Detail Overlay ---- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+.detail-panel {
+  position: fixed;
+  right: 0; top: 0; bottom: 0;
+  width: 500px;
+  background: white;
+  padding: 60px 40px;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  z-index: 1001;
+}
+
+.detail-panel .close {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: none; border: none;
+  font-size: 1.5rem; cursor: pointer;
+}
+
+.detail-panel h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .main-grid { grid-template-columns: 1fr; }
+  .news-grid { grid-template-columns: 1fr; }
+  .ad-buggy { position: static; width: auto; margin-top: 20px; }
+}

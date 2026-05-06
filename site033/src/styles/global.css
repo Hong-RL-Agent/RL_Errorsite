@@ -1,0 +1,20 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, "Segoe UI", Arial, sans-serif; color: #f8fbff; background: #070b1a; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+.app-shell { min-height: 100vh; background: radial-gradient(circle at 10% 0%, rgba(0, 198, 255, .22), transparent 28%), radial-gradient(circle at 80% 8%, rgba(132, 69, 255, .22), transparent 30%), linear-gradient(180deg, #070b1a 0%, #10142a 55%, #070b1a 100%); }
+.site-header { position: sticky; top: 0; z-index: 20; display: grid; grid-template-columns: auto 180px 180px minmax(280px, 1fr) auto; gap: 14px; align-items: center; min-width: 1120px; padding: 16px 34px; border-bottom: 1px solid rgba(255,255,255,.12); background: rgba(7, 11, 26, .92); backdrop-filter: blur(16px); }
+.logo { color: #38d5ff; font-size: 25px; font-weight: 900; }
+.site-header label, .selector-bar label { display: grid; gap: 5px; color: #9fb3d9; font-size: 12px; font-weight: 800; }
+.site-header select, .site-header input, .selector-bar select { border: 1px solid rgba(255,255,255,.16); border-radius: 8px; color: #f8fbff; background: #151a33; padding: 10px 12px; }
+.site-header option, .selector-bar option { color: #10142a; }
+.site-header button, .ranking-toolbar button, .player-face button, .player-modal button, .follow-panel button { border: 0; border-radius: 8px; color: #07101f; background: #38d5ff; padding: 11px 14px; font-weight: 900; }
+main { width: 1360px; margin: 0 auto; }
+.status-panel { margin: 64px 0; padding: 28px; border: 1px solid rgba(255,255,255,.14); border-radius: 8px; background: rgba(255,255,255,.08); }
+.status-panel.error { border-color: #ff4fd8; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; margin: 34px 0 16px; }
+.section-heading span, .ranking-toolbar span { color: #38d5ff; font-size: 13px; font-weight: 900; text-transform: uppercase; }
+.section-heading h2, .ranking-toolbar h2 { margin: 0; font-size: 30px; }
+.site-footer { display: flex; justify-content: center; gap: 28px; margin-top: 58px; padding: 34px; border-top: 1px solid rgba(255,255,255,.12); background: #070b1a; }
+.site-footer button { border: 0; color: #9fb3d9; background: transparent; font-weight: 900; }

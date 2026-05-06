@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Education campaign">
+  <rect width="640" height="360" fill="#e8f8f3"/>
+  <rect x="56" y="68" width="528" height="236" rx="18" fill="#ffffff" stroke="#c9dce4" stroke-width="4"/>
+  <rect x="104" y="112" width="196" height="132" rx="8" fill="#0b3d67"/>
+  <path d="M128 144h148M128 176h118M128 208h136" stroke="#fff1ae" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="410" cy="140" r="38" fill="#54c6a6"/>
+  <path d="M346 270c12-78 118-78 132 0z" fill="#1f9dc5"/>
+  <rect x="410" y="198" width="86" height="72" rx="8" fill="#fff1ae"/>
+  <path d="M424 222h58M424 246h42" stroke="#0b3d67" stroke-width="8" stroke-linecap="round"/>
+</svg>

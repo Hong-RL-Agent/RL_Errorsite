@@ -1,0 +1,23 @@
+{
+  "name": "site067-ivory-page-bookclub",
+  "version": "1.0.0",
+  "description": "Desktop book club community website with intentional frontend GUI bugs for PPO training.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node server.js --check"
+  },
+  "keywords": [
+    "bookclub",
+    "community",
+    "vanilla-js",
+    "express",
+    "frontend-bugs"
+  ],
+  "author": "Codex",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

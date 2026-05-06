@@ -1,0 +1,14 @@
+.task-panel { position: sticky; top: 92px; border: 1px solid #ded8ef; border-radius: 8px; background: #fff; padding: 18px; box-shadow: 0 14px 34px rgba(76,29,149,.08); }
+.task-panel h2 { margin: 6px 0 14px; }
+.task-list { display: grid; gap: 9px; }
+.task-list button, .quick-actions button { text-align: left; background: #ede9fe; color: #4c1d95; }
+.quick-actions { display: grid; gap: 8px; margin-top: 14px; }
+
+/* INTENTIONAL GUI BUG: site034-bug02
+   Type: admin-panel-overflow
+   Description: 우측 작업 패널에 고정 높이를 적용하고 스크롤 처리를 누락해 콘텐츠가 넘침.
+*/
+.task-panel[data-bug-id="site034-bug02"] {
+  height: 360px;
+  overflow: visible;
+}

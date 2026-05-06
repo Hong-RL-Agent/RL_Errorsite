@@ -1,0 +1,142 @@
+/* Header */
+.header {
+  height: 90px;
+  background-color: var(--bg-white);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.8rem;
+  letter-spacing: 4px;
+}
+
+.nav {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-link {
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--secondary);
+}
+
+/* Hero */
+.hero {
+  height: 600px;
+  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecee?auto=format&fit=crop&w=1600&h=800');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.hero h1 {
+  color: white;
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Package Grid */
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.package-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.package-card:hover {
+  transform: translateY(-10px);
+}
+
+.package-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.package-content {
+  padding: 30px;
+}
+
+.package-cat {
+  font-size: 0.8rem;
+  color: var(--secondary);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.package-name {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.package-meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+}
+
+/* Therapist */
+.therapist-list {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.therapist-card {
+  text-align: center;
+  cursor: pointer;
+  padding: 20px;
+  border: 1px solid transparent;
+  transition: border 0.3s;
+}
+
+.therapist-card.selected {
+  border: 1px solid var(--secondary);
+  background-color: var(--accent);
+}
+
+.therapist-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  object-fit: cover;
+}

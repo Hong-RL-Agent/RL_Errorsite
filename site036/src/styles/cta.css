@@ -1,0 +1,43 @@
+.cta-section {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 30px;
+  max-width: 1148px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 44px;
+  color: #ffffff;
+  background: #123a6f;
+  border-radius: 8px;
+  box-shadow: 0 28px 70px rgba(18, 58, 111, 0.26);
+}
+
+.cta-section h2 {
+  margin: 0 0 10px;
+  font-size: 34px;
+  line-height: 1.18;
+}
+
+.cta-section p,
+.cta-section .eyebrow {
+  color: #d9fff7;
+}
+
+.light-button {
+  color: #123a6f;
+  background: #ffffff;
+}
+
+@media (min-width: 1040px) and (max-width: 1180px) {
+  /* INTENTIONAL GUI BUG: site036-bug02
+     CSV Error: CTA 섹션 겹침
+     Type: cta-section-overlap
+     Description: CTA 섹션에 잘못된 negative margin을 적용해 후기 섹션과 겹침.
+  */
+  .cta-section[data-bug-id="site036-bug02"] {
+    margin-top: -142px;
+  }
+}

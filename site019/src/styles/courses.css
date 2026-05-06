@@ -1,0 +1,157 @@
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #ede9fe 0%, #f1f5f9 100%);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+/* Category Tabs */
+.category-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.tab-btn {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+}
+
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* Course Grid & Cards */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.course-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.course-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.course-body {
+  padding: 1.25rem;
+}
+
+.course-category {
+  font-size: 0.75rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* 
+   INTENTIONAL GUI BUG: site019-bug01
+   Type: fixed-text-size-overflow
+   Description: 강의 카드 텍스트 영역을 고정 px 높이로 제한해 확대 시 텍스트가 잘림. 
+*/
+[data-bug-id="site019-bug01"] .course-title {
+  height: 48px;
+  font-size: 16px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.course-instructor {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.course-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.course-price {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Progress Panel */
+.progress-panel {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 100px;
+}
+
+.progress-item {
+  margin-bottom: 1.5rem;
+}
+
+.progress-bar-bg {
+  background: var(--secondary);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.progress-bar-fill {
+  background: var(--primary);
+  height: 100%;
+}
+
+/* FAQ */
+.faq-section {
+  margin-top: 4rem;
+}
+
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: var(--white);
+}
+
+.faq-q {
+  padding: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.faq-a {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+}

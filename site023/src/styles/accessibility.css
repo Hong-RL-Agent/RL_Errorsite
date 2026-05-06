@@ -1,0 +1,39 @@
+/* site023-bug03: Missing Skip link styles would usually be here */
+.contact-section {
+  padding: 120px 0;
+  text-align: center;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form input, .contact-form textarea {
+  padding: 15px;
+  background: var(--gray);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: white;
+  border-radius: 4px;
+}
+
+.testimonial-section {
+  padding: 100px 0;
+  background: var(--dark);
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.testimonial-card {
+  padding: 40px;
+  border-left: 2px solid var(--white);
+  font-style: italic;
+  font-size: 18px;
+}

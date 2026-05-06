@@ -1,0 +1,407 @@
+:root {
+    --deep-purple: #4B0082;
+    --gold: #D4AF37;
+    --gold-light: #F4E1A6;
+    --text-dark: #1A1A1A;
+    --text-gray: #666666;
+    --light-gray: #F5F5F5;
+    --white: #FFFFFF;
+    --border: #E0E0E0;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: var(--white);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+h1, h2, .logo-text {
+    font-family: 'Playfair Display', serif;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Header & Nav */
+header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    height: 90px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.logo-text {
+    font-size: 28px;
+    color: var(--deep-purple);
+    font-weight: 700;
+}
+
+.logo-sub {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+}
+
+/* INTENTIONAL GUI BUG: site068-bug02
+   Type: desktop-nav-layout-break
+   Description: 데스크톱 중간 폭(1100px-1280px)에서 nav 메뉴에 nowrap과 고정 폭을 적용해 CTA 버튼과 겹침.
+*/
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.nav-menu a.active {
+    color: var(--deep-purple);
+    border-bottom: 2px solid var(--gold);
+}
+
+@media (max-width: 1280px) and (min-width: 1100px) {
+    .nav-menu {
+        white-space: nowrap;
+        width: 800px; /* 고의적으로 넓게 설정하여 헤더 액션 영역과 겹침 유도 */
+        margin-right: -200px; 
+    }
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+    background: var(--white); /* 겹칠 때 시각적으로 더 잘 보이게 함 */
+}
+
+.btn-consult-header {
+    background: var(--deep-purple);
+    color: var(--white);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-login {
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 10px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Hero */
+.hero {
+    background: linear-gradient(rgba(75, 0, 130, 0.05), rgba(255, 255, 255, 1)), 
+                url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1440&h=600&fit=crop') center/cover;
+    padding: 120px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 56px;
+    margin-bottom: 20px;
+    color: var(--deep-purple);
+}
+
+.hero p {
+    font-size: 20px;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: var(--text-gray);
+}
+
+.btn-gold {
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    padding: 16px 48px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Main Layout */
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 50px;
+    margin-top: 80px;
+    margin-bottom: 100px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.filter-chips {
+    display: flex;
+    gap: 10px;
+}
+
+.chip {
+    padding: 8px 20px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.chip.active {
+    background: var(--deep-purple);
+    color: var(--white);
+    border-color: var(--deep-purple);
+}
+
+/* Lesson Grid */
+.lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.lesson-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.lesson-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow);
+}
+
+.instrument-tag {
+    display: inline-block;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.lesson-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.lesson-info {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin-bottom: 20px;
+}
+
+.lesson-info p {
+    margin-bottom: 5px;
+}
+
+.teacher-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    padding-top: 15px;
+    border-top: 1px solid var(--light-gray);
+}
+
+.teacher-img-small {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.teacher-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.btn-card-consult {
+    width: 100%;
+    background: var(--gold-light);
+    color: var(--deep-purple);
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Sidebar & Sticky */
+.sticky-panel {
+    position: sticky;
+    top: 110px;
+}
+
+.summary-card, .location-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.summary-card h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--deep-purple);
+}
+
+.consult-summary {
+    min-height: 100px;
+    margin-bottom: 20px;
+}
+
+.selected-item {
+    padding: 12px;
+    background: var(--light-gray);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.btn-submit-consult {
+    width: 100%;
+    background: var(--deep-purple);
+    color: var(--white);
+    border: none;
+    padding: 15px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Accordion */
+.pricing-policy {
+    margin-top: 80px;
+}
+
+.accordion-item {
+    border-bottom: 1px solid var(--border);
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+}
+
+.accordion-content {
+    padding: 0 0 20px 0;
+    display: none;
+    color: var(--text-gray);
+}
+
+.accordion-item.active .accordion-content {
+    display: block;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 2000;
+}
+
+.modal-content {
+    background: var(--white);
+    width: 500px;
+    margin: 80px auto;
+    padding: 40px;
+    border-radius: 16px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 25px; top: 20px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Footer */
+.footer {
+    background: var(--deep-purple);
+    color: var(--white);
+    padding: 80px 0;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.footer-links a {
+    color: #AAA;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 30px;
+    font-size: 14px;
+    color: #888;
+}

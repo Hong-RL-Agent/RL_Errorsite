@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240" role="img" aria-label="Drum set">
+  <rect width="320" height="240" fill="#f7f4ee"/>
+  <circle cx="160" cy="146" r="54" fill="#4b2f20"/>
+  <circle cx="160" cy="146" r="38" fill="#f2dfae"/>
+  <circle cx="102" cy="108" r="28" fill="#8a542e"/>
+  <circle cx="218" cy="108" r="28" fill="#8a542e"/>
+  <ellipse cx="82" cy="74" rx="48" ry="10" fill="#c99a3a"/>
+  <ellipse cx="238" cy="74" rx="48" ry="10" fill="#c99a3a"/>
+  <path d="M100 132l-24 54M220 132l24 54" stroke="#251812" stroke-width="6"/>
+</svg>

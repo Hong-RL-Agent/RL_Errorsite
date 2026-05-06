@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paper Pond - 새학기 문구 쇼핑몰</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-top">
+        <a class="logo" href="#top" aria-label="Paper Pond 홈">
+          <span class="logo-mark">PP</span>
+          <span>
+            <strong>Paper Pond</strong>
+            <small>stationery market</small>
+          </span>
+        </a>
+
+        <form class="search-form" id="searchForm" role="search">
+          <label class="sr-only" for="searchInput">상품 검색</label>
+          <input id="searchInput" type="search" placeholder="노트, 젤펜, 플래너를 검색해보세요" autocomplete="off" />
+          <button type="submit">검색</button>
+        </form>
+
+        <div class="header-actions" aria-label="상단 바로가기">
+          <button class="ghost-btn" type="button" id="headerCategoryBtn">카테고리</button>
+          <button class="ghost-btn" type="button" data-alert="신상품 알림 신청은 준비중입니다.">신상품</button>
+          <button class="ghost-btn" type="button" data-alert="이벤트 상세 페이지는 준비중입니다.">이벤트</button>
+          <button class="cart-top-btn" type="button" id="cartTopBtn" aria-expanded="true" aria-controls="cartPanel">
+            장바구니
+            <span class="cart-count" id="cartCount" data-bug-id="site046-bug01">0</span>
+          </button>
+          <button class="login-btn" type="button" data-alert="로그인 기능은 준비중입니다.">로그인</button>
+        </div>
+      </div>
+
+      <nav class="category-nav" aria-label="주요 쇼핑 메뉴">
+        <button type="button" data-category-shortcut="notebook">노트/메모</button>
+        <button type="button" data-category-shortcut="pen">펜/필기구</button>
+        <button type="button" data-category-shortcut="planner">플래너</button>
+        <button type="button" data-category-shortcut="desk">데스크용품</button>
+        <button type="button" data-category-shortcut="set">세트상품</button>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero-section" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <p class="eyebrow">Back to School Collection</p>
+          <h1 id="heroTitle">새학기 문구 기획전</h1>
+          <p>파스텔 노트, 부드러운 젤펜, 책상 정리 소품까지 한 번에 준비하세요.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" type="button" id="heroShopBtn">추천 상품 보기</button>
+            <button class="secondary-btn" type="button" data-alert="기획전 쿠폰 다운로드는 준비중입니다.">쿠폰 받기</button>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="floating-sheet sheet-a"></div>
+          <div class="floating-sheet sheet-b"></div>
+          <div class="hero-stationery">
+            <span class="pencil"></span>
+            <span class="notebook"></span>
+            <span class="clip"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="service-strip" aria-label="쇼핑 혜택">
+        <div>
+          <strong>오늘 출고</strong>
+          <span>오후 2시 이전 결제</span>
+        </div>
+        <div>
+          <strong>새학기 세트</strong>
+          <span>구성별 최대 18%</span>
+        </div>
+        <div>
+          <strong>선물 포장</strong>
+          <span>크림 리본 옵션</span>
+        </div>
+        <div>
+          <strong>리뷰 적립</strong>
+          <span>사진 리뷰 1,000P</span>
+        </div>
+      </section>
+
+      <section class="shop-layout" id="shopSection" aria-label="상품 쇼핑 영역">
+        <aside class="filter-sidebar" aria-label="상품 필터">
+          <div class="sidebar-card">
+            <h2>카테고리</h2>
+            <div class="filter-list" id="categoryFilters">
+              <button class="filter-chip active" type="button" data-category="all">전체</button>
+              <button class="filter-chip" type="button" data-category="notebook">노트/메모</button>
+              <button class="filter-chip" type="button" data-category="pen">펜/필기구</button>
+              <button class="filter-chip" type="button" data-category="planner">플래너</button>
+              <button class="filter-chip" type="button" data-category="memo">스티커/메모</button>
+              <button class="filter-chip" type="button" data-category="case">파우치/보관</button>
+              <button class="filter-chip" type="button" data-category="set">세트상품</button>
+              <button class="filter-chip" type="button" data-category="desk">데스크용품</button>
+              <button class="filter-chip" type="button" data-category="deco">꾸미기</button>
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <h2>쇼핑 옵션</h2>
+            <label class="check-row">
+              <input type="checkbox" id="stockOnly" />
+              <span>재고 있는 상품만</span>
+            </label>
+            <label class="select-row" for="sortSelect">
+              <span>정렬</span>
+              <select id="sortSelect">
+                <option value="recommended">추천순</option>
+                <option value="priceAsc">낮은 가격순</option>
+                <option value="priceDesc">높은 가격순</option>
+                <option value="ratingDesc">평점 높은순</option>
+              </select>
+            </label>
+            <button class="outline-wide" type="button" id="resetFiltersBtn">필터 초기화</button>
+          </div>
+
+          <div class="sidebar-card notice-card">
+            <h2>브랜드 알림</h2>
+            <p>이번 주 인기 키워드는 파스텔, 책상정리, 위클리 플래너입니다.</p>
+            <button type="button" data-alert="브랜드 알림 설정은 준비중입니다.">알림 설정</button>
+          </div>
+        </aside>
+
+        <section class="product-area" aria-labelledby="productTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Stationery Picks</p>
+              <h2 id="productTitle">추천 문구 상품</h2>
+            </div>
+            <div class="result-meta">
+              <span id="resultCount">0개 상품</span>
+              <button type="button" id="reloadBtn">데이터 새로고침</button>
+            </div>
+          </div>
+
+          <div class="status-panel loading" id="loadingState" role="status">상품 데이터를 불러오는 중입니다.</div>
+          <div class="status-panel error hidden" id="errorState" role="alert">
+            <strong>상품 데이터를 불러오지 못했습니다.</strong>
+            <span>잠시 후 다시 시도해주세요.</span>
+            <button type="button" id="retryBtn">다시 시도</button>
+          </div>
+          <div class="empty-state hidden" id="emptyState">조건에 맞는 상품이 없습니다.</div>
+          <div class="product-grid" id="productGrid" aria-live="polite"></div>
+        </section>
+
+        <aside class="cart-panel" id="cartPanel" aria-label="장바구니 요약">
+          <div class="cart-panel-header">
+            <div>
+              <p class="eyebrow">Cart</p>
+              <h2>장바구니 요약</h2>
+            </div>
+            <button type="button" id="collapseCartBtn" aria-expanded="true">접기</button>
+          </div>
+          <div class="cart-body" id="cartBody">
+            <div class="cart-empty" id="cartEmpty">담긴 상품이 없습니다.</div>
+            <ul class="cart-list" id="cartList"></ul>
+            <div class="cart-total">
+              <span>예상 합계</span>
+              <strong id="cartTotal">0원</strong>
+            </div>
+            <button class="primary-wide" type="button" data-alert="주문서 작성 기능은 준비중입니다.">주문하기</button>
+          </div>
+        </aside>
+      </section>
+
+      <section class="best-section" aria-labelledby="bestTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Best Sellers</p>
+            <h2 id="bestTitle">이번 주 베스트 상품</h2>
+          </div>
+          <button class="link-btn" type="button" data-alert="베스트 전체보기 페이지는 준비중입니다.">전체보기</button>
+        </div>
+        <div class="best-grid" id="bestGrid"></div>
+      </section>
+
+      <section class="review-section" aria-labelledby="reviewTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Reviews</p>
+            <h2 id="reviewTitle">고객 후기</h2>
+          </div>
+          <label class="select-row compact" for="reviewFilter">
+            <span>평점</span>
+            <select id="reviewFilter">
+              <option value="all">전체</option>
+              <option value="5">5점</option>
+              <option value="4">4점 이상</option>
+            </select>
+          </label>
+        </div>
+        <div class="review-grid" id="reviewGrid">
+          <div class="status-panel loading">후기를 불러오는 중입니다.</div>
+        </div>
+      </section>
+
+      <section class="newsletter-section" aria-labelledby="newsletterTitle">
+        <div>
+          <p class="eyebrow">Paper Letter</p>
+          <h2 id="newsletterTitle">새로운 문구 소식을 받아보세요</h2>
+          <p>이메일을 입력하면 다음 달 신상품 캘린더와 할인 소식을 보내드립니다.</p>
+        </div>
+        <form class="newsletter-form" id="newsletterForm">
+          <label class="sr-only" for="newsletterEmail">뉴스레터 이메일</label>
+          <input id="newsletterEmail" type="email" placeholder="hello@paperpond.kr" />
+          <button type="submit">구독하기</button>
+          <span id="newsletterPreview">입력한 이메일이 여기에 표시됩니다.</span>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Paper Pond</strong>
+        <p>귀엽고 실용적인 문구를 고르는 데스크톱 쇼핑몰 데모입니다.</p>
+      </div>
+      <div class="footer-links">
+        <button type="button" data-alert="회사 소개 페이지는 준비중입니다.">회사소개</button>
+        <button type="button" data-alert="배송 안내 페이지는 준비중입니다.">배송안내</button>
+        <button type="button" data-alert="고객센터 페이지는 준비중입니다.">고객센터</button>
+      </div>
+    </footer>
+
+    <div class="modal-backdrop hidden" id="modalBackdrop" aria-hidden="true">
+      <article class="product-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" id="modalCloseBtn" aria-label="상품 상세 닫기">×</button>
+        <div class="modal-content" id="modalContent"></div>
+      </article>
+    </div>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>

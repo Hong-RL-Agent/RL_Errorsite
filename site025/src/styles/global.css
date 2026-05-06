@@ -1,0 +1,45 @@
+:root {
+  --primary: #ff5722;
+  --secondary: #ff9800;
+  --dark: #3e2723;
+  --light: #fff5f2;
+  --border: #ffe0d8;
+  --text-main: #212121;
+  --text-muted: #757575;
+  --white: #ffffff;
+  --bg-app: #fafafa;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.btn {
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-primary { background: var(--primary); color: white; }
+.btn-dark { background: var(--dark); color: white; }

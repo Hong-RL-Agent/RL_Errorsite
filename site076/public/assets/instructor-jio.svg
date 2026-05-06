@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180" viewBox="0 0 320 180" role="img" aria-label="문지오 강사 프로필">
+  <rect width="320" height="180" fill="#f7f1e3"/>
+  <circle cx="160" cy="67" r="34" fill="#945739"/>
+  <rect x="108" y="104" width="104" height="52" rx="26" fill="#7b9b4d"/>
+  <path d="M74 150 C98 112 117 103 135 129 C145 99 177 95 184 130 C207 101 237 119 246 150" fill="#536b2d" opacity=".7"/>
+</svg>

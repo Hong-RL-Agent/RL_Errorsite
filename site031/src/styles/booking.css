@@ -1,0 +1,65 @@
+.booking-summary {
+  position: sticky;
+  top: 92px;
+  border: 1px solid #ded6c6;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 18px;
+  box-shadow: 0 18px 44px rgba(77, 92, 74, 0.12);
+}
+
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.summary-header span {
+  color: #55745a;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.summary-header button {
+  border: 1px solid #d8cebc;
+  border-radius: 8px;
+  color: #3f4e42;
+  background: #fffdf7;
+  padding: 8px 10px;
+  font-weight: 900;
+}
+
+.summary-body {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.summary-body h2 {
+  margin: 0;
+  font-size: 23px;
+}
+
+.summary-body dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.summary-body dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.summary-body dt {
+  color: #687568;
+}
+
+.summary-body dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 900;
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="240" viewBox="0 0 420 240" role="img" aria-label="Orange bay incubator kitchen">
+  <rect width="420" height="240" fill="#f4f5f2"/>
+  <rect x="50" y="58" width="320" height="122" rx="12" fill="#fff0e4"/>
+  <rect x="78" y="84" width="70" height="72" rx="8" fill="#ffffff"/>
+  <rect x="170" y="84" width="70" height="72" rx="8" fill="#e7eddd"/>
+  <rect x="262" y="84" width="70" height="72" rx="8" fill="#ffffff"/>
+  <rect x="70" y="178" width="280" height="26" rx="13" fill="#f58232"/>
+  <path d="M95 191h230" stroke="#bd5b1f" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="205" cy="120" r="26" fill="#617044"/>
+</svg>

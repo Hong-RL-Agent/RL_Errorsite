@@ -1,0 +1,55 @@
+.notification-panel {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 30px;
+}
+
+.audio-preview {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.wave-animation {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.wave-bar {
+  width: 3px;
+  height: 15px;
+  background: var(--primary);
+  animation: wave 1s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { height: 10px; }
+  50% { height: 25px; }
+}
+
+.video-section {
+  margin-top: 60px;
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.video-mock {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #000;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+}

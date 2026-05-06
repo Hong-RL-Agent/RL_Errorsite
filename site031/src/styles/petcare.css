@@ -1,0 +1,268 @@
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 520px;
+  gap: 34px;
+  align-items: center;
+  padding: 48px 0 34px;
+}
+
+.hero-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.hero-copy > span,
+.service-badge {
+  width: fit-content;
+  color: #55745a;
+  background: #eaf1e7;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 900;
+}
+
+.hero-copy h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: 64px;
+  line-height: 1.02;
+}
+
+.hero-copy p {
+  max-width: 660px;
+  margin: 0;
+  color: #687568;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.hero-image-card {
+  overflow: hidden;
+  border: 1px solid #ded6c6;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 20px 54px rgba(77, 92, 74, 0.14);
+}
+
+.hero-image-card img {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+}
+
+.hero-image-card div {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.hero-image-card span {
+  color: #687568;
+}
+
+.desktop-layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr) 310px;
+  gap: 22px;
+  align-items: start;
+}
+
+.filter-sidebar {
+  position: sticky;
+  top: 92px;
+  display: grid;
+  gap: 18px;
+  border: 1px solid #ded6c6;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+.filter-sidebar h2 {
+  margin: 0;
+}
+
+.filter-group {
+  display: grid;
+  gap: 8px;
+}
+
+.filter-group button,
+.pet-type-filter select {
+  border: 1px solid #d8cebc;
+  border-radius: 8px;
+  color: #3f4e42;
+  background: #fffdf7;
+  padding: 11px 12px;
+  text-align: left;
+  font-weight: 800;
+}
+
+.filter-group button.active {
+  border-color: #8ba684;
+  color: #ffffff;
+  background: #8ba684;
+}
+
+.pet-type-filter {
+  display: grid;
+  gap: 8px;
+  color: #687568;
+  font-size: 13px;
+}
+
+.pet-list {
+  display: grid;
+  gap: 10px;
+}
+
+.pet-list h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.pet-list article {
+  display: grid;
+  gap: 5px;
+  border-radius: 8px;
+  background: #fbf7ec;
+  padding: 11px;
+}
+
+.pet-list span,
+.pet-list p {
+  margin: 0;
+  color: #687568;
+  font-size: 13px;
+}
+
+.provider-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.provider-card {
+  overflow: hidden;
+  border: 1px solid #ded6c6;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 16px 38px rgba(77, 92, 74, 0.08);
+}
+
+.provider-card.selected {
+  border-color: #8ba684;
+  box-shadow: 0 18px 44px rgba(139, 166, 132, 0.24);
+}
+
+.provider-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+.provider-card-body {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+}
+
+.provider-topline,
+.provider-meta,
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.provider-topline span,
+.provider-meta span,
+.time-preview {
+  width: fit-content;
+  border-radius: 8px;
+  color: #55745a;
+  background: #eaf1e7;
+  padding: 6px 9px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.provider-card h3 {
+  margin: 0;
+  font-size: 23px;
+}
+
+.provider-card p {
+  margin: 0;
+  color: #687568;
+}
+
+.card-actions button {
+  flex: 1;
+}
+
+.empty-state {
+  padding: 26px;
+  color: #687568;
+}
+
+.review-section,
+.health-tips,
+.faq-section {
+  margin-top: 44px;
+}
+
+.review-section select {
+  border: 1px solid #d8cebc;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 9px 12px;
+}
+
+.review-grid,
+.tip-grid,
+.faq-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.review-card,
+.tip-grid article,
+.faq-list button {
+  display: grid;
+  gap: 8px;
+  min-height: 132px;
+  border: 1px solid #ded6c6;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 16px;
+  text-align: left;
+}
+
+.review-card span {
+  color: #e8795f;
+  font-weight: 900;
+}
+
+.review-card p,
+.tip-grid p {
+  margin: 0;
+  color: #687568;
+  line-height: 1.5;
+}
+
+.review-card time {
+  color: #8c978d;
+  font-size: 13px;
+}
+
+.faq-list button {
+  color: #3f4e42;
+  font-weight: 900;
+}

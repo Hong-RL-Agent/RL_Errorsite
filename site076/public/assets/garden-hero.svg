@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="620" viewBox="0 0 1320 620" role="img" aria-label="햇살이 드는 원예 스튜디오 테이블">
+  <defs>
+    <linearGradient id="wall" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#dfe8cb"/>
+      <stop offset="0.52" stop-color="#f3ead5"/>
+      <stop offset="1" stop-color="#bf7652"/>
+    </linearGradient>
+    <linearGradient id="table" x1="0" x2="1">
+      <stop offset="0" stop-color="#5b6f32"/>
+      <stop offset="1" stop-color="#2f421c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1320" height="620" fill="url(#wall)"/>
+  <rect x="0" y="422" width="1320" height="198" fill="url(#table)"/>
+  <circle cx="1058" cy="118" r="112" fill="#fff6d9" opacity=".72"/>
+  <rect x="746" y="74" width="384" height="272" rx="18" fill="#fffdf8" opacity=".76"/>
+  <path d="M781 314 C822 244 889 215 955 265 C1015 209 1082 235 1113 314" fill="#8ba35d" opacity=".72"/>
+  <path d="M852 312 C863 230 910 171 941 279 C985 180 1039 220 1045 313" fill="#536b2d"/>
+  <rect x="858" y="317" width="198" height="72" rx="16" fill="#b96542"/>
+  <rect x="798" y="392" width="310" height="28" rx="14" fill="#efe2c6"/>
+  <g transform="translate(596 306)">
+    <rect x="0" y="46" width="130" height="70" rx="12" fill="#c56f46"/>
+    <path d="M18 45 C40 -8 75 8 72 48 C96 -6 123 3 112 48" fill="#6f8b3d"/>
+    <path d="M47 48 C43 5 55 -26 76 48" fill="#405522"/>
+  </g>
+  <g transform="translate(1160 334)">
+    <rect x="0" y="48" width="82" height="92" rx="10" fill="#925033"/>
+    <path d="M16 48 C9 3 50 -5 43 49 C66 6 91 23 66 49" fill="#627f35"/>
+  </g>
+  <rect x="704" y="458" width="408" height="34" rx="17" fill="#efe2c6" opacity=".85"/>
+  <rect x="768" y="504" width="270" height="22" rx="11" fill="#f7f1e3" opacity=".68"/>
+</svg>

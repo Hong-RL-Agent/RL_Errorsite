@@ -1,0 +1,60 @@
+.compare-drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 350px;
+  background: white;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+  z-index: 1500;
+  transition: transform 0.3s ease;
+  padding: 30px;
+}
+
+.compare-drawer.closed {
+  /* site021-bug03: visibility or transform used instead of display:none */
+  transform: translateX(100%);
+  visibility: hidden;
+}
+
+.compare-drawer h2 {
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+
+.compare-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.compare-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.compare-item-info {
+  flex: 1;
+}
+
+.compare-item-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.compare-item-price {
+  color: var(--primary);
+  font-size: 12px;
+}
+
+.compare-actions {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

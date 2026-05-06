@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(node server.js)",
+      "Bash(curl -s http://localhost:9247/api/health)",
+      "Bash(curl -s http://localhost:9247/)",
+      "Bash(curl -s http://localhost:9247/api/cars)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :9247)",
+      "Bash(mkdir -p \"c:\\\\종합설계\\\\frontend-errorsite\\\\site070\\\\public\\\\assets\")",
+      "Bash(curl -s http://localhost:9289/api/rooms)",
+      "Bash(curl -s \"http://localhost:9289/api/time-slots?roomId=room-01&date=2026-05-06\")",
+      "Bash(curl -s http://localhost:9289/)"
+    ],
+    "additionalDirectories": [
+      "c:\\종합설계\\frontend-errorsite\\site070\\public"
+    ]
+  }
+}

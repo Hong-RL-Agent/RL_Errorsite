@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BerryBliss | 프리미엄 디저트 카페</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="BerryBliss Logo">
+                <span class="logo-text">BerryBliss</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" onclick="alert('준비 중입니다')">시즌 디저트</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다')">픽업 예약</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다')">매장 찾기</a></li>
+                </ul>
+            </nav>
+            <div class="header-tools">
+                <div class="search-box">
+                    <input type="text" id="menu-search" placeholder="검색어를 입력하세요...">
+                </div>
+                <button class="btn btn-icon" id="cart-toggle-btn">
+                    🛒 <span id="cart-count">0</span>
+                </button>
+                <button class="btn btn-outline" onclick="alert('준비 중입니다')">로그인</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="season-label">2026 Season Selection</span>
+                    <h1>달콤한 순간을 선물하는<br><span>시그니처 딸기 생크림 케이크</span></h1>
+                    <p>매일 아침 엄선된 신선한 딸기와 부드러운 생크림의 조화</p>
+                    <div class="hero-btns">
+                        <button class="btn btn-primary btn-lg" onclick="alert('준비 중입니다')">오늘 픽업 주문하기</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/hero.jpg" alt="Signature Strawberry Cake">
+                </div>
+            </div>
+        </section>
+
+        <div class="container main-layout">
+            <!-- Left Sidebar: Filters -->
+            <aside class="sidebar">
+                <div class="filter-group">
+                    <h3>카테고리</h3>
+                    <ul id="category-filters">
+                        <li><button class="filter-btn active" data-category="all">전체보기</button></li>
+                        <li><button class="filter-btn" data-category="Cake">케이크</button></li>
+                        <li><button class="filter-btn" data-category="Cookie">쿠키/구움과자</button></li>
+                        <li><button class="filter-btn" data-category="Macaron">마카롱</button></li>
+                    </ul>
+                </div>
+                <div class="filter-group">
+                    <h3>픽업 시간</h3>
+                    <div id="pickup-slots" class="pickup-slots-grid">
+                        <!-- API Data -->
+                        <div class="loading">시간표 로딩 중...</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Center Content: Menu Grid -->
+            <!-- INTENTIONAL GUI BUG: site051-bug02 -->
+            <!-- Type: menu-grid-overflow -->
+            <!-- Description: 데스크톱 중간 폭에서 메뉴 grid 최소 폭이 과도해 우측 주문 패널 아래로 overflow됨. -->
+            <section class="menu-section" id="menu-container" data-bug-id="site051-bug02">
+                <div class="section-title">
+                    <h2>디저트 메뉴</h2>
+                    <p>정성을 담아 구운 오늘의 디저트입니다.</p>
+                </div>
+                <div id="desserts-grid" class="desserts-grid">
+                    <div class="loading">메뉴를 불러오는 중...</div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Order Summary (Sticky) -->
+            <aside class="order-panel" id="order-summary-panel">
+                <div class="card summary-card">
+                    <h2>주문 요약</h2>
+                    <div class="summary-body">
+                        <div id="cart-items" class="cart-items-list">
+                            <p class="empty-msg">장바구니가 비어 있습니다.</p>
+                        </div>
+                        <hr>
+                        <div class="summary-footer">
+                            <div class="summary-row">
+                                <span>총 수량</span>
+                                <!-- INTENTIONAL GUI BUG: site051-bug01 -->
+                                <!-- Type: quantity-total-mismatch -->
+                                <!-- Description: 주문 요약 총 수량 계산에서 일부 item 수량을 제외해 카드 수량 합계와 불일치함. -->
+                                <span id="summary-total-qty" data-bug-id="site051-bug01">0</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>합계 금액</span>
+                                <span id="summary-total-price">0원</span>
+                            </div>
+                            <button class="btn btn-primary btn-block btn-lg mt-1" onclick="alert('준비 중입니다')">결제하기</button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Events Section -->
+        <section class="events-section bg-cream">
+            <div class="container">
+                <h2>카페 이벤트</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-badge">NEW</div>
+                        <h3>멤버십 가입 시 첫 구매 10% 할인</h3>
+                        <p>BerryBliss의 회원이 되어 더 많은 혜택을 누리세요.</p>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-badge">HOT</div>
+                        <h3>시즌 케이크 픽업 예약 오픈</h3>
+                        <p>한정 수량으로 진행되는 시즌 케이크를 미리 만나보세요.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Post Detail Modal -->
+    <div id="dessert-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="logo">
+                    <span class="logo-text">BerryBliss</span>
+                </div>
+                <div class="newsletter">
+                    <h4>뉴스레터 구독</h4>
+                    <div class="newsletter-form">
+                        <input type="email" id="newsletter-email" placeholder="email@example.com">
+                        <button class="btn btn-dark" onclick="alert('준비 중입니다')">구독</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BerryBliss Dessert Cafe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+.timetable-container {
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-top: 40px;
+}
+
+.timetable-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.tab-btn {
+  padding: 8px 20px;
+  border-radius: 6px;
+  background-color: var(--bg-light);
+  font-weight: 600;
+  color: var(--text-gray);
+}
+
+.tab-btn.active {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+/* INTENTIONAL GUI BUG: site038-bug02
+   Type: timetable-overflow-clipped
+   Description: 시간표 grid를 고정 폭으로 만들고 overflow hidden을 적용해 마지막 요일 열이 잘림.
+*/
+.timetable-wrapper {
+  width: 100%;
+  overflow: hidden; /* This hides the overflowed column */
+}
+
+.timetable-grid {
+  display: grid;
+  /* Fixed width columns that will total more than container width on smaller screens */
+  grid-template-columns: repeat(6, 200px); 
+  border: 1px solid var(--border);
+}
+
+.time-col {
+  border-right: 1px solid var(--border);
+}
+
+.grid-header {
+  background-color: var(--bg-light);
+  padding: 15px;
+  text-align: center;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border);
+}
+
+.grid-cell {
+  height: 100px;
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.class-slot {
+  background-color: #ebf4ff;
+  border-left: 4px solid var(--primary);
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.slot-name {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 0.8rem;
+}
+
+.slot-info {
+  font-size: 0.75rem;
+  color: var(--text-gray);
+}

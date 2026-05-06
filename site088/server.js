@@ -1,0 +1,137 @@
+const express = require("express");
+const path = require("path");
+
+const app = express();
+const PORT = process.env.PORT || 9307;
+
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
+
+const listings = [
+  {
+    id: "listing-hannam-01",
+    title: "한남 리버뷰 하이엔드 레지던스",
+    region: "용산구 한남동",
+    dealType: "매매",
+    price: 2450000000,
+    area: "132.4m²",
+    rooms: 4,
+    floor: "18/29층",
+    coordinates: { lat: 37.534, lng: 127.005, x: 58, y: 38 },
+    image: "/assets/listing-hannam.svg",
+    agent: { name: "정서윤", office: "블루홈 한남센터", phone: "02-9307-1101" },
+    summary: "남산과 한강 조망이 모두 가능한 코너 세대입니다."
+  },
+  {
+    id: "listing-seongsu-02",
+    title: "성수역 도보 5분 신축 오피스텔",
+    region: "성동구 성수동",
+    dealType: "월세",
+    price: 1800000,
+    deposit: 30000000,
+    area: "41.8m²",
+    rooms: 2,
+    floor: "9/16층",
+    coordinates: { lat: 37.544, lng: 127.055, x: 72, y: 55 },
+    image: "/assets/listing-seongsu.svg",
+    agent: { name: "박도현", office: "스카이부동산 성수", phone: "02-9307-1102" },
+    summary: "업무지구 접근성이 좋고 풀옵션으로 즉시 입주 가능한 매물입니다."
+  },
+  {
+    id: "listing-pangyo-03",
+    title: "판교 테크노밸리 남향 아파트",
+    region: "성남시 분당구",
+    dealType: "전세",
+    price: 920000000,
+    area: "84.9m²",
+    rooms: 3,
+    floor: "12/24층",
+    coordinates: { lat: 37.395, lng: 127.111, x: 47, y: 64 },
+    image: "/assets/listing-pangyo.svg",
+    agent: { name: "이민재", office: "판교포커스공인", phone: "031-9307-1103" },
+    summary: "초등학교와 공원 접근성이 좋은 남향 3룸 전세 매물입니다."
+  },
+  {
+    id: "listing-gangnam-04",
+    title: "강남역 역세권 리모델링 투룸",
+    region: "강남구 역삼동",
+    dealType: "월세",
+    price: 2300000,
+    deposit: 50000000,
+    area: "49.2m²",
+    rooms: 2,
+    floor: "6/13층",
+    coordinates: { lat: 37.499, lng: 127.029, x: 53, y: 75 },
+    image: "/assets/listing-gangnam.svg",
+    agent: { name: "최유리", office: "네이비홈 강남", phone: "02-9307-1104" },
+    summary: "최근 리모델링을 마친 밝은 투룸으로 지하철 접근성이 뛰어납니다."
+  },
+  {
+    id: "listing-songdo-05",
+    title: "송도 센트럴파크 패밀리 아파트",
+    region: "인천 연수구",
+    dealType: "매매",
+    price: 890000000,
+    area: "101.6m²",
+    rooms: 4,
+    floor: "21/35층",
+    coordinates: { lat: 37.392, lng: 126.645, x: 26, y: 70 },
+    image: "/assets/listing-songdo.svg",
+    agent: { name: "한지훈", office: "송도시티공인", phone: "032-9307-1105" },
+    summary: "공원 조망과 커뮤니티 시설을 갖춘 가족형 대단지 매물입니다."
+  },
+  {
+    id: "listing-mapo-06",
+    title: "마포 한강변 소형 아파트",
+    region: "마포구 합정동",
+    dealType: "전세",
+    price: 580000000,
+    area: "59.1m²",
+    rooms: 2,
+    floor: "14/20층",
+    coordinates: { lat: 37.548, lng: 126.914, x: 38, y: 46 },
+    image: "/assets/listing-mapo.svg",
+    agent: { name: "김라온", office: "한강라인공인", phone: "02-9307-1106" },
+    summary: "한강 산책로와 합정 상권을 모두 누릴 수 있는 소형 아파트입니다."
+  }
+];
+
+const regions = [
+  { name: "용산구 한남동", averagePrice: 1980000000, listingCount: 18, popular: true },
+  { name: "성동구 성수동", averagePrice: 740000000, listingCount: 42, popular: true },
+  { name: "성남시 분당구", averagePrice: 1010000000, listingCount: 36, popular: true },
+  { name: "강남구 역삼동", averagePrice: 1320000000, listingCount: 55, popular: true },
+  { name: "인천 연수구", averagePrice: 810000000, listingCount: 28, popular: false },
+  { name: "마포구 합정동", averagePrice: 690000000, listingCount: 31, popular: false }
+];
+
+app.get("/api/health", (req, res) => {
+  res.json({
+    ok: true,
+    site: "site088",
+    service: "Map Real Estate Listings",
+    timestamp: new Date().toISOString()
+  });
+});
+
+app.get("/api/listings", (req, res) => {
+  res.json({
+    listings,
+    count: listings.length
+  });
+});
+
+app.get("/api/regions", (req, res) => {
+  res.json({
+    regions,
+    count: regions.length
+  });
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.listen(PORT, () => {
+  console.log(`site088 real estate map site running at http://localhost:${PORT}`);
+});

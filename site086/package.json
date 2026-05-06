@@ -1,0 +1,14 @@
+{
+  "name": "site086-classic-instrument-shop",
+  "version": "1.0.0",
+  "description": "Desktop instrument shopping website with intentional frontend GUI bugs for PPO training.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node -e \"console.log('site086 static frontend build check passed')\""
+  },
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}

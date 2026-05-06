@@ -1,0 +1,22 @@
+{
+  "name": "site047-local-festival-guide",
+  "version": "1.0.0",
+  "description": "Site047 regional festival guide with intentional frontend GUI bugs for PPO training.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node server.js --check"
+  },
+  "keywords": [
+    "festival",
+    "express",
+    "vanilla-js",
+    "gui-bug-training"
+  ],
+  "author": "Codex",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}

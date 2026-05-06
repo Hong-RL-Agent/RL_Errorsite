@@ -1,0 +1,127 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(41, 53, 45, 0.48);
+}
+
+.provider-modal {
+  position: relative;
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 24px;
+  width: min(900px, calc(100vw - 80px));
+  max-height: 86vh;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fffdf7;
+  padding: 22px;
+}
+
+.provider-modal > img {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.modal-content {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.modal-content h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.modal-content p {
+  margin: 0;
+  color: #687568;
+  line-height: 1.6;
+}
+
+.modal-tabs {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  padding: 6px;
+  border-radius: 8px;
+  background: #f1eadc;
+}
+
+.modal-tabs button {
+  flex: 1;
+  min-width: 88px;
+  border: 0;
+  border-radius: 8px;
+  color: #526155;
+  background: transparent;
+  padding: 10px 12px;
+  font-weight: 900;
+}
+
+.modal-tabs button.active {
+  color: #ffffff;
+  background: #8ba684;
+}
+
+.tab-panel {
+  display: grid;
+  gap: 8px;
+  border: 1px solid #ded6c6;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 14px;
+}
+
+.modal-time-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.modal-time-grid button {
+  border: 1px solid #d8cebc;
+  border-radius: 8px;
+  color: #3f4e42;
+  background: #ffffff;
+  padding: 10px;
+  font-weight: 900;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  border: 0;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #29352d;
+  padding: 10px 12px;
+  font-weight: 900;
+}
+
+/* INTENTIONAL GUI BUG: site031-bug03
+   Type: tab-menu-layout-break
+   Description: 데스크톱 중간 폭에서 상세 모달 탭 메뉴가 줄바꿈되지 않아 서로 겹치거나 밖으로 밀림.
+*/
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .modal-tabs[data-bug-id="site031-bug03"] {
+    width: 620px;
+    flex-wrap: nowrap;
+    overflow: visible;
+  }
+
+  .modal-tabs[data-bug-id="site031-bug03"] button {
+    flex: 0 0 170px;
+  }
+}

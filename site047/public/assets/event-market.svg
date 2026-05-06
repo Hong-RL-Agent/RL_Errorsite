@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-label="Night market food street illustration">
+  <defs>
+    <linearGradient id="marketBg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffaf0"/>
+      <stop offset="0.5" stop-color="#fff2b8"/>
+      <stop offset="1" stop-color="#12325a"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="520" fill="url(#marketBg)"/>
+  <path d="M78 198 H822 L770 316 H130Z" fill="#f4772d"/>
+  <path d="M124 198 L184 316 M250 198 L280 316 M376 198 L376 316 M502 198 L474 316 M628 198 L568 316 M754 198 L662 316" stroke="#fff2b8" stroke-width="14"/>
+  <rect x="118" y="316" width="664" height="132" rx="20" fill="#ffffff"/>
+  <rect x="158" y="352" width="146" height="64" rx="18" fill="#12325a"/>
+  <rect x="376" y="352" width="146" height="64" rx="18" fill="#147c86"/>
+  <rect x="596" y="352" width="146" height="64" rx="18" fill="#f4772d"/>
+  <g fill="#0d2441" opacity="0.82">
+    <circle cx="232" cy="460" r="24"/><circle cx="450" cy="460" r="24"/><circle cx="670" cy="460" r="24"/>
+    <rect x="94" y="478" width="712" height="44" rx="20"/>
+  </g>
+  <g fill="#fff2b8">
+    <circle cx="150" cy="116" r="16"/><circle cx="270" cy="106" r="10"/><circle cx="438" cy="126" r="14"/><circle cx="610" cy="98" r="11"/><circle cx="748" cy="124" r="15"/>
+  </g>
+</svg>

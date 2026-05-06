@@ -1,0 +1,91 @@
+.hero-section {
+  padding: 60px 0;
+  background: linear-gradient(135deg, var(--primary), #1e40af);
+  color: white;
+  text-align: center;
+}
+
+.search-card {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: -60px auto 0;
+  display: flex;
+  gap: 15px;
+}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 30px;
+  margin-top: 60px;
+}
+
+.timeline-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.step-item {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.step-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 30px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.step-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.step-icon.active {
+  background: var(--primary);
+  color: white;
+}
+
+.courier-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: var(--light);
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.courier-info img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.map-mock {
+  background: #e5e7eb;
+  height: 250px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+}

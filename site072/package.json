@@ -1,0 +1,22 @@
+{
+  "name": "site072-premium-wine-shop",
+  "version": "1.0.0",
+  "description": "Premium wine shop product guide mock website for frontend GUI bug training.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node -e \"console.log('Vanilla site072 build check complete')\""
+  },
+  "keywords": [
+    "wine",
+    "vanilla-js",
+    "express",
+    "frontend-gui-bugs"
+  ],
+  "author": "Codex",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

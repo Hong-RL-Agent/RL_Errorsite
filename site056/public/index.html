@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Museum of History | 오디오 가이드</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Noto+Serif+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="Museum Logo">
+                <span class="logo-text">ROYAL MUSEUM</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" onclick="alert('준비 중입니다')">전시 안내</a></li>
+                    <li><a href="#" class="active">오디오 가이드</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다')">관람 안내</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다')">티켓 예매</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <select id="language-selector" class="lang-select">
+                    <option value="ko">한국어 (KR)</option>
+                    <option value="en">English (EN)</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="exhibit-tag">특별 기획전</span>
+                    <h1>영원한 생명: 고대 이집트의 신비</h1>
+                    <p>파라오의 보물과 사후 세계에 대한 믿음을 오디오 가이드와 함께 깊이 있게 탐구해 보세요.</p>
+                    <button class="btn btn-gold btn-lg" onclick="alert('준비 중입니다')">전시 해설 전체 듣기</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="container main-layout">
+            <div class="content-main">
+                <!-- Gallery Tabs -->
+                <div class="tabs-container">
+                    <div class="gallery-tabs">
+                        <button class="tab-btn active" data-gallery="all">전체 작품</button>
+                        <button class="tab-btn" data-gallery="고대 이집트관">고대 이집트</button>
+                        <button class="tab-btn" data-gallery="고대 문명관">고대 문명</button>
+                        <button class="tab-btn" data-gallery="고대 그리스/로마관">그리스/로마</button>
+                    </div>
+                    <div class="search-bar">
+                        <input type="text" id="artifact-search" placeholder="작품명 또는 작가 검색...">
+                    </div>
+                </div>
+
+                <!-- Track List Section -->
+                <section class="tracks-section">
+                    <div class="section-header">
+                        <h2>오디오 해설 트랙</h2>
+                    </div>
+                    <div id="tracks-list" class="tracks-list">
+                        <div class="loading">가이드 데이터를 불러오는 중...</div>
+                    </div>
+                    <!-- INTENTIONAL GUI BUG: site056-bug02 (Overlap trigger area) -->
+                    <div class="list-end-marker" data-bug-id="site056-bug02"></div>
+                </section>
+
+                <!-- Map Section -->
+                <section class="map-section">
+                    <h3>전시관 지도</h3>
+                    <div class="map-mock">
+                        <div class="map-placeholder">
+                            <span>MUSEUM MAP (FLOOR 1)</span>
+                            <div class="map-gallery g1 active">이집트</div>
+                            <div class="map-gallery g2">문명</div>
+                            <div class="map-gallery g3">그리스</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Sidebar: Current Selection -->
+            <aside class="sidebar-right">
+                <div class="card current-artifact sticky" id="current-selection-panel">
+                    <h3>현재 선택한 작품</h3>
+                    <div class="selection-empty">작품을 선택해 주세요.</div>
+                    <div class="selection-content" style="display: none;">
+                        <img id="current-img" src="" alt="">
+                        <h4 id="current-title"></h4>
+                        <p id="current-artist"></p>
+                        <button class="btn btn-brown btn-block mt-1" id="btn-view-detail">상세 정보 보기</button>
+                    </div>
+                </div>
+
+                <div class="card recommended-courses">
+                    <h3>추천 관람 코스</h3>
+                    <ul class="course-list">
+                        <li><button class="course-btn" data-filter="essential">핵심 30분 코스</button></li>
+                        <li><button class="course-btn" data-filter="depth">심층 60분 코스</button></li>
+                        <li><button class="course-btn" data-filter="family">어린이 동반 코스</button></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Fixed Audio Player -->
+    <div class="fixed-player">
+        <div class="container player-container">
+            <div class="player-info">
+                <div class="player-thumb"></div>
+                <div class="player-text">
+                    <div id="player-track-title">재생 중인 트랙이 없습니다.</div>
+                    <div id="player-artifact-title">작품을 선택해 주세요.</div>
+                </div>
+            </div>
+            <div class="player-controls">
+                <button class="ctrl-btn">⏮</button>
+                <button class="ctrl-btn play-btn">▶</button>
+                <button class="ctrl-btn">⏭</button>
+            </div>
+            <div class="player-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 35%;"></div>
+                </div>
+                <span class="time">01:30 / 04:25</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Artifact Detail Modal -->
+    <div id="artifact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <h3>ROYAL MUSEUM OF HISTORY</h3>
+                <p>서울특별시 종로구 세종대로 1 | 02-123-4567</p>
+                <p>관람 시간: 09:00 - 18:00 (월요일 휴관)</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#" onclick="alert('준비 중입니다')">오시는 길</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다')">단체 관람 안내</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다')">고객센터</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다')">개인정보 처리방침</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Royal Museum of History. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

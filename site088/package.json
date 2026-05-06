@@ -1,0 +1,14 @@
+{
+  "name": "site088-map-real-estate",
+  "version": "1.0.0",
+  "description": "Desktop map-based real estate listing website with intentional frontend GUI bugs for PPO training.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node -e \"console.log('site088 static frontend build check passed')\""
+  },
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}

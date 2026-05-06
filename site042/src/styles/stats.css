@@ -1,0 +1,130 @@
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  padding: 1.5rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.summary-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.summary-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.summary-subtext {
+  font-size: 0.75rem;
+  color: var(--secondary);
+  margin-top: 0.25rem;
+}
+
+/* History Table */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+}
+
+.history-task-name {
+  font-weight: 500;
+}
+
+.history-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.history-duration {
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+/* Weekly Stats Chart Mockup */
+.chart-container {
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding-top: 2rem;
+}
+
+.chart-bar-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.chart-bar {
+  width: 100%;
+  background: var(--surface);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: height 0.5s ease;
+}
+
+.chart-bar.active {
+  background: var(--secondary);
+}
+
+.chart-day {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Goal Progress */
+.goal-progress-card {
+  margin-bottom: 1rem;
+}
+
+.goal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+
+.goal-header h5 {
+  font-size: 0.95rem;
+}
+
+.goal-bar-bg {
+  height: 8px;
+  background: var(--surface);
+  border-radius: 4px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.goal-bar-fill {
+  height: 100%;
+  background: var(--secondary);
+}
+
+.goal-details {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}

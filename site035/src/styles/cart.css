@@ -1,0 +1,8 @@
+.cart-summary { position: sticky; top: 92px; display: grid; gap: 14px; border: 1px solid #eadbd4; border-radius: 8px; background: #fff; padding: 18px; box-shadow: 0 18px 44px rgba(90,59,52,.12); }
+.cart-summary > span { color: #6f8f72; font-size: 13px; font-weight: 900; text-transform: uppercase; }
+.cart-summary h2 { margin: 0; color: #5a3b34; }
+.cart-summary p, .cart-summary em { color: #806d65; }
+.cart-list { display: grid; gap: 10px; }
+.cart-list div { display: grid; gap: 4px; border-radius: 8px; background: #fff8f4; padding: 10px; }
+.cart-list span { color: #c85b7a; font-weight: 900; }
+.total { font-size: 24px; text-align: right; }

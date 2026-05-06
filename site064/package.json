@@ -1,0 +1,22 @@
+{
+  "name": "site064-photo-print-studio",
+  "version": "1.0.0",
+  "description": "Desktop photo printing and photobook order website with intentional frontend GUI bugs for training data.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node server.js --check"
+  },
+  "keywords": [
+    "photo-print",
+    "vanilla-js",
+    "express",
+    "frontend-gui-bugs"
+  ],
+  "author": "Codex",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

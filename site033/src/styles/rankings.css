@@ -1,0 +1,8 @@
+.sort-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.sort-row button { border: 1px solid rgba(255,255,255,.16); border-radius: 8px; color: #f8fbff; background: rgba(255,255,255,.08); padding: 10px 14px; font-weight: 900; }
+.sort-row button.active { color: #07101f; background: #38d5ff; }
+.ranking-section table { width: 100%; border-collapse: collapse; overflow: hidden; border: 1px solid rgba(255,255,255,.14); border-radius: 8px; background: rgba(255,255,255,.07); }
+.ranking-section th, .ranking-section td { padding: 14px 12px; border-bottom: 1px solid rgba(255,255,255,.1); text-align: left; }
+.ranking-section th { color: #38d5ff; font-size: 12px; text-transform: uppercase; }
+.ranking-section tr { cursor: pointer; }
+.ranking-section tr:hover { background: rgba(56,213,255,.08); }

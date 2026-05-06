@@ -1,0 +1,23 @@
+{
+  "name": "site078-donation-campaign",
+  "version": "1.0.0",
+  "description": "Online donation campaign mock website with intentional frontend GUI bugs for PPO training.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node -e \"console.log('site078 static build complete')\""
+  },
+  "keywords": [
+    "donation",
+    "campaign",
+    "frontend-bugs",
+    "express",
+    "vanilla-js"
+  ],
+  "author": "Codex",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

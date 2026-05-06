@@ -1,0 +1,22 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, "Segoe UI", Arial, sans-serif; color: #241c35; background: #f5f3fb; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+.app-shell { min-height: 100vh; background: linear-gradient(180deg, #ffffff 0%, #f5f3fb 100%); }
+.site-header { position: sticky; top: 0; z-index: 20; display: grid; grid-template-columns: auto minmax(420px, 1fr) auto auto auto; gap: 14px; align-items: center; min-width: 1180px; padding: 15px 28px; border-bottom: 1px solid #ded8ef; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); }
+.logo { color: #4c1d95; font-size: 24px; font-weight: 900; }
+.course-search { display: flex; align-items: center; gap: 10px; border: 1px solid #d8d0ec; border-radius: 8px; background: #faf8ff; padding: 10px 12px; }
+.course-search span { color: #756889; font-size: 13px; white-space: nowrap; }
+.course-search input { width: 100%; border: 0; outline: 0; background: transparent; }
+.site-header button, .notice-panel button, .task-panel button, .student-drawer button, .table-toolbar button { border: 0; border-radius: 8px; color: #fff; background: #4c1d95; padding: 10px 14px; font-weight: 900; }
+.profile-button { background: #7c3aed !important; }
+.admin-frame { display: grid; grid-template-columns: 230px minmax(0, 1fr); min-width: 1180px; }
+main { padding: 24px; }
+.status-panel { padding: 28px; border: 1px solid #ded8ef; border-radius: 8px; background: #fff; }
+.status-panel.error { border-color: #dc2626; color: #991b1b; }
+.section-heading, .table-toolbar { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
+.section-heading span, .table-toolbar span, .task-panel > span { color: #6d28d9; font-size: 13px; font-weight: 900; text-transform: uppercase; }
+.section-heading h2, .table-toolbar h2 { margin: 0; font-size: 25px; }
+.site-footer { display: flex; justify-content: center; gap: 26px; padding: 28px; border-top: 1px solid #ded8ef; background: #fff; }
+.site-footer button { border: 0; background: transparent; color: #756889; font-weight: 800; }

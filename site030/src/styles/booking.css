@@ -1,0 +1,74 @@
+.booking-panel {
+  position: sticky;
+  top: 90px;
+  display: grid;
+  gap: 16px;
+}
+
+.time-slot-card,
+.booking-summary {
+  display: grid;
+  gap: 14px;
+  border: 1px solid #d8e1f2;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 18px;
+  box-shadow: 0 18px 46px rgba(15, 23, 42, 0.08);
+}
+
+.time-slot-card span,
+.booking-summary span {
+  color: #4f46e5;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.time-slot-card h2,
+.booking-summary h2 {
+  margin: 0;
+  font-size: 23px;
+}
+
+.slot-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.slot-row button {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #334155;
+  background: #f8fbff;
+  padding: 11px 8px;
+  font-weight: 900;
+}
+
+.slot-row button.active {
+  border-color: #4f46e5;
+  color: #ffffff;
+  background: #4f46e5;
+}
+
+.booking-summary dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.booking-summary dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.booking-summary dt {
+  color: #64748b;
+}
+
+.booking-summary dd {
+  margin: 0;
+  font-weight: 900;
+  text-align: right;
+}

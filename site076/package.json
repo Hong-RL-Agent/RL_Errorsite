@@ -1,0 +1,21 @@
+{
+  "name": "site076-garden-class-booking",
+  "version": "1.0.0",
+  "description": "Online gardening class booking website with intentional frontend GUI bugs for PPO training data.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node -e \"const fs=require('fs'); ['server.js','public/index.html','public/styles.css','public/app.js'].forEach((f)=>{if(!fs.existsSync(f)){throw new Error(f+' missing')}}); console.log('site076 build check passed')\""
+  },
+  "keywords": [
+    "gardening",
+    "classes",
+    "booking",
+    "frontend-bugs"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

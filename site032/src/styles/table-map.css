@@ -1,0 +1,22 @@
+.table-section { overflow: visible; }
+.table-map {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid #e1cfb7;
+  border-radius: 8px;
+  background: #fffdf7;
+}
+
+/* INTENTIONAL GUI BUG: site032-bug02
+   Type: table-map-overflow
+   Description: 좌석 배치도 grid를 고정 폭으로 설정해 데스크톱 중간 폭에서 컨테이너 밖으로 넘침.
+*/
+.table-map[data-bug-id="site032-bug02"] {
+  grid-template-columns: repeat(4, 210px);
+}
+
+.table-map button { min-height: 104px; border: 1px solid #d5b98d; border-radius: 8px; color: #2c1b16; background: #f9efe0; padding: 12px; }
+.table-map button.available { background: #fffdf7; }
+.table-map button.reserved { opacity: 0.48; }
+.table-map strong, .table-map span, .table-map small { display: block; }

@@ -1,0 +1,49 @@
+.box-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* INTENTIONAL GUI BUG: site041-bug02
+   Type: subscription-grid-break
+   Description: 데스크톱 중간 폭에서 카드 높이 계산이 잘못되어 구독 박스 카드가 서로 겹침.
+*/
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .box-grid {
+    grid-template-columns: repeat(3, 1fr);
+    /* Incorrectly forced row height that is too small for cards with long content */
+    grid-auto-rows: 400px; 
+    gap: 15px;
+  }
+  
+  .box-card {
+    /* Forcing a fixed height that doesn't account for text wrapping */
+    height: 400px;
+    overflow: visible; /* Allows content to spill over and overlap next row */
+  }
+  
+  .box-img-container {
+    height: 180px; /* Reduced image height but still doesn't save enough space */
+  }
+}
+
+/* Review Section */
+.reviews-container {
+  margin-top: 80px;
+}
+
+.review-item {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.stars {
+  color: #ffb400;
+}

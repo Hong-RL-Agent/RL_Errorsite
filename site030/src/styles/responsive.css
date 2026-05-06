@@ -1,0 +1,60 @@
+@media (max-width: 1120px) {
+  .site-header {
+    grid-template-columns: 1fr;
+  }
+
+  .category-nav {
+    flex-wrap: wrap;
+  }
+
+  .hero-section,
+  .mentor-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-panel {
+    position: static;
+  }
+}
+
+/* INTENTIONAL GUI BUG: site030-bug02
+   Type: profile-card-overlap
+   Description: 태블릿 breakpoint에서 프로필 이미지 margin 계산이 잘못되어 텍스트와 겹침.
+*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  .mentor-card[data-bug-id="site030-bug02"] {
+    grid-template-columns: 96px minmax(0, 1fr);
+  }
+
+  .mentor-card[data-bug-id="site030-bug02"] .mentor-photo-wrap img {
+    width: 174px;
+    height: 174px;
+  }
+
+  .mentor-card[data-bug-id="site030-bug02"] .mentor-card-content {
+    margin-left: -54px;
+  }
+}
+
+@media (max-width: 760px) {
+  main {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .hero-section,
+  .mentor-grid,
+  .review-list,
+  .filter-area,
+  .mentor-modal {
+    grid-template-columns: 1fr;
+  }
+
+  .slot-row {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions,
+  .card-actions {
+    flex-direction: column;
+  }
+}

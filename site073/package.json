@@ -1,0 +1,22 @@
+{
+  "name": "site073-personal-investment-dashboard",
+  "version": "1.0.0",
+  "description": "Mock personal investment portfolio dashboard with intentional frontend GUI bugs.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node -e \"console.log('Vanilla site073 build check complete')\""
+  },
+  "keywords": [
+    "portfolio",
+    "dashboard",
+    "vanilla-js",
+    "express"
+  ],
+  "author": "Codex",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

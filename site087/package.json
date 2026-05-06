@@ -1,0 +1,14 @@
+{
+  "name": "site087-bakery",
+  "version": "1.0.0",
+  "description": "Butter & Bread - Online Bakery Order Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="240" viewBox="0 0 420 240" role="img" aria-label="Olive production kitchen">
+  <rect width="420" height="240" fill="#f4f5f2"/>
+  <rect x="36" y="48" width="348" height="116" rx="10" fill="#ffffff"/>
+  <rect x="54" y="66" width="86" height="64" rx="6" fill="#e7eddd"/>
+  <rect x="160" y="66" width="96" height="64" rx="6" fill="#dde1d8"/>
+  <rect x="276" y="66" width="86" height="64" rx="6" fill="#fff0e4"/>
+  <rect x="50" y="150" width="320" height="38" rx="8" fill="#617044"/>
+  <rect x="88" y="124" width="52" height="64" rx="8" fill="#f58232"/>
+  <rect x="182" y="133" width="68" height="55" rx="8" fill="#394625"/>
+  <rect x="282" y="126" width="50" height="62" rx="8" fill="#a6b094"/>
+</svg>

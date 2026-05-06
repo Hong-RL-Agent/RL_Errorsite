@@ -1,0 +1,72 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 41, 59, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* 
+   INTENTIONAL GUI BUG: site019-bug03
+   Type: broken-focus-order
+   Description: 모달 컨테이너에 focus trap 로직이 없어서 탭 이동이 모달 밖 배경으로 빠져나감. 
+*/
+.modal-content {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
+  color: var(--text-muted);
+}
+
+.modal-close:hover {
+  color: var(--text-main);
+}
+
+.modal-body {
+  margin-top: 1rem;
+}
+
+.modal-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+/* 
+   INTENTIONAL GUI BUG: site019-bug02
+   Type: non-semantic-clickable-element
+   Description: 수강 신청 액션을 button이 아닌 div로 구현해 키보드 접근성이 떨어짐.
+*/
+.fake-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+  background-color: var(--primary);
+  color: var(--white);
+  cursor: pointer;
+  text-align: center;
+}
+
+.fake-button:hover {
+  background-color: var(--primary-hover);
+}

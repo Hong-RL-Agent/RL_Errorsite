@@ -1,0 +1,12 @@
+.student-panel { overflow: hidden; }
+.table-toolbar { padding: 16px; margin: 0; border-bottom: 1px solid #ded8ef; }
+.table-toolbar select { border: 1px solid #d8d0ec; border-radius: 8px; background: #fff; padding: 10px; }
+.student-panel table { width: 100%; border-collapse: collapse; }
+.student-panel th, .student-panel td { padding: 13px 14px; border-bottom: 1px solid #eee8f8; text-align: left; }
+.student-panel th { color: #6d28d9; font-size: 12px; text-transform: uppercase; }
+.student-panel tr { cursor: pointer; }
+.student-panel tr:hover { background: #faf8ff; }
+.student-drawer { position: fixed; top: 76px; right: 20px; z-index: 40; width: 360px; border: 1px solid #ded8ef; border-radius: 8px; background: #fff; padding: 20px; box-shadow: 0 24px 70px rgba(36,28,53,.22); }
+.student-drawer h2 { margin: 12px 0 4px; }
+.student-drawer dl div { display: flex; justify-content: space-between; margin: 10px 0; }
+.student-drawer dd { margin: 0; font-weight: 900; }

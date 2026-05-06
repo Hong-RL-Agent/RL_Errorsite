@@ -1,0 +1,47 @@
+/* 
+  INTENTIONAL GUI BUG: site018-bug02
+  Type: low-contrast-status-text
+  Description: 일정 상태 배지의 텍스트와 배경 대비가 낮아 읽기 어려움.
+*/
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+[data-bug-id="site018-bug02"] .status-confirmed {
+  background-color: #d1fae5; /* 연한 초록 */
+  color: #a7f3d0; /* 더 연한 초록 - 대비 부족 */
+}
+
+[data-bug-id="site018-bug02"] .status-pending {
+  background-color: #fef3c7; /* 연한 노랑 */
+  color: #fde68a; /* 더 연한 노랑 - 대비 부족 */
+}
+
+[data-bug-id="site018-bug02"] .status-changed {
+  background-color: #e0f2fe; /* 연한 파랑 */
+  color: #bae6fd; /* 더 연한 파랑 - 대비 부족 */
+}
+
+/* 
+  INTENTIONAL GUI BUG: site018-bug03
+  Type: color-only-status-indicator
+  Description: 일정 충돌 상태를 색상 점으로만 표시하고 텍스트 라벨을 제공하지 않음.
+*/
+[data-bug-id="site018-bug03"] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+[data-bug-id="site018-bug03"].conflict-true {
+  background-color: #ef4444; /* 빨강 */
+}
+
+[data-bug-id="site018-bug03"].conflict-false {
+  background-color: #10b981; /* 초록 */
+}

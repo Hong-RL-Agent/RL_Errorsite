@@ -1,0 +1,84 @@
+.booking-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 60px;
+}
+
+.summary-panel {
+  background-color: var(--accent);
+  padding: 40px;
+  position: sticky;
+  top: 130px;
+  border-radius: 4px;
+}
+
+.summary-title {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.summary-label {
+  color: var(--text-muted);
+}
+
+.summary-value {
+  font-weight: 600;
+}
+
+/* INTENTIONAL GUI BUG: site040-bug01
+   Type: booking-summary-undefined
+   Description: 선택한 패키지의 addOnLabel이 없을 때 fallback 없이 렌더링해 undefined가 표시됨.
+*/
+.buggy-option {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px dashed var(--border-color);
+  font-size: 0.85rem;
+  color: var(--secondary);
+  font-weight: 700;
+}
+
+.total-row {
+  margin-top: 40px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Date Time Picker */
+.picker-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.slot {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.slot.selected {
+  background-color: var(--primary);
+  color: white;
+}

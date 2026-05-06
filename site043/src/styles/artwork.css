@@ -1,0 +1,326 @@
+.filter-panel {
+  display: grid;
+  gap: 18px;
+  border: 1px solid #dfd4c2;
+  border-radius: 8px;
+  background: #fffaf1;
+  padding: 24px;
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: minmax(420px, 1fr) 190px 230px 42px;
+  gap: 12px;
+  align-items: end;
+}
+
+.segmented-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  border: 1px solid #d8cbb7;
+  border-radius: 8px;
+  background: #f4eadb;
+  padding: 5px;
+}
+
+.segmented-control button {
+  min-height: 34px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  padding: 0 12px;
+  color: #5d5348;
+  font-weight: 850;
+}
+
+.segmented-control button.active {
+  background: #2a2621;
+  color: #f5d690;
+}
+
+.select-field,
+.search-field {
+  display: grid;
+  gap: 7px;
+  color: #5d5348;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.select-field select,
+.search-field input {
+  width: 100%;
+  height: 42px;
+  border: 1px solid #d8cbb7;
+  border-radius: 8px;
+  background: #fffdf8;
+  color: #2a2621;
+}
+
+.select-field select {
+  padding: 0 10px;
+}
+
+.search-field {
+  position: relative;
+}
+
+.search-field svg {
+  position: absolute;
+  bottom: 13px;
+  left: 12px;
+  color: #8c6a25;
+}
+
+.search-field input {
+  padding: 0 12px 0 36px;
+}
+
+.artwork-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.artwork-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 528px;
+  border: 1px solid #dfd4c2;
+  border-radius: 8px;
+  background: #fffaf1;
+  overflow: visible;
+}
+
+.artwork-image-button {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.artwork-image-button img {
+  width: 100%;
+  aspect-ratio: 0.86;
+  border-radius: 8px 8px 0 0;
+  object-fit: cover;
+}
+
+.artwork-caption {
+  display: grid;
+  gap: 5px;
+  min-height: 132px;
+  padding: 18px;
+}
+
+.artwork-caption span {
+  color: #8c6a25;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.artwork-caption h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  line-height: 1.18;
+}
+
+.artwork-caption p {
+  margin: 0;
+  color: #756b5f;
+  line-height: 1.45;
+}
+
+/* INTENTIONAL GUI BUG: site043-bug02
+   CSV Error: 이미지 캡션 겹침
+   Type: artwork-caption-overlap
+   Description: 작품 캡션 absolute 위치 계산이 잘못되어 이미지와 주변 카드 영역을 침범함.
+*/
+.artwork-card.feature-overlap .artwork-caption {
+  position: absolute;
+  left: 18px;
+  right: -46px;
+  bottom: 92px;
+  z-index: 6;
+  min-height: 172px;
+  border: 1px solid rgba(196, 154, 69, 0.72);
+  border-radius: 8px;
+  background: rgba(255, 250, 241, 0.94);
+  box-shadow: 0 18px 44px rgba(42, 38, 33, 0.2);
+}
+
+.artwork-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 18px 18px;
+}
+
+.skeleton-card {
+  padding: 14px;
+  gap: 14px;
+}
+
+.skeleton-art,
+.skeleton-line {
+  border-radius: 8px;
+  background: linear-gradient(90deg, #ece2d3, #fffaf1, #ece2d3);
+  background-size: 240% 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+.skeleton-art {
+  aspect-ratio: 0.86;
+}
+
+.skeleton-line {
+  height: 16px;
+}
+
+.skeleton-line.wide {
+  width: 76%;
+}
+
+.skeleton-line.short {
+  width: 44%;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(42, 38, 33, 0.62);
+  padding: 34px;
+}
+
+.artwork-modal {
+  position: relative;
+  display: grid;
+  grid-template-columns: 430px 1fr;
+  gap: 28px;
+  width: min(940px, 100%);
+  max-height: 86vh;
+  overflow: auto;
+  border-radius: 8px;
+  background: #fffaf1;
+  padding: 24px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.28);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+}
+
+.artwork-modal > img {
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.modal-detail {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  padding-right: 8px;
+}
+
+.modal-detail h2 {
+  margin: 0;
+  padding-right: 42px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 38px;
+}
+
+.modal-detail dl {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.modal-detail dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid #e7ddcd;
+  padding: 12px 0;
+}
+
+.modal-detail dt {
+  color: #756b5f;
+  font-weight: 850;
+}
+
+.modal-detail dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 850;
+}
+
+.modal-artist-info {
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  gap: 14px;
+  align-items: center;
+  min-height: 128px;
+  border: 1px solid #e0d2be;
+  border-radius: 8px;
+  background: #fffdf8;
+  padding: 14px;
+}
+
+.modal-artist-info img {
+  width: 78px;
+  height: 78px;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.modal-artist-info strong,
+.modal-artist-info small {
+  display: block;
+}
+
+.modal-artist-info p {
+  margin: 6px 0;
+  color: #756b5f;
+  line-height: 1.5;
+}
+
+.artist-empty-space {
+  grid-column: 1 / -1;
+  min-height: 98px;
+}
+
+.modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.modal-actions span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #8c6a25;
+  font-weight: 850;
+}

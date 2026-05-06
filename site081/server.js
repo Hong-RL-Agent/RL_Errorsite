@@ -1,0 +1,207 @@
+const express = require("express");
+const path = require("path");
+
+const app = express();
+const PORT = process.env.PORT || 9300;
+
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
+
+const kitchenware = [
+  {
+    id: "knife-santoku-01",
+    name: "미야비 세이지 산토쿠 나이프 17cm",
+    category: "조리도구",
+    brand: "Miyabi Sage",
+    material: "Damascus Steel",
+    price: 168000,
+    image: "/assets/knife.svg",
+    rating: 4.9,
+    inStock: true,
+    featured: true,
+    badge: "Chef Pick",
+    description: "균형 잡힌 무게감과 얇은 칼날로 채소와 육류를 정교하게 손질하는 프리미엄 산토쿠 나이프입니다."
+  },
+  {
+    id: "pan-copper-02",
+    name: "라포레 통3중 스테인리스 프라이팬 26cm",
+    category: "팬/냄비",
+    brand: "Laforet Atelier",
+    material: "Stainless Steel",
+    price: 124000,
+    image: "/assets/pan.svg",
+    rating: 4.8,
+    inStock: true,
+    featured: false,
+    badge: "Bestseller",
+    description: "스테인리스와 알루미늄 코어를 결합해 열전도율과 내구성을 모두 챙긴 데일리 프라이팬입니다."
+  },
+  {
+    id: "board-walnut-03",
+    name: "노스우드 월넛 엔드그레인 도마",
+    category: "도마/정리",
+    brand: "Northwood",
+    material: "Walnut Wood",
+    price: 89000,
+    image: "/assets/board.svg",
+    rating: 4.7,
+    inStock: true,
+    featured: false,
+    badge: "Limited",
+    description: "단단한 월넛 엔드그레인으로 제작되어 칼날 손상을 줄이고 조리대에 따뜻한 질감을 더합니다."
+  },
+  {
+    id: "plate-ceramic-04",
+    name: "오로라 세라믹 디너 플레이트 세트",
+    category: "식기",
+    brand: "Aurora Table",
+    material: "Ceramic",
+    price: 72000,
+    image: "/assets/plate.svg",
+    rating: 4.6,
+    inStock: true,
+    featured: true,
+    badge: "New",
+    description: "무광 세라믹 표면과 낮은 림으로 파스타, 샐러드, 디저트 플레이팅에 모두 어울리는 4P 세트입니다."
+  },
+  {
+    id: "pot-castiron-05",
+    name: "에버쿡 주물 양수 냄비 22cm",
+    category: "팬/냄비",
+    brand: "Evercook Foundry",
+    material: "Cast Iron",
+    price: 156000,
+    image: "/assets/pot.svg",
+    rating: 4.9,
+    inStock: false,
+    featured: false,
+    badge: "Restock Soon",
+    description: "두꺼운 주물 바디가 열을 오래 유지해 스튜, 브레이징, 오븐 요리에 안정적인 결과를 제공합니다."
+  },
+  {
+    id: "bowl-glass-06",
+    name: "클리어 글라스 믹싱볼 3종",
+    category: "조리도구",
+    brand: "Clearhaus",
+    material: "Tempered Glass",
+    price: 46000,
+    image: "/assets/bowl.svg",
+    rating: 4.5,
+    inStock: true,
+    featured: false,
+    badge: "Stackable",
+    description: "계량 눈금과 안정적인 바닥면을 갖춘 강화유리 믹싱볼로 반죽, 샐러드, 소스 작업에 적합합니다."
+  },
+  {
+    id: "spoon-teak-07",
+    name: "티크 우드 조리 스푼 세트",
+    category: "조리도구",
+    brand: "Northwood",
+    material: "Teak Wood",
+    price: 39000,
+    image: "/assets/spoon.svg",
+    rating: 4.4,
+    inStock: true,
+    featured: false,
+    badge: "Natural",
+    description: "코팅 팬에 부드럽게 닿는 티크 조리 스푼 4종 세트입니다."
+  },
+  {
+    id: "cup-silver-08",
+    name: "브러시드 실버 계량컵 세트",
+    category: "계량/베이킹",
+    brand: "Laforet Atelier",
+    material: "Stainless Steel",
+    price: 34000,
+    image: "/assets/cup.svg",
+    rating: 4.3,
+    inStock: true,
+    featured: true,
+    badge: "Giftable",
+    description: "브러시드 스테인리스 마감과 또렷한 계량 각인이 돋보이는 베이킹 필수 계량컵 세트입니다."
+  },
+  {
+    id: "whisk-sage-09",
+    name: "세이지 실리콘 벌룬 거품기",
+    category: "계량/베이킹",
+    brand: "Clearhaus",
+    material: "Silicone",
+    price: 22000,
+    image: "/assets/whisk.svg",
+    rating: 4.2,
+    inStock: true,
+    featured: false,
+    badge: "Easy Clean",
+    description: "실리콘 코팅 와이어가 볼 표면을 긁지 않고 소스와 반죽을 고르게 섞어줍니다."
+  }
+];
+
+const brands = [
+  {
+    id: "brand-miyabi",
+    name: "Miyabi Sage",
+    description: "일본식 블레이드 설계와 차분한 세이지 핸들을 결합한 셰프 나이프 라인입니다.",
+    recommended: true
+  },
+  {
+    id: "brand-laforet",
+    name: "Laforet Atelier",
+    description: "프랑스 아틀리에 감성의 스테인리스 팬과 베이킹 도구를 선보입니다.",
+    recommended: true
+  },
+  {
+    id: "brand-northwood",
+    name: "Northwood",
+    description: "월넛과 티크 같은 천연 목재로 조리 공간에 온기를 더하는 브랜드입니다.",
+    recommended: false
+  },
+  {
+    id: "brand-aurora",
+    name: "Aurora Table",
+    description: "절제된 세라믹 색감과 낮은 림을 중심으로 한 테이블웨어 브랜드입니다.",
+    recommended: true
+  },
+  {
+    id: "brand-clearhaus",
+    name: "Clearhaus",
+    description: "투명한 소재와 간결한 기능성을 중시하는 모던 키친 툴 브랜드입니다.",
+    recommended: false
+  },
+  {
+    id: "brand-evercook",
+    name: "Evercook Foundry",
+    description: "오래 쓰는 주물 조리기구를 만드는 소규모 파운드리 브랜드입니다.",
+    recommended: false
+  }
+];
+
+app.get("/api/health", (req, res) => {
+  res.json({
+    ok: true,
+    site: "site081",
+    service: "Chef's Pantry kitchenware storefront",
+    timestamp: new Date().toISOString()
+  });
+});
+
+app.get("/api/kitchenware", (req, res) => {
+  res.json({
+    items: kitchenware,
+    count: kitchenware.length
+  });
+});
+
+app.get("/api/brands", (req, res) => {
+  res.json({
+    brands,
+    count: brands.length
+  });
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.listen(PORT, () => {
+  console.log(`site081 kitchenware shop running at http://localhost:${PORT}`);
+});

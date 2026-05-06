@@ -1,0 +1,528 @@
+:root {
+    --primary: #ff7043; /* Coral */
+    --secondary: #ffd54f; /* Pastel Yellow */
+    --accent: #4fc3f7; /* Sky Blue */
+    --bg-light: #fffdf7;
+    --text-dark: #37474f;
+    --text-gray: #78909c;
+    --white: #ffffff;
+    --shadow: 0 8px 16px rgba(0,0,0,0.05);
+    --font-logo: 'Fredoka One', cursive;
+    --font-main: 'Quicksand', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* Header */
+.header {
+    background: var(--white);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-family: var(--font-logo);
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: var(--primary);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.booking-toggle {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: var(--primary);
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    font-family: var(--font-main);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 112, 67, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(255, 112, 67, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+}
+
+.btn-outline:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-sm { padding: 6px 18px; font-size: 0.85rem; }
+.btn-lg { padding: 16px 36px; font-size: 1.1rem; }
+.btn-block { width: 100%; }
+
+.btn:disabled {
+    background: #cfd8dc;
+    color: #90a4ae;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Hero */
+.hero {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #fff9c4 0%, #e1f5fe 100%);
+    overflow: hidden;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.hero-content { flex: 1; }
+
+.hero-badge {
+    background: var(--white);
+    color: var(--primary);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.hero h1 {
+    font-family: var(--font-logo);
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 25px;
+    color: #263238;
+}
+
+.hero h1 span { color: var(--primary); }
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    margin-bottom: 40px;
+    max-width: 550px;
+}
+
+.hero-btns { display: flex; gap: 20px; }
+
+.hero-image { flex: 1; }
+
+.blob-wrapper {
+    width: 100%;
+    height: 450px;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    overflow: hidden;
+    background: var(--secondary);
+}
+
+.blob-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Main Layout */
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 40px;
+    padding: 80px 0;
+}
+
+/* Filters */
+.section-header {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-header h2 {
+    font-family: var(--font-logo);
+    font-size: 2.2rem;
+}
+
+.filters {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-group span {
+    font-weight: 700;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.filter-btn {
+    background: var(--white);
+    border: 1px solid #eceff1;
+    padding: 6px 14px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+
+.filter-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+#categoryFilter {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #eceff1;
+}
+
+/* Class Grid */
+.class-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.class-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+}
+
+.class-card:hover { transform: translateY(-5px); }
+
+.card-img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-content { padding: 20px; }
+
+.card-badge {
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.class-card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.class-info {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-bottom: 20px;
+}
+
+.class-info div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+/* Schedule */
+.schedule-section { margin-bottom: 80px; }
+.schedule-section h3 { font-family: var(--font-logo); margin-bottom: 25px; }
+
+.schedule-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: var(--white);
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    background: var(--secondary);
+    color: var(--text-dark);
+}
+
+.schedule-body {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px dashed #eceff1;
+}
+
+.schedule-item:last-child { border: none; }
+
+.schedule-item .time {
+    width: 100px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.schedule-item .title { flex-grow: 1; font-weight: 600; }
+.schedule-item .teacher { color: var(--text-gray); font-size: 0.85rem; }
+
+/* Teachers */
+.teachers-section { margin-bottom: 80px; }
+.teachers-section h3 { font-family: var(--font-logo); margin-bottom: 25px; }
+
+.teacher-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.teacher-card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.teacher-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--secondary);
+}
+
+.teacher-info h5 { font-size: 1.1rem; margin-bottom: 5px; }
+.teacher-info span { font-size: 0.8rem; color: var(--accent); font-weight: 700; }
+
+/* Safety Accordion */
+.safety-section { margin-bottom: 80px; }
+.safety-section h3 { font-family: var(--font-logo); margin-bottom: 25px; }
+
+.accordion-item {
+    background: var(--white);
+    border-radius: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+/* INTENTIONAL GUI BUG: site089-bug02
+   Type: safety-card-overlap
+   Description: 안전 안내 accordion 펼침 상태에서 카드 높이를 갱신하지 않아 다음 카드와 겹침.
+*/
+.accordion[data-bug-id="site089-bug02"] .accordion-item.active {
+    height: 60px; /* FIXED HEIGHT EVEN WHEN OPEN */
+    overflow: visible; /* FORCES OVERLAP */
+    z-index: 10;
+}
+
+.accordion-header {
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.accordion-content {
+    padding: 0 25px 20px;
+    display: none;
+    color: var(--text-gray);
+    background: #fff;
+}
+
+.accordion-item.active .accordion-content { display: block; }
+.accordion-item.active .arrow { transform: rotate(180deg); }
+
+/* Sidebar */
+.sticky-panel {
+    position: sticky;
+    top: 100px;
+    background: var(--white);
+    border: 3px solid var(--secondary);
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.sticky-panel h3 { font-family: var(--font-logo); margin-bottom: 20px; }
+
+.booking-list { margin-bottom: 25px; min-height: 100px; }
+
+.booking-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eceff1;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+/* Reviews */
+.reviews-section { padding-bottom: 80px; }
+.reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.review-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+.rating { margin-bottom: 15px; }
+.parent { margin-top: 15px; font-weight: 700; font-size: 0.9rem; }
+
+/* Footer */
+.footer {
+    background: #263238;
+    color: white;
+    padding: 80px 0 40px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 50px;
+}
+
+.footer-col h4 { margin-bottom: 20px; color: var(--secondary); }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 10px; font-size: 0.9rem; }
+.footer-col a { color: #b0bec5; text-decoration: none; }
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background: white;
+    width: 600px;
+    margin: 10% auto;
+    padding: 40px;
+    border-radius: 30px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    right: 20px; top: 20px;
+    font-size: 2rem;
+    background: none; border: none; cursor: pointer;
+}
+
+.loader { text-align: center; padding: 40px; font-weight: 700; color: var(--accent); }

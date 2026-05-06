@@ -1,0 +1,14 @@
+{
+  "name": "site090-hospital",
+  "version": "1.0.0",
+  "description": "MediLife Hospital - Professional Online Appointment System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

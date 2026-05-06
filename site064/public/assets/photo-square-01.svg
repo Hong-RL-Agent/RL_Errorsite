@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="Newborn soft light square">
+  <rect width="300" height="300" fill="#fff7f5"/>
+  <circle cx="150" cy="136" r="70" fill="#ffd7d2"/>
+  <circle cx="126" cy="126" r="12" fill="#17202a"/>
+  <circle cx="174" cy="126" r="12" fill="#17202a"/>
+  <path d="M126 164c20 18 38 18 58 0" fill="none" stroke="#ff735f" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="214" width="200" height="42" rx="21" fill="#e9f6fd"/>
+</svg>

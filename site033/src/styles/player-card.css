@@ -1,0 +1,21 @@
+.player-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.player-card { height: 230px; perspective: 900px; }
+.player-card-inner { position: relative; width: 100%; height: 100%; transition: transform 240ms ease; transform-style: preserve-3d; }
+.player-card.flipped .player-card-inner { transform: rotateY(180deg); }
+.player-face { position: absolute; inset: 0; display: grid; gap: 10px; align-content: center; border: 1px solid rgba(255,255,255,.14); border-radius: 8px; background: linear-gradient(145deg, rgba(56,213,255,.16), rgba(132,69,255,.14)); padding: 18px; }
+.player-face span { color: #38d5ff; font-weight: 900; }
+.player-face h3 { margin: 0; font-size: 34px; }
+.player-face p { margin: 0; color: #b9c7ea; }
+.player-face div { display: flex; gap: 8px; }
+
+/* INTENTIONAL GUI BUG: site033-bug02
+   Type: card-flip-layout-break
+   Description: 카드 flip 효과에서 backface/height 설정이 잘못되어 뒷면 정보가 앞면과 겹침.
+*/
+.player-card[data-bug-id="site033-bug02"] .back {
+  transform: rotateY(180deg) translateX(34px);
+  height: 118%;
+  backface-visibility: visible;
+}
+
+.front { backface-visibility: hidden; }

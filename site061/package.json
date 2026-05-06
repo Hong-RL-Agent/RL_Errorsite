@@ -1,0 +1,23 @@
+{
+  "name": "site061-walnut-room-furniture",
+  "version": "1.0.0",
+  "description": "Site061 furniture showroom commerce site with intentional frontend GUI bugs for PPO training.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node server.js --check"
+  },
+  "keywords": [
+    "furniture",
+    "showroom",
+    "express",
+    "vanilla-js",
+    "gui-bug-training"
+  ],
+  "author": "Codex",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}

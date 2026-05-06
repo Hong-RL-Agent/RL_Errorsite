@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melody Institute - 1:1 맞춤 음악 레슨</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar" data-bug-id="site068-bug02">
+            <div class="container nav-container">
+                <div class="logo">
+                    <span class="logo-text">Melody</span>
+                    <span class="logo-sub">INSTITUTE</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">악기별 레슨</a></li>
+                    <li><a href="#" onclick="alert('강사진 소개 페이지 준비 중입니다.')">강사진</a></li>
+                    <li><a href="#" onclick="alert('전체 시간표 안내 페이지 준비 중입니다.')">시간표</a></li>
+                    <li><a href="#" onclick="alert('수강료 정책 안내 페이지 준비 중입니다.')">수강료</a></li>
+                </ul>
+                <div class="header-actions">
+                    <button class="btn-consult-header" onclick="document.getElementById('consult-section').scrollIntoView({behavior:'smooth'})">상담 신청</button>
+                    <button class="btn-login" onclick="alert('로그인 서비스 준비 중입니다.')">로그인</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>내 안의 선율을 깨우다</h1>
+                    <p>검증된 강사진과 함께하는 체계적인 1:1 맞춤 레슨으로 당신의 음악적 꿈을 이루세요.</p>
+                    <button class="btn-gold" onclick="document.getElementById('lesson-grid-section').scrollIntoView({behavior:'smooth'})">레슨 찾아보기</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="container main-layout">
+            <div class="content-area">
+                <section id="lesson-grid-section" class="lesson-section">
+                    <div class="section-header">
+                        <h2>악기별 1:1 레슨</h2>
+                        <div class="filter-chips">
+                            <button class="chip active" data-instrument="All">전체</button>
+                            <button class="chip" data-instrument="Piano">피아노</button>
+                            <button class="chip" data-instrument="Violin">바이올린</button>
+                            <button class="chip" data-instrument="Guitar">기타</button>
+                            <button class="chip" data-instrument="Flute">플루트</button>
+                        </div>
+                    </div>
+                    <div id="lesson-grid" class="lesson-grid">
+                        <div class="loading">레슨 정보를 불러오는 중...</div>
+                    </div>
+                </section>
+
+                <section id="consult-section" class="consultation-form-section">
+                    <h2>상담 및 체험 수업 신청</h2>
+                    <div class="form-container">
+                        <div class="form-group">
+                            <label>이름</label>
+                            <input type="text" id="user-name" placeholder="성함을 입력하세요">
+                        </div>
+                        <div class="form-group">
+                            <label>연락처</label>
+                            <input type="text" id="user-phone" placeholder="010-0000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label>관심 악기</label>
+                            <select id="interest-instrument">
+                                <option value="">선택하세요</option>
+                                <option value="Piano">피아노</option>
+                                <option value="Violin">바이올린</option>
+                                <option value="Guitar">기타</option>
+                                <option value="Flute">플루트</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="pricing-policy">
+                    <h2>수강료 안내</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">입문/초급 과정 (주 1회) <span>+</span></button>
+                            <div class="accordion-content">월 180,000원 ~ 220,000원 (악기별 상이)</div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">중급/전문가 과정 (주 1회) <span>+</span></button>
+                            <div class="accordion-content">월 250,000원 ~ 400,000원 (강사진별 상이)</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="sidebar">
+                <div class="sticky-panel">
+                    <div class="summary-card">
+                        <h3>상담 예약 요약</h3>
+                        <div id="consult-summary" class="consult-summary">
+                            <p class="empty-msg">선택된 레슨이 없습니다.</p>
+                        </div>
+                        <div class="summary-footer">
+                            <button class="btn-submit-consult" onclick="alert('상담 신청이 완료되었습니다. 담당자가 곧 연락드리겠습니다.')">신청 완료하기</button>
+                        </div>
+                    </div>
+                    <div class="location-card">
+                        <h4>학원 위치</h4>
+                        <p>서울시 강남구 테헤란로 123-45<br>메로디 빌딩 3-5층</p>
+                        <p class="tel">02-1234-5678</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Melody Institute</h3>
+                    <p>Fine Music Education Since 2010</p>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="#">위치 안내</a></li>
+                    <li><a href="#">체험 수업</a></li>
+                    <li><a href="#">환불 규정</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2024 Melody Institute. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Teacher Detail Modal -->
+    <div id="teacher-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

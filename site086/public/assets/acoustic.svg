@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240" role="img" aria-label="Acoustic guitar">
+  <rect width="320" height="240" fill="#f7f4ee"/>
+  <path d="M142 77c-24-18-57 7-44 37-34 21-22 75 18 82 32 6 56-14 64-40 25 9 54-2 60-29 7-34-28-62-57-43-10-11-26-15-41-7z" fill="#a66b38"/>
+  <circle cx="161" cy="131" r="28" fill="#251812"/>
+  <circle cx="161" cy="131" r="18" fill="#f7f4ee"/>
+  <rect x="191" y="84" width="96" height="15" rx="7" transform="rotate(-24 191 84)" fill="#4b2f20"/>
+  <rect x="268" y="43" width="34" height="27" rx="7" transform="rotate(-24 268 43)" fill="#251812"/>
+  <path d="M125 150h69" stroke="#f2dfae" stroke-width="6"/>
+</svg>

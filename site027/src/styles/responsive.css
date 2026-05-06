@@ -1,0 +1,33 @@
+/* INTENTIONAL GUI BUG: site027-bug03
+   Type: mobile-image-text-overlap
+   Description: 모바일 breakpoint에서 카드 이미지 position이 잘못되어 텍스트 영역을 덮음.
+*/
+@media (max-width: 640px) {
+  .recipe-card {
+    position: relative;
+    height: 350px;
+  }
+  
+  .recipe-card[data-bug-id="site027-bug03"] .recipe-card-img {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 10;
+    height: 150px;
+    opacity: 0.9;
+  }
+
+  .recipe-card-body {
+    padding-top: 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+  .saved-recipes-panel {
+    position: static;
+    margin-top: 40px;
+  }
+}

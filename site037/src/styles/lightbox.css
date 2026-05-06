@@ -1,0 +1,119 @@
+/* INTENTIONAL GUI BUG: site037-bug02
+   CSV Error: lightbox z-index 오류
+   Type: lightbox-z-index-error
+   Description: lightbox overlay의 z-index가 fixed header보다 낮아 헤더가 이미지 위에 표시됨.
+*/
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: start center;
+  padding: 28px 42px 42px;
+  background: rgba(0, 0, 0, 0.84);
+}
+
+.lightbox-panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(620px, 1fr) 360px;
+  width: min(1280px, calc(100vw - 84px));
+  height: min(760px, calc(100vh - 150px));
+  border: 1px solid rgba(245, 234, 214, 0.2);
+  background: #080807;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.48);
+}
+
+.lightbox-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid rgba(245, 234, 214, 0.22);
+  background: rgba(8, 8, 7, 0.74);
+  color: var(--cream);
+}
+
+.lightbox-close {
+  top: 16px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+}
+
+.lightbox-nav {
+  top: 50%;
+  min-width: 76px;
+  min-height: 42px;
+  transform: translateY(-50%);
+}
+
+.lightbox-nav.previous {
+  left: 18px;
+}
+
+.lightbox-nav.next {
+  right: 378px;
+}
+
+.lightbox-details {
+  display: flex;
+  flex-direction: column;
+  padding: 34px;
+  border-left: 1px solid var(--line);
+  background: #141413;
+}
+
+.lightbox-details h2 {
+  margin: 18px 0;
+  font-family: Georgia, serif;
+  font-size: 38px;
+  line-height: 1.06;
+  font-weight: 400;
+}
+
+.lightbox-details dl {
+  display: grid;
+  gap: 13px;
+  margin: 0 0 22px;
+}
+
+.lightbox-details dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
+}
+
+.lightbox-details dt {
+  color: var(--silver);
+  font-size: 12px;
+}
+
+.lightbox-details dd {
+  margin: 0;
+  text-align: right;
+}
+
+.lightbox-details p {
+  color: var(--soft-cream);
+  line-height: 1.7;
+}
+
+.lightbox-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.lightbox-footer span {
+  color: var(--silver);
+}

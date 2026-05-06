@@ -1,0 +1,14 @@
+{
+  "name": "site082-educon",
+  "version": "1.0.0",
+  "description": "EduCon 2026 - Online Lecture/Seminar Reservation Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build step required for vanilla JS'"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

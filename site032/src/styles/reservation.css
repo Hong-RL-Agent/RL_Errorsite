@@ -1,0 +1,7 @@
+.reservation-summary { position: sticky; top: 92px; display: grid; gap: 15px; border: 1px solid #e1cfb7; border-radius: 8px; background: #fffdf7; padding: 18px; box-shadow: 0 20px 46px rgba(44, 27, 22, 0.12); }
+.reservation-summary > span { color: #9b742c; font-size: 13px; font-weight: 900; text-transform: uppercase; }
+.reservation-summary h2 { margin: 0; font-size: 24px; }
+.reservation-summary dl { display: grid; gap: 12px; margin: 0; }
+.reservation-summary dl div { display: flex; justify-content: space-between; gap: 12px; }
+.reservation-summary dt { color: #77594b; }
+.reservation-summary dd { margin: 0; font-weight: 900; text-align: right; }

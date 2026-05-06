@@ -1,0 +1,52 @@
+/* INTENTIONAL GUI BUG: site025-bug02
+   Type: fixed-height-cart-overflow
+   Description: 주문 요약 패널에 고정 높이와 overflow hidden을 적용해 하단 결제 영역이 잘림.
+*/
+.cart-summary-panel {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 20px;
+  position: sticky;
+  top: 100px;
+  height: 500px; /* Buggy fixed height */
+  overflow: hidden; /* Buggy overflow hidden */
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-items-scroll {
+  flex: 1;
+  /* Missing overflow-y: auto */
+}
+
+.cart-footer-fixed {
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  margin-top: auto;
+}
+
+.menu-item-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px dotted #eee;
+}
+
+/* INTENTIONAL GUI BUG: site025-bug01
+   Type: too-small-click-target
+   Description: 데스크톱 메뉴 수량 조절 버튼의 클릭 영역이 지나치게 작아 사용하기 어려움.
+*/
+.qty-btn-minimal {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  padding: 0 !important;
+  font-size: 10px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+  border: none;
+  border-radius: 2px;
+}

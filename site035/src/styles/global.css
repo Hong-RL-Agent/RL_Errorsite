@@ -1,0 +1,22 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, "Segoe UI", Arial, sans-serif; color: #3e342f; background: #fff8f4; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+.app-shell { min-height: 100vh; background: linear-gradient(180deg, #fff 0%, #fff8f4 50%, #f7efe3 100%); }
+.site-header { position: sticky; top: 0; z-index: 20; display: grid; grid-template-columns: auto minmax(320px, 1fr) 180px 160px auto auto; gap: 14px; align-items: center; min-width: 1180px; padding: 16px 34px; border-bottom: 1px solid #eadbd4; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); }
+.logo { color: #c85b7a; font-size: 25px; font-weight: 900; }
+.site-header label, .filter-panel label { display: grid; gap: 5px; color: #8a766d; font-size: 12px; font-weight: 800; }
+.product-search { display: flex !important; align-items: center; gap: 10px; border: 1px solid #eadbd4; border-radius: 8px; background: #fffaf6; padding: 10px 12px; }
+.product-search span { white-space: nowrap; }
+.product-search input { width: 100%; border: 0; outline: 0; background: transparent; }
+.site-header select, .filter-panel select { border: 1px solid #eadbd4; border-radius: 8px; background: #fffaf6; padding: 10px; }
+.site-header button, .hero-copy button, .cart-summary button, .flower-modal button { border: 0; border-radius: 8px; color: #fff; background: #c85b7a; padding: 11px 14px; font-weight: 900; }
+main { width: 1360px; margin: 0 auto; }
+.status-panel { margin: 64px 0; padding: 28px; border: 1px solid #eadbd4; border-radius: 8px; background: #fff; }
+.status-panel.error { border-color: #c85b7a; color: #9f2f50; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; margin: 34px 0 16px; }
+.section-heading span { color: #6f8f72; font-size: 13px; font-weight: 900; text-transform: uppercase; }
+.section-heading h2 { margin: 0; font-size: 30px; }
+.site-footer { display: flex; justify-content: center; gap: 28px; margin-top: 58px; padding: 34px; border-top: 1px solid #eadbd4; background: #fff; }
+.site-footer button { border: 0; color: #8a766d; background: transparent; font-weight: 900; }

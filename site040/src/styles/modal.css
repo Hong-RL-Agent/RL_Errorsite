@@ -1,0 +1,48 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* INTENTIONAL GUI BUG: site040-bug02
+   Type: modal-footer-clipped
+   Description: 패키지 상세 모달에 고정 높이와 overflow hidden을 적용해 footer 버튼 영역이 잘림.
+*/
+.modal-container {
+  background: white;
+  width: 600px;
+  height: 500px; /* FIXED HEIGHT - will clip footer if content is long */
+  overflow: hidden; /* HIDDEN OVERFLOW - no scroll allowed */
+  position: relative;
+  border-radius: 4px;
+}
+
+.modal-header {
+  padding: 30px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-body {
+  padding: 30px;
+}
+
+.modal-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+  background: white;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  /* Since container is 500px and body content is long, this absolute footer might be pushed out of bounds or overlap strangely */
+}

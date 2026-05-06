@@ -1,0 +1,320 @@
+/* ============================================================
+   PremiRide — Car Grid, Cards, Filters, Modal — site028
+   ============================================================ */
+
+/* ---- Filters ---- */
+.car-filters {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.filter-row {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.filter-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  min-width: 60px;
+}
+.filter-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-pill {
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border);
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.filter-pill:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(27,42,74,0.04);
+}
+.filter-pill.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ---- Car Grid Section ---- */
+.car-grid-section { }
+.car-count-badge {
+  background: var(--accent);
+  color: var(--primary-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+.sort-control {}
+.sort-select {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 7px 12px;
+  font-size: 0.83rem;
+  font-family: var(--font);
+  color: var(--text-muted);
+  background: var(--white);
+  outline: none;
+  cursor: pointer;
+}
+.sort-select:focus { border-color: var(--primary); }
+
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ---- Car Card ---- */
+.car-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.car-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--primary-light);
+}
+.car-card.unavailable { opacity: 0.6; }
+
+.car-card-image {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.car-brand-tag {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(4px);
+}
+.car-emoji-large { font-size: 4.5rem; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3)); }
+.unavailable-badge {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+.car-fuel-chip {
+  position: absolute;
+  bottom: 10px; right: 10px;
+  background: rgba(0,0,0,0.45);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(4px);
+}
+
+.car-card-body { padding: 16px; }
+.car-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.car-model {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+.car-type-pill {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+}
+.type-소형 { background: #e0f2fe; color: #0369a1; }
+.type-중형 { background: #f0fdf4; color: #166534; }
+.type-대형 { background: #fdf4ff; color: #7e22ce; }
+.type-SUV  { background: #fff7ed; color: #9a3412; }
+.type-럭셔리{ background: #fefce8; color: #854d0e; }
+
+.car-seats { font-size: 0.82rem; color: var(--text-muted); white-space: nowrap; }
+.car-meta-row { margin-bottom: 8px; }
+.meta-item { font-size: 0.8rem; color: var(--text-muted); }
+
+.car-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.star-rating { display: flex; align-items: center; gap: 2px; }
+.star { font-size: 0.8rem; color: var(--border); }
+.star.filled { color: var(--accent); }
+.rating-value { font-size: 0.82rem; font-weight: 600; color: var(--text); margin-left: 4px; }
+.review-count { font-size: 0.78rem; color: var(--text-muted); }
+
+.car-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.car-price-block {}
+.price-amount { font-size: 1.2rem; font-weight: 800; color: var(--primary); }
+.price-unit { font-size: 0.78rem; color: var(--text-muted); }
+.btn-card-reserve {
+  padding: 8px 16px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+  white-space: nowrap;
+}
+.btn-card-reserve:hover:not(.disabled) { background: var(--primary-light); }
+.btn-card-reserve.disabled {
+  background: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* ---- Car Modal ---- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 22, 40, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 14px; right: 14px;
+  z-index: 10;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+  backdrop-filter: blur(4px);
+}
+.modal-close-btn:hover { background: rgba(255,255,255,0.25); }
+.modal-hero {
+  padding: 32px 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.modal-car-emoji { font-size: 4rem; }
+.modal-hero-info {}
+.modal-brand { font-size: 0.75rem; color: rgba(255,255,255,0.6); letter-spacing: 1px; display: block; margin-bottom: 4px; text-transform: uppercase; }
+.modal-model { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.modal-type-pill { font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: var(--radius-pill); }
+
+.modal-body { padding: 24px; }
+.modal-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.modal-spec {
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  text-align: center;
+}
+.spec-label { display: block; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 4px; }
+.spec-value { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text); }
+.avail-ok { color: var(--success); }
+.avail-no { color: var(--error); }
+
+.modal-features { margin-bottom: 20px; }
+.modal-features h4 { font-size: 0.88rem; font-weight: 700; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.feature-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.feature-list li {
+  background: #f0f4ff;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.modal-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.modal-price-label { font-size: 0.88rem; color: var(--text-muted); }
+.modal-price-value { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+.btn-modal-reserve {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+.btn-modal-reserve:hover:not(.disabled) { background: var(--primary-light); }
+.btn-modal-reserve.disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
