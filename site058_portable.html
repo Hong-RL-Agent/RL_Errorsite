@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudOps Pro | 엔터프라이즈 자산 관리</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com/@3.4.1"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .sidebar { width: 280px; border-right: 1px solid rgba(255,255,255,0.05); }
+        .nav-item { padding: 12px 24px; color: #94a3b8; cursor: pointer; transition: all 0.3s; border-radius: 12px; margin: 4px 16px; font-weight: 500; }
+        .nav-item:hover { background: rgba(255,255,255,0.05); color: #f8fafc; }
+        .nav-item.active { background: #3b82f6; color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); }
+        .status-pill { padding: 2px 8px; rounded-full; font-size: 10px; font-weight: 800; text-transform: uppercase; }
+        .bug-toast { position: fixed; top: 24px; left: 55%; transform: translateX(-50%); z-index: 1000; animation: slideDown 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const RESOURCES = [
+            { id: "i-098234", name: "Web-Server-01", provider: "AWS", region: "us-east-1", status: "Running", cost: 120.5, type: "t3.medium" },
+            { id: "vm-22341", name: "DB-Primary", provider: "Azure", region: "korea-central", status: "Running", cost: 350.0, type: "Standard_D2s_v3" },
+            { id: "gcp-9901", name: "AI-Worker-01", provider: "GCP", region: "asia-northeast3", status: "Terminated", cost: 45.2, type: "n1-standard-4" }
+        ];
+
+        function App() {
+            const [view, setView] = useState('inventory');
+            const [activeBug, setActiveBug] = useState(null);
+            const [selectedId, setSelectedId] = useState(null);
+
+            const triggerBug = (id) => {
+                setActiveBug(id);
+                setTimeout(() => setActiveBug(null), 3000);
+            };
+
+            const renderContent = () => {
+                switch(view) {
+                    case 'inventory':
+                        return (
+                            <div className="p-10 animate-in fade-in duration-500">
+                                <h2 className="text-3xl font-black mb-8 tracking-tight">클라우드 자산 인벤토리</h2>
+                                <div className="glass rounded-3xl overflow-hidden">
+                                    <table className="w-full text-left">
+                                        <thead className="bg-white/5 border-b border-white/10">
+                                            <tr>
+                                                <th className="p-5 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Name / ID</th>
+                                                <th className="p-5 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Provider</th>
+                                                <th className="p-5 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Status</th>
+                                                <th className="p-5 text-[10px] font-bold text-slate-500 uppercase tracking-widest text-right">Cost (Monthly)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-white/5">
+                                            {RESOURCES.map(r => (
+                                                <tr key={r.id} className="hover:bg-white/5 cursor-pointer transition-colors" onClick={() => { setSelectedId(r.id); if(r.id === "i-098234") triggerBug("site058-bug01"); }}>
+                                                    <td className="p-5">
+                                                        <p className="font-bold text-slate-200">{r.name}</p>
+                                                        <p className="text-[10px] text-slate-500 font-mono">{r.id}</p>
+                                                    </td>
+                                                    <td className="p-5">
+                                                        <span className="text-xs font-bold px-2 py-1 bg-slate-800 rounded-md text-slate-300">{r.provider}</span>
+                                                    </td>
+                                                    <td className="p-5">
+                                                        <span className={`status-pill ${r.status === 'Running' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-rose-500/10 text-rose-500'}`}>
+                                                            ● {r.status}
+                                                        </span>
+                                                    </td>
+                                                    <td className="p-5 text-right font-mono font-bold text-slate-400">${r.cost.toFixed(2)}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                {selectedId === "i-098234" && (
+                                    <div className="mt-8 p-8 glass rounded-3xl border-rose-500/30 animate-in slide-in-from-bottom-4 duration-300">
+                                        <div className="flex justify-between items-start mb-6">
+                                            <h3 className="text-xl font-bold text-rose-400">자산 상세 정보 (Deep Inspection)</h3>
+                                            <button onClick={() => triggerBug("site058-bug03")} className="text-[10px] font-bold bg-white/10 px-3 py-1 rounded-full text-slate-400">보안 속성 보기</button>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-8">
+                                            <div className="space-y-4">
+                                                <div className="flex justify-between text-sm"><span className="text-slate-500">실시간 상태</span> <span className="font-bold text-rose-500 uppercase tracking-tighter">STOPPED (Logic Error)</span></div>
+                                                <div className="flex justify-between text-sm"><span className="text-slate-500">인스턴스 타입</span> <span className="font-bold text-slate-200">t3.medium</span></div>
+                                            </div>
+                                            <div className="p-4 bg-rose-500/5 rounded-2xl border border-rose-500/20">
+                                                <p className="text-[10px] font-bold text-rose-400 uppercase mb-2">Security Leak Alert</p>
+                                                <p className="text-xs text-slate-400 font-mono">privateKeyMetadata: SHA256:4a... (Unauthorized Access)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    case 'billing':
+                        return (
+                            <div className="p-10 animate-in fade-in duration-500">
+                                <h2 className="text-3xl font-black mb-8 tracking-tight">클라우드 비용 분석</h2>
+                                <div className="grid grid-cols-3 gap-6 mb-10">
+                                    <div className="glass p-8 rounded-3xl" onClick={() => triggerBug("site058-bug02")}>
+                                        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">이번 달 총 청구액</p>
+                                        <p className="text-4xl font-black text-blue-500">$ 890.00</p>
+                                        <p className="text-[10px] text-rose-500 font-bold mt-4 uppercase">! Mismatch with Inventory Sum ($ 515.70)</p>
+                                    </div>
+                                    <div className="glass p-8 rounded-3xl">
+                                        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">최고 비용 서비스</p>
+                                        <p className="text-4xl font-black text-slate-200">Azure SQL</p>
+                                    </div>
+                                    <div className="glass p-8 rounded-3xl">
+                                        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">절감 가능 금액</p>
+                                        <p className="text-4xl font-black text-emerald-500">$ 124.80</p>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'audit':
+                        return (
+                            <div className="p-10 animate-in fade-in duration-500">
+                                <h2 className="text-2xl font-bold mb-8">규정 준수 및 태그 검증</h2>
+                                <div className="glass p-10 rounded-3xl max-w-2xl">
+                                    <h3 className="font-bold mb-6">Region 태깅 일관성 검사</h3>
+                                    <div className="space-y-6">
+                                        <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl">
+                                            <div>
+                                                <p className="text-sm font-bold text-slate-200">Instance: Web-Server-01</p>
+                                                <p className="text-xs text-slate-500">Actual: us-east-1 | Tag: asia-northeast-1</p>
+                                            </div>
+                                            <button onClick={() => triggerBug("site058-bug04")} className="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold shadow-lg shadow-blue-500/20">VALIDATE</button>
+                                        </div>
+                                        <div className="p-4 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-emerald-500 text-xs font-bold text-center">
+                                            Validation Bypass Active: Results may be inconsistent.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    default: return null;
+                }
+            };
+
+            return (
+                <div className="flex w-full min-h-screen">
+                    {activeBug && (
+                        <div className="bug-toast">
+                            <div className="bg-slate-100 text-slate-900 px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 font-mono font-bold text-xs border border-white/10">
+                                <span className="text-blue-600">☁️</span> bugid : {activeBug}
+                            </div>
+                        </div>
+                    )}
+
+                    <aside className="sidebar flex flex-col py-12">
+                        <div className="px-10 mb-16 flex items-center gap-4">
+                            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/40">C</div>
+                            <h1 className="text-xl font-bold tracking-tighter text-white">CloudOps <span className="text-blue-500">Pro</span></h1>
+                        </div>
+                        <nav className="flex-1">
+                            <div onClick={() => setView('inventory')} className={`nav-item ${view === 'inventory' ? 'active' : ''}`}>📦 <span>자산 인벤토리</span></div>
+                            <div onClick={() => setView('billing')} className={`nav-item ${view === 'billing' ? 'active' : ''}`}>💳 <span>비용 분석</span></div>
+                            <div onClick={() => setView('audit')} className={`nav-item ${view === 'audit' ? 'active' : ''}`}>🛡️ <span>컴플라이언스</span></div>
+                        </nav>
+                        <div className="px-10 mt-auto text-[10px] text-slate-500 font-bold uppercase tracking-widest">
+                            Enterprise site058 • Python
+                        </div>
+                    </aside>
+
+                    <main className="flex-1 bg-gradient-to-br from-[#0f172a] to-[#1e293b]">
+                        {renderContent()}
+                        <footer className="fixed bottom-0 right-0 p-6 text-[9px] font-black text-slate-700 uppercase tracking-[0.4em]">
+                            © 2026 CloudOps Intelligence • System 058
+                        </footer>
+                    </main>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

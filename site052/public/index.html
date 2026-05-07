@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RestaurantFinder | 당신의 인생 맛집을 찾으세요</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif_Display&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fffaf5; color: #333; }
+        .font-serif { font-family: 'DM Serif Display', serif; }
+        .hover-card:hover { transform: scale(1.02); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        .filter-btn { transition: all 0.2s; border-radius: 9999px; padding: 0.5rem 1.25rem; font-weight: 700; border: 1px solid #ddd; }
+        .filter-btn.active { background: #ff4d4d; color: #white; border-color: #ff4d4d; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [restaurants, setRestaurants] = useState([]);
+            const [rankings, setRankings] = useState([]);
+            const [loading, setLoading] = useState(false);
+            const [error, setError] = useState(null);
+            const [filterOpen, setFilterOpen] = useState(false);
+            const [resForm, setResForm] = useState({ name: '', date: '', people: 2 });
+
+            const fetchData = async (openOnly = false) => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const res = await fetch(`/api/restaurants?openNow=${openOnly}`);
+                    const json = await res.json();
+                    setRestaurants(json.data);
+                    if (json.bugId) console.log("Detected Bug:", json.bugId);
+                } catch (err) {
+                    setError({ message: "서버 연결에 실패했습니다." });
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const fetchRankings = async () => {
+                try {
+                    const res = await fetch('/api/rankings?region=trending');
+                    const json = await res.json();
+                    setRankings(json.data);
+                } catch (e) {}
+            };
+
+            const handleReservation = async (e) => {
+                e.preventDefault();
+                setError(null);
+                try {
+                    const res = await fetch('/api/reservations', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(resForm)
+                    });
+                    const json = await res.json();
+                    if (!json.ok) {
+                        throw { message: json.message, bugId: json.bugId };
+                    }
+                    alert("예약이 완료되었습니다!");
+                } catch (err) {
+                    setError(err);
+                }
+            };
+
+            useEffect(() => {
+                fetchData();
+                fetchRankings();
+            }, []);
+
+            return (
+                <div className="max-w-6xl mx-auto">
+                    <header className="flex justify-between items-center mb-16">
+                        <h1 className="font-serif text-4xl text-red-500">RestaurantFinder</h1>
+                        <div className="flex gap-4 items-center">
+                            <span className="text-sm font-bold text-gray-400">Trend Ranking</span>
+                            <div className="flex gap-2" data-bug-id="site052-bug03">
+                                {rankings.map(r => (
+                                    <span key={r.rank} className="bg-red-50 text-red-600 px-3 py-1 rounded-full text-[10px] font-black italic">
+                                        #{r.rank} {r.name}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </header>
+
+                    <section className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                        <div className="lg:col-span-2">
+                            <div className="flex justify-between items-end mb-8">
+                                <h2 className="text-3xl font-black tracking-tighter">추천 맛집 리스트</h2>
+                                <button 
+                                    onClick={() => { setFilterOpen(!filterOpen); fetchData(!filterOpen); }}
+                                    className={`filter-btn ${filterOpen ? 'bg-red-500 text-white border-red-500' : 'bg-white text-gray-600'}`}
+                                    data-bug-id="site052-bug01"
+                                >
+                                    {filterOpen ? '● 영업 중만 보기' : '영업 중 필터링'}
+                                </button>
+                            </div>
+
+                            {error && error.bugId && (
+                                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-red-600 font-bold flex items-center gap-3 animate-bounce" data-bug-id={error.bugId}>
+                                    🚨 시스템 오류 감지: {error.message} (Bug: {error.bugId})
+                                </div>
+                            )}
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {restaurants.map(r => (
+                                    <div key={r.id} className="hover-card bg-white p-6 rounded-[2rem] shadow-sm border border-orange-100 flex gap-6 items-center">
+                                        <div className="text-5xl">{r.image}</div>
+                                        <div>
+                                            <h3 className="text-lg font-bold">{r.name}</h3>
+                                            <p className="text-sm text-gray-400">{r.type} • ⭐ {r.rating}</p>
+                                            <span className={`text-[10px] font-black uppercase tracking-widest ${r.isOpen ? 'text-green-500' : 'text-red-300'}`}>
+                                                {r.isOpen ? 'Open Now' : 'Closed'}
+                                            </span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <aside className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-red-100/50 border border-red-50 h-fit">
+                            <h3 className="text-2xl font-black mb-6">Quick Reservation</h3>
+                            <form onSubmit={handleReservation} className="space-y-4">
+                                <div>
+                                    <label className="text-[10px] font-black uppercase text-gray-400 mb-2 block">Name</label>
+                                    <input 
+                                        type="text" 
+                                        className="w-full bg-gray-50 p-4 rounded-2xl outline-none focus:ring-2 focus:ring-red-200"
+                                        placeholder="성함을 입력하세요"
+                                        value={resForm.name}
+                                        onChange={e => setResForm({...resForm, name: e.target.value})}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-[10px] font-black uppercase text-gray-400 mb-2 block">Date (BUG: Leave Empty)</label>
+                                    <input 
+                                        type="date" 
+                                        className="w-full bg-gray-50 p-4 rounded-2xl outline-none focus:ring-2 focus:ring-red-200"
+                                        value={resForm.date}
+                                        onChange={e => setResForm({...resForm, date: e.target.value})}
+                                    />
+                                </div>
+                                <button 
+                                    type="submit" 
+                                    className="w-full bg-red-500 text-white p-4 rounded-2xl font-bold shadow-lg shadow-red-200 hover:bg-red-600 transition-all"
+                                    data-bug-id="site052-bug02"
+                                >
+                                    예약 요청하기
+                                </button>
+                            </form>
+                        </aside>
+                    </section>
+
+                    <footer className="mt-40 py-12 border-t border-red-100 flex flex-col md:flex-row justify-between items-center gap-6">
+                        <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">© 2026 RestaurantFinder Global | Site052</p>
+                        <div className="flex gap-8 text-[10px] font-black text-gray-500 uppercase">
+                            <a href="#">About</a>
+                            <a href="#">Privacy</a>
+                            <a href="#">Contact</a>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

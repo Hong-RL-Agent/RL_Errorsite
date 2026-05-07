@@ -1,0 +1,214 @@
+:root {
+  --primary-gold: #d4af37;
+  --secondary-gold: #f9d71c;
+  --accent-red: #e63946;
+  --bg-dark: #0f0f0f;
+  --card-bg: #1a1a1a;
+  --text-white: #f1faee;
+  --text-muted: #a8dadc;
+  --sidebar-w: 260px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Pretendard', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-w);
+  background: #000;
+  border-right: 1px solid #333;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: var(--primary-gold);
+  margin-bottom: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.nav-menu {
+  list-style: none;
+}
+
+.nav-item {
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 0.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  color: #888;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.nav-item:hover {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--primary-gold);
+}
+
+.nav-item.active {
+  background: var(--primary-gold);
+  color: #000;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-w);
+  padding: 2.5rem 4rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+/* Lotto Balls */
+.ball-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.ball {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #ddd);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.ball-gold { background: radial-gradient(circle at 30% 30%, var(--secondary-gold), var(--primary-gold)); }
+
+/* Banner */
+.banner {
+  padding: 1.2rem 1.8rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-left: 6px solid var(--accent-red);
+  background: #1e1e1e;
+}
+
+.banner-warning { color: var(--accent-red); }
+
+.bug-tag {
+  background: var(--accent-red);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 8px;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Stats Card */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 20px;
+  border: 1px solid #333;
+  text-align: center;
+}
+
+.stat-card .value {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--primary-gold);
+  margin-bottom: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  border: none;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold));
+  color: #000;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Review List */
+.review-item {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #333;
+}
+
+.rating { color: var(--secondary-gold); font-weight: 900; margin-bottom: 0.5rem; }
+
+/* Activity Logs */
+.activity-box {
+  background: #000;
+  border: 1px solid #222;
+  border-radius: 16px;
+  padding: 1rem;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.log-entry {
+  padding: 0.8rem;
+  border-bottom: 1px solid #111;
+  font-size: 0.9rem;
+  color: #0f0;
+  font-family: monospace;
+}

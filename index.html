@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPO Training Hub | Local Testbeds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0e14; color: #e2e8f0; }
+        .grid-card { background: #161b22; border: 1px solid #30363d; transition: all 0.2s; }
+        .grid-card:hover { border-color: #58a6ff; transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body class="p-12">
+    <header class="mb-16 text-center">
+        <h1 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">PPO Training Hub</h1>
+        <p class="text-slate-400 text-lg">Fintech & Logic Defect Detection Testbeds (Python/Flask Edition)</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <!-- Site Cards -->
+        <script>
+            const sites = [
+                { id: "site049", port: 9158, title: "Fintech Auth Log" },
+                { id: "site050", port: 9159, title: "Asset Management" },
+                { id: "site051", port: 9160, title: "Transaction Monitoring" },
+                { id: "site052", port: 9161, title: "Stock Exchange Simulator" },
+                { id: "site053", port: 9162, title: "Credit Score Engine" },
+                { id: "site054", port: 9163, title: "Notification System" },
+                { id: "site055", port: 9164, title: "Payout Scheduler" },
+                { id: "site056", port: 9165, title: "E-Wallet System" },
+                { id: "site057", port: 9166, title: "Inventory Master" },
+                { id: "site058", port: 9167, title: "CloudOps Pro" },
+                { id: "site059", port: 9168, title: "StreamChat Enterprise" },
+                { id: "site060", port: 9169, title: "PollMaster Pro" }
+            ];
+
+            document.write(sites.map(site => `
+                <div class="grid-card p-8 rounded-3xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">${site.id}</span>
+                            <span class="px-2 py-0.5 bg-blue-500/10 text-blue-400 text-[10px] font-bold rounded">PORT ${site.port}</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6">${site.title}</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <a href="./${site.id}_portable.html" target="_blank" class="block w-full text-center py-3 bg-slate-700 hover:bg-slate-600 rounded-xl text-xs font-bold transition-all">GUI 포터블 실행</a>
+                        <a href="http://localhost:${site.port}/api/health" target="_blank" class="block w-full text-center py-3 border border-slate-600 hover:border-blue-500/50 rounded-xl text-xs font-bold transition-all">API 서버 상태 확인</a>
+                    </div>
+                </div>
+            `).join(''));
+        </script>
+    </div>
+
+    <footer class="mt-24 text-center border-t border-slate-800 pt-12">
+        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.5em]">Antigravity Intelligence • 2026</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planit | 지능형 일정 관리 시스템</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard', sans-serif; background-color: #fcfcfd; color: #101828; margin: 0; }
+        .sidebar { background-color: #ffffff; border-right: 1px solid #f2f4f7; width: 280px; height: 100vh; position: fixed; left: 0; top: 0; z-index: 50; }
+        .main-content { margin-left: 280px; padding: 48px; }
+        .nav-link { display: flex; align-items: center; gap: 12px; padding: 14px 20px; margin: 4px 16px; border-radius: 12px; color: #475467; text-decoration: none; transition: all 0.2s; font-weight: 600; }
+        .nav-link:hover { background-color: #f9fafb; color: #7f56d9; }
+        .section-anchor { padding-top: 60px; margin-bottom: 80px; }
+        .card { background: white; border: 1px solid #eaecf0; border-radius: 20px; box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1); }
+        .badge { padding: 6px 12px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; }
+        .badge-purple { background: #f9f5ff; color: #7f56d9; border: 1px solid #e9d7fe; }
+        .badge-gray { background: #f2f4f7; color: #344054; border: 1px solid #eaecf0; }
+        .btn-primary { background: #7f56d9; color: white; padding: 14px 24px; border-radius: 12px; font-weight: 700; transition: all 0.2s; }
+        .btn-primary:hover { background: #6941c6; transform: translateY(-1px); }
+        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .bug-toast { animation: slideDown 0.3s cubic-bezier(0.23, 1, 0.32, 1); position: fixed; top: 24px; left: 55%; transform: translateX(-50%); z-index: 1000; }
+        .time-box { background: #f9f5ff; border: 1px solid #e9d7fe; border-radius: 12px; padding: 12px; min-width: 100px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const INITIAL_EVENTS = [
+            { id: 1, title: "주간 성과 지표 검토", time: "2026-05-03T09:00:00Z", reminder: true },
+            { id: 2, title: "외부 파트너사 협업 미팅", time: "2026-05-03T14:30:00Z", reminder: false },
+            { id: 3, title: "시스템 유지보수 점검", time: "2026-05-03T21:00:00Z", reminder: true }
+        ];
+
+        function App() {
+            const [events, setEvents] = useState(INITIAL_EVENTS);
+            const [activeBug, setActiveBug] = useState(null);
+
+            const triggerBug = (id) => {
+                if (!id) return;
+                setActiveBug(id);
+                setTimeout(() => setActiveBug(null), 3000);
+            };
+
+            const formatTime = (isoString, offsetHours = 0) => {
+                const date = new Date(isoString);
+                if (offsetHours !== 0) {
+                    date.setHours(date.getHours() + offsetHours);
+                }
+                return date.toISOString().split('T')[1].substring(0, 5);
+            };
+
+            const addEvent = (e) => {
+                e.preventDefault();
+                const title = e.target.title.value;
+                const time = "2026-05-03T10:00:00Z";
+                const reminder = e.target.reminder.checked;
+                
+                const newEvent = { id: Date.now(), title, time, reminder };
+                
+                if (reminder) {
+                    setEvents([...events, newEvent, { ...newEvent, id: newEvent.id + 1 }]);
+                    triggerBug("site050-bug02");
+                } else {
+                    setEvents([...events, newEvent]);
+                }
+                e.target.reset();
+            };
+
+            return (
+                <div className="flex w-full min-h-screen">
+                    {/* Bug Toast */}
+                    {activeBug && (
+                        <div className="bug-toast">
+                            <div className="bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 font-mono font-bold text-xs border border-white/10">
+                                <span className="text-purple-400">ℹ️</span> bugid : {activeBug}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Sidebar */}
+                    <aside className="sidebar flex flex-col p-6">
+                        <div className="flex items-center gap-3 mb-12 px-4">
+                            <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">P</div>
+                            <h2 className="text-xl font-bold tracking-tight">Planit</h2>
+                        </div>
+                        <nav className="flex-1">
+                            <a href="#dashboard" onClick={() => triggerBug("site050-bug03")} className="nav-link">📊 <span>대시보드 요약</span></a>
+                            <a href="#events" onClick={() => triggerBug("site050-bug01")} className="nav-link">📅 <span>상세 일정 관리</span></a>
+                            <a href="#reminders" className="nav-link">🔔 <span>신규 일정 등록</span></a>
+                            <a href="#timeline" onClick={() => triggerBug("site050-bug04")} className="nav-link">⏳ <span>실행 로그 기록</span></a>
+                        </nav>
+                        <div className="mt-auto px-4 py-6 border-t border-gray-100 text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                            Site 050 • Analysis
+                        </div>
+                    </aside>
+
+                    {/* Main Content */}
+                    <main className="main-content flex-1">
+                        
+                        {/* Dashboard (Bug 03: Stale Data) */}
+                        <section id="dashboard" className="section-anchor">
+                            <h1 className="text-3xl font-black mb-10">시스템 대시보드</h1>
+                            <div className="grid grid-cols-3 gap-8">
+                                <div className="card p-10 border-b-4 border-purple-500">
+                                    <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">전체 등록 일정</p>
+                                    <p className="text-6xl font-black text-slate-900">124 <span className="text-lg font-bold text-gray-300 ml-1">건</span></p>
+                                </div>
+                                <div className="card p-10 border-b-4 border-blue-500">
+                                    <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">활성 리마인더</p>
+                                    <p className="text-6xl font-black text-blue-600">82 <span className="text-lg font-bold text-gray-300 ml-1">건</span></p>
+                                </div>
+                                <div className="card p-10 border-b-4 border-green-500">
+                                    <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">평균 실행 지연</p>
+                                    <p className="text-6xl font-black text-green-600">0.2 <span className="text-lg font-bold text-gray-300 ml-1">ms</span></p>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Events (Bug 01: Timezone / Bug 02: Duplicates) */}
+                        <section id="events" className="section-anchor">
+                            <h2 className="text-2xl font-black mb-10">상세 일정 관리</h2>
+                            <div className="space-y-6">
+                                {events.map((e, idx) => (
+                                    <div key={idx} className="card p-8 flex justify-between items-center transition-all hover:border-purple-200">
+                                        <div className="flex items-center gap-10">
+                                            <div className="flex gap-5">
+                                                <div className="time-box">
+                                                    <p className="text-xs font-bold text-purple-400 mb-1">UTC</p>
+                                                    <p className="text-xl font-black text-purple-700">{formatTime(e.time)}</p>
+                                                </div>
+                                                <div className="time-box bg-slate-50 border-slate-200">
+                                                    <p className="text-xs font-bold text-slate-400 mb-1">LOCAL</p>
+                                                    <p className="text-xl font-black text-slate-700">{formatTime(e.time, -9)}</p>
+                                                </div>
+                                            </div>
+                                            <div className="h-12 w-[1px] bg-gray-100"></div>
+                                            <div>
+                                                <p className="text-xl font-black text-gray-900 mb-2">{e.title}</p>
+                                                <div className="flex items-center gap-3">
+                                                    <span className={`badge ${e.reminder ? 'badge-purple' : 'badge-gray'}`}>
+                                                        {e.reminder ? '알림 활성' : '알림 해제'}
+                                                    </span>
+                                                    <span className="text-xs font-bold text-gray-400 font-mono tracking-tight">UID: {e.id.toString().substring(0, 8)}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* New Event */}
+                        <section id="reminders" className="section-anchor">
+                            <h2 className="text-2xl font-black mb-10">신규 일정 등록</h2>
+                            <div className="card p-12 max-w-3xl border-2 border-dashed border-slate-200 bg-white">
+                                <form onSubmit={addEvent} className="space-y-10">
+                                    <div>
+                                        <label className="block text-sm font-black text-slate-500 mb-4 uppercase tracking-widest">이벤트 명칭</label>
+                                        <input name="title" required className="w-full p-6 rounded-2xl border-2 border-slate-100 focus:border-purple-600 outline-none transition-all text-xl font-bold" placeholder="예: 상반기 전략 보고회" />
+                                    </div>
+                                    <div className="flex items-center justify-between bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                                        <div>
+                                            <p className="text-xl font-black text-slate-900">자동 리마인더 시스템</p>
+                                            <p className="text-sm text-slate-400 font-medium mt-1">이벤트 발생 시 실시간 Push 알림을 전송합니다.</p>
+                                        </div>
+                                        <input type="checkbox" name="reminder" defaultChecked className="w-10 h-10 accent-purple-600" />
+                                    </div>
+                                    <button type="submit" data-bug-id="site050-bug02" className="btn-primary w-full text-2xl shadow-2xl shadow-purple-100">일정 생성 및 데이터 동기화</button>
+                                </form>
+                            </div>
+                        </section>
+
+                        {/* Timeline (Bug 04) */}
+                        <section id="timeline" className="section-anchor">
+                            <h2 className="text-2xl font-black mb-10">시스템 실행 로그 기록</h2>
+                            <div className="space-y-4">
+                                {[...events].reverse().map((l, idx) => (
+                                    <div key={idx} className="card p-6 flex justify-between items-center bg-white">
+                                        <div className="flex items-center gap-6">
+                                            <p className="text-sm font-black text-slate-200 font-mono">#{idx + 1}</p>
+                                            <div>
+                                                <p className="font-black text-slate-800 text-lg">{l.title}</p>
+                                                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Status: Triggered & Logged</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="text-lg font-black text-purple-600">{formatTime(l.time)}</p>
+                                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Execution Timestamp</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                    </main>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

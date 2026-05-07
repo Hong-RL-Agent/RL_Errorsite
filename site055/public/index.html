@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KarrotMarket | 이웃과 함께하는 중고거래</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Gothic A1', sans-serif; background-color: #ffffff; }
+        .item-card { border-bottom: 1px solid #f1f1f1; transition: background 0.2s; }
+        .item-card:hover { background-color: #fafafa; }
+        .orange-btn { background: #ff8a3d; color: white; border-radius: 0.5rem; padding: 0.5rem 1rem; font-weight: 700; }
+        .orange-btn:hover { background: #e6782f; }
+    </style>
+</head>
+<body class="p-4 md:p-10 max-w-3xl mx-auto">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [items, setItems] = useState([]);
+            const [loading, setLoading] = useState(false);
+            const [error, setError] = useState(null);
+            const [sort, setSort] = useState('');
+
+            const fetchItems = async (s = '') => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const res = await fetch(`/api/items?sort=${s}`);
+                    const json = await res.json();
+                    setItems(json.data);
+                } catch (err) {
+                    setError({ message: "로드 실패" });
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const reportItem = async () => {
+                setError(null);
+                try {
+                    const res = await fetch('/api/items/report', { method: 'POST' });
+                    const json = await res.json();
+                    if (res.status === 404 && json.ok) {
+                        setError({ message: "성공했지만 404가 반환됨", bugId: json.bugId });
+                    } else {
+                        alert("신고가 접수되었습니다.");
+                    }
+                } catch (e) {}
+            };
+
+            const showDetail = async (id) => {
+                try {
+                    const res = await fetch(`/api/items/${id}`);
+                    const json = await res.json();
+                    if (json.ok) {
+                        const seller = json.data.seller ? json.data.seller.name : "데이터 없음 (BUG)";
+                        alert(`상품: ${json.data.title}\n판매자: ${seller}`);
+                    }
+                } catch (e) {}
+            };
+
+            useEffect(() => {
+                fetchItems(sort);
+            }, [sort]);
+
+            return (
+                <div>
+                    <header className="flex justify-between items-center mb-12 border-b pb-6">
+                        <h1 className="text-2xl font-black text-[#ff8a3d] tracking-tighter">KarrotMarket</h1>
+                        <div className="flex gap-4 items-center">
+                            <select 
+                                className="bg-gray-100 text-sm font-bold p-2 rounded-lg outline-none"
+                                value={sort}
+                                onChange={(e) => setSort(e.target.value)}
+                                data-bug-id="site055-bug01"
+                            >
+                                <option value="">정렬 방식</option>
+                                <option value="priceDesc">가격 높은순 (BUG)</option>
+                            </select>
+                            <button onClick={reportItem} className="text-xs font-bold text-gray-400 hover:text-red-500" data-bug-id="site055-bug03">
+                                신고하기
+                            </button>
+                        </div>
+                    </header>
+
+                    {error && error.bugId && (
+                        <div className="mb-6 p-4 bg-orange-50 border border-orange-200 rounded-xl text-orange-700 text-sm font-bold" data-bug-id={error.bugId}>
+                            💡 안내: {error.message} (BugID: {error.bugId})
+                        </div>
+                    )}
+
+                    {loading ? (
+                        <div className="space-y-6">
+                            {[1, 2, 3].map(i => <div key={i} className="h-24 bg-gray-50 animate-pulse rounded-xl"></div>)}
+                        </div>
+                    ) : (
+                        <div className="space-y-2">
+                            {items.map(item => (
+                                <div 
+                                    key={item.id} 
+                                    className="item-card p-6 flex gap-6 cursor-pointer rounded-2xl"
+                                    onClick={() => showDetail(item.id)}
+                                    data-bug-id={item.id === 'item-004' ? "site055-bug02" : ""}
+                                >
+                                    <div className="w-24 h-24 bg-gray-100 rounded-xl flex items-center justify-center text-3xl">
+                                        📦
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="text-lg font-bold text-gray-800">{item.title}</h3>
+                                        <p className="text-xs text-gray-400 mb-2">동네 • {item.category}</p>
+                                        <p className="text-lg font-black text-gray-900">{item.price.toLocaleString()}원</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    <footer className="mt-24 pt-8 border-t text-center">
+                        <p className="text-gray-300 text-[10px] font-black uppercase tracking-widest">© 2026 Neighborhood Trading SITE055</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

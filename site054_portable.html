@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotiHub | 실시간 알림 통합 관제</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; }
+        .sidebar { background-color: #ffffff; border-right: 1px solid #e2e8f0; width: 280px; height: 100vh; position: fixed; left: 0; top: 0; z-index: 50; }
+        .main-content { margin-left: 280px; padding: 48px; min-height: 100vh; }
+        .nav-link { display: flex; align-items: center; gap: 12px; padding: 14px 24px; margin: 4px 16px; border-radius: 12px; color: #64748b; cursor: pointer; transition: all 0.2s; font-weight: 600; }
+        .nav-link:hover { background-color: #f1f5f9; color: #2563eb; }
+        .nav-link.active { background-color: #2563eb; color: #ffffff; }
+        .card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .status-badge { padding: 4px 10px; border-radius: 6px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; }
+        .badge-pending { background: #fffbeb; color: #b45309; }
+        .badge-success { background: #f0fdf4; color: #16a34a; }
+        .btn-primary { background: #2563eb; color: #ffffff; padding: 12px 24px; border-radius: 10px; font-weight: 700; transition: all 0.2s; }
+        .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .page-content { animation: fadeIn 0.4s ease-out; }
+        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .bug-toast { animation: slideDown 0.3s cubic-bezier(0.23, 1, 0.32, 1); position: fixed; top: 24px; left: 55%; transform: translateX(-50%); z-index: 1000; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const INITIAL_NOTIFS = [
+            { id: 1, type: "comment", message: "새로운 댓글이 달렸습니다.", read: false, time: "10:00:21" },
+            { id: 2, type: "like", message: "게시글에 좋아요가 달렸습니다.", read: true, time: "10:05:44" },
+            { id: 3, type: "system", message: "시스템 보안 업데이트 완료", read: false, time: "11:00:12" }
+        ];
+
+        function App() {
+            const [view, setView] = useState('dashboard');
+            const [notifs, setNotifs] = useState(INITIAL_NOTIFS);
+            const [subs, setSubs] = useState(["comment", "system"]);
+            const [activeBug, setActiveBug] = useState(null);
+            const [distorted, setDistorted] = useState(false);
+
+            const triggerBug = (id) => {
+                if (!id) return;
+                setActiveBug(id);
+                setTimeout(() => setActiveBug(null), 3000);
+            };
+
+            const toggleSubscription = (type) => {
+                if (subs.includes(type)) {
+                    setSubs(subs.filter(s => s !== type));
+                } else {
+                    setSubs([...subs, type]);
+                }
+            };
+
+            const addNotification = (type, message) => {
+                const newId = notifs.length + 1;
+                const newObj = { id: newId, type, message, read: false, time: new Date().toLocaleTimeString('en-GB') };
+                setNotifs([newObj, { ...newObj, id: newId + 0.1 }, ...notifs]);
+                triggerBug("site054-bug01");
+            };
+
+            const markRead = (id) => {
+                setNotifs(prev => prev.map(n => n.id === id ? { ...n, read: false } : n));
+                triggerBug("site054-bug03");
+            };
+
+            const refreshQueue = () => {
+                setDistorted(!distorted);
+                triggerBug("site054-bug04");
+            };
+
+            const renderContent = () => {
+                switch(view) {
+                    case 'dashboard':
+                        return (
+                            <div className="page-content">
+                                <h1 className="text-3xl font-extrabold mb-10 tracking-tight text-slate-800">통합 관제 대시보드</h1>
+                                <div className="grid grid-cols-3 gap-8 mb-10">
+                                    <div className="card p-10 border-l-4 border-blue-600">
+                                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">누적 발송량</p>
+                                        <p className="text-4xl font-black text-slate-900">{notifs.length} <span className="text-sm font-bold text-slate-300">건</span></p>
+                                    </div>
+                                    <div className="card p-10 border-l-4 border-amber-500">
+                                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">현재 큐 부하</p>
+                                        <p className="text-4xl font-black text-amber-600">NORMAL</p>
+                                    </div>
+                                    <div className="card p-10 border-l-4 border-slate-600">
+                                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">엔진 상태</p>
+                                        <p className="text-4xl font-black text-slate-900 font-mono">ACTIVE</p>
+                                    </div>
+                                </div>
+                                <div className="card p-8">
+                                    <h3 className="text-xl font-bold mb-6">최근 알림 처리 내역</h3>
+                                    <div className="space-y-3">
+                                        {notifs.slice(0, 3).map(n => (
+                                            <div key={n.id} className="flex justify-between items-center p-4 bg-slate-50 rounded-xl border border-slate-100">
+                                                <div className="flex items-center gap-4">
+                                                    <div className={`w-2 h-2 rounded-full ${n.read ? 'bg-slate-300' : 'bg-blue-600 animate-pulse'}`}></div>
+                                                    <p className="font-bold text-sm">{n.message}</p>
+                                                </div>
+                                                <span className="mono text-[10px] text-slate-400 font-bold">{n.time}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'notifications':
+                        return (
+                            <div className="page-content">
+                                <div className="flex justify-between items-end mb-10">
+                                    <h2 className="text-2xl font-bold text-slate-800">알림 마스터 로그</h2>
+                                    <button onClick={() => triggerBug("site054-bug02")} className="text-sm font-bold text-slate-400 hover:text-blue-600 transition-colors">새로고침</button>
+                                </div>
+                                <div className="space-y-4">
+                                    {notifs.map(n => (
+                                        <div key={n.id} className="card p-6 flex justify-between items-center group hover:border-blue-200 transition-all">
+                                            <div className="flex gap-6 items-center">
+                                                <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-xl shadow-inner grayscale group-hover:grayscale-0 transition-all">
+                                                    {n.type === 'comment' ? '💬' : n.type === 'like' ? '❤️' : '⚙️'}
+                                                </div>
+                                                <div>
+                                                    <div className="flex items-center gap-3 mb-1">
+                                                        <span className="font-bold text-slate-900">{n.message}</span>
+                                                        <span className={`text-[10px] font-black px-2 py-0.5 rounded border ${n.read ? 'border-slate-200 text-slate-400' : 'border-blue-200 text-blue-600 bg-blue-50'}`}>{n.read ? 'READ' : 'UNREAD'}</span>
+                                                    </div>
+                                                    <p className="text-xs text-slate-400 font-medium">Type: {n.type} • Node: server-01 • {n.time}</p>
+                                                </div>
+                                            </div>
+                                            <button onClick={() => markRead(n.id)} className="bg-slate-100 text-slate-600 px-5 py-2 rounded-lg font-bold text-xs hover:bg-slate-200 transition-all">읽음 처리</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        );
+                    case 'subscriptions':
+                        return (
+                            <div className="page-content">
+                                <h2 className="text-2xl font-bold mb-8 text-slate-800">구독 정책 및 알림 설정</h2>
+                                <div className="card p-10 max-w-2xl bg-white shadow-xl shadow-slate-100">
+                                    <div className="space-y-8">
+                                        <div>
+                                            <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-6 underline underline-offset-8">Notification Policy</h4>
+                                            <div className="space-y-4">
+                                                {['comment', 'like', 'system'].map(type => (
+                                                    <div 
+                                                        key={type} 
+                                                        onClick={() => toggleSubscription(type)}
+                                                        className="flex justify-between items-center p-6 bg-slate-50 rounded-2xl border border-slate-100 cursor-pointer hover:bg-slate-100 transition-all"
+                                                    >
+                                                        <div>
+                                                            <p className="font-bold text-slate-800 uppercase text-xs tracking-widest">{type} Event</p>
+                                                            <p className="text-[10px] text-slate-400 font-bold">{subs.includes(type) ? 'SUCCESSFULLY SUBSCRIBED' : 'SUBSCRIPTION DEACTIVATED'}</p>
+                                                        </div>
+                                                        <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${subs.includes(type) ? 'bg-blue-600 border-blue-600 text-white' : 'border-slate-200'}`}>
+                                                            {subs.includes(type) && <span className="text-[10px]">✓</span>}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <button onClick={() => addNotification('like', '게시글에 좋아요가 달렸습니다.')} className="btn-primary w-full shadow-lg shadow-blue-100">알림 설정 저장</button>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'queue':
+                        const queueData = distorted ? [...notifs] : [...notifs].reverse();
+                        return (
+                            <div className="page-content">
+                                <div className="flex justify-between items-end mb-10">
+                                    <div>
+                                        <h2 className="text-2xl font-bold text-slate-800">실시간 발송 모니터링</h2>
+                                        <p className="text-xs text-slate-400 mt-1 font-medium">실시간으로 처리되는 알림 큐의 순서와 상태를 감시합니다.</p>
+                                    </div>
+                                    <button onClick={refreshQueue} className="text-sm font-bold text-slate-400 hover:text-blue-600 transition-colors">새로고침</button>
+                                </div>
+                                <div className="grid grid-cols-2 gap-8 mb-10">
+                                    <div className="card p-8 bg-slate-900 text-white border-l-8 border-blue-600">
+                                        <p className="text-[10px] font-bold text-slate-500 uppercase mb-2 tracking-widest">Queue Size</p>
+                                        <p className="text-3xl font-black mono">{notifs.length}</p>
+                                    </div>
+                                    <div className="card p-8 bg-slate-900 text-white border-l-8 border-emerald-500">
+                                        <p className="text-[10px] font-bold text-slate-500 uppercase mb-2 tracking-widest">Worker Nodes</p>
+                                        <p className="text-3xl font-black mono text-emerald-400">4 ONLINE</p>
+                                    </div>
+                                </div>
+                                <div className="card overflow-hidden border-slate-200">
+                                    <table className="w-full text-left border-collapse">
+                                        <thead className="bg-slate-50 text-slate-400 border-b border-slate-100">
+                                            <tr>
+                                                <th className="p-5 text-[10px] font-black uppercase tracking-widest">Sequence</th>
+                                                <th className="p-5 text-[10px] font-black uppercase tracking-widest">Event Content</th>
+                                                <th className="p-5 text-[10px] font-black uppercase tracking-widest">Priority</th>
+                                                <th className="p-5 text-[10px] font-black uppercase tracking-widest">Enqueue Time</th>
+                                                <th className="p-5 text-[10px] font-black uppercase tracking-widest text-right">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-slate-100">
+                                            {queueData.map((n, i) => (
+                                                <tr key={i} className="hover:bg-slate-50 transition-colors group">
+                                                    <td className="p-5 mono text-xs font-bold text-slate-400 group-hover:text-blue-600">Q-{1000 + (distorted ? i : queueData.length - i)}</td>
+                                                    <td className="p-5 font-bold text-slate-700 text-sm">{n.message}</td>
+                                                    <td className="p-5"><span className="text-[9px] font-black bg-slate-100 px-2 py-0.5 rounded text-slate-500">MID</span></td>
+                                                    <td className="p-5 mono text-xs text-slate-400">{n.time}</td>
+                                                    <td className="p-5 text-right"><span className={`status-badge ${i === 0 ? 'badge-pending animate-pulse' : 'badge-success'}`}>{i === 0 ? 'WAITING' : 'SENT'}</span></td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        );
+                    default: return null;
+                }
+            };
+
+            return (
+                <div className="flex w-full min-h-screen">
+                    {/* Bug Notification */}
+                    {activeBug && (
+                        <div className="bug-toast">
+                            <div className="bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 font-mono font-bold text-xs border border-white/10">
+                                <span className="text-blue-400">⚡</span> bugid : {activeBug}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Sidebar */}
+                    <aside className="sidebar flex flex-col py-10 shadow-lg">
+                        <div className="flex items-center gap-3 mb-16 px-10">
+                            <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-2xl shadow-xl shadow-blue-200">N</div>
+                            <h2 className="text-2xl font-black tracking-tighter italic">NotiHub</h2>
+                        </div>
+                        <nav className="flex-1 space-y-2">
+                            <div onClick={() => setView('dashboard')} className={`nav-link ${view === 'dashboard' ? 'active' : ''}`}>📊 <span>대시보드</span></div>
+                            <div onClick={() => setView('notifications')} className={`nav-link ${view === 'notifications' ? 'active' : ''}`}>📜 <span>마스터 로그</span></div>
+                            <div onClick={() => setView('subscriptions')} className={`nav-link ${view === 'subscriptions' ? 'active' : ''}`}>🛡️ <span>발송 정책</span></div>
+                            <div onClick={() => setView('queue')} className={`nav-link ${view === 'queue' ? 'active' : ''}`}>📡 <span>모니터링</span></div>
+                        </nav>
+                        <div className="mt-auto px-10 py-8 border-t border-slate-50 text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                            Noti Controller site054
+                        </div>
+                    </aside>
+
+                    {/* Main Content */}
+                    <main className="main-content flex-1 bg-[#fcfdfe]">
+                        {renderContent()}
+                        <footer className="mt-20 py-12 border-t border-slate-100 text-center text-[10px] font-black text-slate-300 uppercase tracking-[0.4em]">
+                            © 2026 NotiHub Intelligence System • site054
+                        </footer>
+                    </main>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

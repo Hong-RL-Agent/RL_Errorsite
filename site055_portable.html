@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexStream | 프리미엄 콘텐츠 서비스</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #111111; margin: 0; }
+        .sidebar { background-color: #000000; color: #ffffff; width: 280px; height: 100vh; position: fixed; left: 0; top: 0; z-index: 50; }
+        .main-content { margin-left: 280px; padding: 60px; min-height: 100vh; }
+        .nav-link { display: flex; align-items: center; gap: 14px; padding: 16px 28px; border-left: 4px solid transparent; color: #888888; cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.95rem; }
+        .nav-link:hover { color: #ffffff; background: #111111; }
+        .nav-link.active { color: #ffffff; background: #111111; border-left-color: #a855f7; font-weight: 700; }
+        .card { background: white; border: 1px solid #f0f0f0; border-radius: 24px; transition: all 0.4s cubic-bezier(0.2, 0, 0, 1); }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08); border-color: #e0e0e0; }
+        .badge { padding: 5px 12px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .badge-purple { background: #f3e8ff; color: #9333ea; }
+        .badge-red { background: #fee2e2; color: #dc2626; border: 1px solid #fecaca; }
+        .badge-gray { background: #f3f4f6; color: #4b5563; }
+        .btn-purple { background: #a855f7; color: white; padding: 14px 28px; border-radius: 14px; font-weight: 700; transition: all 0.2s; }
+        .btn-purple:hover { background: #9333ea; transform: scale(1.02); }
+        .tag-chip { padding: 4px 12px; background: #f8f8f8; border-radius: 100px; font-size: 0.75rem; font-weight: 600; color: #666666; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .page-content { animation: slideIn 0.5s ease-out; }
+        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .bug-toast { animation: slideDown 0.3s cubic-bezier(0.23, 1, 0.32, 1); position: fixed; top: 24px; left: 55%; transform: translateX(-50%); z-index: 1000; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const INITIAL_DATA = Array.from({ length: 25 }, (_, i) => ({
+            id: i + 1,
+            title: `Future of Decentralized Media #${i + 1}`,
+            views: 1200 - (i * 45),
+            likes: 120 - i,
+            visibility: (i === 4 || i === 9) ? "private" : "public",
+            tag: ["Web3", "Design", "Economy"][i % 3],
+            author: "NexStream"
+        }));
+
+        function App() {
+            const [view, setView] = useState('dashboard');
+            const [data, setData] = useState(INITIAL_DATA);
+            const [activeBug, setActiveBug] = useState(null);
+            const [page, setPage] = useState(1);
+            const [searchQuery, setSearchQuery] = useState("");
+            const [recentSearches, setRecentSearches] = useState(["Web3", "Economy"]);
+            const [isLeaking, setIsLeaking] = useState(false);
+
+            const triggerBug = (id) => {
+                if (!id) return;
+                setActiveBug(id);
+                setTimeout(() => setActiveBug(null), 3000);
+            };
+
+            const handleSearch = (e) => {
+                e.preventDefault();
+                triggerBug("site055-bug01");
+                setSearchQuery("");
+            };
+
+            const handleSort = (type) => {
+                if (type === 'popular') {
+                    const sorted = [...data].sort((a, b) => a.views - b.views);
+                    setData(sorted);
+                    triggerBug("site055-bug02");
+                } else {
+                    setData(INITIAL_DATA);
+                }
+            };
+
+            const changePage = (p) => {
+                setPage(p);
+                if (p === 2) triggerBug("site055-bug04");
+            };
+
+            const refreshRecommendations = () => {
+                const leak = !isLeaking;
+                setIsLeaking(leak);
+                if (leak) triggerBug("site055-bug03");
+            };
+
+            const renderContent = () => {
+                switch(view) {
+                    case 'dashboard':
+                        return (
+                            <div className="page-content">
+                                <h1 className="text-4xl font-black mb-12 tracking-tight">서비스 인사이트</h1>
+                                <div className="grid grid-cols-3 gap-10">
+                                    <div className="card p-12 bg-neutral-50 border-none">
+                                        <p className="text-[10px] font-extrabold text-neutral-400 uppercase tracking-widest mb-4">전체 콘텐츠</p>
+                                        <p className="text-6xl font-black">{data.length}</p>
+                                    </div>
+                                    <div className="card p-12 bg-neutral-50 border-none">
+                                        <p className="text-[10px] font-extrabold text-neutral-400 uppercase tracking-widest mb-4">공개 상태</p>
+                                        <p className="text-6xl font-black text-purple-600">23</p>
+                                    </div>
+                                    <div className="card p-12 bg-neutral-50 border-none">
+                                        <p className="text-[10px] font-extrabold text-neutral-400 uppercase tracking-widest mb-4">비공개 콘텐츠</p>
+                                        <p className="text-6xl font-black text-neutral-300">2</p>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'feed':
+                        const start = (page - 1) * 6;
+                        const displayData = page === 2 ? data.slice(start - 2, start + 4) : data.slice(start, start + 6);
+                        return (
+                            <div className="page-content">
+                                <div className="flex justify-between items-center mb-12">
+                                    <h2 className="text-3xl font-black">글로벌 피드</h2>
+                                    <div className="flex gap-4">
+                                        <button onClick={() => handleSort('latest')} className="text-sm font-bold text-neutral-400 hover:text-black">최신순</button>
+                                        <button onClick={() => handleSort('popular')} className="text-sm font-bold text-neutral-400 hover:text-purple-600">인기순</button>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-3 gap-8 mb-12">
+                                    {displayData.map((item, idx) => (
+                                        <div key={idx} className="card p-8 flex flex-col h-full">
+                                            <div className="mb-6 flex justify-between items-start">
+                                                <span className="badge badge-gray">{item.tag}</span>
+                                                <span className="text-xs font-bold text-neutral-300">ID: {item.id}</span>
+                                            </div>
+                                            <h3 className="text-xl font-bold mb-8 leading-tight flex-1">{item.title}</h3>
+                                            <div className="flex justify-between items-center mt-auto border-t border-neutral-100 pt-6">
+                                                <div className="flex gap-4 text-xs font-black text-neutral-400 uppercase">
+                                                    <span>👁️ {item.views.toLocaleString()}</span>
+                                                    <span>❤️ {item.likes}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="flex justify-center gap-2">
+                                    {[1, 2, 3].map(p => (
+                                        <button key={p} onClick={() => changePage(p)} className={`w-12 h-12 rounded-xl font-black transition-all ${page === p ? 'bg-black text-white' : 'bg-neutral-100 text-neutral-400 hover:bg-neutral-200'}`}>{p}</button>
+                                    ))}
+                                </div>
+                            </div>
+                        );
+                    case 'search':
+                        return (
+                            <div className="page-content">
+                                <h2 className="text-3xl font-black mb-10">스마트 검색</h2>
+                                <div className="card p-12 bg-neutral-900 mb-8">
+                                    <form onSubmit={handleSearch} className="flex gap-4">
+                                        <input 
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            placeholder="키워드를 입력하세요..." 
+                                            className="flex-1 bg-neutral-800 text-white p-6 rounded-2xl outline-none border border-neutral-700 focus:border-purple-500 transition-all font-medium" 
+                                        />
+                                        <button type="submit" className="btn-purple px-10">SEARCH</button>
+                                    </form>
+                                </div>
+                                <div className="p-4">
+                                    <p className="text-xs font-black text-neutral-400 uppercase tracking-widest mb-4">최근 검색어</p>
+                                    <div className="flex gap-3">
+                                        {recentSearches.map((s, i) => (
+                                            <span key={i} className="tag-chip px-5 py-3 bg-neutral-50 border border-neutral-200">{s}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'recommendations':
+                        const filteredRecs = isLeaking 
+                            ? data.filter(item => item.visibility === 'private' || item.views > 1000).slice(0, 4)
+                            : data.filter(item => item.visibility === 'public' && item.views > 1000).slice(0, 4);
+                        
+                        return (
+                            <div className="page-content">
+                                <div className="flex justify-between items-center mb-10">
+                                    <h2 className="text-3xl font-black">당신을 위한 추천</h2>
+                                    <button onClick={refreshRecommendations} className="text-xs font-black text-neutral-400 hover:text-purple-500 uppercase tracking-widest transition-colors">새로고침</button>
+                                </div>
+                                <div className="grid grid-cols-2 gap-8">
+                                    {filteredRecs.map((item, idx) => (
+                                        <div key={idx} className={`card p-10 border-l-8 ${item.visibility === 'private' ? 'border-red-500 bg-red-50/30' : 'border-purple-500'}`}>
+                                            <div className="flex justify-between items-start mb-6">
+                                                {item.visibility === 'private' ? (
+                                                    <span className="badge badge-red flex items-center gap-2">
+                                                        <span className="text-sm">🔒</span> INTERNAL / CONFIDENTIAL
+                                                    </span>
+                                                ) : (
+                                                    <span className="badge badge-purple">PERSONALIZED PICK</span>
+                                                )}
+                                                <span className="text-xs font-bold text-neutral-400 font-mono italic">SECURE_REF_{item.id}</span>
+                                            </div>
+                                            <h3 className={`text-2xl font-black mb-6 leading-tight ${item.visibility === 'private' ? 'text-red-700' : 'text-neutral-900'}`}>
+                                                {item.visibility === 'private' && "[PRIV] "} {item.title}
+                                            </h3>
+                                            <p className="text-neutral-500 text-sm font-medium mb-8">
+                                                {item.visibility === 'private' 
+                                                    ? "※ 경고: 이 콘텐츠는 비공개 설정되어 있으며 관리자 권한 없이 노출되어서는 안 됩니다." 
+                                                    : "당신의 시청 기록과 관심 태그를 바탕으로 선정된 최적의 콘텐츠입니다."}
+                                            </p>
+                                            <div className="flex justify-between items-center">
+                                                <div className="flex gap-4">
+                                                    <span className="tag-chip">#Personalized</span>
+                                                    {item.visibility === 'private' && <span className="tag-chip bg-red-100 text-red-600 border border-red-200">#PrivacyLeak</span>}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        );
+                    default: return null;
+                }
+            };
+
+            return (
+                <div className="flex w-full min-h-screen">
+                    {/* Bug Notification */}
+                    {activeBug && (
+                        <div className="bug-toast">
+                            <div className="bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 font-mono font-bold text-xs border border-white/10">
+                                <span className="text-purple-400">✨</span> bugid : {activeBug}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Sidebar */}
+                    <aside className="sidebar flex flex-col py-12">
+                        <div className="flex items-center gap-4 mb-20 px-10">
+                            <div className="w-12 h-12 bg-purple-600 rounded-2xl flex items-center justify-center text-white font-black text-2xl shadow-xl shadow-purple-900/40">N</div>
+                            <h2 className="text-2xl font-black tracking-tighter">NexStream</h2>
+                        </div>
+                        <nav className="flex-1">
+                            <div onClick={() => setView('dashboard')} className={`nav-link ${view === 'dashboard' ? 'active' : ''}`}>📊 <span>서비스 인사이트</span></div>
+                            <div onClick={() => setView('feed')} className={`nav-link ${view === 'feed' ? 'active' : ''}`}>📰 <span>글로벌 피드</span></div>
+                            <div onClick={() => setView('search')} className={`nav-link ${view === 'search' ? 'active' : ''}`}>🔍 <span>스마트 검색</span></div>
+                            <div onClick={() => setView('recommendations')} className={`nav-link ${view === 'recommendations' ? 'active' : ''}`}>🪄 <span>개인화 추천</span></div>
+                        </nav>
+                        <div className="mt-auto px-10 py-8 border-t border-neutral-900 text-[10px] text-neutral-500 font-bold uppercase tracking-[0.3em]">
+                            Logic Verification • site055
+                        </div>
+                    </aside>
+
+                    {/* Main Content */}
+                    <main className="main-content flex-1">
+                        {renderContent()}
+                        <footer className="mt-24 py-12 border-t border-neutral-100 text-center text-[10px] font-black text-neutral-300 uppercase tracking-[0.5em]">
+                            © 2026 NexStream Intelligence • Content Integrity 055
+                        </footer>
+                    </main>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

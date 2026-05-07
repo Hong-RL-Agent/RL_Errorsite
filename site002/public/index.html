@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SkyDash - Weather Dashboard</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+    :root {
+      --bg: #e0f2fe;
+      --panel-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #0ea5e9;
+      --primary-hover: #0284c7;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --border: #e2e8f0;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+    }
+
+    .dashboard { display: flex; height: 100vh; overflow: hidden; }
+
+    .sidebar {
+      width: 250px; background: var(--panel-bg); border-right: 1px solid var(--border);
+      padding: 1.5rem; display: flex; flex-direction: column;
+    }
+    .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem; }
+    .menu-title { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 1rem; }
+    
+    .city-btn {
+      background: none; border: none; text-align: left; padding: 0.75rem 1rem; border-radius: 0.5rem;
+      cursor: pointer; font-size: 1rem; color: var(--text-main); transition: all 0.2s; margin-bottom: 0.5rem;
+    }
+    .city-btn:hover { background: #f1f5f9; }
+    .city-btn.active { background: var(--primary); color: white; }
+
+    .bug-btn { background: #fff1f2; color: var(--danger); border: 1px solid #fecdd3; margin-top: auto; }
+    .bug-btn:hover { background: #ffe4e6; }
+
+    .main-content { flex: 1; padding: 2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; }
+    header { display: flex; justify-content: space-between; align-items: center; }
+    
+    .search-box { padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 0.5rem; width: 300px; outline: none; }
+    .search-box:focus { border-color: var(--primary); }
+
+    .card { background: var(--panel-bg); padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+    .card h2 { margin-top: 0; font-size: 1.2rem; color: var(--text-main); }
+
+    .current-weather { display: flex; justify-content: space-between; align-items: center; }
+    .temp-huge { font-size: 4rem; font-weight: 700; color: var(--primary); }
+    .weather-details { display: flex; gap: 2rem; color: var(--text-muted); }
+    .weather-details div { display: flex; flex-direction: column; align-items: center; }
+    .weather-details span { font-weight: 600; color: var(--text-main); font-size: 1.2rem; }
+
+    .chart-container { display: flex; align-items: flex-end; gap: 1rem; height: 150px; margin-top: 1rem; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .bar-wrapper { display: flex; flex-direction: column; align-items: center; flex: 1; gap: 0.5rem; }
+    .bar { width: 100%; background: var(--primary); border-radius: 4px 4px 0 0; min-height: 10px; transition: height 0.3s; }
+    .bar-label { font-size: 0.8rem; color: var(--text-muted); }
+
+    .error-banner { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 1rem; border-radius: 0.5rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .loading { text-align: center; padding: 2rem; color: var(--text-muted); }
+
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+    .modal { background: white; padding: 2rem; border-radius: 1rem; width: 400px; }
+    .modal-close { background: var(--border); border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; float: right; }
+  </style>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function App() {
+      const [city, setCity] = useState('seoul');
+      const [currentWeather, setCurrentWeather] = useState(null);
+      const [forecast, setForecast] = useState([]);
+      const [regions, setRegions] = useState([]);
+      const [detailModal, setDetailModal] = useState(null);
+      
+      const [loading, setLoading] = useState({ current: false, forecast: false, regions: false, detail: false });
+      const [errors, setErrors] = useState(null);
+
+      useEffect(() => {
+        fetchCurrent(city);
+        fetchForecast(city, 7);
+      }, [city]);
+
+      useEffect(() => {
+        fetchRegions('all');
+      }, []);
+
+      const fetchCurrent = async (c) => {
+        setLoading(prev => ({ ...prev, current: true }));
+        setErrors(null);
+        try {
+          const res = await fetch(`/api/weather/current?city=${c}`);
+          const data = await res.json();
+          if (!data.ok) throw new Error(data.error);
+          setCurrentWeather(data.data);
+        } catch (err) {
+          setErrors({ type: 'current', message: err.message });
+          setCurrentWeather(null);
+        } finally {
+          setLoading(prev => ({ ...prev, current: false }));
+        }
+      };
+
+      const fetchForecast = async (c, days) => {
+        setLoading(prev => ({ ...prev, forecast: true }));
+        setErrors(null);
+        try {
+          const res = await fetch(`/api/weather/forecast?city=${c}&days=${days}`);
+          const data = await res.json();
+          if (!data.ok) throw { message: data.error, bugId: data.bugId };
+          setForecast(data.data);
+        } catch (err) {
+          setErrors({ type: 'forecast', message: err.message, bugId: err.bugId });
+          setForecast([]);
+        } finally {
+          setLoading(prev => ({ ...prev, forecast: false }));
+        }
+      };
+
+      const fetchRegions = async (regionFilter) => {
+        setLoading(prev => ({ ...prev, regions: true }));
+        setErrors(null);
+        try {
+          const res = await fetch(`/api/weather/regions?region=${regionFilter}`);
+          const data = await res.json();
+          if (!data.ok) throw { message: data.error, bugId: data.bugId };
+          setRegions(data.data);
+        } catch (err) {
+          setErrors({ type: 'regions', message: err.message, bugId: err.bugId });
+          setRegions([]);
+        } finally {
+          setLoading(prev => ({ ...prev, regions: false }));
+        }
+      };
+
+      const openDetail = async (c) => {
+        setLoading(prev => ({ ...prev, detail: true }));
+        setErrors(null);
+        try {
+          const res = await fetch(`/api/weather/detail?city=${c}`);
+          const data = await res.json();
+          if (!data.ok) throw { message: data.error, bugId: data.bugId };
+          setDetailModal(data.data);
+        } catch (err) {
+          setErrors({ type: 'detail', message: err.message, bugId: err.bugId });
+        } finally {
+          setLoading(prev => ({ ...prev, detail: false }));
+        }
+      };
+
+      return (
+        <div className="dashboard">
+          <aside className="sidebar">
+            <div className="logo">🌤️ SkyDash</div>
+            
+            <div className="menu-title">Cities</div>
+            <button className={`city-btn ${city === 'seoul' ? 'active' : ''}`} onClick={() => setCity('seoul')}>Seoul</button>
+            <button className={`city-btn ${city === 'busan' ? 'active' : ''}`} onClick={() => setCity('busan')}>Busan</button>
+            <button className={`city-btn ${city === 'jeju' ? 'active' : ''}`} onClick={() => setCity('jeju')}>Jeju</button>
+            
+            <div className="menu-title" style={{ marginTop: '2rem' }}>PPO Test Triggers</div>
+            <button className="city-btn bug-btn" data-bug-id="site002-bug01" onClick={() => openDetail('ghost-city')}>
+              Ghost City Detail (Bug 01)
+            </button>
+            <button className="city-btn bug-btn" data-bug-id="site002-bug02" onClick={() => fetchForecast(city, 'abc')}>
+              Invalid Forecast Days (Bug 02)
+            </button>
+            <button className="city-btn bug-btn" data-bug-id="site002-bug03" onClick={() => fetchRegions('slow-coast')}>
+              Slow Coast Filter (Bug 03)
+            </button>
+          </aside>
+
+          <main className="main-content">
+            <header>
+              <input 
+                type="text" 
+                className="search-box" 
+                placeholder="Search city..." 
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    const term = e.target.value.trim().toLowerCase().replace(' ', '-');
+                    if (term) setCity(term);
+                  }
+                }}
+              />
+              <div>User Profile</div>
+            </header>
+
+            {errors && (
+              <div className="error-banner">
+                <div>
+                  <strong>Error ({errors.type}):</strong> {errors.message}
+                  {errors.bugId && <span style={{marginLeft:'10px', fontSize:'0.8em', background:'#fca5a5', padding:'2px 6px', borderRadius:'4px'}}>{errors.bugId}</span>}
+                </div>
+                <button onClick={() => setErrors(null)} style={{background:'none', border:'none', cursor:'pointer'}}>✖</button>
+              </div>
+            )}
+
+            <section className="card">
+              <h2>Current Weather: {currentWeather ? currentWeather.city : 'Loading...'}</h2>
+              {loading.current ? <div className="loading">Loading...</div> : currentWeather && (
+                <div className="current-weather">
+                  <div className="temp-huge">{currentWeather.temp}°C</div>
+                  <div className="weather-details">
+                    <div><span>{currentWeather.condition}</span>Condition</div>
+                    <div><span>{currentWeather.humidity}%</span>Humidity</div>
+                    <div><span>{currentWeather.wind} m/s</span>Wind</div>
+                    <button 
+                      onClick={() => openDetail(city)}
+                      style={{padding:'0.5rem 1rem', background:'var(--primary)', color:'white', border:'none', borderRadius:'0.5rem', cursor:'pointer'}}
+                    >
+                      View Detail
+                    </button>
+                  </div>
+                </div>
+              )}
+            </section>
+
+            <section className="card">
+              <h2>Weekly Forecast (Temp)</h2>
+              {loading.forecast ? <div className="loading">Loading forecast...</div> : (
+                <div className="chart-container">
+                  {forecast.length > 0 ? forecast.map((temp, i) => (
+                    <div key={i} className="bar-wrapper">
+                      <div className="bar" style={{ height: `${(temp / 40) * 100}%` }}></div>
+                      <div className="bar-label">{temp}°</div>
+                    </div>
+                  )) : <div>No forecast data available.</div>}
+                </div>
+              )}
+            </section>
+
+            <section className="card">
+              <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+                <h2>Other Regions</h2>
+                <button onClick={() => fetchRegions('all')} style={{background:'none', border:'1px solid var(--border)', padding:'0.5rem', cursor:'pointer', borderRadius:'4px'}}>Refresh All</button>
+              </div>
+              {loading.regions ? <div className="loading">Loading regions...</div> : (
+                <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:'1rem', marginTop:'1rem'}}>
+                  {regions.map(r => (
+                    <div key={r.city} style={{padding:'1rem', border:'1px solid var(--border)', borderRadius:'0.5rem'}}>
+                      <div style={{fontWeight:'bold'}}>{r.city}</div>
+                      <div>{r.temp}°C - {r.condition}</div>
+                    </div>
+                  ))}
+                  {regions.length === 0 && <div>No regions found.</div>}
+                </div>
+              )}
+            </section>
+          </main>
+
+          {detailModal && (
+            <div className="modal-overlay">
+              <div className="modal">
+                <h2>Detailed Insights</h2>
+                <div style={{margin:'1.5rem 0'}}>
+                  <p>Feels Like: <strong>{detailModal.feelsLike} °C</strong></p>
+                  <p>Air Quality Index: <strong>{detailModal.aqi}</strong></p>
+                </div>
+                <button className="modal-close" onClick={() => setDetailModal(null)}>Close</button>
+              </div>
+            </div>
+          )}
+          
+          {loading.detail && (
+            <div className="modal-overlay">
+              <div className="modal" style={{textAlign:'center'}}>
+                Loading details...
+              </div>
+            </div>
+          )}
+
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

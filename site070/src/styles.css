@@ -1,0 +1,173 @@
+:root {
+  --purple: #8b5cf6;
+  --purple-neon: #a78bfa;
+  --bg-dark: #0f172a;
+  --bg-card: #1e293b;
+  --text-primary: #f8fafc;
+  --text-muted: #94a3b8;
+  --neon-green: #10b981;
+  --neon-red: #ef4444;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+.ticket-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 80px; /* Space for bottom nav */
+}
+
+/* Header */
+header {
+  padding: 24px 40px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand { font-size: 1.5rem; font-weight: 900; color: var(--purple-neon); letter-spacing: -1px; }
+
+/* Main Content */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  width: 100%;
+}
+
+/* Seat Map */
+.seat-map-container {
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: 32px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stage {
+  width: 60%;
+  height: 40px;
+  background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+  border-radius: 40px;
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 40px);
+  gap: 12px;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.seat-available { background: #334155; border: 1px solid rgba(255,255,255,0.1); }
+.seat-available:hover { background: var(--purple); transform: scale(1.1); }
+.seat-held { background: var(--purple); box-shadow: 0 0 15px var(--purple); animation: pulse 2s infinite; }
+.seat-sold { background: #1e293b; color: #475569; cursor: not-allowed; opacity: 0.5; }
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+}
+
+/* Bottom Nav */
+.bottom-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 41, 59, 0.9);
+  backdrop-filter: blur(20px);
+  padding: 12px 32px;
+  border-radius: 100px;
+  display: flex;
+  gap: 40px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
+  z-index: 2000;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: 0.3s;
+}
+.nav-item:hover, .nav-item.active { color: var(--purple-neon); }
+.nav-item span { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
+
+/* Dashboard Cards */
+.card-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 40px; }
+.stat-card { background: var(--bg-card); padding: 32px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); }
+
+/* PPO Monitor */
+.ppo-monitor {
+  position: fixed;
+  top: 100px;
+  right: 40px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #fbbf24;
+  padding: 20px;
+  border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  border: 1px solid #fbbf2433;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  z-index: 1500;
+}
+
+.btn-neon {
+  background: var(--purple);
+  color: #fff;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+.btn-neon:hover { background: var(--purple-neon); box-shadow: 0 0 30px rgba(139, 92, 246, 0.6); }
+
+.fade-in { animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }

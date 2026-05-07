@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafePay | 에스크로 안전 결제 서비스</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background-color: #f9fafb; }
+        .sidebar { background-color: #111827; }
+        .card { background: white; border: 1px solid #e5e7eb; border-radius: 1.25rem; transition: all 0.25s ease; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); }
+        .badge { padding: 0.4rem 0.8rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; }
+        .badge-paid { background: #d1fae5; color: #065f46; }
+        .badge-shipping { background: #dbeafe; color: #1e40af; }
+        .badge-completed { background: #f3f4f6; color: #374151; }
+        .badge-pending { background: #fef3c7; color: #92400e; }
+        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .bug-toast { animation: slideDown 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
+        .balance-flash { animation: flash 0.5s ease-out; }
+        @keyframes flash { 0% { color: #ef4444; transform: scale(1.1); } 100% { color: inherit; transform: scale(1); } }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        class VirtualBackend {
+            constructor() {
+                this.trades = [
+                    { id: 1, item: "맥북 프로 M2 14인치", amount: 1800000, status: "paid", seller: "김철수", fee: 54000, date: "2024.05.01" },
+                    { id: 2, item: "아이폰 15 프로 256GB", amount: 1200000, status: "shipping", seller: "이영희", fee: 36000, date: "2024.05.02" },
+                    { id: 3, item: "에어팟 맥스 실버", amount: 650000, status: "pending", seller: "박지성", fee: 19500, date: "2024.05.03" }
+                ];
+                this.balance = 5000000;
+            }
+
+            async getTrades() { return { data: this.trades }; }
+            
+            async getTrade(id) {
+                const trade = this.trades.find(t => t.id === id);
+                // Bug 03: fee-calculation-drift
+                trade.fee += (Math.random() * 8 - 4); 
+                return { ...trade, bugId: "site048-bug03" };
+            }
+
+            async processPayment(tradeId) {
+                const trade = this.trades.find(t => t.id === tradeId);
+                // Bug 02: double-submit-no-idempotency
+                this.balance -= trade.amount;
+                trade.status = "paid";
+                return { paid: true, balance: this.balance, bugId: "site048-bug02" };
+            }
+
+            async updateStatus(tradeId, status) {
+                const trade = this.trades.find(t => t.id === tradeId);
+                // Bug 01: invalid-state-transition
+                trade.status = status;
+                return { updated: true, bugId: "site048-bug01" };
+            }
+
+            async completeTrade(tradeId) {
+                const trade = this.trades.find(t => t.id === tradeId);
+                // Bug 04: partial-failure-no-rollback
+                trade.status = "completed";
+                return { completed: true, bugId: "site048-bug04" };
+            }
+
+            async getSummary() {
+                return { totalTrades: 24, completed: this.trades.filter(t => t.status === 'completed').length, balance: this.balance };
+            }
+        }
+
+        const API = new VirtualBackend();
+
+        function App() {
+            const [view, setView] = useState('dashboard');
+            const [trades, setTrades] = useState([]);
+            const [summary, setSummary] = useState({});
+            const [activeTrade, setActiveTrade] = useState(null);
+            const [activeBug, setActiveBug] = useState(null);
+            const [balanceFlash, setBalanceFlash] = useState(false);
+
+            const refresh = async () => {
+                const t = await API.getTrades();
+                const s = await API.getSummary();
+                setTrades(t.data);
+                setSummary(s);
+            };
+
+            const triggerBug = (id) => {
+                setActiveBug(id);
+                setTimeout(() => setActiveBug(null), 3000);
+            };
+
+            const handlePayment = async (id) => {
+                const res = await API.processPayment(id);
+                triggerBug(`bugid : ${res.bugId}`);
+                setBalanceFlash(true);
+                setTimeout(() => setBalanceFlash(false), 500);
+                await refresh();
+            };
+
+            useEffect(() => { refresh(); }, []);
+
+            return (
+                <div className="flex h-screen w-full relative">
+                    {/* Bug ID Toast */}
+                    {activeBug && (
+                        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] bug-toast">
+                            <div className="bg-slate-900 text-white px-6 py-2.5 rounded-full shadow-2xl flex items-center gap-3 font-mono font-bold text-xs tracking-wider border border-white/20" data-bug-id={activeBug.split(': ')[1]}>
+                                <span className="text-amber-400">⚠️</span> {activeBug}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Sidebar */}
+                    <aside className="w-72 sidebar text-white p-8 flex flex-col">
+                        <div className="flex items-center gap-3 mb-12">
+                            <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center text-white font-bold">S</div>
+                            <h2 className="text-xl font-bold tracking-tight text-white">SafePay</h2>
+                        </div>
+                        <nav className="flex-1 space-y-1">
+                            <NavItem active={view === 'dashboard'} onClick={() => setView('dashboard')} label="거래 대시보드" icon="📊" />
+                            <NavItem active={view === 'trades'} onClick={() => setView('trades')} label="주문 상세 조회" icon="📋" />
+                            <NavItem active={view === 'payments'} onClick={() => setView('payments')} label="결제 승인 센터" icon="💳" />
+                            <NavItem active={view === 'status'} onClick={() => setView('status')} label="거래 프로세스 관리" icon="🔄" />
+                        </nav>
+                        <div className="mt-auto text-[10px] text-slate-600">© 2024 SafePay Escrow</div>
+                    </aside>
+
+                    {/* Main Content */}
+                    <main className="flex-1 overflow-y-auto p-12 bg-white">
+                        <header className="mb-10 flex justify-between items-center">
+                            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">SafePay 관리자 콘솔</h1>
+                        </header>
+
+                        {view === 'dashboard' && (
+                            <div className="space-y-10">
+                                <div className="grid grid-cols-3 gap-6">
+                                    <StatCard label="총 주문 건수" value={summary.totalTrades} />
+                                    <StatCard label="확정 완료" value={summary.completed} />
+                                    <div className={`p-6 bg-slate-50 rounded-2xl border border-slate-100 transition-all ${balanceFlash ? 'bg-rose-50 border-rose-200' : ''}`}>
+                                        <p className="text-[11px] font-bold text-slate-400 uppercase mb-2 tracking-wider">가용 예치금</p>
+                                        <p className={`text-2xl font-black ${balanceFlash ? 'text-rose-600 scale-105' : 'text-emerald-600'} transition-all`}>
+                                            {summary.balance?.toLocaleString()}원
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="space-y-4">
+                                    <h3 className="text-lg font-bold text-slate-800">최근 거래 리스트</h3>
+                                    {trades.map(t => (
+                                        <div key={t.id} className="card p-6 flex justify-between items-center border-slate-100">
+                                            <div className="flex items-center gap-5">
+                                                <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-xl">📦</div>
+                                                <div>
+                                                    <p className="font-bold text-slate-800">{t.item}</p>
+                                                    <p className="text-xs text-slate-400 font-medium">{t.seller} • {t.date}</p>
+                                                </div>
+                                            </div>
+                                            <div className="text-right">
+                                                <p className="text-xl font-bold text-emerald-600 mb-1">{t.amount.toLocaleString()}원</p>
+                                                <span className={`badge badge-${t.status}`}>{t.status.toUpperCase()}</span>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {view === 'trades' && (
+                            <div className="grid grid-cols-2 gap-8">
+                                <div className="space-y-2">
+                                    <h3 className="text-lg font-bold text-slate-800 mb-3">상세 조회 목록</h3>
+                                    {trades.map(t => (
+                                        <div key={t.id} onClick={async () => {
+                                            const res = await API.getTrade(t.id);
+                                            setActiveTrade(res);
+                                            triggerBug(`bugid : ${res.bugId}`);
+                                        }} className="p-5 bg-slate-50 rounded-xl cursor-pointer flex justify-between items-center hover:bg-emerald-50 border border-transparent hover:border-emerald-200 transition-all">
+                                            <span className="font-semibold text-slate-700">{t.item}</span>
+                                            <span className="text-slate-300">상세내용 &gt;</span>
+                                        </div>
+                                    ))}
+                                </div>
+                                {activeTrade && (
+                                    <div className="card p-8 bg-slate-50 border-emerald-500 shadow-sm">
+                                        <h4 className="text-lg font-bold text-slate-900 mb-4 border-b pb-4">{activeTrade.item}</h4>
+                                        <div className="space-y-4">
+                                            <div className="flex justify-between text-sm text-slate-500"><span>거래 금액</span><span>{activeTrade.amount.toLocaleString()}원</span></div>
+                                            <div className="flex justify-between font-bold text-lg text-emerald-600">
+                                                <span>안전결제 수수료</span>
+                                                <span>{activeTrade.fee.toLocaleString(undefined, {minimumFractionDigits: 4})}원</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {view === 'payments' && (
+                            <div className="space-y-6 max-w-2xl">
+                                <h3 className="text-lg font-bold text-slate-800 mb-4">결제 승인 센터</h3>
+                                {trades.map(t => (
+                                    <div key={t.id} className="card p-6 flex justify-between items-center border-slate-100">
+                                        <div className="flex items-center gap-5">
+                                            <div className="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center text-sm">💳</div>
+                                            <div>
+                                                <p className="font-bold text-slate-800">{t.item}</p>
+                                                <p className="text-xs text-slate-400">결제 요청액: {t.amount.toLocaleString()}원</p>
+                                                <span className={`text-[10px] font-bold uppercase ${t.status === 'paid' ? 'text-emerald-500' : 'text-amber-500'}`}>
+                                                    {t.status === 'paid' ? '● 승인완료' : '○ 승인대기'}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <button 
+                                            onClick={() => handlePayment(t.id)}
+                                            className={`px-6 py-3 rounded-xl font-bold transition-all text-sm active:scale-90 shadow-md ${t.status === 'paid' ? 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100' : 'bg-emerald-500 text-white hover:bg-emerald-600'}`}
+                                        >
+                                            결제 승인하기
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        {view === 'status' && (
+                            <div className="space-y-8 max-w-2xl">
+                                {/* Bug 01 Section */}
+                                <div className="card p-8 border-slate-100">
+                                    <h3 className="text-lg font-bold text-slate-800 mb-4">구매자 물품 수령 확인</h3>
+                                    <p className="text-sm text-slate-500 mb-6">수령하신 물품에 문제가 없다면 '수령 확인'을 눌러주세요.</p>
+                                    <div className="space-y-4">
+                                        {/* REMOVED STRICT FILTER to keep items visible for Bug 01 testing */}
+                                        {trades.map(t => (
+                                            <div key={t.id} className="flex justify-between items-center p-4 bg-slate-50 rounded-xl">
+                                                <span className="font-medium text-slate-700">{t.item} ({t.status.toUpperCase()})</span>
+                                                <button 
+                                                    onClick={async () => {
+                                                        const res = await API.updateStatus(t.id, 'completed');
+                                                        triggerBug(`bugid : ${res.bugId}`);
+                                                        refresh();
+                                                    }}
+                                                    className="bg-slate-800 text-white px-5 py-2 rounded-lg font-bold text-xs active:scale-95 transition-transform"
+                                                >
+                                                    수령 확인
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Bug 04 Section */}
+                                <div className="card p-8 border-slate-100 bg-slate-900 text-white">
+                                    <h3 className="text-lg font-bold mb-4 text-emerald-400">에스크로 거래 정산</h3>
+                                    <p className="text-sm text-slate-400 mb-6">배송 및 수령이 확인된 거래의 대금을 최종 정산합니다.</p>
+                                    <div className="space-y-4">
+                                        {/* 
+                                            REMOVED FILTER: Previously filtered for 'shipping'.
+                                            Now showing items so Bug 04 can be triggered anytime.
+                                        */}
+                                        {trades.map(t => (
+                                            <div key={t.id} className="flex justify-between items-center p-4 bg-slate-800 rounded-xl border border-white/10">
+                                                <span className="font-medium text-slate-200">{t.item}</span>
+                                                <button 
+                                                    onClick={async () => {
+                                                        const res = await API.completeTrade(t.id);
+                                                        triggerBug(`bugid : ${res.bugId}`);
+                                                        refresh();
+                                                    }}
+                                                    className="bg-emerald-600 text-white px-6 py-2 rounded-lg font-bold text-xs active:scale-95 transition-transform"
+                                                >
+                                                    정산 실행
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </main>
+                </div>
+            );
+        }
+
+        function NavItem({ label, icon, active, onClick }) {
+            return (
+                <div onClick={onClick} className={`flex items-center gap-3 px-5 py-4 rounded-xl cursor-pointer transition-all ${active ? 'bg-emerald-500 text-white font-bold shadow-md' : 'text-slate-400 hover:bg-slate-800'}`}>
+                    <span className="text-lg">{icon}</span>
+                    <span className="text-sm">{label}</span>
+                </div>
+            );
+        }
+
+        function StatCard({ label, value, highlight }) {
+            return (
+                <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <p className="text-[11px] font-bold text-slate-400 uppercase mb-2 tracking-wider">{label}</p>
+                    <p className={`text-2xl font-black ${highlight ? 'text-emerald-600' : 'text-slate-900'}`}>{value}</p>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieBook | 영화 예매 정보</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; }
+        .font-brand { font-family: 'Montserrat', sans-serif; }
+        .movie-card { background: #111; border: 1px solid #222; overflow: hidden; border-radius: 1.5rem; transition: all 0.3s ease; }
+        .movie-card:hover { transform: scale(1.02); border-color: #e50914; }
+        .btn-netflix { background: #e50914; color: #fff; border-radius: 0.5rem; padding: 0.75rem 1.5rem; font-weight: 800; transition: background 0.2s; }
+        .btn-netflix:hover { background: #b20710; }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [movies, setMovies] = useState([]);
+            const [loading, setLoading] = useState(false);
+            const [error, setError] = useState(null);
+            const [sort, setSort] = useState('');
+
+            const fetchMovies = async (s = '') => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const res = await fetch(`/api/movies?sort=${s}`);
+                    const json = await res.json();
+                    if (!res.ok) throw { message: json.message, bugId: json.bugId };
+                    setMovies(json.data);
+                } catch (err) {
+                    setError(err);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const checkIMAX = async () => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const res = await fetch('/api/theaters?format=IMAX');
+                    const json = await res.json();
+                    if (!res.ok) throw { message: json.message, bugId: json.bugId };
+                    alert("IMAX 상영관 예약 가능!");
+                } catch (err) {
+                    setError(err);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const showDetail = async (id) => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const res = await fetch(`/api/movies/${id}`);
+                    const json = await res.json();
+                    if (!res.ok) throw { message: json.message, bugId: json.bugId };
+                    alert(`${json.data.title} 상세 정보\n장르: ${json.data.genre}\n상영관: ${json.data.theaterInfo.name}`);
+                } catch (err) {
+                    setError(err);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            useEffect(() => {
+                fetchMovies(sort);
+            }, [sort]);
+
+            return (
+                <div className="max-w-6xl mx-auto">
+                    <header className="flex flex-col md:flex-row justify-between items-center mb-16 gap-8">
+                        <h1 className="font-brand text-4xl font-black text-red-600 tracking-tighter">MOVIEBOOK</h1>
+                        <div className="flex gap-4">
+                            <button 
+                                onClick={checkIMAX}
+                                className="bg-blue-600/20 text-blue-400 px-6 py-2 rounded-full font-bold text-xs border border-blue-600/30 hover:bg-blue-600 hover:text-white transition-all"
+                                data-bug-id="site051-bug03"
+                            >
+                                IMAX관 찾기
+                            </button>
+                            <select 
+                                className="bg-zinc-900 text-white px-4 py-2 rounded-lg text-xs font-bold outline-none border border-zinc-800"
+                                value={sort}
+                                onChange={(e) => setSort(e.target.value)}
+                                data-bug-id="site051-bug01"
+                            >
+                                <option value="">정렬 선택</option>
+                                <option value="releaseDate">개봉일순 (BUG)</option>
+                                <option value="rating">평점순</option>
+                            </select>
+                        </div>
+                    </header>
+
+                    {error && (
+                        <div className="mb-10 p-6 bg-red-600/10 border border-red-600/50 rounded-2xl flex items-center justify-between shadow-lg shadow-red-900/20" data-bug-id={error.bugId}>
+                            <div className="flex items-center gap-4">
+                                <span className="text-3xl">🚫</span>
+                                <div>
+                                    <p className="text-red-500 font-black">서비스 장애 발생</p>
+                                    <p className="text-red-400/70 text-xs font-medium">{error.message}</p>
+                                </div>
+                            </div>
+                            {error.bugId && <span className="text-[10px] font-black bg-red-600 px-3 py-1 rounded text-white">CODE: {error.bugId}</span>}
+                        </div>
+                    )}
+
+                    {loading ? (
+                        <div className="py-20 text-center flex flex-col items-center gap-4">
+                            <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+                            <p className="text-zinc-500 font-black text-xs uppercase tracking-widest">Cinema Engine Loading...</p>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {movies.map(movie => (
+                                <div 
+                                    key={movie.id} 
+                                    className="movie-card cursor-pointer group"
+                                    onClick={() => showDetail(movie.id)}
+                                    data-bug-id={movie.id === 'movie-99' ? "site051-bug02" : ""}
+                                >
+                                    <div className="aspect-[2/3] bg-zinc-800 flex items-center justify-center text-zinc-700 font-brand text-4xl font-black italic">
+                                        POSTER
+                                    </div>
+                                    <div className="p-6">
+                                        <div className="flex justify-between items-center mb-4">
+                                            <span className="text-[10px] font-black bg-red-600/20 text-red-500 px-2 py-1 rounded uppercase">
+                                                {movie.genre}
+                                            </span>
+                                            <span className="text-xs font-bold text-amber-400">★ {movie.rating}</span>
+                                        </div>
+                                        <h3 className="text-lg font-black text-white mb-2 group-hover:text-red-500 transition-colors">{movie.title}</h3>
+                                        <p className="text-zinc-500 text-xs font-medium mb-6">{movie.releaseDate}</p>
+                                        <button className="w-full btn-netflix text-xs">예매하기</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    <footer className="mt-32 pt-16 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-start gap-12">
+                        <div>
+                            <p className="font-brand text-2xl font-black text-zinc-800 mb-4">MOVIEBOOK</p>
+                            <p className="text-zinc-600 text-[10px] font-bold uppercase tracking-widest">© 2026 MovieBook Entertainment | SITE051</p>
+                        </div>
+                        <div className="flex flex-wrap gap-10">
+                            <div className="flex flex-col gap-3">
+                                <p className="text-zinc-400 text-xs font-black uppercase">Navigation</p>
+                                <a href="#" className="text-zinc-600 text-xs hover:text-white">Movies</a>
+                                <a href="#" className="text-zinc-600 text-xs hover:text-white">Theaters</a>
+                                <a href="#" className="text-zinc-600 text-xs hover:text-white">Promotions</a>
+                            </div>
+                            <div className="flex flex-col gap-3">
+                                <p className="text-zinc-400 text-xs font-black uppercase">Social</p>
+                                <a href="#" className="text-zinc-600 text-xs hover:text-white">Instagram</a>
+                                <a href="#" className="text-zinc-600 text-xs hover:text-white">Twitter</a>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

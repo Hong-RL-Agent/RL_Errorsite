@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibroSearch | 스마트 디지털 도서관</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        .font-serif { font-family: 'Libre Baskerville', serif; }
+        .book-card { background: white; border-radius: 0.5rem; transition: all 0.3s; border: 1px solid #e5e7eb; }
+        .book-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .book-spine { width: 4px; height: 100%; background: #2563eb; position: absolute; left: 0; top: 0; }
+    </style>
+</head>
+<body class="p-4 md:p-12">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [books, setBooks] = useState([]);
+            const [page, setPage] = useState(1);
+            const [loading, setLoading] = useState(false);
+            const [error, setError] = useState(null);
+            const [lang, setLang] = useState('all');
+
+            const fetchBooks = async (p = 1, l = 'all') => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const res = await fetch(`/api/books?page=${p}&lang=${l}`);
+                    const json = await res.json();
+                    setBooks(json.data);
+                } catch (err) {
+                    setError({ message: "도서 데이터를 가져올 수 없습니다." });
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const triggerYearBug = async () => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const res = await fetch('/api/books/filter/year?century=21st');
+                    const json = await res.json();
+                    if (!res.ok) throw { message: json.message, bugId: json.bugId };
+                } catch (err) {
+                    setError(err);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            useEffect(() => {
+                fetchBooks(page, lang);
+            }, [page, lang]);
+
+            return (
+                <div className="max-w-5xl mx-auto">
+                    <header className="mb-16 text-center">
+                        <h1 className="font-serif text-5xl font-bold text-slate-900 mb-4 tracking-tight">LibroSearch</h1>
+                        <p className="text-slate-500 font-medium italic">Discover millions of stories across centuries</p>
+                    </header>
+
+                    <div className="flex flex-col md:flex-row gap-8 mb-12">
+                        <div className="flex-1 flex gap-4">
+                            <select 
+                                className="bg-white border p-4 rounded-xl font-bold text-sm outline-none shadow-sm flex-1"
+                                value={lang}
+                                onChange={(e) => setLang(e.target.value)}
+                                data-bug-id="site057-bug01"
+                            >
+                                <option value="all">모든 언어</option>
+                                <option value="en">English (BUG)</option>
+                                <option value="ko">한국어</option>
+                            </select>
+                            <button 
+                                onClick={triggerYearBug}
+                                className="bg-slate-900 text-white px-8 py-4 rounded-xl font-bold text-sm hover:bg-black transition-all shadow-lg"
+                                data-bug-id="site057-bug02"
+                            >
+                                21세기 도서 찾기 (BUG)
+                            </button>
+                        </div>
+                        <div className="flex gap-2">
+                            {[1, 2].map(p => (
+                                <button 
+                                    key={p} 
+                                    onClick={() => setPage(p)}
+                                    className={`w-12 h-12 rounded-xl font-bold transition-all ${page === p ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-white text-slate-400 hover:bg-slate-50'}`}
+                                    data-bug-id={p === 2 ? "site057-bug03" : ""}
+                                >
+                                    {p}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {error && (
+                        <div className="mb-10 p-6 bg-amber-50 border border-amber-200 rounded-2xl flex items-center justify-between" data-bug-id={error.bugId}>
+                            <div className="flex items-center gap-4">
+                                <div className="text-3xl text-amber-500 font-bold">!</div>
+                                <div>
+                                    <p className="font-bold text-slate-900 italic">Notice: {error.message}</p>
+                                    <p className="text-xs text-slate-400 font-mono">Trace: {error.bugId || "N/A"}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {loading ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {[1, 2, 3, 4].map(i => <div key={i} className="h-32 bg-white rounded-xl animate-pulse"></div>)}
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {books.map(book => (
+                                <div key={book.id} className="book-card p-6 pl-10 relative overflow-hidden flex flex-col justify-center">
+                                    <div className="book-spine" style={{ backgroundColor: book.lang === 'ko' ? '#ef4444' : '#2563eb' }}></div>
+                                    <h3 className="text-lg font-bold text-slate-900 mb-1">{book.title}</h3>
+                                    <p className="text-sm text-slate-500 mb-2 font-medium">{book.author}</p>
+                                    <div className="flex justify-between items-center mt-4">
+                                        <span className="text-[10px] font-black uppercase text-slate-400 tracking-widest">{book.lang === 'ko' ? 'Korean' : 'English'}</span>
+                                        <span className="font-serif italic text-slate-400 text-sm">{book.year}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    <footer className="mt-32 py-12 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
+                        <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">© 2026 LibroSearch Digital Repository | SITE057</p>
+                        <div className="flex gap-8 text-[10px] font-black text-slate-500 uppercase">
+                            <a href="#" className="hover:text-blue-600">Archive</a>
+                            <a href="#" className="hover:text-blue-600">Privacy</a>
+                            <a href="#" className="hover:text-blue-600">Open Data</a>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSmart | LMS 교육 통합 관제</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; margin: 0; }
+        .sidebar { background-color: #ffffff; border-right: 1px solid #e2e8f0; width: 280px; height: 100vh; position: fixed; left: 0; top: 0; z-index: 50; }
+        .main-content { margin-left: 280px; padding: 40px; }
+        .nav-link { display: flex; align-items: center; gap: 12px; padding: 16px 24px; margin: 4px 16px; border-radius: 12px; color: #64748b; text-decoration: none; transition: all 0.2s; font-weight: 500; }
+        .nav-link:hover { background-color: #f1f5f9; color: #2563eb; }
+        .section-anchor { padding-top: 80px; margin-top: -40px; margin-bottom: 60px; }
+        .card { background: white; border: 1px solid #e2e8f0; border-radius: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .progress-bar { height: 10px; border-radius: 5px; background-color: #e2e8f0; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #10b981); transition: width 0.5s ease-out; }
+        .badge { padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .bug-toast { animation: slideDown 0.3s cubic-bezier(0.23, 1, 0.32, 1); position: fixed; top: 24px; left: 55%; transform: translateX(-50%); z-index: 1000; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        const API_DATA = {
+            courses: [
+                { id: 1, title: "React 기초 마스터 클래스", progress: 100, completed: false, category: "Frontend" },
+                { id: 2, title: "Node.js 고성능 서버 아키텍처", progress: 45, completed: false, category: "Backend" },
+                { id: 3, title: "TypeScript 실전 프로젝트 가이드", progress: 80, completed: false, category: "Programming" }
+            ],
+            scores: [
+                { id: 101, courseId: 1, score: 95, type: "중간고사 평가", date: "2024.04.10" },
+                { id: 102, courseId: 1, score: 88, type: "최종 학기 시험", date: "2024.04.25" },
+                { id: 103, courseId: 99, score: 70, type: "비즈니스 로직 설계 실무 테스트", date: "2024.04.28" }
+            ],
+            summary: { total: 3, avgProgress: 75, completed: 0 }
+        };
+
+        function App() {
+            const [courses, setCourses] = useState(API_DATA.courses);
+            const [scores, setScores] = useState(API_DATA.scores);
+            const [activeBug, setActiveBug] = useState(null);
+            const [showDetails, setShowDetails] = useState(false);
+
+            const triggerBug = (id) => {
+                if (!id) return;
+                setActiveBug(id);
+                setTimeout(() => setActiveBug(null), 3000);
+            };
+
+            const updateProgress = (id) => {
+                setCourses(prev => prev.map(c => {
+                    if (c.id === id) {
+                        const newProgress = c.progress + 30;
+                        if (newProgress > 100) triggerBug("site049-bug01");
+                        return { ...c, progress: newProgress };
+                    }
+                    return c;
+                }));
+            };
+
+            const loadDetails = () => {
+                setShowDetails(true);
+                triggerBug("site049-bug04");
+            };
+
+            return (
+                <div className="flex w-full">
+                    {/* Bug Toast */}
+                    {activeBug && (
+                        <div className="bug-toast">
+                            <div className="bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 font-mono font-bold text-xs border border-white/10">
+                                <span className="text-blue-400">ℹ️</span> bugid : {activeBug}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Sidebar */}
+                    <aside className="sidebar">
+                        <div className="p-10 flex items-center gap-3 mb-10">
+                            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">E</div>
+                            <h2 className="text-xl font-black text-slate-800">EduSmart</h2>
+                        </div>
+                        <nav>
+                            <a href="#dashboard" className="nav-link"><span>📊</span> <span>대시보드 요약</span></a>
+                            <a href="#courses" onClick={() => triggerBug("site049-bug02")} className="nav-link"><span>📚</span> <span>수강 강의 현황</span></a>
+                            <a href="#progress" className="nav-link"><span>📈</span> <span>진도율 업데이트</span></a>
+                            <a href="#scores" onClick={() => triggerBug("site049-bug03")} className="nav-link"><span>🎯</span> <span>성적표 상세 분석</span></a>
+                        </nav>
+                        <div className="mt-auto p-10 text-[10px] text-slate-400 font-bold uppercase tracking-widest">Edu Center Site 049</div>
+                    </aside>
+
+                    {/* Main Content */}
+                    <main className="main-content flex-1">
+                        
+                        <section id="dashboard" className="section-anchor">
+                            <h1 className="text-4xl font-black text-slate-900 mb-10">학습 현황 대시보드</h1>
+                            <div className="grid grid-cols-3 gap-6">
+                                <div className="card p-10"><p className="text-xs font-bold text-slate-400 uppercase mb-2">수강 중</p><p className="text-4xl font-black">{API_DATA.summary.total}개</p></div>
+                                <div className="card p-10"><p className="text-xs font-bold text-slate-400 uppercase mb-2">평균 진도</p><p className="text-4xl font-black">{API_DATA.summary.avgProgress}%</p></div>
+                                <div className="card p-10"><p className="text-xs font-bold text-slate-400 uppercase mb-2">수료 완료</p><p className="text-4xl font-black text-emerald-500">{API_DATA.summary.completed}개</p></div>
+                            </div>
+                        </section>
+
+                        <section id="courses" className="section-anchor">
+                            <h2 className="text-3xl font-black text-slate-900 mb-8 flex items-center gap-3">수강 강의 현황</h2>
+                            <div className="grid grid-cols-2 gap-8">
+                                {courses.map(c => (
+                                    <div key={c.id} className="card p-10 flex flex-col gap-6 border-l-8 border-blue-500">
+                                        <h4 className="text-xl font-bold text-slate-800">{c.title}</h4>
+                                        <div className="grid grid-cols-2 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                                            <div className="text-center"><p className="text-xs text-slate-400 mb-1 font-bold font-mono uppercase">Progress</p><p className="text-2xl font-black text-blue-600">{c.progress}%</p></div>
+                                            <div className="text-center border-l border-slate-200"><p className="text-xs text-slate-400 mb-1 font-bold font-mono uppercase">Status</p><p className={`text-2xl font-black ${c.completed ? 'text-green-600' : 'text-slate-300'}`}>{c.completed ? 'COMPLETED' : 'INCOMPLETE'}</p></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        <section id="progress" className="section-anchor">
+                            <h2 className="text-3xl font-black text-slate-900 mb-8 flex items-center gap-3">진도율 업데이트</h2>
+                            <div className="space-y-6 max-w-4xl">
+                                {courses.map(c => (
+                                    <div key={c.id} className="card p-8 flex justify-between items-center group hover:bg-slate-50 transition-colors">
+                                        <div><p className="font-bold text-xl mb-1 text-slate-800">{c.title}</p><p className="text-slate-400 font-bold">현재 진행률: {c.progress}%</p></div>
+                                        <button data-bug-id="site049-bug01" onClick={() => updateProgress(c.id)} className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-black shadow-lg shadow-blue-100 hover:bg-blue-700 active:scale-95 transition-all">학습 완료 (30% 추가)</button>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        <section id="scores" className="section-anchor">
+                            <h2 className="text-3xl font-black text-slate-900 mb-8 flex items-center gap-3">성적표 상세 분석</h2>
+                            <div className="grid grid-cols-2 gap-10">
+                                <div className="card p-10 flex flex-col justify-between">
+                                    <div>
+                                        <h3 className="text-xl font-bold text-slate-800 mb-8">종합 성적 통계</h3>
+                                        <div className="bg-blue-50 border-2 border-blue-100 p-10 rounded-[2.5rem]">
+                                            <p className="text-slate-500 font-bold mb-3 uppercase tracking-widest text-xs">학기 전체 평균 평점</p>
+                                            <p className="text-6xl font-black text-blue-600" data-bug-id="site049-bug03">
+                                                127.4 <span className="text-2xl ml-1 text-blue-400">점</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="card p-10">
+                                    <h3 className="text-xl font-bold text-slate-800 mb-8">세부 평가 리포트</h3>
+                                    <button 
+                                        data-bug-id="site049-bug04"
+                                        onClick={loadDetails}
+                                        className="w-full bg-slate-900 text-white py-6 rounded-2xl font-black hover:bg-slate-800 transition-all mb-10 shadow-xl"
+                                    >
+                                        평가 데이터 동기화
+                                    </button>
+                                    <div className="space-y-4">
+                                        {showDetails ? scores.map(s => (
+                                            <div key={s.id} className="flex justify-between items-center p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                                                <div>
+                                                    <p className="text-[10px] font-black text-slate-300 mb-1 uppercase tracking-tighter">{s.type}</p>
+                                                    <p className={`font-black text-lg ${s.courseId === 99 ? 'text-red-500 underline' : 'text-slate-800'}`}>
+                                                        {s.courseId === 99 ? '미등록 교육 과정 (UNASSIGNED)' : API_DATA.courses.find(c => c.id === s.courseId).title}
+                                                    </p>
+                                                </div>
+                                                <span className="text-2xl font-black text-slate-900">{s.score}</span>
+                                            </div>
+                                        )) : (
+                                            <p className="text-center text-slate-400 py-10 italic">데이터 로드가 필요합니다.</p>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <footer className="mt-20 py-10 text-center text-slate-400 text-xs font-bold uppercase tracking-widest border-t border-slate-200">
+                            EduSmart Control Center • site049
+                        </footer>
+                    </main>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

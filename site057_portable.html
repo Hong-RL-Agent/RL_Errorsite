@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeGrid | 스마트 예약 & 스케줄 관리</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background-color: #f0f4f8; color: #334e68; margin: 0; }
+        .sidebar { background-color: #ffffff; border-right: 1px solid #d9e2ec; width: 280px; height: 100vh; position: fixed; left: 0; top: 0; z-index: 50; }
+        .main-content { margin-left: 280px; padding: 48px; min-height: 100vh; }
+        .nav-link { display: flex; align-items: center; gap: 12px; padding: 14px 24px; margin: 4px 16px; border-radius: 12px; color: #627d98; cursor: pointer; transition: all 0.2s; font-weight: 600; font-size: 0.95rem; }
+        .nav-link:hover { background-color: #f0f4f8; color: #102a43; }
+        .nav-link.active { background-color: #127fbf; color: #ffffff; }
+        .card { background: white; border: 1px solid #d9e2ec; border-radius: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .badge { padding: 4px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+        .badge-available { background: #e3f9e5; color: #197742; }
+        .badge-booked { background: #fff3c4; color: #8d6e11; }
+        .badge-cancelled { background: #fcebea; color: #af191e; }
+        .slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+        .slot-card { padding: 20px; border-radius: 16px; border: 2px solid #f0f4f8; cursor: pointer; transition: all 0.2s; }
+        .slot-card:hover { border-color: #127fbf; transform: translateY(-4px); }
+        .btn-blue { background: #127fbf; color: #ffffff; padding: 12px 24px; border-radius: 12px; font-weight: 700; transition: all 0.2s; }
+        .btn-blue:hover { background: #0e6396; transform: translateY(-1px); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .page-content { animation: fadeIn 0.4s ease-out; }
+        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .bug-toast { animation: slideDown 0.3s cubic-bezier(0.23, 1, 0.32, 1); position: fixed; top: 24px; left: 55%; transform: translateX(-50%); z-index: 1000; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const INITIAL_SLOTS = Array.from({ length: 10 }, (_, i) => ({
+            id: i + 9,
+            time: `${i + 9}:00 - ${i + 10}:00`,
+            startTime: `${i + 9}:00`,
+            endTime: `${i + 10}:00`,
+            status: "available"
+        }));
+
+        function App() {
+            const [view, setView] = useState('dashboard');
+            const [slots, setSlots] = useState(INITIAL_SLOTS);
+            const [bookings, setBookings] = useState([]);
+            const [activeBug, setActiveBug] = useState(null);
+
+            const triggerBug = (id) => {
+                if (!id) return;
+                setActiveBug(id);
+                setTimeout(() => setActiveBug(null), 3000);
+            };
+
+            const handleBooking = (slotId) => {
+                const slot = slots.find(s => s.id === slotId);
+                
+                // Bug 02: Boundary Time Conflict
+                if (slot.startTime === "11:00") {
+                    triggerBug("site057-bug02");
+                    alert("시스템 오류: 인접 시간대 충돌이 발생했습니다. (Boundary Error)");
+                    return;
+                }
+
+                // Bug 01: Overlapping Booking (Allows booking even if already booked)
+                const newBooking = { id: Date.now(), slotId, time: slot.time, user: "Guest" };
+                
+                setBookings([...bookings, newBooking]);
+                setSlots(prev => prev.map(s => s.id === slotId ? { ...s, status: "booked" } : s));
+
+                if (slot.status === "booked") {
+                    triggerBug("site057-bug01");
+                }
+            };
+
+            const cancelBooking = (bookingId) => {
+                const booking = bookings.find(b => b.id === bookingId);
+                
+                // Bug 03: Rollback Failure (Booking removed but slot stays booked)
+                setBookings(prev => prev.filter(b => b.id !== bookingId));
+                // setSlots(prev => prev.map(s => s.id === booking.slotId ? { ...s, status: "available" } : s)); // BUG 03 MISSING THIS
+                
+                triggerBug("site057-bug03");
+                alert("예약이 취소되었습니다.");
+            };
+
+            const refreshSlots = () => {
+                // Bug 04: Delayed Cancellation Propagation
+                triggerBug("site057-bug04");
+            };
+
+            const renderContent = () => {
+                switch(view) {
+                    case 'dashboard':
+                        return (
+                            <div className="page-content">
+                                <h1 className="text-3xl font-extrabold mb-10 tracking-tight text-slate-800">예약 현황 대시보드</h1>
+                                <div className="grid grid-cols-3 gap-8 mb-10">
+                                    <div className="card p-10 border-l-4 border-blue-500">
+                                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">전체 슬롯</p>
+                                        <p className="text-4xl font-black">{slots.length}</p>
+                                    </div>
+                                    <div className="card p-10 border-l-4 border-amber-500">
+                                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">예약 완료</p>
+                                        <p className="text-4xl font-black text-amber-600">{slots.filter(s => s.status === 'booked').length}</p>
+                                    </div>
+                                    <div className="card p-10 border-l-4 border-emerald-500">
+                                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">이용 가능</p>
+                                        <p className="text-4xl font-black text-emerald-600">{slots.filter(s => s.status === 'available').length}</p>
+                                    </div>
+                                </div>
+                                <div className="card p-8">
+                                    <h3 className="text-xl font-bold mb-6 text-slate-700">최근 예약 로그</h3>
+                                    <div className="space-y-3">
+                                        {bookings.slice(0, 3).map(b => (
+                                            <div key={b.id} className="flex justify-between items-center p-4 bg-slate-50 rounded-xl">
+                                                <div className="flex items-center gap-4">
+                                                    <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                                                    <p className="font-bold text-sm text-slate-700">{b.time} - 예약 완료</p>
+                                                </div>
+                                                <span className="text-[10px] text-slate-400 font-bold uppercase">SECURE_SYNCED</span>
+                                            </div>
+                                        ))}
+                                        {bookings.length === 0 && <p className="text-center py-6 text-slate-400 font-medium">최근 예약 내역이 없습니다.</p>}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'slots':
+                        return (
+                            <div className="page-content">
+                                <div className="flex justify-between items-end mb-10">
+                                    <div>
+                                        <h2 className="text-2xl font-bold text-slate-800">일일 시간 슬롯</h2>
+                                        <p className="text-sm text-slate-400 mt-1">예약 가능한 시간을 선택하여 스케줄을 확정하세요.</p>
+                                    </div>
+                                    <button onClick={refreshSlots} className="text-sm font-bold text-slate-400 hover:text-blue-600 transition-colors">데이터 동기화</button>
+                                </div>
+                                <div className="slot-grid">
+                                    {slots.map(s => (
+                                        <div key={s.id} onClick={() => handleBooking(s.id)} className={`slot-card bg-white ${s.status === 'booked' ? 'opacity-70 ring-2 ring-amber-100' : ''}`}>
+                                            <div className="flex justify-between items-start mb-6">
+                                                <span className={`badge badge-${s.status}`}>{s.status}</span>
+                                                <span className="text-[10px] font-mono text-slate-300">ID:0{s.id}</span>
+                                            </div>
+                                            <p className="text-lg font-black text-slate-800 mb-1">{s.time}</p>
+                                            <p className="text-xs text-slate-400 font-medium">{s.status === 'available' ? '예약 가능' : '예약 완료'}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        );
+                    case 'bookings':
+                        return (
+                            <div className="page-content">
+                                <h2 className="text-2xl font-bold mb-10 text-slate-800">내 예약 목록</h2>
+                                <div className="card overflow-hidden">
+                                    <table className="w-full text-left">
+                                        <thead className="bg-slate-50 text-slate-400 border-b border-slate-100">
+                                            <tr>
+                                                <th className="p-5 text-[10px] font-bold uppercase tracking-widest">Booking ID</th>
+                                                <th className="p-5 text-[10px] font-bold uppercase tracking-widest">Time Slot</th>
+                                                <th className="p-5 text-[10px] font-bold uppercase tracking-widest">Status</th>
+                                                <th className="p-5 text-[10px] font-bold uppercase tracking-widest text-right">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-slate-100">
+                                            {bookings.map(b => (
+                                                <tr key={b.id} className="hover:bg-slate-50 transition-colors">
+                                                    <td className="p-5 font-mono text-xs text-slate-400">#BK_{b.id.toString().slice(-6)}</td>
+                                                    <td className="p-5 font-bold text-slate-700">{b.time}</td>
+                                                    <td className="p-5">
+                                                        <span className="badge badge-booked">Confirmed</span>
+                                                    </td>
+                                                    <td className="p-5 text-right">
+                                                        <button onClick={() => cancelBooking(b.id)} className="text-xs font-bold text-red-500 hover:underline">취소하기</button>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                            {bookings.length === 0 && (
+                                                <tr>
+                                                    <td colSpan="4" className="p-20 text-center text-slate-300 font-bold uppercase tracking-widest text-sm">예약된 내역이 없습니다</td>
+                                                </tr>
+                                            )}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        );
+                    default: return null;
+                }
+            };
+
+            return (
+                <div className="flex w-full min-h-screen">
+                    {/* Bug Notification */}
+                    {activeBug && (
+                        <div className="bug-toast">
+                            <div className="bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 font-mono font-bold text-xs border border-white/10">
+                                <span className="text-blue-400">📅</span> bugid : {activeBug}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Sidebar */}
+                    <aside className="sidebar flex flex-col py-12">
+                        <div className="flex items-center gap-4 mb-20 px-10">
+                            <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-2xl shadow-xl shadow-blue-200">T</div>
+                            <h2 className="text-2xl font-black tracking-tighter text-slate-800">TimeGrid</h2>
+                        </div>
+                        <nav className="flex-1">
+                            <div onClick={() => setView('dashboard')} className={`nav-link ${view === 'dashboard' ? 'active' : ''}`}>📊 <span>대시보드</span></div>
+                            <div onClick={() => setView('slots')} className={`nav-link ${view === 'slots' ? 'active' : ''}`}>🕓 <span>시간 슬롯</span></div>
+                            <div onClick={() => setView('bookings')} className={`nav-link ${view === 'bookings' ? 'active' : ''}`}>📋 <span>내 예약</span></div>
+                        </nav>
+                        <div className="mt-auto px-10 py-8 border-t border-slate-100 text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                            Scheduler site057
+                        </div>
+                    </aside>
+
+                    {/* Main Content */}
+                    <main className="main-content flex-1">
+                        {renderContent()}
+                        <footer className="mt-24 py-12 border-t border-slate-200 text-center text-[10px] font-black text-slate-300 uppercase tracking-[0.5em]">
+                            © 2026 TimeGrid Intelligence • Data Consistency 057
+                        </footer>
+                    </main>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StreamMax - Premium Streaming</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap');
+
+    :root {
+      --bg: #0f0f0f;
+      --bg-light: #1a1a1a;
+      --primary: #e50914; /* Netflix Red */
+      --primary-hover: #f40612;
+      --text: #ffffff;
+      --text-muted: #b3b3b3;
+      --border: #333333;
+      --error: #ef4444;
+      --error-bg: rgba(239, 68, 68, 0.1);
+      --success: #22c55e;
+    }
+
+    body { margin: 0; font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); }
+    
+    .app-container { display: flex; height: 100vh; overflow: hidden; }
+
+    /* Sidebar / Triggers */
+    .sidebar { width: 320px; background: var(--bg-light); border-right: 1px solid var(--border); padding: 2rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; overflow-y: auto; }
+    .brand { font-size: 2rem; font-weight: 800; color: var(--primary); letter-spacing: -1px; margin-bottom: 1rem; }
+    
+    .nav-title { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-top: 1rem; letter-spacing: 1px; }
+    
+    .btn { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 0.8rem 1rem; border-radius: 4px; cursor: pointer; text-align: left; font-family: inherit; font-size: 0.95rem; font-weight: 600; transition: 0.2s; }
+    .btn:hover:not(:disabled) { background: rgba(255,255,255,0.05); border-color: var(--text-muted); }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .btn-primary { background: var(--primary); color: var(--text); border: none; text-align: center; }
+    .btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
+
+    .bug-btn { border-color: #7f1d1d; color: #fca5a5; background: rgba(127, 29, 29, 0.2); }
+    .bug-btn:hover:not(:disabled) { background: rgba(127, 29, 29, 0.4); border-color: #ef4444; color: #ffffff; }
+
+    /* Main Content */
+    .main { flex: 1; padding: 2.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 2.5rem; position: relative; }
+    
+    .header { display: flex; justify-content: space-between; align-items: center; }
+    .profile-card { background: var(--bg-light); padding: 1rem 1.5rem; border-radius: 8px; border: 1px solid var(--border); display: flex; align-items: center; gap: 1.5rem; }
+    .profile-avatar { width: 40px; height: 40px; border-radius: 4px; background: var(--primary); display: flex; justify-content: center; align-items: center; font-weight: 700; font-size: 1.2rem; }
+    
+    .status-badge { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+    .badge-active { background: rgba(34, 197, 94, 0.2); color: var(--success); border: 1px solid var(--success); }
+    .badge-inactive { background: rgba(255, 255, 255, 0.1); color: var(--text-muted); border: 1px solid var(--text-muted); }
+
+    .error-banner { background: var(--error-bg); color: #fca5a5; padding: 1rem 1.5rem; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #7f1d1d; font-size: 0.95rem; font-weight: 500; backdrop-filter: blur(10px); }
+
+    /* Content Grid */
+    .section-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+    .content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+    .content-card { background: var(--bg-light); border-radius: 8px; overflow: hidden; border: 1px solid transparent; transition: 0.3s; cursor: pointer; position: relative; }
+    .content-card:hover { border-color: var(--primary); transform: scale(1.02); z-index: 10; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+    .card-img { height: 140px; background: #2a2a2a; display: flex; justify-content: center; align-items: center; color: var(--text-muted); font-size: 2rem; }
+    .card-info { padding: 1rem; }
+    .card-title { font-weight: 700; font-size: 1.1rem; margin: 0 0 0.5rem 0; }
+    .card-meta { color: var(--text-muted); font-size: 0.85rem; display: flex; gap: 0.8rem; }
+
+    /* Player Overlay */
+    .player-overlay { position: absolute; inset: 0; background: #000000; z-index: 100; display: flex; flex-direction: column; padding: 2rem; }
+    .player-header { display: flex; justify-content: space-between; margin-bottom: auto; }
+    .close-btn { background: transparent; border: none; color: var(--text); font-size: 2rem; cursor: pointer; }
+    .player-center { text-align: center; margin-bottom: auto; }
+    .player-title { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
+    .player-status { color: var(--primary); font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+
+    .loading-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--primary); width: 100%; animation: load 1s infinite; z-index: 1000; }
+    @keyframes load { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+  </style>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function App() {
+      const [contents, setContents] = useState([]);
+      const [userState, setUserState] = useState({ isSubscribed: false, isCancelled: false, contentState: 'unwatched', downloadState: 'none' });
+      const [playingContent, setPlayingContent] = useState(null);
+      
+      const [error, setError] = useState(null);
+      const [loading, setLoading] = useState(false);
+
+      useEffect(() => {
+        fetchData();
+      }, []);
+
+      const fetchData = async () => {
+        await fetchContents();
+        await fetchUserState();
+      };
+
+      const fetchContents = async () => {
+        const res = await fetch('/api/content/list');
+        const data = await res.json();
+        if (data.ok) setContents(data.data);
+      };
+
+      const fetchUserState = async () => {
+        const res = await fetch('/api/user/state');
+        const data = await res.json();
+        if (data.ok) setUserState(data.state);
+      };
+
+      const handleApiCall = async (promise, returnData = false) => {
+        setLoading(true);
+        setError(null);
+        try {
+          const res = await promise;
+          const data = await res.json();
+          if (!data.ok) throw { message: data.error, bugId: data.bugId };
+          if (data.bugId) {
+             setError({ message: 'Backend Logic Error Triggered: ' + data.message, bugId: data.bugId });
+          }
+          if (data.state) setUserState(data.state);
+          if (returnData) return data;
+        } catch (err) {
+          setError({ message: err.message || 'API Request Failed', bugId: err.bugId });
+          return null;
+        } finally {
+          setLoading(false);
+          await fetchUserState(); // Sync state visually
+        }
+      };
+
+      // Normal actions
+      const doSubscribe = () => handleApiCall(fetch('/api/user/subscribe', { method: 'POST' }));
+      const doCancelSub = () => handleApiCall(fetch('/api/user/cancel', { method: 'POST' }));
+      const doReset = () => { handleApiCall(fetch('/api/test/reset', { method: 'POST' })); setPlayingContent(null); };
+
+      const playContent = async (item) => {
+        const data = await handleApiCall(fetch('/api/content/play', { method: 'POST' }), true);
+        if (data) {
+           setPlayingContent(item);
+        }
+      };
+
+      const closePlayer = () => {
+        setPlayingContent(null);
+        handleApiCall(fetch('/api/content/state', {
+           method: 'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({state: 'finished'})
+        }));
+      };
+
+      // Bug Triggers
+      const triggerBug01 = () => handleApiCall(fetch('/api/content/state', {
+        method: 'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({state: 'WATCHING_UNKNOWN_FINAL'})
+      }));
+      const triggerBug02 = () => playContent(contents[0]); // User clicks play without sub (simulated by not disabling button)
+      const triggerBug03 = () => handleApiCall(fetch('/api/test/conflict', { method: 'POST' }));
+      const triggerBug04 = () => playContent(contents[0]); // User clicks play after cancelling (simulated by not disabling button)
+
+      return (
+        <div className="app-container">
+          {loading && <div className="loading-bar"></div>}
+          
+          <aside className="sidebar">
+            <div className="brand">▶ StreamMax</div>
+            
+            <div className="nav-title">Subscription Control</div>
+            <button className="btn btn-primary" onClick={doSubscribe} disabled={userState.isSubscribed}>
+              Subscribe Now ($14.99/mo)
+            </button>
+            <button className="btn" onClick={doCancelSub} disabled={!userState.isSubscribed && !userState.isCancelled}>
+              Cancel Subscription
+            </button>
+            <button className="btn" onClick={doReset}>
+              Reset Account State
+            </button>
+
+            <div className="nav-title" style={{marginTop:'2rem'}}>PPO Test Triggers</div>
+            <button className="btn bug-btn" data-bug-id="site005-bug01" onClick={triggerBug01}>
+              Bug 01: Inject Undefined Status
+            </button>
+            <button className="btn bug-btn" data-bug-id="site005-bug02" onClick={triggerBug02} disabled={userState.isSubscribed}>
+              Bug 02: Play w/o Subscription
+            </button>
+            <button className="btn bug-btn" data-bug-id="site005-bug03" onClick={triggerBug03}>
+              Bug 03: Race Condition (DL + Del)
+            </button>
+            <button className="btn bug-btn" data-bug-id="site005-bug04" onClick={triggerBug04} disabled={!userState.isCancelled}>
+              Bug 04: Play After Cancelled
+            </button>
+          </aside>
+
+          <main className="main">
+            <header className="header">
+              <div style={{fontSize:'1.2rem', fontWeight:600}}>Browse</div>
+              
+              <div className="profile-card">
+                <div style={{display:'flex', flexDirection:'column', alignItems:'flex-end'}}>
+                  <span style={{fontWeight:700}}>User Profile</span>
+                  <span className={`status-badge ${userState.isSubscribed ? 'badge-active' : 'badge-inactive'}`} style={{marginTop:'0.5rem'}}>
+                    {userState.isSubscribed ? 'Active Subscriber' : (userState.isCancelled ? 'Cancelled' : 'No Subscription')}
+                  </span>
+                </div>
+                <div className="profile-avatar">U</div>
+              </div>
+            </header>
+
+            {error && (
+              <div className="error-banner">
+                <div>
+                  <strong>System Alert:</strong> {error.message}
+                  {error.bugId && <span style={{marginLeft:'10px', background:'#ef4444', color:'white', padding:'2px 8px', borderRadius:'12px', fontSize:'0.8rem'}}>{error.bugId}</span>}
+                </div>
+                <button onClick={() => setError(null)} style={{background:'none', border:'none', cursor:'pointer', color:'#fca5a5'}}>✖</button>
+              </div>
+            )}
+
+            <div>
+               <div className="section-title">Backend Internal State Monitor</div>
+               <div style={{display:'flex', gap:'1rem', background:'var(--bg-light)', padding:'1rem', borderRadius:'8px', border:'1px solid var(--border)'}}>
+                  <div>Content State: <strong style={{color:'var(--primary)'}}>{userState.contentState}</strong></div>
+                  <div style={{color:'var(--border)'}}>|</div>
+                  <div>Download State: <strong style={{color:'var(--primary)'}}>{userState.downloadState}</strong></div>
+               </div>
+            </div>
+
+            <div>
+              <div className="section-title">Trending Now</div>
+              <div className="content-grid">
+                {contents.map(c => (
+                  <div className="content-card" key={c.id} onClick={() => playContent(c)}>
+                    <div className="card-img">🎬</div>
+                    <div className="card-info">
+                      <h3 className="card-title">{c.title}</h3>
+                      <div className="card-meta">
+                        <span>{c.genre}</span>
+                        <span>{c.duration}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Cinematic Player Overlay */}
+            {playingContent && (
+              <div className="player-overlay">
+                <div className="player-header">
+                  <div></div>
+                  <button className="close-btn" onClick={closePlayer}>✖</button>
+                </div>
+                <div className="player-center">
+                  <div className="player-status">Now Playing</div>
+                  <div className="player-title">{playingContent.title}</div>
+                  <p style={{color:'var(--text-muted)'}}>Simulating cinematic playback...</p>
+                </div>
+              </div>
+            )}
+
+          </main>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

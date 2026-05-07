@@ -1,0 +1,245 @@
+:root {
+  --perfume-gold: #c5a059;
+  --perfume-beige: #fdfaf5;
+  --perfume-pastel: #f9ecec;
+  --perfume-dark: #3a3434;
+  --perfume-gray: #8e8585;
+  --sidebar-w: 260px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--perfume-beige);
+  color: var(--perfume-dark);
+  line-height: 1.5;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-w);
+  background: white;
+  border-right: 1px solid #eee;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.8rem;
+  color: var(--perfume-gold);
+  margin-bottom: 4rem;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.nav-menu {
+  list-style: none;
+}
+
+.nav-item {
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 0.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--perfume-gray);
+  transition: all 0.3s;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.nav-item:hover {
+  color: var(--perfume-gold);
+  background: var(--perfume-beige);
+}
+
+.nav-item.active {
+  background: var(--perfume-gold);
+  color: white;
+  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-w);
+  padding: 3rem 5rem;
+}
+
+header {
+  margin-bottom: 3.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Perfume Cards */
+.perfume-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+.perfume-card {
+  background: white;
+  padding: 1.8rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f0f0f0;
+}
+
+.perfume-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+}
+
+.bottle-placeholder {
+  width: 100%;
+  height: 200px;
+  background: var(--perfume-beige);
+  margin-bottom: 1.5rem;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.note-tag {
+  font-size: 0.75rem;
+  background: #f5f5f5;
+  padding: 0.3rem 0.7rem;
+  border-radius: 50px;
+  color: var(--perfume-gray);
+  font-weight: 700;
+}
+
+.score-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--perfume-gold);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(197, 160, 89, 0.4);
+  z-index: 10;
+}
+
+/* Banner */
+.banner {
+  padding: 1.5rem 2rem;
+  border-radius: 15px;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.bug-tag {
+  background: var(--perfume-dark);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-weight: 800;
+  font-size: 0.75rem;
+}
+
+/* Stats */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  border: 1px solid #f0f0f0;
+  border-bottom: 4px solid var(--perfume-gold);
+  transition: all 0.3s;
+}
+
+.stat-card.active {
+  background: var(--perfume-pastel);
+  border-color: var(--perfume-gold);
+}
+
+.stat-card:hover { transform: translateY(-5px); }
+.stat-val { font-size: 2.4rem; font-weight: 800; color: var(--perfume-gold); line-height: 1; }
+
+/* Buttons */
+.btn {
+  padding: 0.8rem 1.8rem;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.btn-primary { 
+  background: var(--perfume-gold); 
+  color: white; 
+  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+}
+
+.btn-outline { 
+  background: white; 
+  border: 1px solid #ddd; 
+  color: var(--perfume-gray); 
+}
+
+.btn-outline:hover {
+  border-color: var(--perfume-gold);
+  color: var(--perfume-gold);
+}
+
+.btn:active { transform: scale(0.96); }
+
+.remove-btn:hover {
+  color: #ff4d4d !important;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

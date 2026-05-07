@@ -1,0 +1,226 @@
+:root {
+  --portal-red: #d32f2f;
+  --portal-dark: #212121;
+  --portal-light: #f5f5f5;
+  --portal-gray: #757575;
+  --sidebar-w: 260px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: var(--portal-light);
+  color: var(--portal-dark);
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-w);
+  background: white;
+  border-right: 1px solid #ddd;
+  padding: 2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--portal-red);
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 3px solid var(--portal-red);
+  padding-bottom: 0.5rem;
+}
+
+.nav-menu {
+  list-style: none;
+}
+
+.nav-item {
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--portal-dark);
+  transition: background 0.2s;
+  font-weight: 500;
+}
+
+.nav-item:hover {
+  background: #f0f0f0;
+}
+
+.nav-item.active {
+  background: var(--portal-red);
+  color: white;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-w);
+  padding: 2.5rem 3.5rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+}
+
+/* News Cards */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.news-card {
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  padding: 1.2rem;
+  position: relative;
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.news-card:hover {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.news-card h3 {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  height: 3rem;
+  overflow: hidden;
+}
+
+.badge-live {
+  background: var(--portal-red);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.meta-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--portal-gray);
+}
+
+/* Ranking */
+.ranking-list {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.ranking-number {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--portal-red);
+  width: 25px;
+}
+
+/* Banner */
+.banner {
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ffcdd2;
+  background: #ffebee;
+}
+
+.bug-tag {
+  background: var(--portal-red);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--portal-red);
+  color: white;
+  border-color: var(--portal-red);
+}
+
+.btn-primary:hover {
+  background: #b71c1c;
+}
+
+/* Stats */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-box {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--portal-red);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.stat-label { font-size: 0.85rem; color: var(--portal-gray); margin-bottom: 0.5rem; }
+.stat-value { font-size: 1.6rem; font-weight: 800; }

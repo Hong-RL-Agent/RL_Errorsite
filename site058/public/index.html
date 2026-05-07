@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudOps | 엔터프라이즈 자산 관리</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b0e14; color: #d1d5db; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .cyber-card { background: #161b22; border: 1px solid #30363d; border-radius: 0.5rem; transition: border-color 0.2s; }
+        .cyber-card:hover { border-color: #58a6ff; }
+        .status-pulse { width: 8px; height: 8px; border-radius: 50%; background: #238636; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [summary, setSummary] = useState(null);
+            const [assets, setAssets] = useState([]);
+            const [security, setSecurity] = useState(null);
+            const [loading, setLoading] = useState(false);
+            const [error, setError] = useState(null);
+
+            const fetchData = async () => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const [sumRes, assetRes, secRes] = await Promise.all([
+                        fetch('/api/cloud/assets/summary'),
+                        fetch('/api/cloud/assets'),
+                        fetch('/api/cloud/security/status')
+                    ]);
+                    
+                    const sumJson = await sumRes.json();
+                    const assetJson = await assetRes.json();
+                    const secJson = await secRes.json();
+
+                    setSummary(sumJson);
+                    setAssets(assetJson.data);
+                    setSecurity(secJson);
+                } catch (err) {
+                    setError({ message: "인프라 연결 오류" });
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const showDetail = async (id) => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const res = await fetch(`/api/cloud/assets/${id}`);
+                    const json = await res.json();
+                    if (!res.ok) throw { message: json.message, bugId: json.bugId };
+                    alert(`[${json.data.type}] ${json.data.name}\nRegion: ${json.data.region}\nCost: $${json.data.cost}`);
+                } catch (err) {
+                    setError(err);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            useEffect(() => {
+                fetchData();
+            }, []);
+
+            return (
+                <div className="max-w-7xl mx-auto">
+                    <header className="flex justify-between items-center mb-12 border-b border-gray-800 pb-8">
+                        <div>
+                            <h1 className="text-2xl font-black text-white tracking-tight mono">CloudOps<span className="text-blue-500">_Console</span></h1>
+                            <p className="text-xs text-gray-500 mt-1 uppercase font-bold tracking-widest">Enterprise Asset Management v3.1</p>
+                        </div>
+                        <div className="flex items-center gap-6">
+                            <div className="flex items-center gap-2" data-bug-id="site058-bug03">
+                                <div className="status-pulse"></div>
+                                <span className="text-xs font-bold text-gray-400">Security: {security ? security.status : "Checking..."}</span>
+                            </div>
+                            <button onClick={fetchData} className="bg-blue-600 text-white px-4 py-2 rounded font-bold text-xs hover:bg-blue-500 transition-all">
+                                REFRESH
+                            </button>
+                        </div>
+                    </header>
+
+                    {error && (
+                        <div className="mb-10 p-4 bg-red-900/20 border border-red-500/50 rounded flex items-center justify-between shadow-lg" data-bug-id={error.bugId}>
+                            <div className="flex items-center gap-3">
+                                <span className="text-xl">⚠️</span>
+                                <div>
+                                    <p className="text-red-400 font-bold text-sm underline decoration-red-900 underline-offset-4 tracking-tight uppercase">System Exception Detected</p>
+                                    <p className="text-gray-500 text-[10px] mono mt-1">{error.message} // BugID: {error.bugId}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-12">
+                        <div className="cyber-card p-6 lg:col-span-1 flex flex-col justify-between h-40" data-bug-id="site058-bug01">
+                            <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Monthly Estimated Cost</p>
+                            <h3 className="text-3xl font-black text-white mono tracking-tighter">
+                                ${summary ? summary.totalMonthlyCost : "0"}
+                            </h3>
+                            <div className="flex justify-between items-center text-[10px]">
+                                <span className="text-gray-600 font-bold italic">Calculation Error Check Active</span>
+                                <span className="text-blue-500 font-black tracking-widest">+4.2%</span>
+                            </div>
+                        </div>
+                        <div className="cyber-card p-6 lg:col-span-1 h-40 flex flex-col justify-between">
+                            <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Asset Count</p>
+                            <h3 className="text-3xl font-black text-white mono tracking-tighter">{assets.length}</h3>
+                            <div className="text-[10px] text-gray-600 font-bold">Resources Active</div>
+                        </div>
+                        <div className="cyber-card p-6 lg:col-span-2 h-40 flex flex-col justify-between border-l-4 border-l-blue-500">
+                            <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Infrastructure Health</p>
+                            <div className="flex items-center gap-4">
+                                <h3 className="text-3xl font-black text-white mono tracking-tighter italic">OPTIMIZED</h3>
+                                <div className="flex gap-1">
+                                    {[1, 2, 3, 4, 5].map(i => <div key={i} className="w-1 h-4 bg-blue-500/50"></div>)}
+                                </div>
+                            </div>
+                            <p className="text-[10px] text-blue-500 font-black">All systems operational in 4 regions</p>
+                        </div>
+                    </div>
+
+                    <div className="cyber-card overflow-hidden">
+                        <table className="w-full text-left text-xs">
+                            <thead className="bg-[#1c2128] text-gray-500 uppercase text-[10px] font-black tracking-widest">
+                                <tr>
+                                    <th className="p-4">Resource ID</th>
+                                    <th className="p-4">Name</th>
+                                    <th className="p-4">Type</th>
+                                    <th className="p-4">Region</th>
+                                    <th className="p-4">Cost/mo</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-800">
+                                {loading ? (
+                                    <tr><td colSpan="5" className="p-20 text-center mono text-gray-700 italic">Scanning global infrastructure...</td></tr>
+                                ) : (
+                                    assets.map(a => (
+                                        <tr 
+                                            key={a.id} 
+                                            className="hover:bg-[#1c2128] cursor-pointer transition-colors"
+                                            onClick={() => showDetail(a.id)}
+                                            data-bug-id={a.id === 'res-999' ? "site058-bug02" : ""}
+                                        >
+                                            <td className="p-4 mono text-blue-400 font-bold">{a.id}</td>
+                                            <td className="p-4 font-bold text-white">{a.name}</td>
+                                            <td className="p-4 italic text-gray-400">{a.type}</td>
+                                            <td className="p-4 text-gray-500">{a.region}</td>
+                                            <td className="p-4 font-black text-white mono">${a.cost}</td>
+                                        </tr>
+                                    ))
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <footer className="mt-32 py-12 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
+                        <p className="text-gray-700 text-[10px] font-black uppercase tracking-[0.4em] mono italic">© 2026 CloudOps Global Infrastructure | SITE058</p>
+                        <div className="flex gap-8 text-[10px] font-black text-gray-600 uppercase tracking-widest">
+                            <a href="#" className="hover:text-blue-500">Compliance</a>
+                            <a href="#" className="hover:text-blue-500">Legal</a>
+                            <a href="#" className="hover:text-blue-500">Status</a>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
