@@ -1,0 +1,50 @@
+name: weather-sim-9099
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: weather-sim-api-9099
+    environment:
+      SERVER_PORT: "9099"
+      WEATHER_SIM_REGION_MODE: "multi-region-fault-drill"
+      WEATHER_SIM_FAULT_LOGS: "OOMKilled,PV_MOUNT_ERROR,REGION_OUTAGE,ELK_FORMAT_BREAK,BACKUP_CORRUPTION,IAM_LOCKOUT,IO_CREDIT_EXHAUSTION,AGENT_OVERHEAD,FULL_TABLE_SCAN,TX_ISOLATION_DRIFT,REPLICATION_LAG"
+    expose:
+      - "9099"
+    networks:
+      - weather-sim-net
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: weather-sim-ui-9099
+    depends_on:
+      - backend
+    ports:
+      - "9099:80"
+    networks:
+      - weather-sim-net
+
+  infra-fault-log:
+    image: alpine:3.20
+    container_name: weather-sim-fault-log-9099
+    command:
+      - /bin/sh
+      - -c
+      - |
+        while true; do
+          echo "[WEATHER-SIM][OOMKilled] pod=polar-vortex-assimilation rss=1536Mi limit=1024Mi action=restart";
+          echo "[WEATHER-SIM][PV_MOUNT_ERROR] volume=radar-archive-pv status=MountVolume.SetUp failed reason=storage endpoint timeout";
+          echo "[WEATHER-SIM][REGION_OUTAGE] region=ap-northeast-2 impact=global forecast API degraded";
+          echo "[WEATHER-SIM][REPLICATION_LAG] master=weather-primary replica=weather-replica lagSeconds=742";
+          sleep 30;
+        done
+    networks:
+      - weather-sim-net
+
+networks:
+  weather-sim-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.90.99.0/24

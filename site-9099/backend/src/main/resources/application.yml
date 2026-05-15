@@ -1,0 +1,17 @@
+server:
+  port: ${SERVER_PORT:9099}
+
+spring:
+  application:
+    name: WEATHER-SIM-9099
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+weather-sim:
+  public-origin: http://localhost:9099
+  region-mode: ${WEATHER_SIM_REGION_MODE:single-node-dev}
+
