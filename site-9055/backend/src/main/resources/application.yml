@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: genome-x-backend
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+genomex:
+  simulation:
+    enabled: true
+    data-dir: ${GENOMEX_DATA_DIR:./runtime/genome-x}
+    intensity: ${GENOMEX_INTENSITY:0.62}

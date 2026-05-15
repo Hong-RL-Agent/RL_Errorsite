@@ -1,0 +1,23 @@
+{
+  "name": "genome-x-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 9055",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 9055"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.7",
+    "lucide-react": "^0.468.0",
+    "vite": "^6.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.2"
+  }
+}

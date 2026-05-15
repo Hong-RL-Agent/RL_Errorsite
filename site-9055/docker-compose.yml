@@ -1,0 +1,31 @@
+services:
+  genome-x-backend:
+    build:
+      context: ./backend
+    container_name: genome-x-backend
+    environment:
+      GENOMEX_DATA_DIR: /var/lib/genome-x
+      GENOMEX_INTENSITY: "0.72"
+      JAVA_TOOL_OPTIONS: >-
+        -XX:+UseG1GC
+        -XX:MaxRAMPercentage=72
+        -XX:+AlwaysPreTouch
+    volumes:
+      - genome-x-runtime:/var/lib/genome-x
+    cpus: 1.35
+    mem_limit: 640m
+    pids_limit: 256
+
+  genome-x-frontend:
+    build:
+      context: ./frontend
+    container_name: genome-x-frontend
+    depends_on:
+      - genome-x-backend
+    ports:
+      - "9055:80"
+    cpus: 0.45
+    mem_limit: 192m
+
+volumes:
+  genome-x-runtime:
