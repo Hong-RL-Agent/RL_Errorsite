@@ -1,0 +1,28 @@
+services:
+  deep-sea-data:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: deep-sea-data-9095
+    ports:
+      - "9095:9095"
+    environment:
+      SERVER_PORT: 9095
+      DEEPSEA_SIMULATION_MODE: "unstable-availability-lab"
+      DEEPSEA_LOG_PROFILE: "availability-chain-failure"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:9095/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 25s
+    restart: unless-stopped
+    networks:
+      - deep-sea-data-net
+
+networks:
+  deep-sea-data-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.90.95.0/24

@@ -1,0 +1,31 @@
+server:
+  port: ${SERVER_PORT:9095}
+  shutdown: immediate
+  compression:
+    enabled: true
+
+spring:
+  application:
+    name: DEEP-SEA-DATA
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          no-store: true
+          no-cache: true
+          must-revalidate: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+deepsea:
+  simulation-mode: ${DEEPSEA_SIMULATION_MODE:unstable-availability-lab}
+  log-profile: ${DEEPSEA_LOG_PROFILE:availability-chain-failure}
+  command-center-timezone: Asia/Seoul
+  offshore-node-timezone: UTC
