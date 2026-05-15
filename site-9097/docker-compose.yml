@@ -1,0 +1,44 @@
+services:
+  waste-backend:
+    build:
+      context: ./backend
+    container_name: waste-mgmt-backend-9097
+    expose:
+      - "9097"
+    environment:
+      SERVER_PORT: "9097"
+      WM_FAULT_DNS_DELAY_MS: "2200"
+      WM_FAULT_PROXY_DELAY_MS: "3600"
+      WM_FAULT_PACKET_LOSS_RATE: "0.17"
+      WM_FAULT_STICKY_NODE: "wm-node-b"
+    networks:
+      - waste-mgmt-net-9097
+    labels:
+      wm.faults: "dns-delay,ssl-handshake-fail,tcp-retransmission,sticky-session,split-brain,cors-options-storm"
+
+  waste-frontend:
+    build:
+      context: ./frontend
+    container_name: waste-mgmt-frontend-9097
+    depends_on:
+      - waste-backend
+    ports:
+      - "9097:9097"
+    networks:
+      - waste-mgmt-net-9097
+    labels:
+      wm.public-base-url: "http://localhost:9097"
+      wm.proxy-faults: "502-bad-gateway,504-timeout,preflight-every-request"
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        labels: "wm.faults,wm.proxy-faults,wm.public-base-url"
+
+networks:
+  waste-mgmt-net-9097:
+    name: waste-mgmt-net-9097
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.90.97.0/24

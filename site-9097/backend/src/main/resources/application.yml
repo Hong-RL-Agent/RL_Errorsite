@@ -1,0 +1,32 @@
+server:
+  port: 9097
+  forward-headers-strategy: framework
+  servlet:
+    session:
+      cookie:
+        name: WASTE_MGMT_9097
+
+spring:
+  application:
+    name: waste-mgmt-9097
+  mvc:
+    dispatch-options-request: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+waste-mgmt:
+  cors:
+    allowed-origin: http://localhost:9097
+  fault-simulation:
+    dns-delay-ms: 2200
+    proxy-delay-ms: 3600
+    packet-loss-rate: 0.17
+    sticky-session-node: wm-node-b
