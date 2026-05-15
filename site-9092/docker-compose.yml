@@ -1,0 +1,38 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: smart-home-sec-api-9092
+    expose:
+      - "9092"
+    environment:
+      SMART_HOME_SEC_SIMULATION_MODE: "true"
+      SERVER_PORT: "9092"
+      SMART_HOME_SEC_CORS_ORIGIN: "http://localhost:9092"
+    volumes:
+      - ./storage:/app/storage
+    labels:
+      - "smart-home-sec.training=SIM-VULN-07,SIM-VULN-08,SIM-VULN-10,SIM-VULN-11"
+    networks:
+      - smart-home-sec-net
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: smart-home-sec-web-9092
+    depends_on:
+      - backend
+    ports:
+      - "9092:9092"
+    labels:
+      - "smart-home-sec.port=http://localhost:9092"
+      - "smart-home-sec.training=DOM-XSS,CLICKJACKING,LOCALSTORAGE,POSTMESSAGE,CLIENT-LOGIC,FINGERPRINTING,HARDCODED-KEY"
+    networks:
+      - smart-home-sec-net
+
+networks:
+  smart-home-sec-net:
+    name: smart-home-sec-9092-net
+    ipam:
+      config:
+        - subnet: 10.92.92.0/24

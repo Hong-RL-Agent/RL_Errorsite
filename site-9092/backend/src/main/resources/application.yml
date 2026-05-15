@@ -1,0 +1,22 @@
+server:
+  port: 9092
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: SMART-HOME-SEC
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 24MB
+
+smart-home-sec:
+  cors-origin: http://localhost:9092
+  storage-root: ./storage
+  simulation-mode: true
+
+logging:
+  level:
+    root: INFO
+    com.smarthomesec: DEBUG
