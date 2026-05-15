@@ -1,0 +1,15 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: quantum-sim-backend
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+quantum-sim:
+  public-origin: ${PUBLIC_ORIGIN:http://localhost:9074}

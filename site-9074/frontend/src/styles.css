@@ -1,0 +1,308 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #020617;
+  color: #e5f7ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #020617;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(34, 211, 238, .14), transparent 30%),
+    radial-gradient(circle at 82% 24%, rgba(168, 85, 247, .14), transparent 28%),
+    #020617;
+}
+
+.hero {
+  position: relative;
+  min-height: 56vh;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(34, 211, 238, .18);
+}
+
+.quantum-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 72px 0 42px;
+}
+
+.brand-row,
+.status-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #22d3ee;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.hero h1 {
+  max-width: 920px;
+  margin: 28px 0 18px;
+  font-size: clamp(44px, 8vw, 92px);
+  line-height: .95;
+  letter-spacing: 0;
+}
+
+.hero p {
+  max-width: 760px;
+  color: #b9d7e3;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.status-strip {
+  flex-wrap: wrap;
+  margin-top: 32px;
+  color: #d9f9ff;
+}
+
+.status-strip span {
+  border: 1px solid rgba(34, 211, 238, .32);
+  background: rgba(2, 6, 23, .72);
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+.metric-grid,
+.ops-grid,
+.finding-grid {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  padding: 24px 0;
+}
+
+.metric,
+.panel,
+.finding {
+  border: 1px solid rgba(148, 163, 184, .18);
+  background: rgba(15, 23, 42, .72);
+  backdrop-filter: blur(14px);
+  border-radius: 8px;
+}
+
+.metric {
+  min-height: 116px;
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  padding: 18px;
+}
+
+.metric svg {
+  color: #22d3ee;
+}
+
+.metric.red svg,
+.finding.critical span {
+  color: #dc2626;
+}
+
+.metric.purple svg,
+.finding.high span {
+  color: #a855f7;
+}
+
+.metric span {
+  color: #9fb7c3;
+}
+
+.metric strong {
+  font-size: 34px;
+}
+
+.ops-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.panel {
+  padding: 18px;
+  min-height: 260px;
+}
+
+.panel header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: #22d3ee;
+}
+
+.panel h2,
+.finding h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.qubit-list,
+.asset-list {
+  display: grid;
+  gap: 14px;
+}
+
+.qubit {
+  display: grid;
+  gap: 8px;
+}
+
+.qubit div:first-child {
+  display: flex;
+  justify-content: space-between;
+  color: #eafcff;
+}
+
+.qubit span,
+.qubit small,
+.asset span,
+.finding p {
+  color: #9fb7c3;
+}
+
+.bar {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, .16);
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #22d3ee, #a855f7);
+  box-shadow: 0 0 18px rgba(34, 211, 238, .6);
+}
+
+.asset {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  border: 1px solid rgba(34, 211, 238, .18);
+  border-radius: 6px;
+}
+
+.asset.critical {
+  border-color: rgba(220, 38, 38, .35);
+}
+
+.asset.high {
+  border-color: rgba(168, 85, 247, .38);
+}
+
+.tracker {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  align-items: stretch;
+}
+
+.track-step {
+  min-height: 120px;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  border: 1px solid rgba(34, 211, 238, .22);
+  border-radius: 6px;
+  background: linear-gradient(180deg, rgba(34, 211, 238, .12), rgba(168, 85, 247, .08));
+}
+
+.track-step span {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #22d3ee;
+  color: #020617;
+  font-weight: 900;
+}
+
+.track-step p {
+  margin: 0;
+  color: #d9f9ff;
+  font-size: 13px;
+}
+
+.terminal {
+  min-height: 184px;
+  margin: 0;
+  padding: 16px;
+  overflow: auto;
+  border: 1px solid rgba(34, 211, 238, .2);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, .48);
+  color: #7dd3fc;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.finding-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding: 16px 0 48px;
+}
+
+.finding {
+  padding: 18px;
+}
+
+.finding span {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 900;
+}
+
+.finding p {
+  min-height: 72px;
+  line-height: 1.6;
+}
+
+.finding code {
+  display: block;
+  overflow-wrap: anywhere;
+  color: #e0fbff;
+  border-top: 1px solid rgba(148, 163, 184, .14);
+  padding-top: 12px;
+}
+
+@media (max-width: 860px) {
+  .metric-grid,
+  .ops-grid,
+  .finding-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tracker {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

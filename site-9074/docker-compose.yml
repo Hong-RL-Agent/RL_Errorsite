@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: quantum-sim-backend-9074
+    environment:
+      SERVER_PORT: "8080"
+      PUBLIC_ORIGIN: "http://localhost:9074"
+    expose:
+      - "8080"
+    networks:
+      - quantum-sim-9074
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: quantum-sim-frontend-9074
+    environment:
+      VITE_API_TARGET: "http://backend:8080"
+    ports:
+      - "9074:9074"
+    depends_on:
+      - backend
+    networks:
+      - quantum-sim-9074
+
+networks:
+  quantum-sim-9074:
+    name: quantum-sim-9074
+    driver: bridge
