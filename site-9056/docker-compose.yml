@@ -1,0 +1,33 @@
+services:
+  deepsea-backend:
+    build:
+      context: ./backend
+    image: deepsea-core-backend:9056
+    container_name: deepsea-core-backend
+    ports:
+      - "9057:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DEEPSEA_FAULT_INTENSITY: "0.78"
+      DEEPSEA_DISK_QUEUE_DEPTH: "32"
+      DEEPSEA_CFS_QUOTA_MS: "70"
+      JAVA_TOOL_OPTIONS: "-XX:MaxRAMPercentage=70 -XX:+UseG1GC"
+    cpus: "1.25"
+    cpu_shares: 256
+    mem_limit: 768m
+    volumes:
+      - deepsea-data:/var/lib/deepsea
+
+  deepsea-frontend:
+    build:
+      context: ./frontend
+    image: deepsea-core-frontend:9056
+    container_name: deepsea-core-frontend
+    ports:
+      - "9056:80"
+    depends_on:
+      deepsea-backend:
+        condition: service_started
+
+volumes:
+  deepsea-data:

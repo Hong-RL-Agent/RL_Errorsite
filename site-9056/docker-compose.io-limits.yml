@@ -1,0 +1,10 @@
+services:
+  deepsea-backend:
+    blkio_config:
+      weight: 120
+      device_read_bps:
+        - path: /dev/sda
+          rate: "18mb"
+      device_write_bps:
+        - path: /dev/sda
+          rate: "8mb"

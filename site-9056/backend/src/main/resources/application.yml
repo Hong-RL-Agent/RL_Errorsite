@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: deepsea-core
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+deepsea:
+  fault-intensity: ${DEEPSEA_FAULT_INTENSITY:0.65}
+  disk-queue-depth: ${DEEPSEA_DISK_QUEUE_DEPTH:32}
+  cfs-quota-ms: ${DEEPSEA_CFS_QUOTA_MS:80}
