@@ -1,0 +1,15 @@
+services:
+  ai-education-backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: ai-education-backend-9093
+    environment:
+      SERVER_PORT: 9093
+      AI_EDUCATION_BASE_URL: http://localhost:9093
+      SIMULATION_LOG_LEVEL: training
+    ports:
+      - "9093:9093"
+    labels:
+      - "ai-education.simulation=security-log-enabled"
+    network_mode: bridge

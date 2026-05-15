@@ -1,0 +1,20 @@
+server:
+  port: ${SERVER_PORT:9093}
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: AI-EDUCATION
+  thymeleaf:
+    cache: false
+    check-template-location: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+ai-education:
+  base-url: ${AI_EDUCATION_BASE_URL:http://localhost:9093}
+  allowed-origin: http://localhost:9093
