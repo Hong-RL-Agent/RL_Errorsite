@@ -1,0 +1,42 @@
+type Query {
+  pollutionZones: [PollutionZone!]!
+  apiTelemetry: [ApiTelemetry!]!
+  securityEvents: [SecurityEvent!]!
+}
+
+type Mutation {
+  updateAlertThreshold(region: String!, thresholdPpm: Float!): AlertThreshold!
+}
+
+type PollutionZone {
+  id: ID!
+  region: String!
+  latitude: Float!
+  longitude: Float!
+  pollutant: String!
+  concentrationPpm: Float!
+  severity: String!
+}
+
+type ApiTelemetry {
+  protocol: String!
+  service: String!
+  status: String!
+  latencyMs: Int!
+  errorRate: Float!
+}
+
+type SecurityEvent {
+  id: ID!
+  cluster: String!
+  source: String!
+  severity: String!
+  message: String!
+  timestamp: String!
+}
+
+type AlertThreshold {
+  region: String!
+  thresholdPpm: Float!
+  changedBy: String!
+}

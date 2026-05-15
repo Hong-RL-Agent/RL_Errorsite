@@ -1,0 +1,44 @@
+services:
+  ocean-guard-backend:
+    build:
+      context: ./backend
+    environment:
+      OCEAN_GUARD_PUBLIC_URL: http://localhost:9077
+      SPRING_PROFILES_ACTIVE: lab
+    ports:
+      - "8080"
+    networks:
+      - ocean-guard-lab
+
+  ocean-guard-frontend:
+    build:
+      context: ./frontend
+    depends_on:
+      - ocean-guard-backend
+    ports:
+      - "9077:80"
+    networks:
+      - ocean-guard-lab
+
+  k8s-api-mock:
+    image: nginx:1.27-alpine
+    volumes:
+      - ./infra/k8s-mock/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./infra/k8s-mock/responses:/usr/share/nginx/html:ro
+    ports:
+      - "16443:80"
+    networks:
+      - ocean-guard-lab
+
+  privileged-sensor-sidecar:
+    image: alpine:3.20
+    command: ["sh", "-c", "sleep 365d"]
+    privileged: true
+    labels:
+      ocean-guard.training: "privileged-container-host-escape-risk"
+    networks:
+      - ocean-guard-lab
+
+networks:
+  ocean-guard-lab:
+    driver: bridge

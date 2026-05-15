@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ocean-guard-backend
+  graphql:
+    graphiql:
+      enabled: true
+    schema:
+      printer:
+        enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+
+ocean-guard:
+  public-url: ${OCEAN_GUARD_PUBLIC_URL:http://localhost:9077}
+  cors:
+    allowed-origins:
+      - http://localhost:9077
