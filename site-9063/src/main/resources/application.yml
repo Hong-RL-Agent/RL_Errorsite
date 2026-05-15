@@ -1,0 +1,27 @@
+server:
+  port: ${SERVER_PORT:9063}
+  servlet:
+    session:
+      cookie:
+        same-site: lax
+        secure: false
+
+spring:
+  application:
+    name: melody-ai
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+melody-ai:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:9063,http://localhost:5173,http://localhost:19063}
+  frontend-origin: ${FRONTEND_ORIGIN:http://localhost:9063}
+  backend-origin: ${BACKEND_ORIGIN:http://localhost:9063}
