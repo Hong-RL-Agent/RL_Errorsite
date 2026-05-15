@@ -1,0 +1,18 @@
+server:
+  port: ${SERVER_PORT:9088}
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: ai-trans-policy-lab
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+ai-trans:
+  allowed-origin: ${AI_TRANS_ALLOWED_ORIGIN:http://localhost:9087}
+  policy-log: ${AI_TRANS_POLICY_LOG:./browser-policy.log}
+

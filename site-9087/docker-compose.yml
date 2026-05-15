@@ -1,0 +1,46 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: ai-trans-policy-backend-9087
+    environment:
+      SERVER_PORT: 9088
+      AI_TRANS_ALLOWED_ORIGIN: http://localhost:9087
+      AI_TRANS_POLICY_LOG: /var/log/ai-trans/browser-policy.log
+    volumes:
+      - policy-logs:/var/log/ai-trans
+    expose:
+      - "9088"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9088/api/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    networks:
+      - ai-trans-9087
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: ai-trans-dashboard-9087
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "9087:9087"
+    environment:
+      NGINX_BACKEND_URL: http://backend:9088
+    volumes:
+      - policy-logs:/var/log/ai-trans
+    networks:
+      - ai-trans-9087
+
+volumes:
+  policy-logs:
+
+networks:
+  ai-trans-9087:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.90.87.0/24
