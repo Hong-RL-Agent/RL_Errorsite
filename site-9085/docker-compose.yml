@@ -1,0 +1,26 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: health-pill-backend-9085
+    environment:
+      - SERVER_PORT=8080
+      - HEALTH_PILL_PUBLIC_ORIGIN=http://localhost:9085
+    ports:
+      - "18085:8080"
+    network_mode: bridge
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: health-pill-frontend-9085
+    depends_on:
+      - backend
+    environment:
+      - VITE_HEALTH_PILL_ORIGIN=http://localhost:9085
+      - VITE_API_PROXY_TARGET=http://host.docker.internal:18085
+      - CLIENT_PERF_LOGS=dom,memory,storage,worker,indexeddb,lazy-image
+    ports:
+      - "9085:9085"
+    network_mode: bridge
+    command: npm run dev -- --host 0.0.0.0 --port 9085
