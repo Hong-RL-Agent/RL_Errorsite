@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: holo-comm-backend
+    environment:
+      HOLO_PUBLIC_BASE_URL: http://localhost:9066
+    expose:
+      - "8080"
+    networks:
+      - holo-comm-net
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: holo-comm-frontend
+    environment:
+      VITE_API_PROXY_TARGET: http://backend:8080
+    ports:
+      - "9066:9066"
+    depends_on:
+      - backend
+    networks:
+      - holo-comm-net
+
+networks:
+  holo-comm-net:
+    driver: bridge
