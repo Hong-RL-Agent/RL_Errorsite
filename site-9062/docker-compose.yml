@@ -1,0 +1,38 @@
+services:
+  twin-fabric-api-a:
+    build:
+      context: ./backend
+    container_name: twin-fabric-api-a
+    environment:
+      SERVER_PORT: 8080
+      TWIN_NODE_ID: fab-node-a
+      TWIN_REGION: primary-seoul
+      TWIN_PEER_ENDPOINT: http://twin-fabric-api-b:8080
+    ports:
+      - "9063:8080"
+
+  twin-fabric-api-b:
+    build:
+      context: ./backend
+    container_name: twin-fabric-api-b
+    environment:
+      SERVER_PORT: 8080
+      TWIN_NODE_ID: fab-node-b
+      TWIN_REGION: primary-seoul
+      TWIN_PEER_ENDPOINT: http://twin-fabric-api-a:8080
+    ports:
+      - "9064:8080"
+
+  twin-fabric-ui:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE: http://localhost:9062
+    container_name: twin-fabric-ui
+    depends_on:
+      - twin-fabric-api-a
+      - twin-fabric-api-b
+    environment:
+      BACKEND_TARGET: http://twin-fabric-api-a:8080
+    ports:
+      - "9062:80"

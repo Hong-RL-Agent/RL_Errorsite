@@ -1,0 +1,18 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: twin-fabric-api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+twin:
+  node-id: ${TWIN_NODE_ID:fab-node-local}
+  region: ${TWIN_REGION:local-lab}
+  peer-endpoint: ${TWIN_PEER_ENDPOINT:http://localhost:8081}
+
