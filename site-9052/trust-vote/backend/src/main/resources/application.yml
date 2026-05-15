@@ -1,0 +1,18 @@
+server:
+  port: 9053
+
+spring:
+  application:
+    name: trust-vote-backend
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+trust-vote:
+  network-interrupt-core: ${SIM_NETWORK_INTERRUPT_CORE:1}
+  process-core: ${SIM_PROCESS_CORE:0}
+  io-channel-mbps: ${SIM_IO_CHANNEL_MBPS:80}
+

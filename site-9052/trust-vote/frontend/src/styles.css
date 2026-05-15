@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0f172a;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.chain-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(34, 197, 94, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 20% 12%, rgba(34, 197, 94, 0.12), transparent 28%),
+    radial-gradient(circle at 88% 24%, rgba(245, 158, 11, 0.1), transparent 25%);
+  background-size: 44px 44px, 44px 44px, auto, auto;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
+}
+
+.panel,
+.security-panel,
+.metric-card,
+.chart-panel {
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(15, 23, 42, 0.72);
+  box-shadow: 0 24px 70px rgba(2, 6, 23, 0.34);
+  backdrop-filter: blur(18px);
+}
+
+.panel,
+.security-panel {
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.metric-card,
+.chart-panel {
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.primary-button,
+.control-button,
+.danger-button {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.primary-button {
+  border: 1px solid rgba(34, 197, 94, 0.55);
+  background: #22c55e;
+  color: #04130a;
+}
+
+.control-button {
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: rgba(15, 23, 42, 0.72);
+  color: #dbeafe;
+}
+
+.danger-button {
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  background: rgba(245, 158, 11, 0.14);
+  color: #fcd34d;
+}
+
+.primary-button:hover,
+.control-button:hover,
+.danger-button:hover {
+  transform: translateY(-1px);
+}
+
+.security-panel {
+  background:
+    linear-gradient(145deg, rgba(34, 197, 94, 0.16), rgba(15, 23, 42, 0.5)),
+    rgba(15, 23, 42, 0.68);
+}
+
+.status-tile {
+  min-height: 74px;
+  border-radius: 8px;
+  border: 1px solid rgba(34, 197, 94, 0.14);
+  background: rgba(2, 6, 23, 0.42);
+  padding: 12px;
+}
+
+.encryption-core {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(34, 197, 94, 0.18);
+  background:
+    radial-gradient(circle at center, rgba(34, 197, 94, 0.24), transparent 28%),
+    linear-gradient(135deg, rgba(2, 6, 23, 0.96), rgba(15, 23, 42, 0.82));
+}
+
+.encryption-core.stalled {
+  animation: stall 420ms steps(2, end) infinite;
+}
+
+.orbit {
+  position: absolute;
+  inset: 46px;
+  border: 1px solid rgba(34, 197, 94, 0.34);
+  border-radius: 50%;
+  animation: rotate 6s linear infinite;
+}
+
+.orbit-b {
+  inset: 72px;
+  border-color: rgba(245, 158, 11, 0.42);
+  animation-duration: 4.5s;
+  animation-direction: reverse;
+}
+
+.orbit::after,
+.orbit-b::after {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  content: "";
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 22px #22c55e;
+}
+
+.orbit-b::after {
+  background: #f59e0b;
+  box-shadow: 0 0 22px #f59e0b;
+}
+
+.core-lock {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #bbf7d0;
+}
+
+.hash-column {
+  position: absolute;
+  inset: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.hash-column span {
+  min-height: 22px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.36), transparent);
+  animation: pulse-line 1.3s ease-in-out infinite;
+}
+
+.ledger-feed {
+  margin-top: 14px;
+  display: grid;
+  max-height: 560px;
+  gap: 8px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.ledger-row {
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(2, 6, 23, 0.48);
+  padding: 10px 12px;
+}
+
+.state-dot {
+  height: 10px;
+  width: 10px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  box-shadow: 0 0 16px currentColor;
+}
+
+.regression-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+}
+
+.regression-cell {
+  display: grid;
+  min-height: 128px;
+  justify-items: start;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(2, 6, 23, 0.42);
+  padding: 12px;
+  text-align: left;
+}
+
+.regression-cell:hover {
+  border-color: rgba(34, 197, 94, 0.48);
+  background: rgba(34, 197, 94, 0.08);
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-line {
+  0%,
+  100% {
+    opacity: 0.18;
+    transform: scaleX(0.56);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes stall {
+  50% {
+    filter: saturate(1.8) contrast(1.2);
+    transform: translateX(2px);
+  }
+}
+

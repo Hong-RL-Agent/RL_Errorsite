@@ -1,0 +1,8 @@
+services:
+  backend:
+    blkio_config:
+      weight: 300
+      device_write_bps:
+        - path: /dev/sda
+          rate: "20mb"
+

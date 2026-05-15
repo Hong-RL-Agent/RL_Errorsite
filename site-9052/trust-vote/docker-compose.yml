@@ -1,0 +1,36 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: trust-vote-backend
+    ports:
+      - "9053:9053"
+    environment:
+      SIM_PROCESS_CORE: "0"
+      SIM_NETWORK_INTERRUPT_CORE: "1"
+      SIM_IO_CHANNEL_MBPS: "40"
+      JAVA_TOOL_OPTIONS: "-XX:+UseNUMA -XX:ActiveProcessorCount=2"
+    cpuset: "0"
+    mem_limit: "768m"
+    volumes:
+      - trust_vote_journal:/var/lib/trust-vote
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:9053/actuator/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 8
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: trust-vote-frontend
+    ports:
+      - "9052:80"
+    environment:
+      VITE_API_BASE: ""
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  trust_vote_journal:
