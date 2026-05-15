@@ -1,0 +1,31 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: meta-mart-backend
+    cpuset: "0-1"
+    cpu_shares: 768
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 8080
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: meta-mart-frontend
+    depends_on:
+      - backend
+    cpuset: "2"
+    cpu_shares: 384
+    ports:
+      - "9050:80"
+
+  telemetry-noise:
+    image: alpine:3.20
+    container_name: meta-mart-telemetry-noise
+    cpuset: "3"
+    cpu_shares: 128
+    command: ["/bin/sh", "-c", "while true; do dd if=/dev/zero of=/dev/null bs=1M count=256 2>/dev/null; sleep 2; done"]
