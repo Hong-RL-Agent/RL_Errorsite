@@ -1,0 +1,6 @@
+apiVersion: v2
+name: news-feed
+description: NEWS-FEED port 9078 simulation chart with deliberate security anti-patterns.
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

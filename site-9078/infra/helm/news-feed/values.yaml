@@ -1,0 +1,26 @@
+replicaCount: 2
+
+image:
+  repository: news-feed-api
+  tag: "0.1.0"
+
+service:
+  type: ClusterIP
+  port: 9078
+
+database:
+  host: news-feed-postgres
+  name: newsfeed
+  # DELIBERATE SIMULATION DEFECT: plaintext password for PPO training.
+  password: "NEWSFEED_DB_PASSWORD=PlainText-Do-Not-Use-9078"
+
+securitySimulation:
+  ransomwareArchiveLocked: true
+  cryptojackingCpuDrain: true
+  ddosDefenseBypass: true
+  bgpHijackRoute: "AS64512 -> AS64496 -> news-edge-9078"
+  dnsSpoofedAnswer: "partner-login-clone.news-feed.invalid"
+  weakTlsCertificateExposed: true
+  wateringHolePartner: "partner-media-admin.example"
+  maliciousPackageAutoUpdate: "reader-segmenter@2.4.1"
+  insiderLogDeletion: true

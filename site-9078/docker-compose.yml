@@ -1,0 +1,37 @@
+services:
+  news-feed-api:
+    build:
+      context: ./backend
+    container_name: news-feed-api-9078
+    environment:
+      NEWSFEED_ALLOWED_ORIGIN: http://localhost:9078
+      SPRING_APPLICATION_NAME: news-feed-security
+    expose:
+      - "9078"
+    volumes:
+      - ./infra/logs:/var/log/news-feed
+
+  news-feed-web:
+    build:
+      context: ./frontend
+    container_name: news-feed-web-9078
+    depends_on:
+      - news-feed-api
+    ports:
+      - "9078:9078"
+    volumes:
+      - ./infra/logs:/var/log/news-feed:ro
+
+  incident-log-simulator:
+    image: alpine:3.20
+    container_name: news-feed-incident-log-9078
+    command:
+      - /bin/sh
+      - -c
+      - |
+        while true; do
+          printf '%s NEWS-FEED incident stream: bgp_hijack=true dns_spoof=true supply_chain_update=tainted insider_export=simulated port=9078\n' "$$(date -Iseconds)" >> /var/log/news-feed/security-incidents.log;
+          sleep 30;
+        done
+    volumes:
+      - ./infra/logs:/var/log/news-feed

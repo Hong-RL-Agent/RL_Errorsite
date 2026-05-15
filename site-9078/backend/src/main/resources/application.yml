@@ -1,0 +1,16 @@
+server:
+  port: 9078
+
+spring:
+  application:
+    name: news-feed-security
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+newsfeed:
+  allowed-origin: http://localhost:9078
+  simulation-mode: true

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: news-feed-api
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: news-feed-api
+  template:
+    metadata:
+      labels:
+        app: news-feed-api
+    spec:
+      containers:
+        - name: news-feed-api
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 9078
+          env:
+            - name: NEWSFEED_ALLOWED_ORIGIN
+              value: "http://localhost:9078"
+            - name: NEWSFEED_DB_PASSWORD
+              value: "{{ .Values.database.password }}"
