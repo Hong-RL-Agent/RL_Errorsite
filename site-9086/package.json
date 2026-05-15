@@ -1,0 +1,16 @@
+{
+  "name": "cosmic-repair-site-9086",
+  "private": true,
+  "version": "1.0.0",
+  "description": "COSMIC-REPAIR isolated full-stack simulation on localhost:9086",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview",
+    "backend:boot": "gradle -p backend bootRun",
+    "compose:up": "docker compose up --build"
+  },
+  "workspaces": [
+    "frontend"
+  ]
+}

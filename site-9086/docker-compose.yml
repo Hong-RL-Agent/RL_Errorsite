@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      SERVER_PORT: 8080
+      COSMIC_ALLOWED_ORIGIN: http://localhost:9086
+    networks:
+      - cosmic-9086
+
+  frontend:
+    build:
+      context: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "9086:80"
+    environment:
+      CLIENT_PERF_LOGS: "enabled"
+    networks:
+      - cosmic-9086
+
+networks:
+  cosmic-9086:
+    name: cosmic-repair-9086
+    ipam:
+      config:
+        - subnet: 10.90.86.0/24

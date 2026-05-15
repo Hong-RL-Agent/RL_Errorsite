@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/remoteassist.tsx","./src/components/repairconsole.tsx","./src/components/repairqueue.tsx","./src/components/reportslayer.tsx","./src/components/resourcemonitor.tsx","./src/components/shipwireframe.tsx","./src/store/repairstore.ts"],"version":"5.9.3"}

@@ -1,0 +1,9 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: cosmic-repair-backend-9086
+
+cosmic:
+  allowed-origin: ${COSMIC_ALLOWED_ORIGIN:http://localhost:9086}
