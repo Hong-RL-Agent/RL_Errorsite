@@ -1,0 +1,52 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      VITA_DIRTY_THRESHOLD: ${VITA_DIRTY_THRESHOLD:-4}
+      VITA_DIRTY_WRITEBACK_MS: ${VITA_DIRTY_WRITEBACK_MS:-2000}
+      VITA_NUMA_LATENCY_MS: ${VITA_NUMA_LATENCY_MS:-350}
+      VITA_IRQ_FREEZE_MS: ${VITA_IRQ_FREEZE_MS:-500}
+      VITA_CPU_JITTER_MIN_MS: ${VITA_CPU_JITTER_MIN_MS:-50}
+      VITA_CPU_JITTER_MAX_MS: ${VITA_CPU_JITTER_MAX_MS:-100}
+      VITA_NOISY_NEIGHBOR_ENABLED: ${VITA_NOISY_NEIGHBOR_ENABLED:-true}
+      VITA_NOISY_NEIGHBOR_PERIOD_MS: ${VITA_NOISY_NEIGHBOR_PERIOD_MS:-9000}
+      VITA_NOISY_NEIGHBOR_SPIN_MS: ${VITA_NOISY_NEIGHBOR_SPIN_MS:-700}
+      VITA_AVX_DOWNCLOCK_MS: ${VITA_AVX_DOWNCLOCK_MS:-5000}
+      VITA_SMI_PROBABILITY: ${VITA_SMI_PROBABILITY:-0.08}
+      VITA_SMI_LATENCY_MS: ${VITA_SMI_LATENCY_MS:-200}
+      VITA_OOM_ENABLED: ${VITA_OOM_ENABLED:-true}
+      VITA_OOM_TICK_MS: ${VITA_OOM_TICK_MS:-2500}
+      VITA_OOM_INCREMENT_PERCENT: ${VITA_OOM_INCREMENT_PERCENT:-7}
+      VITA_COW_BUFFER_MB: ${VITA_COW_BUFFER_MB:-128}
+      VITA_COW_THREADS: ${VITA_COW_THREADS:-8}
+      JAVA_TOOL_OPTIONS: "-XX:MaxRAMPercentage=70 -XX:+UseContainerSupport"
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: 768M
+        reservations:
+          cpus: "0.50"
+          memory: 384M
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  frontend:
+    build:
+      context: ./frontend
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:1.27-alpine
+    depends_on:
+      - frontend
+      - backend
+    ports:
+      - "${VITA_PORT:-9049}:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
