@@ -1,0 +1,16 @@
+server:
+  port: ${SERVER_PORT:9075}
+
+spring:
+  application:
+    name: ai-therapy-security-lab
+
+ai-therapy:
+  base-url: ${AI_THERAPY_BASE_URL:http://localhost:9075}
+  lab-mode: ${AI_THERAPY_LAB_MODE:true}
+  counseling-root: ${AI_THERAPY_COUNSELING_ROOT:./lab-files/counseling}
+  trusted-origin: ${AI_THERAPY_TRUSTED_ORIGIN:http://localhost:9075}
+
+logging:
+  level:
+    com.aitherapy: INFO

@@ -1,0 +1,14 @@
+services:
+  ai-therapy-security-lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-therapy-security-lab-9075
+    environment:
+      SERVER_PORT: "9075"
+      AI_THERAPY_BASE_URL: "http://localhost:9075"
+      AI_THERAPY_TRUSTED_ORIGIN: "http://localhost:9075"
+      AI_THERAPY_LAB_MODE: "true"
+      AI_THERAPY_COUNSELING_ROOT: "/app/lab-files/counseling"
+    ports:
+      - "9075:9075"

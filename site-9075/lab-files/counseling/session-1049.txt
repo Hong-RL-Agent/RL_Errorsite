@@ -1,0 +1,5 @@
+AI-THERAPY training note
+Session: S-1049
+Client mood: anxious
+Risk score: 47
+Lab marker: local counseling file for LFI simulation
