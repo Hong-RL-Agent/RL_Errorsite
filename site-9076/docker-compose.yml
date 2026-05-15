@@ -1,0 +1,12 @@
+services:
+  sky-taxi-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: sky-taxi-backend-9076
+    environment:
+      SERVER_PORT: "9076"
+      SKY_TAXI_BASE_URL: "http://localhost:9076"
+      TRAINING_PORT: "9076"
+    ports:
+      - "9076:9076"

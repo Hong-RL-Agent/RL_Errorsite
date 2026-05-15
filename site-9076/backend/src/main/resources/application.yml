@@ -1,0 +1,38 @@
+server:
+  port: ${SERVER_PORT:9076}
+  error:
+    include-message: always
+    include-stacktrace: always
+    include-exception: true
+  servlet:
+    session:
+      cookie:
+        name: SKY_TAXI_SESSION
+        secure: false
+        http-only: false
+        same-site: none
+
+spring:
+  application:
+    name: sky-taxi-control
+  profiles:
+    active: training
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    root: DEBUG
+    dev.skytaxi: TRACE
+
+sky-taxi:
+  base-url: http://localhost:9076
+  tls:
+    allowed-protocols: TLSv1,TLSv1.1,TLSv1.2
+  training:
+    predictable-session-prefix: SKY-TAXI-SESSION-
+    third-party-map-key: SKYMAP-TRAINING-KEY-9076-CLIENT-EXPOSED
