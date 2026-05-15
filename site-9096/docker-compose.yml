@@ -1,0 +1,38 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: coding-genie-backend-9096
+    environment:
+      SERVER_PORT: 8080
+      CODING_GENIE_ALLOWED_ORIGIN: http://localhost:9096
+    expose:
+      - "8080"
+    networks:
+      - coding-genie-9096
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: coding-genie-frontend-9096
+    depends_on:
+      - backend
+    ports:
+      - "9096:80"
+    environment:
+      VITE_API_BASE: /api
+    networks:
+      - coding-genie-9096
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  coding-genie-9096:
+    name: coding-genie-9096
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.90.96.0/24
