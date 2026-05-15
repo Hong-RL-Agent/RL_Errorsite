@@ -1,0 +1,19 @@
+server:
+  port: 9055
+
+spring:
+  application:
+    name: avcore-sandbox
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+avcore:
+  profile: ${AVCORE_CORE_PROFILE:local}

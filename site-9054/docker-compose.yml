@@ -1,0 +1,23 @@
+services:
+  avcore-backend:
+    build:
+      context: ./backend
+    container_name: avcore-backend
+    ports:
+      - "9055:9055"
+    cpuset: "0-3"
+    environment:
+      JAVA_TOOL_OPTIONS: "-XX:+UseG1GC -XX:ActiveProcessorCount=4"
+      AVCORE_CORE_PROFILE: "backend-cpu0-3"
+
+  avcore-frontend:
+    build:
+      context: ./frontend
+    container_name: avcore-frontend
+    ports:
+      - "9054:9054"
+    cpuset: "4-5"
+    environment:
+      VITE_AVCORE_API_URL: "http://localhost:9055"
+    depends_on:
+      - avcore-backend
