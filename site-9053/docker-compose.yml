@@ -1,0 +1,44 @@
+services:
+  agro-core-backend:
+    build:
+      context: ./backend
+    container_name: agro-core-backend
+    ports:
+      - "9054:9054"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 9054
+      AGRO_CORE_ANOMALIES_ENABLED: "true"
+    deploy:
+      resources:
+        limits:
+          cpus: "1.25"
+          memory: 768M
+        reservations:
+          cpus: "0.50"
+          memory: 384M
+    mem_swappiness: 80
+    cpu_shares: 384
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:9054/actuator/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+
+  agro-core-frontend:
+    build:
+      context: ./frontend
+    container_name: agro-core-frontend
+    ports:
+      - "9053:80"
+    depends_on:
+      - agro-core-backend
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: 384M
+        reservations:
+          cpus: "0.25"
+          memory: 128M
+    cpu_shares: 256

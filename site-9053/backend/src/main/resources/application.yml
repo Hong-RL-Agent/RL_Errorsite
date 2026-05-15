@@ -1,0 +1,19 @@
+server:
+  port: ${SERVER_PORT:9054}
+
+spring:
+  application:
+    name: agro-core-backend
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+agro-core:
+  anomalies-enabled: ${AGRO_CORE_ANOMALIES_ENABLED:true}
