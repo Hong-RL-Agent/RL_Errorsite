@@ -1,0 +1,17 @@
+server:
+  port: 9058
+
+spring:
+  application:
+    name: crypto-core-backend
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+crypto-core:
+  regression:
+    enabled: true
+

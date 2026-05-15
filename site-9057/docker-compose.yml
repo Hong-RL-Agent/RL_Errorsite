@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: crypto-core-engine
+    ports:
+      - "9058:9058"
+    cpuset: "0-1"
+    mem_limit: 768m
+    memswap_limit: 768m
+    environment:
+      JAVA_TOOL_OPTIONS: "-XX:ActiveProcessorCount=2 -XX:+UseG1GC"
+      CRYPTO_CORE_REGRESSION_ENABLED: "true"
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 2048
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: crypto-core-terminal
+    ports:
+      - "9057:9057"
+    depends_on:
+      - backend
+    cpuset: "0-1"
+    mem_limit: 384m
