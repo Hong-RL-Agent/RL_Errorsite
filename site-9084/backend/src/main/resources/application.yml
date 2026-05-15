@@ -1,0 +1,15 @@
+server:
+  port: 9084
+
+spring:
+  application:
+    name: DIGITAL-HERITAGE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+digital-heritage:
+  cors-origin: http://localhost:9084
