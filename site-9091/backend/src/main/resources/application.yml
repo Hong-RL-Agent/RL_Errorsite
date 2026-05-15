@@ -1,0 +1,44 @@
+server:
+  port: ${SERVER_PORT:9091}
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always
+    whitelabel:
+      enabled: true
+
+spring:
+  application:
+    name: cyber-predict
+  main:
+    banner-mode: console
+  jackson:
+    serialization:
+      indent-output: true
+  devtools:
+    restart:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    env:
+      show-values: always
+    configprops:
+      show-values: always
+
+logging:
+  level:
+    root: ${CYBER_PREDICT_LOG_LEVEL:TRACE}
+    org.springframework.web: DEBUG
+    com.cyberpredict: TRACE
+  file:
+    name: logs/cyber-predict-security-events.log
+
+cyber-predict:
+  debug: ${CYBER_PREDICT_DEBUG:true}
+  insecure-mode: ${CYBER_PREDICT_INSECURE_MODE:true}
+  seed: ${CYBER_PREDICT_SEED:1337}
