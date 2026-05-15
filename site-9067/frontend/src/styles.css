@@ -1,0 +1,336 @@
+@import "tailwindcss";
+
+:root {
+  color: #e5e7eb;
+  background: #020617;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(250, 204, 21, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 30% 20%, rgba(34, 197, 94, 0.16), transparent 32%),
+    #020617;
+  background-size: 34px 34px, 34px 34px, auto, auto;
+}
+
+.app-shell {
+  width: min(1480px, 100%);
+  margin: 0 auto;
+  padding: 28px;
+}
+
+.command-header,
+.operations-grid,
+.lower-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.command-header {
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  margin-bottom: 18px;
+}
+
+.command-header p,
+.panel-title,
+.metric span,
+.worker-row small,
+.scenario small,
+.npu-gauge span {
+  color: #94a3b8;
+}
+
+.command-header p {
+  margin: 0 0 8px;
+  color: #facc15;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(34px, 5vw, 76px);
+  line-height: 0.94;
+  letter-spacing: 0;
+}
+
+.header-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.metric,
+.map-panel,
+.side-panel,
+.wave-panel,
+.scenario-panel,
+.zone-card,
+.worker-row,
+.npu-gauge {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(2, 6, 23, 0.78);
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.08);
+}
+
+.metric {
+  min-height: 92px;
+  padding: 14px;
+  display: grid;
+  gap: 5px;
+  align-content: center;
+  border-radius: 8px;
+}
+
+.metric svg {
+  color: #facc15;
+}
+
+.metric strong {
+  color: #22c55e;
+  font-size: 22px;
+}
+
+.operations-grid {
+  grid-template-columns: minmax(0, 1.7fr) minmax(320px, 0.8fr);
+}
+
+.lower-grid {
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+  margin-top: 18px;
+}
+
+.map-panel,
+.side-panel,
+.wave-panel,
+.scenario-panel {
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.side-panel {
+  display: grid;
+  gap: 16px;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.panel-title svg {
+  color: #facc15;
+}
+
+.grid-map {
+  width: 100%;
+  aspect-ratio: 1.66;
+  min-height: 340px;
+}
+
+.grid-line {
+  fill: none;
+  stroke-width: 4;
+  stroke-dasharray: 18 12;
+  animation: flow 1.8s linear infinite;
+}
+
+.grid-line-yellow {
+  stroke: #facc15;
+}
+
+.grid-line-green {
+  stroke: #22c55e;
+  opacity: 0.72;
+}
+
+.node-pulse {
+  fill: none;
+  stroke-width: 2;
+  opacity: 0.7;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.node-id {
+  fill: #e5e7eb;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.node-load {
+  fill: #facc15;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.npu-gauge {
+  border-radius: 8px;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: auto 132px;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+.npu-gauge > svg {
+  color: #22c55e;
+}
+
+.gauge-ring {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  grid-row: span 2;
+}
+
+.gauge-ring div {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #020617;
+  color: #facc15;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.worker-panel {
+  display: grid;
+  gap: 10px;
+}
+
+.worker-row {
+  border-radius: 8px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 10px;
+}
+
+.worker-row b {
+  color: #22c55e;
+}
+
+.worker-row small {
+  grid-column: 1 / -1;
+}
+
+.worker-row.synthetic b {
+  color: #facc15;
+}
+
+.zone-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.zone-card {
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.zone-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.wave {
+  width: 100%;
+  height: 92px;
+}
+
+.scenario-panel {
+  max-height: 466px;
+  overflow: auto;
+}
+
+.scenario {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.scenario span {
+  color: #facc15;
+  font-weight: 900;
+}
+
+.scenario b {
+  display: block;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.scenario.critical b {
+  color: #ef4444;
+}
+
+.scenario.high b {
+  color: #facc15;
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -60;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.25;
+    transform: scale(1.04);
+  }
+}
+
+@media (max-width: 1040px) {
+  .command-header,
+  .operations-grid,
+  .lower-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .app-shell {
+    padding: 16px;
+  }
+
+  .header-metrics,
+  .zone-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-map {
+    min-height: 260px;
+  }
+}

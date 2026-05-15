@@ -1,0 +1,13 @@
+server:
+  port: 9067
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: smart-grid-control
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

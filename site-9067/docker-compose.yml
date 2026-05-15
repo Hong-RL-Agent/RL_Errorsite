@@ -1,0 +1,13 @@
+services:
+  smart-grid:
+    build: .
+    container_name: smart-grid-9067
+    ports:
+      - "9067:9067"
+    environment:
+      SERVER_PORT: "9067"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:9067/actuator/health | grep UP"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
