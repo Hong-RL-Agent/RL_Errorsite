@@ -1,0 +1,34 @@
+services:
+  legal-analysis:
+    build:
+      context: ./backend
+    container_name: lex-ai-legal-analysis
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVER_PORT=8080
+      - SPRING_PROFILES_ACTIVE=lab
+    cpus: "0.10"
+    mem_limit: 384m
+    memswap_limit: 384m
+    pids_limit: 256
+    ulimits:
+      nofile:
+        soft: 4096
+        hard: 4096
+    volumes:
+      - lex-ai-logs:/var/log/lex-ai
+
+  lex-ai-console:
+    build:
+      context: ./frontend
+    container_name: lex-ai-console
+    depends_on:
+      - legal-analysis
+    ports:
+      - "9048:9048"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8080
+
+volumes:
+  lex-ai-logs:
