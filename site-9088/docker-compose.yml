@@ -1,0 +1,31 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: auto-truck-9088-backend
+    environment:
+      SERVER_PORT: 8080
+      AUTO_TRUCK_LOG_STREAM: data-integrity
+      AUTO_TRUCK_PUBLIC_ORIGIN: http://localhost:9088
+    expose:
+      - "8080"
+    networks:
+      - auto-truck-9088
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: auto-truck-9088-frontend
+    depends_on:
+      - backend
+    ports:
+      - "9088:80"
+    networks:
+      - auto-truck-9088
+
+networks:
+  auto-truck-9088:
+    name: auto-truck-9088-net
+    ipam:
+      config:
+        - subnet: 10.90.88.0/24
