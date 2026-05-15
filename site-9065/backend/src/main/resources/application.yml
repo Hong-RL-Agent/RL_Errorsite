@@ -1,0 +1,13 @@
+server:
+  port: ${SERVER_PORT:9065}
+
+spring:
+  application:
+    name: neuro-link
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
