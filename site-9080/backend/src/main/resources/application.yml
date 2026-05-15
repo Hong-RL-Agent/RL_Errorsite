@@ -1,0 +1,25 @@
+server:
+  port: 9080
+
+spring:
+  application:
+    name: smart-port-control
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+logging:
+  file:
+    name: logs/smart-port-security.log
+  level:
+    root: INFO
+    com.smartport: INFO
+
+smart-port:
+  cors:
+    allowed-origins:
+      - "http://localhost:9080"
+      - "http://localhost:5173"
