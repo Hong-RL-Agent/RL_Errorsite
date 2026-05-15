@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #0f172a;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    linear-gradient(135deg, rgba(56, 189, 248, 0.1), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(251, 146, 60, 0.14), transparent 28%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.35), rgba(2, 6, 23, 0.55)),
+    #0f172a;
+}
+
+button {
+  font: inherit;
+}
+
+.glass {
+  position: relative;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(30, 41, 59, 0.72), rgba(15, 23, 42, 0.76)),
+    rgba(15, 23, 42, 0.72);
+  box-shadow: 0 22px 70px rgba(2, 6, 23, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(18px);
+}
+
+.glass::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.18), transparent 38%, rgba(251, 146, 60, 0.12));
+  opacity: 0.18;
+}
+
+.panel-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.panel-subtitle {
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.icon-button,
+.control-button {
+  min-height: 2.35rem;
+  border: 1px solid rgba(56, 189, 248, 0.26);
+  border-radius: 6px;
+  background: rgba(56, 189, 248, 0.1);
+  color: #e0f2fe;
+  transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+}
+
+.icon-button {
+  display: grid;
+  width: 2.35rem;
+  place-items: center;
+}
+
+.control-button {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.control-button.compact {
+  min-height: 2.15rem;
+  padding: 0.4rem 0.55rem;
+  text-transform: capitalize;
+}
+
+.icon-button:hover,
+.control-button:hover {
+  border-color: rgba(251, 146, 60, 0.55);
+  background: rgba(251, 146, 60, 0.12);
+  color: #fed7aa;
+  transform: translateY(-1px);
+}
+
+.map-surface {
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.16), transparent 32%),
+    linear-gradient(rgba(56, 189, 248, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.scanline {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(56, 189, 248, 0.09), transparent);
+  animation: scanline 5s linear infinite;
+}
+
+.drone-node {
+  animation: pulseNode 1.8s ease-in-out infinite;
+}
+
+.kpi-card {
+  display: flex;
+  min-height: 5.25rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(15, 23, 42, 0.75)),
+    rgba(15, 23, 42, 0.74);
+  padding: 1rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.kpi-card.kpi-alert {
+  border-color: rgba(251, 146, 60, 0.32);
+  background:
+    linear-gradient(135deg, rgba(251, 146, 60, 0.14), rgba(15, 23, 42, 0.78)),
+    rgba(15, 23, 42, 0.74);
+}
+
+.fleet-row,
+.regression-card {
+  border: 1px solid rgba(100, 116, 139, 0.46);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(30, 41, 59, 0.44));
+}
+
+.fleet-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.7rem;
+}
+
+.regression-card {
+  padding: 0.85rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.028);
+  transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+}
+
+.regression-card:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(30, 41, 59, 0.72);
+  transform: translateY(-1px);
+}
+
+.badge {
+  flex: none;
+  border: 1px solid rgba(100, 116, 139, 0.7);
+  border-radius: 6px;
+  padding: 0.25rem 0.45rem;
+  color: #94a3b8;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+.badge.active {
+  border-color: rgba(251, 146, 60, 0.48);
+  color: #fdba74;
+  background: rgba(251, 146, 60, 0.12);
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@keyframes pulseNode {
+  0%, 100% {
+    opacity: 0.78;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}

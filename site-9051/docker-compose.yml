@@ -1,0 +1,24 @@
+services:
+  sky-backend:
+    build:
+      context: ./backend
+    container_name: sky-logistics-backend
+    ports:
+      - "9051:9051"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      JAVA_TOOL_OPTIONS: "-XX:MaxRAMPercentage=75 -XX:+UseContainerSupport"
+      SKY_STRESS_TILE_CACHE_MB: "220"
+      SKY_STRESS_PID_LIMIT: "28"
+    mem_limit: 384m
+    memswap_limit: 384m
+    pids_limit: 64
+
+  sky-frontend:
+    build:
+      context: ./frontend
+    container_name: sky-logistics-frontend
+    ports:
+      - "9050:80"
+    depends_on:
+      - sky-backend

@@ -1,0 +1,17 @@
+server:
+  port: 9051
+
+spring:
+  application:
+    name: sky-logistics
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+sky:
+  stress:
+    tile-cache-mb: ${SKY_STRESS_TILE_CACHE_MB:128}
+    pid-limit: ${SKY_STRESS_PID_LIMIT:32}
