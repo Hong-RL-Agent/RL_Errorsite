@@ -1,0 +1,39 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: ai-recipe-backend-9079
+    environment:
+      SERVER_PORT: "8080"
+      AI_RECIPE_PUBLIC_ORIGIN: "http://localhost:9079"
+      AI_RECIPE_SIMULATION_MODE: "training-only"
+    expose:
+      - "8080"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  frontend:
+    build:
+      context: ./frontend
+    container_name: ai-recipe-frontend-9079
+    depends_on:
+      - backend
+    ports:
+      - "9079:9079"
+    environment:
+      VITE_API_BASE: "/api"
+      VITE_PROXY_TARGET: "http://backend:8080"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  default:
+    name: ai-recipe-9079-net
+    ipam:
+      config:
+        - subnet: 10.90.79.0/24

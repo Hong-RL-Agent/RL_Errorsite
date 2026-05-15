@@ -1,0 +1,17 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: ai-recipe-backend
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+ai-recipe:
+  public-origin: ${AI_RECIPE_PUBLIC_ORIGIN:http://localhost:9079}
+  simulation-mode: ${AI_RECIPE_SIMULATION_MODE:training-only}
+
