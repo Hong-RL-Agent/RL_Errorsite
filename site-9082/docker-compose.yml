@@ -1,0 +1,30 @@
+services:
+  virtual-estate-api:
+    build:
+      context: ./backend
+    container_name: virtual-estate-api-9082
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      VIRTUAL_ESTATE_ALLOWED_ORIGIN: http://localhost:9082
+    expose:
+      - "8080"
+    networks:
+      - virtual-estate-9082
+
+  virtual-estate-web:
+    build:
+      context: ./frontend
+    container_name: virtual-estate-web-9082
+    depends_on:
+      - virtual-estate-api
+    ports:
+      - "9082:80"
+    networks:
+      - virtual-estate-9082
+
+networks:
+  virtual-estate-9082:
+    name: virtual-estate-9082
+    ipam:
+      config:
+        - subnet: 10.90.82.0/24
