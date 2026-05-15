@@ -1,0 +1,14 @@
+services:
+  astro-farm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: astro-farm-9073
+    ports:
+      - "9073:9073"
+    environment:
+      ASTRO_FARM_PORT: "9073"
+      SPRING_PROFILES_ACTIVE: "training"
+      TRAINING_CORS_ALLOWED_ORIGINS: "*"
+      TRAINING_RATE_LIMIT_ENABLED: "false"
+
