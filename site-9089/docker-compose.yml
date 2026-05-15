@@ -1,0 +1,31 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: smart-escrow-backend-9089
+    environment:
+      SERVER_PORT: 8080
+      SMART_ESCROW_ORIGIN: http://localhost:9089
+      LOGGING_LEVEL_ROOT: INFO
+    expose:
+      - "8080"
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: smart-escrow-frontend-9089
+    depends_on:
+      - backend
+    ports:
+      - "9089:80"
+    environment:
+      NGINX_ENTRYPOINT_QUIET_LOGS: "0"
+    labels:
+      smart-escrow.performance-log: "browser-native-cache-ux-defect-simulation"
+
+networks:
+  default:
+    name: smart-escrow-9089-net
+    ipam:
+      config:
+        - subnet: 10.250.89.0/24
