@@ -1,0 +1,30 @@
+services:
+  climate-ai-backend:
+    build:
+      context: ./backend
+    container_name: climate-ai-backend-9072
+    environment:
+      SERVER_PORT: 8080
+      CLIMATE_AI_PUBLIC_ORIGIN: http://localhost:9072
+      CLIMATE_AI_PROFILE: regression-lab
+    networks:
+      - climate-ai-9072
+
+  climate-ai-frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: /api
+    container_name: climate-ai-frontend-9072
+    depends_on:
+      - climate-ai-backend
+    ports:
+      - "9072:80"
+    networks:
+      - climate-ai-9072
+
+networks:
+  climate-ai-9072:
+    name: climate-ai-9072
+    driver: bridge
+
