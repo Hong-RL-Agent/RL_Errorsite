@@ -1,0 +1,17 @@
+services:
+  biopay:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: biopay-dashboard-9064
+    ports:
+      - "9064:9064"
+    environment:
+      SERVER_PORT: "9064"
+      SPRING_APPLICATION_NAME: "biopay-dashboard"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:9064/actuator/health | grep UP"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
