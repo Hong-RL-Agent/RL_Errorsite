@@ -1,0 +1,24 @@
+server:
+  port: ${SERVER_PORT:8080}
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: pharma-ai-backend
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+pharma-ai:
+  public-origin: http://localhost:9068
+  api:
+    dev-rate-limit: 240
+    prod-rate-limit: 60
+  dns:
+    dev-ttl-seconds: 30
+    prod-ttl-seconds: 300
+  tls:
+    required-min-version: TLSv1.3
