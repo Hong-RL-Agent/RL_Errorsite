@@ -1,0 +1,15 @@
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 32
+      min-spare: 4
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+cyber-lab:
+  runtime-dir: ${CYBER_LAB_RUNTIME_DIR:./runtime}

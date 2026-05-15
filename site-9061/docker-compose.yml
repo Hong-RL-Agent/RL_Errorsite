@@ -1,0 +1,24 @@
+services:
+  cyber-lab-backend:
+    build:
+      context: ./backend
+    container_name: cyber-lab-backend
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      CYBER_LAB_RUNTIME_DIR: /var/cyber-lab/runtime
+    volumes:
+      - cyber-lab-runtime:/var/cyber-lab/runtime
+    cpus: "0.35"
+    mem_limit: 512m
+
+  cyber-lab-frontend:
+    build:
+      context: ./frontend
+    container_name: cyber-lab-frontend
+    depends_on:
+      - cyber-lab-backend
+    ports:
+      - "9061:80"
+
+volumes:
+  cyber-lab-runtime:
