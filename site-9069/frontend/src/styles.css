@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #020617;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #020617;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.scanlines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background:
+    linear-gradient(rgba(74, 222, 128, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.022) 1px, transparent 1px);
+  background-size: 100% 4px, 48px 48px;
+  mix-blend-mode: screen;
+}
+
+.camera-feed {
+  min-height: 240px;
+  box-shadow: inset 0 0 70px rgba(74, 222, 128, 0.12), 0 0 28px rgba(6, 182, 212, 0.05);
+}
+
+.camera-feed::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(from 90deg, transparent 0deg, rgba(74, 222, 128, 0.16) 28deg, transparent 54deg);
+  animation: radar-spin 8s linear infinite;
+}
+
+.camera-feed::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(74, 222, 128, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(6, 182, 212, 0.12);
+}
+
+.thermal-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(74, 222, 128, 0.34), transparent 16%),
+    radial-gradient(circle at 72% 62%, rgba(244, 63, 94, 0.26), transparent 18%),
+    radial-gradient(circle at 52% 38%, rgba(6, 182, 212, 0.2), transparent 14%);
+  animation: thermal-drift 6s ease-in-out infinite alternate;
+}
+
+.thermal-1 {
+  filter: hue-rotate(48deg) saturate(1.4);
+}
+
+.thermal-2 {
+  filter: hue-rotate(108deg) saturate(1.2);
+}
+
+.thermal-3 {
+  filter: hue-rotate(-24deg) saturate(1.3);
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  background-image:
+    repeating-radial-gradient(circle at 17% 32%, rgba(255, 255, 255, 0.22) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(0deg, transparent 0 8px, rgba(6, 182, 212, 0.1) 9px 10px);
+  animation: noise-shift 0.9s steps(2) infinite;
+}
+
+.sweep-path {
+  stroke-dasharray: 20 16;
+  animation: dash 2s linear infinite;
+}
+
+.target-pulse {
+  transform-origin: center;
+  animation: target-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes radar-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes thermal-drift {
+  from {
+    transform: translate3d(-1.5%, -1%, 0) scale(1.02);
+  }
+  to {
+    transform: translate3d(1.5%, 1%, 0) scale(1.07);
+  }
+}
+
+@keyframes noise-shift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-2%, 1%);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -72;
+  }
+}
+
+@keyframes target-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@media (max-width: 768px) {
+  .scanlines {
+    background-size: 100% 5px, 36px 36px;
+  }
+}
+

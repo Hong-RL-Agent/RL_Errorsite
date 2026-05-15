@@ -1,0 +1,19 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      SERVER_PORT: 9069
+      EYE_SCAN_ALLOWED_ORIGINS: http://localhost:9069
+    expose:
+      - "9069"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_PROXY_TARGET: http://backend:9069
+    depends_on:
+      - backend
+    ports:
+      - "9069:80"
