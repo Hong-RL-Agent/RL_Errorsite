@@ -1,0 +1,18 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: asteroid-guard-api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+asteroid-guard:
+  cors-origin: ${ASTEROID_GUARD_ORIGIN:http://localhost:9081}
+  public-base-url: http://localhost:9081
+  simulation-port: ${SIMULATION_PORT:9081}
+

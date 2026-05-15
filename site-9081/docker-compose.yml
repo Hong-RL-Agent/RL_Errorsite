@@ -1,0 +1,45 @@
+services:
+  asteroid-guard-api:
+    build:
+      context: ./backend
+    container_name: asteroid-guard-api-9081
+    environment:
+      SERVER_PORT: 8080
+      ASTEROID_GUARD_ORIGIN: http://localhost:9081
+      SIMULATION_PORT: 9081
+    ports:
+      - "9082:8080"
+    networks:
+      - asteroid-guard-9081
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/actuator/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+    labels:
+      asteroid-guard.port: "9081"
+      asteroid-guard.training: "rootkit firmware airgap-usb-zero-day-apt-c2-ad-kerberoasting-pass-the-hash"
+
+  asteroid-guard-ui:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE: /api
+    container_name: asteroid-guard-ui-9081
+    depends_on:
+      asteroid-guard-api:
+        condition: service_healthy
+    ports:
+      - "9081:80"
+    networks:
+      - asteroid-guard-9081
+    labels:
+      asteroid-guard.port: "9081"
+      asteroid-guard.incident-log: "simulated C2 telemetry, AD hierarchy drift, kernel integrity alerts"
+
+networks:
+  asteroid-guard-9081:
+    name: asteroid-guard-9081
+    ipam:
+      config:
+        - subnet: 10.90.81.0/24
