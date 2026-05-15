@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: virtual-stadium-control
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+virtual-stadium:
+  public-origin: http://localhost:9098
+  venue: MAGENTA DOME PRIME

@@ -1,0 +1,44 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: virtual-stadium-backend-9098
+    environment:
+      VIRTUAL_STADIUM_PUBLIC_ORIGIN: http://localhost:9098
+      SERVER_PORT: 8080
+    networks:
+      - virtual-stadium-net-9098
+    expose:
+      - "8080"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: virtual-stadium-frontend-9098
+    environment:
+      VITE_API_TARGET: http://backend:8080
+      VITE_PORT: 9098
+    ports:
+      - "9098:9098"
+    depends_on:
+      - backend
+    networks:
+      - virtual-stadium-net-9098
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  virtual-stadium-net-9098:
+    name: virtual-stadium-net-9098
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.90.98.0/24
