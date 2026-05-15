@@ -1,0 +1,16 @@
+server:
+  port: 9071
+
+spring:
+  application:
+    name: vrfit-server
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+vrfit:
+  cors:
+    allowed-origin: "http://localhost:9071"
