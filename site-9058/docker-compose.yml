@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: ai-recruiter-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      # Intentionally omit AI_RECRUITER_API_KEY to reproduce the initialization fault.
+      AI_RECRUITER_REQUIRE_API_KEY: "true"
+      AI_RECRUITER_GPU_COUNT: "2"
+      AI_RECRUITER_CPU_PATCHED: "true"
+      AI_RECRUITER_TRR_ENABLED: "true"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: "768M"
+    mem_limit: 768m
+    cpus: 0.75
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: ai-recruiter-frontend
+    ports:
+      - "9058:80"
+    depends_on:
+      - backend

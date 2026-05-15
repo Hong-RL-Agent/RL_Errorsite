@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ai-recruiter
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+ai-recruiter:
+  require-api-key: ${AI_RECRUITER_REQUIRE_API_KEY:false}
+  api-key: ${AI_RECRUITER_API_KEY:}
+  gpu-count: ${AI_RECRUITER_GPU_COUNT:2}
+  cpu-patched: ${AI_RECRUITER_CPU_PATCHED:true}
+  trr-enabled: ${AI_RECRUITER_TRR_ENABLED:true}

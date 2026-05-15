@@ -1,0 +1,6 @@
+backend/build/
+frontend/.npm-cache/
+frontend/dist/
+frontend/node_modules/
+.gradle/
+*.log
