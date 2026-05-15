@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: art-appraiser-backend-9090
+    environment:
+      SERVER_PORT: 8080
+      APP_PUBLIC_ORIGIN: http://localhost:9090
+    expose:
+      - "8080"
+    networks:
+      - art-appraiser-9090
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: art-appraiser-frontend-9090
+    depends_on:
+      - backend
+    ports:
+      - "9090:80"
+    networks:
+      - art-appraiser-9090
+
+networks:
+  art-appraiser-9090:
+    name: art-appraiser-9090-net
+    ipam:
+      config:
+        - subnet: 10.90.90.0/24

@@ -1,0 +1,4 @@
+ART-APPRAISER internal vault note.
+This file is intentionally present for path traversal training.
+
+Sensitive provenance hint: Lot AX-9090 has a private dispute memo.

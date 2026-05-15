@@ -1,0 +1,9 @@
+node_modules/
+dist/
+target/
+.npm-cache/
+.DS_Store
+*.log
+*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
