@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cosmic-bg: #0C0A09;
+  --color-cosmic-orange: #FB923C;
+  --color-cosmic-violet: #A855F7;
+  --color-cosmic-mint: #2DD4BF;
+  --color-cosmic-border: rgba(255, 255, 255, 0.15);
+  --color-cosmic-panel: rgba(18, 15, 20, 0.7);
+}
+
+body {
+  background-color: var(--color-cosmic-bg);
+  color: white;
+  margin: 0;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.glass-panel {
+  background: var(--color-cosmic-panel);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--color-cosmic-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  border-radius: 0.5rem;
+}
+
+/* Custom Scrollbar for Threat List */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
