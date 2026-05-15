@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backend-9045:
+    build: ./backend
+    container_name: neolit-backend
+    restart: always
+    networks:
+      - jaws-network
+
+  frontend-9045:
+    build: ./frontend
+    container_name: neolit-frontend
+    ports:
+      - "9045:9045"
+    depends_on:
+      - backend-9045
+    networks:
+      - jaws-network
+    environment:
+      - VITE_API_URL=http://localhost:9045/api
+    # ⚠️ 아래 3줄을 지우거나 주석(#) 처리해 줘!
+    # volumes:
+    #   - ./frontend:/app
+    #   - /app/node_modules
+networks:
+  jaws-network:
+    driver: bridge
