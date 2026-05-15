@@ -1,0 +1,12 @@
+server:
+  port: 9083
+
+spring:
+  application:
+    name: PATENT-AI
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 9083
+    expose:
+      - "9083"
+    networks:
+      - patent-ai-9083
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "9083:9083"
+    networks:
+      - patent-ai-9083
+
+networks:
+  patent-ai-9083:
+    name: patent-ai-9083
+    ipam:
+      config:
+        - subnet: 10.90.83.0/28
