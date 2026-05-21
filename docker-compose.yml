@@ -4,7 +4,7 @@ services:
     container_name: db-error-site01
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site01:/app
+      - /home/parkja/RL_Errorsite_db/site001:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9330:9330"
@@ -17,7 +17,7 @@ services:
     container_name: db-error-site02
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site02:/app
+      - /home/parkja/RL_Errorsite_db/site002:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9331:9331"
@@ -30,7 +30,7 @@ services:
     container_name: db-error-site03
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site03:/app
+      - /home/parkja/RL_Errorsite_db/site003:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9332:9332"
@@ -43,7 +43,7 @@ services:
     container_name: db-error-site04
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site04:/app
+      - /home/parkja/RL_Errorsite_db/site004:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9333:9333"
@@ -56,7 +56,7 @@ services:
     container_name: db-error-site05
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site05:/app
+      - /home/parkja/RL_Errorsite_db/site005:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9334:9334"
@@ -69,7 +69,7 @@ services:
     container_name: db-error-site06
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site06:/app
+      - /home/parkja/RL_Errorsite_db/site006:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9335:9335"
@@ -82,7 +82,7 @@ services:
     container_name: db-error-site07
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site07:/app
+      - /home/parkja/RL_Errorsite_db/site007:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9336:9336"
@@ -95,7 +95,7 @@ services:
     container_name: db-error-site08
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site08:/app
+      - /home/parkja/RL_Errorsite_db/site008:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9337:9337"
@@ -108,7 +108,7 @@ services:
     container_name: db-error-site09
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site09:/app
+      - /home/parkja/RL_Errorsite_db/site009:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9338:9338"
@@ -121,7 +121,7 @@ services:
     container_name: db-error-site10
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site10:/app
+      - /home/parkja/RL_Errorsite_db/site010:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9339:9339"
@@ -134,7 +134,7 @@ services:
     container_name: db-error-site11
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site11:/app
+      - /home/parkja/RL_Errorsite_db/site011:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9340:9340"
@@ -147,7 +147,7 @@ services:
     container_name: db-error-site12
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site12:/app
+      - /home/parkja/RL_Errorsite_db/site012:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9341:9341"
@@ -160,7 +160,7 @@ services:
     container_name: db-error-site13
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site13:/app
+      - /home/parkja/RL_Errorsite_db/site013:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9342:9342"
@@ -173,7 +173,7 @@ services:
     container_name: db-error-site14
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site14:/app
+      - /home/parkja/RL_Errorsite_db/site014:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9343:9343"
@@ -186,7 +186,7 @@ services:
     container_name: db-error-site15
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site15:/app
+      - /home/parkja/RL_Errorsite_db/site015:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9344:9344"
@@ -199,7 +199,7 @@ services:
     container_name: db-error-site16
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site16:/app
+      - /home/parkja/RL_Errorsite_db/site016:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9345:9345"
@@ -212,7 +212,7 @@ services:
     container_name: db-error-site17
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site17:/app
+      - /home/parkja/RL_Errorsite_db/site017:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9346:9346"
@@ -225,7 +225,7 @@ services:
     container_name: db-error-site18
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site18:/app
+      - /home/parkja/RL_Errorsite_db/site018:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9347:9347"
@@ -238,7 +238,7 @@ services:
     container_name: db-error-site19
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site19:/app
+      - /home/parkja/RL_Errorsite_db/site019:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9348:9348"
@@ -251,7 +251,7 @@ services:
     container_name: db-error-site20
     working_dir: /app
     volumes:
-      - /home/parkja/RL_Errorsite_db/site20:/app
+      - /home/parkja/RL_Errorsite_db/site020:/app
     command: sh -c "npm install && npm start"
     ports:
       - "9349:9349"
