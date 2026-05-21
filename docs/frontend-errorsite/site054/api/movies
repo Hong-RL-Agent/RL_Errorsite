@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "넥서스 에코",
+    "genre": "SF",
+    "releaseDate": "2026-05-15",
+    "rating": 4.5,
+    "poster": "assets/hero.jpg",
+    "synopsis": "기억이 데이터화된 미래, 잃어버린 자신의 기억을 찾기 위해 거대한 시스템에 맞서는 주인공의 여정."
+  },
+  {
+    "id": 2,
+    "title": "강남 미드나잇",
+    "genre": "Action",
+    "releaseDate": "2026-04-20",
+    "rating": 3.8,
+    "poster": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800",
+    "synopsis": "밤의 도시를 배경으로 펼쳐지는 긴박한 추격전과 화려한 액션 느와르."
+  },
+  {
+    "id": 3,
+    "title": "숲의 침묵",
+    "genre": "Drama",
+    "releaseDate": "2026-05-01",
+    "rating": 4.2,
+    "poster": "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=800",
+    "synopsis": "도시를 떠나 숲으로 들어간 남자가 마주한 자연의 신비와 내면의 치유."
+  },
+  {
+    "id": 4,
+    "title": "시간의 모서리",
+    "genre": "Drama",
+    "releaseDate": "2026-05-10",
+    "rating": 4,
+    "poster": "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800",
+    "synopsis": "지나간 시간 속에서 소중한 사람을 다시 만날 수 있는 기회를 얻게 된 여자의 선택."
+  }
+]

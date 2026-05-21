@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "김철수",
+    "subject": "Math",
+    "experience": "15년",
+    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&h=150",
+    "description": "수학의 정석을 깨우치는 최고의 강의. 개념부터 심화까지 책임집니다."
+  },
+  {
+    "id": 2,
+    "name": "이지혜",
+    "subject": "English",
+    "experience": "10년",
+    "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150",
+    "description": "즐겁게 배우는 영어. 원어민 수준의 회화와 문법을 동시에 마스터하세요."
+  },
+  {
+    "id": 3,
+    "name": "박성진",
+    "subject": "Science",
+    "experience": "12년",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150",
+    "description": "어려운 과학 현상을 쉽고 재미있게 설명해드립니다."
+  }
+]

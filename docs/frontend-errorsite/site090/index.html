@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediLife Hospital | Trustworthy Healthcare for You</title>
+    <meta name="description" content="MediLife General Hospital provides high-quality medical services across various specialties. Book your appointment online today.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="./pages-mock.js"></script>
+  </head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="./">MediLife <span>Hospital</span></a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#depts">Departments</a></li>
+                    <li><a href="#doctors">Find Doctor</a></li>
+                    <li><a href="#notices">Notices</a></li>
+                    <li><a href="#directions">Directions</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-sm btn-outline" onclick="alert('Appointment status check...')">Check Status</button>
+                <button class="btn btn-sm btn-primary" onclick="alert('Login required.')">Sign In</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="hero-badge">Excellence in Care</span>
+                    <h1>Your Health is Our <span>Top Priority</span></h1>
+                    <p>Experience advanced medical technology and compassionate care from our world-class specialists.</p>
+                    <div class="hero-btns">
+                        <button class="btn btn-primary btn-lg" onclick="window.scrollTo({top: document.getElementById('depts').offsetTop - 80, behavior: 'smooth'})">Book Appointment Now</button>
+                        <button class="btn btn-outline btn-lg" onclick="alert('Emergency: 02-123-9119')">Emergency Center</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=550&fit=crop" alt="Hospital Interior">
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="depts" class="booking-section">
+            <div class="container main-layout">
+                <div class="content-area">
+                    <div class="section-title">
+                        <h2>Clinical Departments</h2>
+                        <p>Select a department to find specialists and book your visit.</p>
+                    </div>
+
+                    <div id="deptGrid" class="dept-grid">
+                        <div class="loader">Loading departments...</div>
+                    </div>
+
+                    <!-- Date & Time Selection (Mock) -->
+                    <section class="selection-section">
+                        <h3>Select Date & Time</h3>
+                        <div class="selection-container">
+                            <div class="date-picker">
+                                <label>Preferred Date</label>
+                                <input type="date" value="2026-05-10">
+                            </div>
+                            <div class="time-picker">
+                                <label>Available Slots</label>
+                                <div class="time-slots">
+                                    <button class="slot active">09:00 AM</button>
+                                    <button class="slot">10:30 AM</button>
+                                    <button class="slot">02:00 PM</button>
+                                    <button class="slot">04:30 PM</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Notices Section -->
+                    <section id="notices" class="notices-section">
+                        <h3>Hospital Announcements</h3>
+                        <div class="accordion" id="noticeAccordion">
+                            <!-- Populated via JS -->
+                        </div>
+                    </section>
+
+                    <!-- Directions Section -->
+                    <section id="directions" class="directions-section">
+                        <h3>Getting Here</h3>
+                        <div class="tabs">
+                            <button class="tab-btn active" data-target="bus">By Bus</button>
+                            <button class="tab-btn" data-target="subway">By Subway</button>
+                            <button class="tab-btn" data-target="car">By Car</button>
+                        </div>
+                        <div id="directionContent" class="tab-content">
+                            <div id="bus" class="tab-pane active">
+                                <p><strong>Bus Stops:</strong> MediLife Hospital Main Gate (ID: 12-345)</p>
+                                <p>Blue: 143, 401, 740 / Green: 4412, 3411</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- FAQ Section -->
+                    <section class="faq-section">
+                        <h3>Booking FAQ</h3>
+                        <div class="faq-grid">
+                            <div class="faq-card">
+                                <h5>Can I cancel my appointment?</h5>
+                                <p>Yes, you can cancel up to 24 hours before your scheduled visit through the 'Check Status' menu.</p>
+                            </div>
+                            <div class="faq-card">
+                                <h5>What documents should I bring?</h5>
+                                <p>Please bring your ID card and any previous medical records or referral letters if available.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Sticky Summary Sidebar -->
+                <aside class="sidebar">
+                    <!-- INTENTIONAL GUI BUG: site090-bug02 container -->
+                    <div class="sticky-panel" id="summaryPanel" data-bug-id="site090-bug02">
+                        <h3>Appointment Summary</h3>
+                        <div id="summaryContent" class="summary-content">
+                            <p class="empty-msg">Please select a department and clinician.</p>
+                        </div>
+                        <div class="summary-footer">
+                            <div class="info-box">
+                                <p><strong>Instructions:</strong> Please arrive 15 minutes early for registration. Late arrivals may need to be rescheduled.</p>
+                                <p><strong>Insurance:</strong> We accept all major national and private health insurance providers.</p>
+                            </div>
+                            <button id="confirmBtn" class="btn btn-primary btn-block" disabled>Confirm Appointment</button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="logo">MediLife <span>Hospital</span></div>
+                <p>Advanced Medicine, Compassionate Care.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Medical Hours</h4>
+                <p>Weekdays: 08:30 - 17:30</p>
+                <p>Saturday: 08:30 - 12:30</p>
+                <p>Lunch: 12:30 - 13:30</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Call: 02-123-4567</p>
+                <p>Emergency: 02-123-9119</p>
+                <p>Address: 123 Health Road, Medicity</p>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Patient Rights</a></li>
+                    <li><a href="#">Contact Webmaster</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

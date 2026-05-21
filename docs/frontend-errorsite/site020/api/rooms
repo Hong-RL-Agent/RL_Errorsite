@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "id": "r1",
+      "type": "스탠다드 더블",
+      "price": 150000,
+      "breakfast": false,
+      "cancellable": true
+    },
+    {
+      "id": "r2",
+      "type": "디럭스 트윈",
+      "price": 210000,
+      "breakfast": true,
+      "cancellable": true
+    },
+    {
+      "id": "r3",
+      "type": "프리미엄 스위트",
+      "price": 450000,
+      "breakfast": true,
+      "cancellable": false
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "t001",
+    "name": "Sarah Jenkins",
+    "specialty": "Arts & Music",
+    "intro": "Passionate about nurturing creativity in young minds through sensory art and rhythm.",
+    "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "t002",
+    "name": "Mark Peterson",
+    "specialty": "STEM & Robotics",
+    "intro": "Software engineer turned educator, helping kids build their first robots.",
+    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "t003",
+    "name": "Chef Maria",
+    "specialty": "Culinary Arts",
+    "intro": "Professional pastry chef who loves teaching children the joy of healthy cooking.",
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+  }
+]

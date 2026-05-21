@@ -1,0 +1,52 @@
+{
+  "artists": [
+    {
+      "id": 301,
+      "name": "윤서하",
+      "intro": "한지와 흑연을 겹쳐 도시의 사라지는 빛을 기록하는 작가. 단정한 여백 위에 금박 선을 얹는 작업으로 알려져 있습니다.",
+      "signatureWork": "Nocturne Layer 07",
+      "profileImage": "data:image/svg+xml;charset=UTF-8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22320%22%20height%3D%22320%22%20viewBox%3D%220%200%20320%20320%22%20role%3D%22img%22%20aria-label%3D%22Yoon%20Seoha%22%3E%0A%20%20%20%20%3Crect%20width%3D%22320%22%20height%3D%22320%22%20fill%3D%22%23302a24%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22160%22%20cy%3D%22126%22%20r%3D%2258%22%20fill%3D%22%23c6a15b%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M72%20282c19-58%2056-88%2088-88s69%2030%2088%2088%22%20fill%3D%22%23fff8ec%22%20opacity%3D%220.88%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22160%22%20y%3D%2256%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2224%22%20fill%3D%22%23fff8ec%22%3EYoon%20Seoha%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "exhibitionHistory": [
+        "2026 Light Archive, Atelier Veyron",
+        "2025 Paper Latitude, Busan Art Week",
+        "2024 Window of Dust, Seoul"
+      ]
+    },
+    {
+      "id": 302,
+      "name": "문라온",
+      "intro": "세라믹 안료와 아크릴을 섞어 정물의 표면을 재구성합니다. 크림색 바탕과 차콜 라인이 충돌하는 화면을 만듭니다.",
+      "signatureWork": "Quiet Vessel",
+      "profileImage": "data:image/svg+xml;charset=UTF-8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22320%22%20height%3D%22320%22%20viewBox%3D%220%200%20320%20320%22%20role%3D%22img%22%20aria-label%3D%22Moon%20Raon%22%3E%0A%20%20%20%20%3Crect%20width%3D%22320%22%20height%3D%22320%22%20fill%3D%22%236c6256%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22160%22%20cy%3D%22126%22%20r%3D%2258%22%20fill%3D%22%23e7d5af%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M72%20282c19-58%2056-88%2088-88s69%2030%2088%2088%22%20fill%3D%22%23fff8ec%22%20opacity%3D%220.88%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22160%22%20y%3D%2256%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2224%22%20fill%3D%22%23fff8ec%22%3EMoon%20Raon%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "exhibitionHistory": [
+        "2026 Object Room, Atelier Veyron",
+        "2025 Still Forms, Daegu",
+        "2023 Young Collector Preview"
+      ]
+    },
+    {
+      "id": 303,
+      "name": "Kira Han",
+      "intro": "유리, 반사 필름, 디지털 프린트를 결합해 전시장 동선과 관람자의 움직임을 이미지로 번역합니다.",
+      "signatureWork": "Mirror Index",
+      "profileImage": "data:image/svg+xml;charset=UTF-8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22320%22%20height%3D%22320%22%20viewBox%3D%220%200%20320%20320%22%20role%3D%22img%22%20aria-label%3D%22Kira%20Han%22%3E%0A%20%20%20%20%3Crect%20width%3D%22320%22%20height%3D%22320%22%20fill%3D%22%231f2427%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22160%22%20cy%3D%22126%22%20r%3D%2258%22%20fill%3D%22%23d4a94d%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M72%20282c19-58%2056-88%2088-88s69%2030%2088%2088%22%20fill%3D%22%23fff8ec%22%20opacity%3D%220.88%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22160%22%20y%3D%2256%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2224%22%20fill%3D%22%23fff8ec%22%3EKira%20Han%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "exhibitionHistory": [
+        "2026 Afterimage Route, Atelier Veyron",
+        "2025 Glass Notes, Tokyo",
+        "2024 Index Room, Seoul"
+      ]
+    },
+    {
+      "id": 304,
+      "name": "정이든",
+      "intro": "목탄 드로잉과 오일 파스텔을 통해 오래된 정원의 구조와 계절감을 추상적으로 압축합니다.",
+      "signatureWork": "Garden Draft",
+      "profileImage": "data:image/svg+xml;charset=UTF-8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22320%22%20height%3D%22320%22%20viewBox%3D%220%200%20320%20320%22%20role%3D%22img%22%20aria-label%3D%22Jung%20Eden%22%3E%0A%20%20%20%20%3Crect%20width%3D%22320%22%20height%3D%22320%22%20fill%3D%22%233f332b%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22160%22%20cy%3D%22126%22%20r%3D%2258%22%20fill%3D%22%23c9b182%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M72%20282c19-58%2056-88%2088-88s69%2030%2088%2088%22%20fill%3D%22%23fff8ec%22%20opacity%3D%220.88%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22160%22%20y%3D%2256%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2224%22%20fill%3D%22%23fff8ec%22%3EJung%20Eden%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "exhibitionHistory": [
+        "2026 Slow Garden, Atelier Veyron",
+        "2025 Drawing Fair Seoul",
+        "2024 Surface Walk"
+      ]
+    }
+  ]
+}

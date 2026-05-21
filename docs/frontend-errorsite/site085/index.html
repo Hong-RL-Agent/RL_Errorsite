@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CertiHub | National Certification Exam Schedule & Registration</title>
+    <meta name="description" content="Check the latest national certification exam schedules, locations, and register online at CertiHub.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="./pages-mock.js"></script>
+  </head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="./">Certi<span>Hub</span></a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#schedule">Exam Schedule</a></li>
+                    <li><a href="#guide">Registration Guide</a></li>
+                    <li><a href="#ticket">Admission Ticket</a></li>
+                    <li><a href="#results">Results</a></li>
+                    <li><a href="#support">Support Center</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-outline btn-sm" onclick="alert('Checking application status...')">My Applications</button>
+                <button class="btn btn-primary btn-sm" onclick="alert('Login page coming soon!')">Login</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge">2026 Examination Notice</span>
+                    <h1>Plan Your Future with <span>Official Certifications</span></h1>
+                    <p>Access comprehensive schedules for over 500 national and private certificates. Fast, reliable, and secure online registration.</p>
+                    <div class="hero-btns">
+                        <button class="btn btn-lg btn-secondary" onclick="window.scrollTo({top: document.getElementById('exams').offsetTop - 80, behavior: 'smooth'})">Find Your Exam</button>
+                        <button class="btn btn-lg btn-outline-white" onclick="alert('Downloading annual schedule...')">Annual Schedule PDF</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Section -->
+        <section id="exams" class="main-content">
+            <div class="container layout-grid">
+                <!-- Content Area -->
+                <div class="content-area">
+                    <!-- Filters -->
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label>Category</label>
+                            <select id="categoryFilter">
+                                <option value="all">All Categories</option>
+                                <option value="IT/Computer">IT/Computer</option>
+                                <option value="Finance/Accounting">Finance/Accounting</option>
+                                <option value="Construction">Construction</option>
+                                <option value="Security">Security</option>
+                                <option value="Social Welfare">Social Welfare</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Region</label>
+                            <select id="regionFilter">
+                                <option value="all">All Regions</option>
+                                <option value="Seoul">Seoul</option>
+                                <option value="Gyeonggi">Gyeonggi</option>
+                                <option value="Busan">Busan</option>
+                                <option value="Daegu">Daegu</option>
+                                <option value="Incheon">Incheon</option>
+                            </select>
+                        </div>
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="Search by exam name...">
+                        </div>
+                    </div>
+
+                    <!-- Exam Grid -->
+                    <div class="section-title">
+                        <h2>Ongoing & Upcoming Exams</h2>
+                    </div>
+                    <div id="examGrid" class="exam-grid">
+                        <div class="loader">Fetching exam data...</div>
+                    </div>
+
+                    <!-- Calendar Section -->
+                    <div class="section-title" id="schedule">
+                        <h2>Exam Calendar</h2>
+                    </div>
+                    <!-- INTENTIONAL GUI BUG: site085-bug02 container -->
+                    <div class="calendar-container" id="calendarSection" data-bug-id="site085-bug02">
+                        <div class="calendar-header">
+                            <button id="prevMonth" class="btn-icon">&lt;</button>
+                            <h3 id="currentMonthYear">May 2026</h3>
+                            <button id="nextMonth" class="btn-icon">&gt;</button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Weekdays -->
+                            <div class="weekday">Sun</div>
+                            <div class="weekday">Mon</div>
+                            <div class="weekday">Tue</div>
+                            <div class="weekday">Wed</div>
+                            <div class="weekday">Thu</div>
+                            <div class="weekday">Fri</div>
+                            <div class="weekday">Sat</div>
+                            <!-- Days loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Notice Section -->
+                    <div class="section-title">
+                        <h2>Announcements</h2>
+                    </div>
+                    <div id="noticeSection" class="notice-section">
+                        <!-- Loaded via API -->
+                    </div>
+                </div>
+
+                <!-- Sidebar (Sticky Summary) -->
+                <aside class="sidebar">
+                    <div class="sticky-panel" id="applyPanel">
+                        <h3>Selected Exam</h3>
+                        <div id="selectedExamInfo" class="selected-info">
+                            <p class="placeholder-text">Please select an exam to proceed with registration.</p>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="fee-row">
+                                <span>Examination Fee:</span>
+                                <span id="examFee">$0</span>
+                            </div>
+                            <button id="finalApplyBtn" class="btn btn-primary btn-block" disabled>Start Registration</button>
+                        </div>
+                    </div>
+
+                    <div class="quick-links">
+                        <h4>Quick Menu</h4>
+                        <ul>
+                            <li><a href="#" onclick="alert('Guidance on Exam Day preparations...')">Preparation Guide</a></li>
+                            <li><a href="#" onclick="alert('Link to Refund Policy...')">Refund Regulations</a></li>
+                            <li><a href="#" onclick="alert('Opening FAQ...')">Frequently Asked Questions</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">Certi<span>Hub</span></div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Legal Notice</a>
+                    <a href="#">Site Map</a>
+                </div>
+            </div>
+            <hr>
+            <div class="footer-bottom">
+                <div class="footer-info">
+                    <p>Address: 123 Education-ro, Sejong-si, South Korea | Contact: 1588-XXXX</p>
+                    <p>Copyright &copy; 2026 CertiHub. All rights reserved.</p>
+                </div>
+                <div class="footer-social">
+                    <span>FB</span>
+                    <span>TW</span>
+                    <span>YT</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Detail Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

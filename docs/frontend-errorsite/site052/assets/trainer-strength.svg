@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="420" viewBox="0 0 600 420" role="img" aria-label="Strength trainer portrait">
+  <rect width="600" height="420" fill="#10141b"/>
+  <circle cx="300" cy="112" r="58" fill="#9dff35"/>
+  <path d="M174 358 C182 244 234 178 300 178 C366 178 418 244 426 358Z" fill="#f4f7f9"/>
+  <g stroke="#384250" stroke-width="18" stroke-linecap="round">
+    <path d="M150 222 H450"/>
+    <path d="M118 222 V288"/>
+    <path d="M482 222 V288"/>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="240" viewBox="0 0 420 240" role="img" aria-label="Seongsu officetel">
+  <rect width="420" height="240" fill="#eef2f6"/>
+  <rect x="70" y="44" width="112" height="150" rx="10" fill="#0f2f5f"/>
+  <rect x="206" y="72" width="144" height="122" rx="10" fill="#ffffff"/>
+  <g fill="#dff2ff">
+    <rect x="92" y="66" width="24" height="22" rx="4"/>
+    <rect x="134" y="66" width="24" height="22" rx="4"/>
+    <rect x="92" y="108" width="24" height="22" rx="4"/>
+    <rect x="134" y="108" width="24" height="22" rx="4"/>
+    <rect x="92" y="150" width="24" height="22" rx="4"/>
+    <rect x="134" y="150" width="24" height="22" rx="4"/>
+  </g>
+  <rect x="226" y="100" width="104" height="68" rx="8" fill="#3aa7e8"/>
+</svg>

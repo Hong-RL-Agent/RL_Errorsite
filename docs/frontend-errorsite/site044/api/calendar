@@ -1,0 +1,17 @@
+[
+  {
+    "date": "2026-05-01",
+    "availableSites": 5,
+    "price": 45000
+  },
+  {
+    "date": "2026-05-02",
+    "availableSites": 0,
+    "price": 55000
+  },
+  {
+    "date": "2026-05-03",
+    "availableSites": 2,
+    "price": 45000
+  }
+]

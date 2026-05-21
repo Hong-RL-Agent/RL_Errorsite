@@ -1,0 +1,45 @@
+[
+  {
+    "id": "studio",
+    "name": "스튜디오/원룸 청소",
+    "basePrice": 50000,
+    "description": "10평 이하 원룸 및 오피스텔에 최적화된 청소 서비스입니다.",
+    "recommendedOptions": [
+      "refrigerator",
+      "window"
+    ]
+  },
+  {
+    "id": "home",
+    "name": "일반 가정집 청소",
+    "basePrice": 120000,
+    "description": "방 2개 이상의 아파트, 빌라 등 주거 공간을 구석구석 정밀 청소합니다.",
+    "recommendedOptions": [
+      "refrigerator",
+      "window",
+      "balcony"
+    ]
+  },
+  {
+    "id": "office",
+    "name": "사무실/상업공간 청소",
+    "basePrice": 200000,
+    "description": "쾌적한 업무 환경을 위한 오피스 전문 청소 서비스입니다.",
+    "recommendedOptions": [
+      "window",
+      "carpet"
+    ]
+  },
+  {
+    "id": "movein",
+    "name": "입주/이사 청소",
+    "basePrice": 180000,
+    "description": "새로운 시작을 위한 완벽한 공간 케어 서비스입니다.",
+    "recommendedOptions": [
+      "refrigerator",
+      "window",
+      "balcony",
+      "steam"
+    ]
+  }
+]

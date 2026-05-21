@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="Weekend park square">
+  <rect width="300" height="300" fill="#e9f6fd"/>
+  <circle cx="230" cy="64" r="28" fill="#ffd16a"/>
+  <rect y="196" width="300" height="104" fill="#8fd5a6"/>
+  <ellipse cx="142" cy="188" rx="76" ry="50" fill="#ffffff"/>
+  <circle cx="104" cy="154" r="32" fill="#ff735f"/>
+  <circle cx="180" cy="154" r="32" fill="#ff735f"/>
+  <circle cx="122" cy="190" r="8" fill="#17202a"/>
+  <circle cx="166" cy="190" r="8" fill="#17202a"/>
+  <path d="M126 216c16 12 32 12 48 0" fill="none" stroke="#17202a" stroke-width="7" stroke-linecap="round"/>
+</svg>

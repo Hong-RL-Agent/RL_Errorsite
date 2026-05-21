@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="180" viewBox="0 0 420 180" role="img" aria-label="Scale thumbnail">
+  <rect width="420" height="180" fill="#fffaf3"/>
+  <rect x="62" y="80" width="292" height="40" rx="20" fill="#3f2a1e"/>
+  <path d="M70 142 H350" stroke="#d8c4a8" stroke-width="12" stroke-linecap="round"/>
+  <path d="M92 48 H328" stroke="#262626" stroke-width="10" stroke-linecap="round"/>
+</svg>

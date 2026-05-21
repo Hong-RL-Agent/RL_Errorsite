@@ -1,0 +1,22 @@
+[
+  {
+    "name": "CloudScale",
+    "industry": "Cloud Infrastructure",
+    "openings": 12
+  },
+  {
+    "name": "DevStream",
+    "industry": "Developer Tools",
+    "openings": 8
+  },
+  {
+    "name": "PixelPoint",
+    "industry": "Design Agency",
+    "openings": 15
+  },
+  {
+    "name": "NovaSoft",
+    "industry": "Enterprise SaaS",
+    "openings": 5
+  }
+]

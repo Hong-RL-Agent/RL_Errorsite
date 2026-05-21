@@ -1,0 +1,35 @@
+[
+  {
+    "id": 101,
+    "title": "E-commerce Redesign",
+    "budget": "$5,000",
+    "duration": "2 months",
+    "skills": [
+      "Figma",
+      "React"
+    ],
+    "status": "Open"
+  },
+  {
+    "id": 102,
+    "title": "Fintech Mobile App",
+    "budget": "$12,000",
+    "duration": "4 months",
+    "skills": [
+      "Flutter",
+      "Node.js"
+    ],
+    "status": "In Progress"
+  },
+  {
+    "id": 103,
+    "title": "SaaS Dashboard UI",
+    "budget": "$3,500",
+    "duration": "1 month",
+    "skills": [
+      "React",
+      "TypeScript"
+    ],
+    "status": "Open"
+  }
+]

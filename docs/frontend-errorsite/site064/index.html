@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlueSnap Print | 사진 인화 서비스</title>
+    <link rel="stylesheet" href="./styles.css" />
+      <script src="./pages-mock.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand" aria-label="BlueSnap Print">
+        <span class="brand-mark">BS</span>
+        <div>
+          <strong>BlueSnap Print</strong>
+          <small>Photo Lab</small>
+        </div>
+      </div>
+      <nav class="main-nav" aria-label="주요 메뉴">
+        <button type="button" data-scroll-target="printOptions">사진 인화</button>
+        <button type="button" data-soon>포토북</button>
+        <button type="button" data-soon>액자</button>
+        <button type="button" data-soon>주문 조회</button>
+      </nav>
+      <div class="header-actions">
+        <button class="primary-button compact" type="button" data-scroll-target="uploadStudio">업로드</button>
+        <button class="secondary-button compact" type="button" data-soon>로그인</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-section" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <span class="eyebrow">Premium Photo Printing</span>
+          <h1 id="heroTitle">소중한 사진을 오래 간직하세요</h1>
+          <p>선명한 색감 보정, 다양한 용지와 사이즈, 당일 제작 옵션까지 한 화면에서 비교하고 주문하세요.</p>
+          <div class="hero-actions">
+            <button class="primary-button" type="button" data-scroll-target="uploadStudio">사진 업로드 시작</button>
+            <button class="secondary-button" type="button" data-scroll-target="printOptions">인화 옵션 보기</button>
+          </div>
+          <dl class="hero-stats" aria-label="서비스 요약">
+            <div>
+              <dt>6</dt>
+              <dd>인화 옵션</dd>
+            </div>
+            <div>
+              <dt>24h</dt>
+              <dd>빠른 제작</dd>
+            </div>
+            <div>
+              <dt>98%</dt>
+              <dd>재주문 만족</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="hero-visual" aria-label="사진 인화 샘플 이미지">
+          <img src="./assets/hero-photo-desk.svg" alt="사진 인화 샘플과 포토북이 놓인 작업 테이블" />
+          <div class="hero-badge">
+            <strong>오늘 주문 추천</strong>
+            <span>4x6 유광 인화 + 코랄 패키지 봉투</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell upload-section" id="uploadStudio" aria-labelledby="uploadTitle">
+        <div class="section-heading">
+          <span class="eyebrow">Upload Studio</span>
+          <h2 id="uploadTitle">사진 업로드 mock</h2>
+          <p>실제 파일 업로드 서버 없이 API 샘플 사진으로 선택, 미리보기, 주문 요약 흐름을 테스트합니다.</p>
+        </div>
+        <div class="upload-panel">
+          <div class="drop-zone">
+            <img src="./assets/upload-cloud.svg" alt="" aria-hidden="true" />
+            <strong>사진을 끌어오거나 샘플 사진을 선택하세요</strong>
+            <span>JPG, PNG, HEIC mock preview</span>
+            <button class="secondary-button" type="button" id="selectFirstThree">샘플 3장 선택</button>
+          </div>
+          <div class="upload-steps" aria-label="주문 단계">
+            <div class="step active">
+              <span>1</span>
+              <strong>사진 선택</strong>
+            </div>
+            <div class="step">
+              <span>2</span>
+              <strong>인화 옵션</strong>
+            </div>
+            <div class="step">
+              <span>3</span>
+              <strong>주문 확인</strong>
+            </div>
+          </div>
+          <button class="primary-button" id="uploadNextButton" type="button" data-bug-id="site064-bug03">다음 단계</button>
+        </div>
+      </section>
+
+      <section class="order-layout" aria-label="사진 인화 주문 영역">
+        <aside class="filter-panel" aria-label="인화 옵션 필터">
+          <span class="eyebrow">Filters</span>
+          <h2>옵션 필터</h2>
+          <label class="select-field" for="paperFilter">
+            용지 타입
+            <select id="paperFilter">
+              <option value="all">전체 용지</option>
+            </select>
+          </label>
+          <label class="select-field" for="sizeFilter">
+            사이즈
+            <select id="sizeFilter">
+              <option value="all">전체 사이즈</option>
+            </select>
+          </label>
+          <label class="check-field">
+            <input id="recommendedOnly" type="checkbox" />
+            추천 옵션만 보기
+          </label>
+          <button class="secondary-button full-width" type="button" id="resetFilters">필터 초기화</button>
+        </aside>
+
+        <section class="workspace" aria-label="인화 옵션과 사진 미리보기">
+          <section class="section-card" id="printOptions" aria-labelledby="optionsTitle">
+            <div class="section-heading inline">
+              <div>
+                <span class="eyebrow">Print Options</span>
+                <h2 id="optionsTitle">인화 옵션 카드</h2>
+              </div>
+              <div class="status-line" id="optionsStatus" role="status" aria-live="polite">인화 옵션을 불러오는 중입니다.</div>
+            </div>
+            <div class="error-box" id="optionsError" hidden>
+              <strong>인화 옵션을 불러오지 못했습니다.</strong>
+              <button type="button" id="retryOptions">다시 불러오기</button>
+            </div>
+            <div class="option-grid" id="optionGrid"></div>
+          </section>
+
+          <section class="section-card" aria-labelledby="previewTitle">
+            <div class="section-heading inline">
+              <div>
+                <span class="eyebrow">Preview</span>
+                <h2 id="previewTitle">미리보기 grid</h2>
+              </div>
+              <div class="status-line" id="photosStatus" role="status" aria-live="polite">샘플 사진을 불러오는 중입니다.</div>
+            </div>
+            <div class="error-box" id="photosError" hidden>
+              <strong>샘플 사진을 불러오지 못했습니다.</strong>
+              <button type="button" id="retryPhotos">다시 불러오기</button>
+            </div>
+            <div class="preview-grid" id="previewGrid" data-bug-id="site064-bug02"></div>
+          </section>
+
+          <section class="section-card controls-section" aria-labelledby="controlsTitle">
+            <div>
+              <span class="eyebrow">Order Controls</span>
+              <h2 id="controlsTitle">사이즈와 수량 선택</h2>
+            </div>
+            <div class="control-row">
+              <label class="select-field" for="selectedSize">
+                인화 사이즈
+                <select id="selectedSize"></select>
+              </label>
+              <div class="quantity-box" aria-label="수량 선택">
+                <span>수량</span>
+                <div>
+                  <button type="button" id="decreaseQuantity" aria-label="수량 줄이기">-</button>
+                  <strong id="quantityDisplay">1</strong>
+                  <button type="button" id="increaseQuantity" aria-label="수량 늘리기">+</button>
+                </div>
+              </div>
+              <button class="primary-button" type="button" id="applySelection">선택 적용</button>
+            </div>
+          </section>
+        </section>
+
+        <aside class="summary-panel" aria-label="주문 요약">
+          <div class="summary-card" id="summaryCard">
+            <div class="summary-header">
+              <div>
+                <span class="eyebrow">Order Summary</span>
+                <h2>주문 요약</h2>
+              </div>
+              <button type="button" id="toggleSummary" aria-expanded="true">접기</button>
+            </div>
+            <div class="summary-body" id="summaryBody">
+              <dl class="summary-list">
+                <div>
+                  <dt>선택 사진</dt>
+                  <dd id="selectedPhotoCount" data-bug-id="site064-bug01">0장</dd>
+                </div>
+                <div>
+                  <dt>인화 옵션</dt>
+                  <dd id="selectedOptionLabel">선택 전</dd>
+                </div>
+                <div>
+                  <dt>수량</dt>
+                  <dd id="summaryQuantity">1세트</dd>
+                </div>
+                <div>
+                  <dt>예상 합계</dt>
+                  <dd id="summaryTotal">₩0</dd>
+                </div>
+              </dl>
+              <button class="primary-button full-width" type="button" data-soon>주문서 작성</button>
+              <button class="secondary-button full-width" type="button" id="clearSelection">선택 초기화</button>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section-shell reviews-section" aria-labelledby="reviewsTitle">
+        <div class="section-heading">
+          <span class="eyebrow">Reviews</span>
+          <h2 id="reviewsTitle">고객 후기</h2>
+        </div>
+        <div class="review-grid">
+          <blockquote>
+            <p>아이 성장 사진을 4x6으로 정리했는데 색감이 화면보다 훨씬 안정적으로 나왔어요.</p>
+            <cite>김서연 · 가족 앨범</cite>
+          </blockquote>
+          <blockquote>
+            <p>포스터 인화가 빠르게 도착해서 전시 준비 일정에 맞출 수 있었습니다.</p>
+            <cite>문하준 · 스튜디오 촬영</cite>
+          </blockquote>
+          <blockquote>
+            <p>무광지와 펄지 차이를 카드에서 바로 비교할 수 있어 선택이 쉬웠습니다.</p>
+            <cite>오지민 · 여행 사진</cite>
+          </blockquote>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-backdrop" id="photoModalBackdrop" hidden>
+      <article class="photo-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" id="modalClose" aria-label="사진 미리보기 닫기">×</button>
+        <img id="modalImage" src="" alt="" />
+        <div class="modal-copy">
+          <span id="modalRatio" class="ratio-badge"></span>
+          <h2 id="modalTitle"></h2>
+          <p>선택한 사진은 주문 요약과 인화 옵션 계산에 반영됩니다.</p>
+          <button class="primary-button" type="button" id="modalToggleSelection">선택 전환</button>
+        </div>
+      </article>
+    </div>
+
+    <footer class="site-footer">
+      <div>
+        <strong>BlueSnap Print</strong>
+        <p>사진 인화, 포토북, 액자 제작 상담 10:00-19:00</p>
+      </div>
+      <nav aria-label="푸터 메뉴">
+        <button type="button" data-soon>배송 안내</button>
+        <button type="button" data-soon>품질 보증</button>
+        <button type="button" data-soon>대량 주문 문의</button>
+        <button type="button" data-soon>고객센터</button>
+      </nav>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

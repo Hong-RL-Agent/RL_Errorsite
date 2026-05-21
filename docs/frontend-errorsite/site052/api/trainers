@@ -1,0 +1,42 @@
+{
+  "trainers": [
+    {
+      "id": "trn-01",
+      "name": "강지훈",
+      "specialty": "근비대 · 프리웨이트",
+      "experience": "9년",
+      "rating": 4.9,
+      "image": "./assets/trainer-strength.svg",
+      "bio": "체형과 운동 경력에 맞춰 벤치프레스, 데드리프트, 스쿼트 기본기를 세밀하게 교정합니다."
+    },
+    {
+      "id": "trn-02",
+      "name": "서민아",
+      "specialty": "다이어트 · 바디프로필",
+      "experience": "7년",
+      "rating": 4.8,
+      "image": "./assets/trainer-cardio.svg",
+      "bio": "체지방 감량, 식단 루틴, 촬영 전 컨디션 조절을 단계별로 설계합니다."
+    },
+    {
+      "id": "trn-03",
+      "name": "오태준",
+      "specialty": "재활 · 코어 안정화",
+      "experience": "11년",
+      "rating": 4.9,
+      "image": "./assets/trainer-rehab.svg",
+      "bio": "허리와 어깨 부담을 줄이는 움직임 평가와 코어 안정화 루틴을 제공합니다."
+    },
+    {
+      "id": "trn-04",
+      "name": "이하린",
+      "specialty": "HIIT · 기능성 트레이닝",
+      "experience": "6년",
+      "rating": 4.7,
+      "image": "./assets/trainer-hiit.svg",
+      "bio": "짧은 시간에 심폐지구력과 전신 근력을 끌어올리는 고강도 프로그램을 진행합니다."
+    }
+  ],
+  "total": 4,
+  "generatedAt": "2026-05-21T14:46:16.834Z"
+}

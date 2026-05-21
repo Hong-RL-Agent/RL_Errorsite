@@ -1,0 +1,23 @@
+[
+  {
+    "id": "n001",
+    "title": "Seasonal Flu Vaccination Campaign 2026",
+    "date": "2026-04-15",
+    "isImportant": true,
+    "content": "Starting April 20th, we are offering seasonal flu vaccinations at the 2nd floor clinic center."
+  },
+  {
+    "id": "n002",
+    "title": "New Specialized Cardiology Center Opening",
+    "date": "2026-05-01",
+    "isImportant": false,
+    "content": "MediLife Hospital is proud to announce the opening of our state-of-the-art Cardiology Center."
+  },
+  {
+    "id": "n003",
+    "title": "Holiday Operations Notice (May 5th)",
+    "date": "2026-05-03",
+    "isImportant": true,
+    "content": "The outpatient clinic will be closed on Children's Day. The ER will remain open 24/7."
+  }
+]

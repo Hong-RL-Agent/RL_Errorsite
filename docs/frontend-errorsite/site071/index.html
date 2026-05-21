@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visionary Eyewear | Minimalist Fashion Collective</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="./pages-mock.js"></script>
+  </head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo" id="logo">VISIONARY</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-category="Eyeglasses">Eyeglasses</a></li>
+                    <li><a href="#" class="nav-link" data-category="Sunglasses">Sunglasses</a></li>
+                    <li><a href="#">Lens Options</a></li>
+                    <li><a href="#">Style Guide</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="search-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+                <button id="login-btn">Login</button>
+                <button id="cart-toggle-btn" class="cart-btn">
+                    Cart (<span id="cart-count">0</span>)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-image-container">
+                <img src="assets/hero.jpg" alt="Minimalist Eyewear Collection" id="hero-img">
+                <div class="hero-overlay">
+                    <h1>The Art of Clarity</h1>
+                    <p>Discover the minimalist collection designed for your unique perspective.</p>
+                    <button class="cta-btn" onclick="alert('Analyzing face shape...')">Find your face shape</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="container main-layout">
+            <aside class="sidebar">
+                <div class="filter-section">
+                    <h3>Filter by Frame</h3>
+                    <div class="filter-group" id="frame-filter">
+                        <label><input type="checkbox" value="Square"> Square</label>
+                        <label><input type="checkbox" value="Round"> Round</label>
+                        <label><input type="checkbox" value="Aviator"> Aviator</label>
+                        <label><input type="checkbox" value="Rectangle"> Rectangle</label>
+                        <label><input type="checkbox" value="Wayfarer"> Wayfarer</label>
+                        <label><input type="checkbox" value="Rimless"> Rimless</label>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h3>Material</h3>
+                    <div class="filter-group">
+                        <label><input type="checkbox"> Acetate</label>
+                        <label><input type="checkbox"> Titanium</label>
+                        <label><input type="checkbox"> Stainless Steel</label>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h3>Price Range</h3>
+                    <div class="price-range">
+                        <input type="range" min="100000" max="500000" step="10000">
+                        <div class="range-labels">
+                            <span>100k</span>
+                            <span>500k</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="product-grid-container">
+                <div class="grid-header">
+                    <h2 id="category-title">All Collections</h2>
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search frame name...">
+                    </div>
+                </div>
+                <div id="product-grid" class="product-grid">
+                    <!-- Products will be injected here -->
+                    <div class="loading">Loading our collection...</div>
+                </div>
+            </section>
+
+            <aside class="cart-summary-panel sticky" id="cart-summary">
+                <div class="summary-header">
+                    <h3>Your Selection</h3>
+                    <button id="close-summary" class="close-btn">&times;</button>
+                </div>
+                <div id="summary-content" class="summary-content">
+                    <p class="empty-msg">Select a frame to start</p>
+                </div>
+                <div id="lens-summary-box" class="lens-summary-box" style="display:none;">
+                    <h4>Lens Option</h4>
+                    <!-- INTENTIONAL GUI BUG: site071-bug01 -->
+                    <!-- The lens name here might not update correctly -->
+                    <div class="summary-item" data-bug-id="site071-bug01">
+                        <span id="selected-lens-name">Basic Clear</span>
+                        <span id="selected-lens-price">+0 KRW</span>
+                    </div>
+                </div>
+                <div class="summary-footer" id="summary-footer" style="display:none;">
+                    <div class="total-row">
+                        <span>Total</span>
+                        <span id="total-price">0 KRW</span>
+                    </div>
+                    <button class="checkout-btn" onclick="alert('Proceeding to checkout...')">Checkout Now</button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modal-img" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-title">Product Name</h2>
+                    <p id="modal-type" class="product-meta">Frame Type</p>
+                    <p id="modal-price" class="modal-price">0 KRW</p>
+                    
+                    <div class="option-section">
+                        <h4>Select Lens Type</h4>
+                        <div id="lens-options-list" class="lens-options-list">
+                            <!-- Lens options injected here -->
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button id="add-to-cart-modal" class="primary-btn">Add to Cart</button>
+                        <button class="secondary-btn" onclick="alert('Virtual Try-on initialized...')">Virtual Try-on</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Virtual Try-on Mock Modal -->
+    <div id="tryon-modal" class="modal">
+        <div class="modal-content tryon-content">
+            <span class="close-tryon">&times;</span>
+            <h3>Virtual Try-on</h3>
+            <div class="camera-placeholder">
+                <p>Accessing Camera...</p>
+                <div class="camera-ui">
+                    <img id="tryon-frame" src="" alt="Frame Overlay">
+                </div>
+            </div>
+            <p class="tryon-tip">Move your head slowly for calibration.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>VISIONARY</h3>
+                <p>Redefining minimalist eyewear since 2024.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#">Style Guide</a></li>
+                    <li><a href="#">Collaborations</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                </ul>
+            </div>
+            <div class="footer-support">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Care Guide</a></li>
+                    <li><a href="#">Find a Store</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Join the Vision</h4>
+                <div class="newsletter-input">
+                    <input type="email" placeholder="Your email">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Visionary Collective. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

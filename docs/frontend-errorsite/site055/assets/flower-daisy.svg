@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" viewBox="0 0 720 520" role="img" aria-label="Mini daisy cup">
+  <rect width="720" height="520" fill="#f2fbef"/>
+  <g fill="#ffffff">
+    <ellipse cx="264" cy="176" rx="26" ry="58"/><ellipse cx="264" cy="176" rx="58" ry="26"/>
+    <ellipse cx="372" cy="134" rx="28" ry="62"/><ellipse cx="372" cy="134" rx="62" ry="28"/>
+    <ellipse cx="472" cy="204" rx="25" ry="54"/><ellipse cx="472" cy="204" rx="54" ry="25"/>
+  </g>
+  <g fill="#f6c95e">
+    <circle cx="264" cy="176" r="22"/><circle cx="372" cy="134" r="24"/><circle cx="472" cy="204" r="21"/>
+  </g>
+  <g stroke="#526f58" stroke-width="10" stroke-linecap="round">
+    <path d="M264 198 L240 338"/><path d="M372 158 L360 338"/><path d="M472 226 L454 338"/>
+  </g>
+  <path d="M196 330 H520 L486 470 H232Z" fill="#fff7eb" stroke="#eadfdb" stroke-width="8"/>
+</svg>

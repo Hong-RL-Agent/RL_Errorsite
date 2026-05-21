@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="860" viewBox="0 0 640 860" role="img" aria-label="Science book cover">
+  <rect width="640" height="860" fill="#10213d"/>
+  <g stroke="#a9d4f7" stroke-width="12" fill="none">
+    <circle cx="320" cy="360" r="150"/>
+    <ellipse cx="320" cy="360" rx="240" ry="76"/>
+    <ellipse cx="320" cy="360" rx="76" ry="240"/>
+  </g>
+  <circle cx="320" cy="360" r="42" fill="#fff7e8"/>
+  <rect x="170" y="650" width="300" height="20" rx="10" fill="#fff7e8"/>
+  <rect x="220" y="702" width="200" height="14" rx="7" fill="#a9d4f7"/>
+</svg>

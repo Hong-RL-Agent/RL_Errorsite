@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180" viewBox="0 0 320 180" role="img" aria-label="이로한 강사 프로필">
+  <rect width="320" height="180" fill="#dfe8cb"/>
+  <circle cx="160" cy="66" r="34" fill="#8e5338"/>
+  <rect x="111" y="103" width="98" height="54" rx="27" fill="#2f421c"/>
+  <rect x="63" y="135" width="194" height="18" rx="9" fill="#b96542" opacity=".72"/>
+  <path d="M91 134 C105 96 136 92 146 132 C161 91 203 95 198 132 C218 105 247 112 242 134" fill="#7b9b4d"/>
+</svg>

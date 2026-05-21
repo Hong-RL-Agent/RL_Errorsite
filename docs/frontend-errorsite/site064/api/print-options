@@ -1,0 +1,52 @@
+{
+  "options": [
+    {
+      "id": "print-4x6-gloss",
+      "name": "클래식 컬러 인화",
+      "size": "4x6",
+      "price": 1200,
+      "paperType": "유광지",
+      "recommended": true
+    },
+    {
+      "id": "print-5x5-matte",
+      "name": "스퀘어 무광 인화",
+      "size": "5x5",
+      "price": 1600,
+      "paperType": "무광지",
+      "recommended": false
+    },
+    {
+      "id": "print-6x8-silk",
+      "name": "프리미엄 실크 인화",
+      "size": "6x8",
+      "price": 2600,
+      "paperType": "실크지",
+      "recommended": true
+    },
+    {
+      "id": "print-8x10-pearl",
+      "name": "갤러리 펄 인화",
+      "size": "8x10",
+      "price": 4200,
+      "paperType": "펄지",
+      "recommended": false
+    },
+    {
+      "id": "print-a4-matte",
+      "name": "A4 포스터 인화",
+      "size": "A4",
+      "price": 6900,
+      "paperType": "무광지",
+      "recommended": false
+    },
+    {
+      "id": "print-frame-ready",
+      "name": "액자 맞춤 인화",
+      "size": "11x14",
+      "price": 9800,
+      "paperType": "아카이브지",
+      "recommended": true
+    }
+  ]
+}

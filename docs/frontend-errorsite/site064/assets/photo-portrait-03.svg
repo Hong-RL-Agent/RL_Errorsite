@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 360" role="img" aria-label="Graduation flower portrait">
+  <rect width="240" height="360" fill="#f6fbff"/>
+  <rect x="54" y="52" width="132" height="210" rx="12" fill="#17202a"/>
+  <rect x="74" y="78" width="92" height="12" rx="6" fill="#ffffff"/>
+  <rect x="74" y="108" width="92" height="12" rx="6" fill="#ffffff"/>
+  <rect x="74" y="138" width="92" height="12" rx="6" fill="#ffffff"/>
+  <circle cx="120" cy="286" r="34" fill="#ff735f"/>
+  <circle cx="88" cy="278" r="26" fill="#ffd16a"/>
+  <circle cx="152" cy="278" r="26" fill="#6fbde8"/>
+</svg>

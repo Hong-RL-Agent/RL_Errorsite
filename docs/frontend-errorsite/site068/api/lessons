@@ -1,0 +1,62 @@
+[
+  {
+    "id": "l1",
+    "instrument": "Piano",
+    "level": "초급",
+    "duration": "50분",
+    "price": 200000,
+    "teacherId": 1,
+    "days": [
+      "월",
+      "수",
+      "금"
+    ]
+  },
+  {
+    "id": "l2",
+    "instrument": "Violin",
+    "level": "중급",
+    "duration": "60분",
+    "price": 250000,
+    "teacherId": 2,
+    "days": [
+      "화",
+      "목"
+    ]
+  },
+  {
+    "id": "l3",
+    "instrument": "Guitar",
+    "level": "초급",
+    "duration": "50분",
+    "price": 180000,
+    "teacherId": 3,
+    "days": [
+      "토",
+      "일"
+    ]
+  },
+  {
+    "id": "l4",
+    "instrument": "Flute",
+    "level": "입문",
+    "duration": "45분",
+    "price": 220000,
+    "teacherId": "4",
+    "days": [
+      "수",
+      "토"
+    ]
+  },
+  {
+    "id": "l5",
+    "instrument": "Piano",
+    "level": "전문가",
+    "duration": "90분",
+    "price": 400000,
+    "teacherId": 1,
+    "days": [
+      "금"
+    ]
+  }
+]

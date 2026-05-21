@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduCon 2026 | Global Seminar & Lecture Reservation</title>
+    <meta name="description" content="Join EduCon 2026 for world-class lectures and seminars. Reserve your seats now.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="./pages-mock.js"></script>
+  </head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <span class="logo-icon">E</span>
+                <span class="logo-text">EduCon<span>2026</span></span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#speakers">Speakers</a></li>
+                    <li><a href="#sessions">Sessions</a></li>
+                    <li><a href="#tickets">Tickets</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-outline" onclick="alert('Checking reservation status...')">My Reservations</button>
+                <button class="btn btn-primary" onclick="alert('Login feature coming soon!')">Login</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge">Registration Open</span>
+                    <h1>Shape the Future with <span>Global Visionaries</span></h1>
+                    <p>The largest gathering of industry leaders, innovators, and thinkers. Over 50 sessions across 3 days in the heart of the tech hub.</p>
+                    <div class="hero-btns">
+                        <a href="#sessions" class="btn btn-large btn-primary">Reserve Seat Now</a>
+                        <button class="btn btn-large btn-secondary" onclick="alert('Loading conference brochure...')">Download Brochure</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-placeholder"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sessions & Filters Section -->
+        <section id="sessions" class="sessions-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Available Sessions</h2>
+                    <p>Select from a wide range of topics and reserve your spot today.</p>
+                </div>
+
+                <div class="layout-grid">
+                    <!-- Filters & Session Grid -->
+                    <div class="content-area">
+                        <div class="filters">
+                            <div class="filter-group">
+                                <label>Category</label>
+                                <select id="categoryFilter">
+                                    <option value="all">All Categories</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Design">Design</option>
+                                    <option value="Leadership">Leadership</option>
+                                    <option value="Business">Business</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>Date</label>
+                                <select id="dateFilter">
+                                    <option value="all">All Days</option>
+                                    <option value="2026-06-15">June 15, 2026</option>
+                                    <option value="2026-06-16">June 16, 2026</option>
+                                    <option value="2026-06-17">June 17, 2026</option>
+                                </select>
+                            </div>
+                            <div class="search-box">
+                                <input type="text" id="searchInput" placeholder="Search sessions or speakers...">
+                            </div>
+                        </div>
+
+                        <div id="sessionGrid" class="session-grid">
+                            <!-- Sessions will be loaded here via JS -->
+                            <div class="loader">Loading sessions...</div>
+                        </div>
+
+                        <!-- Timetable Section -->
+                        <div class="timetable-container" id="schedule">
+                            <h3>Event Timetable</h3>
+                            <div class="tabs">
+                                <button class="tab-btn active" data-day="2026-06-15">Day 1 (Jun 15)</button>
+                                <button class="tab-btn" data-day="2026-06-16">Day 2 (Jun 16)</button>
+                                <button class="tab-btn" data-day="2026-06-17">Day 3 (Jun 17)</button>
+                            </div>
+                            <!-- INTENTIONAL GUI BUG: site082-bug02 container -->
+                            <div class="timetable" id="timetableGrid" data-bug-id="site082-bug02">
+                                <!-- Timetable items loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sticky Summary Panel -->
+                    <aside class="sidebar">
+                        <div class="sticky-panel" id="summaryPanel">
+                            <h3>Reservation Summary</h3>
+                            <div id="selectedSessionsList" class="selected-sessions">
+                                <p class="empty-msg">No sessions selected yet.</p>
+                            </div>
+                            <div class="summary-footer">
+                                <div class="total-info">
+                                    <span>Selected Sessions:</span>
+                                    <span id="selectedCount">0</span>
+                                </div>
+                                <button id="checkoutBtn" class="btn btn-primary btn-block" disabled>Proceed to Checkout</button>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- Speakers Section -->
+        <section id="speakers" class="speakers-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Featured Speakers</h2>
+                </div>
+                <div id="speakerGrid" class="speaker-grid">
+                    <!-- Speakers loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What Attendees Say</h2>
+                </div>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <p>"EduCon is the highlight of my professional year. The quality of speakers is unmatched."</p>
+                        <div class="reviewer">- Alex Johnson, Senior Dev</div>
+                    </div>
+                    <div class="review-card">
+                        <p>"The session on AI was eye-opening. Already booked my tickets for 2026!"</p>
+                        <div class="reviewer">- Maria Garcia, Product Manager</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <h3>EduCon 2026</h3>
+                <p>Leading the conversation on the future of technology and design.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#" onclick="alert('Refund Policy: Cancellation available up to 30 days before event.')">Refund Policy</a></li>
+                    <li><a href="#" onclick="alert('Directions: Convention Center, 123 Tech Ave.')">Directions</a></li>
+                    <li><a href="#" onclick="alert('Support: Contact us at help@educon2026.com')">Customer Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <span onclick="alert('Link to Twitter')">TW</span>
+                    <span onclick="alert('Link to LinkedIn')">LI</span>
+                    <span onclick="alert('Link to Instagram')">IG</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 EduCon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

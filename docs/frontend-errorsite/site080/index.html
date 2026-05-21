@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Living | 프리미엄 인테리어 견적</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="./pages-mock.js"></script>
+  </head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="icon">🏛️</span>
+                <h1>The Living</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="alert('준비 중입니다.')">공간별 시공</a></li>
+                    <li><a href="#portfolio">포트폴리오</a></li>
+                    <li><a href="#calculator">견적 계산기</a></li>
+                    <li><a href="#consultation">상담 예약</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다.')">고객 후기</a></li>
+                </ul>
+            </nav>
+            <div class="auth">
+                <button class="btn-login" onclick="alert('준비 중입니다.')">로그인</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h2>우리 집 예상 견적,<br>3분 만에 확인하세요</h2>
+                    <p>전문 디자이너의 감각과 정확한 데이터로 완성하는 스마트한 리모델링</p>
+                    <a href="#calculator" class="btn-primary">예상 견적 시작하기</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="calculator" class="calculator-section">
+            <div class="container res-layout">
+                <div class="res-main">
+                    <div class="section-header">
+                        <h3>스마트 견적 계산기</h3>
+                        <p>시공을 원하시는 항목을 선택해 주세요.</p>
+                    </div>
+
+                    <div class="calc-form">
+                        <div class="form-group">
+                            <label>공간 유형</label>
+                            <div class="type-chips">
+                                <button class="chip active" data-type="Apt">아파트</button>
+                                <button class="chip" data-type="Villa">빌라/연립</button>
+                                <button class="chip" data-type="House">단독주택</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>평수 입력 (평)</label>
+                            <input type="number" id="pyeong-input" value="32" min="5" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label>시공 옵션 선택</label>
+                            <div id="options-list" class="options-list">
+                                <!-- Loaded via JS -->
+                                <div class="loading">옵션 데이터를 불러오는 중...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="res-summary sticky">
+                    <div class="summary-card">
+                        <h4>예상 견적 요약</h4>
+                        <div id="selected-options-summary" class="selected-summary">
+                            <p class="empty-msg">선택된 항목이 없습니다.</p>
+                        </div>
+                        <div class="total-panel">
+                            <div class="total-row">
+                                <span>총 예상 견적</span>
+                                <!-- INTENTIONAL GUI BUG: site080-bug01 -->
+                                <span id="total-estimate" data-bug-id="site080-bug01">0원</span>
+                            </div>
+                            <p class="notice">* 자재 및 현장 상황에 따라 변동될 수 있습니다.</p>
+                        </div>
+                        <a href="#consultation" class="btn-reserve-next">상담 예약으로 이동</a>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3>The Living 포트폴리오</h3>
+                    <p>최근 시공된 프리미엄 공간들을 확인하세요.</p>
+                </div>
+                <!-- INTENTIONAL GUI BUG: site080-bug02 -->
+                <div id="portfolio-grid" class="portfolio-grid" data-bug-id="site080-bug02">
+                    <!-- Loaded via JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="consultation" class="consultation-section">
+            <div class="container">
+                <div class="consult-box">
+                    <div class="consult-info">
+                        <h3>전문가 1:1 상담 예약</h3>
+                        <p>전문 디자이너가 고객님의 공간에 최적화된 설계를 제안해 드립니다.</p>
+                        <ul class="benefit-list">
+                            <li>✔️ 방문 실측 무료 서비스</li>
+                            <li>✔️ 3D 도면 무료 제작</li>
+                            <li>✔️ 친환경 자재 인증서 제공</li>
+                        </ul>
+                    </div>
+                    <div class="consult-form">
+                        <div class="form-group">
+                            <label>성함</label>
+                            <input type="text" id="user-name" placeholder="홍길동">
+                        </div>
+                        <div class="form-group">
+                            <label>연락처</label>
+                            <input type="tel" id="user-phone" placeholder="010-1234-5678">
+                        </div>
+                        <div class="form-group">
+                            <label>희망 상담일</label>
+                            <input type="date" id="consult-date">
+                        </div>
+                        <!-- INTENTIONAL GUI BUG: site080-bug03 -->
+                        <button id="btn-submit-consult-wrong" class="btn-submit" data-bug-id="site080-bug03">상담 신청하기</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <div class="container">
+                <h3>생생한 시공 후기</h3>
+                <div class="review-grid">
+                    <div class="review-item">
+                        <div class="stars">★★★★★</div>
+                        <p>"견적이 명확하고 시공 과정도 투명해서 안심하고 맡길 수 있었습니다."</p>
+                        <span class="user">- 32평 아파트 고객님</span>
+                    </div>
+                    <div class="review-item">
+                        <div class="stars">★★★★★</div>
+                        <p>"작은 원룸인데도 공간 활용을 너무 잘해주셔서 대만족입니다!"</p>
+                        <span class="user">- 10평 오피스텔 고객님</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-info">
+                <h4>The Living</h4>
+                <p>서울특별시 강남구 인테리어로 789, 5층</p>
+                <p>The Living Interior Design Group</p>
+            </div>
+            <div class="footer-links">
+                <a href="#" onclick="alert('준비 중입니다.')">시공 절차</a>
+                <a href="#" onclick="alert('준비 중입니다.')">계약 안내</a>
+                <a href="#" onclick="alert('준비 중입니다.')">A/S 정책</a>
+                <a href="#" onclick="alert('준비 중입니다.')">고객센터</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Living Interior. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Portfolio Detail Modal -->
+    <div id="port-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body" class="modal-body">
+                <!-- Content via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

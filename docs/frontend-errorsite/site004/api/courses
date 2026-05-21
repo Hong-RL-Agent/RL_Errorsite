@@ -1,0 +1,71 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 101,
+      "title": "리액트 기초부터 실전까지",
+      "instructor": "김코딩",
+      "category": "프로그래밍",
+      "price": 55000,
+      "students": 1200,
+      "rating": 4.8,
+      "progress": 0,
+      "status": "available"
+    },
+    {
+      "id": 102,
+      "title": "UX/UI 디자인 마스터 클래스",
+      "instructor": "이디자인",
+      "category": "디자인",
+      "price": 78000,
+      "students": 850,
+      "rating": 4.9,
+      "progress": 45,
+      "status": "in-progress"
+    },
+    {
+      "id": 103,
+      "title": "데이터 기반 디지털 마케팅",
+      "instructor": "박마켓",
+      "category": "마케팅",
+      "price": 62000,
+      "students": 430,
+      "rating": 4.6,
+      "progress": 100,
+      "status": "completed"
+    },
+    {
+      "id": 104,
+      "title": "Node.js 백엔드 완벽 가이드",
+      "instructor": "최서버",
+      "category": "프로그래밍",
+      "price": 89000,
+      "students": 2100,
+      "rating": 4.7,
+      "progress": 12,
+      "status": "in-progress"
+    },
+    {
+      "id": 105,
+      "title": "스타트업 비즈니스 전략",
+      "instructor": "정대표",
+      "category": "비즈니스",
+      "price": 45000,
+      "students": 620,
+      "rating": 4.5,
+      "progress": 0,
+      "status": "available"
+    },
+    {
+      "id": 106,
+      "title": "파이썬 데이터 분석 입문",
+      "instructor": "한데이터",
+      "category": "프로그래밍",
+      "price": 50000,
+      "students": 3100,
+      "rating": 4.8,
+      "progress": 100,
+      "status": "completed"
+    }
+  ]
+}
