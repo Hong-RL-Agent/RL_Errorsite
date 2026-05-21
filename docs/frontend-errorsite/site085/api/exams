@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ex001",
+    "name": "Information Processing Engineer",
+    "category": "IT/Computer",
+    "region": "Seoul",
+    "regStart": "2026-05-10",
+    "regEnd": "2026-05-20",
+    "examDate": "2026-06-15",
+    "status": "open"
+  },
+  {
+    "id": "ex002",
+    "name": "Certified Public Accountant (CPA)",
+    "category": "Finance/Accounting",
+    "region": "Gyeonggi",
+    "regStart": "2026-04-01",
+    "regEnd": "2026-04-15",
+    "examDate": "2026-05-30",
+    "status": "closed"
+  },
+  {
+    "id": "ex003",
+    "name": "Civil Engineering Technician",
+    "category": "Construction",
+    "region": "Busan",
+    "regStart": "2026-05-15",
+    "regEnd": "2026-05-25",
+    "examDate": "2026-07-10",
+    "status": "open"
+  },
+  {
+    "id": "ex004",
+    "name": "Digital Forensic Specialist",
+    "category": "Security",
+    "region": "Seoul",
+    "regStart": "2026-05-01",
+    "regEnd": "2026-05-15",
+    "examDate": "2026-06-05",
+    "status": "open"
+  },
+  {
+    "id": "ex005",
+    "name": "Social Worker Level 1",
+    "category": "Social Welfare",
+    "region": "Daegu",
+    "regStart": "2026-06-01",
+    "regEnd": "2026-06-10",
+    "examDate": "2026-08-20",
+    "status": "upcoming"
+  },
+  {
+    "id": "ex006",
+    "name": "Industrial Safety Engineer",
+    "category": "IT/Computer",
+    "region": "Incheon",
+    "regStart": "2026-05-05",
+    "regEnd": "2026-05-12",
+    "examDate": "2026-06-25",
+    "status": "open"
+  }
+]

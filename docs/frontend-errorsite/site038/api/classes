@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "name": "수학 심화 1반",
+    "subject": "Math",
+    "day": "월요일",
+    "time": "14:00 - 15:30",
+    "teacher": "김철수",
+    "limit": 20,
+    "enrolled": 15,
+    "fee": 350000
+  },
+  {
+    "id": 2,
+    "name": "영어 회화 기초",
+    "subject": "English",
+    "day": "화요일",
+    "time": "16:00 - 17:30",
+    "teacher": "이지혜",
+    "limit": 15,
+    "enrolled": 8,
+    "fee": 280000
+  },
+  {
+    "id": 3,
+    "name": "물리 기출 분석",
+    "subject": "Science",
+    "day": "수요일",
+    "time": "18:00 - 19:30",
+    "teacher": "박성진",
+    "limit": 25,
+    "enrolled": 22,
+    "fee": 320000
+  },
+  {
+    "id": 4,
+    "name": "국어 문학 특강",
+    "subject": "Korean",
+    "day": "목요일",
+    "time": "15:00 - 16:30",
+    "teacher": "최유리",
+    "limit": 30,
+    "enrolled": 10,
+    "fee": 250000
+  },
+  {
+    "id": 5,
+    "name": "화학 실험 교실",
+    "subject": "Science",
+    "day": "금요일",
+    "time": "17:00 - 18:30",
+    "teacher": "정훈",
+    "limit": 12,
+    "enrolled": 12,
+    "fee": 400000
+  },
+  {
+    "id": 6,
+    "name": "수학 개념 2반",
+    "subject": "Math",
+    "day": "월요일",
+    "time": "16:00 - 17:30",
+    "teacher": "김철수",
+    "limit": 20,
+    "enrolled": 18,
+    "fee": 330000
+  },
+  {
+    "id": 7,
+    "name": "영어 문법 마스터",
+    "subject": "English",
+    "day": "수요일",
+    "time": "14:00 - 15:30",
+    "teacher": "이지혜",
+    "limit": 20,
+    "enrolled": 5,
+    "fee": 300000
+  },
+  {
+    "id": 8,
+    "name": "코딩 입문 (Python)",
+    "subject": "Coding",
+    "day": "토요일",
+    "time": "10:00 - 12:00",
+    "teacher": "서민우",
+    "limit": 10,
+    "enrolled": 9,
+    "fee": 450000
+  }
+]

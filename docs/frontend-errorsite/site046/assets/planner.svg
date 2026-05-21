@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" role="img" aria-label="위클리 플래너">
+  <rect x="32" y="50" width="156" height="120" rx="12" fill="#e8f7ff" stroke="#70bfe8" stroke-width="5"/>
+  <rect x="48" y="72" width="124" height="20" rx="6" fill="#ffe89a"/>
+  <path d="M54 112h112M54 136h112" stroke="#9bcde7" stroke-width="4" stroke-linecap="round"/>
+  <path d="M85 102v48M121 102v48M157 102v48" stroke="#d4e6ef" stroke-width="4"/>
+  <circle cx="68" cy="60" r="7" fill="#ffd7e6"/>
+  <circle cx="152" cy="60" r="7" fill="#ffd7e6"/>
+</svg>

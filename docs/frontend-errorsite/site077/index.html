@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProMatch | 프리랜서 매칭 플랫폼</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="./pages-mock.js"></script>
+  </head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="icon">🚀</span>
+                <h1>ProMatch</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="alert('준비 중입니다.')">프로젝트 찾기</a></li>
+                    <li><a href="#freelancers">프리랜서 찾기</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다.')">포트폴리오</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다.')">요금 안내</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다.')">문의</a></li>
+                </ul>
+            </nav>
+            <div class="auth">
+                <button class="btn-login" onclick="alert('준비 중입니다.')">로그인</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h2>검증된 전문가와<br>프로젝트를 연결하세요</h2>
+                    <p>전 세계 상위 3%의 프리랜서들이 여러분의 비즈니스를 지원합니다.</p>
+                    <div class="hero-btns">
+                        <a href="#freelancers" class="btn-primary">전문가 찾기</a>
+                        <a href="#request-form" class="btn-outline">프로젝트 의뢰하기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="freelancers" class="freelancers-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3>인기 전문가</h3>
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label>직무:</label>
+                            <select id="job-filter">
+                                <option value="all">전체</option>
+                                <option value="UI/UX Designer">디자이너</option>
+                                <option value="Frontend Developer">프론트엔드</option>
+                                <option value="Backend Developer">백엔드</option>
+                                <option value="Fullstack Developer">풀스택</option>
+                                <option value="Mobile Developer">모바일</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>경력:</label>
+                            <select id="exp-filter">
+                                <option value="all">전체</option>
+                                <option value="junior">3년 이하</option>
+                                <option value="senior">5년 이상</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="freelancer-grid" class="freelancer-grid">
+                    <!-- Freelancers loaded via JS -->
+                    <div class="loading">전문가 데이터를 불러오는 중...</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="request-form" class="request-section">
+            <div class="container res-layout">
+                <div class="res-main">
+                    <div class="section-header">
+                        <h3>프로젝트 요청</h3>
+                        <p>필요한 기술과 예산을 입력하시면 적합한 전문가를 추천해 드립니다.</p>
+                    </div>
+                    
+                    <form id="project-form" class="project-form">
+                        <div class="form-group">
+                            <label>프로젝트 제목</label>
+                            <input type="text" id="project-title" placeholder="예: 쇼핑몰 리뉴얼 디자인 및 개발">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>예산 범위</label>
+                                <select id="project-budget">
+                                    <option value="100-300">100만원 - 300만원</option>
+                                    <option value="300-1000">300만원 - 1,000만원</option>
+                                    <option value="1000+">1,000만원 이상</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>예상 기간</label>
+                                <input type="text" id="project-duration" placeholder="예: 2개월">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>상세 요구사항</label>
+                            <textarea id="project-desc" rows="5" placeholder="프로젝트에 대해 자세히 설명해 주세요."></textarea>
+                        </div>
+                        <button type="button" class="btn-submit" onclick="alert('요청이 접수되었습니다!')">매칭 시작하기</button>
+                    </form>
+                </div>
+
+                <aside class="res-summary sticky">
+                    <div id="selected-panel" class="summary-card">
+                        <div class="panel-header" id="panel-toggle">
+                            <h4>선택한 전문가</h4>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div id="selected-list" class="selected-list">
+                            <p class="empty-msg">선택된 전문가가 없습니다.</p>
+                        </div>
+                        <div class="matching-status">
+                            <span>매칭 가능성</span>
+                            <div class="progress-bar"><div id="match-progress" class="progress" style="width: 0%"></div></div>
+                        </div>
+                        <button class="btn-proposal-final" onclick="alert('제안서 발송이 예약되었습니다!')">일괄 제안 요청</button>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <div class="container">
+                <h3>클라이언트 후기</h3>
+                <div class="review-grid">
+                    <div class="review-item">
+                        <div class="stars">★★★★★</div>
+                        <p>"일정이 촉박했는데도 퀄리티 있게 완성해 주셨습니다. 다음에도 함께하고 싶어요."</p>
+                        <span class="user">- (주)테크솔루션</span>
+                    </div>
+                    <div class="review-item">
+                        <div class="stars">★★★★★</div>
+                        <p>"요구사항 분석 능력이 뛰어나시고 커뮤니케이션이 매우 원활합니다."</p>
+                        <span class="user">- 에이전시 넥스트</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-info">
+                <h4>ProMatch</h4>
+                <p>서울특별시 서초구 테크로 456, 15층</p>
+                <p>Business ID: 123-45-67890</p>
+            </div>
+            <div class="footer-links">
+                <a href="#" onclick="alert('준비 중입니다.')">이용 방법</a>
+                <a href="#" onclick="alert('준비 중입니다.')">수수료 안내</a>
+                <a href="#" onclick="alert('준비 중입니다.')">분쟁 조정</a>
+                <a href="#" onclick="alert('준비 중입니다.')">고객센터</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ProMatch Freelancer Marketplace. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Freelancer Detail Modal -->
+    <div id="freelancer-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <div id="modal-profile" class="modal-profile"></div>
+                <div id="modal-info" class="modal-info"></div>
+            </div>
+            <div class="modal-tabs">
+                <button class="tab-btn active" data-tab="portfolio">포트폴리오</button>
+                <button class="tab-btn" data-tab="reviews">리뷰 (12)</button>
+                <button class="tab-btn" data-tab="info">경력 상세</button>
+            </div>
+            <div id="modal-tab-content" class="modal-tab-content">
+                <!-- Portfolio preview with overflow bug site077-bug02 -->
+                <div id="portfolio-preview" class="portfolio-preview" data-bug-id="site077-bug02">
+                    <img src="./assets/portfolio_large.png" alt="Portfolio Work" class="portfolio-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

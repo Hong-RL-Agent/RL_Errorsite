@@ -1,0 +1,35 @@
+{
+  "equipment": [
+    {
+      "id": "oven",
+      "name": "오븐 있음",
+      "category": "heat",
+      "description": "베이킹과 로스팅을 위한 상업용 오븐 보유 공간"
+    },
+    {
+      "id": "induction",
+      "name": "인덕션 있음",
+      "category": "heat",
+      "description": "다구 인덕션 또는 화구를 갖춘 조리 공간"
+    },
+    {
+      "id": "cold",
+      "name": "냉장 설비",
+      "category": "cold",
+      "description": "대형 냉장고, 냉동고 또는 냉각 랙을 사용할 수 있는 공간"
+    },
+    {
+      "id": "packing",
+      "name": "패키징 설비",
+      "category": "packing",
+      "description": "라벨러, 진공 포장기, 패키징 테이블을 갖춘 공간"
+    },
+    {
+      "id": "media",
+      "name": "촬영 설비",
+      "category": "media",
+      "description": "조명과 촬영 테이블이 준비된 콘텐츠 제작 공간"
+    }
+  ],
+  "count": 5
+}

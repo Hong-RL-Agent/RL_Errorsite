@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SureCare | 보험 상담 예약 서비스</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="./pages-mock.js"></script>
+  </head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="icon">🛡️</span>
+                <h1>SureCare</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="alert('준비 중입니다.')">보험 종류</a></li>
+                    <li><a href="#advisors">상담사 찾기</a></li>
+                    <li><a href="#comparison">보장 안내</a></li>
+                    <li><a href="#reservation">상담 예약</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다.')">고객센터</a></li>
+                </ul>
+            </nav>
+            <div class="auth">
+                <button class="btn-login" onclick="alert('준비 중입니다.')">로그인</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h2>내 상황에 맞는<br>최적의 보장 상담 예약</h2>
+                    <p>복잡한 보험, 전문가의 맞춤 상담으로 쉽고 정확하게 설계하세요.</p>
+                    <a href="#reservation" class="btn-primary">실시간 상담 예약하기</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="reservation" class="types-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3>보험 유형별 상담</h3>
+                    <p>상담을 원하시는 보험 종류를 선택해 주세요.</p>
+                </div>
+                <div id="insurance-grid" class="insurance-grid">
+                    <!-- Insurance types loaded via JS -->
+                    <div class="loading">보험 정보를 불러오는 중...</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="advisors" class="advisors-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3>전문 상담사 프로필</h3>
+                    <p>원하는 분야의 전문가를 직접 선택하실 수 있습니다.</p>
+                </div>
+                <div id="advisor-grid" class="advisor-grid">
+                    <!-- Advisors loaded via JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="comparison-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3>한눈에 보는 보장 비교</h3>
+                </div>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="life">생명보험</button>
+                    <button class="tab-btn" data-tab="health">건강보험</button>
+                    <button class="tab-btn" data-tab="auto">자동차보험</button>
+                </div>
+                <!-- INTENTIONAL GUI BUG: site079-bug02 -->
+                <div class="table-container" data-bug-id="site079-bug02">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>보장 항목</th>
+                                <th>표준 플랜</th>
+                                <th>프리미엄 플랜</th>
+                                <th>마스터 플랜 (VIP)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>사망/장해 보장</td>
+                                <td>5,000만원</td>
+                                <td>1억원</td>
+                                <td>5억원</td>
+                            </tr>
+                            <tr>
+                                <td>암/뇌/심장 진단비</td>
+                                <td>2,000만원</td>
+                                <td>5,000만원</td>
+                                <td>1억원</td>
+                            </tr>
+                            <tr>
+                                <td>수술/입원 일당</td>
+                                <td>3만원</td>
+                                <td>5만원</td>
+                                <td>10만원</td>
+                            </tr>
+                            <tr>
+                                <td>특약 서비스</td>
+                                <td>기본 제공</td>
+                                <td>헬스케어 포함</td>
+                                <td>전담 비서 서비스 포함</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="res-summary-section">
+            <div class="container res-layout">
+                <div class="res-main">
+                    <div class="faq-section">
+                        <h3>자주 묻는 질문 (FAQ)</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header">상담 비용은 얼마인가요? <span class="arrow">▼</span></button>
+                                <div class="accordion-content"><p>SureCare의 모든 기초 상담은 무료로 진행됩니다.</p></div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-header">비대면 상담도 가능한가요? <span class="arrow">▼</span></button>
+                                <div class="accordion-content"><p>네, 전화 상담 및 화상 상담 중 선택하실 수 있습니다.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="res-summary sticky">
+                    <div class="summary-card">
+                        <h4>상담 예약 요약</h4>
+                        <div class="summary-content">
+                            <div class="summary-row">
+                                <span>선택 보험:</span>
+                                <span id="summary-type">미선택</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>전문 상담사:</span>
+                                <!-- INTENTIONAL GUI BUG: site079-bug01 -->
+                                <span id="summary-advisor" data-bug-id="site079-bug01">미선택</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>상담 시간:</span>
+                                <span id="summary-time">미선택</span>
+                            </div>
+                        </div>
+                        <button class="btn-confirm" onclick="alert('예약 신청이 완료되었습니다. 상담사가 곧 연락드릴 예정입니다.')">예약 신청하기</button>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <div class="container">
+                <h3>고객 만족 후기</h3>
+                <div class="review-grid">
+                    <div class="review-item">
+                        <div class="stars">★★★★★</div>
+                        <p>"모르는 용어가 많았는데 아주 쉽게 설명해 주셔서 큰 도움이 되었습니다."</p>
+                        <span class="user">- 박준형 고객님</span>
+                    </div>
+                    <div class="review-item">
+                        <div class="stars">★★★★★</div>
+                        <p>"나에게 꼭 필요한 보장만 쏙쏙 골라주셔서 보험료를 절약했어요."</p>
+                        <span class="user">- 김나영 고객님</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-info">
+                <h4>SureCare</h4>
+                <p>서울특별시 중구 세종대로 123, 10층</p>
+                <p>SureCare Insurance Consulting Co., Ltd.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#" onclick="alert('준비 중입니다.')">상담 절차</a>
+                <a href="#" onclick="alert('준비 중입니다.')">이용 유의사항</a>
+                <a href="#" onclick="alert('준비 중입니다.')">개인정보 처리방침</a>
+                <a href="#" onclick="alert('준비 중입니다.')">고객센터</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SureCare Insurance. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Advisor Modal -->
+    <div id="advisor-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body" class="modal-body">
+                <!-- Content via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

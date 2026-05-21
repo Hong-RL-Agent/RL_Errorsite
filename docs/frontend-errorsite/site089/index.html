@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Explorers | Kids Learning & Discovery Center</title>
+    <meta name="description" content="Discover fun and educational classes for kids. Little Explorers offers art, science, cooking, and music activities for ages 4-9.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="./pages-mock.js"></script>
+  </head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="./">Little <span>Explorers</span></a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#classes">Classes</a></li>
+                    <li><a href="#teachers">Teachers</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#safety">Safety First</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-sm btn-outline" onclick="alert('Login coming soon!')">Login</button>
+                <div class="booking-toggle" id="bookingSummaryBtn">
+                    <span class="icon">📅</span>
+                    <span id="bookingBadge" class="badge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="hero-badge">Curiosity Ignited</span>
+                    <h1>Spark Your Child's <span>Imagination</span></h1>
+                    <p>Interactive and safe discovery classes led by expert teachers. From coding to cooking, we make learning an adventure!</p>
+                    <div class="hero-btns">
+                        <button class="btn btn-primary btn-lg" onclick="window.scrollTo({top: document.getElementById('classes').offsetTop - 80, behavior: 'smooth'})">Browse Classes</button>
+                        <button class="btn btn-outline btn-lg" onclick="alert('Virtual Tour loading...')">Take a Tour</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="blob-wrapper">
+                        <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=800&h=600&fit=crop" alt="Kids in discovery class">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Classes Section -->
+        <section id="classes" class="classes-section">
+            <div class="container main-layout">
+                <div class="content-area">
+                    <div class="section-header">
+                        <h2>Explore Classes</h2>
+                        <div class="filters" id="ageFilterArea" data-bug-id="site089-bug01">
+                            <div class="filter-group">
+                                <span>Age:</span>
+                                <button class="filter-btn active" data-age="all">All</button>
+                                <button class="filter-btn" data-age="4~5 years">4~5y</button>
+                                <button class="filter-btn" data-age="6~7 years">6~7y</button>
+                                <button class="filter-btn" data-age="8~9 years">8~9y</button>
+                            </div>
+                            <div class="filter-group">
+                                <span>Category:</span>
+                                <select id="categoryFilter">
+                                    <option value="all">All Activities</option>
+                                    <option value="Art">🎨 Art</option>
+                                    <option value="Science">🔬 Science</option>
+                                    <option value="Cooking">🍳 Cooking</option>
+                                    <option value="Music">🎵 Music</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="classGrid" class="class-grid">
+                        <div class="loader">Gathering materials...</div>
+                    </div>
+
+                    <!-- Weekly Schedule -->
+                    <section id="schedule" class="schedule-section">
+                        <h3>Weekly Schedule</h3>
+                        <div class="schedule-tabs">
+                            <button class="tab-btn active" data-day="Mon">Mon</button>
+                            <button class="tab-btn" data-day="Tue">Tue</button>
+                            <button class="tab-btn" data-day="Wed">Wed</button>
+                            <button class="tab-btn" data-day="Thu">Thu</button>
+                            <button class="tab-btn" data-day="Fri">Fri</button>
+                        </div>
+                        <div id="scheduleBody" class="schedule-body">
+                            <div class="schedule-item">
+                                <span class="time">10:00 AM</span>
+                                <span class="title">Little Picasso Art Lab</span>
+                                <span class="teacher">Sarah Jenkins</span>
+                            </div>
+                            <div class="schedule-item">
+                                <span class="time">02:00 PM</span>
+                                <span class="title">Robo-Juniors Coding</span>
+                                <span class="teacher">Mark Peterson</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Teachers Section -->
+                    <section id="teachers" class="teachers-section">
+                        <h3>Meet the Teachers</h3>
+                        <div id="teacherGrid" class="teacher-grid">
+                            <!-- Populated via JS -->
+                        </div>
+                    </section>
+
+                    <!-- Safety Section -->
+                    <section id="safety" class="safety-section">
+                        <h3>Safety & Environment</h3>
+                        <div class="accordion" id="safetyAccordion" data-bug-id="site089-bug02">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Certified Childcare Professionals</span>
+                                    <span class="arrow">▼</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>All our instructors are background-checked and certified in pediatric CPR and First Aid. Your child's safety is our #1 priority.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Safe & Non-Toxic Materials</span>
+                                    <span class="arrow">▼</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>We use only child-safe, non-toxic, and hypoallergenic materials in all our art and science experiments.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Eco-Friendly Learning Spaces</span>
+                                    <span class="arrow">▼</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Our discovery center is designed with natural lighting, ergonomic furniture, and high-quality air filtration systems.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Sticky Booking Sidebar -->
+                <aside class="sidebar">
+                    <div class="sticky-panel" id="bookingPanel">
+                        <h3>Booking Summary</h3>
+                        <div id="bookingList" class="booking-list">
+                            <p class="empty-msg">Select a class to start your adventure!</p>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="total-row">
+                                <span>Total Classes:</span>
+                                <span id="totalClasses">0</span>
+                            </div>
+                            <button id="reserveBtn" class="btn btn-primary btn-block" disabled>Confirm Booking</button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews-section">
+            <div class="container">
+                <h3>What Parents Say</h3>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p>"My son loves the Robo-Juniors class! He's so excited to show me what he built every week."</p>
+                        <div class="parent">- Linda K.</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p>"The teachers are so patient and encouraging. It's a very safe and stimulating environment."</p>
+                        <div class="parent">- Robert S.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="logo">Little <span>Explorers</span></div>
+                <p>Nurturing the next generation of discoverers, creators, and leaders.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Information</h4>
+                <ul>
+                    <li><a href="#">Parent's Guide</a></li>
+                    <li><a href="#">Required Materials</a></li>
+                    <li><a href="#">Health & Safety</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Policy</h4>
+                <ul>
+                    <li><a href="#">Refund Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <p>Help Center</p>
+                <p>Contact: kids@little-explorers.com</p>
+                <div class="social-links">
+                    <span>FB</span> <span>IG</span> <span>YT</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "brands": [
+    {
+      "id": "brand-riverton",
+      "name": "Riverton",
+      "description": "빈티지 기타의 감성과 현대적인 세팅 안정성을 결합한 클래식 기타 브랜드입니다.",
+      "signatureInstrument": "일렉트릭 기타"
+    },
+    {
+      "id": "brand-harmonia",
+      "name": "Harmonia",
+      "description": "스테이지 피아노와 연습용 건반을 중심으로 정교한 터치감을 설계합니다.",
+      "signatureInstrument": "디지털 피아노"
+    },
+    {
+      "id": "brand-brassline",
+      "name": "Brassline",
+      "description": "학생용부터 공연용까지 안정적인 관악기 라인업을 제공하는 브라스 전문 브랜드입니다.",
+      "signatureInstrument": "색소폰"
+    },
+    {
+      "id": "brand-noirsound",
+      "name": "NoirSound",
+      "description": "작은 스튜디오를 위한 믹서, 모니터, 인터페이스를 만드는 음향 장비 브랜드입니다.",
+      "signatureInstrument": "스튜디오 모니터"
+    },
+    {
+      "id": "brand-aurum",
+      "name": "Aurum",
+      "description": "클래식 현악기의 따뜻한 울림과 수작업 마감에 집중합니다.",
+      "signatureInstrument": "바이올린"
+    },
+    {
+      "id": "brand-cadence",
+      "name": "Cadence",
+      "description": "재즈와 락 드러머를 위한 어쿠스틱 드럼 셸과 하드웨어를 제작합니다.",
+      "signatureInstrument": "드럼"
+    },
+    {
+      "id": "brand-coda",
+      "name": "Coda",
+      "description": "입문자도 편하게 연주할 수 있는 어쿠스틱 기타와 우쿨렐레를 선보입니다.",
+      "signatureInstrument": "어쿠스틱 기타"
+    }
+  ],
+  "count": 7
+}

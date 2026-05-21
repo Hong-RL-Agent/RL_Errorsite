@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "김의사",
+      "dept": "내과",
+      "specialty": "소화기내과 전문의",
+      "image": "👨‍⚕️"
+    },
+    {
+      "id": 2,
+      "name": "이의사",
+      "dept": "정형외과",
+      "specialty": "척추 관절 전문의",
+      "image": "👩‍⚕️"
+    },
+    {
+      "id": 3,
+      "name": "박의사",
+      "dept": "피부과",
+      "specialty": "레이저 클리닉",
+      "image": "👨‍⚕️"
+    },
+    {
+      "id": 4,
+      "name": "최의사",
+      "dept": "안과",
+      "specialty": "백내장/시력교정",
+      "image": "👩‍⚕️"
+    },
+    {
+      "id": 5,
+      "name": "정의사",
+      "dept": "내과",
+      "specialty": "호흡기 질환 전문",
+      "image": "👨‍⚕️"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "p1",
+    "name": "Monstera Deliciosa",
+    "type": "Indoor",
+    "lastWatered": "2024-05-01",
+    "nextWatering": "2024-05-08",
+    "status": "Healthy",
+    "image": "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=400&h=300&fit=crop",
+    "description": "Large, heart-shaped leaves with unique holes."
+  },
+  {
+    "id": "p2",
+    "name": "Snake Plant",
+    "type": "Succulent",
+    "lastWatered": "2024-04-20",
+    "nextWatering": "2024-05-15",
+    "status": "Thriving",
+    "image": "https://images.unsplash.com/photo-1593482892290-f54927ae1cdc?w=400&h=300&fit=crop",
+    "description": "Tough, upright leaves with yellow edges."
+  },
+  {
+    "id": "p3",
+    "name": "Fiddle Leaf Fig",
+    "type": "Indoor",
+    "lastWatered": "2024-05-03",
+    "nextWatering": "2024-05-10",
+    "status": "Needs Attention",
+    "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=300&fit=crop",
+    "description": "Stunning violin-shaped leaves."
+  },
+  {
+    "id": "p4",
+    "name": "Aloe Vera",
+    "type": "Succulent",
+    "lastWatered": "2024-04-25",
+    "nextWatering": "2024-05-12",
+    "status": "Healthy",
+    "image": "https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?w=400&h=300&fit=crop",
+    "description": "Medicinal succulent with fleshy leaves."
+  },
+  {
+    "id": "p5",
+    "name": "Peace Lily",
+    "type": "Flowering",
+    "lastWatered": "2024-05-04",
+    "nextWatering": "2024-05-07",
+    "status": "Healthy",
+    "image": "https://images.unsplash.com/photo-1593691509543-c55fb32e7355?w=400&h=300&fit=crop",
+    "description": "Elegant white flowers and dark green foliage."
+  },
+  {
+    "id": "p6",
+    "name": "Spider Plant",
+    "type": "Indoor",
+    "lastWatered": "2024-05-02",
+    "nextWatering": "2024-05-09",
+    "status": "Healthy",
+    "image": "https://images.unsplash.com/photo-1545239351-ef35f43d514d?w=400&h=300&fit=crop",
+    "description": "Arching leaves with baby plantlets."
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "n001",
+    "title": "Notice regarding the 2026 Exam ID Card Requirement",
+    "date": "2026-05-01",
+    "priority": true,
+    "content": "All candidates must bring a valid government-issued ID card. Digital IDs are also accepted if they are from the official government app."
+  },
+  {
+    "id": "n002",
+    "title": "Venue Change for Seoul Region (Information Processing Engineer)",
+    "date": "2026-05-04",
+    "priority": false,
+    "content": "The venue for the Seoul region Information Processing Engineer exam has been changed from Seoul High School to Gangnam University."
+  },
+  {
+    "id": "n003",
+    "title": "System Maintenance Notice (May 15)",
+    "date": "2026-05-05",
+    "priority": false,
+    "content": "The online registration system will be unavailable on May 15 from 02:00 to 06:00 KST due to scheduled maintenance."
+  }
+]

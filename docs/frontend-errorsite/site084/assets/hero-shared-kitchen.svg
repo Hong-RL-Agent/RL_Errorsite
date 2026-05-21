@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="520" viewBox="0 0 850 520" role="img" aria-label="Shared kitchen studio">
+  <rect width="850" height="520" fill="#eef0ed"/>
+  <rect x="0" y="330" width="850" height="190" fill="#d7ddcf"/>
+  <rect x="72" y="90" width="706" height="254" rx="16" fill="#ffffff"/>
+  <rect x="104" y="122" width="182" height="132" rx="8" fill="#e7eddd"/>
+  <rect x="324" y="122" width="202" height="132" rx="8" fill="#f9efe6"/>
+  <rect x="564" y="122" width="182" height="132" rx="8" fill="#e7eddd"/>
+  <rect x="90" y="304" width="670" height="66" rx="12" fill="#617044"/>
+  <rect x="136" y="280" width="78" height="88" rx="12" fill="#f58232"/>
+  <rect x="236" y="275" width="252" height="18" rx="9" fill="#9da78a"/>
+  <rect x="522" y="270" width="108" height="98" rx="15" fill="#394625"/>
+  <rect x="640" y="288" width="82" height="80" rx="12" fill="#f58232"/>
+  <ellipse cx="420" cy="386" rx="305" ry="25" fill="#202520" opacity=".15"/>
+  <circle cx="425" cy="188" r="44" fill="#ffffff"/>
+  <path d="M397 195h56M406 176h38M408 212h34" stroke="#617044" stroke-width="8" stroke-linecap="round"/>
+</svg>

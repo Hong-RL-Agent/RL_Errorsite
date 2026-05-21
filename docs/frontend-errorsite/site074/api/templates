@@ -1,0 +1,56 @@
+[
+  {
+    "id": "T001",
+    "title": "Professional Business Proposal",
+    "category": "Business",
+    "format": "DOCX",
+    "price": 15000,
+    "downloads": 1250,
+    "thumbnail": "assets/thumb-1.jpg"
+  },
+  {
+    "id": "T002",
+    "title": "Minimalist Student Resume",
+    "category": "Education",
+    "format": "PDF",
+    "price": 0,
+    "downloads": 3400,
+    "thumbnail": "assets/thumb-2.jpg"
+  },
+  {
+    "id": "T003",
+    "title": "Creative Portfolio Deck",
+    "category": "Design",
+    "format": "PPTX",
+    "price": 25000,
+    "downloads": 850,
+    "thumbnail": "assets/thumb-3.jpg"
+  },
+  {
+    "id": "T004",
+    "title": "Weekly Task Planner",
+    "category": "Personal",
+    "format": "XLSX",
+    "price": 5000,
+    "downloads": 2100,
+    "thumbnail": "assets/thumb-4.jpg"
+  },
+  {
+    "id": "T005",
+    "title": "Brand Identity Guidelines",
+    "category": "Design",
+    "format": "PDF",
+    "price": 35000,
+    "downloads": 420,
+    "thumbnail": "assets/thumb-5.jpg"
+  },
+  {
+    "id": "T006",
+    "title": "Quarterly Financial Report",
+    "category": "Business",
+    "format": "XLSX",
+    "price": 20000,
+    "downloads": 670,
+    "thumbnail": "assets/thumb-6.jpg"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "type": "Apartment",
+    "pyeong": 32,
+    "image": "./assets/port_01.webp",
+    "description": "모던 미니멀 아파트 인테리어",
+    "style": "Modern"
+  },
+  {
+    "id": 2,
+    "type": "Villa",
+    "pyeong": 24,
+    "image": "./assets/port_02.webp",
+    "description": "화이트&우드 감성 빌라",
+    "style": "Cozy"
+  },
+  {
+    "id": 3,
+    "type": "Apartment",
+    "pyeong": 45,
+    "image": "./assets/port_03.webp",
+    "description": "럭셔리 클래식 대형 아파트",
+    "style": "Luxury"
+  },
+  {
+    "id": 4,
+    "type": "Office",
+    "pyeong": 15,
+    "image": "./assets/port_04.webp",
+    "description": "공간 활용이 돋보이는 오피스",
+    "style": "Minimal"
+  },
+  {
+    "id": 5,
+    "type": "Studio",
+    "pyeong": 10,
+    "image": "./assets/port_05.webp",
+    "description": "원룸형 스튜디오 인테리어",
+    "style": "Modern"
+  }
+]

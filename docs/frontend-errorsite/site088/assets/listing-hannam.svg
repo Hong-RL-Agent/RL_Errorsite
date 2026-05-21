@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="240" viewBox="0 0 420 240" role="img" aria-label="Hannam residence">
+  <rect width="420" height="240" fill="#eef2f6"/>
+  <rect x="46" y="54" width="328" height="132" rx="12" fill="#ffffff"/>
+  <rect x="72" y="80" width="64" height="78" rx="6" fill="#dff2ff"/>
+  <rect x="154" y="80" width="64" height="78" rx="6" fill="#b9dff6"/>
+  <rect x="236" y="80" width="64" height="78" rx="6" fill="#dff2ff"/>
+  <rect x="318" y="80" width="32" height="78" rx="6" fill="#0f2f5f"/>
+  <path d="M40 194c86-40 166-40 244 0 42 22 76 22 100 0" fill="none" stroke="#3aa7e8" stroke-width="12" stroke-linecap="round"/>
+</svg>

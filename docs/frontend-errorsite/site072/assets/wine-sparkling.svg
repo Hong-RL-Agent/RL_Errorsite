@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="360" viewBox="0 0 180 360" role="img" aria-label="sparkling wine bottle">
+  <rect width="180" height="360" fill="none"/>
+  <path d="M78 18h24v82c0 17 18 28 24 49 7 23 9 55 9 111 0 55-10 77-45 77s-45-22-45-77c0-56 2-88 9-111 6-21 24-32 24-49V18z" fill="#193d31"/>
+  <path d="M82 18h16v92H82z" fill="#c6a151"/>
+  <rect x="58" y="170" width="64" height="92" rx="4" fill="#fff8df"/>
+  <rect x="63" y="181" width="54" height="70" rx="2" fill="#173e32"/>
+  <text x="90" y="218" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#caa85a">BRUT</text>
+  <circle cx="55" cy="52" r="4" fill="#f7efd7"/>
+  <circle cx="122" cy="80" r="3" fill="#f7efd7"/>
+  <circle cx="131" cy="38" r="2" fill="#f7efd7"/>
+</svg>

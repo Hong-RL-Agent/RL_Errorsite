@@ -1,0 +1,41 @@
+[
+  {
+    "id": 101,
+    "name": "Elena Park",
+    "specialty": "Swedish Massage",
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&h=150",
+    "availableTimes": [
+      "10:00",
+      "13:00",
+      "15:00",
+      "17:00"
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Marcus Kim",
+    "specialty": "Deep Tissue",
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150",
+    "availableTimes": [
+      "11:00",
+      "14:00",
+      "16:00",
+      "18:00"
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Sarah Lee",
+    "specialty": "Clinical Facial",
+    "rating": 5,
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150",
+    "availableTimes": [
+      "10:00",
+      "12:00",
+      "14:00",
+      "15:30"
+    ]
+  }
+]

@@ -1,0 +1,133 @@
+{
+  "clubs": [
+    {
+      "id": "club-067-01",
+      "name": "월든 숲속 고전 읽기",
+      "genre": "고전",
+      "book": "월든",
+      "schedule": "2026-05-14T19:30:00+09:00",
+      "place": "성수 리딩룸 A",
+      "capacity": 18,
+      "participants": 12,
+      "host": "윤서진",
+      "memberIds": [
+        "member-001",
+        "member-002",
+        "member-004",
+        "member-006"
+      ]
+    },
+    {
+      "id": "club-067-02",
+      "name": "도시와 마음 에세이 클럽",
+      "genre": "에세이",
+      "book": "아무튼, 산책",
+      "schedule": "2026-05-18T20:00:00+09:00",
+      "place": "망원 북라운지",
+      "capacity": 16,
+      "participants": 10,
+      "host": "박해린",
+      "memberIds": [
+        "member-002",
+        "member-003",
+        "member-005"
+      ]
+    },
+    {
+      "id": "club-067-03",
+      "name": "밤의 추리 독서회",
+      "genre": "미스터리",
+      "book": "그리고 아무도 없었다",
+      "schedule": "2026-05-21T19:00:00+09:00",
+      "place": "연남 스터디홀 2",
+      "capacity": 14,
+      "participants": 9,
+      "host": "최도윤",
+      "memberIds": [
+        "member-001",
+        "member-003",
+        "member-007"
+      ]
+    },
+    {
+      "id": "club-067-04",
+      "name": "동시대 SF 라운드테이블",
+      "genre": "SF",
+      "book": "우리가 빛의 속도로 갈 수 없다면",
+      "schedule": "2026-05-25T18:30:00+09:00",
+      "place": "강남 커뮤니티 서가",
+      "capacity": 20,
+      "participants": 15,
+      "host": "이준호",
+      "memberIds": [
+        "member-004",
+        "member-005",
+        "member-008"
+      ]
+    },
+    {
+      "id": "club-067-05",
+      "name": "긴 문장 깊은 대화",
+      "genre": "문학",
+      "book": "잃어버린 시간을 찾아서 1권 스완네 집 쪽으로, 그리고 이어지는 회상과 기억의 미로를 천천히 읽는 밤",
+      "schedule": "2026-05-28T20:00:00+09:00",
+      "place": "서촌 책방 살롱",
+      "capacity": 12,
+      "participants": 8,
+      "host": "정유나",
+      "memberIds": [
+        "member-002",
+        "member-006",
+        "member-008"
+      ]
+    },
+    {
+      "id": "club-067-06",
+      "name": "비즈니스 리더스 북클럽",
+      "genre": "비즈니스",
+      "book": "좋은 기업을 넘어 위대한 기업으로",
+      "schedule": "2026-06-02T07:30:00+09:00",
+      "place": "여의도 모닝 라운지",
+      "capacity": 22,
+      "participants": 17,
+      "host": "한민재",
+      "memberIds": [
+        "member-003",
+        "member-004",
+        "member-007"
+      ]
+    },
+    {
+      "id": "club-067-07",
+      "name": "심리학 독서 노트",
+      "genre": "심리",
+      "book": "생각에 관한 생각",
+      "schedule": "2026-06-06T15:00:00+09:00",
+      "place": "분당 리브러리룸",
+      "capacity": 15,
+      "participants": 11,
+      "host": "강소라",
+      "memberIds": [
+        "member-001",
+        "member-005",
+        "member-006"
+      ]
+    },
+    {
+      "id": "club-067-08",
+      "name": "청소년 문학 함께 읽기",
+      "genre": "문학",
+      "book": "페인트",
+      "schedule": "2026-06-09T19:30:00+09:00",
+      "place": "합정 북스튜디오",
+      "capacity": 18,
+      "participants": 13,
+      "host": "배지훈",
+      "memberIds": [
+        "member-002",
+        "member-004",
+        "member-007"
+      ]
+    }
+  ]
+}

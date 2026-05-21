@@ -1,0 +1,74 @@
+[
+  {
+    "id": "s001",
+    "title": "AI and the Future of Software Engineering",
+    "category": "Technology",
+    "speakerId": "sp001",
+    "date": "2026-06-15",
+    "time": "10:00 - 11:30",
+    "location": "Main Hall A",
+    "capacity": 100,
+    "reserved": 88,
+    "isPopular": true
+  },
+  {
+    "id": "s002",
+    "title": "Modern Product Design Patterns in 2026",
+    "category": "Design",
+    "speakerId": "sp002",
+    "date": "2026-06-15",
+    "time": "13:00 - 14:30",
+    "location": "Design Studio B",
+    "capacity": 50,
+    "reserved": 42,
+    "isPopular": false
+  },
+  {
+    "id": "s003",
+    "title": "The Psychology of High-Performance Teams",
+    "category": "Leadership",
+    "speakerId": "sp003",
+    "date": "2026-06-16",
+    "time": "09:00 - 10:30",
+    "location": "Leadership Suite C",
+    "capacity": 80,
+    "reserved": 75,
+    "isPopular": true
+  },
+  {
+    "id": "s004",
+    "title": "Quantum Computing: From Theory to Practice",
+    "category": "Technology",
+    "speakerId": "sp001",
+    "date": "2026-06-16",
+    "time": "11:00 - 12:30",
+    "location": "Main Hall A",
+    "capacity": 120,
+    "reserved": 110,
+    "isPopular": false
+  },
+  {
+    "id": "s005",
+    "title": "Sustainability in Modern Urban Infrastructure Architecture",
+    "category": "Design",
+    "speakerId": "sp004",
+    "date": "2026-06-17",
+    "time": "14:00 - 15:30",
+    "location": "Eco Hall D",
+    "capacity": 60,
+    "reserved": 58,
+    "isPopular": true
+  },
+  {
+    "id": "s006",
+    "title": "Digital Marketing Strategies for the Next Decade",
+    "category": "Business",
+    "speakerId": "sp005",
+    "date": "2026-06-17",
+    "time": "16:00 - 17:30",
+    "location": "Main Hall A",
+    "capacity": 200,
+    "reserved": 150,
+    "isPopular": false
+  }
+]

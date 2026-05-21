@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "name": "Lavender Dream Box",
+    "category": "Healing",
+    "price": 29900,
+    "image": "https://images.unsplash.com/photo-1595111028557-47e09295558d?auto=format&fit=crop&w=400&h=400",
+    "itemCount": 5,
+    "frequency": "Every Month",
+    "options": [
+      "Lavender Tea",
+      "Aroma Candle",
+      "Sleep Mask"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Coffee Lover Kit",
+    "category": "Food",
+    "price": 34500,
+    "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=400&h=400",
+    "itemCount": 4,
+    "frequency": "Every 2 Weeks",
+    "options": [
+      "Specialty Beans",
+      "Drip Bag",
+      "Coffee Cup"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Green Oasis Plant",
+    "category": "Home",
+    "price": 19800,
+    "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=400&h=400",
+    "itemCount": 3,
+    "frequency": "Every Month",
+    "options": [
+      "Easy-care Plant",
+      "Stylish Pot",
+      "Care Guide"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Gourmet Snack Box",
+    "category": "Food",
+    "price": 27000,
+    "image": "https://images.unsplash.com/photo-1599490659223-e1539e7694cf?auto=format&fit=crop&w=400&h=400",
+    "itemCount": 8,
+    "frequency": "Every Month",
+    "options": [
+      "Imported Cookies",
+      "Healthy Chips",
+      "Seasonal Tea"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Aesthetic Stationery",
+    "category": "Hobby",
+    "price": 21000,
+    "image": "https://images.unsplash.com/photo-1583485088034-7160b52ac581?auto=format&fit=crop&w=400&h=400",
+    "itemCount": 6,
+    "frequency": "Every 2 Weeks",
+    "options": [
+      "Stickers",
+      "Washi Tape",
+      "Memo Pad"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Minimalist Skincare",
+    "category": "Beauty",
+    "price": 42000,
+    "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=400&h=400",
+    "itemCount": 4,
+    "frequency": "Every Month",
+    "options": [
+      "Cleanser",
+      "Moisturizer",
+      "Sunscreen"
+    ]
+  }
+]

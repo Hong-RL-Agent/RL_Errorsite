@@ -1,0 +1,41 @@
+{
+  "regions": [
+    {
+      "name": "용산구 한남동",
+      "averagePrice": 1980000000,
+      "listingCount": 18,
+      "popular": true
+    },
+    {
+      "name": "성동구 성수동",
+      "averagePrice": 740000000,
+      "listingCount": 42,
+      "popular": true
+    },
+    {
+      "name": "성남시 분당구",
+      "averagePrice": 1010000000,
+      "listingCount": 36,
+      "popular": true
+    },
+    {
+      "name": "강남구 역삼동",
+      "averagePrice": 1320000000,
+      "listingCount": 55,
+      "popular": true
+    },
+    {
+      "name": "인천 연수구",
+      "averagePrice": 810000000,
+      "listingCount": 28,
+      "popular": false
+    },
+    {
+      "name": "마포구 합정동",
+      "averagePrice": 690000000,
+      "listingCount": 31,
+      "popular": false
+    }
+  ],
+  "count": 6
+}

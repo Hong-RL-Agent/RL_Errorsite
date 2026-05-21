@@ -1,0 +1,27 @@
+[
+  {
+    "id": "r1",
+    "name": "역삼동",
+    "popular": true
+  },
+  {
+    "id": "r2",
+    "name": "한남동",
+    "popular": true
+  },
+  {
+    "id": "r3",
+    "name": "성수동",
+    "popular": true
+  },
+  {
+    "id": "r4",
+    "name": "연남동",
+    "popular": false
+  },
+  {
+    "id": "r5",
+    "name": "망원동",
+    "popular": false
+  }
+]

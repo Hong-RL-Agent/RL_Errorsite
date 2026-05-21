@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaf & Lesson | 원예 클래스 예약</title>
+    <link rel="stylesheet" href="./styles.css" />
+      <script src="./pages-mock.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="Leaf and Lesson 홈">
+          <span class="brand-mark">L&L</span>
+          <span class="brand-copy">
+            <strong>Leaf & Lesson</strong>
+            <small>urban gardening studio</small>
+          </span>
+        </a>
+        <nav class="main-nav" aria-label="주요 메뉴">
+          <a href="#classes">클래스</a>
+          <a href="#instructors">강사 소개</a>
+          <button class="nav-link js-coming-soon" type="button">키트 구매</button>
+          <a href="#reviews">수강 후기</a>
+        </nav>
+        <div class="header-actions">
+          <a class="button button-primary" href="#classes">예약하기</a>
+          <button class="button button-ghost js-coming-soon" type="button">로그인</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero-section" aria-labelledby="heroTitle">
+        <div class="hero-media" aria-hidden="true">
+          <img src="./assets/garden-hero.svg" alt="" />
+        </div>
+        <div class="hero-content">
+          <p class="eyebrow">2026 spring gardening season</p>
+          <h1 id="heroTitle">나만의 작은 정원 만들기</h1>
+          <p class="hero-copy">
+            테라리움, 허브, 베란다 텃밭까지. 재료 준비부터 수업 예약까지 한 번에 진행하는 온라인 원예 클래스입니다.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#classes">시즌 원예 클래스 보기</a>
+            <button class="button button-light js-coming-soon" type="button">키트 상담 예약</button>
+          </div>
+          <div class="hero-stats" aria-label="서비스 지표">
+            <span><strong>18</strong> live sessions</span>
+            <span><strong>4.8</strong> review score</span>
+            <span><strong>24h</strong> kit dispatch</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="클래스 특징">
+        <span>초보자용 재료 체크리스트 제공</span>
+        <span>실시간 Q&A와 녹화본 제공</span>
+        <span>서울 스튜디오 오프라인 클래스 운영</span>
+        <span>선택 클래스별 키트 배송 지원</span>
+      </section>
+
+      <section class="content-shell">
+        <div class="main-column">
+          <section class="catalog-section" id="classes" aria-labelledby="classesTitle">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">class catalog</p>
+                <h2 id="classesTitle">이번 달 원예 클래스</h2>
+              </div>
+              <button class="button button-subtle" id="resetFilters" type="button">필터 초기화</button>
+            </div>
+
+            <div class="filter-bar" aria-label="클래스 필터">
+              <label>
+                난이도
+                <select id="difficultyFilter">
+                  <option value="all">전체 난이도</option>
+                  <option value="입문">입문</option>
+                  <option value="중급">중급</option>
+                  <option value="고급">고급</option>
+                </select>
+              </label>
+              <label>
+                식물 종류
+                <select id="plantFilter">
+                  <option value="all">전체 식물</option>
+                  <option value="다육식물">다육식물</option>
+                  <option value="허브">허브</option>
+                  <option value="꽃식물">꽃식물</option>
+                  <option value="채소">채소</option>
+                  <option value="관엽식물">관엽식물</option>
+                </select>
+              </label>
+              <label>
+                정렬
+                <select id="sortSelect">
+                  <option value="recommended">추천순</option>
+                  <option value="priceLow">낮은 가격순</option>
+                  <option value="durationShort">짧은 수업순</option>
+                </select>
+              </label>
+              <label class="search-label">
+                검색
+                <input id="searchInput" type="search" placeholder="테라리움, 허브, 분갈이" />
+              </label>
+            </div>
+
+            <div class="loading-state" id="loadingState" role="status">클래스 데이터를 불러오는 중입니다.</div>
+            <div class="error-state" id="errorState" hidden>
+              <strong>데이터를 불러오지 못했습니다.</strong>
+              <span>잠시 후 다시 시도해 주세요.</span>
+              <button class="button button-subtle" id="retryLoad" type="button">다시 불러오기</button>
+            </div>
+            <div class="class-grid" id="classGrid" aria-live="polite"></div>
+          </section>
+
+          <section class="instructor-section" id="instructors" aria-labelledby="instructorsTitle">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">garden mentors</p>
+                <h2 id="instructorsTitle">식물의 속도를 아는 강사진</h2>
+              </div>
+            </div>
+            <div class="instructor-grid" id="instructorGrid"></div>
+          </section>
+
+          <section class="schedule-section" aria-labelledby="scheduleTitle">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">class calendar</p>
+                <h2 id="scheduleTitle">클래스 일정표</h2>
+              </div>
+              <div class="date-pills" id="datePills" aria-label="날짜 선택"></div>
+            </div>
+            <div class="schedule-board">
+              <aside class="time-rail" aria-hidden="true">
+                <span>09:00</span>
+                <span>10:00</span>
+                <span>11:00</span>
+                <span>12:00</span>
+                <span>13:00</span>
+                <span>14:00</span>
+                <span>15:00</span>
+                <span>16:00</span>
+                <span>17:00</span>
+                <span>18:00</span>
+                <span>19:00</span>
+              </aside>
+              <div class="schedule-grid" id="scheduleGrid" data-bug-id="site076-bug02"></div>
+            </div>
+          </section>
+
+          <section class="materials-section" aria-labelledby="materialsTitle">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">before class</p>
+                <h2 id="materialsTitle">준비물 안내</h2>
+              </div>
+            </div>
+            <div class="accordion" id="materialsAccordion">
+              <article class="accordion-item">
+                <button class="accordion-trigger" type="button" aria-expanded="true">
+                  공통 준비물
+                  <span aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel">
+                  앞치마, 분무기, 필기구를 준비해 주세요. 온라인 수업은 작업대 위를 비울 수 있는 공간이 필요합니다.
+                </div>
+              </article>
+              <article class="accordion-item">
+                <button class="accordion-trigger" type="button" aria-expanded="false">
+                  키트 배송
+                  <span aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel" hidden>
+                  키트 포함 클래스는 수업 2일 전까지 발송됩니다. 도서 산간 지역은 하루 더 여유를 두고 예약해 주세요.
+                </div>
+              </article>
+              <article class="accordion-item">
+                <button class="accordion-trigger" type="button" aria-expanded="false">
+                  스튜디오 방문
+                  <span aria-hidden="true">+</span>
+                </button>
+                <div class="accordion-panel" hidden>
+                  오프라인 수업은 시작 10분 전부터 입장할 수 있습니다. 완성 작품을 담을 종이 쇼핑백을 제공합니다.
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="reviews-section" id="reviews" aria-labelledby="reviewsTitle">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">student notes</p>
+                <h2 id="reviewsTitle">수강생 후기</h2>
+              </div>
+            </div>
+            <div class="review-row">
+              <article class="review-card">
+                <strong>김민채</strong>
+                <span>테라리움 클래스</span>
+                <p>식물 초보라 걱정했는데 흙 배합부터 차근차근 알려줘서 바로 집 책상 위에 놓았습니다.</p>
+              </article>
+              <article class="review-card">
+                <strong>오유진</strong>
+                <span>허브 가든</span>
+                <p>키트 포장이 깔끔했고, 수업 후에 받은 물주기 루틴표가 정말 유용했습니다.</p>
+              </article>
+              <article class="review-card">
+                <strong>정하린</strong>
+                <span>베란다 채소</span>
+                <p>수확까지 생각해서 설명해 주니 베란다가 훨씬 실용적인 공간이 됐어요.</p>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <aside class="summary-panel" id="summaryPanel" aria-labelledby="summaryTitle">
+          <button class="summary-toggle" id="summaryToggle" type="button" aria-expanded="true">선택한 클래스 요약 접기</button>
+          <div class="summary-body" id="summaryBody">
+            <p class="eyebrow">booking summary</p>
+            <h2 id="summaryTitle">선택한 클래스 요약</h2>
+            <div id="summaryDetails" class="summary-details"></div>
+            <div class="seat-control" aria-label="예약 인원">
+              <span>예약 인원</span>
+              <div>
+                <button id="seatMinus" type="button" aria-label="인원 줄이기">-</button>
+                <strong id="seatCount">1</strong>
+                <button id="seatPlus" type="button" aria-label="인원 늘리기">+</button>
+              </div>
+            </div>
+            <button class="button button-primary full-width js-coming-soon" type="button">예약 신청서 작성</button>
+            <button class="button button-subtle full-width js-coming-soon" type="button">강사에게 문의</button>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Leaf & Lesson</strong>
+        <p>도심 속 작은 정원을 위한 원예 클래스 예약 플랫폼</p>
+      </div>
+      <nav aria-label="푸터 링크">
+        <button class="footer-link js-coming-soon" type="button">준비물 안내</button>
+        <button class="footer-link js-coming-soon" type="button">환불 정책</button>
+        <button class="footer-link js-coming-soon" type="button">키트 배송 안내</button>
+        <button class="footer-link js-coming-soon" type="button">고객센터</button>
+      </nav>
+    </footer>
+
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+      <section class="detail-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" id="modalClose" type="button" aria-label="상세 모달 닫기">x</button>
+        <div id="modalContent"></div>
+      </section>
+    </div>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>

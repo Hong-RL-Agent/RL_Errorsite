@@ -1,0 +1,92 @@
+{
+  "books": [
+    {
+      "id": "BK-058-01",
+      "title": "고요한 알고리즘",
+      "author": "한서윤",
+      "authorAlias": "H. S. Yoon",
+      "genre": "에세이",
+      "coverImage": "./assets/cover-essay.svg",
+      "rating": 4.8,
+      "recommended": true,
+      "recommendationReason": "출퇴근길 15분 단위로 읽기 좋은 디지털 사색집"
+    },
+    {
+      "id": "BK-058-02",
+      "title": "밤의 라이브러리",
+      "author": "문태오",
+      "authorAlias": "T. Moon",
+      "genre": "소설",
+      "coverImage": "./assets/cover-fiction.svg",
+      "rating": 4.7,
+      "recommended": true,
+      "recommendationReason": "몰입형 리더 모드와 잘 어울리는 장편 미스터리"
+    },
+    {
+      "id": "BK-058-03",
+      "title": "클라우드 아래 철학",
+      "author": "차민재",
+      "genre": "인문",
+      "coverImage": "./assets/cover-humanities.svg",
+      "rating": 4.6,
+      "recommended": true
+    },
+    {
+      "id": "BK-058-04",
+      "title": "파란 생산성 노트",
+      "author": "유다인",
+      "authorAlias": "D. Yoo",
+      "genre": "자기계발",
+      "coverImage": "./assets/cover-productivity.svg",
+      "rating": 4.5,
+      "recommended": false,
+      "recommendationReason": "하이라이트와 메모 기능을 활용하기 좋은 실전형 가이드"
+    },
+    {
+      "id": "BK-058-05",
+      "title": "데이터 식탁",
+      "author": "강이준",
+      "authorAlias": "I. J. Kang",
+      "genre": "경제경영",
+      "coverImage": "./assets/cover-business.svg",
+      "rating": 4.4,
+      "recommended": false,
+      "recommendationReason": "차트와 문장형 요약이 함께 읽히는 비즈니스 교양서"
+    },
+    {
+      "id": "BK-058-06",
+      "title": "빛의 문장들",
+      "author": "서하린",
+      "authorAlias": "H. Seo",
+      "genre": "시",
+      "coverImage": "./assets/cover-poetry.svg",
+      "rating": 4.9,
+      "recommended": true,
+      "recommendationReason": "전자잉크 테마에서 특히 선명한 짧은 문장 모음"
+    },
+    {
+      "id": "BK-058-07",
+      "title": "미래 도시 입문",
+      "author": "오지혁",
+      "authorAlias": "J. Oh",
+      "genre": "과학",
+      "coverImage": "./assets/cover-science.svg",
+      "rating": 4.3,
+      "recommended": false,
+      "recommendationReason": "도표가 많은 책도 리더 앱에서 편하게 확대 가능"
+    },
+    {
+      "id": "BK-058-08",
+      "title": "작은 서점의 계절",
+      "author": "정유나",
+      "authorAlias": "Y. J. Jung",
+      "genre": "소설",
+      "coverImage": "./assets/cover-season.svg",
+      "rating": 4.8,
+      "recommended": true,
+      "recommendationReason": "따뜻한 크림 테마로 읽기 좋은 주말 추천 소설"
+    }
+  ],
+  "total": 8,
+  "generatedAt": "2026-05-21T14:46:44.916Z"
+}

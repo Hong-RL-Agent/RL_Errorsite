@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="860" viewBox="0 0 640 860" role="img" aria-label="Poetry book cover">
+  <rect width="640" height="860" fill="#fffdf7"/>
+  <circle cx="320" cy="300" r="135" fill="#d7ecff"/>
+  <path d="M320 170 C240 300 330 410 220 545 C360 500 460 382 320 170Z" fill="#10213d"/>
+  <path d="M190 650 H450" stroke="#a9d4f7" stroke-width="18" stroke-linecap="round"/>
+  <path d="M240 698 H400" stroke="#dfe8f2" stroke-width="14" stroke-linecap="round"/>
+</svg>
