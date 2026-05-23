@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 배경을 약간 어둡게 하여 Tailwind 작동 여부를 테스트합니다 */
+body {
+  @apply bg-stone-100 text-stone-900;
+}
