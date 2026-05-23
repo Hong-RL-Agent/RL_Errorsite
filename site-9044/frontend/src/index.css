@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* v4에서는 별도의 @layer 선언 없이도 아래와 같이 작성 가능합니다 */
+.sidebar-container {
+  z-index: 50;
+}
+
+.modal-overlay {
+  z-index: 40;
+}
