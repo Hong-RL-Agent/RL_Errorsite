@@ -1,0 +1,19 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: site9037-backend
+    expose:
+      - "9029"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: site9037-frontend
+    depends_on:
+      - backend
+    ports:
+      - "9037:80"
+
