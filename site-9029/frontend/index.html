@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAWS | Enterprise Infrastructure Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { gray: { 900: '#0f172a', 800: '#1e293b', 700: '#334155' } } } }
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-slate-300 font-sans h-screen flex overflow-hidden">
+
+    <aside class="w-64 bg-gray-800 border-r border-gray-700 flex flex-col">
+        <div class="h-16 flex items-center px-6 border-b border-gray-700">
+            <span class="text-xl font-bold text-blue-400"><i class="fa-solid fa-server mr-2"></i>JAWS Infra</span>
+        </div>
+        <nav class="flex-1 px-4 py-6 space-y-2">
+            <a href="#" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 rounded-lg"><i class="fa-solid fa-chart-line w-6"></i> 대시보드 홈</a>
+            <a href="#" class="flex items-center px-4 py-3 hover:bg-gray-700 rounded-lg transition-colors"><i class="fa-solid fa-network-wired w-6"></i> 네트워크 구성</a>
+            <a href="#" class="flex items-center px-4 py-3 hover:bg-gray-700 rounded-lg transition-colors"><i class="fa-solid fa-shield-halved w-6"></i> 보안 정책</a>
+            <a href="/internal/" target="_blank" class="flex items-center px-4 py-3 hover:bg-gray-700 rounded-lg transition-colors"><i class="fa-solid fa-folder-open w-6"></i> 내부 설정 파일 (Nginx)</a>
+        </nav>
+        <div class="p-4 border-t border-gray-700 text-sm text-gray-500">
+            System v2.9.1 (Stable)
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col">
+        <header class="h-16 bg-gray-800 border-b border-gray-700 flex items-center justify-between px-8">
+            <h2 class="text-lg font-semibold text-white">클러스터 모니터링 (us-east-1)</h2>
+            <div class="flex items-center gap-4">
+                <span class="text-sm bg-green-500/20 text-green-400 px-3 py-1 rounded-full"><i class="fa-solid fa-circle text-[8px] mr-1"></i> All Systems Operational</span>
+                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">A</div>
+            </div>
+        </header>
+
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
+                    <h3 class="text-white font-bold mb-4 border-b border-gray-700 pb-2"><i class="fa-solid fa-microchip mr-2"></i>서버 리소스 현황</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1"><span>CPU Usage</span><span class="text-blue-400">42%</span></div>
+                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full" style="width: 42%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1"><span>Memory (RAM)</span><span class="text-yellow-400">78%</span></div>
+                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-yellow-500 h-2 rounded-full" style="width: 78%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+                    <h3 class="text-white font-bold mb-2"><i class="fa-solid fa-key mr-2 text-orange-400"></i>시스템 환경변수 관리</h3>
+                    <p class="text-sm text-gray-400 mb-4">관리자 권한(Admin)으로 접속하여 마스터 DB 패스워드 및 인프라 키를 로드합니다.</p>
+                    <button onclick="fetchSecrets()" id="btn-secrets" class="bg-orange-600 hover:bg-orange-500 text-white px-4 py-2 rounded shadow transition-all flex items-center">
+                        <i class="fa-solid fa-unlock mr-2"></i>환경변수 로드
+                    </button>
+                    <div id="result-secrets" class="mt-4 bg-gray-900 p-4 rounded border border-gray-700 hidden">
+                        <pre class="text-green-400 text-sm overflow-x-auto font-mono"></pre>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg relative overflow-hidden lg:col-span-2">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-red-500"></div>
+                    <h3 class="text-white font-bold mb-2"><i class="fa-solid fa-bug mr-2 text-red-400"></i>시스템 무결성 디버그</h3>
+                    <p class="text-sm text-gray-400 mb-4">서버에 강제 부하를 발생시켜 오류 추적(Stack Trace) 로그를 생성합니다. (개발망 전용)</p>
+                    <button onclick="triggerCrash()" id="btn-crash" class="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded shadow transition-all flex items-center">
+                        <i class="fa-solid fa-skull-crossbones mr-2"></i>강제 크래시 테스트 실행
+                    </button>
+                    <div id="result-crash" class="mt-4 bg-red-900/20 p-4 rounded border border-red-800/50 hidden">
+                        <div class="text-red-400 font-bold mb-1">[500 Internal Server Error]</div>
+                        <pre class="text-red-300 text-xs overflow-x-auto font-mono leading-relaxed"></pre>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        async function fetchSecrets() {
+            const btn = document.getElementById('btn-secrets');
+            const resultDiv = document.getElementById('result-secrets');
+            const pre = resultDiv.querySelector('pre');
+            
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>로드 중...';
+            
+            try {
+                const res = await fetch('/api/infra/secrets?user=admin&pw=password');
+                const data = await res.json();
+                pre.textContent = JSON.stringify(data, null, 2);
+                resultDiv.classList.remove('hidden');
+            } catch (err) {
+                pre.textContent = "서버 연결 실패. 백엔드(8080)가 켜져 있는지 확인하세요.";
+                resultDiv.classList.remove('hidden');
+            } finally {
+                btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i>로드 완료';
+                btn.classList.replace('bg-orange-600', 'bg-green-600');
+            }
+        }
+
+        async function triggerCrash() {
+            const btn = document.getElementById('btn-crash');
+            const resultDiv = document.getElementById('result-crash');
+            const pre = resultDiv.querySelector('pre');
+            
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>크래시 유발 중...';
+            
+            try {
+                const res = await fetch('/api/infra/debug-crash');
+                if (!res.ok) throw new Error("서버 에러 발생");
+            } catch (err) {
+                // 백엔드에서 던진 자바 에러를 실제 콘솔처럼 렌더링
+                pre.innerHTML = `java.lang.RuntimeException: Critical Infrastructure Failure at /app/config/server.yaml. Module: infra-complex-0.0.1. Error Code: 0x9029\n\tat com.jaws.infra.InfraController.debugCrash(InfraController.java:20)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)\n\tat java.base/java.lang.Thread.run(Thread.java:833)`;
+                resultDiv.classList.remove('hidden');
+            } finally {
+                btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-2"></i>에러 발생됨';
+            }
+        }
+    </script>
+</body>
+</html>

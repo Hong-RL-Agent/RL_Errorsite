@@ -1,0 +1,14 @@
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: site-9029-nginx
+    ports:
+      - "9029:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./frontend:/usr/share/nginx/html
+  backend:
+    build: ./backend
+    container_name: site-9029-backend
+    ports:
+      - "5011:8080" # 9028번(5010) 다음 포트인 5011 사용
