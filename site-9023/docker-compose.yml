@@ -1,0 +1,17 @@
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: site-9023-nginx
+    ports:
+      - "9023:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./frontend/dist:/usr/share/nginx/html:ro
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    container_name: site-9023-backend
+    ports:
+      - "5004:8080"
