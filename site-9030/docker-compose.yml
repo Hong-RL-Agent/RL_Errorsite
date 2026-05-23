@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  nginx-9030:
+    image: nginx:stable-alpine
+    container_name: jaws-nginx-9030
+    ports:
+      - "9030:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./frontend/dist:/usr/share/nginx/html
+    depends_on:
+      - backend-9030
+    networks:
+      - jaws-network
+
+  backend-9030:
+    build: ./backend
+    container_name: jaws-backend-9030
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      # 취약점 학습용: 필수 환경 변수 의도적 누락
+    networks:
+      - jaws-network
+
+networks:
+  jaws-network:
+    driver: bridge
