@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: fuzzing-agent
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+
+server:
+  port: 9029
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    root: INFO
+    com.fuzzing: DEBUG

@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "9029:9029"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      - postgres
+    networks:
+      - fuzzing-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:9029/api
+    ports:
+      - "9038:5173"
+    depends_on:
+      - backend
+    networks:
+      - fuzzing-network
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: fuzzing_db
+      POSTGRES_USER: fuzzing_user
+      POSTGRES_PASSWORD: fuzzing_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - fuzzing-network
+
+volumes:
+  postgres_data:
+
+networks:
+  fuzzing-network:
+    driver: bridge

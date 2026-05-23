@@ -1,0 +1,64 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0a0e27;
+  color: #e5e7eb;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0e27 0%, #111827 100%);
+}
+
+@layer components {
+  .container-main {
+    @apply max-w-[1440px] mx-auto px-4 lg:px-8;
+  }
+
+  .glass-effect {
+    background: rgba(17, 24, 39, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(75, 85, 99, 0.18);
+  }
+
+  .chart-wrapper {
+    @apply rounded-lg p-4;
+    background: rgba(17, 24, 39, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(75, 85, 99, 0.18);
+  }
+
+  .card {
+    @apply rounded-lg p-4 transition-all;
+    background: rgba(17, 24, 39, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(75, 85, 99, 0.18);
+  }
+
+  .card:hover {
+    background: rgba(17, 24, 39, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(75, 85, 99, 0.25);
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-accent-blue hover:bg-blue-600 text-white rounded-lg transition-colors;
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 bg-accent-red hover:bg-red-600 text-white rounded-lg transition-colors;
+  }
+}
