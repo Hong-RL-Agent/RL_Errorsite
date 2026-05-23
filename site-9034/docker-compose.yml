@@ -1,0 +1,26 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: db-fault-service
+    ports:
+      - "18080:8080"
+    networks:
+      - fault-net
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: fintech-admin-console
+    ports:
+      - "9034:80"
+    depends_on:
+      - backend
+    networks:
+      - fault-net
+
+networks:
+  fault-net:
+    driver: bridge
