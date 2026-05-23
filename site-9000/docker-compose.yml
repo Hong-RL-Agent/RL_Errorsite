@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: site-9000-nginx
+    ports:
+      - "9000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      # 옛날 index.html 대신, 방금 빌드한 dist 폴더를 Nginx에 연결합니다!
+      - ./frontend/dist:/usr/share/nginx/html:ro
+    depends_on:
+      - backend
+
+  backend:
+    image: node:18-alpine
+    container_name: site-9000-backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    command: sh -c "npm install express && node server.js"
+    environment:
+      - PORT=5001
