@@ -1,0 +1,29 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: jaws-api-gateway-backend-9036
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+    expose:
+      - "8080"
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: jaws-api-gateway-frontend-9036
+    expose:
+      - "5173"
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: jaws-api-gateway-proxy-9036
+    ports:
+      - "9036:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - frontend
+      - backend
