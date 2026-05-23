@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  nginx-9035:
+    image: nginx:stable-alpine
+    container_name: jaws-nginx-9035
+    ports:
+      - "9035:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./frontend/dist:/usr/share/nginx/html
+    depends_on:
+      - backend-9035
+    networks:
+      - jaws-network
+
+  backend-9035:
+    build: ./backend
+    container_name: jaws-backend-9035
+    ports:
+      - "9029:9029"
+    networks:
+      - jaws-network
+
+networks:
+  jaws-network:
+    driver: bridge
