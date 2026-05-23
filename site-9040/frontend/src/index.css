@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: #f8fafc;
+  background:
+    radial-gradient(circle at 10% 10%, #4338ca44 0%, transparent 40%),
+    radial-gradient(circle at 90% 20%, #ec489944 0%, transparent 35%),
+    #09090f;
+  font-family: Inter, 'Pretendard', system-ui, -apple-system, sans-serif;
+}
