@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  nginx-9039:
+    image: nginx:stable-alpine
+    container_name: jaws-nginx-9039
+    ports:
+      - "9039:80" # 🚀 브라우저 접속: http://localhost:9039
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./frontend/dist:/usr/share/nginx/html
+    depends_on:
+      - backend-9039
+    networks:
+      - jaws-network
+
+  backend-9039:
+    build: ./backend
+    container_name: jaws-backend-9039
+    networks:
+      - jaws-network
+
+networks:
+  jaws-network:
+    driver: bridge
