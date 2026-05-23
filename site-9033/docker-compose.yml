@@ -1,0 +1,25 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: cloud-fault-backend
+    restart: unless-stopped
+    networks:
+      - fault-net
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: cloud-fault-nginx
+    depends_on:
+      - backend
+    ports:
+      - "9033:80"
+    restart: unless-stopped
+    networks:
+      - fault-net
+
+networks:
+  fault-net:
+    driver: bridge
