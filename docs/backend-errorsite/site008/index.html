@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Platform - site008</title>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8f9ff; }
+        .purple-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+    </style>
+</head>
+<body>
+    <div id="root"></div>  <script src="./pages-mock-api.js"></script>
+
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const App = () => {
+            const [state, setState] = useState(null);
+            const [loading, setLoading] = useState(true);
+            const [notification, setNotification] = useState(null);
+
+            useEffect(() => {
+                fetchState();
+            }, []);
+
+            const fetchState = async () => {
+                try {
+                    const res = await fetch('/api/state');
+                    const data = await res.json();
+                    if (data.ok) setState(data.data);
+                } catch (err) {
+                    notify("Failed to sync state", true);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const notify = (msg, isError = false, bugId = null) => {
+                setNotification({ msg, isError, bugId });
+                setTimeout(() => setNotification(null), 4000);
+            };
+
+            const triggerAction = async (endpoint, body = {}, bugId = null) => {
+                setLoading(true);
+                try {
+                    const res = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body)
+                    });
+                    const data = await res.json();
+                    if (data.ok) {
+                        if (data.bugId) notify(`Bug Triggered: ${data.bugId}`, false, data.bugId);
+                        else notify("Action completed successfully");
+                        fetchState();
+                    } else {
+                        notify(data.error, true);
+                    }
+                } catch (err) {
+                    notify("Request failed", true);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const checkStatus = async () => {
+                const res = await fetch('/api/reservation/status?lock=true');
+                const data = await res.json();
+                if (data.ok && data.bugId) {
+                    notify(`Deadlock Bug Detected: ${data.bugId}`, true, data.bugId);
+                    fetchState();
+                }
+            };
+
+            if (!state) return <div className="flex items-center justify-center h-screen font-bold text-indigo-600 animate-pulse">Initializing SaaS Core...</div>;
+
+            return (
+                <div className="min-h-screen flex flex-col">
+                    {/* Header */}
+                    <header className="glass sticky top-0 z-50 p-4 px-8 flex justify-between items-center shadow-sm">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 purple-gradient rounded-xl flex items-center justify-center text-white font-black">S</div>
+                            <h1 className="text-xl font-extrabold text-gray-800 tracking-tight">SAAS FLOW</h1>
+                        </div>
+                        <div className="flex gap-4 items-center">
+                            <div className="text-xs font-mono bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full font-bold">PORT: 9117</div>
+                            <button onClick={() => triggerAction('/api/test/reset')} className="text-xs text-gray-400 hover:text-red-500 transition-colors">Reset System</button>
+                        </div>
+                    </header>
+
+                    <main className="max-w-7xl mx-auto p-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        
+                        {/* Left Column: Plans & Controls */}
+                        <div className="lg:col-span-4 space-y-6">
+                            <section className="bg-white p-6 rounded-3xl shadow-sm border border-indigo-50">
+                                <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Subscription Plan</h2>
+                                <div className={`p-6 rounded-2xl mb-6 transition-all ${state.subscription.status === 'NONE' ? 'bg-gray-50 border-dashed border-2 border-gray-200' : 'purple-gradient text-white shadow-xl shadow-indigo-200'}`}>
+                                    <div className="text-xs opacity-70 mb-1">Active Plan</div>
+                                    <div className="text-2xl font-black mb-4">{state.subscription.plan}</div>
+                                    <div className="flex justify-between items-end">
+                                        <div className="text-xs font-bold bg-white/20 px-2 py-1 rounded-lg">Status: {state.subscription.status}</div>
+                                        <div className="text-[10px] opacity-60">Last Sync: {new Date(state.subscription.updatedAt).toLocaleDateString()}</div>
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <button 
+                                        onClick={() => triggerAction('/api/subscription/create', { plan: 'PREMIUM' })}
+                                        className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-100"
+                                    >
+                                        Subscribe to Premium
+                                    </button>
+                                    <button 
+                                        data-bug-id="site008-bug02"
+                                        onClick={() => triggerAction('/api/subscription/create', { plan: 'CONFLICT_PLAN' })}
+                                        className="w-full py-3 bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl transition-all"
+                                    >
+                                        Trigger Overlap Bug
+                                    </button>
+                                </div>
+                            </section>
+
+                            <section className="bg-white p-6 rounded-3xl shadow-sm border border-indigo-50 space-y-4">
+                                <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest">Workflow Debugger</h2>
+                                <div className="grid grid-cols-1 gap-2">
+                                    <button 
+                                        data-bug-id="site008-bug01"
+                                        onClick={() => triggerAction('/api/subscription/update', { status: 'POLLUTED', backdate: true })}
+                                        className="w-full py-2 bg-red-100 text-red-600 hover:bg-red-200 font-bold rounded-lg text-xs transition-all"
+                                    >
+                                        [BUG] Retroactive Pollution
+                                    </button>
+                                    <button 
+                                        data-bug-id="site008-bug04"
+                                        onClick={() => triggerAction('/api/state/change', { targetState: 'ACTIVE' })}
+                                        className="w-full py-2 bg-red-100 text-red-600 hover:bg-red-200 font-bold rounded-lg text-xs transition-all"
+                                    >
+                                        [BUG] Illegal State Transition
+                                    </button>
+                                    <button 
+                                        data-bug-id="site008-bug05"
+                                        onClick={checkStatus}
+                                        className="w-full py-2 bg-red-100 text-red-600 hover:bg-red-200 font-bold rounded-lg text-xs transition-all"
+                                    >
+                                        [BUG] Check State Deadlock
+                                    </button>
+                                </div>
+                            </section>
+                        </div>
+
+                        {/* Middle/Right Column: Timeline & Reservations */}
+                        <div className="lg:col-span-8 space-y-8">
+                            
+                            {/* Reservations Section */}
+                            <section className="bg-white p-8 rounded-3xl shadow-sm border border-indigo-50">
+                                <div className="flex justify-between items-center mb-8">
+                                    <h2 className="text-2xl font-extrabold text-gray-800">Reservation Calendar</h2>
+                                    <button 
+                                        onClick={() => triggerAction('/api/reservation/create')}
+                                        className="bg-gray-900 text-white px-6 py-2 rounded-xl font-bold text-sm hover:bg-black transition-all"
+                                    >
+                                        + New Reservation
+                                    </button>
+                                </div>
+
+                                {state.reservations.length === 0 ? (
+                                    <div className="py-20 text-center border-2 border-dashed border-gray-100 rounded-3xl">
+                                        <div className="text-4xl mb-4">📅</div>
+                                        <p className="text-gray-400 font-medium">No reservations scheduled.</p>
+                                    </div>
+                                ) : (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {state.reservations.map(r => (
+                                            <div key={r.id} className={`p-6 rounded-2xl border transition-all ${r.status === 'ACTIVE' ? 'bg-green-50 border-green-200' : 'bg-white border-gray-100'}`}>
+                                                <div className="flex justify-between items-start mb-4">
+                                                    <div>
+                                                        <div className="text-xs text-gray-400 font-bold mb-1 uppercase tracking-tighter">ID: {r.id.toString().slice(-6)}</div>
+                                                        <div className="font-bold text-gray-700">Scheduled Visit</div>
+                                                    </div>
+                                                    <span className={`px-2 py-1 rounded-lg text-[10px] font-black uppercase ${r.status === 'ACTIVE' ? 'bg-green-500 text-white' : 'bg-amber-100 text-amber-600'}`}>
+                                                        {r.status}
+                                                    </span>
+                                                </div>
+                                                <button 
+                                                    data-bug-id="site008-bug03"
+                                                    onClick={() => triggerAction('/api/reservation/activate', { id: r.id })}
+                                                    className={`w-full py-2 rounded-lg text-xs font-bold transition-all ${r.status === 'ACTIVE' ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-red-500 hover:bg-red-600 text-white shadow-md'}`}
+                                                >
+                                                    Activate without Payment (Bug)
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </section>
+
+                            {/* Timeline / History */}
+                            <section className="bg-white p-8 rounded-3xl shadow-sm border border-indigo-50">
+                                <h2 className="text-lg font-bold text-gray-800 mb-6">System Event Timeline</h2>
+                                <div className="space-y-6 relative before:absolute before:left-3 before:top-2 before:bottom-2 before:w-0.5 before:bg-indigo-50">
+                                    {state.history.length === 0 ? (
+                                        <p className="text-sm text-gray-400 ml-8 italic">System logs are empty.</p>
+                                    ) : (
+                                        state.history.slice().reverse().map((h, i) => (
+                                            <div key={i} className="flex gap-6 items-start relative">
+                                                <div className="w-6 h-6 bg-white border-4 border-indigo-500 rounded-full z-10"></div>
+                                                <div>
+                                                    <div className="text-xs text-gray-400 font-bold">{new Date(h.date).toLocaleTimeString()}</div>
+                                                    <div className={`font-bold ${h.event.includes('BUG') || h.event.includes('BYPASS') || h.event.includes('FORCED') ? 'text-red-500' : 'text-gray-700'}`}>
+                                                        {h.event}
+                                                    </div>
+                                                    <div className="text-xs text-gray-500">Target Status: <span className="font-mono">{h.status || 'N/A'}</span></div>
+                                                </div>
+                                            </div>
+                                        ))
+                                    )}
+                                </div>
+                            </section>
+                        </div>
+                    </main>
+
+                    {/* Notification Toast */}
+                    {notification && (
+                        <div className={`fixed bottom-8 right-8 px-8 py-5 rounded-3xl shadow-2xl z-50 transform transition-all duration-500 scale-100 ${notification.isError ? 'bg-red-600 text-white' : 'bg-indigo-900 text-white'}`}>
+                            <div className="flex flex-col">
+                                <div className="flex items-center gap-3 mb-1">
+                                    <div className="w-2 h-2 rounded-full bg-white animate-ping"></div>
+                                    <span className="font-black tracking-tight">{notification.msg}</span>
+                                </div>
+                                {notification.bugId && <div className="text-[10px] font-mono opacity-60">Vulnerability ID: {notification.bugId}</div>}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
+

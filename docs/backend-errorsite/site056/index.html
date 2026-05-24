@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitnessTrack | 당신의 활동을 기록하세요</title>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #fff; }
+        .font-sport { font-family: 'Bebas Neue', cursive; }
+        .dash-card { background: #141414; border: 1px solid #222; border-radius: 1.5rem; transition: all 0.3s; }
+        .dash-card:hover { border-color: #dfff00; box-shadow: 0 0 20px rgba(223, 255, 0, 0.1); }
+        .accent-color { color: #dfff00; }
+        .accent-bg { background: #dfff00; color: #000; }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+    <div id="root"></div>  <script src="./pages-mock-api.js"></script>
+
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [summary, setSummary] = useState(null);
+            const [loading, setLoading] = useState(false);
+            const [error, setError] = useState(null);
+
+            const fetchSummary = async () => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const res = await fetch('/api/fitness/summary');
+                    const json = await res.json();
+                    setSummary(json);
+                } catch (err) {
+                    setError({ message: "데이터 동기화 실패" });
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const triggerReportBug = async () => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const res = await fetch('/api/fitness/report?type=monthly');
+                    const json = await res.json();
+                    if (!res.ok) throw { message: json.message, bugId: json.bugId };
+                } catch (err) {
+                    setError(err);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const triggerGoalBug = async () => {
+                setLoading(true);
+                setError(null);
+                try {
+                    const res = await fetch('/api/fitness/goals/newbie');
+                    const json = await res.json();
+                    if (!res.ok) throw { message: json.message, bugId: json.bugId };
+                } catch (err) {
+                    setError(err);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            useEffect(() => {
+                fetchSummary();
+            }, []);
+
+            return (
+                <div className="max-w-6xl mx-auto">
+                    <header className="flex justify-between items-center mb-16">
+                        <h1 className="font-sport text-5xl tracking-widest accent-color italic">FITNESSTRACK</h1>
+                        <div className="flex gap-4">
+                            <button 
+                                onClick={triggerReportBug}
+                                className="bg-zinc-800 text-xs font-black px-6 py-3 rounded-xl hover:bg-zinc-700 transition-all"
+                                data-bug-id="site056-bug02"
+                            >
+                                MONTHLY REPORT
+                            </button>
+                            <button 
+                                onClick={triggerGoalBug}
+                                className="accent-bg text-xs font-black px-6 py-3 rounded-xl hover:opacity-80 transition-all"
+                                data-bug-id="site056-bug03"
+                            >
+                                SET GOALS
+                            </button>
+                        </div>
+                    </header>
+
+                    {error && (
+                        <div className="mb-12 p-6 bg-rose-500/10 border border-rose-500/50 rounded-2xl flex items-center justify-between" data-bug-id={error.bugId}>
+                            <div className="flex items-center gap-4">
+                                <span className="text-2xl">🔥</span>
+                                <div>
+                                    <p className="font-black accent-color uppercase text-sm italic">System Error Detected</p>
+                                    <p className="text-zinc-500 text-xs font-bold">{error.message} (ID: {error.bugId})</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                        <div className="dash-card p-10 flex flex-col items-center justify-center text-center" data-bug-id="site056-bug01">
+                            <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.2em] mb-4">Total Burned</p>
+                            <h2 className="font-sport text-7xl accent-color leading-none">
+                                {summary ? summary.totalCalories : "0"}
+                            </h2>
+                            <p className="text-zinc-700 text-xs font-bold mt-2 italic uppercase tracking-widest">Calories</p>
+                        </div>
+                        <div className="dash-card p-10 flex flex-col items-center justify-center text-center">
+                            <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.2em] mb-4">Activity Count</p>
+                            <h2 className="font-sport text-7xl leading-none">03</h2>
+                            <p className="text-zinc-700 text-xs font-bold mt-2 italic uppercase tracking-widest">Sessions</p>
+                        </div>
+                        <div className="dash-card p-10 flex flex-col items-center justify-center text-center">
+                            <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.2em] mb-4">Streak</p>
+                            <h2 className="font-sport text-7xl text-emerald-400 leading-none">12</h2>
+                            <p className="text-zinc-700 text-xs font-bold mt-2 italic uppercase tracking-widest">Days</p>
+                        </div>
+                    </div>
+
+                    <div className="dash-card overflow-hidden">
+                        <table className="w-full text-left">
+                            <thead className="bg-zinc-900/50 text-zinc-500 text-[10px] font-black uppercase tracking-widest">
+                                <tr>
+                                    <th className="p-6">Activity</th>
+                                    <th className="p-6">Duration</th>
+                                    <th className="p-6">Calories</th>
+                                    <th className="p-6">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-zinc-800/50">
+                                {summary && summary.data.map(a => (
+                                    <tr key={a.id} className="hover:bg-zinc-800/20 transition-colors">
+                                        <td className="p-6 font-bold">{a.type}</td>
+                                        <td className="p-6 text-zinc-400 font-mono">{a.duration} MIN</td>
+                                        <td className="p-6 text-emerald-400 font-black">{a.calories} KCAL</td>
+                                        <td className="p-6 text-zinc-600 text-xs">{a.date}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <footer className="mt-32 pt-12 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6">
+                        <p className="text-zinc-800 text-[10px] font-black uppercase tracking-[0.3em]">© 2026 FitnessTrack Pro Systems | SITE056</p>
+                        <div className="flex gap-8 text-[10px] font-black text-zinc-700 uppercase">
+                            <a href="#" className="hover:accent-color">Hardware</a>
+                            <a href="#" className="hover:accent-color">Privacy</a>
+                            <a href="#" className="hover:accent-color">Support</a>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
+

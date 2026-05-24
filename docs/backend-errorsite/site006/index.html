@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reward Point Shop - site006</title>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #fffaf0; }
+        .orange-gradient { background: linear-gradient(135deg, #ff9d00 0%, #ff6200 100%); }
+    </style>
+</head>
+<body>
+    <div id="root"></div>  <script src="./pages-mock-api.js"></script>
+
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const App = () => {
+            const [products, setProducts] = useState([]);
+            const [history, setHistory] = useState([]);
+            const [points, setPoints] = useState(0);
+            const [loading, setLoading] = useState(true);
+            const [error, setError] = useState(null);
+            const [notification, setNotification] = useState(null);
+
+            useEffect(() => {
+                fetchData();
+            }, []);
+
+            const fetchData = async () => {
+                try {
+                    const [prodRes, histRes] = await Promise.all([
+                        fetch('/api/product/list'),
+                        fetch('/api/point/history')
+                    ]);
+                    const prodData = await prodRes.json();
+                    const histData = await histRes.json();
+                    
+                    if (prodData.ok) setProducts(prodData.data);
+                    if (histData.ok) {
+                        setHistory(histData.data);
+                        setPoints(histData.currentPoints);
+                    }
+                } catch (err) {
+                    setError("Failed to fetch data");
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const notify = (msg, isError = false) => {
+                setNotification({ msg, isError });
+                setTimeout(() => setNotification(null), 3000);
+            };
+
+            const buyProduct = async (productId, typeOverride = null) => {
+                const product = products.find(p => p.id === productId);
+                const type = typeOverride || product.type;
+                
+                try {
+                    const res = await fetch('/api/product/buy', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ productId, type })
+                    });
+                    const data = await res.json();
+                    if (data.ok) {
+                        setPoints(data.points);
+                        fetchData();
+                        if (data.bugId) notify(`Bug Triggered: ${data.bugId} - ${data.message}`, true);
+                        else notify("Purchase successful!");
+                    } else {
+                        notify(data.error, true);
+                    }
+                } catch (err) {
+                    notify("Request failed", true);
+                }
+            };
+
+            const earnPoints = async (amount) => {
+                try {
+                    const res = await fetch('/api/point/earn', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ amount })
+                    });
+                    const data = await res.json();
+                    if (data.ok) {
+                        setPoints(data.points);
+                        fetchData();
+                        if (data.bugId) notify(`Precision Bug Triggered: ${data.bugId}`, true);
+                    }
+                } catch (err) {
+                    notify("Request failed", true);
+                }
+            };
+
+            const usePoints = async (amount = null) => {
+                try {
+                    const body = amount === null ? {} : { amount };
+                    const res = await fetch('/api/point/use', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body)
+                    });
+                    const data = await res.json();
+                    if (data.ok) {
+                        setPoints(data.points);
+                        fetchData();
+                        if (data.bugId) notify(`Implicit Default Bug Triggered: ${data.bugId}`, true);
+                        else notify(`Used ${amount} points`);
+                    } else {
+                        notify(data.error, true);
+                    }
+                } catch (err) {
+                    notify("Request failed", true);
+                }
+            };
+
+            if (loading) return <div className="flex items-center justify-center h-screen">Loading Reward Shop...</div>;
+
+            return (
+                <div className="min-h-screen pb-20">
+                    {/* Header */}
+                    <header className="orange-gradient text-white p-6 shadow-lg">
+                        <div className="max-w-6xl mx-auto flex justify-between items-center">
+                            <h1 className="text-3xl font-extrabold tracking-tight">REWARD POINT SHOP</h1>
+                            <div className="bg-white/20 px-4 py-2 rounded-full backdrop-blur-md border border-white/30">
+                                <span className="font-bold">ID: site006</span>
+                            </div>
+                        </div>
+                    </header>
+
+                    <main className="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {/* Left: Product List */}
+                        <div className="md:col-span-2 space-y-6">
+                            <h2 className="text-2xl font-bold text-gray-800 border-b-2 border-orange-500 pb-2">Available Products</h2>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {products.map(p => (
+                                    <div key={p.id} className="bg-white rounded-2xl shadow-md p-5 border border-orange-100 hover:shadow-xl transition-shadow">
+                                        <div className="flex justify-between items-start mb-4">
+                                            <span className={`text-xs font-bold uppercase px-2 py-1 rounded ${p.type === 'physical' ? 'bg-blue-100 text-blue-600' : 'bg-purple-100 text-purple-600'}`}>
+                                                {p.type}
+                                            </span>
+                                            <span className="text-orange-600 font-bold">${p.price}</span>
+                                        </div>
+                                        <h3 className="text-lg font-bold text-gray-900 mb-2">{p.name}</h3>
+                                        <p className="text-sm text-gray-500 mb-4">Earn {p.pointsEarn} points on purchase</p>
+                                        <div className="flex gap-2">
+                                            <button 
+                                                onClick={() => buyProduct(p.id)}
+                                                className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-xl transition-colors"
+                                            >
+                                                Buy
+                                            </button>
+                                            {p.id === 1 && (
+                                                <button 
+                                                    data-bug-id="site006-bug02"
+                                                    onClick={() => buyProduct(p.id, 'digital')}
+                                                    className="bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-2 px-3 rounded-xl transition-colors text-xs"
+                                                >
+                                                    Digital Mode (Bug)
+                                                </button>
+                                            )}
+                                            {p.id === 9999 && (
+                                                <button 
+                                                    data-bug-id="site006-bug03"
+                                                    onClick={() => buyProduct(p.id)}
+                                                    className="bg-red-100 hover:bg-red-200 text-red-600 font-bold py-2 px-3 rounded-xl transition-colors text-xs"
+                                                >
+                                                    Magic Buy
+                                                </button>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Right: Points & History */}
+                        <div className="space-y-6">
+                            <div className="bg-white rounded-3xl shadow-xl p-8 border-4 border-orange-500 relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full -mr-16 -mt-16"></div>
+                                <h2 className="text-gray-500 font-bold uppercase tracking-widest text-xs mb-2">Current Balance</h2>
+                                <div className="text-5xl font-black text-orange-600 mb-6">
+                                    {points} <span className="text-sm">pts</span>
+                                </div>
+                                <div className="grid grid-cols-2 gap-2">
+                                    <button 
+                                        data-bug-id="site006-bug01"
+                                        onClick={() => earnPoints(0.1)}
+                                        className="bg-orange-50 hover:bg-orange-100 text-orange-600 font-bold py-3 rounded-2xl border border-orange-200 transition-colors"
+                                    >
+                                        Earn 0.1
+                                    </button>
+                                    <button 
+                                        data-bug-id="site006-bug04"
+                                        onClick={() => usePoints(null)}
+                                        className="bg-gray-900 hover:bg-black text-white font-bold py-3 rounded-2xl transition-colors"
+                                    >
+                                        Use All
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="bg-white rounded-2xl shadow-md p-6 border border-orange-100">
+                                <h3 className="text-lg font-bold text-gray-800 mb-4 flex justify-between">
+                                    Recent Activity
+                                    <button onClick={fetchData} className="text-xs text-orange-500 hover:underline">Refresh</button>
+                                </h3>
+                                <div className="space-y-3 max-h-96 overflow-y-auto">
+                                    {history.length === 0 ? (
+                                        <p className="text-gray-400 text-sm text-center py-4">No activity yet</p>
+                                    ) : (
+                                        history.slice().reverse().map((h, i) => (
+                                            <div key={i} className="flex justify-between items-center text-sm p-3 bg-gray-50 rounded-xl">
+                                                <div>
+                                                    <div className="font-bold text-gray-700">{h.action}</div>
+                                                    <div className="text-xs text-gray-400">{new Date(h.date).toLocaleTimeString()}</div>
+                                                </div>
+                                                <div className={`font-bold ${h.action.includes('USE') ? 'text-red-500' : 'text-green-500'}`}>
+                                                    {h.action.includes('USE') ? '-' : '+'}{h.points}
+                                                </div>
+                                            </div>
+                                        ))
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+
+                    {/* Notification Toast */}
+                    {notification && (
+                        <div className={`fixed bottom-8 right-8 px-6 py-4 rounded-2xl shadow-2xl z-50 animate-bounce ${notification.isError ? 'bg-red-600 text-white' : 'bg-green-600 text-white'}`}>
+                            {notification.msg}
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
+

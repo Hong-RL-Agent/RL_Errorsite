@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI DocAnalyzer - site011</title>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  <script src="./pages-mock-api.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@500&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0d0d12; 
+            color: #e0e0e6;
+            margin: 0;
+        }
+
+        .ai-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .log-panel {
+            background: #050508;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #10b981;
+            padding: 15px;
+            font-size: 12px;
+            height: 200px;
+            overflow-y: auto;
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, #1f1f2e 25%, #2a2a3d 50%, #1f1f2e 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>  <script src="./pages-mock-api.js"></script>
+
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        const App = () => {
+            const [query, setQuery] = useState("");
+            const [answer, setAnswer] = useState(null);
+            const [logs, setLogs] = useState([]);
+            const [loading, setLoading] = useState(false);
+            const [memory, setMemory] = useState({ usage: 256.4, rate: 0 });
+            const [docs, setDocs] = useState([]);
+            const [stats, setStats] = useState(null);
+            const logEndRef = useRef(null);
+
+            const addLog = (msg) => {
+                setLogs(prev => [...prev, `[${new Date().toLocaleTimeString()}] ${msg}`]);
+            };
+
+            useEffect(() => {
+                logEndRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, [logs]);
+
+            const handleSearch = async (isBug = false) => {
+                if (!query && !isBug) return;
+                setLoading(true);
+                addLog(`Initiating RAG query: "${query || 'Truncation Test'}"...`);
+                
+                try {
+                    const res = await fetch('/api/rag/query', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ query: query || "Test", longContext: isBug })
+                    });
+                    const data = await res.json();
+                    setAnswer(data);
+                    if (data.bugId) addLog(`ALERT: Backend Anomaly Detected - ${data.bugId}`);
+                    else addLog("Answer generated successfully.");
+                } catch (e) {
+                    addLog("ERROR: Connection failed.");
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const triggerBug = async (bugId) => {
+                let url = "";
+                if (bugId === 'site011-bug02') url = '/api/docs/mixed-types';
+                else if (bugId === 'site011-bug03') url = '/api/stats/large-number';
+                else if (bugId === 'site011-bug04') url = '/api/system/gc?pause=true';
+                else if (bugId === 'site011-bug05') url = '/api/system/memory?leak=true';
+
+                setLoading(true);
+                addLog(`Triggering test: ${bugId}...`);
+                try {
+                    const res = await fetch(url);
+                    const data = await res.json();
+                    if (bugId === 'site011-bug02') setDocs(data.data);
+                    if (bugId === 'site011-bug03') setStats(data);
+                    if (bugId === 'site011-bug05') setMemory({ usage: data.usageMB, rate: data.leakRate });
+                    
+                    addLog(`Received response: ${data.bugId ? 'INCONSISTENT' : 'SUCCESS'}`);
+                    if (data.bugId) addLog(`BUG_ID: ${data.bugId}`);
+                } catch (e) {
+                    addLog("ERROR: Test request failed.");
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            return (
+                <div className="min-h-screen p-8 max-w-6xl mx-auto">
+                    {/* Header */}
+                    <header className="flex justify-between items-center mb-12">
+                        <div className="flex items-center gap-4">
+                            <div className="w-10 h-10 ai-gradient rounded-xl flex items-center justify-center font-bold text-white">AI</div>
+                            <h1 className="text-2xl font-bold tracking-tight">DocAnalyzer <span className="text-xs font-normal opacity-50">site011</span></h1>
+                        </div>
+                        <div className="flex gap-4">
+                            <button onClick={() => fetch('/api/test/reset', {method:'POST'}).then(()=>window.location.reload())} className="text-xs opacity-40 hover:opacity-100 transition-opacity uppercase font-bold">System Reset</button>
+                        </div>
+                    </header>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        {/* Main Analysis Area */}
+                        <div className="lg:col-span-8 space-y-8">
+                            {/* Search Box */}
+                            <div className="glass-card p-6 flex gap-4">
+                                <input 
+                                    type="text" 
+                                    value={query}
+                                    onChange={(e) => setQuery(e.target.value)}
+                                    placeholder="Ask anything about your documents..."
+                                    className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 focus:outline-none focus:border-blue-500 transition-colors"
+                                />
+                                <button 
+                                    onClick={() => handleSearch(false)}
+                                    className="ai-gradient px-6 py-3 rounded-xl font-bold hover:opacity-90 transition-opacity"
+                                >
+                                    Query AI
+                                </button>
+                            </div>
+
+                            {/* Answer Panel */}
+                            <div className="glass-card p-8 min-h-[300px] relative overflow-hidden">
+                                <h3 className="text-sm font-bold opacity-40 uppercase mb-6 tracking-widest">AI Response</h3>
+                                {loading ? (
+                                    <div className="space-y-4">
+                                        <div className="h-4 w-3/4 skeleton rounded"></div>
+                                        <div className="h-4 w-1/2 skeleton rounded"></div>
+                                        <div className="h-4 w-5/6 skeleton rounded"></div>
+                                    </div>
+                                ) : answer ? (
+                                    <div className="space-y-4">
+                                        <p className="text-lg leading-relaxed">{answer.answer}</p>
+                                        <div className="flex items-center gap-2 mt-8">
+                                            <span className="text-xs bg-white/10 px-2 py-1 rounded">Source: {answer.source}</span>
+                                            {answer.bugId && <span className="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded border border-red-500/30">Anomaly: {answer.bugId}</span>}
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col items-center justify-center h-48 opacity-20 italic">
+                                        <div className="text-4xl mb-4">🧠</div>
+                                        Ready for document analysis
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Stats/Mixed Data Panel */}
+                            <div className="grid grid-cols-2 gap-8">
+                                <div className="glass-card p-6">
+                                    <h4 className="text-xs font-bold opacity-40 uppercase mb-4">Precision Analysis</h4>
+                                    {stats ? (
+                                        <div className="mono space-y-2 text-sm">
+                                            <div className="text-gray-500">Origin: {stats.originalString}</div>
+                                            <div className={stats.bugId ? "text-red-400" : "text-green-400"}>Result: {stats.processedValue}</div>
+                                        </div>
+                                    ) : <div className="text-xs opacity-20">No data processed</div>}
+                                </div>
+                                <div className="glass-card p-6">
+                                    <h4 className="text-xs font-bold opacity-40 uppercase mb-4">Mapped Documents</h4>
+                                    <div className="space-y-2">
+                                        {docs.map(d => (
+                                            <div key={d.id} className="text-xs flex justify-between border-b border-white/5 pb-1">
+                                                <span>{d.title}</span>
+                                                <span className="opacity-50">{d.extra ? `${d.extra.pages} p` : 'null'}</span>
+                                            </div>
+                                        ))}
+                                        {docs.length === 0 && <div className="text-xs opacity-20">Empty registry</div>}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Sidebar: System Controls */}
+                        <div className="lg:col-span-4 space-y-8">
+                            {/* System Status Log */}
+                            <div className="glass-card overflow-hidden">
+                                <div className="p-4 border-b border-white/5 flex justify-between">
+                                    <h3 className="text-xs font-bold opacity-60">SYSTEM LOGS</h3>
+                                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                </div>
+                                <div className="log-panel mono">
+                                    {logs.map((log, i) => <div key={i} className="mb-1">{log}</div>)}
+                                    <div ref={logEndRef}></div>
+                                </div>
+                            </div>
+
+                            {/* Memory Monitor */}
+                            <div className="glass-card p-6">
+                                <h4 className="text-xs font-bold opacity-40 uppercase mb-4">Resource Monitor</h4>
+                                <div className="flex justify-between items-end">
+                                    <div>
+                                        <div className="text-2xl font-bold mono">{memory.usage.toFixed(2)} MB</div>
+                                        <div className="text-xs opacity-40">Allocated Off-heap</div>
+                                    </div>
+                                    <div className={`text-xs mono ${memory.rate > 0 ? 'text-red-400' : 'text-green-400'}`}>
+                                        +{memory.rate.toFixed(1)} KB/s
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Bug Trigger Grid */}
+                            <div className="grid grid-cols-1 gap-2">
+                                <button 
+                                    data-bug-id="site011-bug01"
+                                    onClick={() => handleSearch(true)}
+                                    className="text-left p-4 rounded-xl border border-red-500/20 hover:bg-red-500/10 transition-colors text-xs font-bold text-red-400"
+                                >
+                                    ⚠️ Context Truncation Bug
+                                </button>
+                                <button 
+                                    data-bug-id="site011-bug02"
+                                    onClick={() => triggerBug('site011-bug02')}
+                                    className="text-left p-4 rounded-xl border border-red-500/20 hover:bg-red-500/10 transition-colors text-xs font-bold text-red-400"
+                                >
+                                    ⚠️ Polymorphic Mapping Error
+                                </button>
+                                <button 
+                                    data-bug-id="site011-bug03"
+                                    onClick={() => triggerBug('site011-bug03')}
+                                    className="text-left p-4 rounded-xl border border-red-500/20 hover:bg-red-500/10 transition-colors text-xs font-bold text-red-400"
+                                >
+                                    ⚠️ JSON Precision Loss
+                                </button>
+                                <button 
+                                    data-bug-id="site011-bug04"
+                                    onClick={() => triggerBug('site011-bug04')}
+                                    className="text-left p-4 rounded-xl border border-red-500/20 hover:bg-red-500/10 transition-colors text-xs font-bold text-red-400"
+                                >
+                                    ⚠️ GC Stop-the-World Delay
+                                </button>
+                                <button 
+                                    data-bug-id="site011-bug05"
+                                    onClick={() => triggerBug('site011-bug05')}
+                                    className="text-left p-4 rounded-xl border border-red-500/20 hover:bg-red-500/10 transition-colors text-xs font-bold text-red-400"
+                                >
+                                    ⚠️ Off-heap Memory Leak
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
+
