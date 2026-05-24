@@ -1,0 +1,97 @@
+:root {
+  --purple: #6D28D9;
+  --purple-dark: #4C1D95;
+  --yellow: #FACC15;
+  --yellow-dark: #CA8A04;
+  --black: #0F172A;
+  --grey: #1E293B;
+  --white: #F8FAFC;
+  --text-muted: #94A3B8;
+  --neon: #C084FC;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans KR', 'Rajdhani', sans-serif;
+  background-color: var(--black);
+  color: var(--white);
+  line-height: 1.6;
+}
+
+.navbar {
+  background: rgba(15, 23, 42, 0.9); padding: 1.2rem 4rem; border-bottom: 4px solid var(--purple);
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);
+}
+
+.logo { font-family: 'Press Start 2P', cursive; font-size: 1.2rem; letter-spacing: -1px; }
+.text-yellow { color: var(--yellow); }
+
+.nav-links button {
+  background: none; border: none; font-weight: 700; cursor: pointer; color: var(--text-muted);
+  margin-left: 2.5rem; font-size: 1.1rem; text-transform: uppercase; transition: all 0.3s;
+  font-family: 'Rajdhani', sans-serif;
+}
+.nav-links button.active { color: var(--yellow); text-shadow: 0 0 10px var(--yellow); }
+
+.btn-retro {
+  background: var(--purple); color: white; border: none; padding: 8px 20px;
+  font-family: 'Press Start 2P', cursive; font-size: 0.6rem; cursor: pointer;
+  box-shadow: 4px 4px 0px var(--yellow); transition: all 0.1s;
+}
+.btn-retro:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0px var(--yellow); }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+
+.hero { margin-bottom: 4rem; text-align: center; }
+.hero h1 { font-family: 'Rajdhani', sans-serif; font-size: 5rem; line-height: 1; letter-spacing: 5px; color: var(--white); text-shadow: 3px 3px 0px var(--purple); }
+.hero p { font-size: 1.2rem; color: var(--text-muted); margin-top: 15px; font-weight: 300; }
+
+.toolbar { display: flex; justify-content: space-between; align-items: center; background: var(--grey); padding: 20px; border: 2px solid var(--purple); }
+.search-box input {
+  width: 320px; background: var(--black); border: 2px solid var(--purple-dark); padding: 12px 20px;
+  color: white; outline: none; font-family: inherit;
+}
+
+.form-select { padding: 10px 15px; background: var(--black); color: white; border: 2px solid var(--purple-dark); cursor: pointer; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+
+.game-card {
+  background: var(--grey); border: 2px solid var(--grey); overflow: hidden;
+  transition: all 0.3s; cursor: pointer; position: relative;
+}
+.game-card:hover { border-color: var(--yellow); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(250, 204, 21, 0.1); }
+
+.card-img { width: 100%; height: 180px; background: #334155; display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+
+.card-body { padding: 1.5rem; }
+.card-body h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 5px; }
+.card-body .genre { font-size: 0.75rem; color: var(--yellow); font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; display: block; }
+.card-body .rating { font-size: 1.1rem; color: var(--white); font-weight: 700; }
+
+.btn-yellow {
+  background: var(--yellow); color: var(--black); border: none; padding: 16px;
+  font-family: 'Rajdhani', sans-serif; font-weight: 800; font-size: 1.2rem; cursor: pointer;
+  text-transform: uppercase; letter-spacing: 1px; transition: background 0.2s;
+}
+.btn-yellow:hover { background: var(--white); }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); }
+.modal-content { background: var(--grey); margin: 6% auto; padding: 4rem; border: 3px solid var(--purple); width: 600px; position: relative; box-shadow: 0 0 50px rgba(109, 40, 217, 0.3); }
+.close { position: absolute; right: 30px; top: 30px; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--yellow);
+  color: var(--black); padding: 12px 40px; font-weight: 800; opacity: 0; transition: all 0.3s; z-index: 3000; font-family: 'Rajdhani', sans-serif;
+}
+.toast.show { opacity: 1; bottom: 50px; }
+
+.mt-5 { margin-top: 3rem; }
+.mt-4 { margin-top: 2rem; }
+.mb-4 { margin-bottom: 2rem; }
+.w-full { width: 100%; }
+.text-yellow { color: var(--yellow); }
+.text-muted { color: var(--text-muted); }

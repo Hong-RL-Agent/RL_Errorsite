@@ -1,0 +1,95 @@
+:root {
+  --wood: #4A3728;
+  --wood-light: #F5F1EE;
+  --green: #2C4A3E;
+  --green-light: #E8EEEB;
+  --white: #FFFFFF;
+  --text: #333333;
+  --text-muted: #888888;
+  --border: #DCD0C0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: var(--wood-light);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.navbar {
+  background: var(--white); padding: 1.2rem 4rem; border-bottom: 3px solid var(--wood);
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 1000;
+}
+
+.logo { font-family: 'Crimson Pro', serif; font-size: 1.8rem; font-weight: 700; letter-spacing: 1px; }
+.text-green { color: var(--green); }
+
+.nav-links button {
+  background: none; border: none; font-weight: 700; cursor: pointer; color: var(--text-muted);
+  margin-left: 3rem; font-size: 0.95rem; transition: color 0.3s;
+}
+.nav-links button.active { color: var(--wood); border-bottom: 3px solid var(--wood); padding-bottom: 5px; }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+
+.hero { margin-bottom: 4rem; }
+.hero h1 { font-family: 'Crimson Pro', serif; font-size: 3.8rem; line-height: 1; color: var(--wood); }
+.hero p { font-size: 1.1rem; color: var(--text-muted); margin-top: 10px; max-width: 600px; }
+
+.toolbar { display: flex; justify-content: flex-end; align-items: center; }
+.legend { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; margin-left: 15px; }
+.dot.available { background: var(--green); }
+.dot.occupied { background: #CCC; }
+
+.seat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 600px; margin: 0 auto; }
+.seat-card {
+  background: white; border: 1px solid var(--border); padding: 2.5rem 1.5rem; border-radius: 12px;
+  text-align: center; cursor: pointer; transition: all 0.3s;
+}
+.seat-card:hover:not(.occupied) { border-color: var(--wood); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(74, 55, 40, 0.1); }
+.seat-card.occupied { background: #F0F0F0; cursor: not-allowed; opacity: 0.6; }
+.seat-card.selected { background: var(--green); color: white; border-color: var(--green); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+.pass-card {
+  background: white; padding: 3rem 2rem; border-radius: 16px; border: 1px solid var(--border);
+  text-align: center; position: relative; overflow: hidden;
+}
+.pass-card.premium { border: 2px solid var(--green); box-shadow: 0 15px 40px rgba(44, 74, 62, 0.1); }
+.pass-card .badge { position: absolute; top: 20px; right: -30px; background: var(--green); color: white; padding: 5px 40px; transform: rotate(45deg); font-size: 0.7rem; font-weight: 800; }
+.pass-card h3 { font-size: 1.6rem; color: var(--wood); }
+.pass-card .price { font-size: 1.4rem; font-weight: 800; color: var(--green); margin-top: 10px; }
+
+.list-wrapper { background: white; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+.list-item { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+
+.btn-green {
+  background: var(--green); color: white; border: none; padding: 14px 28px;
+  border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.95rem; transition: background 0.2s;
+}
+.btn-green:hover { background: #1e332a; }
+
+.form-select { padding: 12px; border-radius: 8px; border: 1px solid var(--border); font-family: inherit; font-size: 0.95rem; }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); }
+.modal-content { background: white; margin: 8% auto; padding: 4rem; border-radius: 20px; width: 550px; position: relative; }
+.close, .close-detail { position: absolute; right: 30px; top: 30px; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--wood);
+  color: white; padding: 12px 40px; border-radius: 50px; font-weight: 600; opacity: 0; transition: all 0.3s; z-index: 3000;
+}
+.toast.show { opacity: 1; bottom: 50px; }
+
+.mt-5 { margin-top: 3rem; }
+.mt-4 { margin-top: 2rem; }
+.mt-3 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+.w-full { width: 100%; }
+.d-block { display: block; }

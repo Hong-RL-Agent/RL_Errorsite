@@ -1,0 +1,93 @@
+:root {
+  --green: #2E7D32;
+  --green-light: #E8F5E9;
+  --grey: #F5F5F5;
+  --white: #FFFFFF;
+  --text-main: #333333;
+  --text-muted: #666666;
+  --border: #E0E0E0;
+  --shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Pretendard', sans-serif;
+  background-color: #FAFAFA;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.navbar {
+  background: white; padding: 0 4rem; height: 80px; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 1000;
+}
+
+.logo { font-family: 'Work Sans', sans-serif; font-weight: 800; font-size: 1.4rem; letter-spacing: -0.5px; }
+.text-green { color: var(--green); }
+
+.nav-links button {
+  background: none; border: none; font-weight: 600; cursor: pointer; color: var(--text-muted);
+  margin-left: 3rem; font-size: 0.95rem; transition: color 0.2s;
+}
+.nav-links button.active { color: var(--green); border-bottom: 2px solid var(--green); padding-bottom: 5px; }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+
+.hero { margin-bottom: 4rem; }
+.hero h1 { font-family: 'Work Sans', sans-serif; font-size: 3rem; font-weight: 800; line-height: 1.1; color: var(--green); }
+.hero p { font-size: 1.1rem; color: var(--text-muted); margin-top: 15px; max-width: 600px; }
+
+.toolbar { display: flex; justify-content: space-between; align-items: center; background: white; padding: 1.2rem; border-radius: 8px; box-shadow: var(--shadow); }
+.search-box input {
+  width: 350px; padding: 10px 15px; border-radius: 4px; border: 1px solid var(--border);
+  outline: none; font-family: inherit; font-size: 0.9rem;
+}
+.form-select { padding: 10px; border-radius: 4px; border: 1px solid var(--border); background: white; cursor: pointer; }
+
+.list-wrapper { background: white; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; }
+.list-item { padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; cursor: pointer; }
+.list-item:hover { background: var(--grey); }
+.list-item:last-child { border-bottom: none; }
+
+.item-meta { font-size: 0.8rem; color: var(--text-muted); }
+.status-badge { font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 50px; }
+.status-badge.pending { background: #FFF3E0; color: #E65100; }
+.status-badge.resolved { background: var(--green-light); color: var(--green); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.faq-card { background: white; padding: 2rem; border-radius: 8px; border: 1px solid var(--border); }
+.faq-card h4 { color: var(--green); margin-bottom: 10px; }
+
+.btn-green {
+  background: var(--green); color: white; border: none; padding: 16px;
+  border-radius: 4px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: background 0.2s;
+}
+.btn-green:hover { background: #235A26; }
+
+.btn-outline {
+  background: white; color: var(--green); border: 1.5px solid var(--green); padding: 12px;
+  border-radius: 4px; font-weight: 700; cursor: pointer;
+}
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); backdrop-filter: blur(5px); }
+.modal-content { background: white; margin: 8% auto; padding: 4rem; border-radius: 12px; width: 600px; position: relative; }
+.close { position: absolute; right: 30px; top: 30px; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+
+.form-group label { display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; }
+.form-input { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px; font-family: inherit; outline: none; }
+textarea.form-input { min-height: 120px; resize: vertical; }
+
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--text-main);
+  color: white; padding: 12px 40px; border-radius: 4px; font-weight: 700; opacity: 0; transition: all 0.3s; z-index: 3000;
+}
+.toast.show { opacity: 1; bottom: 50px; }
+
+.mt-5 { margin-top: 3rem; }
+.mt-4 { margin-top: 2rem; }
+.mt-3 { margin-top: 1rem; }
+.mb-4 { margin-bottom: 2rem; }
+.w-full { width: 100%; }

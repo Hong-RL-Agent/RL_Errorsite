@@ -1,0 +1,87 @@
+:root {
+  --green: #4CAF50;
+  --green-dark: #388E3C;
+  --green-light: #E8F5E9;
+  --brown: #795548;
+  --white: #FFFFFF;
+  --bg: #FDFDFD;
+  --text-main: #3E2723;
+  --text-muted: #8D6E63;
+  --border: #D7CCC8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: var(--bg);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.navbar {
+  background: white; padding: 0 4rem; height: 80px; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 1000;
+}
+
+.logo { font-family: 'Gaegu', cursive; font-weight: 700; font-size: 1.8rem; letter-spacing: -0.5px; }
+.text-green { color: var(--green); }
+
+.nav-links button {
+  background: none; border: none; font-weight: 600; cursor: pointer; color: var(--text-muted);
+  margin-left: 3rem; font-size: 1rem; transition: color 0.2s;
+}
+.nav-links button.active { color: var(--green); border-bottom: 3px solid var(--green); padding-bottom: 5px; }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+
+.hero { margin-bottom: 4rem; text-align: center; }
+.hero h1 { font-family: 'Gaegu', cursive; font-size: 3.5rem; font-weight: 700; color: var(--green-dark); }
+.hero p { font-size: 1.2rem; color: var(--text-muted); margin-top: 10px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+
+.plant-card {
+  background: white; border-radius: 24px; padding: 2rem; text-align: center; border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;
+}
+.plant-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-color: var(--green); }
+
+.plant-icon { font-size: 4rem; margin-bottom: 1rem; display: block; }
+.streak-badge { font-size: 0.8rem; font-weight: 700; color: var(--brown); background: var(--border); padding: 4px 12px; border-radius: 50px; display: inline-block; margin-top: 10px; }
+
+.list-wrapper { background: white; border-radius: 20px; border: 1px solid var(--border); overflow: hidden; }
+.list-item { padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+.list-item:hover { background: var(--green-light); }
+.list-item:last-child { border-bottom: none; }
+
+.btn-green {
+  background: var(--green); color: white; border: none; padding: 16px;
+  border-radius: 12px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: background 0.2s;
+}
+.btn-green:hover { background: var(--green-dark); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+.stats-card { background: white; padding: 2rem; border-radius: 20px; border: 1px solid var(--border); text-align: center; }
+.stats-num { font-size: 2.5rem; font-weight: 800; color: var(--green); display: block; }
+
+.badge-grid { display: flex; flex-wrap: wrap; gap: 15px; }
+.badge { width: 100px; height: 100px; background: var(--grey); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 2px dashed var(--border); }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(62, 39, 35, 0.2); backdrop-filter: blur(8px); }
+.modal-content { background: white; margin: 10% auto; padding: 4rem; border-radius: 30px; width: 550px; position: relative; }
+.close { position: absolute; right: 30px; top: 30px; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--text-main);
+  color: white; padding: 12px 40px; border-radius: 12px; font-weight: 700; opacity: 0; transition: all 0.3s; z-index: 3000;
+}
+.toast.show { opacity: 1; bottom: 50px; }
+
+.mt-5 { margin-top: 3rem; }
+.mt-4 { margin-top: 2rem; }
+.mt-3 { margin-top: 1rem; }
+.mb-4 { margin-bottom: 2rem; }
+.w-full { width: 100%; }
