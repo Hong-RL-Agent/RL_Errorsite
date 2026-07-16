@@ -1,0 +1,35 @@
+{
+  "papers": [
+    { "id": "PP-01", "title": "딥러닝 기반 실시간 객체 탐지 알고리즘 최적화", "authors": ["김철수", "이영희", "박민준"], "status": "UNDER_REVIEW", "currentFile": "paper_v1.pdf", "files": ["paper_v1.pdf"], "assignedEditor": "Editor A" },
+    { "id": "PP-02", "title": "블록체인 분산 원장을 활용한 의료 데이터 보안 모델 연구", "authors": ["정우성", "한지민"], "status": "SUBMITTED", "currentFile": "blockchain_draft.pdf", "files": ["blockchain_draft.pdf"], "assignedEditor": "Editor A" },
+    { "id": "PP-03", "title": "무인 항공기 자율 주행을 위한 경로 탐색 기술 분석", "authors": ["최현우", "윤서진", "송하윤"], "status": "REVISION_REQUIRED", "currentFile": "uav_v1.pdf", "files": ["uav_v1.pdf"], "assignedEditor": "Editor B" },
+    { "id": "PP-04", "title": "IoT 센서 기반 스마트 팜 관제 시스템 설계 및 구현", "authors": ["강수호", "임재범"], "status": "ACCEPTED", "currentFile": "smartfarm_final.pdf", "files": ["smartfarm_v1.pdf", "smartfarm_final.pdf"], "assignedEditor": "Editor A" },
+    { "id": "PP-05", "title": "자연어 처리를 이용한 소셜 미디어 감성 감지 프레임워크", "authors": ["배수지", "남주혁", "김선호"], "status": "REJECTED", "currentFile": "nlp_v1.pdf", "files": ["nlp_v1.pdf"], "assignedEditor": "Editor B" },
+    { "id": "PP-06", "title": "도심 항공 모빌리티(UAM) 소음 저감을 위한 메타물질 흡음재", "authors": ["차은우", "문가영"], "status": "UNDER_REVIEW", "currentFile": "uam_acoustics.pdf", "files": ["uam_acoustics.pdf"], "assignedEditor": "Editor A" },
+    { "id": "PP-07", "title": "메타버스 가상 공간에서의 아바타 인터랙션 디자인 평가", "authors": ["박서준", "한소희"], "status": "SUBMITTED", "currentFile": "metaverse_avatar.pdf", "files": ["metaverse_avatar.pdf"], "assignedEditor": "Editor B" },
+    { "id": "PP-08", "title": "클라우드 네이티브 아키텍처에서의 마이크로서비스 모니터링", "authors": ["이도현", "안은진"], "status": "UNDER_REVIEW", "currentFile": "cloud_native_msa.pdf", "files": ["cloud_native_msa.pdf"], "assignedEditor": "Editor A" },
+    { "id": "PP-09", "title": "무선 충전 전기 자동차 배터리 효율 향상을 위한 제어 알고리즘", "authors": ["공유", "김고은"], "status": "REVISION_REQUIRED", "currentFile": "ev_charge_v1.pdf", "files": ["ev_charge_v1.pdf"], "assignedEditor": "Editor B" },
+    { "id": "PP-10", "title": "지속 가능한 친환경 도시 디자인을 위한 신재생 에너지 시뮬레이션", "authors": ["현빈", "손예진"], "status": "ACCEPTED", "currentFile": "green_city_final.pdf", "files": ["green_city_final.pdf"], "assignedEditor": "Editor A" },
+    { "id": "PP-11", "title": "제조 공정 지능화를 위한 에지 컴퓨팅 기반 이상 징후 감지", "authors": ["조인성", "한효주"], "status": "UNDER_REVIEW", "currentFile": "smart_factory_edge.pdf", "files": ["smart_factory_edge.pdf"], "assignedEditor": "Editor B" },
+    { "id": "PP-12", "title": "초거대 AI 언어 모델의 편향성 완화를 위한 정렬 기술 동향", "authors": ["송중기", "김태리"], "status": "SUBMITTED", "currentFile": "llm_bias_alignment.pdf", "files": ["llm_bias_alignment.pdf"], "assignedEditor": "Editor A" }
+  ],
+  "reviewers": [
+    { "id": "RV-01", "name": "박선생 교수", "institution": "한국과학기술원", "activeTasks": 3 },
+    { "id": "RV-02", "name": "이박사 연구원", "institution": "전자통신연구원", "activeTasks": 2 },
+    { "id": "RV-03", "name": "정교수", "institution": "서울대학교", "activeTasks": 4 }
+  ],
+  "stats": {
+    "totalReviewers": 3,
+    "pendingReviews": 9,
+    "completedReviews": 28
+  },
+  "privateComments": [
+    { "id": "PC-01", "paperId": "PP-01", "editor": "Editor A", "comment": "연구 방법론의 수학적 유도 과정이 모호합니다. 심사위원단에 엄격한 수식 검증을 요청할 계획입니다." },
+    { "id": "PC-02", "paperId": "PP-03", "editor": "Editor B", "comment": "저자가 제안한 수정 기한이 너무 촉박하므로 추가 유예 기간이 필요한 상황입니다." },
+    { "id": "PC-03", "paperId": "PP-06", "editor": "Editor A", "comment": "실험 데이터의 표본 크기가 과소하여 신뢰성이 결여될 가능성이 높습니다." }
+  ],
+  "reviews": [
+    { "id": "REV-01", "paperId": "PP-01", "reviewerName": "박선생 교수", "rating": "MAJOR_REVISION", "comment": "실시간 탐지 성능 향상의 구체적인 벤치마크 조건이 명시되어야 합니다." },
+    { "id": "REV-02", "paperId": "PP-03", "reviewerName": "이박사 연구원", "rating": "MINOR_REVISION", "comment": "오타 교정 및 제안 아키텍처 다이어그램 추가가 요구됩니다." }
+  ]
+}

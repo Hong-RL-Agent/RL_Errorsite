@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ef4444' stroke-width='2'%3E%3Cpath d='M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CityReport | 도시 시설물 민원 접수 및 실시간 관제 시스템</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Vue 3 Global CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- Header Navigation Bar -->
+      <header class="app-header">
+        <div class="logo-group">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span class="logo-title">CityReport</span>
+          <span class="logo-subtitle">Urban Complaint Center</span>
+        </div>
+
+        <div class="header-dashboard">
+          <div class="kpis-group">
+            <div class="stat-card">
+              <span>🔎 예정된 현장조사 건수:</span>
+              <strong class="stat-value">{{ stats.totalVisits }}건</strong>
+            </div>
+            <div class="stat-card">
+              <span>🎉 이번달 민원 완료 통계:</span>
+              <strong class="stat-value-alert">{{ stats.resolvedCount }}건</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-controls">
+          <button class="sandbox-reset-btn" @click="resetSandbox">
+            🔄 관제 초기화
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Layout grid -->
+      <div class="cityreport-grid">
+
+        <!-- Left Column: Menus & Sort Filters -->
+        <aside class="panel-section filter-sidebar">
+          <h3>📌 민원 분류 필터</h3>
+          
+          <div class="filter-group">
+            <label>행정 자치구 선택:</label>
+            <select v-model="filterRegion">
+              <option value="ALL">전체 지역구</option>
+              <option value="마포구">마포구</option>
+              <option value="서초구">서초구</option>
+              <option value="강남구">강남구</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>민원 긴급도순 정렬 (Error 5):</label>
+            <select v-model="urgencySortOrder">
+              <option value="NONE">기본 순서</option>
+              <option value="ASC">긴급도 낮은순</option>
+              <option value="DESC">긴급도 높은순 (Error 5)</option>
+            </select>
+            <small class="warn-desc">* 긴급도순 정렬 시, 담당자 배정 처리 클릭 인덱스가 불일치하여 다른 민원 담당자가 변경됨 (Error 5)</small>
+          </div>
+
+          <div class="category-badges">
+            <button 
+              v-for="cat in ['ALL', 'ROAD', 'LIGHT', 'PARK']" 
+              :key="cat"
+              :class="['cat-btn', activeCategory === cat ? 'active' : '']"
+              @click="triggerSearchRace(cat)"
+            >
+              {{ cat === 'ALL' ? '전체' : cat === 'ROAD' ? '도로/보도' : cat === 'LIGHT' ? '가로등/보안등' : '공원/녹지' }}
+            </button>
+          </div>
+          <small class="warn-desc">* 민원 필터 고속 변경 시, 이전 필터 결과(도로, 3초)가 배송중 뷰를 덮어쓰고 마커와 수량이 비매칭됨 (Error 2)</small>
+        </aside>
+
+        <!-- Center Column: SVG Map & Reports Table -->
+        <main class="panel-section reports-center">
+          
+          <!-- SVG Map Widget -->
+          <div class="map-widget">
+            <h3>🗺️ 관할 구역 민원 실시간 분포 지도 (SVG)</h3>
+            <div class="map-canvas">
+              <svg viewBox="0 0 600 250" class="svg-city-map">
+                <!-- Map Background Districts -->
+                <path d="M50 50 L200 30 L300 70 L250 180 L100 200 Z" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.5" />
+                <path d="M200 30 L450 10 L550 90 L400 160 L300 70 Z" fill="rgba(255,255,255,0.03)" stroke="#334155" stroke-width="1.5" />
+                <path d="M250 180 L300 70 L400 160 L450 240 L180 230 Z" fill="rgba(255,255,255,0.01)" stroke="#334155" stroke-width="1.5" />
+                
+                <!-- Districts Text labels -->
+                <text x="120" y="110" fill="#64748b" font-size="12" font-weight="bold">마포 관할구</text>
+                <text x="350" y="80" fill="#64748b" font-size="12" font-weight="bold">서초 관할구</text>
+                <text x="320" y="190" fill="#64748b" font-size="12" font-weight="bold">강남 관할구</text>
+
+                <!-- Interactive Report Markers -->
+                <g v-for="rep in sortedReports" :key="rep.id">
+                  <circle 
+                    :cx="getMapX(rep)" 
+                    :cy="getMapY(rep)" 
+                    r="6" 
+                    :fill="rep.status === 'RESOLVED' ? '#10b981' : rep.urgency === 'HIGH' ? '#ef4444' : '#f59e0b'"
+                    class="marker-dot" 
+                    @click="selectedReport = rep"
+                  />
+                  <text 
+                    :x="getMapX(rep) + 8" 
+                    :y="getMapY(rep) + 4" 
+                    fill="#cbd5e1" 
+                    font-size="9"
+                  >
+                    {{ rep.id }}
+                  </text>
+                </g>
+              </svg>
+            </div>
+            <p class="map-stats">현재 지도상 표시 마커: <strong>{{ sortedReports.length }}개</strong></p>
+          </div>
+
+          <!-- Reports Table Matrix -->
+          <div class="widget-section">
+            <h2>📋 실시간 민원 접수 내역 (최소 20개)</h2>
+            <div class="table-scroll-box">
+              <table>
+                <thead>
+                  <tr>
+                    <th>민원 ID</th>
+                    <th>민원 제목</th>
+                    <th>지역구</th>
+                    <th>긴급도</th>
+                    <th>처리상태</th>
+                    <th>작업</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr 
+                    v-for="(rep, idx) in sortedReports" 
+                    :key="rep.id"
+                    :class="['report-tr', selectedReport?.id === rep.id ? 'active' : '']"
+                    @click="selectedReport = rep"
+                  >
+                    <td><strong>{{ rep.id }}</strong></td>
+                    <td>{{ rep.title }}</td>
+                    <td>{{ rep.region }}</td>
+                    <td>
+                      <span :class="['urgency-badge', rep.urgency.toLowerCase()]">
+                        {{ rep.urgency === 'HIGH' ? '🚨 긴급' : rep.urgency === 'MEDIUM' ? '⚠️ 보통' : 'ℹ️ 낮음' }}
+                      </span>
+                    </td>
+                    <td>
+                      <span :class="['status-badge', rep.status.toLowerCase()]">{{ rep.status }}</span>
+                    </td>
+                    <td class="action-td">
+                      <button class="assign-btn-sm" @click.stop="confirmManagerAssign(idx)">
+                        담당자배정 (Error 5)
+                      </button>
+                      <button class="delete-btn-sm" @click.stop="deleteReport(rep.id)">
+                        🗑️ 삭제 (Error 3)
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <small class="warn-desc">* 민원 삭제(DELETE) 요청 시 대장에서 제거되나 통계(현장 방문수/완료수)에는 계속 기산 포함됨 (Error 3)</small>
+          </div>
+
+        </main>
+
+        <!-- Right Column: Operations Drawer & Image Upload -->
+        <aside class="panel-section operations-sidebar">
+          
+          <!-- Report details manager -->
+          <div class="detail-widget">
+            <h3>📑 선택 민원 상세 정보 및 조치</h3>
+            <div v-if="selectedReport" class="detail-panel">
+              <p>민원번호: <strong>{{ selectedReport.id }}</strong></p>
+              <p>내용: <strong>{{ selectedReport.title }}</strong></p>
+              <p>담당자: <span class="manager-lbl">👤 {{ selectedReport.manager || '미지정' }}</span></p>
+
+              <!-- Image view (Error 6 Target) -->
+              <div class="image-preview-group">
+                <label>민원 현장 증빙 사진:</label>
+                <div v-if="selectedReport.imageUrl" class="img-frame">
+                  <img :src="selectedReport.imageUrl" alt="민원 사진" class="report-img" />
+                </div>
+                <div v-else class="img-placeholder">
+                  증빙 사진이 없습니다.
+                </div>
+                
+                <!-- Mock File Upload Trigger -->
+                <div class="upload-control">
+                  <input type="text" placeholder="사진 파일명 (예: 가로등 고장.jpg)..." v-model="mockFileName" />
+                  <button class="upload-btn" @click="uploadMockPhoto(selectedReport)">
+                    📷 현장 사진 업로드 (Error 6)
+                  </button>
+                </div>
+                <small class="warn-desc">* 파일 이름에 한글과 공백이 공존 시, 실제 파일 경로와 표시 URL이 불일치해 404 에러 발생 (Error 6)</small>
+              </div>
+
+              <!-- Action Status & Department (Error 1 Target) -->
+              <div class="form-group">
+                <label>배정 담당 부서:</label>
+                <select v-model="selectedReport.department">
+                  <option value="도로과">도로과</option>
+                  <option value="치수과">치수과</option>
+                  <option value="녹지과">녹지과</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>민원 처리 상태:</label>
+                <div class="input-row">
+                  <select v-model="selectedReport.status">
+                    <option value="PENDING">접수 대기 (PENDING)</option>
+                    <option value="PROCESSING">처리 중 (PROCESSING)</option>
+                    <option value="RESOLVED">해결 완료 (RESOLVED)</option>
+                  </select>
+                  <button class="save-btn" @click="triggerDepartmentStatusRace(selectedReport)">
+                    부서 수정 (Error 1)
+                  </button>
+                </div>
+                <small class="warn-desc">* 부서 변경(3초 지연 완료) 직후 상태 수정(0.1초 완료) 시 최종 완료 시점에 처리 상태가 이전 값으로 롤백됨 (Error 1)</small>
+              </div>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              지도 마커 또는 민원 목록 행을 클릭하여 선택하십시오.
+            </div>
+          </div>
+
+          <!-- Citizen answers / comments (Error 4 Target) -->
+          <div class="detail-widget">
+            <h3>💬 시민 피드백 및 안내 답변</h3>
+            <div v-if="selectedReport" class="detail-panel">
+              <div class="form-group">
+                <label>시민 안내 답변 기입:</label>
+                <textarea rows="3" v-model="selectedReport.reply" placeholder="시민에게 전달할 조치 답변 내용을 입력하세요..."></textarea>
+              </div>
+
+              <div class="front-actions-group">
+                <button 
+                  class="save-reply-btn"
+                  @click="triggerReplyCancelConflict(selectedReport)"
+                >
+                  ⚡ 답변 저장 (Error 4)
+                </button>
+                <button 
+                  class="cancel-report-btn"
+                  @click="cancelReport(selectedReport.id)"
+                >
+                  ⚡ 민원 접수 취소 (Error 4)
+                </button>
+              </div>
+              <small class="warn-desc">* 민원 취소(0.5초 완료) 직후 답변 저장(4초 지연 완료) 요청 시 취소 완료된 건이 PROCESSING 상태로 다시 부활함 (Error 4)</small>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              안내 답변을 기입하려면 민원을 먼저 선택해 주십시오.
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+      <!-- Toast notifications -->
+      <div class="toast-container">
+        <div 
+          v-for="t in toasts" 
+          :key="t.id" 
+          :class="['toast-card', t.type]"
+        >
+          <span class="toast-icon">
+            {{ t.type === 'success' ? '✅' : t.type === 'danger' ? '❌' : '⚠️' }}
+          </span>
+          <span class="toast-message">{{ t.message }}</span>
+          <button class="toast-close" @click="removeToast(t.id)">
+            &times;
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

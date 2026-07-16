@@ -1,0 +1,48 @@
+{
+  "orders": [
+    { "id": "OD-01", "storeName": "굽네치킨 신림점", "address": "관악구 신림로 340", "region": "관악", "price": 18000, "fee": 3500, "status": "MATCHING", "driverId": null, "x": 80, "y": 140 },
+    { "id": "OD-02", "storeName": "엽기떡볶이 서울대점", "address": "관악구 대학길 12", "region": "관악", "price": 22000, "fee": 4000, "status": "MATCHING", "driverId": null, "x": 110, "y": 180 },
+    { "id": "OD-03", "storeName": "스타벅스 구로점", "address": "구로구 디지털로 32", "region": "구로", "price": 12000, "fee": 3000, "status": "PICKED_UP", "driverId": "DR-01", "x": 60, "y": 80 },
+    { "id": "OD-04", "storeName": "맥도날드 가산점", "address": "금천구 가산디지털로 12", "region": "금천", "price": 15000, "fee": 3500, "status": "DELIVERING", "driverId": "DR-02", "x": 40, "y": 120 },
+    { "id": "OD-05", "storeName": "도미노피자 신도림점", "address": "구로구 경인로 662", "region": "구로", "price": 34000, "fee": 4500, "status": "DELIVERED", "driverId": "DR-03", "x": 90, "y": 60 },
+    { "id": "OD-06", "storeName": "마라탕 강남역점", "address": "강남구 테헤란로 101", "region": "강남", "price": 25000, "fee": 5000, "status": "MATCHING", "driverId": null, "x": 220, "y": 90 },
+    { "id": "OD-07", "storeName": "버거킹 역삼점", "address": "강남구 논현로 85", "region": "강남", "price": 19500, "fee": 4500, "status": "DELIVERED", "driverId": "DR-04", "x": 250, "y": 110 },
+    { "id": "OD-08", "storeName": "서브웨이 삼성점", "address": "강남구 영동대로 513", "region": "강남", "price": 14000, "fee": 4000, "status": "MATCHING", "driverId": null, "x": 280, "y": 70 },
+    { "id": "OD-09", "storeName": "김가네 김밥 사당점", "address": "동작구 사당로 250", "region": "동작", "price": 11500, "fee": 3000, "status": "PICKED_UP", "driverId": "DR-05", "x": 160, "y": 130 },
+    { "id": "OD-10", "storeName": "교촌치킨 흑석점", "address": "동작구 현충로 115", "region": "동작", "price": 21000, "fee": 3500, "status": "DELIVERING", "driverId": "DR-01", "x": 180, "y": 100 },
+    { "id": "OD-11", "storeName": "홍콩반점 영등포점", "address": "영등포구 영중로 12", "region": "영등포", "price": 16500, "fee": 3800, "status": "MATCHING", "driverId": null, "x": 120, "y": 40 },
+    { "id": "OD-12", "storeName": "아웃백 여의도점", "address": "영등포구 국제금융로 10", "region": "영등포", "price": 85000, "fee": 6000, "status": "DELIVERED", "driverId": "DR-06", "x": 150, "y": 60 },
+    { "id": "OD-13", "storeName": "신전떡볶이 신길점", "address": "영등포구 신길로 220", "region": "영등포", "price": 13000, "fee": 3200, "status": "MATCHING", "driverId": null, "x": 110, "y": 80 },
+    { "id": "OD-14", "storeName": "투썸플레이스 목동점", "address": "양천구 목동서로 201", "region": "양천", "price": 17000, "fee": 3500, "status": "MATCHING", "driverId": null, "x": 50, "y": 30 },
+    { "id": "OD-15", "storeName": "이삭토스트 양천점", "address": "양천구 신목로 40", "region": "양천", "price": 9500, "fee": 3000, "status": "DELIVERED", "driverId": "DR-07", "x": 30, "y": 50 },
+    { "id": "OD-16", "storeName": "본죽 목동역점", "address": "양천구 오목로 300", "region": "양천", "price": 24000, "fee": 4000, "status": "MATCHING", "driverId": null, "x": 40, "y": 70 },
+    { "id": "OD-17", "storeName": "피자헛 당산점", "address": "영등포구 양평로 46", "region": "영등포", "price": 28000, "fee": 4500, "status": "MATCHING", "driverId": null, "x": 130, "y": 20 },
+    { "id": "OD-18", "storeName": "롤링파스타 신림점", "address": "관악구 신림로 320", "region": "관악", "price": 18500, "fee": 3500, "status": "MATCHING", "driverId": null, "x": 90, "y": 160 },
+    { "id": "OD-19", "storeName": "파리바게뜨 낙성대점", "address": "관악구 남부순환로 1910", "region": "관악", "price": 14500, "fee": 3200, "status": "DELIVERED", "driverId": "DR-08", "x": 140, "y": 170 },
+    { "id": "OD-20", "storeName": "빕스 대방점", "address": "동작구 노량진로 2", "region": "동작", "price": 78000, "fee": 5500, "status": "MATCHING", "driverId": null, "x": 160, "y": 80 },
+    { "id": "OD-21", "storeName": "BBQ치킨 노량진점", "address": "동작구 만양로 80", "region": "동작", "price": 23000, "fee": 3800, "status": "MATCHING", "driverId": null, "x": 190, "y": 70 },
+    { "id": "OD-22", "storeName": "롯데리아 독산점", "address": "금천구 시흥대로 380", "region": "금천", "price": 13500, "fee": 3200, "status": "MATCHING", "driverId": null, "x": 50, "y": 160 },
+    { "id": "OD-23", "storeName": "계절밥상 시흥점", "address": "금천구 금하로 620", "region": "금천", "price": 54000, "fee": 4800, "status": "MATCHING", "driverId": null, "x": 30, "y": 190 },
+    { "id": "OD-24", "storeName": "쉐이크쉑 강남점", "address": "강남구 강남대로 452", "region": "강남", "price": 32500, "fee": 5000, "status": "MATCHING", "driverId": null, "x": 230, "y": 60 },
+    { "id": "OD-25", "storeName": "봉추찜닭 가로수길점", "address": "강남구 압구정로10길", "region": "강남", "price": 42000, "fee": 4800, "status": "MATCHING", "driverId": null, "x": 260, "y": 40 }
+  ],
+  "drivers": [
+    { "id": "DR-01", "name": "김라이더", "phone": "010-9999-1111", "status": "DELIVERING", "completedCount": 15, "earnings": 52500 },
+    { "id": "DR-02", "name": "박배달", "phone": "010-9999-2222", "status": "DELIVERING", "completedCount": 8, "earnings": 28000 },
+    { "id": "DR-03", "name": "이퀵", "phone": "010-9999-3333", "status": "IDLE", "completedCount": 22, "earnings": 99000 },
+    { "id": "DR-04", "name": "최질주", "phone": "010-9999-4444", "status": "IDLE", "completedCount": 11, "earnings": 49500 },
+    { "id": "DR-05", "name": "정신속", "phone": "010-9999-5555", "status": "DELIVERING", "completedCount": 6, "earnings": 18000 },
+    { "id": "DR-06", "name": "강안전", "phone": "010-9999-6666", "status": "IDLE", "completedCount": 14, "earnings": 84000 },
+    { "id": "DR-07", "name": "조번개", "phone": "010-9999-7777", "status": "IDLE", "completedCount": 19, "earnings": 57000 },
+    { "id": "DR-08", "name": "윤달리기", "phone": "010-9999-8888", "status": "IDLE", "completedCount": 12, "earnings": 38400 },
+    { "id": "DR-09", "name": "한총알", "phone": "010-9999-9999", "status": "IDLE", "completedCount": 4, "earnings": 12800 },
+    { "id": "DR-10", "name": "임정밀", "phone": "010-9999-0000", "status": "IDLE", "completedCount": 0, "earnings": 0 }
+  ],
+  "settlements": [
+    { "id": "ST-01", "driverId": "DR-03", "driverName": "이퀵", "amount": 99000, "status": "PENDING" },
+    { "id": "ST-02", "driverId": "DR-06", "driverName": "강안전", "amount": 84000, "status": "PENDING" },
+    { "id": "ST-03", "driverId": "DR-07", "driverName": "조번개", "amount": 57000, "status": "PENDING" },
+    { "id": "ST-04", "driverId": "DR-01", "driverName": "김라이더", "amount": 52500, "status": "PENDING" },
+    { "id": "ST-05", "driverId": "DR-04", "driverName": "최질주", "amount": 49500, "status": "PENDING" }
+  ]
+}

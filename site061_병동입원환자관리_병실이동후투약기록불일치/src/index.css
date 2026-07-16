@@ -1,0 +1,742 @@
+/* Color Palette: Clinical Blue & Slate Dark */
+:root {
+  --font-sans: 'Outfit', 'Noto Sans KR', sans-serif;
+  
+  --bg-app: #090d16;             /* Clinical deep dark slate */
+  --bg-panel: #111827;           /* Ward operations panel */
+  --bg-card: #1f2937;            /* Patient bed card */
+  
+  --color-primary: #0ea5e9;      /* Medical Blue */
+  --color-primary-dark: #0284c7; 
+  --color-primary-bg: rgba(14, 165, 233, 0.08);
+  
+  --color-success: #10b981;      /* Stable state */
+  --color-danger: #ef4444;       /* Critical state */
+  --color-danger-bg: rgba(239, 68, 68, 0.1);
+  --color-warning: #f59e0b;      /* Observing state */
+  
+  --color-dark: #f9fafb;         
+  --color-text: #9ca3af;         
+  --color-muted: #6b7280;        
+  --color-border: #374151;       
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  
+  --shadow-card: 0 4px 20px rgba(14, 165, 233, 0.02);
+  --shadow-hover: 0 8px 24px rgba(14, 165, 233, 0.05);
+  
+  --transition-speed: 0.2s;
+}
+
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+}
+
+/* App Layout Container */
+.wardflow-app {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Header bar */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--bg-panel);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  gap: 1.5rem;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-primary);
+}
+
+.logo-svg {
+  width: 32px;
+  height: 32px;
+}
+
+.logo-title {
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+  color: var(--color-dark);
+}
+
+.logo-subtitle {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-weight: 600;
+  margin-left: 0.5rem;
+  border-left: 1.5px solid var(--color-border);
+  padding-left: 0.5rem;
+}
+
+.header-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.stat-card {
+  font-size: 0.82rem;
+  color: var(--color-dark);
+}
+
+.stat-value {
+  color: var(--color-warning);
+  font-size: 1.1rem;
+  margin-left: 0.5rem;
+}
+
+.warn-desc {
+  font-size: 0.62rem;
+  color: var(--color-warning);
+  display: block;
+}
+
+.sandbox-reset-btn {
+  background-color: var(--color-danger-bg);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+/* Workspace Grid Panels */
+.wardflow-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr 380px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.panel-section {
+  background-color: var(--bg-panel);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+
+/* Left Sidebar Filter lists */
+.sidebar-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.sidebar-title-row h3 {
+  font-size: 0.85rem;
+  color: var(--color-dark);
+}
+
+.race-btn-sm {
+  background-color: var(--color-danger-bg);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  font-size: 0.62rem;
+  font-weight: bold;
+  padding: 2px 4px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.filter-group {
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.filter-group label {
+  font-size: 0.7rem;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.filter-group select {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  color: var(--color-dark);
+  padding: 0.45rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  outline: none;
+}
+
+.search-box {
+  margin-bottom: 1.25rem;
+}
+
+.search-box input {
+  width: 100%;
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  color: var(--color-dark);
+  padding: 0.45rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  outline: none;
+}
+
+.patients-list-box h4 {
+  font-size: 0.78rem;
+  color: var(--color-dark);
+  margin-bottom: 0.55rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.25rem;
+}
+
+.patients-scroll {
+  max-height: 380px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.patient-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: all var(--transition-speed);
+}
+
+.patient-card:hover, .patient-card.selected {
+  border-color: var(--color-primary);
+}
+
+.patient-card.selected {
+  background-color: var(--color-primary-bg);
+}
+
+.patient-card .meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.patient-card .meta-row strong {
+  color: var(--color-dark);
+}
+
+.status-badge {
+  font-size: 0.58rem;
+  font-weight: bold;
+  padding: 1px 4px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.status-badge.stable {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+}
+
+.status-badge.critical {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger);
+}
+
+.status-badge.observing {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--color-warning);
+}
+
+.status-badge.discharged {
+  background-color: var(--color-border);
+  color: var(--color-muted);
+}
+
+.patient-card .info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+}
+
+.reason-lbl {
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--color-muted);
+}
+
+/* Center Layout: Bed visualizer */
+.center-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.55rem;
+  margin-bottom: 0.85rem;
+}
+
+.center-header h2 {
+  font-size: 0.95rem;
+  color: var(--color-dark);
+}
+
+.room-title {
+  font-size: 0.78rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.beds-layout-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.bed-slot-card {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem;
+  text-align: center;
+  font-size: 0.72rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all var(--transition-speed);
+}
+
+.bed-slot-card.occupied {
+  border-color: var(--color-warning);
+}
+
+.bed-slot-card.active {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-bg);
+}
+
+.bed-icon {
+  font-size: 1.25rem;
+}
+
+.occupant-info {
+  font-size: 0.65rem;
+  font-weight: bold;
+}
+
+.occupant-info .name-lbl {
+  color: var(--color-dark);
+}
+
+.occupant-info .empty-lbl {
+  color: var(--color-muted);
+}
+
+.medication-timeline-block h3 {
+  font-size: 0.85rem;
+  color: var(--color-dark);
+  margin-bottom: 0.25rem;
+}
+
+.meds-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-height: 180px;
+  overflow-y: auto;
+  margin-top: 0.45rem;
+}
+
+.meds-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+  padding: 0.55rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  font-size: 0.72rem;
+  gap: 1rem;
+}
+
+.time-col {
+  color: var(--color-primary);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.details-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.details-col strong {
+  color: var(--color-dark);
+}
+
+.empty-lbl-dark {
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  text-align: center;
+  padding: 1.5rem;
+  background-color: var(--bg-app);
+  border-radius: var(--radius-sm);
+}
+
+/* Right Details column */
+.patient-detail-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+  padding: 0.85rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.55rem;
+  margin-bottom: 1.25rem;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.72rem;
+}
+
+.field-group .label {
+  color: var(--color-muted);
+}
+
+.reason-text {
+  background-color: var(--bg-app);
+  padding: 0.45rem;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  color: var(--color-dark);
+}
+
+.details-operation-controls {
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.transfer-box-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.transfer-box-form label {
+  font-size: 0.68rem;
+  font-weight: bold;
+}
+
+.inputs-row {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.inputs-row input {
+  flex-grow: 1;
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  color: var(--color-dark);
+  padding: 0.35rem;
+  font-size: 0.7rem;
+  border-radius: 4px;
+  outline: none;
+}
+
+.race-btn {
+  background-color: var(--color-danger-bg);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.45rem;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.discharge-box {
+  margin-top: 0.25rem;
+}
+
+.discharge-btn {
+  background-color: var(--color-primary-bg);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.45rem;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.delete-patient-btn {
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.65rem;
+  padding: 0.35rem;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  text-decoration: underline;
+}
+
+/* Nursing Logs widget */
+.nursing-logs-widget {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.45rem;
+}
+
+.widget-header h4 {
+  font-size: 0.78rem;
+  color: var(--color-dark);
+}
+
+.sync-btn {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 0.62rem;
+  padding: 2px 4px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.nursing-active-target {
+  font-size: 0.65rem;
+  background-color: var(--bg-app);
+  padding: 0.35rem;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.45rem;
+}
+
+.nursing-active-target strong {
+  color: var(--color-warning);
+}
+
+.nursing-history-list {
+  max-height: 140px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 0.55rem;
+}
+
+.nursing-history-card {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  padding: 0.45rem;
+  border-radius: 4px;
+  font-size: 0.68rem;
+}
+
+.time-lbl {
+  color: var(--color-muted);
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.nursing-note-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.nursing-note-form textarea {
+  width: 100%;
+  height: 50px;
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  color: var(--color-dark);
+  padding: 0.35rem;
+  font-size: 0.72rem;
+  border-radius: 4px;
+  resize: none;
+  outline: none;
+}
+
+.nursing-note-form button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Admission registration form */
+.admission-form-widget {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+}
+
+.admission-form-widget h4 {
+  font-size: 0.78rem;
+  color: var(--color-dark);
+  margin-bottom: 0.45rem;
+}
+
+.admission-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.admission-form input {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  color: var(--color-dark);
+  padding: 0.35rem;
+  font-size: 0.72rem;
+  border-radius: 4px;
+  outline: none;
+}
+
+.admission-form button {
+  background-color: var(--color-primary-dark);
+  color: white;
+  border: none;
+  padding: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Floating Action Toasts */
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.toast-card {
+  background-color: var(--bg-panel);
+  box-shadow: 0 10px 30px rgba(14, 165, 233, 0.1);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  padding: 0.85rem 1.25rem;
+  min-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastIn {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.toast-card.success {
+  border-left: 4px solid var(--color-success);
+}
+
+.toast-card.danger {
+  border-left: 4px solid var(--color-danger);
+}
+
+.toast-card.info {
+  border-left: 4px solid var(--color-primary);
+}
+
+.toast-card.warning {
+  border-left: 4px solid var(--color-warning);
+}
+
+.toast-icon {
+  font-size: 1.1rem;
+}
+
+.toast-message {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  flex-grow: 1;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+/* Mobile responsive screen adaptations */
+@media (max-width: 1024px) {
+  .wardflow-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-sidebar, .details-sidebar {
+    grid-column: 1;
+  }
+}

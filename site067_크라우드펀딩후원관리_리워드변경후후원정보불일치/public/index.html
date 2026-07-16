@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2'%3E%3Cpath d='M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'/%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FundWave | 꿈을 현실로 만드는 크라우드펀딩 플랫폼</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Vue 3 Global CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- Header Navigation Bar -->
+      <header class="app-header">
+        <div class="logo-group">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          <span class="logo-title">FundWave</span>
+          <span class="logo-subtitle">Creative Crowdfunding Hub</span>
+        </div>
+
+        <div class="header-dashboard">
+          <div class="kpis-group">
+            <div class="stat-card">
+              <span>누적 펀딩 모집액:</span>
+              <strong class="stat-value">{{ formatPrice(stats.totalRaisedAmount) }}</strong>
+            </div>
+            <div class="stat-card">
+              <span>총 참여 후원자수:</span>
+              <strong class="stat-value-alert">{{ stats.backerCount }}명</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-controls">
+          <button class="sandbox-reset-btn" @click="resetSandbox">
+            🔄 플랫폼 초기화
+          </button>
+        </div>
+      </header>
+
+      <!-- App Main Grid Layout -->
+      <div class="fundwave-grid">
+
+        <!-- Left Column: Search & Filters -->
+        <aside class="panel-section filter-sidebar">
+          <h3>🔍 카테고리 및 정렬</h3>
+          
+          <div class="filter-group">
+            <label>프로젝트 검색:</label>
+            <input 
+              type="text" 
+              placeholder="프로젝트 제목 또는 창작자..."
+              v-model="searchQuery"
+            />
+          </div>
+
+          <div class="filter-group">
+            <label>달성률 정렬 선택 (Error 3):</label>
+            <select v-model="achievementSortOrder">
+              <option value="NONE">기본 순서</option>
+              <option value="ASC">달성률 낮은순</option>
+              <option value="DESC">달성률 높은순 (Error 3)</option>
+            </select>
+            <small class="warn-desc">* 달성률순 정렬 상태에서 하트 관심등록 클릭 시 엉뚱한 프로젝트의 하트가 켜고 꺼짐 (Error 3)</small>
+          </div>
+
+          <div class="category-badges">
+            <button 
+              v-for="cat in ['ALL', '테크', '패션', '푸드', '반려동물', '뷰티']" 
+              :key="cat"
+              :class="['cat-btn', activeCategory === cat ? 'active' : '']"
+              @click="activeCategory = cat"
+            >
+              {{ cat }}
+            </button>
+          </div>
+        </aside>
+
+        <!-- Center Column: Projects & Comments -->
+        <main class="panel-section projects-center">
+          <h2>📦 진행 중인 크라우드펀딩 프로젝트</h2>
+
+          <div class="projects-catalog">
+            <div 
+              v-for="(proj, idx) in sortedProjects" 
+              :key="proj.id"
+              class="project-card"
+            >
+              <div class="proj-head">
+                <span class="proj-category">🏷️ {{ proj.category }}</span>
+                <span class="proj-creator">창작: {{ proj.creator }}</span>
+              </div>
+              <h4 class="proj-title">{{ proj.title }}</h4>
+              
+              <!-- Progress Rate Indicator -->
+              <div class="progress-bar-group">
+                <div class="rate-row">
+                  <span>모집액: {{ formatPrice(proj.raised) }}</span>
+                  <strong>달성률: {{ Math.round((proj.raised / proj.target) * 100) }}%</strong>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" :style="{ width: Math.min(100, (proj.raised / proj.target) * 100) + '%' }"></div>
+                </div>
+              </div>
+
+              <div class="proj-footer">
+                <button class="favorite-toggle-btn" @click="toggleFavorite(idx)">
+                  {{ proj.isFavorite ? '❤️ 관심 취소' : '🤍 관심 등록' }}
+                </button>
+                <button class="delete-proj-btn" @click="deleteProject(proj.id)">
+                  🗑️ 프로젝트 영구 삭제 (Error 4)
+                </button>
+              </div>
+            </div>
+            <div v-if="sortedProjects.length === 0" class="empty-lbl-dark">
+              해당하는 프로젝트가 없습니다.
+            </div>
+          </div>
+
+          <!-- Comments Pagination Widget (Error 5 Target) -->
+          <div class="comments-widget">
+            <div class="widget-header">
+              <h3>💬 서포터 피드백 및 응원 댓글</h3>
+              <div class="page-selectors">
+                <button 
+                  v-for="p in ['page_1', 'page_2']" 
+                  :key="p"
+                  :class="['page-btn', activeCommentPage === p ? 'active' : '']"
+                  @click="triggerCommentPageRace(p)"
+                >
+                  {{ p === 'page_1' ? '1 페이지 (3초 지연)' : '2 페이지 (0.2초)' }}
+                </button>
+              </div>
+            </div>
+            <p class="warn-desc">* 1페이지 ➔ 2페이지 고속 전환 시, 1페이지 내용이 배열 뒤에 강제 병합되어 순서 파괴 및 댓글 중복 (Error 5)</p>
+
+            <div class="comments-stack">
+              <div 
+                v-for="cmt in commentsList" 
+                :key="cmt.id"
+                class="comment-node"
+              >
+                <div class="cmt-meta">
+                  <strong>{{ cmt.author }}</strong>
+                  <span class="cmt-tag">서포터</span>
+                </div>
+                <p class="cmt-content">{{ cmt.content }}</p>
+              </div>
+              <div v-if="commentsList.length === 0" class="empty-lbl-dark">
+                등록된 응원 댓글이 없습니다.
+              </div>
+            </div>
+          </div>
+
+        </main>
+
+        <!-- Right Column: Pledges operations -->
+        <aside class="panel-section operations-sidebar">
+          
+          <!-- Backing Pledges List -->
+          <div class="pledges-widget">
+            <h3>📑 나의 펀딩 후원 내역</h3>
+            <div class="pledges-stack">
+              <div 
+                v-for="pl in pledges" 
+                :key="pl.id"
+                :class="['pledge-card', selectedPledge?.id === pl.id ? 'active' : '']"
+                @click="selectedPledge = pl"
+              >
+                <div class="pl-head">
+                  <strong>{{ pl.id }}</strong>
+                  <span :class="['status-badge', pl.status.toLowerCase()]">{{ pl.status }}</span>
+                </div>
+                <p class="pl-title">{{ pl.projectTitle }}</p>
+                <div class="pl-body">
+                  <span>{{ pl.rewardName }} x {{ pl.quantity }}개</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pledge details controller (Error 1 & 2 Target) -->
+          <div class="pledge-details-widget">
+            <h4>🛎️ 후원 약정 세부 제어</h4>
+            <div v-if="selectedPledge" class="detail-panel">
+              <p>선택 프로젝트: <strong>{{ selectedPledge.projectTitle }}</strong></p>
+              
+              <!-- Reward modification select box -->
+              <div class="form-group">
+                <label>리워드 패키지 선택:</label>
+                <select v-model="selectedPledge.rewardId" @change="handleRewardSelectChange($event.target.value)">
+                  <option v-for="rw in rewards" :key="rw.id" :value="rw.id">
+                    {{ rw.name }} ({{ formatPrice(rw.price) }})
+                  </option>
+                </select>
+              </div>
+
+              <!-- Quantity input field -->
+              <div class="form-group">
+                <label>후원 약정 수량 변경:</label>
+                <div class="input-row">
+                  <input type="number" min="1" max="10" v-model="selectedPledge.quantity" />
+                  <button class="save-btn" @click="triggerRewardQuantityRace(selectedPledge)">
+                    수정 요청 (Error 1)
+                  </button>
+                </div>
+                <small class="warn-desc">* 수량 수정(3초 지연 완료) 시점에 선택된 리워드가 이전 품종으로 롤백 복귀함 (Error 1)</small>
+              </div>
+
+              <!-- Shipping Address fields -->
+              <div class="form-group">
+                <label>배송지 주소 수정:</label>
+                <div class="input-row">
+                  <input type="text" v-model="selectedPledge.shippingAddress" />
+                  <button class="save-btn" @click="triggerShippingCancelConflict(selectedPledge)">
+                    주소 저장 (Error 2)
+                  </button>
+                </div>
+                <small class="warn-desc">* 후원 취소(0.5초 완료) ➔ 주소 저장(4초 지연 완료) 시 취소된 건이 결제 대기로 재활성화됨 (Error 2)</small>
+              </div>
+
+              <!-- Actions group -->
+              <div class="actions-group">
+                <button 
+                  class="cancel-pledge-btn"
+                  @click="cancelPledge(selectedPledge.id)"
+                >
+                  ❌ 후원 약정 결제 취소 (Error 2)
+                </button>
+              </div>
+            </div>
+            <div v-else class="empty-lbl-dark">
+              후원 내역 목록 카드 중 하나를 선택해 주세요.
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+      <!-- Toast notifications -->
+      <div class="toast-container">
+        <div 
+          v-for="t in toasts" 
+          :key="t.id" 
+          :class="['toast-card', t.type]"
+        >
+          <span class="toast-icon">
+            {{ t.type === 'success' ? '✅' : t.type === 'danger' ? '❌' : '⚠️' }}
+          </span>
+          <span class="toast-message">{{ t.message }}</span>
+          <button class="toast-close" @click="removeToast(t.id)">
+            &times;
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

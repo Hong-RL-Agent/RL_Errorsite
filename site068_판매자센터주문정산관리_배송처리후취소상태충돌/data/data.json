@@ -1,0 +1,63 @@
+{
+  "products": [
+    { "id": "PD-01", "name": "프리미엄 레더 미니백", "price": 89000, "discountRate": 10, "stock": 45, "status": "SALE" },
+    { "id": "PD-02", "name": "오버핏 코튼 맨투맨 티셔츠", "price": 45000, "discountRate": 5, "stock": 120, "status": "SALE" },
+    { "id": "PD-03", "name": "무선 노이즈캔슬링 헤드폰 H3", "price": 189000, "discountRate": 15, "stock": 15, "status": "SALE" },
+    { "id": "PD-04", "name": "스테인리스 스마트 텀블러 500ml", "price": 29000, "discountRate": 0, "stock": 80, "status": "SALE" },
+    { "id": "PD-05", "name": "시어버터 보습 고영양 핸드크림", "price": 12000, "discountRate": 20, "stock": 250, "status": "SALE" },
+    { "id": "PD-06", "name": "원목 심플 인테리어 스탠드 조명", "price": 58000, "discountRate": 10, "stock": 35, "status": "SALE" },
+    { "id": "PD-07", "name": "아로마 디퓨저 세트 (라벤더)", "price": 24000, "discountRate": 5, "stock": 90, "status": "SALE" },
+    { "id": "PD-08", "name": "고밀도 극세사 겨울 차렵이불", "price": 79000, "discountRate": 12, "stock": 20, "status": "SALE" },
+    { "id": "PD-09", "name": "무소음 슬림 블루투스 마우스 M10", "price": 19800, "discountRate": 0, "stock": 180, "status": "SALE" },
+    { "id": "PD-10", "name": "친환경 유기농 통밀 식빵 믹스", "price": 8500, "discountRate": 0, "stock": 140, "status": "SALE" },
+    { "id": "PD-11", "name": "가죽 에디션 다이어리 바인더", "price": 32000, "discountRate": 8, "stock": 60, "status": "SALE" },
+    { "id": "PD-12", "name": "에스프레소 홈카페 커피 머신", "price": 245000, "discountRate": 10, "stock": 8, "status": "SALE" },
+    { "id": "PD-13", "name": "리사이클 에코백 캔버스 숄더형", "price": 15000, "discountRate": 0, "stock": 110, "status": "SALE" },
+    { "id": "PD-14", "name": "발효 산삼 고농축 활력 앰플", "price": 125000, "discountRate": 18, "stock": 30, "status": "SALE" },
+    { "id": "PD-15", "name": "휴대용 아웃도어 캠핑 침낭", "price": 68000, "discountRate": 5, "stock": 25, "status": "SALE" },
+    { "id": "PD-16", "name": "무화과 유기농 그래놀라 350g", "price": 11800, "discountRate": 0, "stock": 75, "status": "SALE" },
+    { "id": "PD-17", "name": "도자기 홈세트 그릇 2인 식기", "price": 43000, "discountRate": 10, "stock": 18, "status": "SALE" },
+    { "id": "PD-18", "name": "미니 가습기 USB 데스크탑용", "price": 21000, "discountRate": 15, "stock": 65, "status": "SALE" },
+    { "id": "PD-19", "name": "스마트 터치스크린 겨울 방한장갑", "price": 17500, "discountRate": 5, "stock": 130, "status": "SALE" },
+    { "id": "PD-20", "name": "수제 통가죽 미니 카드지갑", "price": 28000, "discountRate": 10, "stock": 40, "status": "SALE" }
+  ],
+  "orders": [
+    { "id": "OD-01", "guestName": "김민수", "phone": "010-1234-5678", "productId": "PD-01", "productName": "프리미엄 레더 미니백", "quantity": 1, "price": 80100, "status": "PENDING" },
+    { "id": "OD-02", "guestName": "이영희", "phone": "010-2345-6789", "productId": "PD-02", "productName": "오버핏 코튼 맨투맨 티셔츠", "quantity": 2, "price": 85500, "status": "PENDING" },
+    { "id": "OD-03", "guestName": "박철수", "phone": "010-3456-7890", "productId": "PD-03", "productName": "무선 노이즈캔슬링 헤드폰 H3", "quantity": 1, "price": 160650, "status": "SHIPPING" },
+    { "id": "OD-04", "guestName": "최영수", "phone": "010-4567-8901", "productId": "PD-04", "productName": "스테인리스 스마트 텀블러 500ml", "quantity": 1, "price": 29000, "status": "DELIVERED" },
+    { "id": "OD-05", "guestName": "정지원", "phone": "010-5678-9012", "productId": "PD-05", "productName": "시어버터 보습 고영양 핸드크림", "quantity": 5, "price": 48000, "status": "CANCELLED" },
+    { "id": "OD-06", "guestName": "한정호", "phone": "010-6789-0123", "productId": "PD-06", "productName": "원목 심플 인테리어 스탠드 조명", "quantity": 1, "price": 52200, "status": "PENDING" },
+    { "id": "OD-07", "guestName": "강미경", "phone": "010-7890-1234", "productId": "PD-07", "productName": "아로마 디퓨저 세트 (라벤더)", "quantity": 2, "price": 45600, "status": "SHIPPING" },
+    { "id": "OD-08", "guestName": "윤준영", "phone": "010-8901-2345", "productId": "PD-08", "productName": "고밀도 극세사 겨울 차렵이불", "quantity": 1, "price": 69520, "status": "PENDING" },
+    { "id": "OD-09", "guestName": "임지현", "phone": "010-9012-3456", "productId": "PD-09", "productName": "무소음 슬림 블루투스 마우스 M10", "quantity": 3, "price": 59400, "status": "PENDING" },
+    { "id": "OD-10", "guestName": "신성우", "phone": "010-0123-4567", "productId": "PD-10", "productName": "친환경 유기농 통밀 식빵 믹스", "quantity": 4, "price": 34000, "status": "DELIVERED" },
+    { "id": "OD-11", "guestName": "오미자", "phone": "010-1122-3344", "productId": "PD-11", "productName": "가죽 에디션 다이어리 바인더", "quantity": 1, "price": 29440, "status": "PENDING" },
+    { "id": "OD-12", "guestName": "백동수", "phone": "010-2233-4455", "productId": "PD-12", "productName": "에스프레소 홈카페 커피 머신", "quantity": 1, "price": 220500, "status": "SHIPPING" },
+    { "id": "OD-13", "guestName": "유재석", "phone": "010-3344-5566", "productId": "PD-13", "productName": "리사이클 에코백 캔버스 숄더형", "quantity": 2, "price": 30000, "status": "PENDING" },
+    { "id": "OD-14", "guestName": "송지효", "phone": "010-4455-6677", "productId": "PD-14", "productName": "발효 산삼 고농축 활력 앰플", "quantity": 1, "price": 102500, "status": "PENDING" },
+    { "id": "OD-15", "guestName": "김종국", "phone": "010-5566-7788", "productId": "PD-15", "productName": "휴대용 아웃도어 캠핑 침낭", "quantity": 2, "price": 129200, "status": "DELIVERED" },
+    { "id": "OD-16", "guestName": "지석진", "phone": "010-6677-8899", "productId": "PD-16", "productName": "무화과 유기농 그래놀라 350g", "quantity": 5, "price": 59000, "status": "PENDING" },
+    { "id": "OD-17", "guestName": "이광수", "phone": "010-7788-9900", "productId": "PD-17", "productName": "도자기 홈세트 그릇 2인 식기", "quantity": 1, "price": 38700, "status": "PENDING" },
+    { "id": "OD-18", "guestName": "하동훈", "phone": "010-8899-0011", "productId": "PD-18", "productName": "미니 가습기 USB 데스크탑용", "quantity": 2, "price": 35700, "status": "PENDING" },
+    { "id": "OD-19", "guestName": "양세찬", "phone": "010-9900-1122", "productId": "PD-19", "productName": "스마트 터치스크린 겨울 방한장갑", "quantity": 3, "price": 49875, "status": "PENDING" },
+    { "id": "OD-20", "guestName": "전소민", "phone": "010-1010-2020", "productId": "PD-20", "productName": "수제 통가죽 미니 카드지갑", "quantity": 1, "price": 25200, "status": "PENDING" },
+    { "id": "OD-21", "guestName": "조세호", "phone": "010-2020-3030", "productId": "PD-01", "productName": "프리미엄 레더 미니백", "quantity": 1, "price": 80100, "status": "PENDING" },
+    { "id": "OD-22", "guestName": "이동욱", "phone": "010-3030-4040", "productId": "PD-02", "productName": "오버핏 코튼 맨투맨 티셔츠", "quantity": 1, "price": 42750, "status": "PENDING" },
+    { "id": "OD-23", "guestName": "공유", "phone": "010-4040-5050", "productId": "PD-03", "productName": "무선 노이즈캔슬링 헤드폰 H3", "quantity": 1, "price": 160650, "status": "PENDING" },
+    { "id": "OD-24", "guestName": "현빈", "phone": "010-5050-6060", "productId": "PD-04", "productName": "스테인리스 스마트 텀블러 500ml", "quantity": 2, "price": 58000, "status": "PENDING" },
+    { "id": "OD-25", "guestName": "손예진", "phone": "010-6060-7070", "productId": "PD-05", "productName": "시어버터 보습 고영양 핸드크림", "quantity": 3, "price": 28800, "status": "PENDING" }
+  ],
+  "sellerStats": {
+    "A": {
+      "unsettledAmount": 1850000,
+      "pendingInquiriesCount": 14,
+      "totalSalesCount": 185
+    },
+    "B": {
+      "unsettledAmount": 420000,
+      "pendingInquiriesCount": 2,
+      "totalSalesCount": 42
+    }
+  }
+}

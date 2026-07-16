@@ -1,0 +1,32 @@
+{
+  "reports": [
+    { "id": "RP-01", "title": "합정역 4번 출구 앞 아스팔트 포트홀 발생", "category": "ROAD", "region": "마포구", "status": "PENDING", "urgency": "HIGH", "department": "도로과", "manager": "홍길동", "reply": "", "imageUrl": "/uploads/port_hole.jpg" },
+    { "id": "RP-02", "title": "서초동 삼거리 밤길 가로등 점멸 불량", "category": "LIGHT", "region": "서초구", "status": "PROCESSING", "urgency": "HIGH", "department": "치수과", "manager": "이몽룡", "reply": "가로등 내부 안정기 노화 검토 중입니다.", "imageUrl": "" },
+    { "id": "RP-03", "title": "강남역 2번 출구 보도블록 돌출 파손", "category": "ROAD", "region": "강남구", "status": "PENDING", "urgency": "MEDIUM", "department": "도로과", "manager": "성춘향", "reply": "", "imageUrl": "" },
+    { "id": "RP-04", "title": "망원 한강공원 운동기구 부식 파손 위험", "category": "PARK", "region": "마포구", "status": "RESOLVED", "urgency": "LOW", "department": "녹지과", "manager": "임꺽정", "reply": "기구 녹 제거 및 나사 교체 작업을 완료했습니다.", "imageUrl": "" },
+    { "id": "RP-05", "title": "신사동 가로수 전지 작업 잔재 방치", "category": "PARK", "region": "강남구", "status": "PENDING", "urgency": "MEDIUM", "department": "녹지과", "manager": "장길산", "reply": "", "imageUrl": "" },
+    { "id": "RP-06", "title": "서초 중앙로 교차로 가로등 야간 암전", "category": "LIGHT", "region": "서초구", "status": "PROCESSING", "urgency": "HIGH", "department": "치수과", "manager": "이순신", "reply": "", "imageUrl": "" },
+    { "id": "RP-07", "title": "홍대 걷고싶은거리 보도 경계석 파손", "category": "ROAD", "region": "마포구", "status": "PENDING", "urgency": "MEDIUM", "department": "도로과", "manager": "심청", "reply": "", "imageUrl": "" },
+    { "id": "RP-08", "title": "반포 공원 진입로 보안등 상시 오프", "category": "LIGHT", "region": "서초구", "status": "RESOLVED", "urgency": "LOW", "department": "치수과", "manager": "심봉사", "reply": "센서 스위치 재조정 및 가동 확인.", "imageUrl": "" },
+    { "id": "RP-09", "title": "도곡동 어린이공원 그네 고정 쇠사슬 절단", "category": "PARK", "region": "강남구", "status": "PENDING", "urgency": "HIGH", "department": "녹지과", "manager": "놀부", "reply": "", "imageUrl": "" },
+    { "id": "RP-10", "title": "상암동 골목 배수구 빗물받이 파손", "category": "ROAD", "region": "마포구", "status": "PROCESSING", "urgency": "HIGH", "department": "도로과", "manager": "흥부", "reply": "현장 확인 후 자재 청구 신청.", "imageUrl": "" },
+    { "id": "RP-11", "title": "방배동 먹자골목 이면도로 균열 심화", "category": "ROAD", "region": "서초구", "status": "PENDING", "urgency": "MEDIUM", "department": "도로과", "manager": "이몽룡", "reply": "", "imageUrl": "" },
+    { "id": "RP-12", "title": "개포동 근린공원 쓰레기 수거 지연", "category": "PARK", "region": "강남구", "status": "PENDING", "urgency": "LOW", "department": "녹지과", "manager": "성춘향", "reply": "", "imageUrl": "" },
+    { "id": "RP-13", "title": "연남동 연트럴파크 공용 벤치 도색 탈락", "category": "PARK", "region": "마포구", "status": "PROCESSING", "urgency": "LOW", "department": "녹지과", "manager": "홍길동", "reply": "", "imageUrl": "" },
+    { "id": "RP-14", "title": "우면동 산책로 야간 보안 가로등 단선", "category": "LIGHT", "region": "서초구", "status": "PENDING", "urgency": "HIGH", "department": "치수과", "manager": "이순신", "reply": "", "imageUrl": "" },
+    { "id": "RP-15", "title": "양재천 체육공원 족구장 그물 찢어짐", "category": "PARK", "region": "서초구", "status": "RESOLVED", "urgency": "LOW", "department": "녹지과", "manager": "심청", "reply": "체육망 신형으로 전면 교체 완료.", "imageUrl": "" },
+    { "id": "RP-16", "title": "논현동 골목길 보도 틈새 씽크홀 징후", "category": "ROAD", "region": "강남구", "status": "PENDING", "urgency": "HIGH", "department": "도로과", "manager": "놀부", "reply": "", "imageUrl": "" },
+    { "id": "RP-17", "title": "망원동 사거리 가로수 뿌리 보도 블록 들림", "category": "ROAD", "region": "마포구", "status": "PROCESSING", "urgency": "MEDIUM", "department": "도로과", "manager": "임꺽정", "reply": "", "imageUrl": "" },
+    { "id": "RP-18", "title": "잠원동 한강 공원 빗물 배출구 이물질 적체", "category": "ROAD", "region": "서초구", "status": "PENDING", "urgency": "MEDIUM", "department": "도로과", "manager": "홍길동", "reply": "", "imageUrl": "" },
+    { "id": "RP-19", "title": "대치동 학원가 가로등 조도 저하 어두움", "category": "LIGHT", "region": "강남구", "status": "PENDING", "urgency": "MEDIUM", "department": "치수과", "manager": "장길산", "reply": "", "imageUrl": "" },
+    { "id": "RP-20", "title": "성산동 공원 화장실 조명 불량 깜빡임", "category": "PARK", "region": "마포구", "status": "PENDING", "urgency": "HIGH", "department": "녹지과", "manager": "흥부", "reply": "", "imageUrl": "" }
+  ],
+  "visits": [
+    { "id": "VS-01", "reportId": "RP-01", "visitDate": "2026-07-21", "inspector": "홍길동" },
+    { "id": "VS-02", "reportId": "RP-02", "visitDate": "2026-07-23", "inspector": "이몽룡" }
+  ],
+  "stats": {
+    "totalVisits": 14,
+    "resolvedCount": 38
+  }
+}

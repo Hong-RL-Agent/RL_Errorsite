@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ec4899' stroke-width='2'%3E%3Cpath d='M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z'/%3E%3Cpath d='M12 8v8M8 12h8'/%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ArtVisit | 미술관 전시 예약 및 관람객 현황 대시보드 어드민</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Vue 3 Global CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- Header Navigation Bar -->
+      <header class="app-header">
+        <div class="logo-group">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z" />
+            <path d="M12 8v8M8 12h8" />
+          </svg>
+          <span class="logo-title">ArtVisit</span>
+          <span class="logo-subtitle">Museum Booking Console</span>
+        </div>
+
+        <div class="header-dashboard">
+          <div class="kpis-group">
+            <div class="stat-card">
+              <span>🎟️ 플랫폼 총 예약수:</span>
+              <strong class="stat-value">{{ formatStatCount() }}건</strong>
+            </div>
+            <div class="stat-card">
+              <span>📅 대기 중인 예약건:</span>
+              <strong class="stat-value-alert">{{ formatPendingCount() }}건</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-controls">
+          <div class="admin-selector">
+            <span>관리자 권한:</span>
+            <select :value="activeAdmin" @change="handleAdminSwitch($event.target.value)">
+              <option value="A">최고 관리자 A (기획 부서)</option>
+              <option value="B">현장 운영자 B (매표 데스크)</option>
+            </select>
+          </div>
+          <button class="sandbox-reset-btn" @click="resetSandbox">
+            🔄 예약 초기화
+          </button>
+        </div>
+      </header>
+
+      <!-- App Main Workspace Grid Layout -->
+      <div class="artvisit-grid">
+
+        <!-- Left Column: Search & Filters -->
+        <aside class="panel-section filter-sidebar">
+          <h3>🔍 전시 필터 및 예약 정렬</h3>
+          
+          <div class="filter-group">
+            <label>예약 시간순 정렬 (Error 4):</label>
+            <select v-model="reservationSortOrder">
+              <option value="NONE">기본 순서</option>
+              <option value="ASC">시간 빠른순</option>
+              <option value="DESC">시간 늦은순 (Error 4)</option>
+            </select>
+            <small class="warn-desc">* 시간순 정렬 시, 목록에서 예약을 취소하면 정렬 불일치로 엉뚱한 예약건이 대신 취소 처리됨 (Error 4)</small>
+          </div>
+
+          <div class="filter-group">
+            <label>전시 도서 검색:</label>
+            <input 
+              type="text" 
+              placeholder="전시 제목 또는 작가..."
+              v-model="exhibitionSearchQuery"
+              @input="triggerSearchRace"
+            />
+            <small class="warn-desc">* 검색어 고속 변경 시, 이전 검색 결과(한국, 3초)가 최신 조건(현대, 0.2초)을 덮어씀 (Error 2)</small>
+          </div>
+
+          <div class="category-badges">
+            <button 
+              v-for="cat in ['ALL', 'Painting', 'Sculpture', 'Media', 'Drawing']" 
+              :key="cat"
+              :class="['cat-btn', activeCategory === cat ? 'active' : '']"
+              @click="activeCategory = cat"
+            >
+              {{ cat === 'ALL' ? '전체 전시' : cat === 'Painting' ? '회화/평면' : cat === 'Sculpture' ? '조각/도예' : cat === 'Media' ? '미디어아트' : '드로잉' }}
+            </button>
+          </div>
+        </aside>
+
+        <!-- Center Column: Exhibitions Catalog & Hourly Congestion -->
+        <main class="panel-section exhibitions-center">
+          
+          <!-- Exhibitions catalog grid -->
+          <div class="widget-section">
+            <h2>🖼️ 미술관 현재 진행 전시 목록 (최소 12개)</h2>
+            <div class="exhibitions-catalog">
+              <div 
+                v-for="ex in filteredExhibitions" 
+                :key="ex.id"
+                class="exhibition-card"
+              >
+                <div class="ex-head">
+                  <span class="ex-id">{{ ex.id }}</span>
+                  <span :class="['congestion-badge', ex.congestion.toLowerCase()]">
+                    {{ ex.congestion === 'HIGH' ? '🔴 혼잡' : ex.congestion === 'MEDIUM' ? '🟡 보통' : '🟢 여유' }}
+                  </span>
+                </div>
+                <h4 class="ex-title">{{ ex.title }}</h4>
+                <div class="ex-body">
+                  <span>작가: <strong>{{ ex.artist }}</strong> | 분야: {{ ex.type }}</span>
+                  <span>기간: {{ ex.period }}</span>
+                </div>
+
+                <!-- Poster Image view (Error 7 Target) -->
+                <div class="poster-preview">
+                  <div v-if="ex.imageUrl" class="poster-frame">
+                    <img :src="ex.imageUrl" alt="전시 포스터" class="poster-img" />
+                    <!-- Display filename only to reveal image 404 broken (Error 7 detail) -->
+                    <span class="img-lbl-desc">경로: {{ ex.imageUrl }}</span>
+                  </div>
+                  <div v-else class="poster-placeholder">
+                    등록된 포스터 이미지가 없습니다.
+                  </div>
+                  
+                  <div class="upload-control">
+                    <input type="text" placeholder="포스터 파일명 (예: 추상 미술.jpg)..." v-model="mockFileNames[ex.id]" />
+                    <button class="upload-btn" @click="uploadMockPoster(ex.id)">
+                      📷 포스터 등록 (Error 7)
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <small class="warn-desc">* 파일명에 한글과 공백 공존 시, 실제 파일 경로와 표시 URL이 불일치해 포스터가 깨지고 404 발생 (Error 7)</small>
+          </div>
+
+          <!-- Hourly Congestion Chart (Error 3 Target) -->
+          <div class="widget-section congestion-widget">
+            <div class="widget-header">
+              <h2>📊 미술관 시간대별 혼잡도 상황 통계</h2>
+            </div>
+            <div class="congestion-chart">
+              <div 
+                v-for="(count, timeSlot) in hourlyCongestion" 
+                :key="timeSlot"
+                class="chart-bar-row"
+              >
+                <span class="time-lbl">{{ timeSlot }}</span>
+                <div class="bar-track">
+                  <div 
+                    class="bar-fill" 
+                    :style="{ width: Math.min(100, (count * 10)) + '%' }"
+                    :class="count >= 6 ? 'high' : count >= 4 ? 'medium' : 'low'"
+                  ></div>
+                </div>
+                <span class="count-lbl">{{ count }}명 예약</span>
+              </div>
+            </div>
+            <small class="warn-desc">* 관람 예약을 전면 취소하여도 시간대별 혼잡도 수치 및 예약 총 통계값은 차감 안 됨 (Error 3)</small>
+          </div>
+
+        </main>
+
+        <!-- Right Column: Reservations Table & Details Inspector -->
+        <aside class="panel-section operations-sidebar">
+          
+          <!-- Reservations Register table -->
+          <div class="detail-widget">
+            <h3>📑 고객 예약 및 접수 대장 (최소 20개)</h3>
+            <div class="table-scroll-box">
+              <table>
+                <thead>
+                  <tr>
+                    <th>예약 ID</th>
+                    <th>관람객명</th>
+                    <th>시간</th>
+                    <th>상태</th>
+                    <th>작업</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr 
+                    v-for="(resv, idx) in sortedReservations" 
+                    :key="resv.id"
+                    :class="['resv-tr', selectedReservation?.id === resv.id ? 'active' : '']"
+                    @click="selectedReservation = resv"
+                  >
+                    <td><strong>{{ resv.id }}</strong></td>
+                    <td>{{ resv.visitorName }}</td>
+                    <td>{{ resv.time }}</td>
+                    <td>
+                      <span :class="['status-badge', resv.status.toLowerCase()]">{{ resv.status }}</span>
+                    </td>
+                    <td>
+                      <button class="cancel-btn-sm" @click.stop="confirmReservationCancel(idx)">
+                        취소 (Error 4)
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Customer details Inspector (Error 6 Target) -->
+          <div class="detail-widget">
+            <h3>👤 관람객 정보 및 내부 메모</h3>
+            <!-- Cache profile display (Error 6 Target details) -->
+            <div v-if="selectedReservation" class="detail-panel">
+              <p>관람객명: <strong>{{ selectedReservation.visitorName }}</strong></p>
+              <p>연락처: <span class="phone-lbl">{{ selectedVisitorPhone || '불러오는 중...' }}</span></p>
+              <p>내부 관리메모:</p>
+              <div class="memo-box">
+                {{ selectedVisitorMemo || '기입된 메모가 없습니다.' }}
+              </div>
+              <small class="warn-desc">* 관리자 계정(A ➔ B) 변경 시, 예약 목록은 B 권한으로 바뀌나 우측 연락처/메모는 A 캐시가 남음 (Error 6)</small>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              예약 대장 목록 행을 선택해 주십시오. (가장 첫 예약이 기본 선택됨)
+            </div>
+          </div>
+
+          <!-- Date & Docent adjusting form (Error 1 Target) -->
+          <div class="detail-widget">
+            <h3>📅 관람 날짜 및 도슨트 투어 조정</h3>
+            <div v-if="selectedReservation" class="detail-panel">
+              <p>선택 예약번호: <strong>{{ selectedReservation.id }}</strong></p>
+              
+              <div class="form-group">
+                <label>관람 날짜 변경:</label>
+                <input type="date" v-model="selectedReservation.date" />
+              </div>
+
+              <div class="form-group">
+                <label>도슨트 투어 시간 변경:</label>
+                <div class="input-row">
+                  <select v-model="selectedReservation.docentTime">
+                    <option value="10:30">오전 10시 30분</option>
+                    <option value="11:30">오전 11시 30분</option>
+                    <option value="13:30">오후 01시 30분</option>
+                    <option value="14:30">오후 02시 30분</option>
+                    <option value="15:30">오후 03시 30분</option>
+                    <option value="16:30">오후 04시 30분</option>
+                  </select>
+                  <button class="save-btn" @click="triggerDateDocentRace(selectedReservation)">
+                    조정 저장 (Error 1)
+                  </button>
+                </div>
+                <small class="warn-desc">* 날짜 수정(3초 지연 완료) 직후 도슨트 시간 수정(0.1초 완료) 시 최종 완료 후 도슨트 시간이 이전 값으로 원복됨 (Error 1)</small>
+              </div>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              일정 조정을 원하는 예약을 먼저 선택하십시오.
+            </div>
+          </div>
+
+          <!-- Entry ticket operations (Error 5 Target) -->
+          <div class="detail-widget">
+            <h3>🎫 티켓 발권 및 시간 변경</h3>
+            <div v-if="selectedReservation" class="detail-panel">
+              <p>현재 상태: <span :class="['status-badge', selectedReservation.status.toLowerCase()]">{{ selectedReservation.status }}</span></p>
+              
+              <div class="form-group">
+                <label>예약 시간 변경:</label>
+                <input type="text" placeholder="예: 14:00" v-model="selectedReservation.time" />
+              </div>
+
+              <div class="front-actions-group">
+                <button 
+                  class="save-time-btn"
+                  @click="triggerTimeCheckinConflict(selectedReservation)"
+                >
+                  ⚡ 시간 수정 (Error 5)
+                </button>
+                <button 
+                  class="checkin-btn"
+                  @click="checkinReservation(selectedReservation.id)"
+                >
+                  ⚡ 입장 확인 완료 (Error 5)
+                </button>
+              </div>
+              <small class="warn-desc">* 입장 확인(0.5초 완료) 직후 시간 변경(4초 지연 완료) 요청 시 티켓 상태가 PENDING(입장 전)으로 부활 롤백됨 (Error 5)</small>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              티켓 발권을 하려면 예약을 먼저 선택해 주세요.
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+      <!-- Toast notifications -->
+      <div class="toast-container">
+        <div 
+          v-for="t in toasts" 
+          :key="t.id" 
+          :class="['toast-card', t.type]"
+        >
+          <span class="toast-icon">
+            {{ t.type === 'success' ? '✅' : t.type === 'danger' ? '❌' : '⚠️' }}
+          </span>
+          <span class="toast-message">{{ t.message }}</span>
+          <button class="toast-close" @click="removeToast(t.id)">
+            &times;
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

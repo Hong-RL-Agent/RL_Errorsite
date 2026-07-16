@@ -1,0 +1,80 @@
+{
+  "products": [
+    { "id": "PR-01", "name": "올레드 UHD 65인치 TV", "category": "가전", "price": 45000, "brand": "LG" },
+    { "id": "PR-02", "name": "비스포크 4도어 냉장고", "category": "가전", "price": 55000, "brand": "삼성" },
+    { "id": "PR-03", "name": "오브제컬렉션 워시타워", "category": "가전", "price": 48000, "brand": "LG" },
+    { "id": "PR-04", "name": "무풍 갤러리 에어컨", "category": "가전", "price": 62000, "brand": "삼성" },
+    { "id": "PR-05", "name": "직수 냉온정수기", "category": "가전", "price": 28000, "brand": "쿠쿠" },
+    { "id": "PR-06", "name": "하이브리드 모션 매트리스", "category": "가구", "price": 35000, "brand": "코웨이" },
+    { "id": "PR-07", "name": "안마의자 팬텀 메디컬", "category": "가전", "price": 89000, "brand": "바디프랜드" },
+    { "id": "PR-08", "name": "광파오븐 레인지 32L", "category": "가전", "price": 18000, "brand": "SK매직" },
+    { "id": "PR-09", "name": "초고속 블렌더 믹서기", "category": "가전", "price": 12000, "brand": "필립스" },
+    { "id": "PR-10", "name": "360도 공기청정기 알파", "category": "가전", "price": 24000, "brand": "LG" },
+    { "id": "PR-11", "name": "IH 압력밥솥 10인용", "category": "가전", "price": 15000, "brand": "쿠쿠" },
+    { "id": "PR-12", "name": "코드제로 무선청소기", "category": "가전", "price": 32000, "brand": "LG" },
+    { "id": "PR-13", "name": "모션데스크 1400", "category": "가구", "price": 22000, "brand": "데스커" },
+    { "id": "PR-14", "name": "이태리 가죽 4인 소파", "category": "가구", "price": 40000, "brand": "자코모" },
+    { "id": "PR-15", "name": "호텔형 킹사이즈 침대 프레임", "category": "가구", "price": 30000, "brand": "에이스" },
+    { "id": "PR-16", "name": "원목 6인용 식탁 세트", "category": "가구", "price": 38000, "brand": "한샘" }
+  ],
+  "contracts": [
+    {
+      "id": "CT-01",
+      "user": "User A",
+      "productId": "PR-01",
+      "productName": "올레드 UHD 65인치 TV",
+      "plan": "베이직 요금제 (3년 약정)",
+      "monthlyFee": 45000,
+      "deliveryDate": "2026-07-20",
+      "status": "DELIVERING"
+    },
+    {
+      "id": "CT-02",
+      "user": "User A",
+      "productId": "PR-05",
+      "productName": "직수 냉온정수기",
+      "plan": "프리미엄 요금제 (5년 약정)",
+      "monthlyFee": 28000,
+      "deliveryDate": "2026-07-18",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "CT-03",
+      "user": "User B",
+      "productId": "PR-02",
+      "productName": "비스포크 4도어 냉장고",
+      "plan": "베이직 요금제 (3년 약정)",
+      "monthlyFee": 55000,
+      "deliveryDate": "2026-07-22",
+      "status": "ACTIVE"
+    }
+  ],
+  "userStats": {
+    "User A": {
+      "monthlyBillSum": 73000,
+      "deliveryAlertsCount": 2
+    },
+    "User B": {
+      "monthlyBillSum": 55000,
+      "deliveryAlertsCount": 0
+    }
+  },
+  "billingHistory": {
+    "first_half": [
+      { "month": "1월", "amount": 62000 },
+      { "month": "2월", "amount": 62000 },
+      { "month": "3월", "amount": 73000 },
+      { "month": "4월", "amount": 73000 },
+      { "month": "5월", "amount": 73000 },
+      { "month": "6월", "amount": 73000 }
+    ],
+    "second_half": [
+      { "month": "7월", "amount": 85000 },
+      { "month": "8월", "amount": 85000 },
+      { "month": "9월", "amount": 89000 },
+      { "month": "10월", "amount": 95000 },
+      { "month": "11월", "amount": 95000 },
+      { "month": "12월", "amount": 95000 }
+    ]
+  }
+}

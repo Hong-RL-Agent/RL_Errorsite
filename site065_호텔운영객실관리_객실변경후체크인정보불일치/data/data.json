@@ -1,0 +1,70 @@
+{
+  "rooms": [
+    { "id": "RM-101", "number": 101, "type": "Standard", "floor": 1, "status": "OCCUPIED", "cleaning": "DIRTY" },
+    { "id": "RM-102", "number": 102, "type": "Standard", "floor": 1, "status": "VACANT", "cleaning": "CLEAN" },
+    { "id": "RM-103", "number": 103, "type": "Standard", "floor": 1, "status": "OCCUPIED", "cleaning": "DIRTY" },
+    { "id": "RM-104", "number": 104, "type": "Standard", "floor": 1, "status": "VACANT", "cleaning": "CLEANING" },
+    { "id": "RM-105", "number": 105, "type": "Standard", "floor": 1, "status": "VACANT", "cleaning": "DIRTY" },
+    { "id": "RM-106", "number": 106, "type": "Standard", "floor": 1, "status": "OCCUPIED", "cleaning": "CLEAN" },
+    { "id": "RM-107", "number": 107, "type": "Standard", "floor": 1, "status": "VACANT", "cleaning": "CLEAN" },
+    { "id": "RM-108", "number": 108, "type": "Standard", "floor": 1, "status": "VACANT", "cleaning": "DIRTY" },
+    { "id": "RM-109", "number": 109, "type": "Standard", "floor": 1, "status": "OCCUPIED", "cleaning": "DIRTY" },
+    { "id": "RM-110", "number": 110, "type": "Standard", "floor": 1, "status": "VACANT", "cleaning": "CLEAN" },
+    { "id": "RM-201", "number": 201, "type": "Deluxe", "floor": 2, "status": "OCCUPIED", "cleaning": "DIRTY" },
+    { "id": "RM-202", "number": 202, "type": "Deluxe", "floor": 2, "status": "VACANT", "cleaning": "CLEAN" },
+    { "id": "RM-203", "number": 203, "type": "Deluxe", "floor": 2, "status": "OCCUPIED", "cleaning": "DIRTY" },
+    { "id": "RM-204", "number": 204, "type": "Deluxe", "floor": 2, "status": "VACANT", "cleaning": "CLEANING" },
+    { "id": "RM-205", "number": 205, "type": "Deluxe", "floor": 2, "status": "VACANT", "cleaning": "DIRTY" },
+    { "id": "RM-206", "number": 206, "type": "Deluxe", "floor": 2, "status": "OCCUPIED", "cleaning": "CLEAN" },
+    { "id": "RM-207", "number": 207, "type": "Deluxe", "floor": 2, "status": "VACANT", "cleaning": "CLEAN" },
+    { "id": "RM-208", "number": 208, "type": "Deluxe", "floor": 2, "status": "VACANT", "cleaning": "DIRTY" },
+    { "id": "RM-209", "number": 209, "type": "Deluxe", "floor": 2, "status": "OCCUPIED", "cleaning": "DIRTY" },
+    { "id": "RM-210", "number": 210, "type": "Deluxe", "floor": 2, "status": "VACANT", "cleaning": "CLEAN" },
+    { "id": "RM-301", "number": 301, "type": "Suite", "floor": 3, "status": "OCCUPIED", "cleaning": "DIRTY" },
+    { "id": "RM-302", "number": 302, "type": "Suite", "floor": 3, "status": "VACANT", "cleaning": "CLEAN" },
+    { "id": "RM-303", "number": 303, "type": "Suite", "floor": 3, "status": "OCCUPIED", "cleaning": "DIRTY" },
+    { "id": "RM-304", "number": 304, "type": "Suite", "floor": 3, "status": "VACANT", "cleaning": "CLEANING" },
+    { "id": "RM-305", "number": 305, "type": "Suite", "floor": 3, "status": "VACANT", "cleaning": "DIRTY" },
+    { "id": "RM-306", "number": 306, "type": "Suite", "floor": 3, "status": "OCCUPIED", "cleaning": "CLEAN" },
+    { "id": "RM-307", "number": 307, "type": "Suite", "floor": 3, "status": "VACANT", "cleaning": "CLEAN" },
+    { "id": "RM-308", "number": 308, "type": "Suite", "floor": 3, "status": "VACANT", "cleaning": "DIRTY" },
+    { "id": "RM-309", "number": 309, "type": "Suite", "floor": 3, "status": "OCCUPIED", "cleaning": "DIRTY" },
+    { "id": "RM-310", "number": 310, "type": "Suite", "floor": 3, "status": "VACANT", "cleaning": "CLEAN" }
+  ],
+  "reservations": [
+    { "id": "RV-01", "guestName": "홍길동", "phone": "010-1111-2222", "roomId": "RM-101", "roomNumber": 101, "checkInDate": "2026-07-15", "checkOutDate": "2026-07-18", "status": "CHECKED_IN", "serviceCharge": 25000, "paymentStatus": "PAID" },
+    { "id": "RV-02", "guestName": "이몽룡", "phone": "010-2222-3333", "roomId": "RM-103", "roomNumber": 103, "checkInDate": "2026-07-16", "checkOutDate": "2026-07-20", "status": "CHECKED_IN", "serviceCharge": 0, "paymentStatus": "UNPAID" },
+    { "id": "RV-03", "guestName": "성춘향", "phone": "010-3333-4444", "roomId": "RM-201", "roomNumber": 201, "checkInDate": "2026-07-16", "checkOutDate": "2026-07-19", "status": "CONFIRMED", "serviceCharge": 15000, "paymentStatus": "UNPAID" },
+    { "id": "RV-04", "guestName": "임꺽정", "phone": "010-4444-5555", "roomId": "RM-203", "roomNumber": 203, "checkInDate": "2026-07-14", "checkOutDate": "2026-07-17", "status": "CHECKED_IN", "serviceCharge": 50000, "paymentStatus": "UNPAID" },
+    { "id": "RV-05", "guestName": "장길산", "phone": "010-5555-6666", "roomId": "RM-301", "roomNumber": 301, "checkInDate": "2026-07-15", "checkOutDate": "2026-07-18", "status": "CHECKED_IN", "serviceCharge": 120000, "paymentStatus": "PAID" },
+    { "id": "RV-06", "guestName": "김철수", "phone": "010-6666-7777", "roomId": "RM-303", "roomNumber": 303, "checkInDate": "2026-07-16", "checkOutDate": "2026-07-20", "status": "CHECKED_IN", "serviceCharge": 0, "paymentStatus": "UNPAID" },
+    { "id": "RV-07", "guestName": "김영희", "phone": "010-7777-8888", "roomId": "RM-106", "roomNumber": 106, "checkInDate": "2026-07-16", "checkOutDate": "2026-07-17", "status": "CHECKED_IN", "serviceCharge": 8000, "paymentStatus": "PAID" },
+    { "id": "RV-08", "guestName": "박민수", "phone": "010-8888-9999", "roomId": "RM-206", "roomNumber": 206, "checkInDate": "2026-07-16", "checkOutDate": "2026-07-19", "status": "CHECKED_IN", "serviceCharge": 0, "paymentStatus": "UNPAID" },
+    { "id": "RV-09", "guestName": "최영미", "phone": "010-9999-0000", "roomId": "RM-306", "roomNumber": 306, "checkInDate": "2026-07-15", "checkOutDate": "2026-07-18", "status": "CHECKED_IN", "serviceCharge": 45000, "paymentStatus": "PAID" },
+    { "id": "RV-10", "guestName": "정수현", "phone": "010-1234-5678", "roomId": "RM-109", "roomNumber": 109, "checkInDate": "2026-07-16", "checkOutDate": "2026-07-22", "status": "CHECKED_IN", "serviceCharge": 0, "paymentStatus": "UNPAID" },
+    { "id": "RV-11", "guestName": "강현우", "phone": "010-2345-6789", "roomId": "RM-209", "roomNumber": 209, "checkInDate": "2026-07-16", "checkOutDate": "2026-07-20", "status": "CHECKED_IN", "serviceCharge": 22000, "paymentStatus": "UNPAID" },
+    { "id": "RV-12", "guestName": "한지민", "phone": "010-3456-7890", "roomId": "RM-309", "roomNumber": 309, "checkInDate": "2026-07-15", "checkOutDate": "2026-07-17", "status": "CHECKED_IN", "serviceCharge": 95000, "paymentStatus": "PAID" },
+    { "id": "RV-13", "guestName": "이정재", "phone": "010-4567-8901", "roomId": "RM-102", "roomNumber": 102, "checkInDate": "2026-07-20", "checkOutDate": "2026-07-22", "status": "CONFIRMED", "serviceCharge": 0, "paymentStatus": "UNPAID" },
+    { "id": "RV-14", "guestName": "송혜교", "phone": "010-5678-9012", "roomId": "RM-202", "roomNumber": 202, "checkInDate": "2026-07-22", "checkOutDate": "2026-07-25", "status": "CONFIRMED", "serviceCharge": 0, "paymentStatus": "UNPAID" },
+    { "id": "RV-15", "guestName": "현빈", "phone": "010-6789-0123", "roomId": "RM-302", "roomNumber": 302, "checkInDate": "2026-07-19", "checkOutDate": "2026-07-22", "status": "CONFIRMED", "serviceCharge": 0, "paymentStatus": "UNPAID" },
+    { "id": "RV-16", "guestName": "손예진", "phone": "010-7890-1234", "roomId": "RM-107", "roomNumber": 107, "checkInDate": "2026-07-25", "checkOutDate": "2026-07-28", "status": "CONFIRMED", "serviceCharge": 0, "paymentStatus": "UNPAID" },
+    { "id": "RV-17", "guestName": "조인성", "phone": "010-8901-2345", "roomId": "RM-207", "roomNumber": 207, "checkInDate": "2026-07-21", "checkOutDate": "2026-07-24", "status": "CONFIRMED", "serviceCharge": 0, "paymentStatus": "UNPAID" },
+    { "id": "RV-18", "guestName": "한효주", "phone": "010-9012-3456", "roomId": "RM-307", "roomNumber": 307, "checkInDate": "2026-07-20", "checkOutDate": "2026-07-23", "status": "CONFIRMED", "serviceCharge": 0, "paymentStatus": "UNPAID" },
+    { "id": "RV-19", "guestName": "공유", "phone": "010-0123-4567", "roomId": "RM-110", "roomNumber": 110, "checkInDate": "2026-07-18", "checkOutDate": "2026-07-21", "status": "CONFIRMED", "serviceCharge": 0, "paymentStatus": "UNPAID" },
+    { "id": "RV-20", "guestName": "김고은", "phone": "010-9876-5432", "roomId": "RM-210", "roomNumber": 210, "checkInDate": "2026-07-20", "checkOutDate": "2026-07-24", "status": "CONFIRMED", "serviceCharge": 0, "paymentStatus": "UNPAID" }
+  ],
+  "branchStats": {
+    "서울 본점": {
+      "dailyRevenue": 4850000,
+      "pendingCustomerRequests": 8
+    },
+    "부산 지점": {
+      "dailyRevenue": 2150000,
+      "pendingCustomerRequests": 3
+    }
+  },
+  "stats": {
+    "occupiedCount": 10,
+    "cleaningQueueCount": 18
+  }
+}

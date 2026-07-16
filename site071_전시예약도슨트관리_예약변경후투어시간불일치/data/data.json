@@ -1,0 +1,57 @@
+{
+  "exhibitions": [
+    { "id": "EX-01", "title": "한국 근현대 회화 특별전", "type": "Painting", "artist": "김환기 외", "period": "2026-07-01 ~ 2026-08-30", "congestion": "HIGH", "imageUrl": "/uploads/korean_modern.jpg" },
+    { "id": "EX-02", "title": "현대 추상 조각의 선과 면", "type": "Sculpture", "artist": "이우환", "period": "2026-07-10 ~ 2026-09-15", "congestion": "MEDIUM", "imageUrl": "/uploads/abstract_sculpture.jpg" },
+    { "id": "EX-03", "title": "미디어 아트와 빛의 우주", "type": "Media", "artist": "백남준 외", "period": "2026-06-20 ~ 2026-10-30", "congestion": "HIGH", "imageUrl": "" },
+    { "id": "EX-04", "title": "프랑스 인상주의 거장전", "type": "Painting", "artist": "모네, 르누아르", "period": "2026-07-15 ~ 2026-09-30", "congestion": "HIGH", "imageUrl": "" },
+    { "id": "EX-05", "title": "조선 후기 풍속화의 서사", "type": "Painting", "artist": "김홍도, 신윤복", "period": "2026-08-01 ~ 2026-11-15", "congestion": "MEDIUM", "imageUrl": "" },
+    { "id": "EX-06", "title": "친환경 에코 디자인 설치전", "type": "Installation", "artist": "LoopEco Group", "period": "2026-07-05 ~ 2026-08-25", "congestion": "LOW", "imageUrl": "" },
+    { "id": "EX-07", "title": "포스트모던 디지털 일러스트", "type": "Media", "artist": "PixelArt Studio", "period": "2026-07-12 ~ 2026-09-10", "congestion": "MEDIUM", "imageUrl": "" },
+    { "id": "EX-08", "title": "유기적 흙과 도예의 만남", "type": "Sculpture", "artist": "정소금", "period": "2026-07-20 ~ 2026-09-20", "congestion": "LOW", "imageUrl": "" },
+    { "id": "EX-09", "title": "현대 사진가의 고독한 시선", "type": "Photography", "artist": "스티브 맥커리", "period": "2026-06-01 ~ 2026-08-31", "congestion": "HIGH", "imageUrl": "" },
+    { "id": "EX-10", "title": "미래 도시 아키텍처 드로잉", "type": "Drawing", "artist": "Zaha Studio", "period": "2026-07-08 ~ 2026-09-08", "congestion": "MEDIUM", "imageUrl": "" },
+    { "id": "EX-11", "title": "아동 미술 치료 행복 기획전", "type": "Painting", "artist": "행복그림연구소", "period": "2026-07-01 ~ 2026-08-15", "congestion": "LOW", "imageUrl": "" },
+    { "id": "EX-12", "title": "동양 철학과 수묵 크로키", "type": "Drawing", "artist": "산수 임한식", "period": "2026-07-18 ~ 2026-09-18", "congestion": "MEDIUM", "imageUrl": "" }
+  ],
+  "reservations": [
+    { "id": "RS-01", "exhibitionId": "EX-01", "exhibitionTitle": "한국 근현대 회화 특별전", "visitorName": "홍길동", "phone": "010-1234-5678", "date": "2026-07-20", "time": "10:00", "docentTime": "10:30", "status": "PENDING", "adminId": "A", "memo": "A사 소속 단체 관람 사전 문의 건" },
+    { "id": "RS-02", "exhibitionId": "EX-02", "exhibitionTitle": "현대 추상 조각의 선과 면", "visitorName": "이몽룡", "phone": "010-2345-6789", "date": "2026-07-21", "time": "11:00", "docentTime": "11:30", "status": "PENDING", "adminId": "A", "memo": "오디오 가이드 기기 2대 요청" },
+    { "id": "RS-03", "exhibitionId": "EX-03", "exhibitionTitle": "미디어 아트와 빛의 우주", "visitorName": "성춘향", "phone": "010-3456-7890", "date": "2026-07-20", "time": "14:00", "docentTime": "14:30", "status": "CHECKED_IN", "adminId": "A", "memo": "휠체어 대여 서비스 지원 희망" },
+    { "id": "RS-04", "exhibitionId": "EX-04", "exhibitionTitle": "프랑스 인상주의 거장전", "visitorName": "임꺽정", "phone": "010-4567-8901", "date": "2026-07-22", "time": "15:00", "docentTime": "15:30", "status": "PENDING", "adminId": "A", "memo": "" },
+    { "id": "RS-05", "exhibitionId": "EX-05", "exhibitionTitle": "조선 후기 풍속화의 서사", "visitorName": "장길산", "phone": "010-5678-9012", "date": "2026-07-23", "time": "16:00", "docentTime": "16:30", "status": "CANCELLED", "adminId": "A", "memo": "개인 사정으로 취소 요청" },
+    { "id": "RS-06", "exhibitionId": "EX-06", "exhibitionTitle": "친환경 에코 디자인 설치전", "visitorName": "김철수", "phone": "010-6789-0123", "date": "2026-07-20", "time": "13:00", "docentTime": "13:30", "status": "PENDING", "adminId": "A", "memo": "" },
+    { "id": "RS-07", "exhibitionId": "EX-07", "exhibitionTitle": "포스트모던 디지털 일러스트", "visitorName": "이순신", "phone": "010-7890-1234", "date": "2026-07-24", "time": "09:00", "docentTime": "09:30", "status": "PENDING", "adminId": "A", "memo": "" },
+    { "id": "RS-08", "exhibitionId": "EX-08", "exhibitionTitle": "유기적 흙과 도예의 만남", "visitorName": "심청", "phone": "010-8901-2345", "date": "2026-07-25", "time": "10:00", "docentTime": "10:30", "status": "CHECKED_IN", "adminId": "A", "memo": "" },
+    { "id": "RS-09", "exhibitionId": "EX-09", "exhibitionTitle": "현대 사진가의 고독한 시선", "visitorName": "심봉사", "phone": "010-9012-3456", "date": "2026-07-20", "time": "12:00", "docentTime": "12:30", "status": "PENDING", "adminId": "A", "memo": "" },
+    { "id": "RS-10", "exhibitionId": "EX-10", "exhibitionTitle": "미래 도시 아키텍처 드로잉", "visitorName": "놀부", "phone": "010-0123-4567", "date": "2026-07-26", "time": "14:00", "docentTime": "14:30", "status": "PENDING", "adminId": "A", "memo": "" },
+    { "id": "RS-11", "exhibitionId": "EX-11", "exhibitionTitle": "아동 미술 치료 행복 기획전", "visitorName": "흥부", "phone": "010-1122-3344", "date": "2026-07-20", "time": "15:00", "docentTime": "15:30", "status": "PENDING", "adminId": "B", "memo": "VIP 초청장 소지 고객 메모" },
+    { "id": "RS-12", "exhibitionId": "EX-12", "exhibitionTitle": "동양 철학과 수묵 크로키", "visitorName": "백동수", "phone": "010-2233-4455", "date": "2026-07-27", "time": "16:00", "docentTime": "16:30", "status": "PENDING", "adminId": "B", "memo": "도슨트 설명 집중 희망" },
+    { "id": "RS-13", "exhibitionId": "EX-01", "exhibitionTitle": "한국 근현대 회화 특별전", "visitorName": "유재석", "phone": "010-3344-5566", "date": "2026-07-20", "time": "11:00", "docentTime": "11:30", "status": "PENDING", "adminId": "B", "memo": "" },
+    { "id": "RS-14", "exhibitionId": "EX-02", "exhibitionTitle": "현대 추상 조각의 선과 면", "visitorName": "송지효", "phone": "010-4455-6677", "date": "2026-07-28", "time": "13:00", "docentTime": "13:30", "status": "PENDING", "adminId": "B", "memo": "" },
+    { "id": "RS-15", "exhibitionId": "EX-03", "exhibitionTitle": "미디어 아트와 빛의 우주", "visitorName": "김종국", "phone": "010-5566-7788", "date": "2026-07-20", "time": "14:00", "docentTime": "14:30", "status": "PENDING", "adminId": "B", "memo": "" },
+    { "id": "RS-16", "exhibitionId": "EX-04", "exhibitionTitle": "프랑스 인상주의 거장전", "visitorName": "지석진", "phone": "010-6677-8899", "date": "2026-07-29", "time": "15:00", "docentTime": "15:30", "status": "PENDING", "adminId": "B", "memo": "" },
+    { "id": "RS-17", "exhibitionId": "EX-05", "exhibitionTitle": "조선 후기 풍속화의 서사", "visitorName": "이광수", "phone": "010-7788-9900", "date": "2026-07-20", "time": "16:00", "docentTime": "16:30", "status": "PENDING", "adminId": "B", "memo": "" },
+    { "id": "RS-18", "exhibitionId": "EX-06", "exhibitionTitle": "친환경 에코 디자인 설치전", "visitorName": "하동훈", "phone": "010-8899-0011", "date": "2026-07-30", "time": "10:00", "docentTime": "10:30", "status": "PENDING", "adminId": "B", "memo": "" },
+    { "id": "RS-19", "exhibitionId": "EX-07", "exhibitionTitle": "포스트모던 디지털 일러스트", "visitorName": "양세찬", "phone": "010-9900-1122", "date": "2026-07-20", "time": "11:00", "docentTime": "11:30", "status": "PENDING", "adminId": "B", "memo": "" },
+    { "id": "RS-20", "exhibitionId": "EX-08", "exhibitionTitle": "유기적 흙과 도예의 만남", "visitorName": "전소민", "phone": "010-1010-2020", "date": "2026-07-31", "time": "12:00", "docentTime": "12:30", "status": "PENDING", "adminId": "B", "memo": "" }
+  ],
+  "hourlyCongestion": {
+    "10:00": 3,
+    "11:00": 5,
+    "12:00": 2,
+    "13:00": 4,
+    "14:00": 7,
+    "15:00": 8,
+    "16:00": 6
+  },
+  "adminStats": {
+    "A": {
+      "totalReservations": 10,
+      "pendingCount": 7
+    },
+    "B": {
+      "totalReservations": 10,
+      "pendingCount": 9
+    }
+  }
+}

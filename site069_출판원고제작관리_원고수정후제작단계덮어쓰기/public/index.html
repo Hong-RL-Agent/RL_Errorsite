@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b5cf6' stroke-width='2'%3E%3Cpath d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/%3E%3Cpath d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PublishFlow | 출판 원고 편집 및 제작 공정 라이프사이클 PMS</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Vue 3 Global CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- Header Navigation Bar -->
+      <header class="app-header">
+        <div class="logo-group">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>
+          <span class="logo-title">PublishFlow</span>
+          <span class="logo-subtitle">Editorial Lifecycle Suite</span>
+        </div>
+
+        <!-- Dashboard cost statistics -->
+        <div class="header-dashboard">
+          <div class="kpis-group">
+            <div class="stat-card">
+              <span>🖨️ 누적 외주제작 비용:</span>
+              <strong class="stat-value">{{ formatPrice(stats.totalPrintingCost) }}</strong>
+            </div>
+            <div class="stat-card">
+              <span>📚 인쇄소 승인 요청수:</span>
+              <strong class="stat-value-alert">{{ stats.totalPrintRequests }}건</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-controls">
+          <button class="sandbox-reset-btn" @click="resetSandbox">
+            🔄 편집장 리셋
+          </button>
+        </div>
+      </header>
+
+      <!-- Main app workspace grid -->
+      <div class="publishflow-grid">
+
+        <!-- Left Column: Navigation Menus & Sort Filters -->
+        <aside class="panel-section filter-sidebar">
+          <h3>📂 원고 제작 분류 필터</h3>
+          
+          <div class="filter-group">
+            <label>제작 공정 단계:</label>
+            <select v-model="filterStep">
+              <option value="ALL">전체 단계</option>
+              <option value="Concept">기획 검토 (Concept)</option>
+              <option value="Editing">교열 중 (Editing)</option>
+              <option value="Proofreading">교정 교열 (Proofreading)</option>
+              <option value="Printing">인쇄 제작 (Printing)</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>제작 일정 날짜순 정렬 (Error 3):</label>
+            <select v-model="scheduleSortOrder">
+              <option value="NONE">기본 순서</option>
+              <option value="ASC">날짜 빠른순</option>
+              <option value="DESC">날짜 늦은순 (Error 3)</option>
+            </select>
+            <small class="warn-desc">* 날짜순 정렬을 켠 뒤 일정 삭제 시 정렬 불일치로 엉뚱한 일정이 지워짐 (Error 3)</small>
+          </div>
+
+          <div class="search-box">
+            <input 
+              type="text" 
+              placeholder="도서 제목 또는 저자 검색..."
+              v-model="manuscriptSearchQuery"
+            />
+          </div>
+        </aside>
+
+        <!-- Center Column: Manuscripts Matrix & Schedules -->
+        <main class="panel-section manuscripts-center">
+          
+          <!-- Manuscripts Grid -->
+          <div class="widget-section">
+            <h2>📘 실시간 편집 제작 원고 대장 (최소 12개)</h2>
+            <div class="manuscripts-catalog">
+              <div 
+                v-for="ms in sortedManuscripts" 
+                :key="ms.id"
+                :class="['manuscript-card', selectedManuscript?.id === ms.id ? 'active' : '']"
+                @click="selectedManuscript = ms"
+              >
+                <div class="ms-head">
+                  <span class="ms-id">{{ ms.id }}</span>
+                  <span :class="['step-badge', ms.step.toLowerCase()]">{{ ms.step }}</span>
+                </div>
+                <h4 class="ms-title">{{ ms.title }}</h4>
+                <div class="ms-body">
+                  <span>저자: <strong>{{ ms.authorName }}</strong> | ISBN: {{ ms.isbn }}</span>
+                  <span>외주제작 예산: {{ formatPrice(ms.cost) }}</span>
+                </div>
+                <div class="ms-footer">
+                  <button class="delete-ms-btn" @click="deleteManuscript(ms.id)">
+                    🗑️ 원고 영구 삭제 (Error 4)
+                  </button>
+                </div>
+              </div>
+            </div>
+            <small class="warn-desc">* 원고 삭제 시에도 총 외주 제작비 예산 및 승인 통계 지표에서 차감되지 않고 잔존함 (Error 4)</small>
+          </div>
+
+          <!-- Production Schedules Table (Error 3 Target) -->
+          <div class="widget-section schedule-widget">
+            <div class="widget-header">
+              <h2>📅 도서 편집 제작 예정 일정표</h2>
+            </div>
+
+            <div class="table-scroll-box">
+              <table>
+                <thead>
+                  <tr>
+                    <th>일정 ID</th>
+                    <th>제작 업무 내용</th>
+                    <th>목표 기한</th>
+                    <th>작업</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(sc, idx) in sortedSchedules" :key="sc.id">
+                    <td><strong>{{ sc.id }}</strong></td>
+                    <td>{{ sc.task }}</td>
+                    <td><span class="date-lbl">📅 {{ sc.targetDate }}</span></td>
+                    <td>
+                      <button class="delete-sc-btn" @click="confirmScheduleDelete(idx)">
+                        일정 소거 (Error 3)
+                      </button>
+                    </td>
+                  </tr>
+                  <tr v-if="sortedSchedules.length === 0">
+                    <td colspan="4" class="empty-td">등록된 일정이 없습니다.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+
+        <!-- Right Column: Author Search & Details Editor -->
+        <aside class="panel-section operations-sidebar">
+          
+          <!-- Author search (Error 5 Target) -->
+          <div class="detail-widget">
+            <div class="widget-header">
+              <h3>✍️ 저자 인명 검색 관리</h3>
+              <button class="race-btn-sm" @click="triggerAuthorSearchRace">
+                ⚡ 검색 경합 (Error 5)
+              </button>
+            </div>
+            <small class="warn-desc">* 홍길동(3초 지연) ➔ 이순신(0.2초) 검색어 변경 시 홍길동 결과로 덮어써져 찢어짐 (Error 5)</small>
+
+            <div class="search-box">
+              <input 
+                type="text" 
+                placeholder="저자 이름 검색..."
+                v-model="authorSearchQuery"
+              />
+            </div>
+
+            <div class="authors-stack">
+              <div 
+                v-for="ath in authors" 
+                :key="ath.id"
+                class="author-item-card"
+              >
+                <strong>{{ ath.name }} ({{ ath.id }})</strong>
+                <span>전공: {{ ath.specialty }} | 연락처: {{ ath.phone }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Manuscript detail form editor -->
+          <div class="detail-widget">
+            <h3>📝 원고 상세 정보 조정</h3>
+            <div v-if="selectedManuscript" class="detail-panel">
+              <p>원고번호: <strong>{{ selectedManuscript.id }}</strong></p>
+              
+              <div class="form-group">
+                <label>도서 및 원고 제목:</label>
+                <input type="text" v-model="selectedManuscript.title" />
+              </div>
+
+              <div class="form-group">
+                <label>제작 공정 단계:</label>
+                <div class="input-row">
+                  <select v-model="selectedManuscript.step">
+                    <option value="Concept">기획 검토 (Concept)</option>
+                    <option value="Editing">교열 중 (Editing)</option>
+                    <option value="Proofreading">교정 교열 (Proofreading)</option>
+                    <option value="Printing">인쇄 제작 (Printing)</option>
+                  </select>
+                  <button class="save-btn" @click="triggerTitleStepRace(selectedManuscript)">
+                    정보 갱신 (Error 1)
+                  </button>
+                </div>
+                <small class="warn-desc">* 제목 수정(0.1초 완료) 직후 단계 변경(3초 지연 완료) 요청 시 제목이 이전 값으로 회구 롤백됨 (Error 1)</small>
+              </div>
+            </div>
+            <div v-else class="empty-lbl-dark">
+              원고 대장 목록 카드 중 하나를 선택해 주세요.
+            </div>
+          </div>
+
+          <!-- Manuscript Revisions management (Error 2 Target) -->
+          <div class="detail-widget">
+            <h3>📑 교정본 및 업로드 관리</h3>
+            <div v-if="selectedManuscript" class="detail-panel">
+              <p>현재 활성 교정본 ID: <strong>{{ selectedManuscript.activeRevisionId || '없음' }}</strong></p>
+
+              <div class="revisions-timeline">
+                <div 
+                  v-for="rev in filteredRevisions" 
+                  :key="rev.id"
+                  class="rev-node"
+                >
+                  <div class="rev-head">
+                    <strong>{{ rev.version }} ({{ rev.id }})</strong>
+                    <button class="del-rev-btn" @click="triggerRevisionDeleteConflict(selectedManuscript, rev.id)">
+                      삭제 (Error 2)
+                    </button>
+                  </div>
+                  <p class="rev-note">{{ rev.note }}</p>
+                </div>
+              </div>
+
+              <div class="upload-rev-form">
+                <div class="form-group">
+                  <label>새 교정본 버전:</label>
+                  <input type="text" placeholder="예: v2.0" v-model="newRevisionVersion" />
+                </div>
+                <div class="form-group">
+                  <label>교정 사항 수정 노트:</label>
+                  <input type="text" placeholder="예: 오탈자 보완 수정" v-model="newRevisionNote" />
+                </div>
+                <button class="upload-btn" @click="uploadNewRevision(selectedManuscript)">
+                  ⚡ 신규 교정본 업로드
+                </button>
+                <small class="warn-desc">* 업로드(4초 지연) 직후 삭제(0.5초 완료) 시 삭제 완료된 버전을 다시 활성으로 연결함 (Error 2)</small>
+              </div>
+
+            </div>
+            <div v-else class="empty-lbl-dark">
+              교정본 목록을 띄우려면 원고 카드를 먼저 선택해 주세요.
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+      <!-- Toast notifications -->
+      <div class="toast-container">
+        <div 
+          v-for="t in toasts" 
+          :key="t.id" 
+          :class="['toast-card', t.type]"
+        >
+          <span class="toast-icon">
+            {{ t.type === 'success' ? '✅' : t.type === 'danger' ? '❌' : '⚠️' }}
+          </span>
+          <span class="toast-message">{{ t.message }}</span>
+          <button class="toast-close" @click="removeToast(t.id)">
+            &times;
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

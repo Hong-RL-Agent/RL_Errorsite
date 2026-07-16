@@ -1,0 +1,42 @@
+{
+  "manuscripts": [
+    { "id": "MS-01", "title": "인공지능의 윤리학과 도덕률", "authorId": "AU-01", "authorName": "홍길동", "step": "Concept", "cost": 1500000, "isbn": "979-11-8901-01-1", "activeRevisionId": "REV-01" },
+    { "id": "MS-02", "title": "서양 미학사 요약 강의", "authorId": "AU-02", "authorName": "이몽룡", "step": "Editing", "cost": 2200000, "isbn": "979-11-8901-01-2", "activeRevisionId": "REV-02" },
+    { "id": "MS-03", "title": "자바스크립트 마스터 클래스", "authorId": "AU-03", "authorName": "성춘향", "step": "Proofreading", "cost": 4500000, "isbn": "979-11-8901-01-3", "activeRevisionId": "REV-03" },
+    { "id": "MS-04", "title": "아기 고양이 영양 가이드", "authorId": "AU-04", "authorName": "임꺽정", "step": "Printing", "cost": 3100000, "isbn": "979-11-8901-01-4", "activeRevisionId": "REV-04" },
+    { "id": "MS-05", "title": "제주 가을 올레길 여행 수필", "authorId": "AU-05", "authorName": "장길산", "step": "Concept", "cost": 850000, "isbn": "979-11-8901-01-5", "activeRevisionId": "REV-05" },
+    { "id": "MS-06", "title": "조선 시대 명문가 가구 도감", "authorId": "AU-06", "authorName": "김철수", "step": "Editing", "cost": 6000000, "isbn": "979-11-8901-01-6", "activeRevisionId": "REV-06" },
+    { "id": "MS-07", "title": "마크다운 기반 문서화 기법", "authorId": "AU-01", "authorName": "홍길동", "step": "Proofreading", "cost": 1100000, "isbn": "979-11-8901-01-7", "activeRevisionId": "REV-07" },
+    { "id": "MS-08", "title": "커피 브루잉 이론과 실전 테크닉", "authorId": "AU-07", "authorName": "이순신", "step": "Printing", "cost": 2900000, "isbn": "979-11-8901-01-8", "activeRevisionId": "REV-08" },
+    { "id": "MS-09", "title": "기초 유기화학 메커니즘 도서", "authorId": "AU-07", "authorName": "이순신", "step": "Concept", "cost": 3500000, "isbn": "979-11-8901-01-9", "activeRevisionId": "REV-09" },
+    { "id": "MS-10", "title": "아날로그 흑백 필름 인화 기술", "authorId": "AU-08", "authorName": "심청", "step": "Editing", "cost": 1750000, "isbn": "979-11-8901-02-0", "activeRevisionId": "REV-10" },
+    { "id": "MS-11", "title": "초보자의 수채화 컬러 드로잉 북", "authorId": "AU-09", "authorName": "심봉사", "step": "Proofreading", "cost": 1900000, "isbn": "979-11-8901-02-1", "activeRevisionId": "REV-11" },
+    { "id": "MS-12", "title": "자연주의 미니멀 캠핑 매뉴얼", "authorId": "AU-10", "authorName": "놀부", "step": "Printing", "cost": 2300000, "isbn": "979-11-8901-02-2", "activeRevisionId": "REV-12" }
+  ],
+  "authors": [
+    { "id": "AU-01", "name": "홍길동", "phone": "010-1234-5678", "specialty": "인문학" },
+    { "id": "AU-02", "name": "이몽룡", "phone": "010-2345-6789", "specialty": "역사" },
+    { "id": "AU-03", "name": "성춘향", "phone": "010-3456-7890", "specialty": "컴퓨터" },
+    { "id": "AU-04", "name": "임꺽정", "phone": "010-4567-8901", "specialty": "반려동물" },
+    { "id": "AU-05", "name": "장길산", "phone": "010-5678-9012", "specialty": "에세이" },
+    { "id": "AU-06", "name": "김철수", "phone": "010-6789-0123", "specialty": "예술" },
+    { "id": "AU-07", "name": "이순신", "phone": "010-7890-1234", "specialty": "공학" },
+    { "id": "AU-08", "name": "심청", "phone": "010-8901-2345", "specialty": "사진학" },
+    { "id": "AU-09", "name": "심봉사", "phone": "010-9012-3456", "specialty": "미술" },
+    { "id": "AU-10", "name": "놀부", "phone": "010-0123-4567", "specialty": "취미" }
+  ],
+  "schedules": [
+    { "id": "SC-01", "manuscriptId": "MS-01", "task": "기획 원고 초고 검토", "targetDate": "2026-07-20" },
+    { "id": "SC-02", "manuscriptId": "MS-02", "task": "1차 윤문 가독성 수정", "targetDate": "2026-07-25" },
+    { "id": "SC-03", "manuscriptId": "MS-03", "task": "디자인 내지 레이아웃 교정", "targetDate": "2026-08-01" },
+    { "id": "SC-04", "manuscriptId": "MS-04", "task": "마스터 필름 인쇄 발주", "targetDate": "2026-08-05" }
+  ],
+  "revisions": [
+    { "id": "REV-01", "manuscriptId": "MS-01", "version": "v1.0", "note": "최초 초고 접수 완료" },
+    { "id": "REV-02", "manuscriptId": "MS-02", "version": "v1.1", "note": "서문 보완 수정 반영" }
+  ],
+  "dashboardStats": {
+    "totalPrintingCost": 31250000,
+    "totalPrintRequests": 12
+  }
+}

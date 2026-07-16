@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f59e0b' stroke-width='2'%3E%3Cpath d='M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LocalDispatch | 실시간 배달 배차 및 라이더 정산 관제망</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Vue 3 Global CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- Dispatch Header Bar -->
+      <header class="app-header">
+        <div class="logo-group">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span class="logo-title">LocalDispatch</span>
+          <span class="logo-subtitle">Real-time Order Logistics Hub</span>
+        </div>
+
+        <div class="header-dashboard">
+          <div class="kpis-group">
+            <div class="stat-card">
+              <span>🛵 관제 활성 라이더:</span>
+              <strong class="stat-value">{{ activeRidersCount }}명</strong>
+            </div>
+            <div class="stat-card">
+              <span>📦 매칭 대기 콜수:</span>
+              <strong class="stat-value-alert">{{ matchingOrdersCount }}건</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-controls">
+          <button class="sandbox-reset-btn" @click="resetSandbox">
+            🔄 관제판 초기화
+          </button>
+        </div>
+      </header>
+
+      <!-- App Main Dispatch Grid -->
+      <div class="localdispatch-grid">
+
+        <!-- Left Column: Orders list & Filters -->
+        <aside class="panel-section filter-sidebar">
+          <h3>📦 배달 주문 대기 대장</h3>
+          
+          <div class="filter-group">
+            <label>주문 상태 분류:</label>
+            <select v-model="filterStatus">
+              <option value="ALL">전체 상태</option>
+              <option value="MATCHING">배차 대기 (MATCHING)</option>
+              <option value="DELIVERING">배달 중 (DELIVERING)</option>
+              <option value="DELIVERED">배달 완료 (DELIVERED) (Error 3)</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>지역구 분류 (Error 3):</label>
+            <select v-model="filterRegion">
+              <option value="ALL">전체 지역구</option>
+              <option value="관악">관악구</option>
+              <option value="강남">강남구 (Error 3)</option>
+              <option value="동작">동작구</option>
+              <option value="영등포">영등포구</option>
+            </select>
+            <small class="warn-desc">* 상태/지역 필터 고속 변경 시 늦은 응답이 최신 목록을 오버라이트하여 지도 마커 개수와 오차가 발생함 (Error 3)</small>
+          </div>
+
+          <div class="search-box">
+            <input 
+              type="text" 
+              placeholder="상점명 또는 주소 검색..."
+              v-model="searchQuery"
+            />
+          </div>
+
+          <div class="orders-stack">
+            <div 
+              v-for="order in sortedOrders" 
+              :key="order.id"
+              :class="['order-card', order.status.toLowerCase(), selectedOrder?.id === order.id ? 'active' : '']"
+              @click="selectOrder(order)"
+            >
+              <div class="order-head">
+                <strong>{{ order.id }}</strong>
+                <span :class="['status-badge', order.status.toLowerCase()]">{{ order.status }}</span>
+              </div>
+              <p class="store-lbl">{{ order.storeName }}</p>
+              <div class="order-meta">
+                <span>{{ order.region }} | 수수료: {{ formatPrice(order.fee) }}</span>
+              </div>
+            </div>
+            <div v-if="sortedOrders.length === 0" class="empty-lbl-dark">
+              대기 중인 주문이 없습니다.
+            </div>
+          </div>
+        </aside>
+
+        <!-- Center Column: SVG Map Logistics Visualizer -->
+        <main class="panel-section map-center">
+          <div class="center-header">
+            <h2>🗺️ 실시간 배달 지도 관제 모니터 (관악·강남·영등포)</h2>
+            <span class="marker-counter-badge">지도상 마커 개수: {{ mapMarkersComputed.length }}개</span>
+          </div>
+
+          <!-- SVG Visual Map Area -->
+          <div class="svg-map-wrapper">
+            <svg class="dispatch-svg" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="0.5" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+
+              <!-- Route Lines from Store to destination -->
+              <g v-if="selectedOrder">
+                <line 
+                  :x1="selectedOrder.x" 
+                  :y1="selectedOrder.y" 
+                  :x2="selectedOrder.x + 25" 
+                  :y2="selectedOrder.y - 25" 
+                  stroke="#f59e0b" 
+                  stroke-width="1.5" 
+                  stroke-dasharray="3,3"
+                />
+                <circle :cx="selectedOrder.x + 25" :cy="selectedOrder.y - 25" r="4" fill="#ef4444" />
+              </g>
+
+              <!-- Order Markers -->
+              <g v-for="marker in mapMarkersComputed" :key="marker.id">
+                <circle 
+                  :cx="marker.x" 
+                  :cy="marker.y" 
+                  r="6" 
+                  :fill="marker.status === 'MATCHING' ? '#f59e0b' : marker.status === 'DELIVERING' ? '#10b981' : '#6b7280'"
+                  :stroke="selectedOrder?.id === marker.id ? '#fafaf9' : 'transparent'"
+                  stroke-width="1.5"
+                  class="svg-dot-marker"
+                  @click="selectOrder(marker)"
+                />
+                <text :x="marker.x + 8" :y="marker.y + 4" class="svg-marker-text">{{ marker.id }}</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Settlement Table Widget (Error 5 Target) -->
+          <div class="settlements-widget">
+            <div class="widget-header">
+              <h3>💵 기사 배달 수수료 정산 대기 명단</h3>
+              <div class="sort-controls">
+                <span>정렬:</span>
+                <select v-model="settlementSortOrder">
+                  <option value="NONE">기본 정렬</option>
+                  <option value="ASC">정산금 낮은순</option>
+                  <option value="DESC">정산금 높은순 (Error 5)</option>
+                </select>
+              </div>
+            </div>
+            <small class="warn-desc">* 정산 목록을 금액순으로 정렬한 뒤 확정을 누르면 정렬 불일치로 엉뚱한 정산이 확정됨 (Error 5)</small>
+
+            <div class="settlements-table-box">
+              <table>
+                <thead>
+                  <tr>
+                    <th>라이더</th>
+                    <th>누적 정산액</th>
+                    <th>상태</th>
+                    <th>작업</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(st, idx) in sortedSettlements" :key="st.id">
+                    <td><strong>{{ st.driverName }}</strong></td>
+                    <td>{{ formatPrice(st.amount) }}</td>
+                    <td><span :class="['status-badge', st.status.toLowerCase()]">{{ st.status }}</span></td>
+                    <td class="action-td">
+                      <button class="confirm-settle-btn" @click="confirmSettlement(idx)">
+                        정산 확정 (Error 5)
+                      </button>
+                      <button class="cancel-settle-btn" @click="deleteSettlement(st.id)">
+                        취소 (Error 2)
+                      </button>
+                    </td>
+                  </tr>
+                  <tr v-if="sortedSettlements.length === 0">
+                    <td colspan="4" class="empty-td">대기 중인 정산 건이 없습니다.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+
+        <!-- Right Column: Driver Operations & Details -->
+        <aside class="panel-section operations-sidebar">
+          
+          <!-- Dispatch Drivers Grid -->
+          <div class="drivers-widget">
+            <h3>🛵 소속 라이더 상태 현황</h3>
+            <div class="drivers-stack">
+              <div 
+                v-for="dr in drivers" 
+                :key="dr.id"
+                class="driver-item-card"
+              >
+                <div class="dr-head">
+                  <strong>{{ dr.name }} ({{ dr.id }})</strong>
+                  <span :class="['status-badge', dr.status.toLowerCase()]">{{ dr.status }}</span>
+                </div>
+                <div class="dr-body">
+                  <span>완료: {{ dr.completedCount }}건 | 누적수수료: {{ formatPrice(dr.earnings) }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selected Order Details & Forms -->
+          <div class="order-details-widget">
+            <h4>📋 선택 주문 배차 및 상태 제어</h4>
+            <div v-if="selectedOrder" class="detail-panel">
+              <p>가맹점: <strong>{{ selectedOrder.storeName }}</strong> ({{ selectedOrder.region }})</p>
+              
+              <!-- Driver Assignment Fields (Error 1 Target) -->
+              <div class="form-group">
+                <label>배정 라이더 지정:</label>
+                <div class="input-row">
+                  <select v-model="selectedOrder.driverId">
+                    <option :value="null">배차 대기 상태</option>
+                    <option v-for="d in drivers" :key="d.id" :value="d.id">
+                      {{ d.name }} ({{ d.status }})
+                    </option>
+                  </select>
+                  <button class="assign-btn" @click="triggerDriverAssignRace(selectedOrder)">
+                    배정 요청 (Error 1)
+                  </button>
+                </div>
+                <small class="warn-desc">* 기사 A(3초 지연) ➔ 기사 B 연속 배정 시 서버에 A로 기입되어 새로고침 시 롤백됨 (Error 1)</small>
+              </div>
+
+              <!-- Address Update Form (Error 4 Target) -->
+              <div class="form-group">
+                <label>목적지 배달 주소 수정:</label>
+                <div class="input-row">
+                  <input type="text" v-model="selectedOrder.address" />
+                  <button class="save-btn" @click="triggerAddressCancelConflict(selectedOrder)">
+                    수정 요청 (Error 4)
+                  </button>
+                </div>
+                <small class="warn-desc">* 배달 취소(0.5초 완료) ➔ 주소 수정(4초 지연 완료) 요청 시 취소된 건이 배차 대기로 복구 부활됨 (Error 4)</small>
+              </div>
+
+              <!-- Complete Order Action -->
+              <div class="front-actions-group">
+                <button 
+                  class="complete-delivery-btn"
+                  @click="completeDelivery(selectedOrder.id)"
+                  :disabled="!selectedOrder.driverId || selectedOrder.status === 'DELIVERED'"
+                >
+                  🏁 배달 완료 처리
+                </button>
+                <button 
+                  class="cancel-delivery-btn"
+                  @click="cancelDelivery(selectedOrder.id)"
+                >
+                  ❌ 배달 강제 취소 (Error 4)
+                </button>
+              </div>
+            </div>
+            <div v-else class="empty-lbl-dark">
+              좌측 주문 목록 카드 중 하나를 선택해 주세요.
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+      <!-- Toast notifications -->
+      <div class="toast-container">
+        <div 
+          v-for="t in toasts" 
+          :key="t.id" 
+          :class="['toast-card', t.type]"
+        >
+          <span class="toast-icon">
+            {{ t.type === 'success' ? '✅' : t.type === 'danger' ? '❌' : '⚠️' }}
+          </span>
+          <span class="toast-message">{{ t.message }}</span>
+          <button class="toast-close" @click="removeToast(t.id)">
+            &times;
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

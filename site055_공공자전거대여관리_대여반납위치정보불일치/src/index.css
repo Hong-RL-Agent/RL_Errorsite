@@ -1,0 +1,650 @@
+/* Color Palette: Metro Bike Blue & Dark Slate Carbon */
+:root {
+  --font-sans: 'Outfit', 'Noto Sans KR', sans-serif;
+  
+  --bg-app: #080d1a;             /* Deep slate carbon */
+  --bg-panel: #111a2f;           /* Station console carbon */
+  --bg-card: #1d2a45;            /* Bike locker blue-navy */
+  
+  --color-primary: #3b82f6;      /* Metro Rental Blue */
+  --color-primary-dark: #2563eb; 
+  --color-primary-bg: rgba(59, 130, 246, 0.08);
+  
+  --color-success: #10b981;      
+  --color-danger: #ef4444;       
+  --color-danger-bg: rgba(239, 68, 68, 0.1);
+  --color-warning: #f59e0b;      
+  
+  --color-dark: #f8fafc;         
+  --color-text: #94a3b8;         
+  --color-muted: #475569;        
+  --color-border: #233355;       
+  
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  
+  --shadow-card: 0 4px 30px rgba(59, 130, 246, 0.02);
+  --shadow-hover: 0 10px 30px rgba(59, 130, 246, 0.06);
+  
+  --transition-speed: 0.25s;
+}
+
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+}
+
+/* App Layout Container */
+.citybike-app {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Header bar */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--bg-panel);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  gap: 1.5rem;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-primary);
+}
+
+.logo-svg {
+  width: 32px;
+  height: 32px;
+}
+
+.logo-title {
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: -0.5px;
+  color: var(--color-dark);
+}
+
+.logo-subtitle {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-weight: 600;
+  margin-left: 0.5rem;
+  border-left: 1.5px solid var(--color-border);
+  padding-left: 0.5rem;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.ticket-status-box {
+  font-size: 0.75rem;
+  background-color: var(--bg-app);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.ticket-lbl {
+  color: var(--color-primary);
+}
+
+.time-warn {
+  color: var(--color-warning);
+}
+
+.user-selector {
+  font-size: 0.8rem;
+  color: var(--color-dark);
+}
+
+.user-selector select {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  color: var(--color-dark);
+  padding: 0.35rem;
+  border-radius: 4px;
+  outline: none;
+}
+
+.sandbox-reset-btn {
+  background-color: var(--color-danger-bg);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+/* Workspace Grid Panels */
+.citybike-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr 380px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.panel-section {
+  background-color: var(--bg-panel);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+
+/* Left Sidebar regions & station list */
+.region-filters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+  margin-bottom: 1.25rem;
+}
+
+.filter-btn {
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: center;
+}
+
+.filter-btn.active {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary);
+}
+
+.stations-list-block h3, .filter-sidebar h3 {
+  font-size: 0.85rem;
+  color: var(--color-dark);
+  margin-bottom: 0.55rem;
+}
+
+.list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.station-list-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.station-list-card:hover, .station-list-card.active {
+  border-color: var(--color-primary);
+}
+
+.station-list-card.active {
+  background-color: var(--color-primary-bg);
+}
+
+.station-list-card strong {
+  font-size: 0.78rem;
+  color: var(--color-dark);
+}
+
+.station-list-card .row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+}
+
+.bikes-qty-lbl {
+  color: var(--color-success);
+}
+
+/* Center Map column */
+.feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.feed-header h2 {
+  font-size: 1.1rem;
+  color: var(--color-dark);
+}
+
+.refresh-race-btn {
+  background-color: var(--color-danger-bg);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  font-size: 0.68rem;
+  font-weight: bold;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.warn-desc {
+  font-size: 0.62rem;
+  color: var(--color-warning);
+  margin-bottom: 0.75rem;
+}
+
+.svg-map-wrapper {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.55rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bike-svg-map {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+.station-marker-circle {
+  fill: var(--color-primary);
+  stroke: var(--bg-app);
+  stroke-width: 2px;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.station-marker-circle:hover, .station-marker-circle.selected {
+  fill: var(--color-success);
+  stroke: var(--color-dark);
+  r: 12px;
+}
+
+.fault-reports-section h3 {
+  font-size: 0.85rem;
+  color: var(--color-dark);
+  margin-bottom: 0.35rem;
+}
+
+.reports-list {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem;
+  max-height: 120px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 0.55rem;
+}
+
+.fault-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  background-color: var(--bg-card);
+  padding: 0.35rem 0.55rem;
+  border-radius: 3px;
+}
+
+.cancel-fault-btn {
+  background-color: var(--color-danger-bg);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  font-size: 0.62rem;
+  font-weight: bold;
+  padding: 1px 4px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.report-form {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.report-form input {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  color: var(--color-dark);
+  padding: 0.35rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  outline: none;
+}
+
+.report-form input[type="text"] {
+  flex-grow: 1;
+}
+
+.report-form button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  font-size: 0.72rem;
+  font-weight: bold;
+  padding: 0 0.85rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Right Details Sidebar */
+.station-details-card, .active-rentals-block, .history-timeline-block {
+  margin-bottom: 1.5rem;
+}
+
+.station-details-card .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.station-details-card h3 {
+  font-size: 0.88rem;
+  color: var(--color-dark);
+}
+
+.region-tag {
+  background-color: var(--color-border);
+  font-size: 0.65rem;
+  color: var(--color-dark);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.stat-gauge-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.bikes-list-block h4 {
+  font-size: 0.78rem;
+  color: var(--color-dark);
+  margin-bottom: 0.45rem;
+}
+
+.bikes-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.bike-row-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+}
+
+.bike-row-card .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.bike-row-card .model {
+  font-size: 0.62rem;
+  color: var(--color-muted);
+}
+
+.badge {
+  font-size: 0.62rem;
+  font-weight: bold;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.badge.inspection {
+  background-color: var(--color-warning);
+  color: #1e1e1e;
+}
+
+.badge.rented {
+  background-color: var(--color-border);
+  color: var(--color-muted);
+}
+
+.rent-btn {
+  background-color: var(--color-primary-bg);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  font-size: 0.68rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.active-rentals-block h3, .history-timeline-block h3 {
+  font-size: 0.85rem;
+  color: var(--color-dark);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.active-rental-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+}
+
+.active-rental-card h4 {
+  color: var(--color-primary);
+}
+
+.return-race-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.45rem;
+  margin-top: 0.45rem;
+}
+
+.return-race-panel select {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  color: var(--color-dark);
+  padding: 0.25rem;
+  border-radius: 4px;
+  outline: none;
+}
+
+.race-trigger-btn {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  font-size: 0.72rem;
+  font-weight: bold;
+  padding: 0.35rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.timeline-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.timeline-item {
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+  padding: 0.55rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.72rem;
+}
+
+.timeline-item .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timeline-item .status-tag {
+  font-size: 0.62rem;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+.timeline-item .status-tag.ACTIVE {
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary);
+}
+
+.timeline-item .status-tag.COMPLETED {
+  background-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.timeline-item .row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeline-item small {
+  color: var(--color-muted);
+  font-size: 0.62rem;
+}
+
+/* Floating Action Toasts */
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.toast-card {
+  background-color: var(--bg-panel);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  padding: 0.9rem 1.25rem;
+  min-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastIn {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.toast-card.success {
+  border-left: 4px solid var(--color-success);
+}
+
+.toast-card.danger {
+  border-left: 4px solid var(--color-danger);
+}
+
+.toast-card.warning {
+  border-left: 4px solid var(--color-warning);
+}
+
+.toast-icon {
+  font-size: 1.1rem;
+}
+
+.toast-message {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  flex-grow: 1;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.empty-lbl {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Mobile responsive screen adaptations */
+@media (max-width: 1024px) {
+  .citybike-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-sidebar, .details-sidebar {
+    grid-column: 1;
+  }
+}

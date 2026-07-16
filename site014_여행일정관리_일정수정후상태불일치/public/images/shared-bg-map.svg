@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <radialGradient id="grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#dbeafe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#eff6ff;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#grad)" rx="10"/>
+  <!-- Decorative Grid lines -->
+  <path d="M 50,0 L 50,400 M 150,0 L 150,400 M 250,0 L 250,400 M 350,0 L 350,400 M 450,0 L 450,400 M 550,0 L 550,400" stroke="#e2e8f0" stroke-width="1"/>
+  <path d="M 0,50 L 600,50 M 0,150 L 600,150 M 0,250 L 600,250 M 0,350 L 600,350" stroke="#e2e8f0" stroke-width="1"/>
+  <!-- Island Silhouette -->
+  <path d="M 120,200 Q 150,160 220,180 T 320,220 T 420,200 T 360,280 T 260,310 T 160,260 Z" fill="#93c5fd" opacity="0.4"/>
+  <!-- Decorative Compass -->
+  <circle cx="530" cy="70" r="30" fill="none" stroke="#60a5fa" stroke-width="2"/>
+  <path d="M 530,40 L 530,100 M 500,70 L 560,70" stroke="#60a5fa" stroke-width="1"/>
+  <path d="M 530,50 L 535,70 L 530,65 L 525,70 Z" fill="#3b82f6"/>
+</svg>

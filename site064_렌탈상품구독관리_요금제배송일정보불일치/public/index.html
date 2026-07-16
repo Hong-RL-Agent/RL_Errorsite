@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 8v4l3 3'/%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RentCircle | 스마트 가전·가구 렌탈 케어 허브</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Vue 3 Global CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- Header Navigation Bar -->
+      <header class="app-header">
+        <div class="logo-group">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M8 12h8" />
+            <path d="M12 8v8" />
+          </svg>
+          <span class="logo-title">RentCircle</span>
+          <span class="logo-subtitle">Consumer Rental Service Coordinator</span>
+        </div>
+
+        <!-- Dashboard User KPIs Summary (Error 4 Target) -->
+        <div class="header-dashboard">
+          <div class="kpis-group">
+            <div class="stat-card">
+              <span>💳 당월 청구 예정 금액:</span>
+              <strong class="stat-value">{{ formatPrice(cachedMonthlyBillSum) }}</strong>
+            </div>
+            <div class="stat-card">
+              <span>🚚 배송 알림 건수:</span>
+              <strong class="stat-value-alert">{{ cachedDeliveryAlertsCount }}건</strong>
+            </div>
+          </div>
+          <small class="warn-desc">* 사용자 전환 시에도 월 청구 예정액 및 배송 알림 건수는 이전 사용자 A 정보로 고착 노출 (Error 4)</small>
+        </div>
+
+        <div class="header-controls">
+          <div class="user-selector">
+            <span>로그인 계정:</span>
+            <select :value="currentUser" @change="handleUserSwitch($event.target.value)">
+              <option value="User A">사용자 A (User A)</option>
+              <option value="User B">사용자 B (User B)</option>
+            </select>
+          </div>
+          <button class="sandbox-reset-btn" @click="resetSandbox">
+            🔄 DB 초기화
+          </button>
+        </div>
+      </header>
+
+      <!-- App Main Grid Layout -->
+      <div class="rentcircle-grid">
+
+        <!-- Left Column: Search & Filters -->
+        <aside class="panel-section filter-sidebar">
+          <h3>🔍 검색 및 필터</h3>
+          
+          <div class="filter-group">
+            <label>상품 검색:</label>
+            <input 
+              type="text" 
+              placeholder="제품명 또는 카테고리..."
+              v-model="searchQuery"
+            />
+          </div>
+
+          <div class="filter-group">
+            <label>정렬 기준:</label>
+            <select v-model="priceSortOrder">
+              <option value="NONE">기본 정렬</option>
+              <option value="ASC">렌탈 단가 낮은순 (Error 3)</option>
+              <option value="DESC">렌탈 단가 높은순 (Error 3)</option>
+            </select>
+            <small class="warn-desc">* 가격 정렬을 켠 상태에서 비교 목록의 아이템 제거 시 비교 평균가 계산에 엉뚱한 제품 가격이 제외됨 (Error 3)</small>
+          </div>
+
+          <div class="filter-group">
+            <label>최대 렌탈 금액: ({{ formatPrice(maxPriceFilter) }})</label>
+            <input 
+              type="range" 
+              min="10000" 
+              max="100000" 
+              step="5000"
+              v-model="maxPriceFilter"
+            />
+          </div>
+
+          <div class="category-badges">
+            <button 
+              v-for="cat in ['ALL', '가전', '가구']" 
+              :key="cat"
+              :class="['cat-btn', activeCategory === cat ? 'active' : '']"
+              @click="activeCategory = cat"
+            >
+              {{ cat }}
+            </button>
+          </div>
+        </aside>
+
+        <!-- Center Column: Products Catalog & Comparison -->
+        <main class="panel-section products-center">
+          <h2>📦 렌탈 케어 상품 안내 대장</h2>
+
+          <div class="products-catalog">
+            <div 
+              v-for="prod in sortedProducts" 
+              :key="prod.id" 
+              class="product-card"
+            >
+              <div class="prod-meta">
+                <span class="brand-lbl">{{ prod.brand }}</span>
+                <span class="cat-tag">{{ prod.category }}</span>
+              </div>
+              <h4 class="prod-name">{{ prod.name }}</h4>
+              <div class="price-row">
+                <strong class="price-lbl">{{ formatPrice(prod.price) }} / 월</strong>
+                <div class="action-btn-row">
+                  <button class="compare-add-btn" @click="addToComparison(prod)">
+                    ⚖️ 비교함 추가
+                  </button>
+                  <button class="rent-apply-btn" @click="openRentModal(prod)">
+                    ✍️ 렌탈 신청
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Comparison Table (Error 3 Target) -->
+          <div class="comparison-widget">
+            <div class="widget-header">
+              <h3>⚖️ 렌탈 요금제 비교 분석기</h3>
+              <div v-if="comparisonList.length > 0" class="average-kpi">
+                비교군 평균 렌탈 가격: <strong>{{ formatPrice(compareAvgPriceComputed) }}</strong>
+              </div>
+            </div>
+
+            <div v-if="comparisonList.length > 0" class="comparison-grid">
+              <div 
+                v-for="(item, idx) in comparisonList" 
+                :key="item.id" 
+                class="comparison-card"
+              >
+                <div class="comp-header">
+                  <strong>{{ item.name }}</strong>
+                  <button class="comp-remove-btn" @click="removeFromComparison(idx)">
+                    제거 (Error 3)
+                  </button>
+                </div>
+                <div class="comp-body">
+                  <span>제조사: {{ item.brand }}</span>
+                  <span>단가: {{ formatPrice(item.price) }}/월</span>
+                  <span>3년 총액: {{ formatPrice(item.price * 36) }}</span>
+                  <span>5년 총액: {{ formatPrice(item.price * 60) }}</span>
+                </div>
+              </div>
+            </div>
+            <div v-else class="empty-lbl-dark">
+              상단 목록에서 제품 카드의 '비교함 추가' 버튼을 눌러주세요.
+            </div>
+          </div>
+        </main>
+
+        <!-- Right Column: Contracts & AS Billing -->
+        <aside class="panel-section operations-sidebar">
+          
+          <!-- Contracts list and timelines -->
+          <div class="contracts-widget">
+            <h3>📑 나의 계약 및 배송 정보</h3>
+            <div class="contracts-stack">
+              <div 
+                v-for="ct in userContracts" 
+                :key="ct.id" 
+                :class="['contract-card', selectedContract?.id === ct.id ? 'active' : '']"
+                @click="selectedContract = ct"
+              >
+                <div class="ct-header">
+                  <strong>{{ ct.id }}</strong>
+                  <span :class="['status-badge', ct.status.toLowerCase()]">{{ ct.status }}</span>
+                </div>
+                <p class="ct-prod-name">{{ ct.productName }}</p>
+                <div class="ct-meta">
+                  <span>요금: {{ formatPrice(ct.monthlyFee) }} | 배송일: {{ ct.deliveryDate }}</span>
+                </div>
+              </div>
+              <div v-if="userContracts.length === 0" class="empty-lbl-dark">
+                진행 중인 렌탈 계약이 없습니다.
+              </div>
+            </div>
+          </div>
+
+          <!-- Selected Contract Details, Plan & Delivery Update (Error 1 Target) -->
+          <div class="contract-details-widget">
+            <h4>🔍 선택 계약 상세 제어</h4>
+            <div v-if="selectedContract" class="detail-panel">
+              <p>상품: <strong>{{ selectedContract.productName }}</strong></p>
+              
+              <!-- Plan Modify fields -->
+              <div class="form-group">
+                <label>요금제 비교 선택:</label>
+                <select v-model="selectedContract.plan">
+                  <option value="베이직 요금제 (3년 약정)">베이직 요금제 (3년 약정)</option>
+                  <option value="프리미엄 요금제 (5년 약정)">프리미엄 요금제 (5년 약정)</option>
+                  <option value="실속형 무약정 요금제">실속형 무약정 요금제</option>
+                </select>
+              </div>
+
+              <!-- Delivery Date Modify fields -->
+              <div class="form-group">
+                <label>배송 일정 수정:</label>
+                <div class="input-row">
+                  <input type="date" v-model="selectedContract.deliveryDate" />
+                  <button class="save-btn" @click="triggerPlanDeliveryRace(selectedContract)">
+                    수정 요청 (Error 1)
+                  </button>
+                </div>
+                <small class="warn-desc">* 날짜 저장 완료(3초 지연) 시점에 요금제가 이전 값으로 원복됨 (Error 1)</small>
+              </div>
+
+              <!-- Exchange & Terminate requests (Error 2 Target) -->
+              <div class="operation-buttons-group">
+                <div class="form-group">
+                  <label>교체 요청 상품 선택:</label>
+                  <select v-model="exchangeProductId">
+                    <option value="">교체 제품 선택...</option>
+                    <option v-for="p in products" :key="p.id" :value="p.id">
+                      {{ p.name }}
+                    </option>
+                  </select>
+                </div>
+                
+                <div class="btn-grid-row">
+                  <button class="exchange-btn" @click="triggerExchangeTerminateConflict(selectedContract)">
+                    🔄 기기 교체 요청 (Error 2)
+                  </button>
+                  <button class="terminate-btn" @click="terminateContract(selectedContract.id)">
+                    ❌ 계약 해지 (Error 2)
+                  </button>
+                </div>
+                <small class="warn-desc">* 교체 요청(4초 지연) ➔ 해지(0.5초 완료) 실행 시 해지되었던 계약이 교체 상태로 부활됨 (Error 2)</small>
+              </div>
+            </div>
+            <div v-else class="empty-lbl-dark">
+              계약 카드 중 하나를 선택해 주세요.
+            </div>
+          </div>
+
+          <!-- Billing Period Fast Switch (Error 5 Target) -->
+          <div class="billing-history-widget">
+            <div class="widget-header">
+              <h3>💳 청구 금액 변동 추이</h3>
+              <button class="race-btn-sm" @click="triggerBillingPeriodRace">
+                ⚡ 기간 경합 (Error 5)
+              </button>
+            </div>
+            <p class="warn-desc">* 전반기(3초 지연) ➔ 후반기(0.2초) 클릭 시 최신 청구 그래프 덮어쓰기 결함 (Error 5)</p>
+
+            <div class="billing-bars-chart">
+              <div 
+                v-for="b in billingChartRecords" 
+                :key="b.month" 
+                class="bar-node"
+              >
+                <span class="bar-lbl">{{ formatPrice(b.amount) }}</span>
+                <div class="bar-visual" :style="{ height: (b.amount / 1000) + 'px' }"></div>
+                <span class="bar-month">{{ b.month }}</span>
+              </div>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+      <!-- Rental Application Modal -->
+      <div v-if="showRentModal" class="modal-overlay">
+        <div class="modal-card">
+          <h3>✍️ 신규 렌탈 가입 신청</h3>
+          <div class="modal-body">
+            <p>제품명: <strong>{{ activeModalProduct?.name }}</strong></p>
+            
+            <div class="form-group">
+              <label>약정 요금제 선택:</label>
+              <select v-model="modalPlan">
+                <option value="베이직 요금제 (3년 약정)">베이직 요금제 (3년 약정)</option>
+                <option value="프리미엄 요금제 (5년 약정)">프리미엄 요금제 (5년 약정)</option>
+                <option value="실속형 무약정 요금제">실속형 무약정 요금제</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>희망 배송일 지정:</label>
+              <input type="date" v-model="modalDeliveryDate" />
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button class="confirm-btn" @click="submitRentApplication">신청 완료</button>
+            <button class="close-btn" @click="showRentModal = false">닫기</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast notifications -->
+      <div class="toast-container">
+        <div 
+          v-for="t in toasts" 
+          :key="t.id" 
+          :class="['toast-card', t.type]"
+        >
+          <span class="toast-icon">
+            {{ t.type === 'success' ? '✅' : t.type === 'danger' ? '❌' : '⚠️' }}
+          </span>
+          <span class="toast-message">{{ t.message }}</span>
+          <button class="toast-close" @click="removeToast(t.id)">
+            &times;
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

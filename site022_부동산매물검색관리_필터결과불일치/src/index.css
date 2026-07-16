@@ -1,0 +1,602 @@
+/* Theme Palette: Professional Real-Estate Blue & Slate Gray */
+:root {
+  --font-sans: 'Outfit', 'Noto Sans KR', sans-serif;
+  
+  --bg-app: #f8fafc;           /* Cool Slate Gray bg */
+  --bg-panel: #ffffff;         /* Ceramic White */
+  
+  --color-primary: #3b82f6;      /* Trusty Real-Estate Blue 500 */
+  --color-primary-light: #60a5fa;/* Light Sky Blue 400 */
+  --color-primary-bg: #eff6ff;   /* Pale Blue 50 */
+  
+  --color-success: #10b981;      /* Deal Success Green */
+  --color-success-bg: #d1fae5;
+  --color-danger: #ef4444;       /* Hot Alert Red */
+  --color-danger-bg: #fee2e2;
+  --color-warning: #f59e0b;      /* Caution Yellow Gold */
+  
+  --color-dark: #0f172a;         /* Deep Slate Navy */
+  --color-text: #334155;         /* Charcoal Gray Text */
+  --color-muted: #64748b;        /* Cool Muted Gray */
+  --color-border: #cbd5e1;       /* Slate Border */
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  
+  --shadow-card: 0 4px 18px rgba(59, 130, 246, 0.04);
+  --shadow-hover: 0 10px 25px rgba(59, 130, 246, 0.08);
+  
+  --transition-speed: 0.25s;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+}
+
+/* Main Container Layout */
+.homemap-app {
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Header Bar & Search/Filters Area */
+.app-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.25rem 2rem;
+  background-color: var(--bg-panel);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--color-primary);
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.logo-title {
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+  color: var(--color-dark);
+}
+
+.logo-subtitle {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  font-weight: 600;
+  margin-left: 0.5rem;
+  border-left: 1.5px solid var(--color-border);
+  padding-left: 0.5rem;
+}
+
+/* Filters Row styling */
+.filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  border-top: 1.5px dashed var(--bg-app);
+  padding-top: 1rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: bold;
+  color: var(--color-dark);
+}
+
+.filter-select {
+  padding: 0.45rem 1rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  outline: none;
+  background-color: white;
+}
+
+.price-slider {
+  flex-grow: 0.2;
+}
+
+.filter-range {
+  width: 100%;
+  accent-color: var(--color-primary);
+}
+
+.filter-search-input {
+  padding: 0.45rem 1rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  outline: none;
+  width: 220px;
+}
+
+/* Workspace Layout Grid */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px 380px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.panel-section {
+  background-color: var(--bg-panel);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  min-height: auto;
+  margin-bottom: 1.5rem;
+}
+
+.panel-header {
+  border-bottom: 2.5px solid var(--bg-app);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.panel-header h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.panel-header .subtitle {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+}
+
+/* Map area */
+.svg-map-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #f1f5f9;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.svg-map-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Pins positioning */
+.map-marker-pin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all var(--transition-speed);
+}
+
+.map-marker-pin.active {
+  z-index: 20;
+}
+
+.pin-icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+.pin-bubble {
+  background-color: var(--color-dark);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.58rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -3px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.map-marker-pin.active .pin-bubble {
+  background-color: var(--color-primary);
+  border-color: white;
+}
+
+.pin-bubble .price-lbl {
+  font-weight: 800;
+}
+
+/* Listings vertical list */
+.properties-vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+.property-list-card {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.property-list-card:hover, .property-list-card.active {
+  background-color: var(--color-primary-bg);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-left-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.price-badge {
+  background-color: var(--color-muted);
+  color: white;
+  font-size: 0.6rem;
+  font-weight: bold;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.property-list-card h3 {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--color-dark);
+}
+
+.property-list-card .meta {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+}
+
+.property-list-card .price-text {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.star-toggle-btn {
+  background-color: white;
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  font-weight: bold;
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.star-toggle-btn:hover {
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary);
+}
+
+.star-toggle-btn.starred {
+  background-color: var(--color-warning);
+  color: white;
+  border-color: var(--color-warning);
+}
+
+/* Detail panel */
+.detail-gallery-box {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  text-align: center;
+}
+
+.detail-gallery-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.img-err-note {
+  font-size: 0.62rem;
+  color: var(--color-danger);
+  margin-top: 0.45rem;
+}
+
+.detail-info-sheet h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-dark);
+  margin: 0.75rem 0;
+}
+
+.listing-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  margin-bottom: 1rem;
+}
+
+.listing-details-table td {
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px solid var(--bg-app);
+}
+
+.listing-details-table td:first-child {
+  color: var(--color-muted);
+  font-weight: bold;
+}
+
+.price-val {
+  color: var(--color-primary);
+}
+
+.broker-card {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  margin-bottom: 1.25rem;
+}
+
+.broker-card h4 {
+  font-weight: bold;
+  color: var(--color-dark);
+  margin-bottom: 0.25rem;
+}
+
+.booking-form-wrapper h4 {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--color-dark);
+  border-bottom: 1.5px solid var(--bg-app);
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.booking-sub-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.72rem;
+}
+
+.booking-input {
+  padding: 0.45rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.booking-textarea {
+  height: 60px;
+  padding: 0.45rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.memo-count-tag {
+  font-size: 0.62rem;
+  color: var(--color-muted);
+  text-align: right;
+}
+
+.memo-count-tag.danger {
+  color: var(--color-danger);
+  font-weight: bold;
+}
+
+.booking-submit-btn {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  font-weight: bold;
+  padding: 0.55rem;
+  font-size: 0.78rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.booking-submit-btn:hover {
+  background-color: var(--color-dark);
+}
+
+/* Bookings list card */
+.bookings-vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.booking-card {
+  background-color: var(--bg-app);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  font-size: 0.72rem;
+}
+
+.booking-card .card-head {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--color-border);
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.45rem;
+}
+
+.booking-card .card-head .id {
+  font-weight: bold;
+}
+
+.booking-card .card-head .badge {
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary);
+  font-size: 0.6rem;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.booking-card .memo {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.card-edit-action-row {
+  margin-top: 0.45rem;
+  border-top: 1px dotted var(--color-border);
+  padding-top: 0.45rem;
+}
+
+.edit-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 0.68rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.edit-mini-form {
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.edit-input {
+  flex-grow: 1;
+  padding: 2px 6px;
+  font-size: 0.68rem;
+  border: 1px solid var(--color-border);
+}
+
+.save-edit-btn {
+  background-color: var(--color-success);
+  color: white;
+  border: none;
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.empty-placeholder {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+/* Toast alerts */
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.toast-card {
+  background-color: var(--bg-panel);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  padding: 0.9rem 1.25rem;
+  min-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastIn {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.toast-card.success {
+  border-left: 4px solid var(--color-success);
+}
+
+.toast-card.danger {
+  border-left: 4px solid var(--color-danger);
+}
+
+.toast-card.warning {
+  border-left: 4px solid var(--color-warning);
+}
+
+.toast-icon {
+  font-size: 1.1rem;
+}
+
+.toast-message {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text);
+  flex-grow: 1;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
