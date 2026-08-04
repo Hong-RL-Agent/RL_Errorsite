@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="420" height="240" viewBox="0 0 420 240" role="img" aria-label="Songdo family apartment">
-  <rect width="420" height="240" fill="#eef2f6"/>
-  <rect x="58" y="54" width="82" height="138" rx="10" fill="#0f2f5f"/>
-  <rect x="156" y="40" width="108" height="152" rx="10" fill="#ffffff"/>
-  <rect x="280" y="70" width="82" height="122" rx="10" fill="#dff2ff"/>
-  <path d="M42 202c44-28 88-28 132 0 44 28 88 28 132 0 28-18 52-22 72-12" fill="none" stroke="#3aa7e8" stroke-width="10" stroke-linecap="round"/>
-</svg>

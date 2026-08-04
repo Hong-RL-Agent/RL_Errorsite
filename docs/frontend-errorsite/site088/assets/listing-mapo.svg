@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="420" height="240" viewBox="0 0 420 240" role="img" aria-label="Mapo riverside apartment">
-  <rect width="420" height="240" fill="#eef2f6"/>
-  <rect x="68" y="58" width="122" height="130" rx="10" fill="#ffffff"/>
-  <rect x="214" y="80" width="138" height="108" rx="10" fill="#0f2f5f"/>
-  <rect x="90" y="84" width="78" height="74" rx="8" fill="#dff2ff"/>
-  <rect x="238" y="106" width="90" height="54" rx="8" fill="#3aa7e8"/>
-  <path d="M42 204h336" stroke="#3aa7e8" stroke-width="13" stroke-linecap="round"/>
-</svg>

@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="860" viewBox="0 0 640 860" role="img" aria-label="Essay book cover">
-  <rect width="640" height="860" fill="#fff7e8"/>
-  <rect x="80" y="90" width="480" height="680" rx="28" fill="#d7ecff"/>
-  <circle cx="320" cy="300" r="110" fill="#10213d"/>
-  <path d="M170 520 C270 470 360 560 470 510" fill="none" stroke="#5a9bd8" stroke-width="24" stroke-linecap="round"/>
-  <rect x="190" y="612" width="260" height="18" rx="9" fill="#10213d"/>
-  <rect x="230" y="654" width="180" height="14" rx="7" fill="#7189a8"/>
-</svg>

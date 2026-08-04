@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" role="img" aria-label="점착 메모지">
-  <rect x="54" y="48" width="112" height="112" rx="18" fill="#ffd7e6" stroke="#f2a8c3" stroke-width="5"/>
-  <path d="M78 92c0-12 12-20 24-10 12-10 24-2 24 10 0 18-24 32-24 32S78 110 78 92z" fill="#fffdf7"/>
-  <path d="M54 134c30 0 46 10 60 26H72c-10 0-18-8-18-18z" fill="#ffc3d9"/>
-  <circle cx="84" cy="78" r="5" fill="#244056"/>
-  <circle cx="136" cy="78" r="5" fill="#244056"/>
-</svg>

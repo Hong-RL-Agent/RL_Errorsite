@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240" role="img" aria-label="Measuring cup set">
-  <rect width="320" height="240" fill="#f4f7f3"/>
-  <rect x="74" y="82" width="74" height="92" rx="13" fill="#d8dedc"/>
-  <rect x="91" y="68" width="40" height="23" rx="10" fill="#8f9a9a"/>
-  <rect x="152" y="72" width="88" height="110" rx="15" fill="#c7d0cd"/>
-  <rect x="173" y="55" width="46" height="26" rx="12" fill="#8f9a9a"/>
-  <path d="M148 104h27M148 128h27M240 108h34c12 0 21 9 21 21s-9 21-21 21h-34" fill="none" stroke="#8f9a9a" stroke-width="10"/>
-  <path d="M75 112H48c-10 0-18 8-18 18s8 18 18 18h27" fill="none" stroke="#8f9a9a" stroke-width="9"/>
-</svg>

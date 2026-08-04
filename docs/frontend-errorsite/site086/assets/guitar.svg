@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240" role="img" aria-label="Electric guitar">
-  <rect width="320" height="240" fill="#f7f4ee"/>
-  <path d="M92 147c-24-33 7-70 42-51 18-31 64-20 67 17 39-1 48 49 13 71-29 18-69 4-82-18-13 18-30 8-40-19z" fill="#4b2f20"/>
-  <circle cx="154" cy="139" r="31" fill="#c99a3a"/>
-  <rect x="190" y="78" width="104" height="16" rx="8" transform="rotate(-22 190 78)" fill="#251812"/>
-  <rect x="274" y="37" width="34" height="28" rx="8" transform="rotate(-22 274 37)" fill="#4b2f20"/>
-  <path d="M118 127h71" stroke="#f2dfae" stroke-width="5"/>
-</svg>

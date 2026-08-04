@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="860" viewBox="0 0 640 860" role="img" aria-label="Seasonal novel book cover">
-  <rect width="640" height="860" fill="#fbf0d8"/>
-  <rect x="130" y="180" width="380" height="430" rx="26" fill="#ffffff"/>
-  <path d="M170 508 C260 440 358 560 470 480" fill="none" stroke="#a9d4f7" stroke-width="24" stroke-linecap="round"/>
-  <circle cx="248" cy="310" r="62" fill="#10213d"/>
-  <circle cx="392" cy="310" r="62" fill="#d7ecff"/>
-  <rect x="190" y="676" width="260" height="18" rx="9" fill="#10213d"/>
-</svg>

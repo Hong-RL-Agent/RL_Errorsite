@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240" role="img" aria-label="Cast iron pot">
-  <rect width="320" height="240" fill="#f4f7f3"/>
-  <rect x="82" y="94" width="156" height="82" rx="28" fill="#4e6d55"/>
-  <rect x="98" y="80" width="124" height="24" rx="12" fill="#7f9b86"/>
-  <circle cx="160" cy="78" r="13" fill="#6f4a2f"/>
-  <rect x="56" y="112" width="42" height="26" rx="13" fill="#4e6d55"/>
-  <rect x="222" y="112" width="42" height="26" rx="13" fill="#4e6d55"/>
-  <rect x="110" y="130" width="100" height="21" rx="10" fill="#dfe7df" opacity=".22"/>
-</svg>

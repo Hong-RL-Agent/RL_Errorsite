@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" role="img" aria-label="파스텔 젤펜">
-  <rect x="42" y="44" width="136" height="132" rx="18" fill="#fffdf7" stroke="#bddff2" stroke-width="5"/>
-  <path d="M62 76h96M62 112h96M62 148h96" stroke="#e5eef5" stroke-width="5" stroke-linecap="round"/>
-  <rect x="70" y="54" width="12" height="112" rx="6" fill="#9fd4f3"/>
-  <rect x="98" y="54" width="12" height="112" rx="6" fill="#ffd7e6"/>
-  <rect x="126" y="54" width="12" height="112" rx="6" fill="#ffe89a"/>
-  <path d="M70 166h12l-6 16zM98 166h12l-6 16zM126 166h12l-6 16z" fill="#244056"/>
-</svg>

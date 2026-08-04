@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Clean water campaign">
-  <rect width="640" height="360" fill="#e9f3fb"/>
-  <path d="M0 230c92-52 168 46 260-4 96-52 176-16 380-78v212H0z" fill="#54c6a6"/>
-  <path d="M0 270c106-48 200 32 310-22 112-54 188 8 330-56v168H0z" fill="#1f9dc5" opacity=".72"/>
-  <rect x="88" y="78" width="186" height="112" rx="14" fill="#ffffff" stroke="#c9dce4" stroke-width="4"/>
-  <path d="M128 132h106M128 160h74" stroke="#0b3d67" stroke-width="12" stroke-linecap="round"/>
-  <path d="M402 70c54 74 88 120 88 168a88 88 0 0 1-176 0c0-48 34-94 88-168z" fill="#fff8d8" stroke="#0b3d67" stroke-width="5"/>
-  <circle cx="402" cy="238" r="44" fill="#54c6a6"/>
-</svg>

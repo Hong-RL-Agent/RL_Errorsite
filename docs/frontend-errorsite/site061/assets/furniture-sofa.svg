@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" viewBox="0 0 720 520" role="img" aria-label="Modular walnut sofa">
-  <rect width="720" height="520" fill="#f3eadc"/>
-  <rect x="96" y="236" width="528" height="142" rx="34" fill="#6b432c"/>
-  <rect x="132" y="166" width="168" height="104" rx="24" fill="#8a6146"/>
-  <rect x="318" y="166" width="168" height="104" rx="24" fill="#8a6146"/>
-  <rect x="504" y="188" width="84" height="166" rx="24" fill="#3f2a1e"/>
-  <circle cx="186" cy="400" r="24" fill="#262626"/>
-  <circle cx="534" cy="400" r="24" fill="#262626"/>
-</svg>

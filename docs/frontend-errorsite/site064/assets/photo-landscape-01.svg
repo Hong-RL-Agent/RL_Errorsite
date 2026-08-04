@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" role="img" aria-label="Jeju sunset landscape">
-  <rect width="360" height="240" fill="#9bd8f4"/>
-  <circle cx="75" cy="70" r="34" fill="#ffd16a"/>
-  <path d="M0 164c44-32 73-38 116-19 48 21 76 12 113-10 43-25 82-12 131 23v82H0z" fill="#2585b8"/>
-  <path d="M0 188c52-24 100-22 144-10 45 13 88 17 130-2 32-14 58-13 86 0v64H0z" fill="#ff735f" opacity=".65"/>
-</svg>

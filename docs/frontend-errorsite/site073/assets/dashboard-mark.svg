@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="240" height="120" viewBox="0 0 240 120" role="img" aria-label="dashboard mark">
-  <rect width="240" height="120" rx="8" fill="#10213d"/>
-  <path d="M28 82h28V48H28v34zm46 0h28V28H74v54zm46 0h28V58h-28v24zm46 0h28V38h-28v44z" fill="#0f9f7a"/>
-  <path d="M28 92h184" stroke="#d9e2ec" stroke-width="4" stroke-linecap="round"/>
-</svg>

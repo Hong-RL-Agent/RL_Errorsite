@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="860" viewBox="0 0 640 860" role="img" aria-label="Business book cover">
-  <rect width="640" height="860" fill="#fff7e8"/>
-  <path d="M100 650 L220 390 L330 520 L450 260 L540 650Z" fill="#10213d"/>
-  <circle cx="220" cy="390" r="28" fill="#a9d4f7"/>
-  <circle cx="330" cy="520" r="28" fill="#a9d4f7"/>
-  <circle cx="450" cy="260" r="28" fill="#a9d4f7"/>
-  <rect x="150" y="700" width="340" height="18" rx="9" fill="#7189a8"/>
-</svg>

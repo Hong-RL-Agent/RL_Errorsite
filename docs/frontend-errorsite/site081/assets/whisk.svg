@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240" role="img" aria-label="Silicone whisk">
-  <rect width="320" height="240" fill="#f4f7f3"/>
-  <rect x="142" y="122" width="36" height="82" rx="18" fill="#4e6d55"/>
-  <rect x="150" y="96" width="20" height="44" rx="10" fill="#8f9a9a"/>
-  <path d="M160 102C103 50 84 142 160 151C236 142 217 50 160 102z" fill="none" stroke="#7f9b86" stroke-width="8"/>
-  <path d="M160 102c-35-39-45 36 0 49c45-13 35-88 0-49z" fill="none" stroke="#8f9a9a" stroke-width="6"/>
-  <path d="M160 102v49" stroke="#d8dedc" stroke-width="5"/>
-</svg>

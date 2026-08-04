@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="320" viewBox="0 0 600 320" role="img" aria-label="Recovery lounge">
-  <rect width="600" height="320" fill="#151a22"/>
-  <rect x="70" y="92" width="460" height="148" rx="30" fill="#f4f7f9"/>
-  <circle cx="190" cy="166" r="48" fill="#9dff35"/>
-  <circle cx="300" cy="166" r="48" fill="#10141b"/>
-  <circle cx="410" cy="166" r="48" fill="#8b98a8"/>
-  <path d="M82 258 C180 224 264 284 364 244 C430 218 486 236 534 216" fill="none" stroke="#9dff35" stroke-width="10" stroke-linecap="round"/>
-</svg>

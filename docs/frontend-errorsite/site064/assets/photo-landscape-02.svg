@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" role="img" aria-label="Birthday table landscape">
-  <rect width="360" height="240" fill="#f7fbfe"/>
-  <rect y="156" width="360" height="84" fill="#d9e3ea"/>
-  <rect x="56" y="76" width="248" height="92" rx="16" fill="#ffffff" stroke="#b8d9ea" stroke-width="4"/>
-  <circle cx="112" cy="122" r="24" fill="#ff735f"/>
-  <circle cx="180" cy="122" r="24" fill="#ffd16a"/>
-  <circle cx="248" cy="122" r="24" fill="#6fbde8"/>
-  <rect x="92" y="176" width="176" height="18" rx="9" fill="#17202a"/>
-</svg>

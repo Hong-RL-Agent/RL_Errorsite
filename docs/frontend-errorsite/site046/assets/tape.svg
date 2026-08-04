@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" role="img" aria-label="마스킹테이프">
-  <circle cx="82" cy="112" r="45" fill="#ffe89a" stroke="#e2bd4f" stroke-width="6"/>
-  <circle cx="82" cy="112" r="19" fill="#fffdf7" stroke="#e2bd4f" stroke-width="5"/>
-  <circle cx="138" cy="108" r="42" fill="#9fd4f3" stroke="#62afd8" stroke-width="6"/>
-  <circle cx="138" cy="108" r="17" fill="#fffdf7" stroke="#62afd8" stroke-width="5"/>
-  <path d="M54 156h112" stroke="#ffd7e6" stroke-width="12" stroke-linecap="round"/>
-</svg>
