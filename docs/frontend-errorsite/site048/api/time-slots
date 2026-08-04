@@ -1,0 +1,177 @@
+[
+  {
+    "date": "2026-05-21",
+    "times": [
+      {
+        "time": "09:00",
+        "available": true
+      },
+      {
+        "time": "11:00",
+        "available": false
+      },
+      {
+        "time": "13:00",
+        "available": true
+      },
+      {
+        "time": "15:00",
+        "available": false
+      },
+      {
+        "time": "17:00",
+        "available": true
+      }
+    ]
+  },
+  {
+    "date": "2026-05-22",
+    "times": [
+      {
+        "time": "09:00",
+        "available": false
+      },
+      {
+        "time": "11:00",
+        "available": true
+      },
+      {
+        "time": "13:00",
+        "available": true
+      },
+      {
+        "time": "15:00",
+        "available": true
+      },
+      {
+        "time": "17:00",
+        "available": true
+      }
+    ]
+  },
+  {
+    "date": "2026-05-23",
+    "times": [
+      {
+        "time": "09:00",
+        "available": false
+      },
+      {
+        "time": "11:00",
+        "available": true
+      },
+      {
+        "time": "13:00",
+        "available": true
+      },
+      {
+        "time": "15:00",
+        "available": false
+      },
+      {
+        "time": "17:00",
+        "available": true
+      }
+    ]
+  },
+  {
+    "date": "2026-05-24",
+    "times": [
+      {
+        "time": "09:00",
+        "available": true
+      },
+      {
+        "time": "11:00",
+        "available": true
+      },
+      {
+        "time": "13:00",
+        "available": true
+      },
+      {
+        "time": "15:00",
+        "available": false
+      },
+      {
+        "time": "17:00",
+        "available": true
+      }
+    ]
+  },
+  {
+    "date": "2026-05-25",
+    "times": [
+      {
+        "time": "09:00",
+        "available": true
+      },
+      {
+        "time": "11:00",
+        "available": false
+      },
+      {
+        "time": "13:00",
+        "available": false
+      },
+      {
+        "time": "15:00",
+        "available": true
+      },
+      {
+        "time": "17:00",
+        "available": true
+      }
+    ]
+  },
+  {
+    "date": "2026-05-26",
+    "times": [
+      {
+        "time": "09:00",
+        "available": true
+      },
+      {
+        "time": "11:00",
+        "available": true
+      },
+      {
+        "time": "13:00",
+        "available": true
+      },
+      {
+        "time": "15:00",
+        "available": true
+      },
+      {
+        "time": "17:00",
+        "available": true
+      }
+    ]
+  },
+  {
+    "date": "2026-05-27",
+    "times": [
+      {
+        "time": "09:00",
+        "available": false
+      },
+      {
+        "time": "11:00",
+        "available": true
+      },
+      {
+        "time": "13:00",
+        "available": true
+      },
+      {
+        "time": "15:00",
+        "available": true
+      },
+      {
+        "time": "17:00",
+        "available": true
+      }
+    ]
+  }
+]

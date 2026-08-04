@@ -1,0 +1,42 @@
+{
+  "plans": [
+    {
+      "id": "basic",
+      "name": "Basic Reader",
+      "monthlyPrice": 7900,
+      "yearlyPrice": 79000,
+      "benefits": [
+        "월 10권 대여",
+        "기본 리더 앱",
+        "하이라이트 동기화",
+        "모바일·웹 리더"
+      ]
+    },
+    {
+      "id": "plus",
+      "name": "PageFlow Plus",
+      "monthlyPrice": 12900,
+      "yearlyPrice": 129000,
+      "benefits": [
+        "무제한 독서",
+        "오디오북 2권",
+        "AI 독서 노트",
+        "기기 5대 동기화"
+      ]
+    },
+    {
+      "id": "library",
+      "name": "Team Library",
+      "monthlyPrice": 39000,
+      "yearlyPrice": 390000,
+      "benefits": [
+        "팀 서재 공유",
+        "관리자 통계",
+        "기업 도서관 큐레이션",
+        "멤버 10명 포함"
+      ]
+    }
+  ],
+  "total": 3,
+  "generatedAt": "2026-05-21T14:46:44.917Z"
+}

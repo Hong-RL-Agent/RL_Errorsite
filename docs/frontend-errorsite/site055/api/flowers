@@ -1,0 +1,78 @@
+{
+  "flowers": [
+    {
+      "id": "FL-055-01",
+      "name": "로즈 모닝 부케",
+      "purpose": "생일",
+      "price": 59000,
+      "image": "./assets/flower-rose.svg",
+      "deliveryAvailable": true,
+      "recommended": true
+    },
+    {
+      "id": "FL-055-02",
+      "name": "세이지 화이트 리스",
+      "purpose": "집들이",
+      "price": 72000,
+      "image": "./assets/flower-sage.svg",
+      "deliveryAvailable": true,
+      "recommended": false
+    },
+    {
+      "id": "FL-055-03",
+      "name": "피오니 크림 바스켓",
+      "purpose": "기념일",
+      "price": 89000,
+      "image": "./assets/flower-peony.svg",
+      "deliveryAvailable": true,
+      "recommended": true
+    },
+    {
+      "id": "FL-055-04",
+      "name": "튤립 선데이 박스",
+      "purpose": "응원",
+      "price": 43000,
+      "image": "./assets/flower-tulip.svg",
+      "deliveryAvailable": true,
+      "recommended": false
+    },
+    {
+      "id": "FL-055-05",
+      "name": "오늘의 로맨스 꽃다발",
+      "purpose": "기념일",
+      "price": 68000,
+      "image": "./assets/flower-romance.svg",
+      "deliveryAvailable": true,
+      "recommended": true
+    },
+    {
+      "id": "FL-055-06",
+      "name": "라벤더 허브 믹스",
+      "purpose": "위로",
+      "price": 52000,
+      "image": "./assets/flower-lavender.svg",
+      "deliveryAvailable": false,
+      "recommended": false
+    },
+    {
+      "id": "FL-055-07",
+      "name": "코랄 감사 센터피스",
+      "purpose": "감사",
+      "price": 96000,
+      "image": "./assets/flower-coral.svg",
+      "deliveryAvailable": true,
+      "recommended": false
+    },
+    {
+      "id": "FL-055-08",
+      "name": "미니 데이지 컵",
+      "purpose": "응원",
+      "price": 32000,
+      "image": "./assets/flower-daisy.svg",
+      "deliveryAvailable": true,
+      "recommended": true
+    }
+  ],
+  "total": 8,
+  "generatedAt": "2026-05-21T14:46:31.797Z"
+}

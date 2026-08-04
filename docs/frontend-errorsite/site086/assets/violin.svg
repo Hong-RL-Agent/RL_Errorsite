@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240" role="img" aria-label="Violin">
+  <rect width="320" height="240" fill="#f7f4ee"/>
+  <path d="M136 82c-25-19-58 17-35 49-28 31 4 76 39 55 15 16 35 16 50 0 35 21 67-24 39-55 23-32-10-68-35-49-16-18-42-18-58 0z" fill="#8a542e"/>
+  <path d="M160 54v146" stroke="#251812" stroke-width="8" stroke-linecap="round"/>
+  <path d="M174 59h78" stroke="#251812" stroke-width="12" stroke-linecap="round"/>
+  <path d="M132 126c-10-10-10-24 0-34M188 126c10-10 10-24 0-34" stroke="#251812" stroke-width="6" fill="none"/>
+  <rect x="144" y="166" width="32" height="14" rx="7" fill="#c99a3a"/>
+</svg>

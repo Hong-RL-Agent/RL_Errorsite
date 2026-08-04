@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="420" viewBox="0 0 600 420" role="img" aria-label="Rehab trainer portrait">
+  <rect width="600" height="420" fill="#151a22"/>
+  <circle cx="300" cy="118" r="58" fill="#8b98a8"/>
+  <path d="M172 360 C184 246 236 184 300 184 C364 184 416 246 428 360Z" fill="#f4f7f9"/>
+  <g stroke="#9dff35" stroke-width="14" stroke-linecap="round">
+    <path d="M188 250 C246 212 354 212 412 250"/>
+    <path d="M230 304 C270 276 330 276 370 304"/>
+  </g>
+</svg>

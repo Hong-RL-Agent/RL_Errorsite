@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "Top 50 - Global"
+    },
+    {
+      "id": 2,
+      "name": "Chill Vibes"
+    },
+    {
+      "id": 3,
+      "name": "Workout Mix"
+    },
+    {
+      "id": 4,
+      "name": "Lo-Fi Beats"
+    },
+    {
+      "id": 5,
+      "name": "Late Night Drive"
+    }
+  ]
+}

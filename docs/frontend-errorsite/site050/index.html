@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduStream | 성장을 위한 온라인 코스</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="./pages-mock.js"></script>
+  </head>
+<body>
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="EduStream Logo">
+                <span class="logo-text">EduStream</span>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="course-search" placeholder="배우고 싶은 기술을 검색해보세요 (예: 자바스크립트)">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" onclick="alert('준비 중입니다')">분야별 강좌</a></li>
+                    <li><a href="#" onclick="alert('준비 중입니다')">학습 로드맵</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-outline" onclick="alert('준비 중입니다')">내 학습</button>
+                <button class="btn btn-primary" onclick="alert('준비 중입니다')">로그인</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge-new">NEW</span>
+                    <h1>성장하는 개발자를 위한<br>최고의 학습 커뮤니티</h1>
+                    <p>검증된 강사진, 실무 중심의 커리큘럼으로 당신의 커리어를 업그레이드하세요.</p>
+                    <div class="hero-btns">
+                        <button class="btn btn-primary btn-lg" onclick="alert('준비 중입니다')">강좌 둘러보기</button>
+                        <button class="btn btn-secondary btn-lg" onclick="alert('준비 중입니다')">로드맵 확인</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/hero.jpg" alt="Learning Environment">
+                </div>
+            </div>
+        </section>
+
+        <div class="container content-area">
+            <!-- Filter Sidebar -->
+            <aside class="filters">
+                <div class="filter-group">
+                    <h3>카테고리</h3>
+                    <ul id="field-filters">
+                        <li><button class="filter-btn active" data-field="all">전체</button></li>
+                        <li><button class="filter-btn" data-field="Programming">프로그래밍</button></li>
+                        <li><button class="filter-btn" data-field="Design">디자인</button></li>
+                        <li><button class="filter-btn" data-field="Business">비즈니스</button></li>
+                    </ul>
+                </div>
+                <div class="filter-group">
+                    <h3>난이도</h3>
+                    <ul id="difficulty-filters">
+                        <li><button class="filter-btn active" data-difficulty="all">전체</button></li>
+                        <li><button class="filter-btn" data-difficulty="Beginner">입문</button></li>
+                        <li><button class="filter-btn" data-difficulty="Intermediate">중급</button></li>
+                        <li><button class="filter-btn" data-difficulty="Advanced">고급</button></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <section class="courses-section">
+                <div class="section-header">
+                    <h2>강좌 카탈로그</h2>
+                    <div class="sort-options">
+                        <select id="sort-courses">
+                            <option value="latest">최신순</option>
+                            <option value="rating">평점순</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="courses-grid" class="courses-grid">
+                    <div class="loading">강좌를 불러오는 중...</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Instructor Section -->
+        <section class="instructors-section bg-light">
+            <div class="container">
+                <div class="section-title">
+                    <h2>최고의 강사진</h2>
+                    <p>현업 전문가들이 전하는 실무 노하우를 직접 경험하세요.</p>
+                </div>
+                <div id="instructors-container" class="instructors-grid">
+                    <!-- API Data -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>생생한 수강 후기</h2>
+                </div>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span class="rating">★★★★★</span>
+                            <span class="date">2026.04.20</span>
+                        </div>
+                        <p>"설명이 너무 명확해서 막혔던 부분이 시원하게 뚫렸어요. 바닐라 JS의 중요성을 다시 한번 느낍니다."</p>
+                        <div class="reviewer">- 김*진 (바닐라 자바스크립트 수강생)</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span class="rating">★★★★★</span>
+                            <span class="date">2026.04.18</span>
+                        </div>
+                        <p>"비전공자라 걱정했는데, 기초부터 차근차근 알려주셔서 끝까지 수강할 수 있었습니다."</p>
+                        <div class="reviewer">- 이*훈 (피그마 디자인 수강생)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Course Detail Modal -->
+    <div id="course-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-text">EduStream</span>
+                    </div>
+                    <p>우리는 모든 사람이 최고의 교육을 받을 권리가 있다고 믿습니다.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>서비스</h4>
+                    <ul>
+                        <li><a href="#" onclick="alert('준비 중입니다')">강좌 목록</a></li>
+                        <li><a href="#" onclick="alert('준비 중입니다')">로드맵</a></li>
+                        <li><a href="#" onclick="alert('준비 중입니다')">기업 교육</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>고객지원</h4>
+                    <ul>
+                        <li><a href="#" onclick="alert('준비 중입니다')">공지사항</a></li>
+                        <li><a href="#" onclick="alert('준비 중입니다')">FAQ</a></li>
+                        <li><a href="#" onclick="alert('준비 중입니다')">문의하기</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 EduStream. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

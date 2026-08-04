@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 360" role="img" aria-label="Travel window portrait">
+  <rect width="240" height="360" fill="#ffffff"/>
+  <rect x="42" y="34" width="156" height="238" rx="12" fill="#6fbde8"/>
+  <circle cx="82" cy="82" r="24" fill="#ffd16a"/>
+  <path d="M42 236c38-56 76-44 100-86 18 36 34 44 56 86v36H42z" fill="#2585b8"/>
+  <rect x="66" y="292" width="108" height="18" rx="9" fill="#ff735f"/>
+  <rect x="84" y="322" width="72" height="10" rx="5" fill="#d9e3ea"/>
+</svg>

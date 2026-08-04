@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "고객 만족도 조사",
+    "category": "비즈니스",
+    "count": 12,
+    "recommended": true
+  },
+  {
+    "id": 2,
+    "name": "제품 선호도 설문",
+    "category": "마케팅",
+    "count": 8,
+    "recommended": false
+  },
+  {
+    "id": 3,
+    "name": "직원 몰입도 진단",
+    "category": "인사",
+    "count": 15,
+    "recommended": true
+  },
+  {
+    "id": 4,
+    "name": "행사 사후 피드백",
+    "category": "이벤트",
+    "count": 5,
+    "recommended": false
+  }
+]

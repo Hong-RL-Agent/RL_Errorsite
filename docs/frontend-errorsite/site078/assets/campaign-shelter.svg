@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Safe shelter campaign">
+  <rect width="640" height="360" fill="#e8f8f3"/>
+  <path d="M78 178 320 58l242 120v136H78z" fill="#ffffff" stroke="#c9dce4" stroke-width="4"/>
+  <path d="M58 184 320 46l262 138" fill="none" stroke="#0b3d67" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="270" y="210" width="100" height="104" rx="10" fill="#54c6a6"/>
+  <rect x="126" y="220" width="86" height="62" rx="8" fill="#fff1ae"/>
+  <rect x="428" y="220" width="86" height="62" rx="8" fill="#fff1ae"/>
+  <circle cx="320" cy="150" r="42" fill="#e46f59"/>
+  <path d="M296 150h48M320 126v48" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+</svg>

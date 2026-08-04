@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vineyard Atelier | Premium Wine Selection</title>
+    <link rel="stylesheet" href="./styles.css" />
+      <script src="./pages-mock.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#hero" aria-label="Vineyard Atelier home">
+        <span class="brand-mark">VA</span>
+        <span>
+          <strong>Vineyard Atelier</strong>
+          <small>Premium Cellar Guide</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="주요 메뉴">
+        <a href="#collection">와인 타입</a>
+        <a href="#collection">산지</a>
+        <a href="#pairing">페어링 가이드</a>
+        <a href="#consultation">상담 예약</a>
+        <a href="#store">매장 안내</a>
+      </nav>
+      <button class="login-button" type="button" data-action="login">로그인</button>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Curated Cellar · Adult Beverage Information</p>
+          <h1>프리미엄 와인 셀렉션 상담 안내</h1>
+          <p>
+            숙성 가능성, 테이블 페어링, 선물 목적까지 고려해 소믈리에가 와인 후보를 안내하는
+            예약 상담형 상품 정보 웹사이트입니다.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-button" type="button" data-scroll-target="#consultation">소믈리에 상담 예약</button>
+            <button class="ghost-button" type="button" data-scroll-target="#collection">셀렉션 둘러보기</button>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="이번 달 프리미엄 셀렉션">
+          <div class="bottle-scene">
+            <img src="./assets/wine-red-tall.svg" alt="프리미엄 레드 와인 병" />
+            <div>
+              <span>May Cellar Focus</span>
+              <strong>2016-2021 빈티지 비교 상담</strong>
+              <p>보르도, 리오하, 부르고뉴 중심의 레드 셀렉션을 예약제로 안내합니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="서비스 특징">
+        <div>
+          <strong>42</strong>
+          <span>큐레이션 라벨</span>
+        </div>
+        <div>
+          <strong>1:1</strong>
+          <span>상담 예약 mock</span>
+        </div>
+        <div>
+          <strong>4</strong>
+          <span>페어링 카테고리</span>
+        </div>
+        <div>
+          <strong>0</strong>
+          <span>온라인 결제 기능 없음</span>
+        </div>
+      </section>
+
+      <div class="content-shell">
+        <div class="main-content">
+          <section class="filters-section" id="collection">
+            <div class="section-heading">
+              <p class="eyebrow">Cellar Collection</p>
+              <h2>와인 상품 안내</h2>
+              <p>API에서 받아온 상품 정보를 타입, 산지, 가격대 기준으로 탐색하세요.</p>
+            </div>
+
+            <div class="filter-board" aria-label="와인 필터">
+              <div class="filter-group">
+                <span>타입</span>
+                <div class="segmented" data-filter-group="type">
+                  <button class="filter-button active" type="button" data-filter-type="all">전체</button>
+                  <button class="filter-button" type="button" data-filter-type="red">레드</button>
+                  <button class="filter-button" type="button" data-filter-type="white">화이트</button>
+                  <button class="filter-button" type="button" data-filter-type="rose">로제</button>
+                  <button class="filter-button" type="button" data-filter-type="sparkling">스파클링</button>
+                </div>
+              </div>
+              <div class="filter-group">
+                <span>산지</span>
+                <select id="regionFilter" aria-label="산지 필터">
+                  <option value="all">전체 산지</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <span>가격대</span>
+                <select id="priceFilter" aria-label="가격대 필터">
+                  <option value="all">전체 가격대</option>
+                  <option value="classic">Classic</option>
+                  <option value="signature">Signature</option>
+                  <option value="premium">Premium</option>
+                  <option value="collector">Collector</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="result-row">
+              <p id="resultSummary" class="result-summary" data-bug-id="site072-bug01">상품을 불러오는 중입니다.</p>
+              <button class="text-button" type="button" id="resetFilters">필터 초기화</button>
+            </div>
+
+            <div id="wineStatus" class="status-box" role="status">와인 목록을 불러오는 중입니다...</div>
+            <div id="wineGrid" class="wine-grid" aria-live="polite"></div>
+          </section>
+
+          <section class="pairing-section" id="pairing">
+            <div class="section-heading">
+              <p class="eyebrow">Pairing Guide</p>
+              <h2>페어링 추천</h2>
+              <p>음식 카테고리를 선택하면 어울리는 와인 타입과 상담 포인트를 확인할 수 있습니다.</p>
+            </div>
+            <div id="pairingStatus" class="status-box" role="status">페어링 가이드를 불러오는 중입니다...</div>
+            <div class="pairing-layout">
+              <div id="pairingTabs" class="pairing-tabs" role="tablist" aria-label="페어링 카테고리"></div>
+              <article id="pairingPanel" class="pairing-panel" tabindex="0"></article>
+            </div>
+          </section>
+
+          <section class="experience-section">
+            <div class="section-heading">
+              <p class="eyebrow">Private Service</p>
+              <h2>상담 경험 구성</h2>
+              <p>상품 구매가 아닌 정보 안내와 예약 상담 흐름만 제공합니다.</p>
+            </div>
+            <div class="experience-grid">
+              <article>
+                <span>01</span>
+                <h3>취향 인터뷰</h3>
+                <p>선호 산도, 바디, 향, 예산대를 기반으로 후보 라벨을 좁힙니다.</p>
+              </article>
+              <article>
+                <span>02</span>
+                <h3>테이블 페어링</h3>
+                <p>메뉴, 인원, 분위기에 맞춰 타입과 빈티지 범위를 안내합니다.</p>
+              </article>
+              <article>
+                <span>03</span>
+                <h3>방문 상담</h3>
+                <p>매장에서 라벨 비교와 보관 상태 안내를 받을 수 있습니다.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="store-section" id="store">
+            <div class="section-heading">
+              <p class="eyebrow">Boutique Cellar</p>
+              <h2>매장 안내</h2>
+              <p>서울 프리미엄 셀러 쇼룸에서 성인 고객 대상 상담 예약을 운영합니다.</p>
+            </div>
+            <div class="store-grid">
+              <div class="store-map" aria-label="매장 위치 mock 지도">
+                <span>Vineyard Atelier Seoul</span>
+              </div>
+              <div class="store-details">
+                <h3>방문 정보</h3>
+                <dl>
+                  <div>
+                    <dt>주소</dt>
+                    <dd>서울특별시 강남구 도산대로 72길 18</dd>
+                  </div>
+                  <div>
+                    <dt>운영</dt>
+                    <dd>화-일 12:00-20:00, 월요일 휴무</dd>
+                  </div>
+                  <div>
+                    <dt>안내</dt>
+                    <dd>만 19세 이상 성인 대상 상품 정보 및 상담 예약 mock</dd>
+                  </div>
+                </dl>
+                <button class="secondary-button" type="button" data-action="directions">매장 길찾기</button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <aside class="consultation-panel" id="consultation" aria-label="상담 예약 요약">
+          <button id="toggleConsultation" class="panel-toggle" type="button" aria-expanded="true">상담 요약 접기</button>
+          <div id="consultationBody" class="panel-body">
+            <p class="eyebrow">Consultation Mock</p>
+            <h2>상담 예약 요약</h2>
+            <div id="selectedWineBox" class="selected-wine empty">
+              <span>선택된 와인 없음</span>
+              <p>상품 카드의 상담 예약 버튼을 누르면 이 영역에 후보가 표시됩니다.</p>
+            </div>
+            <label for="consultDate">희망 날짜</label>
+            <input id="consultDate" type="date" />
+            <label for="consultMemo">상담 메모</label>
+            <textarea id="consultMemo" rows="4" placeholder="선물 목적, 음식 메뉴, 선호 타입 등을 적어주세요."></textarea>
+            <button class="primary-button full" type="button" id="mockSubmit">예약 상담 요청</button>
+            <p class="legal-note">실제 구매, 결제, 배송 기능은 제공하지 않습니다.</p>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <div id="wineModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-backdrop" data-close-modal></div>
+      <article class="modal-card">
+        <button class="modal-close" type="button" data-close-modal aria-label="상세 모달 닫기">×</button>
+        <div id="modalContent"></div>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div>
+        <strong>Vineyard Atelier</strong>
+        <p>성인 대상 프리미엄 음료 상품 안내 및 상담 예약 mock 웹사이트</p>
+      </div>
+      <nav aria-label="푸터 메뉴">
+        <button type="button" data-action="notice">이용 안내</button>
+        <button type="button" data-action="support">고객센터</button>
+        <button type="button" data-action="privacy">개인정보 처리방침</button>
+      </nav>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

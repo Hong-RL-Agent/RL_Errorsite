@@ -1,0 +1,50 @@
+[
+  {
+    "id": "l1",
+    "name": "와이셔츠",
+    "category": "생활세탁",
+    "price": 2500,
+    "days": 2,
+    "recommended": true
+  },
+  {
+    "id": "l2",
+    "name": "정장 상의",
+    "category": "드라이",
+    "price": 6000,
+    "days": 3,
+    "recommended": true
+  },
+  {
+    "id": "l3",
+    "name": "정장 하의",
+    "category": "드라이",
+    "price": 4500,
+    "days": 3,
+    "recommended": false
+  },
+  {
+    "id": "l4",
+    "name": "이불(대형)",
+    "category": "침구류",
+    "price": 15000,
+    "days": 4,
+    "recommended": true
+  },
+  {
+    "id": "l5",
+    "name": "패딩/다운점퍼",
+    "category": "아우터",
+    "price": 12000,
+    "days": 5,
+    "recommended": false
+  },
+  {
+    "id": "l6",
+    "name": "운동화",
+    "category": "신발",
+    "price": 7000,
+    "days": 4,
+    "recommended": true
+  }
+]

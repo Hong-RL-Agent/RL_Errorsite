@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180" viewBox="0 0 320 180" role="img" aria-label="한서연 강사 프로필">
+  <rect width="320" height="180" fill="#e8eddb"/>
+  <circle cx="160" cy="66" r="34" fill="#b96542"/>
+  <rect x="111" y="102" width="98" height="54" rx="27" fill="#536b2d"/>
+  <path d="M80 143 C98 91 132 80 160 112 C190 78 229 92 242 143" fill="#7b9b4d" opacity=".62"/>
+</svg>

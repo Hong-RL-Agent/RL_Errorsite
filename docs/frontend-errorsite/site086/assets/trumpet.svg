@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240" role="img" aria-label="Trumpet">
+  <rect width="320" height="240" fill="#f7f4ee"/>
+  <path d="M70 128h148" stroke="#c99a3a" stroke-width="20" stroke-linecap="round"/>
+  <path d="M214 96c42 4 62 22 72 51-39 12-67 2-84-28z" fill="#c99a3a"/>
+  <path d="M96 112v-28h82v28M118 112V90M146 112V90" stroke="#4b2f20" stroke-width="9" stroke-linecap="round" fill="none"/>
+  <rect x="106" y="68" width="22" height="16" rx="5" fill="#c99a3a"/>
+  <rect x="134" y="68" width="22" height="16" rx="5" fill="#c99a3a"/>
+  <rect x="162" y="68" width="22" height="16" rx="5" fill="#c99a3a"/>
+  <rect x="44" y="116" width="38" height="24" rx="12" fill="#4b2f20"/>
+</svg>

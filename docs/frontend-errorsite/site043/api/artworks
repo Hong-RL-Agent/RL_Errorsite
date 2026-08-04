@@ -1,0 +1,92 @@
+{
+  "artworks": [
+    {
+      "id": "art-101",
+      "title": "Nocturne Layer 07",
+      "artistId": 301,
+      "year": 2026,
+      "material": "한지에 흑연, 금박",
+      "category": "painting",
+      "image": "data:image/svg+xml;charset=UTF-8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22720%22%20height%3D%22900%22%20viewBox%3D%220%200%20720%20900%22%20role%3D%22img%22%20aria-label%3D%22Nocturne%20Layer%2007%22%3E%0A%20%20%20%20%3Crect%20width%3D%22720%22%20height%3D%22900%22%20fill%3D%22%23f6f1e7%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2272%22%20width%3D%22580%22%20height%3D%22756%22%20fill%3D%22%23fffdf7%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22112%22%20y%3D%22116%22%20width%3D%22496%22%20height%3D%22628%22%20fill%3D%22%2324211e%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M180%20196%20C290%20260%20255%20392%20394%20438%20S540%20592%20424%20678%22%20fill%3D%22none%22%20stroke%3D%22%23d1a94d%22%20stroke-width%3D%2226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22514%22%20cy%3D%22242%22%20r%3D%2266%22%20fill%3D%22%23f2dfb0%22%20opacity%3D%220.88%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22150%22%20y%3D%22642%22%20width%3D%22420%22%20height%3D%2236%22%20fill%3D%22%23f2dfb0%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22792%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2230%22%20fill%3D%22%232a2621%22%3ENocturne%20Layer%2007%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22828%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2218%22%20fill%3D%22%23766f65%22%3EYoon%20Seoha%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "inquiryAvailable": true,
+      "priceRange": "KRW 8,000,000 - 12,000,000"
+    },
+    {
+      "id": "art-102",
+      "title": "Quiet Vessel",
+      "artistId": 302,
+      "year": 2025,
+      "material": "캔버스에 아크릴, 세라믹 안료",
+      "category": "mixed",
+      "image": "data:image/svg+xml;charset=UTF-8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22720%22%20height%3D%22900%22%20viewBox%3D%220%200%20720%20900%22%20role%3D%22img%22%20aria-label%3D%22Quiet%20Vessel%22%3E%0A%20%20%20%20%3Crect%20width%3D%22720%22%20height%3D%22900%22%20fill%3D%22%23f8f4eb%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2272%22%20width%3D%22580%22%20height%3D%22756%22%20fill%3D%22%23fffdf7%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22112%22%20y%3D%22116%22%20width%3D%22496%22%20height%3D%22628%22%20fill%3D%22%23dfd0ba%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M238%20190%20C170%20304%20210%20478%20318%20596%20C432%20472%20560%20360%20478%20214%22%20fill%3D%22none%22%20stroke%3D%22%233f3933%22%20stroke-width%3D%2226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22514%22%20cy%3D%22242%22%20r%3D%2266%22%20fill%3D%22%23b89149%22%20opacity%3D%220.88%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22150%22%20y%3D%22642%22%20width%3D%22420%22%20height%3D%2236%22%20fill%3D%22%23b89149%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22792%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2230%22%20fill%3D%22%232a2621%22%3EQuiet%20Vessel%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22828%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2218%22%20fill%3D%22%23766f65%22%3EMoon%20Raon%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "inquiryAvailable": true,
+      "priceRange": "KRW 5,500,000 - 7,000,000"
+    },
+    {
+      "id": "art-103",
+      "title": "Mirror Index",
+      "artistId": "303",
+      "year": 2026,
+      "material": "유리, 반사 필름, 디지털 프린트",
+      "category": "installation",
+      "image": "data:image/svg+xml;charset=UTF-8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22720%22%20height%3D%22900%22%20viewBox%3D%220%200%20720%20900%22%20role%3D%22img%22%20aria-label%3D%22Mirror%20Index%22%3E%0A%20%20%20%20%3Crect%20width%3D%22720%22%20height%3D%22900%22%20fill%3D%22%23f5efe3%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2272%22%20width%3D%22580%22%20height%3D%22756%22%20fill%3D%22%23fffdf7%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22112%22%20y%3D%22116%22%20width%3D%22496%22%20height%3D%22628%22%20fill%3D%22%23202528%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M178%20640%20L292%20190%20L392%20640%20L516%20190%22%20fill%3D%22none%22%20stroke%3D%22%23caa253%22%20stroke-width%3D%2226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22514%22%20cy%3D%22242%22%20r%3D%2266%22%20fill%3D%22%23ece4d0%22%20opacity%3D%220.88%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22150%22%20y%3D%22642%22%20width%3D%22420%22%20height%3D%2236%22%20fill%3D%22%23ece4d0%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22792%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2230%22%20fill%3D%22%232a2621%22%3EMirror%20Index%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22828%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2218%22%20fill%3D%22%23766f65%22%3EKira%20Han%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "inquiryAvailable": true,
+      "priceRange": "가격 별도 문의"
+    },
+    {
+      "id": "art-104",
+      "title": "Garden Draft",
+      "artistId": 304,
+      "year": 2024,
+      "material": "종이에 목탄, 오일 파스텔",
+      "category": "drawing",
+      "image": "data:image/svg+xml;charset=UTF-8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22720%22%20height%3D%22900%22%20viewBox%3D%220%200%20720%20900%22%20role%3D%22img%22%20aria-label%3D%22Garden%20Draft%22%3E%0A%20%20%20%20%3Crect%20width%3D%22720%22%20height%3D%22900%22%20fill%3D%22%23f7f0e3%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2272%22%20width%3D%22580%22%20height%3D%22756%22%20fill%3D%22%23fffdf7%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22112%22%20y%3D%22116%22%20width%3D%22496%22%20height%3D%22628%22%20fill%3D%22%23514236%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M170%20578%20C260%20480%20224%20314%20360%20248%20C460%20196%20548%20290%20506%20416%20C472%20518%20360%20590%20244%20670%22%20fill%3D%22none%22%20stroke%3D%22%23d8b465%22%20stroke-width%3D%2226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22514%22%20cy%3D%22242%22%20r%3D%2266%22%20fill%3D%22%23efe0bf%22%20opacity%3D%220.88%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22150%22%20y%3D%22642%22%20width%3D%22420%22%20height%3D%2236%22%20fill%3D%22%23efe0bf%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22792%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2230%22%20fill%3D%22%232a2621%22%3EGarden%20Draft%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22828%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2218%22%20fill%3D%22%23766f65%22%3EJung%20Eden%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "inquiryAvailable": true,
+      "priceRange": "KRW 3,800,000 - 4,400,000"
+    },
+    {
+      "id": "art-105",
+      "title": "Paper Latitude",
+      "artistId": 301,
+      "year": 2025,
+      "material": "장지에 먹, 금분",
+      "category": "painting",
+      "image": "data:image/svg+xml;charset=UTF-8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22720%22%20height%3D%22900%22%20viewBox%3D%220%200%20720%20900%22%20role%3D%22img%22%20aria-label%3D%22Paper%20Latitude%22%3E%0A%20%20%20%20%3Crect%20width%3D%22720%22%20height%3D%22900%22%20fill%3D%22%23fbf7ee%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2272%22%20width%3D%22580%22%20height%3D%22756%22%20fill%3D%22%23fffdf7%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22112%22%20y%3D%22116%22%20width%3D%22496%22%20height%3D%22628%22%20fill%3D%22%23e8ddc9%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M150%20310%20C254%20226%20344%20404%20446%20320%20S556%20404%20498%20552%20C448%20690%20246%20630%20190%20708%22%20fill%3D%22none%22%20stroke%3D%22%231f1c19%22%20stroke-width%3D%2226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22514%22%20cy%3D%22242%22%20r%3D%2266%22%20fill%3D%22%23c9a64f%22%20opacity%3D%220.88%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22150%22%20y%3D%22642%22%20width%3D%22420%22%20height%3D%2236%22%20fill%3D%22%23c9a64f%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22792%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2230%22%20fill%3D%22%232a2621%22%3EPaper%20Latitude%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22828%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2218%22%20fill%3D%22%23766f65%22%3EYoon%20Seoha%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "inquiryAvailable": true,
+      "priceRange": "KRW 6,200,000 - 8,300,000"
+    },
+    {
+      "id": "art-106",
+      "title": "Object Room 12",
+      "artistId": 302,
+      "year": 2026,
+      "material": "패널에 혼합재료",
+      "category": "mixed",
+      "image": "data:image/svg+xml;charset=UTF-8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22720%22%20height%3D%22900%22%20viewBox%3D%220%200%20720%20900%22%20role%3D%22img%22%20aria-label%3D%22Object%20Room%2012%22%3E%0A%20%20%20%20%3Crect%20width%3D%22720%22%20height%3D%22900%22%20fill%3D%22%23f4eddf%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2272%22%20width%3D%22580%22%20height%3D%22756%22%20fill%3D%22%23fffdf7%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22112%22%20y%3D%22116%22%20width%3D%22496%22%20height%3D%22628%22%20fill%3D%22%232e2a25%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M190%20260%20H512%20V382%20H190%20Z%20M252%20448%20H448%20V620%20H252%20Z%22%20fill%3D%22none%22%20stroke%3D%22%23dfc48e%22%20stroke-width%3D%2226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22514%22%20cy%3D%22242%22%20r%3D%2266%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.88%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22150%22%20y%3D%22642%22%20width%3D%22420%22%20height%3D%2236%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22792%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2230%22%20fill%3D%22%232a2621%22%3EObject%20Room%2012%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22828%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2218%22%20fill%3D%22%23766f65%22%3EMoon%20Raon%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "inquiryAvailable": true,
+      "priceRange": "KRW 4,900,000 - 6,100,000"
+    },
+    {
+      "id": "art-107",
+      "title": "Afterimage Route",
+      "artistId": 303,
+      "year": 2026,
+      "material": "아카이벌 프린트, 알루미늄",
+      "category": "photography",
+      "image": "data:image/svg+xml;charset=UTF-8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22720%22%20height%3D%22900%22%20viewBox%3D%220%200%20720%20900%22%20role%3D%22img%22%20aria-label%3D%22Afterimage%20Route%22%3E%0A%20%20%20%20%3Crect%20width%3D%22720%22%20height%3D%22900%22%20fill%3D%22%23f8f2e8%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2272%22%20width%3D%22580%22%20height%3D%22756%22%20fill%3D%22%23fffdf7%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22112%22%20y%3D%22116%22%20width%3D%22496%22%20height%3D%22628%22%20fill%3D%22%23d9d3c9%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M188%20226%20L512%20226%20M188%20348%20L512%20348%20M188%20470%20L512%20470%20M188%20592%20L512%20592%22%20fill%3D%22none%22%20stroke%3D%22%2324282b%22%20stroke-width%3D%2226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22514%22%20cy%3D%22242%22%20r%3D%2266%22%20fill%3D%22%23c7a053%22%20opacity%3D%220.88%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22150%22%20y%3D%22642%22%20width%3D%22420%22%20height%3D%2236%22%20fill%3D%22%23c7a053%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22792%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2230%22%20fill%3D%22%232a2621%22%3EAfterimage%20Route%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22828%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2218%22%20fill%3D%22%23766f65%22%3EKira%20Han%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "inquiryAvailable": true,
+      "priceRange": "KRW 2,900,000 - 3,600,000"
+    },
+    {
+      "id": "art-108",
+      "title": "Slow Garden",
+      "artistId": 304,
+      "year": 2025,
+      "material": "캔버스에 목탄, 유채",
+      "category": "drawing",
+      "image": "data:image/svg+xml;charset=UTF-8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22720%22%20height%3D%22900%22%20viewBox%3D%220%200%20720%20900%22%20role%3D%22img%22%20aria-label%3D%22Slow%20Garden%22%3E%0A%20%20%20%20%3Crect%20width%3D%22720%22%20height%3D%22900%22%20fill%3D%22%23faf5e9%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%2272%22%20width%3D%22580%22%20height%3D%22756%22%20fill%3D%22%23fffdf7%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22112%22%20y%3D%22116%22%20width%3D%22496%22%20height%3D%22628%22%20fill%3D%22%23efe1c8%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M160%20580%20C260%20210%20438%20206%20550%20580%20M226%20612%20C340%20454%20404%20454%20488%20612%22%20fill%3D%22none%22%20stroke%3D%22%235a493c%22%20stroke-width%3D%2226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.82%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22514%22%20cy%3D%22242%22%20r%3D%2266%22%20fill%3D%22%23c8a95d%22%20opacity%3D%220.88%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22150%22%20y%3D%22642%22%20width%3D%22420%22%20height%3D%2236%22%20fill%3D%22%23c8a95d%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22792%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2230%22%20fill%3D%22%232a2621%22%3ESlow%20Garden%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22360%22%20y%3D%22828%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2218%22%20fill%3D%22%23766f65%22%3EJung%20Eden%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "inquiryAvailable": false,
+      "priceRange": "예약 중"
+    }
+  ]
+}

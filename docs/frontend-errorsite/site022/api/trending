@@ -1,0 +1,21 @@
+{
+  "keywords": [
+    "Climate Summit",
+    "AI Ethics",
+    "Stock Market",
+    "Olympic Games",
+    "SpaceX Launch"
+  ],
+  "articles": [
+    {
+      "id": 5,
+      "title": "Rising Interest Rates: What You Need to Know",
+      "views": "1.2M"
+    },
+    {
+      "id": 6,
+      "title": "New Breakthrough in Quantum Computing",
+      "views": "850K"
+    }
+  ]
+}

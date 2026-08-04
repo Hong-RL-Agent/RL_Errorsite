@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 360" role="img" aria-label="Wedding portrait">
+  <rect width="240" height="360" fill="#e9f6fd"/>
+  <rect x="34" y="42" width="172" height="276" rx="86" fill="#ffffff"/>
+  <circle cx="120" cy="118" r="44" fill="#ffb5aa"/>
+  <path d="M72 304c16-82 80-82 96 0z" fill="#ffffff" stroke="#2585b8" stroke-width="8"/>
+  <path d="M62 232c26-22 38-58 58-58s32 36 58 58v86H62z" fill="#ff735f" opacity=".8"/>
+</svg>

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "c001",
+    "name": "Petals & Pearls",
+    "description": "Inspired by the delicate beauty of spring flowers and classic pearls.",
+    "image": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=400&fit=crop"
+  },
+  {
+    "id": "c002",
+    "name": "Lunar Minimalist",
+    "description": "Sleek designs reflecting the quiet strength of the night sky.",
+    "image": "https://images.unsplash.com/photo-1576053139778-7e32f2ae3cf4?w=800&h=400&fit=crop"
+  }
+]

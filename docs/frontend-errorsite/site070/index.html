@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoomBook Pro — 회의실 예약</title>
+  <link rel="stylesheet" href="styles.css" />
+    <script src="./pages-mock.js"></script>
+  </head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header id="main-header">
+    <div class="header-inner">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="8" fill="#1B3A6B"/>
+          <rect x="8" y="8" width="9" height="9" rx="2" fill="#00C4A1"/>
+          <rect x="19" y="8" width="9" height="9" rx="2" fill="#fff" opacity=".6"/>
+          <rect x="8" y="19" width="9" height="9" rx="2" fill="#fff" opacity=".6"/>
+          <rect x="19" y="19" width="9" height="9" rx="2" fill="#00C4A1" opacity=".8"/>
+        </svg>
+        <span class="logo-text">RoomBook<span class="logo-accent">Pro</span></span>
+      </div>
+      <nav class="main-nav">
+        <a href="#" data-scroll-to="rooms-section">회의실 찾기</a>
+        <a href="#" data-scroll-to="booking-section">예약 현황</a>
+        <a href="#" data-coming-soon>장비 필터</a>
+        <a href="#" data-coming-soon>팀 예약</a>
+      </nav>
+      <div class="header-right">
+        <button class="btn-notify" data-coming-soon title="알림">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M10 2a6 6 0 0 0-6 6v3l-1.5 2.5h15L16 11V8a6 6 0 0 0-6-6zm0 16a2 2 0 0 0 2-2H8a2 2 0 0 0 2 2z" stroke="#4A5568" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <button class="btn-login" data-coming-soon>로그인</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero-section">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          스마트 공간 예약 플랫폼
+        </div>
+        <h1 class="hero-title">팀에 맞는 회의실을<br>빠르게 예약하세요</h1>
+        <p class="hero-subtitle">원하는 날짜, 시간, 인원에 맞는 최적의 회의 공간을 즉시 예약하세요.</p>
+        <div class="hero-search-bar">
+          <div class="hero-search-field">
+            <label>날짜</label>
+            <input type="date" id="hero-date-input" />
+          </div>
+          <div class="hero-search-divider"></div>
+          <div class="hero-search-field">
+            <label>인원</label>
+            <select id="hero-capacity-select">
+              <option value="0">전체 인원</option>
+              <option value="4">4인 이상</option>
+              <option value="8">8인 이상</option>
+              <option value="12">12인 이상</option>
+              <option value="20">20인 이상</option>
+            </select>
+          </div>
+          <button class="btn-hero-search" id="hero-book-btn">회의실 찾기</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-stat-grid">
+          <div class="hero-stat-card">
+            <span class="stat-num">24</span>
+            <span class="stat-lbl">회의실</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-num">98%</span>
+            <span class="stat-lbl">고객 만족</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-num">365</span>
+            <span class="stat-lbl">연중무휴</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-num">1hr</span>
+            <span class="stat-lbl">최소 단위</span>
+          </div>
+        </div>
+        <div class="hero-room-preview">
+          <div class="preview-card preview-a">
+            <div class="preview-dot available"></div>
+            <span>이노베이션 룸</span>
+            <span class="preview-status">예약 가능</span>
+          </div>
+          <div class="preview-card preview-b">
+            <div class="preview-dot booked"></div>
+            <span>글로벌 컨퍼런스</span>
+            <span class="preview-status">예약 완료</span>
+          </div>
+          <div class="preview-card preview-c">
+            <div class="preview-dot available"></div>
+            <span>스카이 미팅룸</span>
+            <span class="preview-status">예약 가능</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FILTER BAR ===== -->
+  <section id="filter-bar">
+    <div class="filter-inner">
+      <div class="filter-group">
+        <label class="filter-label">최소 인원</label>
+        <select id="filter-capacity" class="filter-select">
+          <option value="0">전체</option>
+          <option value="4">4인 이상</option>
+          <option value="6">6인 이상</option>
+          <option value="10">10인 이상</option>
+          <option value="20">20인 이상</option>
+        </select>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-group filter-group-eq">
+        <label class="filter-label">장비 필터</label>
+        <div class="checkbox-row">
+          <label class="cb-label"><input type="checkbox" class="filter-equipment" value="프로젝터" /><span>프로젝터</span></label>
+          <label class="cb-label"><input type="checkbox" class="filter-equipment" value="화상회의" /><span>화상회의</span></label>
+          <label class="cb-label"><input type="checkbox" class="filter-equipment" value="화이트보드" /><span>화이트보드</span></label>
+          <label class="cb-label"><input type="checkbox" class="filter-equipment" value="사운드시스템" /><span>사운드시스템</span></label>
+        </div>
+      </div>
+      <button class="btn-filter-reset" id="reset-filters-btn">초기화</button>
+    </div>
+  </section>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main id="main-content">
+    <div class="main-inner">
+
+      <!-- Left Column -->
+      <div class="content-left">
+
+        <!-- Rooms Section -->
+        <section id="rooms-section">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">이용 가능한 회의실</h2>
+              <p class="section-desc">다양한 규모와 장비를 갖춘 회의실을 선택하세요</p>
+            </div>
+            <div class="rooms-count-badge" id="rooms-count-badge">6개 공간</div>
+          </div>
+          <div class="rooms-grid" id="rooms-grid">
+            <!-- JS가 렌더링 -->
+          </div>
+        </section>
+
+        <!-- Booking Section (hidden until room selected) -->
+        <section id="booking-section" class="booking-section">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">예약 일정 선택</h2>
+              <p class="section-desc">선택한 회의실: <span id="selected-room-name" class="highlight-text">-</span></p>
+            </div>
+            <button class="btn-change-room" id="change-room-btn">다른 회의실 선택</button>
+          </div>
+
+          <div class="booking-grid">
+            <!-- Calendar -->
+            <div class="calendar-area">
+              <div class="calendar-panel">
+                <div class="calendar-nav">
+                  <button id="prev-month-btn" class="cal-arrow-btn">&#8249;</button>
+                  <span id="calendar-month-header" class="calendar-month-label">2025년 5월</span>
+                  <button id="next-month-btn" class="cal-arrow-btn">&#8250;</button>
+                </div>
+                <div class="calendar-weekdays">
+                  <div class="wday sun">일</div>
+                  <div class="wday">월</div>
+                  <div class="wday">화</div>
+                  <div class="wday">수</div>
+                  <div class="wday">목</div>
+                  <div class="wday">금</div>
+                  <div class="wday sat">토</div>
+                </div>
+                <!--
+                  INTENTIONAL GUI BUG: site070-bug02
+                  Type: booking-calendar-grid-overflow
+                  Description: 캘린더 날짜 셀을 고정 폭으로 지정하고 overflow 처리를 누락해 우측 패널 아래로 넘침.
+                -->
+                <div class="calendar-grid" id="calendar-grid" data-bug-id="site070-bug02">
+                  <!-- JS가 렌더링 -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Time Slots -->
+            <div class="time-slots-area">
+              <div class="time-slots-panel">
+                <div class="slots-header">
+                  <h3 class="slots-title">시간 슬롯</h3>
+                  <span class="slots-date-label" id="slots-date-label">-</span>
+                </div>
+                <div id="time-slots-container" class="time-slots-container">
+                  <div class="slots-placeholder">
+                    <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#D1D8E0" stroke-width="2"/><path d="M24 14v10l6 6" stroke="#D1D8E0" stroke-width="2.5" stroke-linecap="round"/></svg>
+                    <p>회의실을 선택하면<br>예약 가능한 시간이 표시됩니다</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /content-left -->
+
+      <!-- Right Column: Booking Summary -->
+      <aside class="content-right">
+        <div id="booking-summary-panel" class="summary-panel">
+          <div class="summary-panel-header">
+            <h3 class="summary-title">예약 요약</h3>
+            <button id="toggle-summary-btn" class="toggle-panel-btn" title="접기/펼치기">&#9650;</button>
+          </div>
+          <div class="summary-panel-body" id="summary-panel-body">
+            <!-- Empty state -->
+            <div id="summary-empty" class="summary-empty-state">
+              <svg viewBox="0 0 64 64" fill="none"><rect x="8" y="12" width="48" height="44" rx="4" stroke="#D1D8E0" stroke-width="2"/><path d="M20 12V8M44 12V8" stroke="#D1D8E0" stroke-width="2" stroke-linecap="round"/><path d="M8 24h48" stroke="#D1D8E0" stroke-width="2"/><rect x="16" y="32" width="10" height="10" rx="2" fill="#E8ECF0"/><rect x="30" y="32" width="10" height="10" rx="2" fill="#E8ECF0"/></svg>
+              <p>회의실을 선택하고<br>예약 일정을 설정하세요</p>
+            </div>
+            <!-- Filled state -->
+            <div id="summary-content" class="summary-filled" style="display:none;">
+              <div class="summary-room-thumb" id="summary-room-thumb"></div>
+              <div class="summary-room-info">
+                <p class="sum-room-name" id="summary-room-name">-</p>
+                <p class="sum-room-loc" id="summary-room-location">-</p>
+                <p class="sum-room-cap" id="summary-room-capacity">-</p>
+              </div>
+              <div class="summary-divider"></div>
+              <div class="summary-rows">
+                <div class="summary-row">
+                  <span class="sum-lbl">날짜</span>
+                  <span class="sum-val" id="summary-date">-</span>
+                </div>
+                <div class="summary-row">
+                  <span class="sum-lbl">시간</span>
+                  <span class="sum-val" id="summary-time">시간 미선택</span>
+                </div>
+                <div class="summary-row">
+                  <span class="sum-lbl">인원 (최대)</span>
+                  <span class="sum-val" id="summary-capacity-max">-</span>
+                </div>
+              </div>
+              <div class="summary-divider"></div>
+              <div class="summary-total-row">
+                <span class="total-lbl">총 예약 금액</span>
+                <span class="total-price" id="summary-price">-</span>
+              </div>
+              <button class="btn-confirm" id="confirm-booking-btn" disabled>예약 확정하기</button>
+              <button class="btn-clear" id="clear-booking-btn">선택 초기화</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Info Card -->
+        <div class="quick-info-card">
+          <h4 class="qi-title">예약 안내</h4>
+          <ul class="qi-list">
+            <li><span class="qi-icon">&#10003;</span> 최소 예약 단위: 1시간</li>
+            <li><span class="qi-icon">&#10003;</span> 예약 취소: 1시간 전까지</li>
+            <li><span class="qi-icon">&#10003;</span> 장비 추가 요청 가능</li>
+            <li><span class="qi-icon">&#10003;</span> 365일 24시간 운영</li>
+          </ul>
+          <button class="btn-qi-more" data-coming-soon>이용 정책 전체 보기 &rsaquo;</button>
+        </div>
+
+        <!-- Popular Times -->
+        <div class="popular-times-card">
+          <h4 class="qi-title">인기 예약 시간대</h4>
+          <div class="pop-bars">
+            <div class="pop-bar-row"><span>10:00</span><div class="pop-bar" style="width:85%"></div></div>
+            <div class="pop-bar-row"><span>14:00</span><div class="pop-bar" style="width:92%"></div></div>
+            <div class="pop-bar-row"><span>16:00</span><div class="pop-bar" style="width:67%"></div></div>
+            <div class="pop-bar-row"><span>09:00</span><div class="pop-bar" style="width:54%"></div></div>
+          </div>
+        </div>
+      </aside>
+
+    </div><!-- /main-inner -->
+  </main>
+
+  <!-- ===== ROOM DETAIL MODAL ===== -->
+  <div id="room-modal" class="modal-overlay" style="display:none;" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="닫기">&#10005;</button>
+      <div class="modal-hero-img" id="modal-room-image"></div>
+      <div class="modal-body">
+        <div class="modal-header-row">
+          <div>
+            <h2 class="modal-room-name" id="modal-room-name">회의실 이름</h2>
+            <div class="modal-meta">
+              <span id="modal-room-location">위치</span>
+              <span class="meta-sep">·</span>
+              <span id="modal-room-capacity">인원</span>
+            </div>
+          </div>
+          <div class="modal-price-tag">
+            <p class="modal-price-val" id="modal-room-price">-</p>
+            <span class="modal-price-unit">/ 시간</span>
+          </div>
+        </div>
+        <div class="modal-section">
+          <h4 class="modal-section-title">장비 / 시설</h4>
+          <div class="modal-eq-list" id="modal-equipment-list"></div>
+        </div>
+        <div class="modal-section">
+          <h4 class="modal-section-title">이용 규정</h4>
+          <ul class="modal-policy-list">
+            <li>예약 시간을 반드시 준수해 주세요.</li>
+            <li>음식물 반입은 음료에 한해 허용됩니다.</li>
+            <li>사용 후 원상 복구 및 청결 유지 부탁드립니다.</li>
+            <li>취소는 예약 시작 1시간 전까지 가능합니다.</li>
+          </ul>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-modal-cancel" id="modal-cancel-btn">닫기</button>
+          <button class="btn-modal-book" id="modal-book-btn">이 회의실 예약하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="main-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">RoomBook<span>Pro</span></div>
+        <p class="footer-tagline">스마트한 공간 예약으로<br>더 효율적인 업무 환경을</p>
+        <div class="footer-socials">
+          <a href="#" data-coming-soon class="social-btn">in</a>
+          <a href="#" data-coming-soon class="social-btn">tw</a>
+          <a href="#" data-coming-soon class="social-btn">ig</a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>서비스</h5>
+          <a href="#" data-coming-soon>이용 규정</a>
+          <a href="#" data-coming-soon>취소 정책</a>
+          <a href="#" data-coming-soon>장기 계약</a>
+          <a href="#" data-coming-soon>기업 요금제</a>
+        </div>
+        <div class="footer-col">
+          <h5>시설 안내</h5>
+          <a href="#" data-coming-soon>회의실 안내</a>
+          <a href="#" data-coming-soon>장비 목록</a>
+          <a href="#" data-coming-soon>접근성 안내</a>
+          <a href="#" data-coming-soon>주차 안내</a>
+        </div>
+        <div class="footer-col">
+          <h5>고객센터</h5>
+          <a href="#" data-coming-soon>자주 묻는 질문</a>
+          <a href="#" data-coming-soon>1:1 문의</a>
+          <a href="#" data-coming-soon>전화 상담</a>
+          <a href="#" data-coming-soon>공지사항</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 RoomBook Pro. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#" data-coming-soon>개인정보처리방침</a>
+        <a href="#" data-coming-soon>이용약관</a>
+        <a href="#" data-coming-soon>사업자 정보</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

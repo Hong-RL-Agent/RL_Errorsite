@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "productId": 1,
+    "summary": "Excellent performance and build quality.",
+    "rating": 5,
+    "date": "2023-10-25",
+    "recommendations": 12
+  },
+  {
+    "id": 2,
+    "productId": 1,
+    "summary": "Battery life could be better.",
+    "rating": 4,
+    "date": "2023-11-01",
+    "recommendations": 5
+  }
+]

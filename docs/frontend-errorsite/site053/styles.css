@@ -1,0 +1,384 @@
+:root {
+    --navy: #1a237e;
+    --navy-light: #3f51b5;
+    --mint: #26a69a;
+    --white: #ffffff;
+    --gray-bg: #f5f7fa;
+    --gray-light: #e0e6ed;
+    --gray-text: #64748b;
+    --text-dark: #1e293b;
+    --red: #ef4444;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: var(--gray-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.main-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 40px;
+    filter: brightness(0) invert(1);
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.main-nav a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.main-nav a:hover {
+    color: var(--white);
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Common Components */
+.card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    border: 1px solid var(--gray-light);
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--navy);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--navy-light);
+}
+
+.btn-secondary {
+    background-color: var(--gray-light);
+    color: var(--text-dark);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    color: var(--white);
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.mt-1 { margin-top: 15px; }
+
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.badge-mint {
+    background-color: var(--mint);
+    color: var(--white);
+}
+
+.badge-red {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+/* Layout */
+.main-content {
+    display: grid;
+    grid-template-columns: 260px 1fr 240px;
+    gap: 25px;
+    padding: 30px 20px;
+}
+
+/* Sidebar Left */
+.unit-info h3 { margin-bottom: 15px; font-size: 18px; }
+.unit-body p { font-size: 14px; margin-bottom: 8px; }
+
+.parcel-list {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.parcel-list li {
+    font-size: 13px;
+    color: var(--gray-text);
+    margin-bottom: 5px;
+}
+
+.quick-links ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.quick-links li {
+    margin-bottom: 8px;
+}
+
+.quick-links a {
+    font-size: 14px;
+    color: var(--navy-light);
+    text-decoration: none;
+}
+
+/* Content Center */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 22px;
+    color: var(--navy);
+}
+
+.filter-bar {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-bar select, .filter-bar input {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--gray-light);
+    font-size: 14px;
+}
+
+.notice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.notice-card {
+    background: var(--white);
+    padding: 15px 20px;
+    border-radius: var(--radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid var(--gray-light);
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.notice-card:hover {
+    transform: translateX(5px);
+    border-left-color: var(--navy-light);
+}
+
+.notice-card.important {
+    border-left-color: var(--red);
+}
+
+.notice-info h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.notice-meta {
+    font-size: 12px;
+    color: var(--gray-text);
+}
+
+/* Fee Summary */
+.fee-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.fee-item {
+    text-align: center;
+    padding: 15px;
+    background: var(--gray-bg);
+    border-radius: 8px;
+}
+
+.fee-item label {
+    display: block;
+    font-size: 12px;
+    color: var(--gray-text);
+    margin-bottom: 5px;
+}
+
+.fee-item span {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.fee-item.total {
+    background: var(--navy-light);
+    color: var(--white);
+}
+
+.fee-item.total label { color: rgba(255,255,255,0.8); }
+
+/* Tabs */
+.tabs-section { margin-top: 40px; }
+.tabs-header { display: flex; border-bottom: 2px solid var(--gray-light); }
+.tab-btn {
+    padding: 12px 25px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--gray-text);
+    position: relative;
+}
+
+.tab-btn.active {
+    color: var(--navy);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--navy);
+}
+
+.tab-panel {
+    display: none;
+    padding: 30px;
+    background: var(--white);
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* INTENTIONAL GUI BUG: site053-bug02
+   Type: tab-content-overlap
+   Description: 탭 전환 시 이전 panel을 숨기지 않아 민원 접수와 시설 예약 콘텐츠가 겹쳐 보임.
+   Implementation: The .active class shows the panel, but if we don't remove .active from others, 
+   or if we don't have a solid way to hide inactive ones, they overlap.
+*/
+.tab-panel.active {
+    display: block;
+}
+
+/* Form Styles */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-size: 14px; margin-bottom: 5px; font-weight: 600; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--gray-light);
+    border-radius: 6px;
+}
+
+/* Facility Mock */
+.calendar-mock { margin-top: 20px; border: 1px solid var(--gray-light); padding: 15px; border-radius: 8px; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 10px; }
+.day-label { text-align: center; font-size: 12px; font-weight: 700; padding: 5px; }
+.day { text-align: center; padding: 10px; font-size: 13px; border-radius: 4px; cursor: pointer; }
+.day:hover:not(.empty) { background: var(--gray-light); }
+.day.select { background: var(--navy); color: var(--white); font-weight: 700; }
+
+/* Sidebar Right */
+.quick-apply ul { list-style: none; padding-top: 10px; }
+.quick-apply button {
+    width: 100%;
+    text-align: left;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--gray-light);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.sticky { position: sticky; top: 100px; }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+.modal-content { background: var(--white); margin: 10% auto; padding: 40px; width: 600px; border-radius: var(--radius); position: relative; }
+.close-modal { position: absolute; right: 20px; top: 20px; font-size: 24px; cursor: pointer; }
+
+/* Footer */
+.main-footer { background: #e2e8f0; padding: 40px 0; margin-top: 60px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+.footer-links h4 { margin-bottom: 15px; }
+.footer-links ul { list-style: none; }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a { text-decoration: none; color: var(--gray-text); font-size: 14px; }
+.footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--gray-light); color: var(--gray-text); font-size: 13px; }
+
+.loading { padding: 40px; text-align: center; }
+.facility-grid { display: flex; gap: 10px; margin: 10px 0; }
+.facility-item { flex: 1; padding: 10px; border: 1px solid var(--gray-light); border-radius: 6px; text-align: center; cursor: pointer; }
+.facility-item.active { border-color: var(--navy); background: var(--navy); color: var(--white); }

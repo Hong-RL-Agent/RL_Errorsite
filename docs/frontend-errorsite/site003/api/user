@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "data": {
+    "name": "김피트",
+    "level": "중급",
+    "caloriesBurned": 3200,
+    "workoutsCompleted": 15
+  }
+}
