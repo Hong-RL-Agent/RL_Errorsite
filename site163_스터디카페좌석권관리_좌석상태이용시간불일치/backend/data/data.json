@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-5501", "name": "김좌석 (강남역 본점 매니저 - 직원 A)", "role": "MANAGER", "branchName": "강남역 본점 프리미엄관", "handledTickets": 710 },
+    { "id": "STF-5502", "name": "이입실 (신촌 연세로점 매니저 - 직원 B)", "role": "MANAGER", "branchName": "신촌 연세로 24h 스터디존", "handledTickets": 620 },
+    { "id": "STF-5503", "name": "박연장 (홍대입구역점 관제 매니저)", "role": "STAFF", "branchName": "홍대입구역 집중공부관", "handledTickets": 490 },
+    { "id": "STF-5504", "name": "최퇴실 (건대입구점 키오스크 관리원)", "role": "STAFF", "branchName": "건대입구역 24h 타워점", "handledTickets": 380 },
+    { "id": "STF-5505", "name": "정정기 (종로 혜화 성균관대점 안내원)", "role": "STAFF", "branchName": "종로 혜화 성균관대점", "handledTickets": 290 }
+  ],
+  "branches": [
+    { "id": "BRN-01", "branchName": "강남역 본점 프리미엄관", "address": "서울 서초구 강남대로 390", "totalSeats": 120, "occupiedSeats": 98, "status": "OPTIMAL" },
+    { "id": "BRN-02", "branchName": "신촌 연세로 24h 스터디존", "address": "서울 서대문구 연세로 18", "totalSeats": 100, "occupiedSeats": 85, "status": "BUSY" },
+    { "id": "BRN-03", "branchName": "홍대입구역 집중공부관", "address": "서울 마포구 양화로 160", "totalSeats": 110, "occupiedSeats": 74, "status": "OPTIMAL" }
+  ],
+  "members": [
+    { "id": "MBR-4001", "memberCode": "SS-20260805-01", "memberName": "최공부", "phone": "010-9999-3333", "ticketType": "100시간 충전권 (잔여 42시간)", "remainingHours": 42.5, "registeredBranch": "강남역 본점 프리미엄관", "joinDate": "2026-08-01" },
+    { "id": "MBR-4002", "memberCode": "SS-20260805-02", "memberName": "강몰입", "phone": "010-8888-4444", "ticketType": "4주 고정석 기간권", "remainingHours": 180.0, "registeredBranch": "신촌 연세로 24h 스터디존", "joinDate": "2026-08-03" },
+    { "id": "MBR-4003", "memberCode": "SS-20260805-03", "memberName": "윤열공", "phone": "010-7777-5555", "ticketType": "50시간 충전권 (잔여 12시간)", "remainingHours": 12.0, "registeredBranch": "홍대입구역 집중공부관", "joinDate": "2026-07-28" }
+  ],
+  "seats": [
+    { "id": "SEAT-1001", "seatNo": "A-15 (독서실형 1인 몰입석)", "branchName": "강남역 본점 프리미엄관", "currentMember": "최공부", "remainingHours": 42.5, "startTime": "2026-08-05 13:00", "endTime": "2026-08-05 18:00", "status": "IN_USE" },
+    { "id": "SEAT-1002", "seatNo": "B-08 (카페형 오픈 와이드석)", "branchName": "신촌 연세로 24h 스터디존", "currentMember": "강몰입", "remainingHours": 180.0, "startTime": "2026-08-05 09:00", "endTime": "2026-08-05 23:00", "status": "IN_USE" },
+    { "id": "SEAT-1003", "seatNo": "C-22 (노트북 타이핑 라운지석)", "branchName": "홍대입구역 집중공부관", "currentMember": "윤열공", "remainingHours": 12.0, "startTime": "2026-08-04 14:00", "endTime": "2026-08-04 18:00", "status": "CHECKED_OUT" }
+  ],
+  "tickets": [
+    { "id": "TCK-8001", "ticketCode": "TK-20260805-01", "memberName": "최공부", "ticketType": "100시간 충전권", "branchName": "강남역 본점 프리미엄관", "priceWon": 140000, "status": "IN_USE" },
+    { "id": "TCK-8002", "ticketCode": "TK-20260805-02", "memberName": "강몰입", "ticketType": "4주 고정석 기간권", "branchName": "신촌 연세로 24h 스터디존", "priceWon": 210000, "status": "IN_USE" }
+  ],
+  "entryLogs": [
+    { "id": "ELOG-6001", "seatId": "SEAT-1001", "memberName": "최공부", "seatNo": "A-15", "branchName": "강남역 본점", "actionType": "IN (입실)", "logTime": "2026-08-05 13:02", "status": "SUCCESS" },
+    { "id": "ELOG-6002", "seatId": "SEAT-1003", "memberName": "윤열공", "seatNo": "C-22", "branchName": "홍대입구역점", "actionType": "OUT (퇴실)", "logTime": "2026-08-04 17:58", "status": "SUCCESS" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9950", "seatId": "SEAT-1001", "operator": "김좌석 (매니저)", "action": "좌석 SEAT-1001 최공부 회원 입실 처리 및 키오스크 연동 완료", "timestamp": "2026-08-05 13:05:00", "status": "SUCCESS" },
+    { "id": "ACT-9951", "seatId": "SEAT-1003", "operator": "박연장 (매니저)", "action": "좌석 SEAT-1003 윤열공 회원 퇴실 확인 및 이용시간 정산 완료", "timestamp": "2026-08-04 18:02:00", "status": "SUCCESS" }
+  ],
+  "studyStats": {
+    "totalSeats": 100,
+    "totalMembers": 70,
+    "totalTickets": 70,
+    "totalEntryLogs": 100,
+    "totalBranches": 10,
+    "overtimeSeatCount": 8,
+    "inUseCount": 46,
+    "avgSeatUtilization": 92.8
+  }
+}

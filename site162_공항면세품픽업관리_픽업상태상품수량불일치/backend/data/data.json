@@ -1,0 +1,47 @@
+{
+  "staffs": [
+    { "id": "STF-6601", "name": "김픽업 (인천공항 T1 면세 인도장 관제 총괄 - 직원 A)", "role": "MANAGER", "counterName": "T1 동편 인도장 (11번 게이트 앞)", "handledOrders": 680 },
+    { "id": "STF-6602", "name": "이인도 (인천공항 T2 퍼스트 인도장 총괄 - 직원 B)", "role": "MANAGER", "counterName": "T2 중앙 인도장 (252번 게이트 앞)", "handledDonations": 590 },
+    { "id": "STF-6603", "name": "박검수 (보관물류 포장 및 여권인증 검수원)", "role": "STAFF", "counterName": "T1 서편 인도장 (45번 게이트 앞)", "handledOrders": 450 },
+    { "id": "STF-6604", "name": "최인도 (화장품 & 향수 수의 인도 담당원)", "role": "STAFF", "counterName": "김포공항 국제선 픽업 카운터", "handledOrders": 360 },
+    { "id": "STF-6605", "name": "정면세 (시계 & 주류 보세물류 인도원)", "role": "STAFF", "counterName": "김해공항 면세품 인도 카운터", "handledOrders": 280 }
+  ],
+  "counters": [
+    { "id": "CTR-101", "counterName": "T1 동편 인도장 (11번 게이트 앞)", "terminal": "T1 (제1여객터미널)", "capacity": 300, "currentProcessing": 240, "status": "OPTIMAL" },
+    { "id": "CTR-102", "counterName": "T2 중앙 인도장 (252번 게이트 앞)", "terminal": "T2 (제2여객터미널)", "capacity": 250, "currentProcessing": 210, "status": "BUSY" },
+    { "id": "CTR-103", "counterName": "T1 서편 인도장 (45번 게이트 앞)", "terminal": "T1 (제1여객터미널)", "capacity": 200, "currentProcessing": 160, "status": "OPTIMAL" }
+  ],
+  "passengers": [
+    { "id": "PSG-3001", "passengerCode": "DP-20260805-01", "passengerName": "최공항", "passportEnglishName": "CHOI GONGHANG", "flightNo": "KE081 (대한항공 뉴욕행)", "departureTime": "2026-08-05 19:30", "totalOrders": 3 },
+    { "id": "PSG-3002", "passengerCode": "DP-20260805-02", "passengerName": "강면세", "passportEnglishName": "KANG DUTY", "flightNo": "OZ222 (아시아나 로스앤젤레스행)", "departureTime": "2026-08-06 11:00", "totalOrders": 5 },
+    { "id": "PSG-3003", "passengerCode": "DP-20260805-03", "passengerName": "윤쇼핑", "passportEnglishName": "YOUN SHOPPING", "flightNo": "7C1102 (제주항공 도쿄행)", "departureTime": "2026-08-04 15:20", "totalOrders": 2 }
+  ],
+  "orders": [
+    { "id": "ORD-5001", "orderCode": "DP-ORD-20260805-01", "passengerName": "최공항", "passportEnglishName": "CHOI GONGHANG", "flightNo": "KE081 (뉴욕행)", "counterName": "T1 동편 인도장 (11번 게이트 앞)", "departureTime": "2026-08-05 19:30", "productName": "설화수 자음 2종 세트 외 3건", "itemQuantity": 4, "totalPriceUsd": 280, "status": "PREPARING" },
+    { "id": "ORD-5002", "orderCode": "DP-ORD-20260805-02", "passengerName": "강면세", "passportEnglishName": "KANG DUTY", "flightNo": "OZ222 (LA행)", "counterName": "T2 중앙 인도장 (252번 게이트 앞)", "departureTime": "2026-08-06 11:00", "productName": "정관장 홍삼정 에브리타임 100포", "itemQuantity": 2, "totalPriceUsd": 190, "status": "ORDERED" },
+    { "id": "ORD-5003", "orderCode": "DP-ORD-20260805-03", "passengerName": "윤쇼핑", "passportEnglishName": "YOUN SHOPPING", "flightNo": "7C1102 (도쿄행)", "counterName": "T1 서편 인도장 (45번 게이트 앞)", "departureTime": "2026-08-04 15:20", "productName": "샤넬 가브리엘 에쌍스 향수 100ml", "itemQuantity": 1, "totalPriceUsd": 155, "status": "COMPLETED" }
+  ],
+  "products": [
+    { "id": "PRD-8001", "productCode": "SKU-9901", "productName": "설화수 자음 2종 기획 세트", "category": "화장품 & 뷰티", "priceUsd": 120, "stockQty": 450, "status": "AVAILABLE" },
+    { "id": "PRD-8002", "productCode": "SKU-9902", "productName": "정관장 홍삼정 에브리타임 100포", "category": "건강식품", "priceUsd": 190, "stockQty": 320, "status": "AVAILABLE" },
+    { "id": "PRD-8003", "productCode": "SKU-9903", "productName": "샤넬 가브리엘 에쌍스 향수 100ml", "category": "향수 & 패션", "priceUsd": 155, "stockQty": 210, "status": "AVAILABLE" }
+  ],
+  "pickupLogs": [
+    { "id": "PLOG-4001", "ordId": "ORD-5001", "passengerName": "최공항", "counterName": "T1 동편 인도장", "itemSummary": "설화수 자음 세트 4팩 포장 바코드 검수 완료", "pickupTime": "2026-08-05 18:20", "status": "PASSED" },
+    { "id": "PLOG-4002", "ordId": "ORD-5003", "passengerName": "윤쇼핑", "counterName": "T1 서편 인도장", "itemSummary": "샤넬 향수 1팩 수령 서명 및 여권 본인확인 완료", "pickupTime": "2026-08-04 14:40", "status": "PASSED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9960", "ordId": "ORD-5001", "operator": "김픽업 (관제장)", "action": "주문 ORD-5001 최공항 승객 면세품 픽업 준비중 상태 변경 및 11번 게이트 배치", "timestamp": "2026-08-05 18:22:00", "status": "SUCCESS" },
+    { "id": "ACT-9961", "ordId": "ORD-5003", "operator": "박검수 (검수원)", "action": "주문 ORD-5003 윤쇼핑 승객 현장 인도 서명 완료 및 픽업 완료 처리", "timestamp": "2026-08-04 14:42:00", "status": "SUCCESS" }
+  ],
+  "dutyStats": {
+    "totalOrders": 70,
+    "totalProducts": 80,
+    "totalPassengers": 60,
+    "totalCounters": 15,
+    "totalPickupLogs": 90,
+    "delayedPreparationCount": 5,
+    "readyCount": 28,
+    "avgPickupFulfillmentRate": 96.5
+  }
+}

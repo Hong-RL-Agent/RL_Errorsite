@@ -1,0 +1,54 @@
+{
+  "restaurants": [
+    { "id": "RST-01", "name": "한남 미쉐린 한식 다이닝", "category": "한식", "region": "용산구", "rating": 4.9, "waitingCount": 12, "imageUrl": "/uploads/hannam_dining.jpg", "tables": ["T1", "T2", "T3", "T4"] },
+    { "id": "RST-02", "name": "강남 프라이빗 스시 오마카세", "category": "일식", "region": "강남구", "rating": 4.8, "waitingCount": 8, "imageUrl": "/uploads/gourmet steak.jpg", "tables": ["T1", "T2"] },
+    { "id": "RST-03", "name": "성수 루프탑 이탈리안 파스타", "category": "양식", "region": "성동구", "rating": 4.6, "waitingCount": 5, "imageUrl": "/uploads/seongsu_pasta.jpg", "tables": ["T1", "T2", "T3"] },
+    { "id": "RST-04", "name": "홍대 정통 사천 마라샹궈", "category": "중식", "region": "마포구", "rating": 4.5, "waitingCount": 15, "imageUrl": "" },
+    { "id": "RST-05", "name": "청담 프렌치 파인다이닝 라비앙", "category": "양식", "region": "강남구", "rating": 4.9, "waitingCount": 4, "imageUrl": "" },
+    { "id": "RST-06", "name": "종로 숯불 한우 갈비 명가", "category": "한식", "region": "종로구", "rating": 4.7, "waitingCount": 20, "imageUrl": "" },
+    { "id": "RST-07", "name": "연남 도쿄 전통 소바 전문점", "category": "일식", "region": "마포구", "rating": 4.4, "waitingCount": 6, "imageUrl": "" },
+    { "id": "RST-08", "name": "이태원 멕시칸 타코 앤 테킬라", "category": "양식", "region": "용산구", "rating": 4.3, "waitingCount": 3, "imageUrl": "" },
+    { "id": "RST-09", "name": "서초 스페셜티 딤섬 앤 차이니스", "category": "중식", "region": "서초구", "rating": 4.6, "waitingCount": 10, "imageUrl": "" },
+    { "id": "RST-10", "name": "성수 수제 화덕 피자 루치아", "category": "양식", "region": "성동구", "rating": 4.7, "waitingCount": 9, "imageUrl": "" },
+    { "id": "RST-11", "name": "송파 잠실 전통 수제 족발", "category": "한식", "region": "송파구", "rating": 4.5, "waitingCount": 14, "imageUrl": "" },
+    { "id": "RST-12", "name": "압구정 숙성 사시미 갓포", "category": "일식", "region": "강남구", "rating": 4.8, "waitingCount": 7, "imageUrl": "" },
+    { "id": "RST-13", "name": "여의도 한우 숙성 등심 구이", "category": "한식", "region": "영등포구", "rating": 4.6, "waitingCount": 11, "imageUrl": "" },
+    { "id": "RST-14", "name": "삼청동 전통 정갈한 수제비", "category": "한식", "region": "종로구", "rating": 4.4, "waitingCount": 18, "imageUrl": "" }
+  ],
+  "reservations": [
+    { "id": "RES-001", "rstId": "RST-01", "rstName": "한남 미쉐린 한식 다이닝", "guestName": "김철수", "phone": "010-1234-5678", "date": "2026-08-05", "time": "18:00", "partySize": 2, "status": "CONFIRMED", "tableNo": "T1", "userId": "USER_A" },
+    { "id": "RES-002", "rstId": "RST-02", "rstName": "강남 프라이빗 스시 오마카세", "guestName": "이영희", "phone": "010-2345-6789", "date": "2026-08-06", "time": "19:00", "partySize": 4, "status": "CONFIRMED", "tableNo": "T2", "userId": "USER_A" },
+    { "id": "RES-003", "rstId": "RST-03", "rstName": "성수 루프탑 이탈리안 파스타", "guestName": "박민수", "phone": "010-3456-7890", "date": "2026-08-05", "time": "12:30", "partySize": 3, "status": "CONFIRMED", "tableNo": "T1", "userId": "USER_A" },
+    { "id": "RES-004", "rstId": "RST-04", "rstName": "홍대 정통 사천 마라샹궈", "guestName": "정수진", "phone": "010-4567-8901", "date": "2026-08-07", "time": "18:30", "partySize": 6, "status": "CONFIRMED", "tableNo": "T3", "userId": "USER_A" },
+    { "id": "RES-005", "rstId": "RST-05", "rstName": "청담 프렌치 파인다이닝 라비앙", "guestName": "최동현", "phone": "010-5678-9012", "date": "2026-08-08", "time": "20:00", "partySize": 2, "status": "CANCELLED", "tableNo": "", "userId": "USER_A" },
+    { "id": "RES-006", "rstId": "RST-06", "rstName": "종로 숯불 한우 갈비 명가", "guestName": "강서연", "phone": "010-6789-0123", "date": "2026-08-05", "time": "17:30", "partySize": 5, "status": "CONFIRMED", "tableNo": "T2", "userId": "USER_A" },
+    { "id": "RES-007", "rstId": "RST-07", "rstName": "연남 도쿄 전통 소바 전문점", "guestName": "윤재호", "phone": "010-7890-1234", "date": "2026-08-09", "time": "13:00", "partySize": 2, "status": "CONFIRMED", "tableNo": "T1", "userId": "USER_A" },
+    { "id": "RES-008", "rstId": "RST-08", "rstName": "이태원 멕시칸 타코 앤 테킬라", "guestName": "한지민", "phone": "010-8901-2345", "date": "2026-08-10", "time": "19:30", "partySize": 4, "status": "CONFIRMED", "tableNo": "T2", "userId": "USER_A" },
+    { "id": "RES-009", "rstId": "RST-09", "rstName": "서초 스페셜티 딤섬 앤 차이니스", "guestName": "임건우", "phone": "010-9012-3456", "date": "2026-08-05", "time": "18:00", "partySize": 3, "status": "CONFIRMED", "tableNo": "T1", "userId": "USER_A" },
+    { "id": "RES-010", "rstId": "RST-10", "rstName": "성수 수제 화덕 피자 루치아", "guestName": "송예은", "phone": "010-0123-4567", "date": "2026-08-11", "time": "12:00", "partySize": 2, "status": "CONFIRMED", "tableNo": "T3", "userId": "USER_A" },
+    { "id": "RES-011", "rstId": "RST-11", "rstName": "송파 잠실 전통 수제 족발", "guestName": "오현우", "phone": "010-1122-3344", "date": "2026-08-12", "time": "19:00", "partySize": 8, "status": "WAITING", "tableNo": "", "userId": "USER_B" },
+    { "id": "RES-012", "rstId": "RST-12", "rstName": "압구정 숙성 사시미 갓포", "guestName": "신나영", "phone": "010-2233-4455", "date": "2026-08-13", "time": "20:00", "partySize": 2, "status": "CONFIRMED", "tableNo": "T1", "userId": "USER_B" },
+    { "id": "RES-013", "rstId": "RST-13", "rstName": "여의도 한우 숙성 등심 구이", "guestName": "백승호", "phone": "010-3344-5566", "date": "2026-08-05", "time": "18:30", "partySize": 4, "status": "CONFIRMED", "tableNo": "T2", "userId": "USER_B" },
+    { "id": "RES-014", "rstId": "RST-14", "rstName": "삼청동 전통 정갈한 수제비", "guestName": "유아름", "phone": "010-4455-6677", "date": "2026-08-14", "time": "12:30", "partySize": 2, "status": "CONFIRMED", "tableNo": "T1", "userId": "USER_B" },
+    { "id": "RES-015", "rstId": "RST-01", "rstName": "한남 미쉐린 한식 다이닝", "guestName": "조태경", "phone": "010-5566-7788", "date": "2026-08-15", "time": "19:00", "partySize": 4, "status": "CONFIRMED", "tableNo": "T2", "userId": "USER_B" },
+    { "id": "RES-016", "rstId": "RST-02", "rstName": "강남 프라이빗 스시 오마카세", "guestName": "권소희", "phone": "010-6677-8899", "date": "2026-08-16", "time": "18:00", "partySize": 2, "status": "CONFIRMED", "tableNo": "T1", "userId": "USER_B" },
+    { "id": "RES-017", "rstId": "RST-03", "rstName": "성수 루프탑 이탈리안 파스타", "guestName": "황도윤", "phone": "010-7788-9900", "date": "2026-08-17", "time": "13:00", "partySize": 3, "status": "WAITING", "tableNo": "", "userId": "USER_B" },
+    { "id": "RES-018", "rstId": "RST-04", "rstName": "홍대 정통 사천 마라샹궈", "guestName": "서지우", "phone": "010-8899-0011", "date": "2026-08-18", "time": "19:30", "partySize": 5, "status": "CONFIRMED", "tableNo": "T2", "userId": "USER_B" },
+    { "id": "RES-019", "rstId": "RST-05", "rstName": "청담 프렌치 파인다이닝 라비앙", "guestName": "안재민", "phone": "010-9900-1122", "date": "2026-08-19", "time": "20:00", "partySize": 2, "status": "CONFIRMED", "tableNo": "T1", "userId": "USER_B" },
+    { "id": "RES-020", "rstId": "RST-06", "rstName": "종로 숯불 한우 갈비 명가", "guestName": "양하은", "phone": "010-1010-2020", "date": "2026-08-20", "time": "18:00", "partySize": 6, "status": "CONFIRMED", "tableNo": "T3", "userId": "USER_B" },
+    { "id": "RES-021", "rstId": "RST-07", "rstName": "연남 도쿄 전통 소바 전문점", "guestName": "김동현", "phone": "010-2020-3030", "date": "2026-08-21", "time": "12:00", "partySize": 2, "status": "CONFIRMED", "tableNo": "T2", "userId": "USER_B" },
+    { "id": "RES-022", "rstId": "RST-08", "rstName": "이태원 멕시칸 타코 앤 테킬라", "guestName": "이보영", "phone": "010-3030-4040", "date": "2026-08-22", "time": "19:00", "partySize": 4, "status": "CONFIRMED", "tableNo": "T1", "userId": "USER_B" },
+    { "id": "RES-023", "rstId": "RST-09", "rstName": "서초 스페셜티 딤섬 앤 차이니스", "guestName": "박서준", "phone": "010-4040-5050", "date": "2026-08-23", "time": "18:30", "partySize": 3, "status": "CONFIRMED", "tableNo": "T2", "userId": "USER_B" },
+    { "id": "RES-024", "rstId": "RST-10", "rstName": "성수 수제 화덕 피자 루치아", "guestName": "최유리", "phone": "010-5050-6060", "date": "2026-08-24", "time": "13:30", "partySize": 2, "status": "CONFIRMED", "tableNo": "T1", "userId": "USER_B" }
+  ],
+  "cachedUserStats": {
+    "USER_A": {
+      "totalReservations": 10,
+      "activeWaitingCount": 4
+    },
+    "USER_B": {
+      "totalReservations": 14,
+      "activeWaitingCount": 2
+    }
+  }
+}

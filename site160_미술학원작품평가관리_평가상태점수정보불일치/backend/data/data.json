@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-8801", "name": "김화실 (입시미술 수시집중반 총괄 전임강사 - 강사 A)", "role": "MANAGER", "className": "입시미술 수시집중 A반", "handledArtworks": 620 },
+    { "id": "STF-8802", "name": "이소묘 (예고입시 소묘실기 전임강사 - 강사 B)", "role": "MANAGER", "className": "예고입시 소묘실기 B반", "handledArtworks": 530 },
+    { "id": "STF-8803", "name": "박수채 (디자인 기초 및 수채화 수석교사)", "role": "STAFF", "className": "디자인 조형 기초 C반", "handledArtworks": 410 },
+    { "id": "STF-8804", "name": "최유화 (유화 & 정물화 전문 강사)", "role": "STAFF", "className": "발상과 표현 정물화 D반", "handledArtworks": 320 },
+    { "id": "STF-8805", "name": "정만화 (만화 애니메이션 디지털 아트 강사)", "role": "STAFF", "className": "웹툰 & 캐릭터 디스플레이 E반", "handledArtworks": 240 }
+  ],
+  "classes": [
+    { "id": "CLS-01", "className": "입시미술 수시집중 A반", "instructorName": "김화실 전임강사", "studentCount": 22, "submittedCount": 20, "avgScore": 92.4, "status": "ACTIVE" },
+    { "id": "CLS-02", "className": "예고입시 소묘실기 B반", "instructorName": "이소묘 전임강사", "studentCount": 18, "submittedCount": 16, "avgScore": 88.5, "status": "ACTIVE" },
+    { "id": "CLS-03", "className": "디자인 조형 기초 C반", "instructorName": "박수채 수석교사", "studentCount": 20, "submittedCount": 18, "avgScore": 85.0, "status": "ACTIVE" }
+  ],
+  "students": [
+    { "id": "STD-3001", "studentCode": "AR-20260805-01", "studentName": "최그림", "className": "입시미술 수시집중 A반", "parentContact": "010-9999-8888", "targetUniv": "서울대학교 미술대학 디자인과", "avgScore": 95.0, "status": "ENROLLED" },
+    { "id": "STD-3002", "studentCode": "AR-20260805-02", "studentName": "강캔버스", "className": "예고입시 소묘실기 B반", "parentContact": "010-7777-6666", "targetUniv": "선화예술고등학교 미술과", "avgScore": 89.5, "status": "ENROLLED" },
+    { "id": "STD-3003", "studentCode": "AR-20260805-03", "studentName": "윤데생", "className": "디자인 조형 기초 C반", "parentContact": "010-5555-4444", "targetUniv": "홍익대학교 미술대학 시각디자인", "avgScore": 91.0, "status": "ENROLLED" }
+  ],
+  "artworks": [
+    { "id": "ART-7001", "artCode": "AT-20260805-01", "artTitle": "빛과 음영의 정밀 정물 소묘 (투명 유리병과 사과)", "studentName": "최그림", "className": "입시미술 수시집중 A반", "instructorName": "김화실 전임강사", "submitDate": "2026-08-05", "score": 96, "gradeCategory": "S급 (최우수)", "status": "EVALUATING" },
+    { "id": "ART-7002", "artCode": "AT-20260805-02", "artTitle": "인체 두상 구조 분석 석고상 데생", "studentName": "강캔버스", "className": "예고입시 소묘실기 B반", "instructorName": "이소묘 전임강사", "submitDate": "2026-08-06", "score": 88, "gradeCategory": "A급 (우수)", "status": "SUBMITTED" },
+    { "id": "ART-7003", "artCode": "AT-20260805-03", "artTitle": "발상과 표현: 차세대 도시 생태계 구성", "studentName": "윤데생", "className": "디자인 조형 기초 C반", "instructorName": "박수채 수석교사", "submitDate": "2026-08-04", "score": 92, "gradeCategory": "S급 (최우수)", "status": "COMPLETED" }
+  ],
+  "evaluations": [
+    { "id": "EVL-5001", "artId": "ART-7001", "artTitle": "빛과 음영의 정밀 정물 소묘", "instructorName": "김화실 전임강사", "evalComment": "유리 질감 표현과 빛 반사 라인이 정교함. 명암 대비 톤 조절 보완 필요", "score": 96, "evalDate": "2026-08-05 16:30", "status": "EVALUATING" },
+    { "id": "EVL-5002", "artId": "ART-7003", "artTitle": "발상과 표현 차세대 도시", "instructorName": "박수채 수석교사", "evalComment": "창의적 조형미와 주제 의식이 매우 우수함. 구도 밸런스 점수 만점 부여", "score": 92, "evalDate": "2026-08-04 15:00", "status": "COMPLETED" }
+  ],
+  "feedbacks": [
+    { "id": "FBK-4001", "artId": "ART-7001", "studentName": "최그림", "instructorName": "김화실 강사", "comment": "선생님, 병 어두운 부분 톤 채도를 조금 더 높여서 보완하면 실기 평가 점수가 올라갈까요?", "createdAt": "2026-08-05 17:00", "status": "OPEN" },
+    { "id": "FBK-4002", "artId": "ART-7003", "studentName": "윤데생", "instructorName": "박수채 강사", "comment": "원경 건물들의 투시도가 정확하게 처리되어 실기고사 1등급 기준을 충족합니다.", "createdAt": "2026-08-04 15:30", "status": "CLOSED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9980", "artId": "ART-7001", "operator": "김화실 (전임)", "action": "작품 ART-7001 최그림 학생 정물 소묘 채점 및 실시간 강사 피드백 세션 시작", "timestamp": "2026-08-05 16:35:00", "status": "SUCCESS" },
+    { "id": "ACT-9981", "artId": "ART-7003", "operator": "박수채 (수석)", "action": "작품 ART-7003 윤데생 학생 실기 작품 평가 완료 및 대시보드 성적 반영 완료", "timestamp": "2026-08-04 15:05:00", "status": "SUCCESS" }
+  ],
+  "artStats": {
+    "totalStudents": 60,
+    "totalArtworks": 80,
+    "totalInstructors": 15,
+    "totalEvaluations": 70,
+    "totalFeedbacks": 100,
+    "pendingEvalCount": 9,
+    "evaluatingCount": 26,
+    "avgScoreOverall": 91.2
+  }
+}

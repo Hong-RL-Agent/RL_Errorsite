@@ -1,0 +1,44 @@
+{
+  "staffs": [
+    { "id": "STF-4001", "name": "김경매 (수산물 경매 경매사 - 관리자 A)", "role": "MANAGER", "dept": "노량진 경매1팀", "handledAuctions": 175 },
+    { "id": "STF-4002", "name": "이정산 (수산유통 정산과장 - 관리자 B)", "role": "MANAGER", "dept": "정산 출하검수팀", "handledAuctions": 160 },
+    { "id": "STF-4003", "name": "박검수 (수산물 품질검수원)", "role": "STAFF", "dept": "위생 품질검수실", "handledAuctions": 130 },
+    { "id": "STF-4004", "name": "최도매 (중도매인 관리원)", "role": "STAFF", "dept": "중도매인 조합지원팀", "handledAuctions": 115 },
+    { "id": "STF-4005", "name": "정냉동 (콜드체인 보관원)", "role": "STAFF", "dept": "저온 창고 관리팀", "handledAuctions": 95 }
+  ],
+  "wholesalers": [
+    { "id": "WHL-1001", "name": "김바다 (중도매인 105호)", "licenseNo": "FISH-2026-105", "creditLimitWon": 200000000, "status": "ACTIVE" },
+    { "id": "WHL-1002", "name": "이해양 (중도매인 208호)", "licenseNo": "FISH-2026-208", "creditLimitWon": 150000000, "status": "ACTIVE" },
+    { "id": "WHL-1003", "name": "박수산 (중도매인 312호)", "licenseNo": "FISH-2026-312", "creditLimitWon": 300000000, "status": "ACTIVE" },
+    { "id": "WHL-1004", "name": "최싱싱 (중도매인 415호)", "licenseNo": "FISH-2026-415", "creditLimitWon": 180000000, "status": "ACTIVE" }
+  ],
+  "items": [
+    { "id": "ITM-5001", "itemName": "제조도 청정 광어(넙치)", "origin": "제주 서귀포", "tempStorage": "-1.5℃", "unit": "kg", "avgPriceWon": 28000 },
+    { "id": "ITM-5002", "itemName": "동해안 활 참돔", "origin": "부산 자갈치", "tempStorage": "-2.0℃", "unit": "kg", "avgPriceWon": 35000 },
+    { "id": "ITM-5003", "itemName": "남해안 생물 대하 새우", "origin": "전남 여수", "tempStorage": "-3.0℃", "unit": "상자", "avgPriceWon": 42000 },
+    { "id": "ITM-5004", "itemName": "서해안 활 대게", "origin": "충남 보령", "tempStorage": "1.0℃", "unit": "kg", "avgPriceWon": 65000 }
+  ],
+  "auctions": [
+    { "id": "AUC-2001", "itemName": "제조도 청정 광어(넙치)", "origin": "제주 서귀포", "tempStorage": "-1.5℃", "quantityKg": 450, "startPriceWon": 25000, "winPriceWon": 28500, "winnerName": "김바다 (중도매인 105호)", "status": "WON" },
+    { "id": "AUC-2002", "itemName": "동해안 활 참돔", "origin": "부산 자갈치", "tempStorage": "-2.0℃", "quantityKg": 320, "startPriceWon": 30000, "winPriceWon": 36000, "winnerName": "이해양 (중도매인 208호)", "status": "WIN_PENDING" },
+    { "id": "AUC-2003", "itemName": "남해안 생물 대하 새우", "origin": "전남 여수", "tempStorage": "-3.0℃", "quantityKg": 600, "startPriceWon": 38000, "winPriceWon": 43500, "winnerName": "박수산 (중도매인 312호)", "status": "SHIPPED" },
+    { "id": "AUC-2004", "itemName": "서해안 활 대게", "origin": "충남 보령", "tempStorage": "1.0℃", "quantityKg": 250, "startPriceWon": 58000, "winPriceWon": 67000, "winnerName": "최싱싱 (중도매인 415호)", "status": "BIDDING" }
+  ],
+  "shipmentLogs": [
+    { "id": "SLOG-6001", "auctionId": "AUC-2001", "itemName": "제조도 청정 광어(넙치)", "shippedKg": 450, "vehicleNo": "서울 80바 4321", "timestamp": "2026-08-04 05:30:00" },
+    { "id": "SLOG-6002", "auctionId": "AUC-2003", "itemName": "남해안 생물 대하 새우", "shippedKg": 600, "vehicleNo": "경기 82바 9876", "timestamp": "2026-08-04 06:15:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-8501", "auctionId": "AUC-2001", "operator": "김경매 (경매사)", "action": "제주 광어 450kg 중도매인 105호 최고가 28,500원 낙찰 확정 완료", "timestamp": "2026-08-04 04:30:00", "status": "SUCCESS" },
+    { "id": "ACT-8502", "auctionId": "AUC-2003", "operator": "이정산 (과장)", "action": "여수 대하 새우 600kg 콜드체인 출하 검수 및 정산완료 처리", "timestamp": "2026-08-04 06:45:00", "status": "SUCCESS" }
+  ],
+  "auctionStats": {
+    "totalAuctions": 50,
+    "totalItems": 40,
+    "totalWholesalers": 30,
+    "winningCount": 32,
+    "shippedCount": 24,
+    "totalTradeAmountWon": 1850000000,
+    "topItem": "제주 광어"
+  }
+}

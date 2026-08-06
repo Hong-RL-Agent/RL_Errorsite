@@ -1,0 +1,43 @@
+{
+  "staffs": [
+    { "id": "STF-5001", "name": "김우체 (동서울 분류센터장 - 직원 A)", "role": "MANAGER", "dept": "동서울 우편 물류본부", "handledParcels": 210 },
+    { "id": "STF-5002", "name": "이물류 (중앙 집하팀장 - 직원 B)", "role": "MANAGER", "dept": "중앙 집중 분류센터", "handledParcels": 195 },
+    { "id": "STF-5003", "name": "박배송 (광역 간선 집배원)", "role": "STAFF", "dept": "간선 수송 운송팀", "handledParcels": 160 },
+    { "id": "STF-5004", "name": "최라우팅 (스마트 경로 분석원)", "role": "STAFF", "dept": "우편 라우팅 관제실", "handledParcels": 140 },
+    { "id": "STF-5005", "name": "정반송 (미배달 반송 전담원)", "role": "STAFF", "dept": "반송 처리 센터", "handledParcels": 115 }
+  ],
+  "hubs": [
+    { "id": "HUB-01", "name": "동서울 우편 물류센터", "region": "서울 동부", "capacity": 50000, "currentLoad": 32000, "managerName": "김우체" },
+    { "id": "HUB-02", "name": "서서울 집중 분류센터", "region": "서울 서부", "capacity": 45000, "currentLoad": 28000, "managerName": "이물류" },
+    { "id": "HUB-03", "name": "대전 허브 우편물류단지", "region": "충청/대전", "capacity": 80000, "currentLoad": 61000, "managerName": "박배송" },
+    { "id": "HUB-04", "name": "부산 국제우체국 센터", "region": "영남/부산", "capacity": 60000, "currentLoad": 41000, "managerName": "최라우팅" }
+  ],
+  "routesList": [
+    { "id": "RTE-1001", "routeName": "경로 A: 동서울HUB ➔ 대전HUB ➔ 부산센터 (간선고속)", "distanceKm": 385, "estimatedHours": 4.5 },
+    { "id": "RTE-1002", "routeName": "경로 B: 서서울HUB ➔ 수원센터 ➔ 대전HUB (수도권국도)", "distanceKm": 160, "estimatedHours": 2.8 },
+    { "id": "RTE-1003", "routeName": "경로 C: 대전HUB ➔ 광주HUB ➔ 목포센터 (호남축선)", "distanceKm": 240, "estimatedHours": 3.2 }
+  ],
+  "parcels": [
+    { "id": "PCL-3001", "trackingNo": "EB-987654321-KR", "senderName": "한국인쇄사", "recipientName": "홍길동", "recipientPhone": "010-1234-5678", "deliveryAddress": "서울특별시 강남구 테헤란로 123 4층", "hubId": "HUB-01", "hubName": "동서울 우편 물류센터", "routeId": "RTE-1001", "routeName": "경로 A: 동서울HUB ➔ 대전HUB ➔ 부산센터", "distanceKm": 385, "registerDate": "2026-08-04 09:00", "status": "TRANSIT" },
+    { "id": "PCL-3002", "trackingNo": "EB-987654322-KR", "senderName": "글로벌서적", "recipientName": "김철수", "recipientPhone": "010-2345-6789", "deliveryAddress": "부산광역시 해운대구 마린시티 2로 45", "hubId": "HUB-02", "hubName": "서서울 집중 분류센터", "routeId": "RTE-1002", "routeName": "경로 B: 서서울HUB ➔ 수원센터 ➔ 대전HUB", "distanceKm": 160, "registerDate": "2026-08-04 10:15", "status": "DELIVERING" },
+    { "id": "PCL-3003", "trackingNo": "EB-987654323-KR", "senderName": "스마트부품", "recipientName": "이영희", "recipientPhone": "010-3456-7890", "deliveryAddress": "대전광역시 유성구 대덕대로 789 2층", "hubId": "HUB-03", "hubName": "대전 허브 우편물류단지", "routeId": "RTE-1003", "routeName": "경로 C: 대전HUB ➔ 광주HUB ➔ 목포센터", "distanceKm": 240, "registerDate": "2026-08-04 11:30", "status": "REGISTERED" }
+  ],
+  "deliveryLogs": [
+    { "id": "DLOG-7001", "parcelId": "PCL-3001", "trackingNo": "EB-987654321-KR", "hubName": "동서울 우편 물류센터", "action": "동서울 HUB 분류 간선 상차 완료", "timestamp": "2026-08-04 13:00:00" },
+    { "id": "DLOG-7002", "parcelId": "PCL-3002", "trackingNo": "EB-987654322-KR", "hubName": "서서울 집중 분류센터", "action": "최종 집배원 배달 출발 완료", "timestamp": "2026-08-04 14:15:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9901", "parcelId": "PCL-3001", "operator": "김우체 (센터장)", "action": "우편물 EB-987654321-KR 라우팅 경로 A 스캐닝 지정 완료", "timestamp": "2026-08-04 15:00:00", "status": "SUCCESS" },
+    { "id": "ACT-9902", "parcelId": "PCL-3002", "operator": "이물류 (팀장)", "action": "우편물 EB-987654322-KR 관할 우체국 최종 배송 배정 완료", "timestamp": "2026-08-04 16:20:00", "status": "SUCCESS" }
+  ],
+  "postStats": {
+    "totalParcels": 60,
+    "totalHubs": 12,
+    "transitCount": 24,
+    "deliveringCount": 18,
+    "completedCount": 12,
+    "returnedCount": 6,
+    "returnRatePercent": 5.2,
+    "topHub": "대전 HUB"
+  }
+}

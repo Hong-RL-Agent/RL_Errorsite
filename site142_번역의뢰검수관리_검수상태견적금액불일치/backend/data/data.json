@@ -1,0 +1,42 @@
+{
+  "staffs": [
+    { "id": "STF-3001", "name": "김번역 (글로벌 PM 팀장 - 매니저 A)", "role": "MANAGER", "langPair": "한국어 ➔ 영어", "handledProjects": 310 },
+    { "id": "STF-3002", "name": "이검수 (원문 품질 검수관 - 매니저 B)", "role": "MANAGER", "langPair": "한국어 ➔ 일본어", "handledProjects": 280 },
+    { "id": "STF-3003", "name": "박정산 (글로벌 견적 산정관)", "role": "STAFF", "langPair": "한국어 ➔ 중국어", "handledProjects": 230 },
+    { "id": "STF-3004", "name": "최납품 (최종 감수 및 납품관)", "role": "STAFF", "langPair": "영어 ➔ 한국어", "handledProjects": 190 },
+    { "id": "STF-3005", "name": "정확정 (계약 승인 담당관)", "role": "STAFF", "langPair": "다국어 프로젝트", "handledProjects": 160 }
+  ],
+  "clients": [
+    { "id": "CLT-01", "clientName": "이지은 이사", "company": "(주)글로벌 테크놀로지", "phone": "010-9999-1111", "email": "lee@globaltech.com", "totalOrders": 18 },
+    { "id": "CLT-02", "clientName": "박상현 팀장", "company": "엔터프라이즈 법률사무소", "phone": "010-8888-2222", "email": "park@lawfirm.co.kr", "totalOrders": 12 },
+    { "id": "CLT-03", "clientName": "김민정 매니저", "company": "케이팝 글로벌 미디어", "phone": "010-7777-3333", "email": "kim@kpopmedia.com", "totalOrders": 15 }
+  ],
+  "translators": [
+    { "id": "TRN-101", "translatorName": "Sarah Jenkins (Senior Translator)", "langPair": "한국어 ➔ 영어", "specialty": "IT / 특허 / 계약서", "rating": 4.9, "completedWords": 450000 },
+    { "id": "TRN-102", "translatorName": "타나카 켄지 (수석 감수관)", "langPair": "한국어 ➔ 일본어", "specialty": "게임 / 콘텐츠 / 마케팅", "rating": 4.8, "completedWords": 380000 },
+    { "id": "TRN-103", "translatorName": "장웨이 (전문 번역가)", "langPair": "한국어 ➔ 중국어", "specialty": "금융 / 바이오 / 의학", "rating": 4.7, "completedWords": 320000 }
+  ],
+  "requests": [
+    { "id": "REQ-4001", "reqCode": "TD-20260805-01", "title": "글로벌 SaaS 플랫폼 보안 서비스 약관 번역", "clientName": "이지은 이사", "company": "(주)글로벌 테크놀로지", "langPair": "한국어 ➔ 영어", "wordCount": 12500, "estimatedFeeWon": 1850000, "actualFeeWon": 1850000, "assignedTranslator": "Sarah Jenkins", "dueDate": "2026-08-10", "status": "IN_REVIEW" },
+    { "id": "REQ-4002", "reqCode": "TD-20260805-02", "title": "국제 특허 소송 답변서 및 증거 제출서류", "clientName": "박상현 팀장", "company": "엔터프라이즈 법률사무소", "langPair": "한국어 ➔ 일본어", "wordCount": 8400, "estimatedFeeWon": 1300000, "actualFeeWon": 1300000, "assignedTranslator": "타나카 켄지", "dueDate": "2026-08-12", "status": "IN_TRANSLATION" },
+    { "id": "REQ-4003", "reqCode": "TD-20260805-03", "title": "K-콘텐츠 글로벌 마케팅 브랜드 가이드라인", "clientName": "김민정 매니저", "company": "케이팝 글로벌 미디어", "langPair": "한국어 ➔ 중국어", "wordCount": 24000, "estimatedFeeWon": 3400000, "actualFeeWon": 3400000, "assignedTranslator": "장웨이", "dueDate": "2026-08-08", "status": "DELIVERED" }
+  ],
+  "reviewComments": [
+    { "id": "CMT-6001", "reqId": "REQ-4001", "reviewer": "김번역 PM", "comment": "제4조 보안 규정 단어 톤앤매너 검수 완료 (Terms of Service 용어 통일 완료)", "qualityScore": 98, "timestamp": "2026-08-05 14:20:00" },
+    { "id": "CMT-6002", "reqId": "REQ-4003", "reviewer": "이검수 감수관", "comment": "브랜드 고유명사 뉘앙스 교정 완료 및 클라이언트 최종 서명 검토 수용됨", "qualityScore": 95, "timestamp": "2026-08-04 16:30:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9701", "reqId": "REQ-4001", "operator": "김번역 (PM 팀장)", "action": "의뢰 REQ-4001 검수 단계 진입 및 Sarah Jenkins 번역가 초안 검토 완료", "timestamp": "2026-08-05 14:25:00", "status": "SUCCESS" },
+    { "id": "ACT-9702", "reqId": "REQ-4003", "operator": "최납품 (납품관)", "action": "의뢰 REQ-4003 최종 납품 파일 고객사 송부 완료 (3,400,000원 정산)", "timestamp": "2026-08-04 16:35:00", "status": "SUCCESS" }
+  ],
+  "transStats": {
+    "totalRequests": 50,
+    "totalClients": 35,
+    "totalTranslators": 25,
+    "inReviewCount": 16,
+    "deliveredCount": 28,
+    "totalVolumeWords": 845000,
+    "totalRevenueWon": 128500000,
+    "avgTurnaroundDays": 3.4
+  }
+}

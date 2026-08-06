@@ -1,0 +1,45 @@
+{
+  "staffs": [
+    { "id": "STF-4001", "name": "김경매 (양재 화훼 공판장 수석 경매사 - 직원 A)", "role": "MANAGER", "dept": "화훼 경매1팀", "handledAuctions": 250 },
+    { "id": "STF-4002", "name": "이배송 (콜드체인 물류 수석팀장 - 직원 B)", "role": "MANAGER", "dept": "전국 배송물류 센터", "handledAuctions": 220 },
+    { "id": "STF-4003", "name": "박검수 (생화 등급 및 신선도 판정원)", "role": "STAFF", "dept": "입고 신선도 검수실", "handledAuctions": 180 },
+    { "id": "STF-4004", "name": "최냉장 (콜드체인 온도 관리원)", "role": "STAFF", "dept": "저온 창고 관리팀", "handledAuctions": 155 },
+    { "id": "STF-4005", "name": "정정산 (경매 낙찰 정산원)", "role": "STAFF", "dept": "경매 수수료 정산팀", "handledAuctions": 130 }
+  ],
+  "flowers": [
+    { "id": "FLW-1001", "flowerName": "빨간 장미 (하모니)", "grade": "특상급", "tempSetting": "4℃ 냉장보관", "origin": "경남 김해 농가", "stockQty": 1200 },
+    { "id": "FLW-1002", "flowerName": "분홍 튤립 (샤인)", "grade": "상급", "tempSetting": "5℃ 냉장보관", "origin": "경기 화성 농가", "stockQty": 850 },
+    { "id": "FLW-1003", "flowerName": "백합 (시베리아)", "grade": "특상급", "tempSetting": "3℃ 저온보관", "origin": "강원 강릉 농가", "stockQty": 600 }
+  ],
+  "buyers": [
+    { "id": "BUY-5001", "buyerName": "강남 플라워 스튜디오 (김서연 대표)", "businessNo": "120-81-45678", "phone": "010-9876-5432", "vipGrade": "GOLD" },
+    { "id": "BUY-5002", "buyerName": "성수 마이플라워 (이도현 대표)", "businessNo": "211-86-98765", "phone": "010-8765-4321", "vipGrade": "PLATINUM" },
+    { "id": "BUY-5003", "buyerName": "홍대 아뜰리에 (박지민 대표)", "businessNo": "105-82-34567", "phone": "010-7654-3210", "vipGrade": "SILVER" }
+  ],
+  "auctions": [
+    { "id": "AUC-2001", "auctionCode": "FB-20260805-01", "flowerName": "빨간 장미 (하모니)", "grade": "특상급", "quantity": 300, "deliveryQty": 300, "startPriceWon": 15000, "winningPriceWon": 28000, "buyerName": "강남 플라워 스튜디오", "status": "WON" },
+    { "id": "AUC-2002", "auctionCode": "FB-20260805-02", "flowerName": "분홍 튤립 (샤인)", "grade": "상급", "quantity": 200, "deliveryQty": 200, "startPriceWon": 12000, "winningPriceWon": 19000, "buyerName": "성수 마이플라워", "status": "BIDDING" },
+    { "id": "AUC-2003", "auctionCode": "FB-20260805-03", "flowerName": "백합 (시베리아)", "grade": "특상급", "quantity": 150, "deliveryQty": 150, "startPriceWon": 20000, "winningPriceWon": 35000, "buyerName": "홍대 아뜰리에", "status": "DELIVERING" }
+  ],
+  "winningBids": [
+    { "id": "WIN-3001", "auctionId": "AUC-2001", "flowerName": "빨간 장미 (하모니)", "buyerName": "강남 플라워 스튜디오", "winningPriceWon": 28000, "quantity": 300, "status": "WON" },
+    { "id": "WIN-3002", "auctionId": "AUC-2003", "flowerName": "백합 (시베리아)", "buyerName": "홍대 아뜰리에", "winningPriceWon": 35000, "quantity": 150, "status": "DELIVERING" }
+  ],
+  "deliveryOrders": [
+    { "id": "DELOG-6001", "auctionId": "AUC-2001", "flowerName": "빨간 장미 (하모니)", "buyerName": "강남 플라워 스튜디오", "deliveryQty": 300, "destination": "서울 강남구 압구정로 123", "timestamp": "2026-08-04 13:20:00" },
+    { "id": "DELOG-6002", "auctionId": "AUC-2003", "flowerName": "백합 (시베리아)", "buyerName": "홍대 아뜰리에", "deliveryQty": 150, "destination": "서울 마포구 와우산로 45", "timestamp": "2026-08-04 15:40:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9401", "auctionId": "AUC-2001", "operator": "김경매 (경매사)", "action": "경매 FB-20260805-01 빨간 장미 300단 낙찰 확정 (낙찰가: 28,000원)", "timestamp": "2026-08-04 10:15:00", "status": "SUCCESS" },
+    { "id": "ACT-9402", "auctionId": "AUC-2003", "operator": "이배송 (팀장)", "action": "경매 FB-20260805-03 냉장 탑차 배송 출고 지정 완료", "timestamp": "2026-08-04 14:00:00", "status": "SUCCESS" }
+  ],
+  "flowerStats": {
+    "totalFlowers": 45,
+    "totalAuctions": 55,
+    "totalWinningBids": 45,
+    "biddingCount": 16,
+    "wonCount": 24,
+    "totalSalesWon": 14850000,
+    "topFlower": "빨간 장미 (하모니)"
+  }
+}

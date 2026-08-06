@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-1001", "name": "김도시 (도로시설 총괄 유지보수팀장 - 직원 A)", "role": "MANAGER", "district": "강남구 테헤란로 권역", "handledReports": 410 },
+    { "id": "STF-1002", "name": "이점검 (스마트 가로등 관제원 - 직원 B)", "role": "MANAGER", "district": "서초구 반포대로 권역", "handledReports": 360 },
+    { "id": "STF-1003", "name": "박전기 (고압 전력 시설점검 기사)", "role": "STAFF", "district": "송파구 올림픽로 권역", "handledReports": 290 },
+    { "id": "STF-1004", "name": "최위치 (지하매설 전선 탐지관)", "role": "STAFF", "district": "마포구 홍대입구 권역", "handledReports": 220 },
+    { "id": "STF-1005", "name": "정LED (스마트 LED 제어관)", "role": "STAFF", "district": "영등포구 여의도 권역", "handledReports": 180 }
+  ],
+  "lights": [
+    { "id": "LGT-001", "lightCode": "SL-GN-2026-001", "district": "강남구 테헤란로 권역", "location": "서울 강남구 테헤란로 123 앞", "bulbType": "스마트 스마트 고광율 LED 150W", "workerName": "박전기 기사", "status": "IN_PROGRESS" },
+    { "id": "LGT-002", "lightCode": "SL-SC-2026-045", "district": "서초구 반포대로 권역", "location": "서울 서초구 반포대로 45 교차로", "bulbType": "친환경 태양광 하이브리드 LED", "workerName": "이전력 기사", "status": "REPORTED" },
+    { "id": "LGT-003", "lightCode": "SL-SP-2026-089", "district": "송파구 올림픽로 권역", "location": "서울 송파구 올림픽로 89 아파트 앞", "bulbType": "고압 나트륨 등 250W", "workerName": "최점검 기사", "status": "COMPLETED" }
+  ],
+  "workers": [
+    { "id": "WRK-01", "workerName": "박전기 기사", "phone": "010-1234-9876", "license": "전기공사기사 1급", "assignedTasks": 18, "rating": 4.9 },
+    { "id": "WRK-02", "workerName": "이전력 기사", "phone": "010-2345-8765", "license": "전기기능사 2급", "assignedTasks": 14, "rating": 4.8 },
+    { "id": "WRK-03", "workerName": "최점검 기사", "phone": "010-3456-7654", "license": "고가작업차 운전면허", "assignedTasks": 12, "rating": 4.7 }
+  ],
+  "reports": [
+    { "id": "RPT-5001", "rptCode": "REP-20260805-01", "district": "강남구 테헤란로 권역", "location": "서울 강남구 테헤란로 123 앞", "lightCode": "SL-GN-2026-001", "reporter": "주민 민원인", "issueType": "가로등 깜빡임 및 야간 점등 불량", "workerName": "박전기 기사", "rptDate": "2026-08-05", "riskLevel": "HIGH (위험)", "status": "IN_PROGRESS" },
+    { "id": "RPT-5002", "rptCode": "REP-20260805-02", "district": "서초구 반포대로 권역", "location": "서울 서초구 반포대로 45 교차로", "lightCode": "SL-SC-2026-045", "reporter": "교통 관제 센터", "issueType": "차량 충돌로 인한 지주 기울어짐", "workerName": "이전력 기사", "rptDate": "2026-08-06", "riskLevel": "EMERGENCY (긴급)", "status": "REPORTED" },
+    { "id": "RPT-5003", "rptCode": "REP-20260805-03", "district": "송파구 올림픽로 권역", "location": "서울 송파구 올림픽로 89 아파트 앞", "lightCode": "SL-SP-2026-089", "reporter": "순찰 요원", "issueType": "LED 램프 모듈 수명 다함", "workerName": "최점검 기사", "rptDate": "2026-08-04", "riskLevel": "NORMAL (보통)", "status": "COMPLETED" }
+  ],
+  "tasks": [
+    { "id": "TSK-6001", "rptId": "RPT-5001", "district": "강남구 테헤란로 권역", "workerName": "박전기 기사", "workContent": "LED 모듈 150W 및 안정기 즉시 교체 작업", "startTime": "2026-08-05 10:00", "endTime": "2026-08-05 11:30", "status": "IN_PROGRESS" },
+    { "id": "TSK-6002", "rptId": "RPT-5003", "district": "송파구 올림픽로 권역", "workerName": "최점검 기사", "workContent": "나트륨등 제거 후 고효율 스마트 LED 150W 신규 교체 완료", "startTime": "2026-08-04 14:00", "endTime": "2026-08-04 15:20", "status": "COMPLETED" }
+  ],
+  "locationLogs": [
+    { "id": "LLOG-7001", "rptId": "RPT-5001", "lightCode": "SL-GN-2026-001", "location": "서울 강남구 테헤란로 123 앞 (GPS 위도 37.50, 경도 127.03)", "updatedTime": "2026-08-05 09:55", "updateBy": "김도시 팀장", "status": "VALIDATED" },
+    { "id": "LLOG-7002", "rptId": "RPT-5003", "lightCode": "SL-SP-2026-089", "location": "서울 송파구 올림픽로 89 앞 (GPS 위도 37.51, 경도 127.10)", "updatedTime": "2026-08-04 13:50", "updateBy": "이점검 관제원", "status": "VALIDATED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9001", "rptId": "RPT-5001", "operator": "김도시 (총괄)", "action": "신고 RPT-5001 테헤란로 가로등 현장 점검 배정 및 진행중 전환 완료", "timestamp": "2026-08-05 10:01:00", "status": "SUCCESS" },
+    { "id": "ACT-9002", "rptId": "RPT-5003", "operator": "이점검 (관제원)", "action": "신고 RPT-5003 올림픽로 LED 신규 교체 조치 완료 처리 완료", "timestamp": "2026-08-04 15:25:00", "status": "SUCCESS" }
+  ],
+  "lightStats": {
+    "totalLights": 90,
+    "totalReports": 60,
+    "totalTasks": 55,
+    "totalWorkers": 25,
+    "unprocessedCount": 16,
+    "inProgressCount": 18,
+    "completedCount": 26,
+    "repairRatePercent": 84.5
+  }
+}

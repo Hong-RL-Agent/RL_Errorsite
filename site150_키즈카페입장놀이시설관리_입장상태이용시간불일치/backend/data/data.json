@@ -1,0 +1,47 @@
+{
+  "staffs": [
+    { "id": "STF-2001", "name": "김키즈 (프리미엄 키즈카페 총괄 매니저 - 직원 A)", "role": "MANAGER", "storeName": "강남 본점 플래그십", "handledTickets": 450 },
+    { "id": "STF-2002", "name": "이놀이 (안전요원 및 관제 스태프 - 직원 B)", "role": "MANAGER", "storeName": "잠실 롯데월드몰점", "handledTickets": 380 },
+    { "id": "STF-2003", "name": "박안전 (어린이 놀이기구 점검관)", "role": "STAFF", "storeName": "판교 알파돔시티점", "handledTickets": 310 },
+    { "id": "STF-2004", "name": "최시간 (입퇴장 연장 안내원)", "role": "STAFF", "storeName": "송파 가락점", "handledTickets": 250 },
+    { "id": "STF-2005", "name": "정보호 (보호자 라운지 관리원)", "role": "STAFF", "storeName": "용산 아이파크점", "handledTickets": 190 }
+  ],
+  "facilities": [
+    { "id": "FAC-01", "facilityName": "자이언트 볼풀 & 트램펄린 파크", "storeName": "강남 본점 플래그십", "maxCapacity": 40, "currentCount": 32, "status": "IN_USE" },
+    { "id": "FAC-02", "facilityName": "스카이 짚라인 & 정글짐 코스", "storeName": "잠실 롯데월드몰점", "maxCapacity": 20, "currentCount": 15, "status": "IN_USE" },
+    { "id": "FAC-03", "facilityName": "프리미엄 소꿉놀이 & 편백나무존", "storeName": "판교 알파돔시티점", "maxCapacity": 30, "currentCount": 18, "status": "AVAILABLE" }
+  ],
+  "guardians": [
+    { "id": "GDR-01", "guardianName": "박보호자", "phone": "010-9999-8888", "relationship": "부모 (모)", "childName": "김어린이 (5세)", "totalVisits": 12, "rating": 4.9 },
+    { "id": "GDR-02", "guardianName": "최부모", "phone": "010-8888-7777", "relationship": "부모 (부)", "childName": "이유아 (4세)", "totalVisits": 9, "rating": 4.8 },
+    { "id": "GDR-03", "guardianName": "정조부모", "phone": "010-7777-6666", "relationship": "조부모 (할머니)", "childName": "박키즈 (6세)", "totalVisits": 7, "rating": 4.7 }
+  ],
+  "children": [
+    { "id": "CHD-01", "childName": "김어린이", "age": 5, "guardianName": "박보호자", "preferredFacility": "자이언트 볼풀 & 트램펄린" },
+    { "id": "CHD-02", "childName": "이유아", "age": 4, "guardianName": "최부모", "preferredFacility": "스카이 짚라인 코스" },
+    { "id": "CHD-03", "childName": "박키즈", "age": 6, "guardianName": "정조부모", "preferredFacility": "프리미엄 소꿉놀이존" }
+  ],
+  "tickets": [
+    { "id": "TCK-4001", "ticketCode": "KP-20260805-01", "storeName": "강남 본점 플래그십", "childName": "김어린이 (5세)", "guardianName": "박보호자", "enterTime": "2026-08-05 14:00", "allowedHours": 2, "remainingMin": 45, "extraFeeWon": 0, "status": "IN_USE" },
+    { "id": "TCK-4002", "ticketCode": "KP-20260805-02", "storeName": "잠실 롯데월드몰점", "childName": "이유아 (4세)", "guardianName": "최부모", "enterTime": "2026-08-05 15:00", "allowedHours": 2, "remainingMin": 105, "extraFeeWon": 0, "status": "WAITING" },
+    { "id": "TCK-4003", "ticketCode": "KP-20260805-03", "storeName": "판교 알파돔시티점", "childName": "박키즈 (6세)", "guardianName": "정조부모", "enterTime": "2026-08-04 11:00", "allowedHours": 3, "remainingMin": 0, "extraFeeWon": 6000, "status": "CHECKED_OUT" }
+  ],
+  "usageLogs": [
+    { "id": "ULOG-3001", "tckId": "TCK-4001", "childName": "김어린이", "facilityName": "자이언트 볼풀", "startTime": "2026-08-05 14:10", "endTime": "2026-08-05 15:00", "playMin": 50, "status": "PLAYING" },
+    { "id": "ULOG-3002", "tckId": "TCK-4003", "childName": "박키즈", "facilityName": "프리미엄 소꿉놀이존", "startTime": "2026-08-04 11:15", "endTime": "2026-08-04 13:00", "playMin": 105, "status": "FINISHED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-8901", "tckId": "TCK-4001", "operator": "김키즈 (매니저)", "action": "입장권 TCK-4001 김어린이 2시간 기본입장 확인 및 이용중 상태 전환 완료", "timestamp": "2026-08-05 14:01:00", "status": "SUCCESS" },
+    { "id": "ACT-8902", "tckId": "TCK-4003", "operator": "이놀이 (스태프)", "action": "입장권 TCK-4003 박키즈 추가 1시간 정산 완료 및 퇴장 처리 완료", "timestamp": "2026-08-04 14:02:00", "status": "SUCCESS" }
+  ],
+  "playStats": {
+    "totalTickets": 60,
+    "totalChildren": 70,
+    "totalGuardians": 50,
+    "totalFacilities": 20,
+    "inUseCount": 24,
+    "overtimeCount": 8,
+    "checkedOutCount": 28,
+    "avgPlayMin": 135.5
+  }
+}

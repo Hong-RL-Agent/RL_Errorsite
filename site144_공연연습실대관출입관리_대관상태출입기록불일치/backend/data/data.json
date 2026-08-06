@@ -1,0 +1,45 @@
+{
+  "staffs": [
+    { "id": "STF-5001", "name": "김대관 (공연장 대관 총괄 팀장 - 직원 A)", "role": "MANAGER", "roomName": "메인 댄스홀 A (특대형)", "handledBookings": 360 },
+    { "id": "STF-5002", "name": "이출입 (스마트 키 및 출입 관제원 - 직원 B)", "role": "MANAGER", "roomName": "밴드 합주실 B (음향특화)", "handledBookings": 310 },
+    { "id": "STF-5003", "name": "박장비 (음향/조명 렌탈 담당자)", "role": "STAFF", "roomName": "연극/뮤지컬 연습실 C", "handledBookings": 270 },
+    { "id": "STF-5004", "name": "최정산 (대관 수수료 및 환불관)", "role": "STAFF", "roomName": "보컬 개인 연습실 D", "handledBookings": 210 },
+    { "id": "STF-5005", "name": "정취소 (대관 계약 승인 심의관)", "role": "STAFF", "roomName": "무용 전용홀 E", "handledBookings": 170 }
+  ],
+  "rooms": [
+    { "id": "RM-101", "roomName": "메인 댄스홀 A (특대형)", "floor": "지하 1층", "capacity": 30, "hourlyRateWon": 35000, "status": "IN_USE" },
+    { "id": "RM-102", "roomName": "밴드 합주실 B (음향특화)", "floor": "지하 1층", "capacity": 10, "hourlyRateWon": 25000, "status": "RESERVED" },
+    { "id": "RM-103", "roomName": "연극/뮤지컬 연습실 C", "floor": "2층", "capacity": 20, "hourlyRateWon": 28000, "status": "COMPLETED" }
+  ],
+  "users": [
+    { "id": "USR-01", "userName": "최아티스트", "teamName": "블랙라이트 댄스 크루", "phone": "010-1234-5678", "totalBookings": 24, "rating": 4.9 },
+    { "id": "USR-02", "userName": "박뮤지컬", "teamName": "극단 브로드웨이 드림", "phone": "010-2345-6789", "totalBookings": 18, "rating": 4.8 },
+    { "id": "USR-03", "userName": "강밴드", "teamName": "사운드웨이브 록밴드", "phone": "010-3456-7890", "totalBookings": 15, "rating": 4.7 }
+  ],
+  "bookings": [
+    { "id": "BKG-6001", "bookingCode": "PR-20260805-01", "roomName": "메인 댄스홀 A (특대형)", "userName": "최아티스트", "teamName": "블랙라이트 댄스 크루", "bookingDate": "2026-08-05", "startTime": "14:00", "endTime": "18:00", "totalFeeWon": 140000, "entryTime": "2026-08-05 13:55", "status": "IN_USE" },
+    { "id": "BKG-6002", "bookingCode": "PR-20260805-02", "roomName": "밴드 합주실 B (음향특화)", "userName": "강밴드", "teamName": "사운드웨이브 록밴드", "bookingDate": "2026-08-05", "startTime": "19:00", "endTime": "22:00", "totalFeeWon": 75000, "entryTime": "2026-08-05 18:50", "status": "RESERVED" },
+    { "id": "BKG-6003", "bookingCode": "PR-20260805-03", "roomName": "연극/뮤지컬 연습실 C", "userName": "박뮤지컬", "teamName": "극단 브로드웨이 드림", "bookingDate": "2026-08-04", "startTime": "10:00", "endTime": "14:00", "totalFeeWon": 112000, "entryTime": "2026-08-04 09:58", "status": "COMPLETED" }
+  ],
+  "accessLogs": [
+    { "id": "ACC-7001", "bkgId": "BKG-6001", "roomName": "메인 댄스홀 A", "userName": "최아티스트", "entryTime": "2026-08-05 13:55", "exitTime": "운행 중", "authType": "스마트 QR 도어락", "status": "ENTERED" },
+    { "id": "ACC-7002", "bkgId": "BKG-6003", "roomName": "연극/뮤지컬 연습실 C", "userName": "박뮤지컬", "entryTime": "2026-08-04 09:58", "exitTime": "2026-08-04 14:02", "authType": "핀코드 인증", "status": "EXITED" }
+  ],
+  "equipmentLogs": [
+    { "id": "EQP-8001", "bkgId": "BKG-6001", "roomName": "메인 댄스홀 A", "equipmentName": "무선 마이크 4세트 & 대형 거울 조명", "feeWon": 20000, "status": "IN_USE" },
+    { "id": "EQP-8002", "bkgId": "BKG-6002", "roomName": "밴드 합주실 B", "equipmentName": "야마하 드럼 세트 & Marshall 앰프", "feeWon": 15000, "status": "RETURNED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9501", "bkgId": "BKG-6001", "operator": "김대관 (팀장)", "action": "예약 BKG-6001 메인 댄스홀 A 출립 인증 확인 및 사용중 변경 완료", "timestamp": "2026-08-05 13:56:00", "status": "SUCCESS" },
+    { "id": "ACT-9502", "bkgId": "BKG-6003", "operator": "이출입 (관제원)", "action": "예약 BKG-6003 연습실 사용 종료 및 장비 원상복구 확인 완료", "timestamp": "2026-08-04 14:05:00", "status": "SUCCESS" }
+  ],
+  "roomStats": {
+    "totalRooms": 25,
+    "totalBookings": 55,
+    "totalUsers": 45,
+    "inUseCount": 14,
+    "completedCount": 28,
+    "totalRevenueWon": 18500000,
+    "avgUtilizationPercent": 78.4
+  }
+}

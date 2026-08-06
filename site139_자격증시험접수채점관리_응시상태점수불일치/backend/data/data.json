@@ -1,0 +1,41 @@
+{
+  "staffs": [
+    { "id": "STF-9001", "name": "김감독 (수석 자격검정 수험위원장 - 감독관 A)", "role": "MANAGER", "examCenter": "서울 중앙 시험장", "gradedCount": 310 },
+    { "id": "STF-9002", "name": "이채점 (CBT 전자채점 전담관 - 감독관 B)", "role": "MANAGER", "dept": "CBT 자동 채점 센터", "gradedCount": 280 },
+    { "id": "STF-9003", "name": "박시험 (시험장 본부 진행요원)", "role": "STAFF", "examCenter": "경기 수원 시험장", "gradedCount": 210 },
+    { "id": "STF-9004", "name": "최본인 (수험표 및 신분 확인관)", "role": "STAFF", "examCenter": "인천 송도 시험장", "gradedCount": 180 },
+    { "id": "STF-9005", "name": "정발표 (합격자 이의신청 처리관)", "role": "STAFF", "dept": "검정 결과 심의위원회", "gradedCount": 150 }
+  ],
+  "subjects": [
+    { "id": "SUB-101", "subjectName": "정보처리기사 (실기)", "category": "IT / 국가기술자격", "passScore": 60, "totalRegistered": 420 },
+    { "id": "SUB-102", "subjectName": "빅데이터분석기사", "category": "데이터 분석", "passScore": 60, "totalRegistered": 310 },
+    { "id": "SUB-103", "subjectName": "SQL 개발자 (SQLD)", "category": "데이터베이스", "passScore": 60, "totalRegistered": 550 }
+  ],
+  "examCenters": [
+    { "id": "CTR-01", "centerName": "서울 중앙 CBT 시험장 (301호)", "location": "서울 용산구 청파로 100", "capacity": 60, "assignedCount": 58 },
+    { "id": "CTR-02", "centerName": "경기 수원 정보인재센터 (A동)", "location": "경기 수원시 팔달구 200", "capacity": 50, "assignedCount": 48 },
+    { "id": "CTR-03", "centerName": "인천 송도 IT 융합 고사장", "location": "인천 연수구 송도동 30", "capacity": 40, "assignedCount": 38 }
+  ],
+  "examinees": [
+    { "id": "EXM-3001", "regCode": "CT-20260805-01", "name": "홍길동", "phone": "010-3333-5555", "subjectName": "정보처리기사 (실기)", "examCenter": "서울 중앙 CBT 시험장 (301호)", "regDate": "2026-08-01", "score": 85, "status": "COMPLETED" },
+    { "id": "EXM-3002", "regCode": "CT-20260805-02", "name": "김영희", "phone": "010-4444-6666", "subjectName": "빅데이터분석기사", "examCenter": "경기 수원 정보인재센터 (A동)", "regDate": "2026-08-02", "score": 55, "status": "SCORED" },
+    { "id": "EXM-3003", "regCode": "CT-20260805-03", "name": "이철수", "phone": "010-5555-7777", "subjectName": "SQL 개발자 (SQLD)", "examCenter": "인천 송도 IT 융합 고사장", "regDate": "2026-08-03", "score": 90, "status": "PASSED" }
+  ],
+  "scores": [
+    { "id": "SCR-5001", "exmId": "EXM-3001", "name": "홍길동", "subjectName": "정보처리기사 (실기)", "score": 85, "passResult": "합격 (PASSED)", "gradedBy": "김감독 (위원장)", "timestamp": "2026-08-05 16:00:00" },
+    { "id": "SCR-5002", "exmId": "EXM-3003", "name": "이철수", "subjectName": "SQL 개발자 (SQLD)", "score": 90, "passResult": "합격 (PASSED)", "gradedBy": "이채점 (전담관)", "timestamp": "2026-08-04 17:30:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9501", "exmId": "EXM-3001", "operator": "김감독 (수험위원장)", "action": "응시자 홍길동 님 서울 중앙 CBT 고사장 출석 확인 및 85점 최종 채점 입력 완료", "timestamp": "2026-08-05 16:05:00", "status": "SUCCESS" },
+    { "id": "ACT-9502", "exmId": "EXM-3003", "operator": "이채점 (전담관)", "action": "응시자 이철수 님 SQLD 과목 90점 합격 확정 처리 완료", "timestamp": "2026-08-04 17:35:00", "status": "SUCCESS" }
+  ],
+  "examStats": {
+    "totalExaminees": 70,
+    "totalSubjects": 15,
+    "totalCenters": 12,
+    "completedCount": 24,
+    "passedCount": 38,
+    "failedCount": 12,
+    "avgPassRatePercent": 76.0
+  }
+}

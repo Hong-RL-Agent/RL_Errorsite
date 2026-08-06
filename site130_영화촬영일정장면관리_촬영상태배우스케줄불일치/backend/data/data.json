@@ -1,0 +1,44 @@
+{
+  "staffs": [
+    { "id": "STF-8001", "name": "김감독 (메인 연출 감독 - 제작자 A)", "role": "MANAGER", "dept": "영화 연출 제작팀", "handledScenes": 220 },
+    { "id": "STF-8002", "name": "이PD (메인 프로듀서 - 제작자 B)", "role": "MANAGER", "dept": "제작 기획 총괄부", "handledScenes": 190 },
+    { "id": "STF-8003", "name": "박촬영 (촬영감독)", "role": "STAFF", "dept": "촬영 카메라팀", "handledScenes": 165 },
+    { "id": "STF-8004", "name": "최조명 (조명 감독원)", "role": "STAFF", "dept": "현장 조명부", "handledScenes": 140 },
+    { "id": "STF-8005", "name": "정슬레이트 (스크립터 및 스케줄원)", "role": "STAFF", "dept": "스크립트 기록팀", "handledScenes": 115 }
+  ],
+  "actors": [
+    { "id": "ACT-3001", "actorName": "최민수", "roleName": "강형사 (주연)", "agency": "스타엔터", "callTime": "07:30", "status": "CONFIRMED" },
+    { "id": "ACT-3002", "actorName": "이병헌", "roleName": "박회장 (주연)", "agency": "글로벌이엔엠", "callTime": "09:00", "status": "CONFIRMED" },
+    { "id": "ACT-3003", "actorName": "송강호", "roleName": "한검사 (특별출연)", "agency": "씨네아티스트", "callTime": "11:00", "status": "PENDING" },
+    { "id": "ACT-3004", "actorName": "전도연", "roleName": "윤대표 (주연)", "agency": "필름아카데미", "callTime": "13:00", "status": "CONFIRMED" }
+  ],
+  "locations": [
+    { "id": "LOC-4001", "locationName": "인천항 3번 부두 세트장", "address": "인천 중구 서해대로 123", "rentalFeeWon": 5000000, "permissionStatus": "APPROVED" },
+    { "id": "LOC-4002", "locationName": "서울 남산 특설 촬영 세트", "address": "서울 중구 남산공원길 45", "rentalFeeWon": 3500000, "permissionStatus": "APPROVED" },
+    { "id": "LOC-4003", "locationName": "강원 춘천 폐철도 로케이션", "address": "강원 춘천시 남산면 789", "rentalFeeWon": 2000000, "permissionStatus": "APPROVED" }
+  ],
+  "scenes": [
+    { "id": "SCN-1001", "sceneNo": "Scene #45", "sceneName": "부두 야간 빗속 격투 액션 씬", "shootDate": "2026-08-05", "location": "인천항 3번 부두 세트장", "actorName": "최민수", "actorSchedule": "07:30 ~ 18:00 (전일 촬영)", "importance": "HIGH", "status": "FILMING" },
+    { "id": "SCN-1002", "sceneNo": "Scene #12", "sceneName": "남산 펜트하우스 긴장된 대치 씬", "shootDate": "2026-08-06", "location": "서울 남산 특설 촬영 세트", "actorName": "이병헌", "actorSchedule": "09:00 ~ 15:00 (오전/오후)", "importance": "CRITICAL", "status": "PREPARING" },
+    { "id": "SCN-1003", "sceneNo": "Scene #88", "sceneName": "춘천 폐철도 자동차 추격 씬", "shootDate": "2026-08-07", "location": "강원 춘천 폐철도 로케이션", "actorName": "송강호", "actorSchedule": "11:00 ~ 17:00 (오후)", "importance": "MEDIUM", "status": "COMPLETED" }
+  ],
+  "schedules": [
+    { "id": "SCH-2001", "sceneId": "SCN-1001", "sceneName": "부두 야간 빗속 격투 액션 씬", "shootDate": "2026-08-05", "callTime": "07:30", "wrapTime": "18:00", "directorNote": "크레인 카메라 및 비 효과 장비 배치" }
+  ],
+  "filmingLogs": [
+    { "id": "FLOG-7001", "sceneId": "SCN-1001", "sceneName": "부두 야간 빗속 격투 액션 씬", "takeCount": 12, "filmingTimeMinutes": 320, "notes": "A/B 카메라 듀얼 촬영 완료", "timestamp": "2026-08-04 18:30:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9801", "sceneId": "SCN-1001", "operator": "김감독 (연출)", "action": "Scene #45 인천 부두 액션 씬 최민수 배우 스케줄 확정 완료", "timestamp": "2026-08-04 09:30:00", "status": "SUCCESS" },
+    { "id": "ACT-9802", "sceneId": "SCN-1002", "operator": "이PD (프로듀서)", "action": "Scene #12 남산 세트장 이병헌 배우 12:00 타임 셋 완료", "timestamp": "2026-08-04 11:15:00", "status": "SUCCESS" }
+  ],
+  "filmStats": {
+    "totalScenes": 60,
+    "totalActors": 25,
+    "totalLocations": 20,
+    "filmingCount": 18,
+    "completedCount": 24,
+    "totalShootingHours": 480,
+    "filmProgressPercent": 40.0
+  }
+}

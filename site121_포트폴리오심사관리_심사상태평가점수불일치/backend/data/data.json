@@ -1,0 +1,41 @@
+{
+  "reviewers": [
+    { "id": "REV-6001", "name": "김디자인 (디자인 총괄 리드 - 심사위원 A)", "role": "MANAGER", "dept": "Product Design 본부", "evaluatedCount": 85 },
+    { "id": "REV-6002", "name": "이개발 (프론트엔드 테크리드 - 심사위원 B)", "role": "MANAGER", "dept": "웹 엔지니어링 랩", "evaluatedCount": 78 },
+    { "id": "REV-6003", "name": "박기획 (서비스 기획 파트장)", "role": "STAFF", "dept": "전략 기획실", "evaluatedCount": 64 },
+    { "id": "REV-6004", "name": "최인사 (채용 수석 매니저)", "role": "STAFF", "dept": "피플인사 팀", "evaluatedCount": 55 },
+    { "id": "REV-6005", "name": "정브랜드 (브랜드 아키텍트)", "role": "STAFF", "dept": "브랜드 경험팀", "evaluatedCount": 42 }
+  ],
+  "applicants": [
+    { "id": "APP-1001", "name": "김포폴", "targetJob": "UX/UI 디자인", "phone": "010-9876-5432", "experienceYears": 4, "evalScore": 92.5, "portfolioTitle": "모바일 금융 앱 UX 리디자인 프로젝트", "status": "PASSED" },
+    { "id": "APP-1002", "name": "이코딩", "targetJob": "프론트엔드 개발", "phone": "010-8765-4321", "experienceYears": 3, "evalScore": 88.0, "portfolioTitle": "React 기반 대용량 트래픽 대시보드 구축", "status": "UNDER_REVIEW" },
+    { "id": "APP-1003", "name": "박기획", "targetJob": "서비스 기획", "phone": "010-7654-3210", "experienceYears": 5, "evalScore": 95.0, "portfolioTitle": "AI 기반 커머스 추천 엔진 서비스 기획서", "status": "PASSED" },
+    { "id": "APP-1004", "name": "최그래픽", "targetJob": "브랜드 디자인", "phone": "010-6543-2109", "experienceYears": 2, "evalScore": 76.5, "portfolioTitle": "글로벌 뷰티 브랜드 CI/BI 아이덴티티 시스템", "status": "HOLD" },
+    { "id": "APP-1005", "name": "정백엔드", "targetJob": "백엔드 개발", "phone": "010-5432-1098", "experienceYears": 6, "evalScore": 91.0, "portfolioTitle": "MSA 기반 마이크로서비스 인프라 설계", "status": "ASSIGNED" }
+  ],
+  "portfolios": [
+    { "id": "PF-2001", "applicantId": "APP-1001", "title": "모바일 금융 앱 UX 리디자인 프로젝트", "fileUrl": "https://portfolio.careerreview.kr/app-1001.pdf", "pageCount": 32, "viewCount": 145 },
+    { "id": "PF-2002", "applicantId": "APP-1002", "title": "React 기반 대용량 트래픽 대시보드 구축", "fileUrl": "https://portfolio.careerreview.kr/app-1002.pdf", "pageCount": 24, "viewCount": 120 }
+  ],
+  "evaluations": [
+    { "id": "EVAL-3001", "applicantId": "APP-1001", "applicantName": "김포폴", "reviewerName": "김디자인", "usabilityScore": 95, "visualScore": 92, "logicScore": 90, "totalScore": 92.5, "status": "PASSED" },
+    { "id": "EVAL-3002", "applicantId": "APP-1002", "applicantName": "이코딩", "reviewerName": "이개발", "usabilityScore": 86, "visualScore": 88, "logicScore": 90, "totalScore": 88.0, "status": "UNDER_REVIEW" }
+  ],
+  "comments": [
+    { "id": "CMT-4001", "applicantId": "APP-1001", "reviewerName": "김디자인", "commentText": "사용자 여정 지도(Customer Journey Map) 세분화가 매우 뛰어남. 디자인 시스템 가이드라인 완성도 높음.", "timestamp": "2026-08-04 14:20:00" },
+    { "id": "CMT-4002", "applicantId": "APP-1002", "reviewerName": "이개발", "commentText": "State Management 패턴 및 성능 최적화 파트 설명이 명확함. 실무 적용 가능성 매우 양호.", "timestamp": "2026-08-04 15:45:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-8001", "applicantId": "APP-1001", "operator": "김디자인 (디자인 리드)", "action": "김포폴 지원자 UX/UI 디자인 최종 합격 (평점 92.5점) 승인 완료", "timestamp": "2026-08-04 16:00:00", "status": "SUCCESS" },
+    { "id": "ACT-8002", "applicantId": "APP-1002", "operator": "이개발 (테크리드)", "action": "이코딩 지원자 2차 기술 포트폴리오 심사표 작성 완료", "timestamp": "2026-08-04 16:30:00", "status": "SUCCESS" }
+  ],
+  "reviewStats": {
+    "totalApplicants": 45,
+    "passedCount": 18,
+    "underReviewCount": 15,
+    "holdCount": 8,
+    "failedCount": 4,
+    "avgScore": 87.4,
+    "topJob": "UX/UI 디자인"
+  }
+}

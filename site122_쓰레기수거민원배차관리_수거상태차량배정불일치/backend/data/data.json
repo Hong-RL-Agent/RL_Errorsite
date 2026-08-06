@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-7001", "name": "김청소 (자원순환 과장 - 직원 A)", "role": "MANAGER", "dept": "청소행정과 총괄팀", "handledSchedules": 140 },
+    { "id": "STF-7002", "name": "이배차 (기동수거 기획팀장 - 직원 B)", "role": "MANAGER", "dept": "자원재활용 기동배차팀", "handledSchedules": 125 },
+    { "id": "STF-7003", "name": "박민원 (환경 민원 접수원)", "role": "STAFF", "dept": "구청 민원 콜센터", "handledSchedules": 110 },
+    { "id": "STF-7004", "name": "최차량 (청소차량 정비반장)", "role": "STAFF", "dept": "차량정비 차고지", "handledSchedules": 95 },
+    { "id": "STF-7005", "name": "정구역 (지역 순찰 감독관)", "role": "STAFF", "dept": "생활폐기물 지도과", "handledSchedules": 88 }
+  ],
+  "zones": [
+    { "id": "ZONE-01", "name": "종로1가 중앙 상업구역", "district": "종로구", "wasteType": "생활/음식물", "dailyTargetTon": 18.5 },
+    { "id": "ZONE-02", "name": "강남역 섭외 유흥상가구역", "district": "강남구", "wasteType": "재활용/대형", "dailyTargetTon": 32.0 },
+    { "id": "ZONE-03", "name": "여의도 증권가 오피스구역", "district": "영등포구", "wasteType": "사업장/일반", "dailyTargetTon": 24.5 },
+    { "id": "ZONE-04", "name": "마포 망원동 주택밀집구역", "district": "마포구", "wasteType": "생활폐기물", "dailyTargetTon": 15.0 },
+    { "id": "ZONE-05", "name": "성수 카페거리 문화구역", "district": "성동구", "wasteType": "음식물/재활용", "dailyTargetTon": 19.0 }
+  ],
+  "vehicles": [
+    { "id": "VEC-1001", "plateNumber": "서울 82바 1234", "zoneId": "ZONE-01", "zoneName": "종로1가 상업구역", "capacityTon": 5.0, "driverName": "강수거", "maintenanceStatus": "NORMAL" },
+    { "id": "VEC-1002", "plateNumber": "서울 82바 5678", "zoneId": "ZONE-02", "zoneName": "강남역 유흥상가구역", "capacityTon": 8.0, "driverName": "조압축", "maintenanceStatus": "NORMAL" },
+    { "id": "VEC-1003", "plateNumber": "서울 82바 9012", "zoneId": "ZONE-03", "zoneName": "여의도 오피스구역", "capacityTon": 10.0, "driverName": "윤운전", "maintenanceStatus": "NORMAL" }
+  ],
+  "schedules": [
+    { "id": "SCH-3001", "zoneId": "ZONE-01", "zoneName": "종로1가 상업구역", "vehicleId": "VEC-1001", "vehiclePlate": "서울 82바 1234", "scheduledDate": "2026-08-05", "startTime": "04:00", "endTime": "07:00", "complaintCount": 3, "status": "ASSIGNED" },
+    { "id": "SCH-3002", "zoneId": "ZONE-02", "zoneName": "강남역 유흥상가구역", "vehicleId": "VEC-1002", "vehiclePlate": "서울 82바 5678", "scheduledDate": "2026-08-05", "startTime": "03:30", "endTime": "07:30", "complaintCount": 8, "status": "IN_PROGRESS" }
+  ],
+  "complaints": [
+    { "id": "CMP-4001", "scheduleId": "SCH-3001", "zoneName": "종로1가 상업구역", "address": "종로1가 45-2 골목 입구", "content": "종량제 봉투 악취 및 골목 미수거 잔재물 처리 요청", "status": "PENDING" },
+    { "id": "CMP-4002", "scheduleId": "SCH-3002", "zoneName": "강남역 유흥상가구역", "address": "강남대로 390 부근", "content": "대형 가구 무단 투기 수거 차량 지원 요청", "status": "IN_PROGRESS" }
+  ],
+  "pickupLogs": [
+    { "id": "PLOG-5001", "scheduleId": "SCH-3001", "zoneName": "종로1가 상업구역", "collectedTon": 4.8, "timestamp": "2026-08-04 06:45:00" },
+    { "id": "PLOG-5002", "scheduleId": "SCH-3002", "zoneName": "강남역 유흥상가구역", "collectedTon": 7.5, "timestamp": "2026-08-04 07:15:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9001", "scheduleId": "SCH-3001", "operator": "김청소 (자원순환과장)", "action": "종로1가 새벽 수거 차량 VEC-1001 배차 승인 완료", "timestamp": "2026-08-04 17:00:00", "status": "SUCCESS" },
+    { "id": "ACT-9002", "scheduleId": "SCH-3002", "operator": "이배차 (기동팀장)", "action": "강남역 2차 압축 차량 추가 지원 배정 완료", "timestamp": "2026-08-04 18:30:00", "status": "SUCCESS" }
+  ],
+  "cleanStats": {
+    "totalZones": 20,
+    "totalSchedules": 50,
+    "inProgressCount": 14,
+    "completedCount": 28,
+    "totalCollectedTon": 340.5,
+    "complaintResolutionRate": 92.4,
+    "topZone": "강남구"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "staffs": [
+    { "id": "STF-5001", "name": "김충전 (충전 인프라 운영총괄 - 관리자 A)", "role": "MANAGER", "dept": "인프라 자산운영본부", "managedCount": 180 },
+    { "id": "STF-5002", "name": "이점검 (필드 유지보수 팀장 - 관리자 B)", "role": "MANAGER", "dept": "유지보수 기술팀", "managedCount": 165 },
+    { "id": "STF-5003", "name": "박관제 (24시간 관제 센터장)", "role": "STAFF", "dept": "스마트 관제 센터", "managedCount": 140 },
+    { "id": "STF-5004", "name": "최고객 (CS 장애 민원팀장)", "role": "STAFF", "dept": "고객 행복 지원팀", "managedCount": 125 },
+    { "id": "STF-5005", "name": "정전력 (그리드 에너지 엔지니어)", "role": "STAFF", "dept": "전력 망 제어팀", "managedCount": 110 }
+  ],
+  "stations": [
+    { "id": "STN-01", "name": "강남 테헤란로 하이퍼 초급속 충전소", "location": "서울 강남구 테헤란로 152", "totalChargers": 8, "operatingKw": 350 },
+    { "id": "STN-02", "name": "여의도 파크원 그린 콤플렉스 충전소", "location": "서울 영등포구 여의대로 108", "totalChargers": 6, "operatingKw": 200 },
+    { "id": "STN-03", "name": "판교 테크노밸리 IT 허브 충전소", "location": "경기 성남시 분당구 판교역로 235", "totalChargers": 6, "operatingKw": 200 },
+    { "id": "STN-04", "name": "상암 DMC 미디어 타워 충전소", "location": "서울 마포구 월드컵북로 396", "totalChargers": 5, "operatingKw": 100 },
+    { "id": "STN-05", "name": "인천공항 T2 EV 파킹 허브", "location": "인천 중구 공항로 272", "totalChargers": 8, "operatingKw": 350 },
+    { "id": "STN-06", "name": "성수 뚝섬 소셜 밸리 충전소", "location": "서울 성동구 뚝섬로 273", "totalChargers": 5, "operatingKw": 100 },
+    { "id": "STN-07", "name": "수원 광교 컨벤션센터 충전소", "location": "경기 수원시 영통구 광교중앙로 140", "totalChargers": 5, "operatingKw": 100 },
+    { "id": "STN-08", "name": "부산 해운대 센텀시티 충전소", "location": "부산 해운대구 센텀남대로 35", "totalChargers": 5, "operatingKw": 200 },
+    { "id": "STN-09", "name": "대전 카이스트 연구단지 충전소", "location": "대전 유성구 대학로 291", "totalChargers": 4, "operatingKw": 100 },
+    { "id": "STN-10", "name": "대구 동성로 스마트 파킹 Station", "location": "대구 중구 동성로 2길 95", "totalChargers": 4, "operatingKw": 100 },
+    { "id": "STN-11", "name": "광주 상무지구 시청 앞 충전소", "location": "광주 서구 내방로 111", "totalChargers": 4, "operatingKw": 100 },
+    { "id": "STN-12", "name": "울산 현대자동차 이노베이션 Hub", "location": "울산 북구 염포로 700", "totalChargers": 5, "operatingKw": 200 },
+    { "id": "STN-13", "name": "제주 제주공항 EV 스테이션", "location": "제주 제주시 공항로 2", "totalChargers": 5, "operatingKw": 200 },
+    { "id": "STN-14", "name": "송도 국제도시 스마트시티 충전소", "location": "인천 연수구 컨벤시아대로 165", "totalChargers": 5, "operatingKw": 100 },
+    { "id": "STN-15", "name": "세종 정부청사 에너지 복합 충전소", "location": "세종 도움5로 19", "totalChargers": 5, "operatingKw": 100 }
+  ],
+  "chargers": [
+    { "id": "CHG-1001", "stationId": "STN-01", "stationName": "강남 테헤란로 하이퍼 초급속 충전소", "chargerType": "DC콤보 초급속 350kW", "maxKw": 350, "locationFloor": "지하 2층 A구역 01", "totalKwCharged": 14200, "inspectMemo": "정기 점검 이상 없음", "status": "AVAILABLE" },
+    { "id": "CHG-1002", "stationId": "STN-01", "stationName": "강남 테헤란로 하이퍼 초급속 충전소", "chargerType": "DC콤보 급속 200kW", "maxKw": 200, "locationFloor": "지하 2층 A구역 02", "totalKwCharged": 18500, "inspectMemo": "커넥터 케이블 마모 주의", "status": "CHARGING" },
+    { "id": "CHG-1003", "stationId": "STN-02", "stationName": "여의도 파크원 그린 콤플렉스 충전소", "chargerType": "DC콤보 급속 200kW", "maxKw": 200, "locationFloor": "지하 3층 B구역 05", "totalKwCharged": 11200, "inspectMemo": "통신 모듈 정상", "status": "RESERVED" },
+    { "id": "CHG-1004", "stationId": "STN-03", "stationName": "판교 테크노밸리 IT 허브 충전소", "chargerType": "AC완속 7kW", "maxKw": 7, "locationFloor": "지상 1층 C구역 02", "totalKwCharged": 4800, "inspectMemo": "화면 전원 불량 의심", "status": "BROKEN" },
+    { "id": "CHG-1005", "stationId": "STN-05", "stationName": "인천공항 T2 EV 파킹 허브", "chargerType": "DC콤보 초급속 350kW", "maxKw": 350, "locationFloor": "주차타워 2층 12", "totalKwCharged": 29400, "inspectMemo": "냉각팬 점검 중", "status": "INSPECTING" }
+  ],
+  "reservations": [
+    { "id": "RSV-3001", "chargerId": "CHG-1001", "stationName": "강남 테헤란로 하이퍼 초급속 충전소", "carNumber": "123가 4567 (아이오닉 6)", "driverName": "김전기", "reserveDate": "2026-08-05", "startTime": "14:00", "endTime": "14:40", "targetKwh": 50, "status": "CONFIRMED" },
+    { "id": "RSV-3002", "chargerId": "CHG-1002", "stationName": "강남 테헤란로 하이퍼 초급속 충전소", "carNumber": "987나 6543 (EV9)", "driverName": "이충전", "reserveDate": "2026-08-05", "startTime": "15:00", "endTime": "16:00", "targetKwh": 75, "status": "CHARGING" },
+    { "id": "RSV-3003", "chargerId": "CHG-1003", "stationName": "여의도 파크원 그린 콤플렉스 충전소", "carNumber": "456다 7890 (테슬라 모델 Y)", "driverName": "박스마트", "reserveDate": "2026-08-05", "startTime": "16:30", "endTime": "17:10", "targetKwh": 45, "status": "RESERVED" }
+  ],
+  "chargeLogs": [
+    { "id": "CLOG-4001", "chargerId": "CHG-1001", "stationName": "강남 테헤란로 하이퍼 초급속 충전소", "carNumber": "123가 4567", "kwhUsed": 48.5, "amountWon": 16975, "chargeDurationMin": 32, "timestamp": "2026-08-04 13:45:00" },
+    { "id": "CLOG-4002", "chargerId": "CHG-1002", "stationName": "강남 테헤란로 하이퍼 초급속 충전소", "carNumber": "987나 6543", "kwhUsed": 65.2, "amountWon": 22820, "chargeDurationMin": 45, "timestamp": "2026-08-04 15:20:00" }
+  ],
+  "breakdownReports": [
+    { "id": "BRK-6001", "chargerId": "CHG-1004", "stationName": "판교 테크노밸리 IT 허브 충전소", "issueType": "화면 전원 미출력 및 커넥터 잠금장치 오류", "reporter": "박스마트", "reportTime": "2026-08-04 11:10:00", "status": "INSPECTING" },
+    { "id": "BRK-6002", "chargerId": "CHG-1005", "stationName": "인천공항 T2 EV 파킹 허브", "issueType": "초급속 수냉식 케이블 과열 알람 발생", "reporter": "관제 센터", "reportTime": "2026-08-04 16:40:00", "status": "PENDING" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-7001", "chargerId": "CHG-1001", "operator": "김충전 (운영총괄)", "action": "STN-01 CHG-1001 초급속 충전기 출력 전력 350kW 정기 점검 승인 완료", "timestamp": "2026-08-04 10:00:00", "status": "SUCCESS" },
+    { "id": "ACT-7002", "chargerId": "CHG-1004", "operator": "이점검 (유지보수팀장)", "action": "STN-03 CHG-1004 고장 신고 접수 및 긴급 점검 기사 출동 요청 완료", "timestamp": "2026-08-04 11:30:00", "status": "SUCCESS" }
+  ],
+  "chargeStats": {
+    "totalStations": 15,
+    "totalChargers": 80,
+    "availableCount": 52,
+    "chargingCount": 18,
+    "brokenCount": 6,
+    "totalEnergyMwh": 4820,
+    "avgChargerUsageRate": 78.4,
+    "totalRevenueMillion": 1680
+  }
+}

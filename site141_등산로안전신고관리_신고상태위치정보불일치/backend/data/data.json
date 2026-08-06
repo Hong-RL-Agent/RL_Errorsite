@@ -1,0 +1,42 @@
+{
+  "staffs": [
+    { "id": "STF-2001", "name": "김산림 (국립공원 안전통제관 - 담당자 A)", "role": "MANAGER", "mountain": "북한산 국립공원", "handledReports": 290 },
+    { "id": "STF-2002", "name": "이순찰 (산악 구조대팀장 - 담당자 B)", "role": "MANAGER", "mountain": "설악산 국립공원", "handledReports": 250 },
+    { "id": "STF-2003", "name": "박안전 (등산로 정비 관제원)", "role": "STAFF", "mountain": "지리산 국립공원", "handledReports": 210 },
+    { "id": "STF-2004", "name": "최위험 (낙석 붕괴 점검원)", "role": "STAFF", "mountain": "계룡산 국립공원", "handledReports": 180 },
+    { "id": "STF-2005", "name": "정해제 (위험구역 지정심의관)", "role": "STAFF", "mountain": "한라산 국립공원", "handledReports": 150 }
+  ],
+  "trailSections": [
+    { "id": "SEC-01", "sectionName": "북한산 백운대 코스 (2.4km)", "mountain": "북한산 국립공원", "difficulty": "상 (상급)", "riskLevel": "경고 (HIGH)", "dangerZoneCount": 8 },
+    { "id": "SEC-02", "sectionName": "설악산 공룡능선 (5.1km)", "mountain": "설악산 국립공원", "difficulty": "최상 (최고위험)", "riskLevel": "위험 (CRITICAL)", "dangerZoneCount": 12 },
+    { "id": "SEC-03", "sectionName": "지리산 천왕봉 코스 (4.0km)", "mountain": "지리산 국립공원", "difficulty": "중상 (중급)", "riskLevel": "주의 (MEDIUM)", "dangerZoneCount": 6 }
+  ],
+  "patrolTeams": [
+    { "id": "PTR-101", "teamName": "북한산 제1 산악구조대", "leader": "이순찰 대장", "mountain": "북한산 국립공원", "activeMembers": 8, "status": "ON_PATROL" },
+    { "id": "PTR-102", "teamName": "설악산 신선대 정비팀", "leader": "정정비 대원", "mountain": "설악산 국립공원", "activeMembers": 6, "status": "STANDBY" },
+    { "id": "PTR-103", "teamName": "지리산 안전 순찰반", "leader": "최안전 대원", "mountain": "지리산 국립공원", "activeMembers": 5, "status": "ON_PATROL" }
+  ],
+  "reports": [
+    { "id": "RPT-3001", "rptCode": "TS-20260805-01", "mountain": "북한산 국립공원", "sectionName": "북한산 백운대 코스 (2.4km)", "reportType": "낙석/돌사면 붕괴 위험", "locationDesc": "백운대 정상 200m 전 데크 계단 옆 암벽", "reporter": "김등산 (시민)", "dangerGrade": "HIGH (위험)", "assignedTeam": "북한산 제1 산악구조대", "reportTime": "2026-08-05 10:15", "status": "IN_ACTION" },
+    { "id": "RPT-3002", "rptCode": "TS-20260805-02", "mountain": "설악산 국립공원", "sectionName": "설악산 공룡능선 (5.1km)", "reportType": "안난난간 지주 유실", "locationDesc": "마등령 삼거리 ~ 희운각 대피소 중간 암릉", "reporter": "이산악 (산악회원)", "dangerGrade": "CRITICAL (긴급)", "assignedTeam": "설악산 신선대 정비팀", "reportTime": "2026-08-05 11:40", "status": "INSPECTING" },
+    { "id": "RPT-3003", "rptCode": "TS-20260805-03", "mountain": "지리산 국립공원", "sectionName": "지리산 천왕봉 코스 (4.0km)", "reportType": "등산로 수해 침식 웅덩이", "locationDesc": "장터목 대피소 아래 500m 지점", "reporter": "박자연 (탐방객)", "dangerGrade": "MEDIUM (주의)", "assignedTeam": "지리산 안전 순찰반", "reportTime": "2026-08-04 15:00", "status": "RESOLVED" }
+  ],
+  "actionLogs": [
+    { "id": "ALOG-7001", "rptId": "RPT-3001", "mountain": "북한산 국립공원", "reportType": "낙석/돌사면 붕괴 위험", "assignedTeam": "북한산 제1 산악구조대", "actionDetail": "낙석 방지망 임시 보강 및 안전 펜스 통제 로프 설치 완료", "timestamp": "2026-08-05 11:30:00" },
+    { "id": "ALOG-7002", "rptId": "RPT-3003", "mountain": "지리산 국립공원", "reportType": "등산로 수해 침식 웅덩이", "assignedTeam": "지리산 안전 순찰반", "actionDetail": "야자매트 50m敷設 및 배수로 정비 조치 완료", "timestamp": "2026-08-04 17:10:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9801", "rptId": "RPT-3001", "operator": "김산림 (통제관)", "action": "신고 RPT-3001 접수 ➔ 북한산 제1 산악구조대 출동 및 현장 안전 조치 지시 완료", "timestamp": "2026-08-05 10:20:00", "status": "SUCCESS" },
+    { "id": "ACT-9802", "rptId": "RPT-3003", "operator": "박안전 (관제원)", "action": "지리산 천왕봉 수해 구간 야자매트 보와 조치 완료 확정", "timestamp": "2026-08-04 17:15:00", "status": "SUCCESS" }
+  ],
+  "trailStats": {
+    "totalSections": 30,
+    "totalReports": 55,
+    "totalTeams": 15,
+    "inspectingCount": 14,
+    "inActionCount": 18,
+    "resolvedCount": 23,
+    "dangerZoneCount": 35,
+    "avgResponseTimeMin": 38
+  }
+}

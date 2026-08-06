@@ -1,0 +1,42 @@
+{
+  "staffs": [
+    { "id": "STF-3001", "name": "김법무 (법무팀 수석 변호사 - 담당자 A)", "role": "MANAGER", "dept": "기업 법무지원실", "reviewedContracts": 150 },
+    { "id": "STF-3002", "name": "이계약 (계약 검토 파트장 - 담당자 B)", "role": "MANAGER", "dept": "전략 계약검토팀", "handledContracts": 135 },
+    { "id": "STF-3003", "name": "박리스크 (컴플라이언스 자문원)", "role": "STAFF", "dept": "준법감시실", "handledContracts": 110 },
+    { "id": "STF-3004", "name": "최특허 (지식재산권 변리사)", "role": "STAFF", "dept": "IP 지식재산팀", "handledContracts": 95 },
+    { "id": "STF-3005", "name": "정소송 (법무 분쟁 대응원)", "role": "STAFF", "dept": "송무분쟁 대응팀", "handledContracts": 85 }
+  ],
+  "clients": [
+    { "id": "CLI-1001", "name": "삼성전자 글로벌 사업부", "bizNo": "124-81-00001", "riskLevel": "HIGH", "contractCount": 12 },
+    { "id": "CLI-1002", "name": "현대자동차 모빌리티 솔루션", "bizNo": "101-81-00002", "riskLevel": "MEDIUM", "contractCount": 8 },
+    { "id": "CLI-1003", "name": "SK하이닉스 반도체 사업단", "bizNo": "135-81-00003", "riskLevel": "HIGH", "contractCount": 9 },
+    { "id": "CLI-1004", "name": "LG에너지솔루션 배터리 파트너", "bizNo": "107-81-00004", "riskLevel": "LOW", "contractCount": 6 }
+  ],
+  "contracts": [
+    { "id": "CTR-2001", "title": "AI 솔루션 공급 및 라이선스 법무 계약서", "clientName": "삼성전자 글로벌 사업부", "clauseContent": "제14조 (손해배상의 한도): 당사의 귀책사유로 인한 손해배상 책임은 계약 금액 100%를 초과할 수 없다.", "riskScore": 85, "expireDate": "2027-12-31", "managerName": "김법무", "status": "APPROVAL_PENDING" },
+    { "id": "CTR-2002", "title": "차세대 모빌리티 부품 공동개발 표준계약서", "clientName": "현대자동차 모빌리티 솔루션", "clauseContent": "제8조 (지식재산권의 귀속): 본 계약 과정에서 창출된 특허 및 기술 노하우는 양사가 공동 소유한다.", "riskScore": 65, "expireDate": "2026-11-30", "managerName": "이계약", "status": "UNDER_REVIEW" },
+    { "id": "CTR-2003", "title": "반도체 웨이퍼 원자재 장기 수급 계약서", "clientName": "SK하이닉스 반도체 사업단", "clauseContent": "제22조 (지체상금 및 위약금): 정당한 사유 없이 납품이 3일 이상 지연될 경우 매일 0.5%의 지체상금을 부과한다.", "riskScore": 90, "expireDate": "2028-06-30", "managerName": "박리스크", "status": "APPROVED" }
+  ],
+  "clauses": [
+    { "id": "CLS-5001", "contractId": "CTR-2001", "sectionNo": "제14조", "title": "손해배상의 한도", "content": "당사의 귀책사유로 인한 손해배상 책임은 계약 금액 100%를 초과할 수 없다.", "isRiskPoint": true },
+    { "id": "CLS-5002", "contractId": "CTR-2002", "sectionNo": "제8조", "title": "지식재산권의 귀속", "content": "본 계약 과정에서 창출된 특허 및 기술 노하우는 양사가 공동 소유한다.", "isRiskPoint": false }
+  ],
+  "comments": [
+    { "id": "CMT-6001", "contractId": "CTR-2001", "reviewerName": "김법무 변호사", "commentText": "제14조 손해배상 책임 상한선에 대해 상대 거래처 법무팀과 협의하여 간접 손해 면책 조항 추가 필요.", "timestamp": "2026-08-04 14:00:00" },
+    { "id": "CMT-6002", "contractId": "CTR-2002", "reviewerName": "이계약 팀장", "commentText": "특허 공동소유 조항의 경우 제3자 라이선스 허여 시 사전 서면 동의 요구 문구 반영 권장.", "timestamp": "2026-08-04 15:30:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-7001", "contractId": "CTR-2001", "operator": "김법무 (수석변호사)", "action": "삼성전자 AI 라이선스 계약서 최종 법무 승인대기 처리 완료", "timestamp": "2026-08-04 16:00:00", "status": "SUCCESS" },
+    { "id": "ACT-7002", "contractId": "CTR-2003", "operator": "박리스크 (준법원)", "action": "SK하이닉스 원자재 수급 계약서 대표이사 최종 승인 완료", "timestamp": "2026-08-04 17:10:00", "status": "SUCCESS" }
+  ],
+  "legalStats": {
+    "totalContracts": 45,
+    "totalClients": 30,
+    "underReviewCount": 18,
+    "approvalPendingCount": 12,
+    "approvedCount": 15,
+    "avgRiskScore": 72.4,
+    "highRiskCount": 14,
+    "topClient": "삼성전자"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "staffs": [
+    { "id": "STF-9001", "name": "김세차 (강남 본점 점장 - 직원 A)", "role": "MANAGER", "dept": "강남 본점 매니저팀", "handledBookings": 210 },
+    { "id": "STF-9002", "name": "이디테일 (서초 지점 팀장 - 직원 B)", "role": "MANAGER", "dept": "서초 지점 프리미엄 케어팀", "handledBookings": 190 },
+    { "id": "STF-9003", "name": "박광택 (광택 왁스 전문 테크니션)", "role": "STAFF", "dept": "광택 코팅 작업실", "handledBookings": 160 },
+    { "id": "STF-9004", "name": "최실내 (실내 케어 전문 세차원)", "role": "STAFF", "dept": "실내 항균 스팀팀", "handledBookings": 140 },
+    { "id": "STF-9005", "name": "정검수 (입출고 최종 검수원)", "role": "STAFF", "dept": "차량 출고 검수실", "handledBookings": 115 }
+  ],
+  "branches": [
+    { "id": "BRN-01", "name": "WashBay 강남 본점", "address": "서울 강남구 테헤란로 234", "baysCount": 8, "managerName": "김세차", "status": "OPEN" },
+    { "id": "BRN-02", "name": "WashBay 서초 직영점", "address": "서울 서초구 반포대로 108", "baysCount": 6, "managerName": "이디테일", "status": "OPEN" },
+    { "id": "BRN-03", "name": "WashBay 송파 잠실점", "address": "서울 송파구 올림픽로 345", "baysCount": 10, "managerName": "박광택", "status": "OPEN" },
+    { "id": "BRN-04", "name": "WashBay 분당 정자점", "address": "경기 성남시 분당구 정자일로 89", "baysCount": 5, "managerName": "최실내", "status": "OPEN" }
+  ],
+  "packages": [
+    { "id": "PKG-2001", "packageName": "프리미엄 세라믹 코팅 패키지", "priceWon": 180000, "durationMinutes": 90, "desc": "고압 세차 + 세라믹 코팅 + 휠 딥클리닝 + 실내 스팀" },
+    { "id": "PKG-2002", "packageName": "디테일링 폼건 & 휠 케어", "priceWon": 85000, "durationMinutes": 50, "desc": "스노우 폼건 + 휠 브러싱 + 타이어 왁스" },
+    { "id": "PKG-2003", "packageName": "실내 훈증 샬균 & 바이러스 케어", "priceWon": 65000, "durationMinutes": 40, "desc": "실내 가죽 케어 + 훈증 살균 + 에어컨 필터 스팀" },
+    { "id": "PKG-2004", "packageName": "기본 베이직 고압 버블 세차", "priceWon": 40000, "durationMinutes": 30, "desc": "고압수 + 샤인 샴푸 + 하부 세차" }
+  ],
+  "vehicles": [
+    { "id": "VHC-3001", "carNo": "123가 4567", "carType": "제네시스 G80", "ownerName": "홍길동", "phone": "010-1111-2222", "visitCount": 8 },
+    { "id": "VHC-3002", "carNo": "98나 7654", "carType": "포르쉐 카이엔", "ownerName": "김철수", "phone": "010-2222-3333", "visitCount": 12 },
+    { "id": "VHC-3003", "carNo": "56다 8901", "carType": "벤츠 E-Class", "ownerName": "이영희", "phone": "010-3333-4444", "visitCount": 5 },
+    { "id": "VHC-3004", "carNo": "34라 1234", "carType": "BMW 530i", "ownerName": "박민수", "phone": "010-4444-5555", "visitCount": 6 }
+  ],
+  "bookings": [
+    { "id": "BKG-1001", "bookingNo": "WB-20260805-01", "branchId": "BRN-01", "branchName": "WashBay 강남 본점", "carNo": "123가 4567", "carType": "제네시스 G80", "ownerName": "홍길동", "packageName": "프리미엄 세라믹 코팅 패키지", "options": "유리발수 코팅 추가 (+3만)", "totalFeeWon": 210000, "bookingTime": "11:00", "status": "IN_PROGRESS" },
+    { "id": "BKG-1002", "bookingNo": "WB-20260805-02", "branchId": "BRN-02", "branchName": "WashBay 서초 직영점", "carNo": "98나 7654", "carType": "포르쉐 카이엔", "ownerName": "김철수", "packageName": "디테일링 폼건 & 휠 케어", "options": "철분 제거 서비스 (+2만)", "totalFeeWon": 105000, "bookingTime": "14:00", "status": "PENDING" },
+    { "id": "BKG-1003", "bookingNo": "WB-20260805-03", "branchId": "BRN-03", "branchName": "WashBay 송파 잠실점", "carNo": "56다 8901", "carType": "벤츠 E-Class", "ownerName": "이영희", "packageName": "실내 훈증 샬균 & 바이러스 케어", "options": "기본 옵션", "totalFeeWon": 65000, "bookingTime": "16:30", "status": "COMPLETED" }
+  ],
+  "workLogs": [
+    { "id": "WLOG-8001", "bookingId": "BKG-1001", "carNo": "123가 4567", "branchName": "WashBay 강남 본점", "action": "강남 본점 베이 #2 입고 및 고압스팀 작업 시작", "timestamp": "2026-08-04 11:05:00" },
+    { "id": "WLOG-8002", "bookingId": "BKG-1003", "carNo": "56다 8901", "branchName": "WashBay 송파 잠실점", "action": "실내 훈증 소독 및 림 왁스 처리 완료", "timestamp": "2026-08-04 17:10:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9701", "bookingId": "BKG-1001", "operator": "김세차 (점장)", "action": "차량 123가 4567 프리미엄 세라믹 코팅 패키지 작업 승인", "timestamp": "2026-08-04 10:45:00", "status": "SUCCESS" },
+    { "id": "ACT-9702", "bookingId": "BKG-1002", "operator": "이디테일 (팀장)", "action": "차량 98나 7654 서초 베이 #1 예약 배정 완료", "timestamp": "2026-08-04 13:50:00", "status": "SUCCESS" }
+  ],
+  "washStats": {
+    "totalBookings": 50,
+    "totalVehicles": 45,
+    "totalBranches": 10,
+    "inProgressCount": 14,
+    "completedCount": 26,
+    "totalSalesWon": 8450000,
+    "topPackage": "프리미엄 세라믹 코팅 패키지"
+  }
+}

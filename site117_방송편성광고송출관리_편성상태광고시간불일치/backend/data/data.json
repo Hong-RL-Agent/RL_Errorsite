@@ -1,0 +1,62 @@
+{
+  "staffs": [
+    { "id": "STF-1001", "name": "김편성 (메인 채널 편성국장 - 관리자 A)", "role": "MANAGER", "dept": "편성 기획 총괄국", "processedCount": 165 },
+    { "id": "STF-1002", "name": "이광고 (광고 영업 수석 - 관리자 B)", "role": "MANAGER", "dept": "광고 마케팅사업부", "processedCount": 142 },
+    { "id": "STF-1003", "name": "박송출 (송출 주간 감독관)", "role": "STAFF", "dept": "주조정실 송출팀", "processedCount": 128 },
+    { "id": "STF-1004", "name": "최심의 (방송 심의위원)", "role": "STAFF", "dept": "방송 심의 규제팀", "processedCount": 110 },
+    { "id": "STF-1005", "name": "정모니터 (24시 관제원)", "role": "STAFF", "dept": "부조정 모니터링팀", "processedCount": 98 }
+  ],
+  "channels": [
+    { "id": "CH-01", "name": "KBC 메인 종합채널", "genre": "종합편성", "status": "ON_AIR" },
+    { "id": "CH-02", "name": "KBC 뉴스 24", "genre": "뉴스/보도", "status": "ON_AIR" },
+    { "id": "CH-03", "name": "KBC 드라마 라이프", "genre": "드라마", "status": "ON_AIR" },
+    { "id": "CH-04", "name": "KBC 스포츠 플러스", "genre": "스포츠", "status": "ON_AIR" },
+    { "id": "CH-05", "name": "KBC 예능 하이라이트", "genre": "예능", "status": "ON_AIR" },
+    { "id": "CH-06", "name": "KBC 교양 다큐멘터리", "genre": "다큐", "status": "ON_AIR" },
+    { "id": "CH-07", "name": "KBC 키즈 아동채널", "genre": "어린이", "status": "ON_AIR" },
+    { "id": "CH-08", "name": "KBC 글로벌 패션&푸드", "genre": "라이프스타일", "status": "ON_AIR" }
+  ],
+  "adSlots": [
+    { "id": "AD-5001", "advertiser": "삼성전자 갤럭시 S26", "slotType": "프라임 타임 (전CM)", "priceWon": 15000000, "durationSec": 30 },
+    { "id": "AD-5002", "advertiser": "현대자동차 아이오닉 9", "slotType": "프라임 타임 (후CM)", "priceWon": 12000000, "durationSec": 30 },
+    { "id": "AD-5003", "advertiser": "LG 시그니처 가전", "slotType": "중간광고 1부", "priceWon": 9500000, "durationSec": 15 },
+    { "id": "AD-5004", "advertiser": "SK텔레콤 AI 에이닷", "slotType": "중간광고 2부", "priceWon": 9500000, "durationSec": 15 },
+    { "id": "AD-5005", "advertiser": "쿠팡 로켓프레시", "slotType": "일반 타임 (전CM)", "priceWon": 5000000, "durationSec": 15 }
+  ],
+  "programs": [
+    { "id": "PRG-2001", "title": "KBC 9시 종합 뉴스", "genre": "뉴스/보도", "rating": "15세이상시청가", "viewRating": 12.8, "airTimeMin": 60, "producer": "박보도" },
+    { "id": "PRG-2002", "title": "특별기획 드라마 - 강남 로맨스", "genre": "드라마", "rating": "15세이상시청가", "viewRating": 18.5, "airTimeMin": 70, "producer": "이드라마" },
+    { "id": "PRG-2003", "title": "국민 예능 - 런닝 세터데이", "genre": "예능", "rating": "12세이상시청가", "viewRating": 14.2, "airTimeMin": 90, "producer": "최예능" },
+    { "id": "PRG-2004", "title": "시사 매거진 256", "genre": "시사/교양", "rating": "15세이상시청가", "viewRating": 8.4, "airTimeMin": 50, "producer": "정시사" },
+    { "id": "PRG-2005", "title": "K-리그 라이브 중계", "genre": "스포츠", "rating": "전체시청가", "viewRating": 11.0, "airTimeMin": 120, "producer": "강스포츠" },
+    { "id": "PRG-2006", "title": "심야 음식 기행 - 서울의 맛", "genre": "다큐", "rating": "전체시청가", "viewRating": 6.2, "airTimeMin": 45, "producer": "윤다큐" },
+    { "id": "PRG-2007", "title": "내일은 요리왕 시즌 3", "genre": "예능", "rating": "12세이상시청가", "viewRating": 13.5, "airTimeMin": 80, "producer": "장요리" },
+    { "id": "PRG-2008", "title": "경제 브리핑 11", "genre": "뉴스/보도", "rating": "전체시청가", "viewRating": 5.8, "airTimeMin": 30, "producer": "임경제" },
+    { "id": "PRG-2009", "title": "아침마당 힐링 클래스", "genre": "교양", "rating": "전체시청가", "viewRating": 7.4, "airTimeMin": 60, "producer": "한아침" },
+    { "id": "PRG-2010", "title": "어린이 동화 나라 뽀로로", "genre": "어린이", "rating": "전체시청가", "viewRating": 4.5, "airTimeMin": 30, "producer": "키즈PD" }
+  ],
+  "schedules": [
+    { "id": "SCH-3001", "channelId": "CH-01", "channelName": "KBC 메인 종합채널", "programId": "PRG-2001", "programTitle": "KBC 9시 종합 뉴스", "adSlotId": "AD-5001", "adAdvertiser": "삼성전자 갤럭시 S26", "airDate": "2026-08-05", "startTime": "21:00", "endTime": "22:00", "status": "CONFIRMED" },
+    { "id": "SCH-3002", "channelId": "CH-01", "channelName": "KBC 메인 종합채널", "programId": "PRG-2002", "programTitle": "특별기획 드라마 - 강남 로맨스", "adSlotId": "AD-5002", "adAdvertiser": "현대자동차 아이오닉 9", "airDate": "2026-08-05", "startTime": "22:00", "endTime": "23:10", "status": "CONFIRMED" },
+    { "id": "SCH-3003", "channelId": "CH-03", "channelName": "KBC 드라마 라이프", "programId": "PRG-2003", "programTitle": "국민 예능 - 런닝 세터데이", "adSlotId": "AD-5003", "adAdvertiser": "LG 시그니처 가전", "airDate": "2026-08-05", "startTime": "19:30", "endTime": "21:00", "status": "READY" },
+    { "id": "SCH-3004", "channelId": "CH-02", "channelName": "KBC 뉴스 24", "programId": "PRG-2008", "programTitle": "경제 브리핑 11", "adSlotId": "AD-5005", "adAdvertiser": "쿠팡 로켓프레시", "airDate": "2026-08-05", "startTime": "11:00", "endTime": "11:30", "status": "ON_AIR" },
+    { "id": "SCH-3005", "channelId": "CH-04", "channelName": "KBC 스포츠 플러스", "programId": "PRG-2005", "programTitle": "K-리그 라이브 중계", "adSlotId": "AD-5004", "adAdvertiser": "SK텔레콤 AI 에이닷", "airDate": "2026-08-05", "startTime": "15:00", "endTime": "17:00", "status": "CONFIRMED" }
+  ],
+  "broadcastLogs": [
+    { "id": "BLOG-7001", "scheduleId": "SCH-3001", "channelName": "KBC 메인 종합채널", "programTitle": "KBC 9시 종합 뉴스", "adAdvertiser": "삼성전자 갤럭시 S26", "realAirTime": "21:00:02 ~ 22:00:00", "viewRating": 12.8, "timestamp": "2026-08-04 22:00:05" },
+    { "id": "BLOG-7002", "scheduleId": "SCH-3002", "channelName": "KBC 메인 종합채널", "programTitle": "특별기획 드라마 - 강남 로맨스", "adAdvertiser": "현대자동차 아이오닉 9", "realAirTime": "22:00:05 ~ 23:10:00", "viewRating": 18.5, "timestamp": "2026-08-04 23:10:08" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-6001", "scheduleId": "SCH-3001", "operator": "김편성 (편성국장)", "action": "CH-01 KBC 9시 종합 뉴스 편성 확정 및 삼성전자 프리미엄 광고 배정 완료", "timestamp": "2026-08-05 09:10:00", "status": "SUCCESS" },
+    { "id": "ACT-6002", "scheduleId": "SCH-3002", "operator": "이광고 (광고 수석)", "action": "CH-01 드라마 강남 로맨스 후CM 현대자동차 광고 배정 완료", "timestamp": "2026-08-05 10:30:00", "status": "SUCCESS" }
+  ],
+  "broadcastStats": {
+    "totalSchedules": 60,
+    "onAirCount": 4,
+    "readyCount": 18,
+    "confirmedCount": 25,
+    "adSlotOccupancyRate": 94.2,
+    "avgPrimeRating": 15.6,
+    "totalAdRevenueMillion": 850
+  }
+}

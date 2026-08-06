@@ -1,0 +1,47 @@
+{
+  "staffs": [
+    { "id": "STF-8001", "name": "김캠퍼스 (셔틀버스 총괄 관제팀장 - 관리자 A)", "role": "MANAGER", "routeName": "정문-공학관 순환선 (A노선)", "handledRoutes": 380 },
+    { "id": "STF-8002", "name": "이배차 (운행 배차 및 승차관제 - 관리자 B)", "role": "MANAGER", "routeName": "기숙사-지하철역 직행 (B노선)", "handledRoutes": 320 },
+    { "id": "STF-8003", "name": "박기사 (베테랑 셔틀 운전기사)", "role": "STAFF", "routeName": "인문관-예술관 직행 (C노선)", "handledRoutes": 270 },
+    { "id": "STF-8004", "name": "최정류 (태그 출석 관리원)", "role": "STAFF", "routeName": "체육관-학생회관 셔틀", "handledRoutes": 210 },
+    { "id": "STF-8005", "name": "정혼잡 (스마트 모니터링관)", "role": "STAFF", "routeName": "의과대학 병원 수송선", "handledRoutes": 180 }
+  ],
+  "routesList": [
+    { "id": "ROT-01", "routeName": "정문-공학관 순환선 (A노선)", "type": "학내 순환", "totalStops": 8, "intervalMin": 10, "status": "IN_SERVICE" },
+    { "id": "ROT-02", "routeName": "기숙사-지하철역 직행 (B노선)", "type": "외부 통학", "totalStops": 4, "intervalMin": 15, "status": "SCHEDULED" },
+    { "id": "ROT-03", "routeName": "인문관-예술관 직행 (C노선)", "type": "학내 셔틀", "totalStops": 5, "intervalMin": 12, "status": "COMPLETED" }
+  ],
+  "buses": [
+    { "id": "BUS-101", "busNo": "서울 70바 1234 (45인승)", "seatCapacity": 45, "driverName": "박기사", "fuelType": "친환경 수소버터", "status": "IN_SERVICE" },
+    { "id": "BUS-102", "busNo": "서울 70바 5678 (45인승)", "seatCapacity": 45, "driverName": "이운전 기사", "fuelType": "전기 셔틀버스", "status": "READY" },
+    { "id": "BUS-103", "busNo": "서울 70바 9012 (25인승)", "seatCapacity": 25, "driverName": "최셔틀 기사", "fuelType": "디젤 저상버스", "status": "SCHEDULED" }
+  ],
+  "drivers": [
+    { "id": "DRV-01", "driverName": "박기사", "phone": "010-3333-1234", "licenseType": "대형 1급 면허", "drivesDone": 1240, "rating": 4.9 },
+    { "id": "DRV-02", "driverName": "이운전 기사", "phone": "010-4444-2345", "licenseType": "대형 1급 면허", "drivesDone": 980, "rating": 4.8 },
+    { "id": "DRV-03", "driverName": "최셔틀 기사", "phone": "010-5555-3456", "licenseType": "대형 1급 면허", "drivesDone": 750, "rating": 4.7 }
+  ],
+  "schedules": [
+    { "id": "SCH-9001", "schCode": "SC-20260805-01", "routeName": "정문-공학관 순환선 (A노선)", "busNo": "서울 70바 1234 (45인승)", "driverName": "박기사", "departureTime": "08:30", "arrivalTime": "08:50", "passengerCount": 42, "seatCapacity": 45, "congestion": "HIGH (혼잡)", "status": "IN_SERVICE" },
+    { "id": "SCH-9002", "schCode": "SC-20260805-02", "routeName": "기숙사-지하철역 직행 (B노선)", "busNo": "서울 70바 5678 (45인승)", "driverName": "이운전 기사", "departureTime": "09:00", "arrivalTime": "09:20", "passengerCount": 38, "seatCapacity": 45, "congestion": "MEDIUM (보통)", "status": "SCHEDULED" },
+    { "id": "SCH-9003", "schCode": "SC-20260805-03", "routeName": "인문관-예술관 직행 (C노선)", "busNo": "서울 70바 9012 (25인승)", "driverName": "최셔틀 기사", "departureTime": "08:00", "arrivalTime": "08:15", "passengerCount": 25, "seatCapacity": 25, "congestion": "FULL (만차)", "status": "COMPLETED" }
+  ],
+  "boardingLogs": [
+    { "id": "BLOG-1001", "schId": "SCH-9001", "stopName": "대학 정문 정류장", "boardedCount": 24, "tagTime": "2026-08-05 08:30", "cardType": "학생증 NFC 스마트키", "status": "BOARDED" },
+    { "id": "BLOG-1002", "schId": "SCH-9003", "stopName": "인문관 앞 정류장", "boardedCount": 25, "tagTime": "2026-08-04 08:00", "cardType": "모바일 교직원증", "status": "BOARDED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9201", "schId": "SCH-9001", "operator": "김캠퍼스 (관제팀장)", "action": "일정 SCH-9001 박기사 셔틀 운행 시작 및 승차인원 42명 등록 완료", "timestamp": "2026-08-05 08:31:00", "status": "SUCCESS" },
+    { "id": "ACT-9202", "schId": "SCH-9003", "operator": "이배차 (관제원)", "action": "일정 SCH-9003 최셔틀 기사 인문관 노선 정상 운행 완료 처리", "timestamp": "2026-08-04 08:16:00", "status": "SUCCESS" }
+  ],
+  "shuttleStats": {
+    "totalRoutes": 12,
+    "totalBuses": 25,
+    "totalSchedules": 60,
+    "totalDrivers": 25,
+    "inServiceCount": 14,
+    "delayedCount": 5,
+    "completedCount": 35,
+    "totalPassengers": 2840
+  }
+}

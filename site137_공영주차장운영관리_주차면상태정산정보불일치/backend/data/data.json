@@ -1,0 +1,42 @@
+{
+  "staffs": [
+    { "id": "STF-7001", "name": "김주차 (강남역 공영 관제팀장 - 관리자 A)", "role": "MANAGER", "dept": "스마트 주차 관제센터", "handledRecords": 260 },
+    { "id": "STF-7002", "name": "이정산 (서초중앙 공영 수석원 - 관리자 B)", "role": "MANAGER", "dept": "무인 정산 수수료팀", "handledRecords": 220 },
+    { "id": "STF-7003", "name": "박입출 (차량 LPR 관제원)", "role": "STAFF", "dept": "24h 차량 입출차 모니터링", "handledRecords": 190 },
+    { "id": "STF-7004", "name": "최순찰 (주차면 유도 정비원)", "role": "STAFF", "dept": "현장 주차 유도 정비팀", "handledRecords": 160 },
+    { "id": "STF-7005", "name": "정미납 (미납 체납 징수원)", "role": "STAFF", "dept": "주차 미납 과태료 징수팀", "handledRecords": 135 }
+  ],
+  "parkingLots": [
+    { "id": "LOT-01", "lotName": "강남역 노외 공영주차장", "location": "서울 강남구 역삼동 825-1", "totalSpaces": 150, "occupiedCount": 118, "occupancyRate": 78.6 },
+    { "id": "LOT-02", "lotName": "서초중앙 공영주차장", "location": "서울 서초구 서초동 1317-2", "totalSpaces": 120, "occupiedCount": 96, "occupancyRate": 80.0 },
+    { "id": "LOT-03", "lotName": "송파 잠실역 공영주차장", "location": "서울 송파구 신천동 29", "totalSpaces": 200, "occupiedCount": 165, "occupancyRate": 82.5 },
+    { "id": "LOT-04", "lotName": "성수역 공영주차장", "location": "서울 성동구 성수동2가 300", "totalSpaces": 100, "occupiedCount": 75, "occupancyRate": 75.0 }
+  ],
+  "parkingSpaces": [
+    { "id": "SPC-1001", "spaceNo": "A-12", "lotId": "LOT-01", "lotName": "강남역 노외 공영주차장", "spaceType": "일반형", "carNo": "123가 4567", "status": "OCCUPIED" },
+    { "id": "SPC-1002", "spaceNo": "B-05", "lotId": "LOT-02", "lotName": "서초중앙 공영주차장", "spaceType": "경차전용", "carNo": "98나 7654", "status": "OCCUPIED" },
+    { "id": "SPC-1003", "spaceNo": "C-01", "lotId": "LOT-03", "lotName": "송파 잠실역 공영주차장", "spaceType": "전기차 충전면", "carNo": "56다 8901", "status": "VACANT" }
+  ],
+  "parkingRecords": [
+    { "id": "REC-2001", "recCode": "PK-20260805-01", "lotId": "LOT-01", "lotName": "강남역 노외 공영주차장", "spaceNo": "A-12", "carNo": "123가 4567", "carType": "제네시스 G80", "phone": "010-1111-2222", "inTime": "2026-08-05 09:30", "outTime": "2026-08-05 13:30", "durationMinutes": 240, "feeWon": 12000, "status": "OCCUPIED" },
+    { "id": "REC-2002", "recCode": "PK-20260805-02", "lotId": "LOT-02", "lotName": "서초중앙 공영주차장", "spaceNo": "B-05", "carNo": "98나 7654", "carType": "캐스퍼", "phone": "010-2222-3333", "inTime": "2026-08-05 10:15", "outTime": "2026-08-05 12:15", "durationMinutes": 120, "feeWon": 4000, "status": "UNPAID" },
+    { "id": "REC-2003", "recCode": "PK-20260805-03", "lotId": "LOT-03", "lotName": "송파 잠실역 공영주차장", "spaceNo": "C-01", "carNo": "56다 8901", "carType": "아이오닉 6", "phone": "010-3333-4444", "inTime": "2026-08-04 14:00", "outTime": "2026-08-04 17:00", "durationMinutes": 180, "feeWon": 7500, "status": "SETTLED" }
+  ],
+  "settlements": [
+    { "id": "SET-3001", "recId": "REC-2001", "carNo": "123가 4567", "lotName": "강남역 노외 공영주차장", "feeWon": 12000, "discountType": "일반", "settleTime": "2026-08-05 13:35:00", "status": "OCCUPIED" },
+    { "id": "SET-3002", "recId": "REC-2003", "carNo": "56다 8901", "lotName": "송파 잠실역 공영주차장", "feeWon": 7500, "discountType": "전기차 50% 감면", "settleTime": "2026-08-04 17:05:00", "status": "SETTLED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9101", "recId": "REC-2001", "operator": "김주차 (관제팀장)", "action": "차량 123가 4567 강남역 공영 A-12 주차면 입차 및 요금 산정 시작", "timestamp": "2026-08-05 09:30:00", "status": "SUCCESS" },
+    { "id": "ACT-9102", "recId": "REC-2003", "operator": "이정산 (수석원)", "action": "차량 56다 8901 신용카드 무인 자동 정산 완료 (7,500원)", "timestamp": "2026-08-04 17:05:00", "status": "SUCCESS" }
+  ],
+  "parkStats": {
+    "totalLots": 8,
+    "totalSpaces": 120,
+    "totalRecords": 80,
+    "occupiedCount": 42,
+    "unpaidCount": 14,
+    "totalRevenueWon": 9650000,
+    "avgTurnoverRate": 4.2
+  }
+}

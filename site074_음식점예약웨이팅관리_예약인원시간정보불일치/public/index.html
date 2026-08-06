@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f97316' stroke-width='2'%3E%3Cpath d='M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2'/%3E%3Cpath d='M7 2v20'/%3E%3Cpath d='M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7'/%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TableNow | 실시간 음식점 예약 및 스마트 웨이팅 솔루션</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Vue 3 Global CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- Header Navigation Bar -->
+      <header class="app-header">
+        <div class="logo-group">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+            <path d="M7 2v20" />
+            <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+          </svg>
+          <span class="logo-title">TableNow</span>
+          <span class="logo-subtitle">Smart Waitlist & Booking</span>
+        </div>
+
+        <!-- User Session Switcher & Cached Stats (Error 6 Target) -->
+        <div class="header-dashboard">
+          <div class="kpis-group">
+            <div class="stat-card">
+              <span>🍽️ 누적 내 예약건:</span>
+              <strong class="stat-value">{{ cachedTotalReservations }}건</strong>
+            </div>
+            <div class="stat-card">
+              <span>⏳ 활성 웨이팅 알림:</span>
+              <strong class="stat-value-alert">{{ cachedActiveWaitingCount }}건</strong>
+            </div>
+          </div>
+          <small class="warn-desc">* 사용자 계정(A ➔ B) 변경 시 예약 목록은 B로 갱신되나 상단 예약수/웨이팅 알림은 A 캐시가 남음 (Error 6)</small>
+        </div>
+
+        <div class="header-controls">
+          <div class="user-selector">
+            <span>로그인 고객:</span>
+            <select :value="activeUser" @change="handleUserSwitch($event.target.value)">
+              <option value="USER_A">고객 A (김철수 회원)</option>
+              <option value="USER_B">고객 B (이영희 회원)</option>
+            </select>
+          </div>
+          <button class="sandbox-reset-btn" @click="resetSandbox">
+            🔄 매장 리셋
+          </button>
+        </div>
+      </header>
+
+      <!-- App Main Workspace Grid Layout -->
+      <div class="tablenow-grid">
+
+        <!-- Left Column: Search & Filters -->
+        <aside class="panel-section filter-sidebar">
+          <h3>📌 음식점 탐색 및 정렬</h3>
+          
+          <div class="filter-group">
+            <label>지역구 선택:</label>
+            <select v-model="filterRegion" @change="triggerSearchRace">
+              <option value="ALL">전체 지역구</option>
+              <option value="용산구">용산구</option>
+              <option value="강남구">강남구</option>
+              <option value="성동구">성동구</option>
+              <option value="마포구">마포구</option>
+              <option value="종로구">종로구</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>음식 카테고리 필터 (Error 5):</label>
+            <select v-model="filterCategory" @change="triggerSearchRace">
+              <option value="ALL">전체 음식</option>
+              <option value="한식">한식 (Error 5)</option>
+              <option value="일식">일식</option>
+              <option value="양식">양식</option>
+              <option value="중식">중식</option>
+            </select>
+            <small class="warn-desc">* 필터 고속 변경 시 이전 응답(한식, 3초)이 최신 결과를 덮어쓰고 요약 정보가 엇갈림 (Error 5)</small>
+          </div>
+
+          <div class="filter-group">
+            <label>평점순 정렬 (Error 3):</label>
+            <select v-model="ratingSortOrder">
+              <option value="NONE">기본 순서</option>
+              <option value="RATING_DESC">평점 높은순 (Error 3)</option>
+            </select>
+            <small class="warn-desc">* 평점순 정렬 상태에서 예약 버튼 클릭 시, 정렬 인덱스 불일치로 엉뚱한 매장이 예약됨 (Error 3)</small>
+          </div>
+
+          <!-- Restaurant Catalog list -->
+          <div class="restaurants-stack">
+            <h4>🏬 인기 맛집 대장 (최소 14곳)</h4>
+            <div 
+              v-for="(rst, idx) in sortedRestaurants" 
+              :key="rst.id"
+              :class="['rst-card', selectedRestaurant?.id === rst.id ? 'active' : '']"
+              @click="selectRestaurant(rst)"
+            >
+              <div class="rst-head">
+                <span class="cat-tag">{{ rst.category }}</span>
+                <span class="rating-tag">⭐ {{ rst.rating }}</span>
+              </div>
+              <h5 class="rst-name">{{ rst.name }}</h5>
+              <div class="rst-foot">
+                <span>{{ rst.region }} | 대기: {{ rst.waitingCount }}팀</span>
+                <button class="book-btn-sm" @click.stop="confirmBooking(idx)">
+                  즉시 예약 (Error 3)
+                </button>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Center Column: Restaurant Image & SVG Table Map -->
+        <main class="panel-section center-section">
+          
+          <!-- Restaurant Header Preview & Image 404 test (Error 7 Target) -->
+          <div v-if="selectedRestaurant" class="rst-detail-header">
+            <h2>{{ selectedRestaurant.name }}</h2>
+            <p>카테고리: {{ selectedRestaurant.category }} | 위치: {{ selectedRestaurant.region }} | 평점: ⭐ {{ selectedRestaurant.rating }}</p>
+            
+            <div class="rst-image-preview">
+              <div v-if="selectedRestaurant.imageUrl" class="img-frame">
+                <img :src="selectedRestaurant.imageUrl" alt="매장 대표 사진" class="rst-img" />
+                <span class="img-path-lbl">URL: {{ selectedRestaurant.imageUrl }}</span>
+              </div>
+              <div v-else class="img-placeholder">
+                등록된 대표 사진이 없습니다.
+              </div>
+            </div>
+            <small class="warn-desc">* 매장 이미지 파일명에 공백이 있으면(gourmet steak.jpg) 상세 페이지 URL 이중 인코딩으로 404 발생 (Error 7)</small>
+          </div>
+
+          <!-- SVG Table Layout Map (Error 4 Target) -->
+          <div class="widget-section table-map-widget">
+            <div class="widget-header">
+              <h2>🗺️ 매장 실시간 테이블 배치도 (SVG Map)</h2>
+            </div>
+            <div class="table-map-canvas">
+              <svg viewBox="0 0 500 200" class="svg-table-map">
+                <!-- Outer Store boundary -->
+                <rect x="10" y="10" width="480" height="180" rx="8" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="2" />
+                <text x="20" y="30" fill="#64748b" font-size="11" font-weight="bold">TableNow Store Hall Layout</text>
+
+                <!-- Tables -->
+                <g v-for="(tNo, idx) in ['T1', 'T2', 'T3', 'T4']" :key="tNo">
+                  <rect 
+                    :x="50 + idx * 105" 
+                    y="60" 
+                    width="80" 
+                    height="80" 
+                    rx="6" 
+                    :fill="isTableAssigned(tNo) ? '#ef4444' : '#10b981'" 
+                    stroke="#1e293b" 
+                    stroke-width="2"
+                    class="table-rect"
+                  />
+                  <text 
+                    :x="80 + idx * 105" 
+                    :y="105" 
+                    fill="#ffffff" 
+                    font-size="14" 
+                    font-weight="bold" 
+                    text-anchor="middle"
+                  >
+                    {{ tNo }}
+                  </text>
+                  <text 
+                    :x="80 + idx * 105" 
+                    :y="125" 
+                    fill="#e2e8f0" 
+                    font-size="10" 
+                    text-anchor="middle"
+                  >
+                    {{ isTableAssigned(tNo) ? '점유 중' : '비어 있음' }}
+                  </text>
+                </g>
+              </svg>
+            </div>
+            <small class="warn-desc">* 테이블 배정 삭제(DELETE) 시 배정은 지워지나 매장 테이블 배치도 및 혼잡도에는 계속 점유 중으로 남음 (Error 4)</small>
+          </div>
+
+        </main>
+
+        <!-- Right Column: Reservations List & Operations Drawer -->
+        <aside class="panel-section operations-sidebar">
+          
+          <!-- Reservation List table -->
+          <div class="detail-widget">
+            <h3>📑 고객 예약 및 웨이팅 현황 대장 (최소 24개)</h3>
+            <div class="table-scroll-box">
+              <table>
+                <thead>
+                  <tr>
+                    <th>예약 ID</th>
+                    <th>고객명</th>
+                    <th>시간</th>
+                    <th>인원</th>
+                    <th>상태</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr 
+                    v-for="resv in userReservations" 
+                    :key="resv.id"
+                    :class="['resv-tr', selectedReservation?.id === resv.id ? 'active' : '']"
+                    @click="selectedReservation = resv"
+                  >
+                    <td><strong>{{ resv.id }}</strong></td>
+                    <td>{{ resv.guestName }}</td>
+                    <td>{{ resv.time }}</td>
+                    <td>{{ resv.partySize }}명</td>
+                    <td><span :class="['status-badge', resv.status.toLowerCase()]">{{ resv.status }}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Reservation Party Size & Time adjust form (Error 1 Target) -->
+          <div class="detail-widget">
+            <h3>📅 예약 인원 및 시간 조정</h3>
+            <div v-if="selectedReservation" class="detail-panel">
+              <p>선택 예약번호: <strong>{{ selectedReservation.id }}</strong> ({{ selectedReservation.rstName }})</p>
+
+              <div class="form-group">
+                <label>방문 예약 시간 변경:</label>
+                <input type="text" placeholder="예: 18:30" v-model="selectedReservation.time" />
+              </div>
+
+              <div class="form-group">
+                <label>방문 인원수 변경:</label>
+                <div class="input-row">
+                  <input type="number" min="1" max="20" v-model="selectedReservation.partySize" />
+                  <button class="save-btn" @click="triggerPartySizeTimeRace(selectedReservation)">
+                    인원 수정 (Error 1)
+                  </button>
+                </div>
+                <small class="warn-desc">* 인원 수정(3초 지연 완료) 직후 시간 변경(0.1초 완료) 시, 3초 뒤 이전 시간 데이터가 동봉되어 덮어써짐 (Error 1)</small>
+              </div>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              인원/시간을 변경하려면 예약 목록 행을 먼저 클릭해 주십시오.
+            </div>
+          </div>
+
+          <!-- Waiting & Table Actions (Error 2 & Error 4 Target) -->
+          <div class="detail-widget">
+            <h3>⚡ 웨이팅 등록 및 테이블 배정 삭제</h3>
+            <div v-if="selectedReservation" class="detail-panel">
+              <p>배정 테이블: <strong>{{ selectedReservation.tableNo || '미배정' }}</strong></p>
+              <p>현재 상태: <span :class="['status-badge', selectedReservation.status.toLowerCase()]">{{ selectedReservation.status }}</span></p>
+
+              <div class="front-actions-group">
+                <button 
+                  class="cancel-resv-btn"
+                  @click="triggerCancelWaitingConflict(selectedReservation)"
+                >
+                  ⚡ 취소 후 웨이팅 등록 (Error 2)
+                </button>
+                <button 
+                  class="delete-table-btn"
+                  @click="deleteTableAssignment(selectedReservation.id)"
+                >
+                  🗑️ 테이블 배정 소거 (Error 4)
+                </button>
+              </div>
+              <small class="warn-desc">* 취소(0.5초 완료) 직후 웨이팅 등록(4초 지연 완료) 요청 시 취소 완료된 예약이 WAITING으로 재부활함 (Error 2)</small>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              테이블을 관리하려면 예약을 선택하십시오.
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+      <!-- Toast notifications -->
+      <div class="toast-container">
+        <div 
+          v-for="t in toasts" 
+          :key="t.id" 
+          :class="['toast-card', t.type]"
+        >
+          <span class="toast-icon">
+            {{ t.type === 'success' ? '✅' : t.type === 'danger' ? '❌' : '⚠️' }}
+          </span>
+          <span class="toast-message">{{ t.message }}</span>
+          <button class="toast-close" @click="removeToast(t.id)">
+            &times;
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

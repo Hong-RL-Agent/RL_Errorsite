@@ -1,0 +1,51 @@
+{
+  "centers": [
+    { "id": "CTR-01", "name": "강남 모터스 공식 정비 센터", "region": "강남구", "rating": 4.9, "serviceType": "ENGINE_OIL", "estPrice": 120000, "imageUrl": "/uploads/gangnam_motors.jpg" },
+    { "id": "CTR-02", "name": "마포 블루핸즈 오토 서비스", "region": "마포구", "rating": 4.8, "serviceType": "BRAKE_PAD", "estPrice": 180000, "imageUrl": "/uploads/mapo_blue.jpg" },
+    { "id": "CTR-03", "name": "성수 테크노 프리미엄 오토", "region": "성동구", "rating": 4.7, "serviceType": "TIRE", "estPrice": 450000, "imageUrl": "" },
+    { "id": "CTR-04", "name": "서초 스피드 정비 카센터", "region": "서초구", "rating": 4.5, "serviceType": "BATTERY", "estPrice": 210000, "imageUrl": "" },
+    { "id": "CTR-05", "name": "송파 잠실 수입차 정비 전문점", "region": "송파구", "rating": 4.9, "serviceType": "ENGINE_OIL", "estPrice": 160000, "imageUrl": "" },
+    { "id": "CTR-06", "name": "영등포 여의도 정밀 점검소", "region": "영등포구", "rating": 4.6, "serviceType": "INSPECTION", "estPrice": 80000, "imageUrl": "" },
+    { "id": "CTR-07", "name": "용산 한남 독일차 엔진 클리닉", "region": "용산구", "rating": 4.8, "serviceType": "ENGINE_OIL", "estPrice": 230000, "imageUrl": "" },
+    { "id": "CTR-08", "name": "종로 광화문 종합 자동차 공업사", "region": "종로구", "rating": 4.4, "serviceType": "BRAKE_PAD", "estPrice": 170000, "imageUrl": "" },
+    { "id": "CTR-09", "name": "강동 하남 타이어 전문 매장", "region": "강동구", "rating": 4.6, "serviceType": "TIRE", "estPrice": 420000, "imageUrl": "" },
+    { "id": "CTR-10", "name": "분당 판교 친환경 전기차 정비소", "region": "분당구", "rating": 4.9, "serviceType": "BATTERY", "estPrice": 280000, "imageUrl": "" },
+    { "id": "CTR-11", "name": "일산 킨텍스 차체 도장 튜닝샵", "region": "일산구", "rating": 4.3, "serviceType": "INSPECTION", "estPrice": 95000, "imageUrl": "" },
+    { "id": "CTR-12", "name": "구로 가산 휠 밸런스 점검소", "region": "구로구", "rating": 4.5, "serviceType": "TIRE", "estPrice": 380000, "imageUrl": "" }
+  ],
+  "vehicles": [
+    { "id": "VEC-001", "carNumber": "12가 3456", "model": "현대 그랜저 IG", "year": 2021, "totalMaintenanceCost": 1250000, "lastServiceItem": "엔진오일 및 필터 교환", "userId": "USER_A" },
+    { "id": "VEC-002", "carNumber": "56나 7890", "model": "기아 카니발 4세대", "year": 2022, "totalMaintenanceCost": 890000, "lastServiceItem": "전륜 브레이크 패드 교체", "userId": "USER_B" },
+    { "id": "VEC-003", "carNumber": "34다 1234", "model": "제네시스 G80", "year": 2023, "totalMaintenanceCost": 1400000, "lastServiceItem": "타이어 4본 전면 교체", "userId": "USER_A" },
+    { "id": "VEC-004", "carNumber": "78라 5678", "model": "BMW 520i", "year": 2020, "totalMaintenanceCost": 2100000, "lastServiceItem": "배터리 교체 및 점검", "userId": "USER_A" },
+    { "id": "VEC-005", "carNumber": "90마 9012", "model": "벤츠 E250", "year": 2022, "totalMaintenanceCost": 1750000, "lastServiceItem": "종합 정밀 종합점검", "userId": "USER_A" },
+    { "id": "VEC-006", "carNumber": "11바 2233", "model": "아우디 A6", "year": 2021, "totalMaintenanceCost": 1600000, "lastServiceItem": "엔진오일 교환", "userId": "USER_B" },
+    { "id": "VEC-007", "carNumber": "44사 5566", "model": "볼보 XC60", "year": 2023, "totalMaintenanceCost": 920000, "lastServiceItem": "브레이크 패드 교체", "userId": "USER_B" },
+    { "id": "VEC-008", "carNumber": "77아 8899", "model": "포르쉐 파나메라", "year": 2022, "totalMaintenanceCost": 3500000, "lastServiceItem": "타이어 교체", "userId": "USER_B" },
+    { "id": "VEC-009", "carNumber": "22자 3344", "model": "테슬라 모델 Y", "year": 2023, "totalMaintenanceCost": 450000, "lastServiceItem": "배터리 냉각수 점검", "userId": "USER_B" },
+    { "id": "VEC-010", "carNumber": "66차 7788", "model": "아이오닉 5", "year": 2022, "totalMaintenanceCost": 600000, "lastServiceItem": "정밀 점검", "userId": "USER_B" }
+  ],
+  "reservations": [
+    { "id": "RES-001", "centerId": "CTR-01", "centerName": "강남 모터스 공식 정비 센터", "carNumber": "12가 3456", "serviceType": "ENGINE_OIL", "date": "2026-08-10", "estPrice": 120000, "status": "QUEUED", "userId": "USER_A" },
+    { "id": "RES-002", "centerId": "CTR-02", "centerName": "마포 블루핸즈 오토 서비스", "carNumber": "12가 3456", "serviceType": "BRAKE_PAD", "date": "2026-08-12", "estPrice": 180000, "status": "IN_PROGRESS", "userId": "USER_A" },
+    { "id": "RES-003", "centerId": "CTR-03", "centerName": "성수 테크노 프리미엄 오토", "carNumber": "34다 1234", "serviceType": "TIRE", "date": "2026-08-11", "estPrice": 450000, "status": "COMPLETED", "userId": "USER_A" },
+    { "id": "RES-004", "centerId": "CTR-04", "centerName": "서초 스피드 정비 카센터", "carNumber": "78라 5678", "serviceType": "BATTERY", "date": "2026-08-15", "estPrice": 210000, "status": "QUEUED", "userId": "USER_A" },
+    { "id": "RES-005", "centerId": "CTR-05", "centerName": "송파 잠실 수입차 정비 전문점", "carNumber": "90마 9012", "serviceType": "ENGINE_OIL", "date": "2026-08-14", "estPrice": 160000, "status": "CANCELLED", "userId": "USER_A" },
+    { "id": "RES-006", "centerId": "CTR-06", "centerName": "영등포 여의도 정밀 점검소", "carNumber": "12가 3456", "serviceType": "INSPECTION", "date": "2026-08-16", "estPrice": 80000, "status": "QUEUED", "userId": "USER_A" },
+    { "id": "RES-007", "centerId": "CTR-07", "centerName": "용산 한남 독일차 엔진 클리닉", "carNumber": "34다 1234", "serviceType": "ENGINE_OIL", "date": "2026-08-17", "estPrice": 230000, "status": "QUEUED", "userId": "USER_A" },
+    { "id": "RES-008", "centerId": "CTR-08", "centerName": "종로 광화문 종합 자동차 공업사", "carNumber": "78라 5678", "serviceType": "BRAKE_PAD", "date": "2026-08-18", "estPrice": 170000, "status": "QUEUED", "userId": "USER_A" },
+    { "id": "RES-009", "centerId": "CTR-09", "centerName": "강동 하남 타이어 전문 매장", "carNumber": "90마 9012", "serviceType": "TIRE", "date": "2026-08-13", "estPrice": 420000, "status": "QUEUED", "userId": "USER_A" },
+    { "id": "RES-010", "centerId": "CTR-10", "centerName": "분당 판교 친환경 전기차 정비소", "carNumber": "12가 3456", "serviceType": "BATTERY", "date": "2026-08-19", "estPrice": 280000, "status": "QUEUED", "userId": "USER_A" },
+    { "id": "RES-011", "centerId": "CTR-11", "centerName": "일산 킨텍스 차체 도장 튜닝샵", "carNumber": "56나 7890", "serviceType": "INSPECTION", "date": "2026-08-20", "estPrice": 95000, "status": "QUEUED", "userId": "USER_B" },
+    { "id": "RES-012", "centerId": "CTR-12", "centerName": "구로 가산 휠 밸런스 점검소", "carNumber": "11바 2233", "serviceType": "TIRE", "date": "2026-08-21", "estPrice": 380000, "status": "QUEUED", "userId": "USER_B" },
+    { "id": "RES-013", "centerId": "CTR-01", "centerName": "강남 모터스 공식 정비 센터", "carNumber": "44사 5566", "serviceType": "ENGINE_OIL", "date": "2026-08-22", "estPrice": 120000, "status": "QUEUED", "userId": "USER_B" },
+    { "id": "RES-014", "centerId": "CTR-02", "centerName": "마포 블루핸즈 오토 서비스", "carNumber": "77아 8899", "serviceType": "BRAKE_PAD", "date": "2026-08-23", "estPrice": 180000, "status": "QUEUED", "userId": "USER_B" },
+    { "id": "RES-015", "centerId": "CTR-03", "centerName": "성수 테크노 프리미엄 오토", "carNumber": "22자 3344", "serviceType": "TIRE", "date": "2026-08-24", "estPrice": 450000, "status": "QUEUED", "userId": "USER_B" },
+    { "id": "RES-016", "centerId": "CTR-04", "centerName": "서초 스피드 정비 카센터", "carNumber": "66차 7788", "serviceType": "BATTERY", "date": "2026-08-25", "estPrice": 210000, "status": "QUEUED", "userId": "USER_B" },
+    { "id": "RES-017", "centerId": "CTR-05", "centerName": "송파 잠실 수입차 정비 전문점", "carNumber": "56나 7890", "serviceType": "ENGINE_OIL", "date": "2026-08-26", "estPrice": 160000, "status": "QUEUED", "userId": "USER_B" },
+    { "id": "RES-018", "centerId": "CTR-06", "centerName": "영등포 여의도 정밀 점검소", "carNumber": "11바 2233", "serviceType": "INSPECTION", "date": "2026-08-27", "estPrice": 80000, "status": "QUEUED", "userId": "USER_B" },
+    { "id": "RES-019", "centerId": "CTR-07", "centerName": "용산 한남 독일차 엔진 클리닉", "carNumber": "44사 5566", "serviceType": "ENGINE_OIL", "date": "2026-08-28", "estPrice": 230000, "status": "QUEUED", "userId": "USER_B" },
+    { "id": "RES-020", "centerId": "CTR-08", "centerName": "종로 광화문 종합 자동차 공업사", "carNumber": "77아 8899", "serviceType": "BRAKE_PAD", "date": "2026-08-29", "estPrice": 170000, "status": "QUEUED", "userId": "USER_B" }
+  ],
+  "activityLogs": []
+}

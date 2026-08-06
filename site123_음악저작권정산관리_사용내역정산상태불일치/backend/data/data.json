@@ -1,0 +1,48 @@
+{
+  "staffs": [
+    { "id": "STF-8001", "name": "김저작 (저작권 분배 총괄이사 - 관리자 A)", "role": "MANAGER", "dept": "저작권 정산 본부", "handledTracks": 160 },
+    { "id": "STF-8002", "name": "이정산 (음원 수익 정산팀장 - 관리자 B)", "role": "MANAGER", "dept": "정산 분배 사업부", "handledTracks": 145 },
+    { "id": "STF-8003", "name": "박권리 (저작권 침해 분쟁담당)", "role": "STAFF", "dept": "권리 보호 법무팀", "handledTracks": 120 },
+    { "id": "STF-8004", "name": "최스트리밍 (플랫폼 로깅 분석원)", "role": "STAFF", "dept": "음원 모니터링 팀", "handledTracks": 105 },
+    { "id": "STF-8005", "name": "정글로벌 (해외 정산 징수원)", "role": "STAFF", "dept": "글로벌 징수 협력팀", "handledTracks": 92 }
+  ],
+  "creators": [
+    { "id": "CRT-1001", "name": "김멜로디 작곡가", "type": "작곡가", "totalRoyaltyWon": 85000000, "status": "ACTIVE" },
+    { "id": "CRT-1002", "name": "이작사 감성시인", "type": "작사가", "totalRoyaltyWon": 62000000, "status": "ACTIVE" },
+    { "id": "CRT-1003", "name": "박비트 편곡가", "type": "편곡가", "totalRoyaltyWon": 48000000, "status": "ACTIVE" },
+    { "id": "CRT-1004", "name": "최보컬 싱어송라이터", "type": "작곡/작사/가창", "totalRoyaltyWon": 94000000, "status": "ACTIVE" },
+    { "id": "CRT-1005", "name": "정프로듀서 디렉터", "type": "음반프로듀서", "totalRoyaltyWon": 71000000, "status": "ACTIVE" }
+  ],
+  "tracks": [
+    { "id": "TRK-2001", "title": "별빛 아래 첫사랑 멜로디", "primaryCreatorName": "김멜로디 작곡가", "genre": "K-POP", "royaltyRate": 12.5, "streamCount": 4800000, "totalRevenueWon": 60000000, "status": "CONFIRMED" },
+    { "id": "TRK-2002", "title": "비 내리는 밤의 센티멘탈 발라드", "primaryCreatorName": "이작사 감성시인", "genre": "발라드", "royaltyRate": 10.0, "streamCount": 3200000, "totalRevenueWon": 32000000, "status": "SETTLING" },
+    { "id": "TRK-2003", "title": "도시의 나이트 드라이브 힙합", "primaryCreatorName": "박비트 편곡가", "genre": "힙합/R&B", "royaltyRate": 11.0, "streamCount": 2900000, "totalRevenueWon": 31900000, "status": "CONFIRMED" },
+    { "id": "TRK-2004", "title": "청춘의 스포트라이트 댄스", "primaryCreatorName": "최보컬 싱어송라이터", "genre": "댄스/플래시", "royaltyRate": 14.0, "streamCount": 5600000, "totalRevenueWon": 78400000, "status": "PAID" },
+    { "id": "TRK-2005", "title": "클래식 어쿠스틱 소나타 N호", "primaryCreatorName": "정프로듀서 디렉터", "genre": "인디/어쿠스틱", "royaltyRate": 9.5, "streamCount": 1800000, "totalRevenueWon": 17100000, "status": "CALCULATING" }
+  ],
+  "royaltySplits": [
+    { "id": "SPL-5001", "trackId": "TRK-2001", "creatorName": "김멜로디 작곡가", "role": "작곡", "splitPercent": 50.0, "payoutWon": 30000000 },
+    { "id": "SPL-5002", "trackId": "TRK-2001", "creatorName": "이작사 감성시인", "role": "작사", "splitPercent": 50.0, "payoutWon": 30000000 }
+  ],
+  "settlements": [
+    { "id": "STL-6001", "trackId": "TRK-2001", "trackTitle": "별빛 아래 첫사랑 멜로디", "creatorName": "김멜로디 작곡가", "salesPeriod": "2026년 2분기", "streamCount": 2400000, "grossRevenueWon": 30000000, "royaltyPayoutWon": 3750000, "status": "CONFIRMED" },
+    { "id": "STL-6002", "trackId": "TRK-2002", "trackTitle": "비 내리는 밤의 센티멘탈 발라드", "creatorName": "이작사 감성시인", "salesPeriod": "2026년 2분기", "streamCount": 1600000, "grossRevenueWon": 16000000, "royaltyPayoutWon": 1600000, "status": "SETTLING" }
+  ],
+  "usageLogs": [
+    { "id": "ULOG-4001", "trackId": "TRK-2001", "trackTitle": "별빛 아래 첫사랑 멜로디", "platform": "멜론 스트리밍", "plays": 1200000, "revenueWon": 15000000, "timestamp": "2026-08-04 12:00:00" },
+    { "id": "ULOG-4002", "trackId": "TRK-2004", "trackTitle": "청춘의 스포트라이트 댄스", "platform": "지니 뮤직 & 유튜브 뮤직", "plays": 1800000, "revenueWon": 25200000, "timestamp": "2026-08-04 14:30:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9501", "trackId": "TRK-2001", "operator": "김저작 (총괄이사)", "action": "별빛 아래 첫사랑 멜로디 2분기 저작권 인세 37,500,000원 정산확정 승인 완료", "timestamp": "2026-08-04 16:00:00", "status": "SUCCESS" },
+    { "id": "ACT-9502", "trackId": "TRK-2004", "operator": "이정산 (팀장)", "action": "청춘의 스포트라이트 댄스 권한자 계좌 지급완료 처리", "timestamp": "2026-08-04 17:15:00", "status": "SUCCESS" }
+  ],
+  "royaltyStats": {
+    "totalTracks": 50,
+    "totalCreators": 35,
+    "confirmedCount": 24,
+    "settlingCount": 12,
+    "totalStreamCount": 128000000,
+    "totalRoyaltyPaidWon": 1450000000,
+    "topGenre": "K-POP"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "staffs": [
+    { "id": "STF-5001", "name": "김장례 (총괄 장례지도사 - 직원 A)", "role": "MANAGER", "dept": "장례 의전1팀", "handledReservations": 210 },
+    { "id": "STF-5002", "name": "이의전 (상담 및 의전 전담 - 직원 B)", "role": "MANAGER", "dept": "고객 상주 상담실", "handledReservations": 185 },
+    { "id": "STF-5003", "name": "박안내 (조문객 안내 데스크)", "role": "STAFF", "dept": "1층 안치실 & 조문 안내소", "handledReservations": 160 },
+    { "id": "STF-5004", "name": "최정리 (빈소 위생 정돈팀장)", "role": "STAFF", "dept": "빈소 케어 관리부", "handledReservations": 140 },
+    { "id": "STF-5005", "name": "정영결 (발인 및 발인차 운전관)", "role": "STAFF", "dept": "영결식 운구 차량팀", "handledReservations": 115 }
+  ],
+  "altars": [
+    { "id": "ALT-1001", "altarNo": "특실 101호", "size": "특대형 (150평형)", "deceasedName": "故 홍길동 님", "chiefMourner": "홍성민 (장남)", "entryDate": "2026-08-04 09:00", "funeralDate": "2026-08-06 07:00", "status": "IN_USE" },
+    { "id": "ALT-1002", "altarNo": "VIP 201호", "size": "VIP 전용 (200평형)", "deceasedName": "故 김철수 님", "chiefMourner": "김민지 (장녀)", "entryDate": "2026-08-04 14:00", "funeralDate": "2026-08-06 10:00", "status": "GUIDING" },
+    { "id": "ALT-1003", "altarNo": "일반실 302호", "size": "일반형 (80평형)", "deceasedName": "故 이영희 님", "chiefMourner": "이준호 (배우자)", "entryDate": "2026-08-05 08:00", "funeralDate": "2026-08-07 08:00", "status": "VACANT" }
+  ],
+  "reservations": [
+    { "id": "RES-2001", "resCode": "MD-20260805-01", "altarNo": "특실 101호", "clientName": "홍성민", "phone": "010-1111-2222", "requests": "기독교 장례 예배 세팅 및 꽃장식 추가", "scheduleText": "2026-08-04 입실 ➔ 08-06 07:00 발인", "status": "IN_USE" },
+    { "id": "RES-2002", "resCode": "MD-20260805-02", "altarNo": "VIP 201호", "clientName": "김민지", "phone": "010-2222-3333", "requests": "불교 영가축원 및 제단 생화 연출", "scheduleText": "2026-08-04 입실 ➔ 08-06 10:00 발인", "status": "GUIDING" }
+  ],
+  "schedules": [
+    { "id": "SCH-3001", "resId": "RES-2001", "altarNo": "특실 101호", "eventTitle": "故 홍길동 님 입관식 및 성복제", "eventTime": "2026-08-05 14:00", "location": "지하 1층 입관실" },
+    { "id": "SCH-3002", "resId": "RES-2002", "altarNo": "VIP 201호", "eventTitle": "故 김철수 님 발인 예배 및 영결식", "eventTime": "2026-08-06 10:00", "location": "1층 영결식장" }
+  ],
+  "visitorGuides": [
+    { "id": "VLOG-6001", "resId": "RES-2001", "altarNo": "특실 101호", "deceasedName": "故 홍길동 님", "visitorGroup": "대한상공회의소 임직원 조문단", "visitorCount": 45, "timestamp": "2026-08-04 18:30:00" },
+    { "id": "VLOG-6002", "resId": "RES-2002", "altarNo": "VIP 201호", "deceasedName": "故 김철수 님", "visitorGroup": "한국대학교 동문회", "visitorCount": 30, "timestamp": "2026-08-04 20:10:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9301", "resId": "RES-2001", "operator": "김장례 (장례지도사)", "action": "특실 101호 故 홍길동 님 빈소 입실 배정 및 장례 일정 등록 완료", "timestamp": "2026-08-04 09:30:00", "status": "SUCCESS" },
+    { "id": "ACT-9302", "resId": "RES-2002", "operator": "이의전 (팀장)", "action": "VIP 201호 조문객 1층 키오스크 화면 배치 및 안내 개시", "timestamp": "2026-08-04 14:15:00", "status": "SUCCESS" }
+  ],
+  "memorialStats": {
+    "totalAltars": 25,
+    "totalReservations": 40,
+    "totalSchedules": 35,
+    "inUseCount": 12,
+    "guidingCount": 8,
+    "totalVisitors": 3840,
+    "avgOccupancyRatePercent": 80.0
+  }
+}

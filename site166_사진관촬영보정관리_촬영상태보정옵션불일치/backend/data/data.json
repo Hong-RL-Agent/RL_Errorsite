@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-2201", "name": "김스튜디오 (본점 수석 실장 - 직원 A)", "role": "MANAGER", "productCategory": "프로필/증명사진 패키지", "handledShoots": 750 },
+    { "id": "STF-2202", "name": "이보정 (웨딩 & 스냅 전담 디자이너 - 직원 B)", "role": "MANAGER", "productCategory": "웨딩/웨딩스냅 패키지", "handledShoots": 610 },
+    { "id": "STF-2203", "name": "박리터칭 (디지털 색보정 및 피부 정밀 디자이너)", "role": "STAFF", "productCategory": "가족/바디프로필 패키지", "handledShoots": 470 },
+    { "id": "STF-2204", "name": "최출고 (앨범 제작 및 아크릴 액자 출고 기사)", "role": "STAFF", "productCategory": "우정/커플 컨셉 패키지", "handledShoots": 340 },
+    { "id": "STF-2205", "name": "정촬영 (조명 및 인물 포즈 연출가)", "role": "STAFF", "productCategory": "키즈/돌스냅 패키지", "handledShoots": 250 }
+  ],
+  "customers": [
+    { "id": "CST-1001", "customerCode": "PSO-20260805-01", "customerName": "최스냅", "phone": "010-2222-8888", "shootConcept": "프리미엄 쿨톤 메이크업 프로필", "totalReservations": 3, "registeredDate": "2026-08-01" },
+    { "id": "CST-1002", "customerCode": "PSO-20260805-02", "customerName": "강카메라", "phone": "010-3333-9999", "shootConcept": "야외 데이트 스냅 & 앨범 20P", "totalReservations": 5, "registeredDate": "2026-08-03" },
+    { "id": "CST-1003", "customerCode": "PSO-20260805-03", "customerName": "윤앨범", "phone": "010-4444-0000", "shootConcept": "대가족 4인 액자 풀패키지", "totalReservations": 2, "registeredDate": "2026-07-28" }
+  ],
+  "products": [
+    { "id": "PRD-5001", "productCode": "PSO-PRD-01", "productName": "퍼스널 컬러 프리미엄 프로필 컷", "productCategory": "프로필/증명사진 패키지", "priceWon": 150000, "status": "AVAILABLE" },
+    { "id": "PRD-5002", "productCode": "PSO-PRD-02", "productName": "감성 웨딩 로드 스냅 앨범 30P", "productCategory": "웨딩/웨딩스냅 패키지", "priceWon": 850000, "status": "AVAILABLE" },
+    { "id": "PRD-5003", "productCode": "PSO-PRD-03", "productName": "바디프로필 3컨셉 원본전송+액자", "productCategory": "가족/바디프로필 패키지", "priceWon": 380000, "status": "AVAILABLE" }
+  ],
+  "reservations": [
+    { "id": "RSV-4001", "rsvCode": "PSO-RSV-20260805-01", "customerName": "최스냅", "phone": "010-2222-8888", "productName": "퍼스널 컬러 프리미엄 프로필 컷", "productCategory": "프로필/증명사진 패키지", "shootDate": "2026-08-05 14:00", "retouchOption": "피부 톤업 & 윤곽 정밀 성형보정 (1:1 밀착)", "priceWon": 150000, "status": "RETOUCHING" },
+    { "id": "RSV-4002", "rsvCode": "PSO-RSV-20260805-02", "customerName": "강카메라", "phone": "010-3333-9999", "productName": "감성 웨딩 로드 스냅 앨범 30P", "productCategory": "웨딩/웨딩스냅 패키지", "shootDate": "2026-08-06 10:30", "retouchOption": "빈티지 필름 컬러 & 비율 정밀 보정", "priceWon": 850000, "status": "RESERVED" },
+    { "id": "RSV-4003", "rsvCode": "PSO-RSV-20260805-03", "customerName": "윤앨범", "phone": "010-4444-0000", "productName": "바디프로필 3컨셉 원본전송+액자", "productCategory": "가족/바디프로필 패키지", "shootDate": "2026-08-04 15:00", "retouchOption": "근육 음영 명암 강조 & 라이트보정", "priceWon": 380000, "status": "DELIVERED" }
+  ],
+  "retouchTasks": [
+    { "id": "TASK-6001", "rsvId": "RSV-4001", "customerName": "최스냅", "retouchOption": "피부 톤업 & 윤곽 정밀 성형보정", "retoucher": "이보정", "progressPercent": 85, "status": "IN_PROGRESS" },
+    { "id": "TASK-6002", "rsvId": "RSV-4003", "customerName": "윤앨범", "retouchOption": "근육 음영 명암 강조", "retoucher": "박리터칭", "progressPercent": 100, "status": "COMPLETED" }
+  ],
+  "dispatchLogs": [
+    { "id": "DLOG-3001", "rsvId": "RSV-4001", "customerName": "최스냅", "itemType": "고화질 JPG 파일 이메일 전송 & 5x7 인화지 2장", "dispatchTime": "2026-08-05 16:30", "status": "SHIPPED" },
+    { "id": "DLOG-3002", "rsvId": "RSV-4003", "customerName": "윤앨범", "itemType": "11x14 아크릴 프리미엄 대형 액자 1점 우체국 택배 발송", "dispatchTime": "2026-08-04 17:00", "status": "SHIPPED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9920", "rsvId": "RSV-4001", "operator": "김스튜디오 (실장)", "action": "예약 RSV-4001 최스냅 고객 1:1 피부 톤업 및 윤곽 정밀 보정 작업 디자이너 이보정 배정", "timestamp": "2026-08-05 14:35:00", "status": "SUCCESS" },
+    { "id": "ACT-9921", "rsvId": "RSV-4003", "operator": "최출고 (기사)", "action": "예약 RSV-4003 윤앨범 고객 11x14 아크릴 액자 완충 포장 및 검수 완료 출고", "timestamp": "2026-08-04 17:05:00", "status": "SUCCESS" }
+  ],
+  "studioStats": {
+    "totalReservations": 60,
+    "totalCustomers": 50,
+    "totalProducts": 25,
+    "totalRetouchTasks": 70,
+    "totalDispatchLogs": 60,
+    "pendingRetouchCount": 9,
+    "shootingInProgressCount": 14,
+    "avgDispatchFulfillmentRate": 95.8
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "expenses": [
+    { "id": "EXP-001", "title": "서버 인프라 장비 교체 구매비", "department": "DEV", "type": "ITEM", "amount": 1500000, "requestedAmount": 1500000, "status": "PENDING", "applicant": "김철수", "date": "2026-07-28", "receiptUrl": "/uploads/receipt_server.jpg", "adminId": "ADMIN_A" },
+    { "id": "EXP-002", "title": "신규 프로젝트 팀 회식비", "department": "DEV", "type": "MEAL", "amount": 350000, "requestedAmount": 350000, "status": "PENDING", "applicant": "이영희", "date": "2026-07-29", "receiptUrl": "/uploads/영수증 (복사본).jpg", "adminId": "ADMIN_A" },
+    { "id": "EXP-003", "title": "지방 고객사 미팅 출장 교통비", "department": "SALES", "type": "TRAVEL", "amount": 120000, "requestedAmount": 120000, "status": "APPROVED", "applicant": "박민수", "date": "2026-07-25", "receiptUrl": "", "adminId": "ADMIN_A" },
+    { "id": "EXP-004", "title": "디자인팀 그래픽 소프트웨어 라이선스", "department": "DESIGN", "type": "SOFTWARE", "amount": 880000, "requestedAmount": 880000, "status": "PENDING", "applicant": "정수진", "date": "2026-07-30", "receiptUrl": "", "adminId": "ADMIN_A" },
+    { "id": "EXP-005", "title": "사무실 보충용 문구류 구매", "department": "HR", "type": "ITEM", "amount": 95000, "requestedAmount": 95000, "status": "REJECTED", "applicant": "최동현", "date": "2026-07-20", "receiptUrl": "", "adminId": "ADMIN_A" },
+    { "id": "EXP-006", "title": "개발팀 클라우드 서버 월간 사용료", "department": "DEV", "type": "SOFTWARE", "amount": 2400000, "requestedAmount": 2400000, "status": "PENDING", "applicant": "강서연", "date": "2026-07-31", "receiptUrl": "", "adminId": "ADMIN_A" },
+    { "id": "EXP-007", "title": "마케팅 SNS 광고집행비 3차", "department": "MARKETING", "type": "MARKETING", "amount": 3200000, "requestedAmount": 3200000, "status": "PENDING", "applicant": "윤재호", "date": "2026-07-27", "receiptUrl": "", "adminId": "ADMIN_A" },
+    { "id": "EXP-008", "title": "외부 전문가 초청 직무교육 강사료", "department": "HR", "type": "EDU", "amount": 500000, "requestedAmount": 500000, "status": "PENDING", "applicant": "한지민", "date": "2026-07-26", "receiptUrl": "", "adminId": "ADMIN_A" },
+    { "id": "EXP-009", "title": "디자인 모니터 4K 듀얼 구매", "department": "DESIGN", "type": "ITEM", "amount": 1100000, "requestedAmount": 1100000, "status": "PENDING", "applicant": "임건우", "date": "2026-07-28", "receiptUrl": "", "adminId": "ADMIN_A" },
+    { "id": "EXP-010", "title": "영업팀 미팅 선물용 상품권", "department": "SALES", "type": "MEAL", "amount": 400000, "requestedAmount": 400000, "status": "PENDING", "applicant": "송예은", "date": "2026-07-29", "receiptUrl": "", "adminId": "ADMIN_A" },
+    { "id": "EXP-011", "title": "해외 세미나 참가 항공권 결제", "department": "DEV", "type": "TRAVEL", "amount": 1800000, "requestedAmount": 1800000, "status": "PENDING", "applicant": "오현우", "date": "2026-07-22", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-012", "title": "신규 채용 플랫폼 채용공고 게시", "department": "HR", "type": "MARKETING", "amount": 660000, "requestedAmount": 660000, "status": "APPROVED", "applicant": "신나영", "date": "2026-07-21", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-013", "title": "디자인 폰트 라이선스 연간 계약", "department": "DESIGN", "type": "SOFTWARE", "amount": 440000, "requestedAmount": 440000, "status": "PENDING", "applicant": "백승호", "date": "2026-07-30", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-014", "title": "영업 고객사 저녁 식사 접대비", "department": "SALES", "type": "MEAL", "amount": 280000, "requestedAmount": 280000, "status": "PENDING", "applicant": "유아름", "date": "2026-07-29", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-015", "title": "사무실 간식 및 음료 구매비", "department": "HR", "type": "ITEM", "amount": 150000, "requestedAmount": 150000, "status": "PENDING", "applicant": "조태경", "date": "2026-07-31", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-016", "title": "개발용 보안 키 및 인증서 발급", "department": "DEV", "type": "SOFTWARE", "amount": 330000, "requestedAmount": 330000, "status": "PENDING", "applicant": "권소희", "date": "2026-07-28", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-017", "title": "전사 상반기 워크숍 장소 대관료", "department": "HR", "type": "TRAVEL", "amount": 2500000, "requestedAmount": 2500000, "status": "PENDING", "applicant": "황도윤", "date": "2026-07-24", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-018", "title": "온라인 서비스 마케팅 블로그 포스팅비", "department": "MARKETING", "type": "MARKETING", "amount": 750000, "requestedAmount": 750000, "status": "PENDING", "applicant": "서지우", "date": "2026-07-27", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-019", "title": "디자인 모형 3D 프린팅 자재비", "department": "DESIGN", "type": "ITEM", "amount": 220000, "requestedAmount": 220000, "status": "PENDING", "applicant": "안재민", "date": "2026-07-29", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-020", "title": "영업팀 KTX 출장 승차권 구매", "department": "SALES", "type": "TRAVEL", "amount": 160000, "requestedAmount": 160000, "status": "PENDING", "applicant": "양하은", "date": "2026-07-30", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-021", "title": "개발팀 사내 스터디 도서 구매", "department": "DEV", "type": "EDU", "amount": 180000, "requestedAmount": 180000, "status": "PENDING", "applicant": "김철수", "date": "2026-07-31", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-022", "title": "사무실 공기청정기 필터 교체비", "department": "HR", "type": "ITEM", "amount": 120000, "requestedAmount": 120000, "status": "PENDING", "applicant": "이영희", "date": "2026-07-29", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-023", "title": "마케팅 바이럴 영상 제작 외주비", "department": "MARKETING", "type": "MARKETING", "amount": 4500000, "requestedAmount": 4500000, "status": "PENDING", "applicant": "박민수", "date": "2026-07-25", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-024", "title": "디자인 타블렛 펜 세트 교체", "department": "DESIGN", "type": "ITEM", "amount": 85000, "requestedAmount": 85000, "status": "PENDING", "applicant": "정수진", "date": "2026-07-30", "receiptUrl": "", "adminId": "ADMIN_B" },
+    { "id": "EXP-025", "title": "영업용 택시비 영수증 정산", "department": "SALES", "type": "TRAVEL", "amount": 45000, "requestedAmount": 45000, "status": "PENDING", "applicant": "최동현", "date": "2026-07-31", "receiptUrl": "", "adminId": "ADMIN_B" }
+  ],
+  "budgetStats": {
+    "DEV": { "totalBudget": 50000000, "usedAmount": 28500000 },
+    "DESIGN": { "totalBudget": 20000000, "usedAmount": 12400000 },
+    "HR": { "totalBudget": 15000000, "usedAmount": 7800000 },
+    "MARKETING": { "totalBudget": 40000000, "usedAmount": 24500000 },
+    "SALES": { "totalBudget": 30000000, "usedAmount": 16200000 }
+  }
+}

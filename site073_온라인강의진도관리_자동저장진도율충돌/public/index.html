@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='2'%3E%3Cpolygon points='5 3 19 12 5 21 5 3'/%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CourseLab | 스마트 온라인 강의 진도 관리 포털</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Vue 3 Global CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- Header Navigation Bar -->
+      <header class="app-header">
+        <div class="logo-group">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3" />
+          </svg>
+          <span class="logo-title">CourseLab</span>
+          <span class="logo-subtitle">LMS Progress Studio</span>
+        </div>
+
+        <!-- Student Session Switcher & Recent Watched Cache (Error 5 Target) -->
+        <div class="header-dashboard">
+          <div class="kpis-group">
+            <div class="stat-card">
+              <span>▶️ 최근 수강 강의:</span>
+              <strong class="stat-value">{{ cachedLastWatchedTitle }}</strong>
+            </div>
+            <div class="stat-card">
+              <button class="resume-btn-sm" @click="resumeLastWatchedCourse">
+                ⏯️ 이어보기 (Error 5)
+              </button>
+            </div>
+          </div>
+          <small class="warn-desc">* 학생 계정(A ➔ B) 변경 시 강의 목록은 B 기준으로 변경되나 최근 시청 및 이어보기 정보는 A 데이터가 남음 (Error 5)</small>
+        </div>
+
+        <div class="header-controls">
+          <div class="student-selector">
+            <span>학생 로그인:</span>
+            <select :value="activeStudent" @change="handleStudentSwitch($event.target.value)">
+              <option value="STUDENT_A">학생 A (강동원)</option>
+              <option value="STUDENT_B">학생 B (한효주)</option>
+            </select>
+          </div>
+          <button class="sandbox-reset-btn" @click="resetSandbox">
+            🔄 강좌 초기화
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Layout grid -->
+      <div class="courselab-grid">
+
+        <!-- Left Column: Course Index Navigation & Filters -->
+        <aside class="panel-section filter-sidebar">
+          <h3>📚 강의 목차 및 검색</h3>
+          
+          <div class="filter-group">
+            <label>강의 검색:</label>
+            <input 
+              type="text" 
+              placeholder="강의 제목 또는 강사명..."
+              v-model="courseSearchQuery"
+            />
+          </div>
+
+          <div class="filter-group">
+            <label>인기순 정렬 (Error 3):</label>
+            <select v-model="courseSortOrder">
+              <option value="NONE">기본 순서</option>
+              <option value="POPULARITY_DESC">인기순 (Error 3)</option>
+            </select>
+            <small class="warn-desc">* 인기순 정렬 상태에서 수강 신청 클릭 시, 정렬 인덱스 불일치로 엉뚱한 강의가 신청됨 (Error 3)</small>
+          </div>
+
+          <!-- Courses index catalog -->
+          <div class="courses-stack">
+            <h4>📖 전체 강좌 목차 (최소 15개)</h4>
+            <div 
+              v-for="(course, idx) in sortedCourses" 
+              :key="course.id"
+              :class="['course-item-card', selectedCourse?.id === course.id ? 'active' : '']"
+              @click="selectedCourse = course"
+            >
+              <div class="item-head">
+                <span class="course-cat">{{ course.category }}</span>
+                <span class="pop-tag">🔥 {{ course.popularity }}</span>
+              </div>
+              <h5 class="course-title">{{ course.title }}</h5>
+              <div class="item-foot">
+                <span>강사: {{ course.instructor }}</span>
+                <button class="enroll-btn-sm" @click.stop="confirmEnrollment(idx)">
+                  수강신청 (Error 3)
+                </button>
+                <button class="delete-btn-sm" @click.stop="deleteCourse(course.id)">
+                  🗑️ (Error 4)
+                </button>
+              </div>
+            </div>
+          </div>
+          <small class="warn-desc">* 강의 삭제(DELETE) 시에도 수강생 진도율 및 후기 통계는 대시보드에 기산 유지됨 (Error 4)</small>
+        </aside>
+
+        <!-- Center Column: Dummy Player & Progress Tracker -->
+        <main class="panel-section player-center">
+          
+          <!-- Dummy Video Player -->
+          <div class="video-player-container">
+            <div class="video-screen">
+              <div class="screen-content">
+                <span class="screen-icon">🎬</span>
+                <h3>{{ selectedCourse?.title || '강의를 선택하세요' }}</h3>
+                <p>강의 ID: {{ selectedCourse?.id }} | 강사: {{ selectedCourse?.instructor }}</p>
+                <div class="live-progress-badge">
+                  현재 재생 진도율: <strong>{{ selectedCourse ? selectedCourse.progress : 0 }}%</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Player Controls simulated -->
+            <div class="video-controls">
+              <button class="play-btn" @click="simulateWatchProgress(30)">
+                ▶️ 30%까지 시청 (Error 1)
+              </button>
+              <button class="play-btn" @click="simulateWatchProgress(75)">
+                ▶️ 75%까지 시청 (Error 1)
+              </button>
+              <button class="switch-next-btn" @click="switchToNextCourse">
+                ⏭️ 다음 강의로 바로 이동 (Error 1)
+              </button>
+            </div>
+            <small class="warn-desc">* 30% 시청 후 즉시 다음 강의 이동 시, 이전 진도율 저장(3초 지연 완료)이 늦게 완료되어 새 강의 진도율을 덮어씀 (Error 1)</small>
+          </div>
+
+          <!-- Quiz & Materials Section (Error 2 & 6 Target) -->
+          <div class="widget-section quiz-section">
+            <div class="widget-header">
+              <h2>📝 강의 평가 퀴즈 & 수강 자료</h2>
+            </div>
+
+            <!-- Quiz Component (Error 2 Target) -->
+            <div v-if="activeQuiz" class="quiz-card">
+              <h4>퀴즈: {{ activeQuiz.question }}</h4>
+              <div class="quiz-options">
+                <label v-for="opt in ['A. const는 재할당이 불가능하다.', 'B. let은 상수를 선언할 때 사용한다.', 'C. var는 블록 스코프를 지원한다.']" :key="opt" class="opt-label">
+                  <input type="radio" name="quizAns" :value="opt" v-model="selectedQuizAnswer" />
+                  <span>{{ opt }}</span>
+                </label>
+              </div>
+
+              <div class="quiz-actions">
+                <button class="submit-quiz-btn" @click="triggerQuizSubmitModifyConflict">
+                  ⚡ 퀴즈 제출 및 수정 (Error 2)
+                </button>
+                <span v-if="activeQuiz.submitted" class="quiz-result-tag">
+                  제출 완료 | DB 채점 점수: {{ activeQuiz.score }}점 | 선택 답안: {{ activeQuiz.savedAnswer }}
+                </span>
+              </div>
+              <small class="warn-desc">* 퀴즈 제출(0.5초 완료) 직후 답안 수정(4초 지연 완료) 시 제출 완료 상태에서 점수 계산이 덮어써져 결과 점수와 답안 불일치 (Error 2)</small>
+            </div>
+
+            <!-- Material Download Section (Error 6 Target) -->
+            <div class="material-download-box" v-if="selectedCourse">
+              <div class="mat-head">
+                <span>📁 강의 보충 교재 다운로드</span>
+                <button class="download-btn" @click="downloadMaterial(selectedCourse.id)">
+                  ⬇️ 자료 다운로드 (Error 6)
+                </button>
+              </div>
+              <small class="warn-desc">* 수강 미권한자가 자료 호출 시 HTTP 403 에러가 반환되나 응답 본문에 파일명과 용량이 누출됨 (Error 6)</small>
+            </div>
+
+          </div>
+
+        </main>
+
+        <!-- Right Column: Instructor Dashboard & Course Title Editor -->
+        <aside class="panel-section operations-sidebar">
+          
+          <!-- Instructor Course Title & Public Editor (Error 7 Target) -->
+          <div class="detail-widget">
+            <h3>✍️ 강사 강의 정보 편집기</h3>
+            <div v-if="selectedCourse" class="detail-panel">
+              <p>강의 ID: <strong>{{ selectedCourse.id }}</strong></p>
+              
+              <div class="form-group">
+                <label>강의 제목 변경:</label>
+                <input type="text" v-model="selectedCourse.title" />
+              </div>
+
+              <div class="form-group">
+                <label>강의 공개 여부 설정:</label>
+                <div class="input-row">
+                  <select v-model="selectedCourse.isPublic">
+                    <option :value="true">공개 (PUBLIC)</option>
+                    <option :value="false">비공개 (PRIVATE)</option>
+                  </select>
+                  <button class="save-btn" @click="triggerTitlePublicRace(selectedCourse)">
+                    상태 갱신 (Error 7)
+                  </button>
+                </div>
+                <small class="warn-desc">* 제목 수정(0.1초 완료) 직후 공개 상태 변경(3초 지연 완료) 시, 이전 구형 제목이 동봉 저장되어 제목이 원복됨 (Error 7)</small>
+              </div>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              수정할 강의 항목을 목찰에서 클릭하여 선택하세요.
+            </div>
+          </div>
+
+          <!-- Student List & Progress detail -->
+          <div class="detail-widget">
+            <h3>👥 수강생 진도율 현황 대장 (최소 20명)</h3>
+            <div class="table-scroll-box">
+              <table>
+                <thead>
+                  <tr>
+                    <th>수강생명</th>
+                    <th>ID</th>
+                    <th>상태</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="stu in students" :key="stu.id">
+                    <td><strong>{{ stu.name }}</strong></td>
+                    <td>{{ stu.id }}</td>
+                    <td><span class="role-badge">{{ stu.role }}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+      <!-- Toast notifications -->
+      <div class="toast-container">
+        <div 
+          v-for="t in toasts" 
+          :key="t.id" 
+          :class="['toast-card', t.type]"
+        >
+          <span class="toast-icon">
+            {{ t.type === 'success' ? '✅' : t.type === 'danger' ? '❌' : '⚠️' }}
+          </span>
+          <span class="toast-message">{{ t.message }}</span>
+          <button class="toast-close" @click="removeToast(t.id)">
+            &times;
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

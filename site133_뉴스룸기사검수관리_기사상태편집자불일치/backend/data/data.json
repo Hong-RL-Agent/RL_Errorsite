@@ -1,0 +1,45 @@
+{
+  "staffs": [
+    { "id": "STF-3001", "name": "김편집 (정치사회부 수석 편집자 - 편집자 A)", "role": "MANAGER", "dept": "뉴스데스크 편집국", "handledArticles": 240 },
+    { "id": "STF-3002", "name": "이데스크 (IT과학부 데스크 에디터 - 편집자 B)", "role": "MANAGER", "dept": "디지털 뉴스룸", "handledArticles": 210 },
+    { "id": "STF-3003", "name": "박기자 (정치부 취재기자)", "role": "STAFF", "dept": "정치행정 취재팀", "handledArticles": 180 },
+    { "id": "STF-3004", "name": "최속보 (사회부 속보 기자)", "role": "STAFF", "dept": "사회 사건사고팀", "handledArticles": 150 },
+    { "id": "STF-3005", "name": "정팩트 (팩트체크 검수위원)", "role": "STAFF", "dept": "팩트체크 검증실", "handledArticles": 125 }
+  ],
+  "editors": [
+    { "id": "EDT-1001", "editorName": "김편집", "dept": "정치사회부", "assignedCount": 18, "status": "ACTIVE" },
+    { "id": "EDT-1002", "editorName": "이데스크", "dept": "IT과학부", "assignedCount": 15, "status": "ACTIVE" },
+    { "id": "EDT-1003", "editorName": "박데스크", "dept": "경제금융부", "assignedCount": 12, "status": "ACTIVE" }
+  ],
+  "reporters": [
+    { "id": "REP-2001", "reporterName": "박기자", "dept": "정치행정팀", "email": "park@newsdesk.co.kr", "totalArticles": 45 },
+    { "id": "REP-2002", "reporterName": "최속보", "dept": "사회사건팀", "email": "choi@newsdesk.co.kr", "totalArticles": 38 },
+    { "id": "REP-2003", "reporterName": "정테크", "dept": "IT과학팀", "email": "jung@newsdesk.co.kr", "totalArticles": 50 }
+  ],
+  "articles": [
+    { "id": "ART-4001", "articleCode": "ND-20260805-01", "title": "[단독] 차세대 AI 반도체 수주 계약 체결 및 글로벌 시장 점유율 확대", "category": "IT/과학", "reporterName": "정테크", "editorName": "이데스크", "views": 15400, "scheduledTime": "2026-08-05 14:00", "status": "SCHEDULED" },
+    { "id": "ART-4002", "articleCode": "ND-20260805-02", "title": "국회 본회의 심의 안건 통과... 여야 긴급 합의안 발표", "category": "정치/사회", "reporterName": "박기자", "editorName": "김편집", "views": 28900, "scheduledTime": "2026-08-05 16:30", "status": "REVIEWING" },
+    { "id": "ART-4003", "articleCode": "ND-20260805-03", "title": "한국은행 금리 동결 심의 발표 및 증시 반응 분석", "category": "경제/금융", "reporterName": "최속보", "editorName": "박데스크", "views": 9800, "scheduledTime": "2026-08-05 18:00", "status": "PUBLISHED" }
+  ],
+  "reviewComments": [
+    { "id": "CMT-6001", "articleId": "ART-4001", "editorName": "이데스크", "comment": "수주 금액 단위 단위 오기 수정 및 이미지 그래픽 첨부 완료", "timestamp": "2026-08-04 11:30:00" },
+    { "id": "CMT-6002", "articleId": "ART-4002", "editorName": "김편집", "comment": "2단락 표기 팩트체크 검증 요망 및 서브 타이틀 보강 요청", "timestamp": "2026-08-04 15:20:00" }
+  ],
+  "publishLogs": [
+    { "id": "PLOG-8001", "articleId": "ART-4003", "title": "한국은행 금리 동결 심의 발표 및 증시 반응 분석", "category": "경제/금융", "publishedTime": "2026-08-04 18:00:00", "views": 9800 },
+    { "id": "PLOG-8002", "articleId": "ART-4001", "title": "[단독] 차세대 AI 반도체 수주 계약 체결", "category": "IT/과학", "publishedTime": "2026-08-04 09:15:00", "views": 15400 }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9501", "articleId": "ART-4001", "operator": "이데스크 (에디터)", "action": "기사 ART-4001 발행예약 등록 완료 (발행예정시각: 14:00)", "timestamp": "2026-08-04 10:30:00", "status": "SUCCESS" },
+    { "id": "ACT-9502", "articleId": "ART-4002", "operator": "김편집 (수석편집자)", "action": "기사 ART-4002 데스크 검수중 상태로 변경 완료", "timestamp": "2026-08-04 14:10:00", "status": "SUCCESS" }
+  ],
+  "newsStats": {
+    "totalArticles": 55,
+    "totalReporters": 25,
+    "totalEditors": 12,
+    "reviewingCount": 15,
+    "publishedCount": 28,
+    "totalViews": 458000,
+    "topCategory": "IT/과학"
+  }
+}

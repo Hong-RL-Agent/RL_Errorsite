@@ -1,0 +1,41 @@
+{
+  "operators": [
+    { "id": "OPR-4401", "name": "김수질 (제1정수장 센서 및 응집설비 총괄 - 관리자 A)", "role": "MANAGER", "section": "제1정수장 혼화지/응집지", "handledInspections": 680 },
+    { "id": "OPR-4402", "name": "이침전 (제2정수장 침전/여과 공정 총괄 - 관리자 B)", "role": "MANAGER", "section": "제2정수장 침전지/여과지", "handledInspections": 590 },
+    { "id": "OPR-4403", "name": "박소독 (고도정수처리 오존/소독원)", "role": "STAFF", "section": "고도정수처리 오존소독동", "handledInspections": 430 },
+    { "id": "OPR-4404", "name": "최탁도 (배수지 탁도계 칼리브레이션 검수원)", "role": "STAFF", "section": "통합 배수지 정수관로", "handledInspections": 310 },
+    { "id": "OPR-4405", "name": "정염소 (잔류염소 자동조절기 점검기사)", "role": "STAFF", "section": "약품 투입 및 염소 주입동", "handledInspections": 240 }
+  ],
+  "equipments": [
+    { "id": "EQP-101", "equipCode": "WP-EQ-2026-01", "equipName": "제1정수장 급속혼화기 & PAC 응집반응기", "section": "제1정수장 혼화지/응집지", "location": "A동 혼화지 1번 교반기", "checkCycleDays": 14, "riskLevel": "HIGH (주의)", "status": "IN_PROGRESS" },
+    { "id": "EQP-102", "equipCode": "WP-EQ-2026-02", "equipName": "제2정수장 고속경사관 침전지 수중슬러지수거기", "section": "제2정수장 침전지/여과지", "location": "B동 침전지 3라인", "checkCycleDays": 7, "riskLevel": "MEDIUM (보통)", "status": "NORMAL" },
+    { "id": "EQP-103", "equipCode": "WP-EQ-2026-03", "equipName": "오존접촉지 미세기포 산기 장치", "section": "고도정수처리 오존소독동", "location": "오존동 지하 1층", "checkCycleDays": 30, "riskLevel": "LOW (정상)", "status": "RESOLVED" }
+  ],
+  "inspections": [
+    { "id": "INSP-5001", "inspCode": "WP-INS-20260805-01", "equipName": "제1정수장 급속혼화기 & PAC 응집반응기", "section": "제1정수장 혼화지/응집지", "phLevel": 7.2, "turbidityNtu": 0.45, "residualChlorineMgL": 0.85, "operatorName": "김수질", "checkDate": "2026-08-05 14:00", "status": "IN_PROGRESS" },
+    { "id": "INSP-5002", "inspCode": "WP-INS-20260805-02", "equipName": "제2정수장 고속경사관 침전지 수중슬러지수거기", "section": "제2정수장 침전지/여과지", "phLevel": 7.1, "turbidityNtu": 0.12, "residualChlorineMgL": 0.90, "operatorName": "이침전", "checkDate": "2026-08-06 10:30", "status": "PENDING" },
+    { "id": "INSP-5003", "inspCode": "WP-INS-20260805-03", "equipName": "오존접촉지 미세기포 산기 장치", "section": "고도정수처리 오존소독동", "phLevel": 7.0, "turbidityNtu": 0.05, "residualChlorineMgL": 1.10, "operatorName": "박소독", "checkDate": "2026-08-04 16:00", "status": "RESOLVED" }
+  ],
+  "alerts": [
+    { "id": "ALT-3001", "inspId": "INSP-5001", "equipName": "제1정수장 급속혼화기", "alertMsg": "혼화지 탁도 기준치 초과 경보 (0.45 NTU > 0.3 NTU 기준)", "alertTime": "2026-08-05 13:50", "status": "CRITICAL" },
+    { "id": "ALT-3002", "inspId": "INSP-5003", "equipName": "오존접촉지 산기장치", "alertMsg": "오존 주입 농도 정상 범위 회복 조치 완료", "alertTime": "2026-08-04 15:45", "status": "RESOLVED" }
+  ],
+  "waterLogs": [
+    { "id": "WLOG-7001", "inspId": "INSP-5001", "equipName": "급속혼화기 A동", "phLevel": 7.2, "turbidityNtu": 0.45, "residualChlorineMgL": 0.85, "logTime": "2026-08-05 14:10", "status": "WARNING" },
+    { "id": "WLOG-7002", "inspId": "INSP-5003", "equipName": "오존접촉지 B동", "phLevel": 7.0, "turbidityNtu": 0.05, "residualChlorineMgL": 1.10, "logTime": "2026-08-04 16:15", "status": "NORMAL" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9940", "inspId": "INSP-5001", "operator": "김수질 (관리자)", "action": "점검 INSP-5001 제1정수장 급속혼화기 수질 탁도 0.45 NTU 센서 점검 및 현장 수동 측정 시작", "timestamp": "2026-08-05 14:05:00", "status": "SUCCESS" },
+    { "id": "ACT-9941", "inspId": "INSP-5003", "operator": "박소독 (작업자)", "action": "점검 INSP-5003 오존접촉지 오존 주입 밸브 교체 및 정상 운영 복구 조치 완료", "timestamp": "2026-08-04 16:20:00", "status": "SUCCESS" }
+  ],
+  "waterStats": {
+    "totalEquipments": 35,
+    "totalWaterLogs": 120,
+    "totalInspections": 60,
+    "totalAlerts": 50,
+    "totalOperators": 25,
+    "warningAlertCount": 6,
+    "inProgressCount": 12,
+    "avgWaterQualityCompliance": 98.4
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-4001", "name": "김수리 (마스터 리페어 루티어 - 직원 A)", "role": "MANAGER", "instrumentCategory": "현악기 (바이올린 / 첼로 / 비올라)", "handledRepairs": 520 },
+    { "id": "STF-4002", "name": "이견적 (악기 복원 및 견적 조율사 - 직원 B)", "role": "MANAGER", "instrumentCategory": "관악기 (플루트 / 색소폰 / 클라리넷)", "handledRepairs": 460 },
+    { "id": "STF-4003", "name": "박피아노 (어쿠스틱 조율 및 튜닝 명장)", "role": "STAFF", "instrumentCategory": "건반악기 (그랜드 피아노 / 업라이트)", "handledRepairs": 390 },
+    { "id": "STF-4004", "name": "최기타 (일렉트릭 & 아쿠스틱 기타 전담)", "role": "STAFF", "instrumentCategory": "현악기 (기타 / 베이스 / 우쿨렐레)", "handledRepairs": 310 },
+    { "id": "STF-4005", "name": "정타악 (드럼 & 타악기 출고 점검관)", "role": "STAFF", "instrumentCategory": "타악기 (드럼 / 스네어 / 마림바)", "handledRepairs": 210 }
+  ],
+  "instruments": [
+    { "id": "INST-01", "instrumentName": "스트라디바리우스 카피 바이올린 4/4", "category": "현악기 (바이올린 / 첼로 / 비올라)", "brand": "독일 수제 악기", "storageNo": "STG-V-101", "status": "REPAIRING" },
+    { "id": "INST-02", "instrumentName": "야마하 커스텀 EX 색소폰 (알토)", "category": "관악기 (플루트 / 색소폰 / 클라리넷)", "brand": "YAMAHA", "storageNo": "STG-W-205", "status": "ESTIMATING" },
+    { "id": "INST-03", "instrumentName": "마틴 D-28 어쿠스틱 기타", "category": "현악기 (기타 / 베이스 / 우쿨렐레)", "brand": "MARTIN", "storageNo": "STG-G-308", "status": "COMPLETED" }
+  ],
+  "customers": [
+    { "id": "CST-8001", "customerName": "최바이올린", "phone": "010-9999-5555", "storageNo": "STG-V-101", "instrumentName": "바이올린 4/4", "totalRepairs": 8, "rating": 4.9 },
+    { "id": "CST-8002", "customerName": "강색소폰", "phone": "010-8888-4444", "storageNo": "STG-W-205", "instrumentName": "알토 색소폰", "totalRepairs": 6, "rating": 4.8 },
+    { "id": "CST-8003", "customerName": "윤기타", "phone": "010-7777-3333", "storageNo": "STG-G-308", "instrumentName": "마틴 D-28 기타", "totalRepairs": 5, "rating": 4.7 }
+  ],
+  "repairs": [
+    { "id": "RPR-7001", "repairCode": "IF-20260805-01", "category": "현악기 (바이올린 / 첼로 / 비올라)", "instrumentName": "스트라디바리우스 카피 바이올린 4/4", "customerName": "최바이올린", "storageNo": "STG-V-101", "issueDescription": "상판 균열 복원 및 브릿지 피팅, 핑거보드 드레싱", "workerName": "김수리 마스터", "estimatePriceWon": 350000, "rptDate": "2026-08-05", "status": "REPAIRING" },
+    { "id": "RPR-7002", "repairCode": "IF-20260805-02", "category": "관악기 (플루트 / 색소폰 / 클라리넷)", "instrumentName": "야마하 커스텀 EX 색소폰 (알토)", "customerName": "강색소폰", "storageNo": "STG-W-205", "issueDescription": "전체 패드 리패딩 교체 및 키 밸런스 조정", "workerName": "이견적 조율사", "estimatePriceWon": 420000, "rptDate": "2026-08-06", "status": "ESTIMATING" },
+    { "id": "RPR-7003", "repairCode": "IF-20260805-03", "category": "현악기 (기타 / 베이스 / 우쿨렐레)", "instrumentName": "마틴 D-28 어쿠스틱 기타", "customerName": "윤기타", "storageNo": "STG-G-308", "issueDescription": "넥 리셋 및 프렛 드레싱 세팅", "workerName": "최기타 기사", "estimatePriceWon": 280000, "rptDate": "2026-08-04", "status": "COMPLETED" }
+  ],
+  "estimates": [
+    { "id": "EST-9001", "rprId": "RPR-7001", "instrumentName": "바이올린 4/4", "customerName": "최바이올린", "partsFee": 150000, "laborFee": 200000, "totalFee": 350000, "status": "CONFIRMED" },
+    { "id": "EST-9002", "rprId": "RPR-7002", "instrumentName": "알토 색소폰", "customerName": "강색소폰", "partsFee": 220000, "laborFee": 200000, "totalFee": 420000, "status": "PENDING" }
+  ],
+  "repairLogs": [
+    { "id": "RLOG-6001", "rprId": "RPR-7001", "instrumentName": "바이올린 4/4", "workerName": "김수리 마스터", "workContent": "상판 이탈리아 천연 접착재 교목 및 브릿지 피팅 정밀 세팅", "workTime": "2026-08-05 10:30", "status": "DONE" },
+    { "id": "RLOG-6002", "rprId": "RPR-7003", "instrumentName": "마틴 D-28", "workerName": "최기타 기사", "workContent": "지판 핑거보드 샌딩 및 프렛 교체 셋업 검수 출고", "workTime": "2026-08-04 16:00", "status": "DELIVERED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9901", "rprId": "RPR-7001", "operator": "김수리 (마스터)", "action": "접수 RPR-7001 최바이올린 님 바이올린 정밀 진단 및 35만원 견적 수리중 전환 완료", "timestamp": "2026-08-05 10:35:00", "status": "SUCCESS" },
+    { "id": "ACT-9902", "rprId": "RPR-7003", "operator": "이견적 (조율사)", "action": "접수 RPR-7003 윤기타 님 어쿠스틱 기타 출고 및 최종 검수 승인 완료", "timestamp": "2026-08-04 16:10:00", "status": "SUCCESS" }
+  ],
+  "repairStats": {
+    "totalRepairs": 55,
+    "totalCustomers": 45,
+    "totalInstruments": 20,
+    "totalEstimates": 50,
+    "estimatingCount": 12,
+    "repairingCount": 21,
+    "completedCount": 22,
+    "avgRepairFeeWon": 345000
+  }
+}

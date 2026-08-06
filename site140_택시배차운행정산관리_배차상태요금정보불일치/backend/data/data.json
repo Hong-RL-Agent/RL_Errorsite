@@ -1,0 +1,45 @@
+{
+  "staffs": [
+    { "id": "STF-1001", "name": "김관제 (광역 관제 센터장 - 관제사 A)", "role": "MANAGER", "region": "서울 강남권", "handledCalls": 340 },
+    { "id": "STF-1002", "name": "이정산 (수수료 정산 팀장 - 관제사 B)", "role": "MANAGER", "region": "서울 서초권", "handledCalls": 290 },
+    { "id": "STF-1003", "name": "박모니터 (긴급 관제 요원)", "role": "STAFF", "region": "서울 송파권", "handledCalls": 240 },
+    { "id": "STF-1004", "name": "최기사 (기사 자격 검증관)", "role": "STAFF", "region": "서울 마포/홍대권", "handledCalls": 210 },
+    { "id": "STF-1005", "name": "정체납 (미납 요금 추징관)", "role": "STAFF", "region": "경기 판교/성남권", "handledCalls": 175 }
+  ],
+  "drivers": [
+    { "id": "DRV-01", "driverName": "강동수 기사", "phone": "010-3333-1111", "carNo": "서울34 자 1234", "carModel": "그랜저 IG 럭셔리", "rating": 4.9, "completedRides": 185 },
+    { "id": "DRV-02", "driverName": "윤성철 기사", "phone": "010-4444-2222", "carNo": "서울34 바 5678", "carModel": "K8 하이브리드", "rating": 4.8, "completedRides": 150 },
+    { "id": "DRV-03", "driverName": "임창현 기사", "phone": "010-5555-3333", "carNo": "서울34 사 9012", "carModel": "아이오닉 5 EV", "rating": 4.7, "completedRides": 130 }
+  ],
+  "vehicles": [
+    { "id": "VHC-01", "carNo": "서울34 자 1234", "driverName": "강동수 기사", "fuelType": "LPG", "status": "IN_DRIVE", "lastLocation": "강남역 11번 출구 앞" },
+    { "id": "VHC-02", "carNo": "서울34 바 5678", "driverName": "윤성철 기사", "fuelType": "하이브리드", "status": "IDLE", "lastLocation": "서초역 2번 출구" },
+    { "id": "VHC-03", "carNo": "서울34 사 9012", "driverName": "임창현 기사", "fuelType": "전기(EV)", "status": "IN_DRIVE", "lastLocation": "잠실역 로터리" }
+  ],
+  "calls": [
+    { "id": "CALL-2001", "callCode": "TX-20260805-01", "region": "서울 강남권", "origin": "강남역 11번 출구", "destination": "판교 테크노밸리", "driverName": "강동수 기사", "carNo": "서울34 자 1234", "distanceKm": 14.5, "estimatedFeeWon": 18500, "actualFeeWon": 18500, "status": "IN_DRIVE" },
+    { "id": "CALL-2002", "callCode": "TX-20260805-02", "region": "서울 서초권", "origin": "교대역 1번 출구", "destination": "여의도 IFC몰", "driverName": "윤성철 기사", "carNo": "서울34 바 5678", "distanceKm": 9.2, "estimatedFeeWon": 13000, "actualFeeWon": 13000, "status": "PENDING" },
+    { "id": "CALL-2003", "callCode": "TX-20260805-03", "region": "서울 송파권", "origin": "잠실 롯데월드몰", "destination": "인천국제공항 T1", "driverName": "임창현 기사", "carNo": "서울34 사 9012", "distanceKm": 68.0, "estimatedFeeWon": 75000, "actualFeeWon": 75000, "status": "SETTLED" }
+  ],
+  "rideLogs": [
+    { "id": "RLOG-5001", "callId": "CALL-2001", "driverName": "강동수 기사", "carNo": "서울34 자 1234", "origin": "강남역 11번 출구", "destination": "판교 테크노밸리", "fareWon": 18500, "rideTime": "2026-08-05 14:10" },
+    { "id": "RLOG-5002", "callId": "CALL-2003", "driverName": "임창현 기사", "carNo": "서울34 사 9012", "origin": "잠실 롯데월드몰", "destination": "인천국제공항 T1", "fareWon": 75000, "rideTime": "2026-08-04 09:30" }
+  ],
+  "settlements": [
+    { "id": "SET-8001", "callId": "CALL-2001", "driverName": "강동수 기사", "carNo": "서울34 자 1234", "fareWon": 18500, "commissionWon": 1850, "payoutWon": 16650, "timestamp": "2026-08-05 14:40:00", "status": "IN_DRIVE" },
+    { "id": "SET-8002", "callId": "CALL-2003", "driverName": "임창현 기사", "carNo": "서울34 사 9012", "fareWon": 75000, "commissionWon": 7500, "payoutWon": 67500, "timestamp": "2026-08-04 11:00:00", "status": "SETTLED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9901", "callId": "CALL-2001", "operator": "김관제 (센터장)", "action": "호출 CALL-2001 강동수 기사 배차 승인 및 운행 개시 확인", "timestamp": "2026-08-05 14:10:00", "status": "SUCCESS" },
+    { "id": "ACT-9902", "callId": "CALL-2003", "operator": "이정산 (팀장)", "action": "호출 CALL-2003 인천공항 운행 완료 및 기사 입금 정산 확정 (67,500원)", "timestamp": "2026-08-04 11:05:00", "status": "SUCCESS" }
+  ],
+  "dispatchStats": {
+    "totalCalls": 60,
+    "totalDrivers": 35,
+    "totalVehicles": 35,
+    "inDriveCount": 18,
+    "settledCount": 32,
+    "totalFareWon": 18450000,
+    "avgDispatchTimeSec": 42
+  }
+}

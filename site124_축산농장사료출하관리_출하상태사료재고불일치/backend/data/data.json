@@ -1,0 +1,48 @@
+{
+  "staffs": [
+    { "id": "STF-9001", "name": "김축산 (스마트축산 총괄소장 - 관리자 A)", "role": "MANAGER", "dept": "스마트 농장 관리본부", "handledHerds": 180 },
+    { "id": "STF-9002", "name": "이사료 (사료배식 영양팀장 - 관리자 B)", "role": "MANAGER", "dept": "사료 영양 관리팀", "handledHerds": 165 },
+    { "id": "STF-9003", "name": "박수의 (가축 방역 수의사)", "role": "STAFF", "dept": "가축 방역 위생팀", "handledHerds": 140 },
+    { "id": "STF-9004", "name": "최출하 (출하 유통 담당원)", "role": "STAFF", "dept": "축산물 경매 출하팀", "handledHerds": 120 },
+    { "id": "STF-9005", "name": "정환경 (축사 분뇨 환경원)", "role": "STAFF", "dept": "친환경 축사 환경팀", "handledHerds": 98 }
+  ],
+  "barns": [
+    { "id": "BARN-01", "name": "제1한우 비육 축사 A동", "capacity": 30, "currentHead": 25, "type": "한우비육", "managerName": "김축산" },
+    { "id": "BARN-02", "name": "제2한우 번식 축사 B동", "capacity": 25, "currentHead": 20, "type": "한우번식", "managerName": "이사료" },
+    { "id": "BARN-03", "name": "제3양돈 자돈 축사 C동", "capacity": 50, "currentHead": 45, "type": "양돈자돈", "managerName": "박수의" },
+    { "id": "BARN-04", "name": "제4양돈 육성 축사 D동", "capacity": 40, "currentHead": 38, "type": "양돈비육", "managerName": "최출하" }
+  ],
+  "feeds": [
+    { "id": "FED-3001", "name": "프리미엄 한우 비육 후기 TMR 사료", "feedType": "TMR혼합사료", "stockKg": 4500, "dailyUsageKg": 300, "supplier": "농협사료" },
+    { "id": "FED-3002", "name": "고단백 양돈 자돈 육성 사료", "feedType": "배합사료", "stockKg": 2800, "dailyUsageKg": 180, "supplier": "카길애그리" },
+    { "id": "FED-3003", "name": "유기농 볏짚 펠렛 조사료", "feedType": "조사료", "stockKg": 6200, "dailyUsageKg": 400, "supplier": "우리축산" }
+  ],
+  "livestocks": [
+    { "id": "LIV-1001", "earTagNo": "410-002-123456", "breed": "한우(암)", "barnId": "BARN-01", "barnName": "제1축사 A동", "ageMonths": 28, "weightKg": 720.5, "healthStatus": "HEALTHY", "feedStockKg": 4500, "status": "SHIPMENT_PENDING" },
+    { "id": "LIV-1002", "earTagNo": "410-002-123457", "breed": "한우(수)", "barnId": "BARN-01", "barnName": "제1축사 A동", "ageMonths": 30, "weightKg": 780.0, "healthStatus": "HEALTHY", "feedStockKg": 4500, "status": "SHIPMENT_CONFIRMED" },
+    { "id": "LIV-1003", "earTagNo": "410-002-123458", "breed": "양돈(암)", "barnId": "BARN-03", "barnName": "제3축사 C동", "ageMonths": 6, "weightKg": 115.0, "healthStatus": "HEALTHY", "feedStockKg": 2800, "status": "RAISING" },
+    { "id": "LIV-1004", "earTagNo": "410-002-123459", "breed": "한우(거세)", "barnId": "BARN-02", "barnName": "제2축사 B동", "ageMonths": 29, "weightKg": 745.0, "healthStatus": "OBSERVATION", "feedStockKg": 6200, "status": "SHIPMENT_PENDING" }
+  ],
+  "shipments": [
+    { "id": "SHP-5001", "livestockId": "LIV-1001", "earTagNo": "410-002-123456", "barnName": "제1축사 A동", "targetPriceWon": 9500000, "scheduledDate": "2026-08-10", "slaughterhouse": "음성축산물공판장", "status": "SHIPMENT_PENDING" },
+    { "id": "SHP-5002", "livestockId": "LIV-1002", "earTagNo": "410-002-123457", "barnName": "제1축사 A동", "targetPriceWon": 10800000, "scheduledDate": "2026-08-08", "slaughterhouse": "부천축산물공판장", "status": "SHIPMENT_CONFIRMED" }
+  ],
+  "feedLogs": [
+    { "id": "FLOG-4001", "livestockId": "LIV-1001", "feedId": "FED-3001", "feedName": "한우 비육 후기 TMR", "fedAmountKg": 15.0, "timestamp": "2026-08-04 07:00:00" },
+    { "id": "FLOG-4002", "livestockId": "LIV-1002", "feedId": "FED-3001", "feedName": "한우 비육 후기 TMR", "fedAmountKg": 18.0, "timestamp": "2026-08-04 07:15:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9801", "livestockId": "LIV-1001", "operator": "김축산 (총괄소장)", "action": "개체 410-002-123456 음성공판장 출하승인 완료 (목표가 950만원)", "timestamp": "2026-08-04 16:00:00", "status": "SUCCESS" },
+    { "id": "ACT-9802", "livestockId": "LIV-1002", "operator": "이사료 (팀장)", "action": "개체 410-002-123457 부천공판장 출하확정 배차 완료", "timestamp": "2026-08-04 17:30:00", "status": "SUCCESS" }
+  ],
+  "farmStats": {
+    "totalLivestocks": 80,
+    "totalBarns": 12,
+    "raisingCount": 45,
+    "shipmentPendingCount": 20,
+    "shippedCount": 15,
+    "totalFeedStockKg": 13500,
+    "avgWeightKg": 680.5,
+    "topBarn": "제1한우 A동"
+  }
+}

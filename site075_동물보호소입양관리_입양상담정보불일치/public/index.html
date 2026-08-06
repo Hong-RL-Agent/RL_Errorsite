@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2'%3E%3Cpath d='M12 5.5A3.5 3.5 0 0 0 8.5 2 3.5 3.5 0 0 0 5 5.5C5 8.5 12 15 12 15s7-6.5 7-9.5A3.5 3.5 0 0 0 15.5 2 3.5 3.5 0 0 0 12 5.5z'/%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PawShelter | 유기동물 보호소 입양 신청 및 건강 관리 센터</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Vue 3 Global CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- Header Navigation Bar -->
+      <header class="app-header">
+        <div class="logo-group">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5.5A3.5 3.5 0 0 0 8.5 2 3.5 3.5 0 0 0 5 5.5C5 8.5 12 15 12 15s7-6.5 7-9.5A3.5 3.5 0 0 0 15.5 2 3.5 3.5 0 0 0 12 5.5z" />
+          </svg>
+          <span class="logo-title">PawShelter</span>
+          <span class="logo-subtitle">Rescue & Adoption Portal</span>
+        </div>
+
+        <div class="header-dashboard">
+          <div class="kpis-group">
+            <div class="stat-card">
+              <span>🐾 보호소 입양 누적신청:</span>
+              <strong class="stat-value">{{ shelterStats.totalApplicationsCount }}건</strong>
+            </div>
+            <div class="stat-card">
+              <span>🏠 새로운 가정 입양완료:</span>
+              <strong class="stat-value-alert">{{ shelterStats.completedAdoptions }}마리</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-controls">
+          <div class="user-selector">
+            <span>로그인 신청자:</span>
+            <select :value="activeUser" @change="handleUserSwitch($event.target.value)">
+              <option value="USER_A">신청자 A (김철수 회원)</option>
+              <option value="USER_B">신청자 B (오현우 회원)</option>
+            </select>
+          </div>
+          <button class="sandbox-reset-btn" @click="resetSandbox">
+            🔄 센터 초기화
+          </button>
+        </div>
+      </header>
+
+      <!-- App Main Workspace Grid Layout -->
+      <div class="pawshelter-grid">
+
+        <!-- Left Column: Search & Filters -->
+        <aside class="panel-section filter-sidebar">
+          <h3>📌 보호 동물 탐색 및 정렬</h3>
+          
+          <div class="filter-group">
+            <label>동물 종류 선택 (Error 5):</label>
+            <select v-model="filterSpecies" @change="triggerSearchRace">
+              <option value="ALL">전체 동물</option>
+              <option value="DOG">강아지 (Error 5)</option>
+              <option value="CAT">고양이</option>
+            </select>
+            <small class="warn-desc">* 필터 고속 변경 시 이전 응답(강아지, 3초)이 최신 결과를 덮어쓰고 상세에 없는 동물이 남음 (Error 5)</small>
+          </div>
+
+          <div class="filter-group">
+            <label>지역 선택:</label>
+            <select v-model="filterRegion" @change="triggerSearchRace">
+              <option value="ALL">전체 지역</option>
+              <option value="마포구">서울 마포구</option>
+              <option value="강남구">서울 강남구</option>
+              <option value="용산구">서울 용산구</option>
+              <option value="서초구">서울 서초구</option>
+              <option value="성남시">경기 성남시</option>
+              <option value="고양시">경기 고양시</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>나이순 정렬 (Error 3):</label>
+            <select v-model="ageSortOrder">
+              <option value="NONE">기본 순서</option>
+              <option value="AGE_ASC">나이 어린순</option>
+              <option value="AGE_DESC">나이 많은순 (Error 3)</option>
+            </select>
+            <small class="warn-desc">* 나이순 정렬 상태에서 관심 등록(❤️) 클릭 시, 정렬 인덱스 불일치로 엉뚱한 동물이 토글됨 (Error 3)</small>
+          </div>
+
+          <!-- Animals Catalog list -->
+          <div class="animals-stack">
+            <h4>🐶 입양 대기 동물 대장 (최소 18마리)</h4>
+            <div 
+              v-for="(anm, idx) in sortedAnimals" 
+              :key="anm.id"
+              :class="['anm-card', selectedAnimal?.id === anm.id ? 'active' : '']"
+              @click="selectAnimal(anm)"
+            >
+              <div class="anm-head">
+                <span class="species-tag">{{ anm.species === 'DOG' ? '🐕 강아지' : '🐈 고양이' }}</span>
+                <button class="fav-btn-sm" @click.stop="toggleFavorite(idx)">
+                  {{ anm.isFavorite ? '❤️' : '🤍' }} (Error 3)
+                </button>
+              </div>
+              <h5 class="anm-name">{{ anm.name }} ({{ anm.age }}살 / {{ anm.gender }})</h5>
+              <div class="anm-foot">
+                <span>품종: {{ anm.breed }}</span>
+                <span :class="['status-badge', anm.status.toLowerCase()]">{{ getStatusLabel(anm.status) }}</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Center Column: Rescue Animal Detail & Gallery -->
+        <main class="panel-section center-section">
+          
+          <!-- Selected Animal Preview & Gallery 404 test (Error 7 Target) -->
+          <div v-if="selectedAnimal" class="anm-detail-header">
+            <div class="title-row">
+              <h2>{{ selectedAnimal.name }}</h2>
+              <span :class="['status-badge-lg', selectedAnimal.status.toLowerCase()]">
+                상태: {{ getStatusLabel(selectedAnimal.status) }}
+              </span>
+            </div>
+            <p>품종: <strong>{{ selectedAnimal.breed }}</strong> | 나이: {{ selectedAnimal.age }}살 | 성별: {{ selectedAnimal.gender }} | 지역: {{ selectedAnimal.region }}</p>
+            
+            <!-- Gallery Photo (Error 7 Target) -->
+            <div class="anm-image-preview">
+              <label>대표 입양 사진 갤러리:</label>
+              <div v-if="selectedAnimal.imageUrl" class="img-frame">
+                <img :src="selectedAnimal.imageUrl" alt="동물 사진" class="anm-img" />
+                <span class="img-path-lbl">URL: {{ selectedAnimal.imageUrl }}</span>
+              </div>
+              <div v-else class="img-placeholder">
+                등록된 입양 프로필 사진이 없습니다.
+              </div>
+            </div>
+            <small class="warn-desc">* 파일명에 한글과 공백이 포함 시(복실이 강아지.jpg) 목록은 나오나 상세 갤러리에서만 URL 이중 인코딩 404 발생 (Error 7)</small>
+
+            <!-- Health Note -->
+            <div class="health-note-box">
+              <h4>🩺 담당 수의사 검진 기록:</h4>
+              <p>{{ selectedAnimal.healthNote }}</p>
+            </div>
+
+            <!-- Dual Status Foster & Adopt trigger (Error 4 Target) -->
+            <div class="dual-app-section">
+              <button class="dual-btn" @click="triggerDualFosterAdopt(selectedAnimal)">
+                ⚡ 동시 신청: 임시보호 + 입양신청 (Error 4)
+              </button>
+              <small class="warn-desc">* 임시보호 신청 후 입양 신청 동시 진행 시 성공 반환되나 상태가 '임시보호 & 입양심사중'으로 이중 표시됨 (Error 4)</small>
+            </div>
+
+          </div>
+
+        </main>
+
+        <!-- Right Column: Applications List & Operation Form -->
+        <aside class="panel-section operations-sidebar">
+          
+          <!-- Applications List table -->
+          <div class="detail-widget">
+            <h3>📑 입양 및 임시보호 신청 대장 (최소 20개)</h3>
+            <div class="table-scroll-box">
+              <table>
+                <thead>
+                  <tr>
+                    <th>신청 ID</th>
+                    <th>대상 동물</th>
+                    <th>상담 날짜</th>
+                    <th>상태</th>
+                    <th>작업</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr 
+                    v-for="app in userApplications" 
+                    :key="app.id"
+                    :class="['app-tr', selectedApplication?.id === app.id ? 'active' : '']"
+                    @click="selectedApplication = app"
+                  >
+                    <td><strong>{{ app.id }}</strong></td>
+                    <td>{{ app.animalName }}</td>
+                    <td>{{ app.counselDate }}</td>
+                    <td><span :class="['status-badge', app.status.toLowerCase()]">{{ app.status }}</span></td>
+                    <td>
+                      <button class="delete-btn-sm" @click.stop="deleteApplication(app.id)">
+                        🗑️ (Error 2)
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <small class="warn-desc">* 신청 취소/삭제(DELETE) 시 대장에서 소거되나 대상 동물의 신청자 수 및 대시보드 통계에는 기산 포함됨 (Error 2)</small>
+          </div>
+
+          <!-- Application Environment & Counsel Date adjust form (Error 1 Target) -->
+          <div class="detail-widget">
+            <h3>📅 입양 거주 환경 및 상담 날짜 변경</h3>
+            <div v-if="selectedApplication" class="detail-panel">
+              <p>신청 ID: <strong>{{ selectedApplication.id }}</strong> (대상: {{ selectedApplication.animalName }})</p>
+
+              <div class="form-group">
+                <label>입양 상담 방문 날짜 변경:</label>
+                <input type="date" v-model="selectedApplication.counselDate" />
+              </div>
+
+              <div class="form-group">
+                <label>신청자 거주 환경 수정:</label>
+                <div class="input-row">
+                  <input type="text" v-model="selectedApplication.homeEnvironment" />
+                  <button class="save-btn" @click="triggerEnvCounselDateRace(selectedApplication)">
+                    신청서 수정 (Error 1)
+                  </button>
+                </div>
+                <small class="warn-desc">* 거주 환경 수정(3초 지연 완료) 직후 상담 날짜 변경(0.1초 완료) 시 3초 뒤 이전 상담 날짜가 동봉되어 롤백됨 (Error 1)</small>
+              </div>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              수정할 입양 신청 항목을 대장 목록에서 클릭해 주십시오. (A 계정 정보 노출 Error 6)
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+      <!-- Toast notifications -->
+      <div class="toast-container">
+        <div 
+          v-for="t in toasts" 
+          :key="t.id" 
+          :class="['toast-card', t.type]"
+        >
+          <span class="toast-icon">
+            {{ t.type === 'success' ? '✅' : t.type === 'danger' ? '❌' : '⚠️' }}
+          </span>
+          <span class="toast-message">{{ t.message }}</span>
+          <button class="toast-close" @click="removeToast(t.id)">
+            &times;
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

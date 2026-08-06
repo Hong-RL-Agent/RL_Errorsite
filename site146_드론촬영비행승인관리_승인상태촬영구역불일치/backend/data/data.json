@@ -1,0 +1,47 @@
+{
+  "staffs": [
+    { "id": "STF-7001", "name": "김항공 (비행관제 총괄 승인관 - 관리자 A)", "role": "MANAGER", "region": "서울 강남 관제권", "handledPermits": 350 },
+    { "id": "STF-7002", "name": "이조종 (산림/측량 드론 운영팀장 - 관리자 B)", "role": "MANAGER", "region": "인천 송도 비행금지구역", "handledPermits": 300 },
+    { "id": "STF-7003", "name": "박승인 (비행 제한구역 심의관)", "role": "STAFF", "region": "경기 판교 테크노권", "handledPermits": 240 },
+    { "id": "STF-7004", "name": "최장비 (드론 센서 점검관)", "role": "STAFF", "region": "강원 원주 국토조사권", "handledPermits": 190 },
+    { "id": "STF-7005", "name": "정안전 (비행 안전 모니터링관)", "role": "STAFF", "region": "부산 해운대 권역", "handledPermits": 160 }
+  ],
+  "zones": [
+    { "id": "ZON-01", "zoneName": "서울 강남 영동대로 건설 현장 (섹터 A)", "region": "서울 강남 관제권", "maxAltitudeMeter": 150, "riskLevel": "RESTRICTED (제한구역)", "droneLimitCount": 3 },
+    { "id": "ZON-02", "zoneName": "인천 송도 스마트시티 상공 (섹터 B)", "region": "인천 송도 비행금지구역", "maxAltitudeMeter": 120, "riskLevel": "PROHIBITED (금지구역)", "droneLimitCount": 1 },
+    { "id": "ZON-03", "zoneName": "경기 판교 자율주행 시험도로 (섹터 C)", "region": "경기 판교 테크노권", "maxAltitudeMeter": 100, "riskLevel": "CAUTION (주의구역)", "droneLimitCount": 5 }
+  ],
+  "drones": [
+    { "id": "DRN-101", "droneName": "DJI Matrice 350 RTK (산업용)", "serialNo": "DRN-2026-M350", "pilotName": "이조종 팀장", "batteryStatus": "98% (정상)", "cameraType": "LiDAR + 열화상 카메라", "status": "IN_FLIGHT" },
+    { "id": "DRN-102", "droneName": "DJI Inspire 3 (8K 에어캠)", "serialNo": "DRN-2026-INS3", "pilotName": "박스카 조종사", "batteryStatus": "85% (양호)", "cameraType": "Full-Frame 8K Cinema", "status": "READY" },
+    { "id": "DRN-103", "droneName": "Autel EVO II Dual 640T", "serialNo": "DRN-2026-EVO2", "pilotName": "최드론 조종사", "batteryStatus": "100% (완충)", "cameraType": "Thermal & 8K", "status": "APPROVED" }
+  ],
+  "pilots": [
+    { "id": "PLT-01", "pilotName": "이조종 팀장", "phone": "010-9876-5432", "licenseNo": "DR-1급-2024-0012", "flightHours": 1450, "rating": 4.9 },
+    { "id": "PLT-02", "pilotName": "박스카 조종사", "phone": "010-8765-4321", "licenseNo": "DR-1급-2024-0058", "flightHours": 980, "rating": 4.8 },
+    { "id": "PLT-03", "pilotName": "최드론 조종사", "phone": "010-7654-3210", "licenseNo": "DR-2급-2025-0114", "flightHours": 620, "rating": 4.7 }
+  ],
+  "requests": [
+    { "id": "REQ-8001", "reqCode": "DP-20260805-01", "title": "강남 영동대로 복합환승센터 초고층 초안 3D 측량 촬영", "region": "서울 강남 관제권", "zoneName": "서울 강남 영동대로 건설 현장 (섹터 A)", "requester": "(주)현대건설 스마트시티팀", "pilotName": "이조종 팀장", "droneName": "DJI Matrice 350 RTK (산업용)", "flightDate": "2026-08-05", "maxAltM": 150, "status": "APPROVED" },
+    { "id": "REQ-8002", "reqCode": "DP-20260805-02", "title": "인천 송도 국제도시 해안도로 미세먼지 측정 조망 촬영", "region": "인천 송도 비행금지구역", "zoneName": "인천 송도 스마트시티 상공 (섹터 B)", "requester": "인천광역시 환경보전과", "pilotName": "박스카 조종사", "droneName": "DJI Inspire 3 (8K 에어캠)", "flightDate": "2026-08-06", "maxAltM": 120, "status": "PENDING" },
+    { "id": "REQ-8003", "reqCode": "DP-20260805-03", "title": "판교 테크노밸리 자율주행차-드론 연동 관제 영상 시연", "region": "경기 판교 테크노권", "zoneName": "경기 판교 자율주행 시험도로 (섹터 C)", "requester": "한국교통안전공단", "pilotName": "최드론 조종사", "droneName": "Autel EVO II Dual 640T", "flightDate": "2026-08-04", "maxAltM": 100, "status": "COMPLETED" }
+  ],
+  "flightLogs": [
+    { "id": "FLOG-9001", "reqId": "REQ-8001", "droneName": "DJI Matrice 350 RTK", "pilotName": "이조종 팀장", "takeoffTime": "2026-08-05 14:00", "landingTime": "2026-08-05 14:45", "flightDurationMin": 45, "maxAltM": 142, "status": "COMPLETED" },
+    { "id": "FLOG-9002", "reqId": "REQ-8003", "droneName": "Autel EVO II Dual", "pilotName": "최드론 조종사", "takeoffTime": "2026-08-04 11:10", "landingTime": "2026-08-04 11:50", "flightDurationMin": 40, "maxAltM": 95, "status": "COMPLETED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9301", "reqId": "REQ-8001", "operator": "김항공 (승인관)", "action": "신청 REQ-8001 영동대로 고도 150m 비행 승인 승낙 및 이조종 팀장 드론 배정 완료", "timestamp": "2026-08-05 13:50:00", "status": "SUCCESS" },
+    { "id": "ACT-9302", "reqId": "REQ-8003", "operator": "박승인 (심의관)", "action": "신청 REQ-8003 판교 시연 촬영 완료 및 8K 녹화 원본 서버 업로드 완료", "timestamp": "2026-08-04 12:00:00", "status": "SUCCESS" }
+  ],
+  "flightStats": {
+    "totalRequests": 50,
+    "totalZones": 35,
+    "totalDrones": 25,
+    "totalPilots": 20,
+    "approvedCount": 22,
+    "inFlightCount": 12,
+    "completedCount": 26,
+    "totalFlightHours": 328.5
+  }
+}

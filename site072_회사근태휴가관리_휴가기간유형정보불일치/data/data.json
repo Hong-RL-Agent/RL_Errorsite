@@ -1,0 +1,62 @@
+{
+  "employees": [
+    { "id": "EMP-001", "name": "김철수", "team": "DEVELOPMENT", "role": "ADMIN_A", "position": "팀장", "remainingLeave": 12.5 },
+    { "id": "EMP-002", "name": "이영희", "team": "DEVELOPMENT", "role": "USER", "position": "선임연구원", "remainingLeave": 8.0 },
+    { "id": "EMP-003", "name": "박민수", "team": "DESIGN", "role": "ADMIN_B", "position": "팀장", "remainingLeave": 15.0 },
+    { "id": "EMP-004", "name": "정수진", "team": "DESIGN", "role": "USER", "position": "디자이너", "remainingLeave": 10.0 },
+    { "id": "EMP-005", "name": "최동현", "team": "HR", "role": "USER", "position": "매니저", "remainingLeave": 14.0 },
+    { "id": "EMP-006", "name": "강서연", "team": "DEVELOPMENT", "role": "USER", "position": "주임연구원", "remainingLeave": 6.5 },
+    { "id": "EMP-007", "name": "윤재호", "team": "DEVELOPMENT", "role": "USER", "position": "연구원", "remainingLeave": 11.0 },
+    { "id": "EMP-008", "name": "한지민", "team": "DESIGN", "role": "USER", "position": "시니어디자이너", "remainingLeave": 9.5 },
+    { "id": "EMP-009", "name": "임건우", "team": "MARKETING", "role": "USER", "position": "팀장", "remainingLeave": 13.0 },
+    { "id": "EMP-010", "name": "송예은", "team": "MARKETING", "role": "USER", "position": "마케터", "remainingLeave": 7.0 },
+    { "id": "EMP-011", "name": "오현우", "team": "HR", "role": "USER", "position": "팀장", "remainingLeave": 16.0 },
+    { "id": "EMP-012", "name": "신나영", "team": "DEVELOPMENT", "role": "USER", "position": "선임연구원", "remainingLeave": 5.0 },
+    { "id": "EMP-013", "name": "백승호", "team": "MARKETING", "role": "USER", "position": "마케터", "remainingLeave": 12.0 },
+    { "id": "EMP-014", "name": "유아름", "team": "DESIGN", "role": "USER", "position": "디자이너", "remainingLeave": 4.5 },
+    { "id": "EMP-015", "name": "조태경", "team": "DEVELOPMENT", "role": "USER", "position": "수석연구원", "remainingLeave": 18.0 },
+    { "id": "EMP-016", "name": "권소희", "team": "HR", "role": "USER", "position": "매니저", "remainingLeave": 11.5 },
+    { "id": "EMP-017", "name": "황도윤", "team": "MARKETING", "role": "USER", "position": "마케터", "remainingLeave": 9.0 },
+    { "id": "EMP-018", "name": "서지우", "team": "DEVELOPMENT", "role": "USER", "position": "연구원", "remainingLeave": 13.5 },
+    { "id": "EMP-019", "name": "안재민", "team": "DESIGN", "role": "USER", "position": "디자이너", "remainingLeave": 7.5 },
+    { "id": "EMP-020", "name": "양하은", "team": "HR", "role": "USER", "position": "매니저", "remainingLeave": 10.0 }
+  ],
+  "leaveRequests": [
+    { "id": "LV-001", "empId": "EMP-002", "empName": "이영희", "team": "DEVELOPMENT", "type": "ANNUAL", "startDate": "2026-08-01", "endDate": "2026-08-03", "days": 3, "status": "PENDING", "reason": "여름 휴가 신청", "createdAt": "2026-07-15" },
+    { "id": "LV-002", "empId": "EMP-004", "empName": "정수진", "team": "DESIGN", "type": "HALF_AM", "startDate": "2026-08-05", "endDate": "2026-08-05", "days": 0.5, "status": "PENDING", "reason": "개인 병원 진료", "createdAt": "2026-07-16" },
+    { "id": "LV-003", "empId": "EMP-006", "empName": "강서연", "team": "DEVELOPMENT", "type": "SICK", "startDate": "2026-08-10", "endDate": "2026-08-11", "days": 2, "status": "APPROVED", "reason": "건강검진 재검", "createdAt": "2026-07-10" },
+    { "id": "LV-004", "empId": "EMP-007", "empName": "윤재호", "team": "DEVELOPMENT", "type": "ANNUAL", "startDate": "2026-08-12", "endDate": "2026-08-14", "days": 3, "status": "PENDING", "reason": "가족 여행", "createdAt": "2026-07-18" },
+    { "id": "LV-005", "empId": "EMP-008", "empName": "한지민", "team": "DESIGN", "type": "HALF_PM", "startDate": "2026-08-02", "endDate": "2026-08-02", "days": 0.5, "status": "PENDING", "reason": "은행 업무 처리", "createdAt": "2026-07-19" },
+    { "id": "LV-006", "empId": "EMP-010", "empName": "송예은", "team": "MARKETING", "type": "ANNUAL", "startDate": "2026-08-15", "endDate": "2026-08-16", "days": 2, "status": "PENDING", "reason": "개인 사유 휴가", "createdAt": "2026-07-20" },
+    { "id": "LV-007", "empId": "EMP-012", "empName": "신나영", "team": "DEVELOPMENT", "type": "SICK", "startDate": "2026-08-04", "endDate": "2026-08-04", "days": 1, "status": "APPROVED", "reason": "몸살 감기 치료", "createdAt": "2026-07-12" },
+    { "id": "LV-008", "empId": "EMP-013", "empName": "백승호", "team": "MARKETING", "type": "ANNUAL", "startDate": "2026-08-20", "endDate": "2026-08-22", "days": 3, "status": "PENDING", "reason": "개인 휴가", "createdAt": "2026-07-21" },
+    { "id": "LV-009", "empId": "EMP-014", "empName": "유아름", "team": "DESIGN", "type": "HALF_AM", "startDate": "2026-08-06", "endDate": "2026-08-06", "days": 0.5, "status": "PENDING", "reason": "이사 관련 업무", "createdAt": "2026-07-22" },
+    { "id": "LV-010", "empId": "EMP-015", "empName": "조태경", "team": "DEVELOPMENT", "type": "ANNUAL", "startDate": "2026-08-25", "endDate": "2026-08-28", "days": 4, "status": "APPROVED", "reason": "해외 여행", "createdAt": "2026-07-05" },
+    { "id": "LV-011", "empId": "EMP-016", "empName": "권소희", "team": "HR", "type": "ANNUAL", "startDate": "2026-08-07", "endDate": "2026-08-07", "days": 1, "status": "PENDING", "reason": "가족 행사", "createdAt": "2026-07-23" },
+    { "id": "LV-012", "empId": "EMP-017", "empName": "황도윤", "team": "MARKETING", "type": "SICK", "startDate": "2026-08-08", "endDate": "2026-08-08", "days": 1, "status": "REJECTED", "reason": "진단서 미제출", "createdAt": "2026-07-14" },
+    { "id": "LV-013", "empId": "EMP-018", "empName": "서지우", "team": "DEVELOPMENT", "type": "ANNUAL", "startDate": "2026-08-18", "endDate": "2026-08-19", "days": 2, "status": "PENDING", "reason": "리프레시 휴가", "createdAt": "2026-07-24" },
+    { "id": "LV-014", "empId": "EMP-019", "empName": "안재민", "team": "DESIGN", "type": "HALF_PM", "startDate": "2026-08-09", "endDate": "2026-08-09", "days": 0.5, "status": "PENDING", "reason": "개인 볼일", "createdAt": "2026-07-25" },
+    { "id": "LV-015", "empId": "EMP-020", "empName": "양하은", "team": "HR", "type": "ANNUAL", "startDate": "2026-08-11", "endDate": "2026-08-13", "days": 3, "status": "PENDING", "reason": "휴가 사용", "createdAt": "2026-07-26" },
+    { "id": "LV-016", "empId": "EMP-002", "empName": "이영희", "team": "DEVELOPMENT", "type": "HALF_PM", "startDate": "2026-08-17", "endDate": "2026-08-17", "days": 0.5, "status": "PENDING", "reason": "오후 연차 사용", "createdAt": "2026-07-27" },
+    { "id": "LV-017", "empId": "EMP-006", "empName": "강서연", "team": "DEVELOPMENT", "type": "ANNUAL", "startDate": "2026-08-21", "endDate": "2026-08-21", "days": 1, "status": "PENDING", "reason": "개인 볼일", "createdAt": "2026-07-28" },
+    { "id": "LV-018", "empId": "EMP-007", "empName": "윤재호", "team": "DEVELOPMENT", "type": "SICK", "startDate": "2026-08-24", "endDate": "2026-08-24", "days": 1, "status": "PENDING", "reason": "치과 진료", "createdAt": "2026-07-28" },
+    { "id": "LV-019", "empId": "EMP-004", "empName": "정수진", "team": "DESIGN", "type": "ANNUAL", "startDate": "2026-08-26", "endDate": "2026-08-27", "days": 2, "status": "PENDING", "reason": "여름휴가 2차", "createdAt": "2026-07-28" },
+    { "id": "LV-020", "empId": "EMP-008", "empName": "한지민", "team": "DESIGN", "type": "ANNUAL", "startDate": "2026-08-30", "endDate": "2026-08-31", "days": 2, "status": "PENDING", "reason": "월말 휴가", "createdAt": "2026-07-29" },
+    { "id": "LV-021", "empId": "EMP-010", "empName": "송예은", "team": "MARKETING", "type": "HALF_AM", "startDate": "2026-08-03", "endDate": "2026-08-03", "days": 0.5, "status": "PENDING", "reason": "오전 반차", "createdAt": "2026-07-29" },
+    { "id": "LV-022", "empId": "EMP-013", "empName": "백승호", "team": "MARKETING", "type": "SICK", "startDate": "2026-08-14", "endDate": "2026-08-14", "days": 1, "status": "PENDING", "reason": "외진 진료", "createdAt": "2026-07-29" },
+    { "id": "LV-023", "empId": "EMP-016", "empName": "권소희", "team": "HR", "type": "HALF_PM", "startDate": "2026-08-28", "endDate": "2026-08-28", "days": 0.5, "status": "PENDING", "reason": "오후 조퇴 겸 반차", "createdAt": "2026-07-29" },
+    { "id": "LV-024", "empId": "EMP-018", "empName": "서지우", "team": "DEVELOPMENT", "type": "ANNUAL", "startDate": "2026-08-31", "endDate": "2026-08-31", "days": 1, "status": "PENDING", "reason": "개인 연차", "createdAt": "2026-07-29" },
+    { "id": "LV-025", "empId": "EMP-020", "empName": "양하은", "team": "HR", "type": "SICK", "startDate": "2026-08-18", "endDate": "2026-08-18", "days": 1, "status": "PENDING", "reason": "병원 진료", "createdAt": "2026-07-29" }
+  ],
+  "approvalLogs": [],
+  "cachedStats": {
+    "ADMIN_A": {
+      "usedLeaveTotal": 14.5,
+      "pendingCount": 18
+    },
+    "ADMIN_B": {
+      "usedLeaveTotal": 6.0,
+      "pendingCount": 7
+    }
+  }
+}

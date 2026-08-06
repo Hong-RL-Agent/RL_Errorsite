@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-9001", "name": "김소믈리에 (프리미엄 와인 클래스 총괄 - 직원 A)", "role": "MANAGER", "className": "프랑스 보르도 그랑크뤼 마스터 클래스", "handledBookings": 310 },
+    { "id": "STF-9002", "name": "이시음 (소믈리에 및 테이스팅키트 관리자 - 직원 B)", "role": "MANAGER", "className": "이탈리아 토스카나 바롤로 시음반", "handledBookings": 280 },
+    { "id": "STF-9003", "name": "박와인 (와인 어드바이저)", "role": "STAFF", "className": "신대륙 나파밸리 카베르네 소비뇽 세미나", "handledBookings": 230 },
+    { "id": "STF-9004", "name": "최좌석 (테이블 및 좌석 배정관)", "role": "STAFF", "className": "스파클링 와인 & 샴페인 매칭 클래스", "handledBookings": 190 },
+    { "id": "STF-9005", "name": "정페어링 (마리아주 음식 준비관)", "role": "STAFF", "className": "내추럴 와인 & 유기농 페어링 워크숍", "handledBookings": 150 }
+  ],
+  "classesList": [
+    { "id": "CLS-01", "className": "프랑스 보르도 그랑크뤼 마스터 클래스", "sommelier": "김소믈리에", "priceWon": 120000, "occupancyPercent": 92, "status": "CONFIRMED" },
+    { "id": "CLS-02", "className": "이탈리아 토스카나 바롤로 시음반", "sommelier": "이시음", "priceWon": 95000, "occupancyPercent": 85, "status": "PENDING" },
+    { "id": "CLS-03", "className": "신대륙 나파밸리 카베르네 소비뇽 세미나", "sommelier": "박와인", "priceWon": 110000, "occupancyPercent": 100, "status": "ATTENDED" }
+  ],
+  "seats": [
+    { "id": "SEAT-A1", "seatNo": "VIP 테이블 A-1 (메인 오크관)", "tableGroup": "VIP 구역", "status": "OCCUPIED" },
+    { "id": "SEAT-A2", "seatNo": "VIP 테이블 A-2 (메인 오크관)", "tableGroup": "VIP 구역", "status": "OCCUPIED" },
+    { "id": "SEAT-B1", "seatNo": "일반석 B-1 (테이스팅 바)", "tableGroup": "일반 구역", "status": "AVAILABLE" }
+  ],
+  "customers": [
+    { "id": "CST-01", "customerName": "최와인", "phone": "010-9999-1111", "preferredWine": "풀바디 레드 와인 (Cabernet)", "totalVisits": 14, "rating": 4.9 },
+    { "id": "CST-02", "customerName": "강마리아주", "phone": "010-8888-2222", "preferredWine": "드라이 스파클링 샴페인", "totalVisits": 10, "rating": 4.8 },
+    { "id": "CST-03", "customerName": "윤소믈리에", "phone": "010-7777-3333", "preferredWine": "내추럴 오렌지 와인", "totalVisits": 8, "rating": 4.7 }
+  ],
+  "bookings": [
+    { "id": "BKG-3001", "bookingCode": "WC-20260805-01", "className": "프랑스 보르도 그랑크뤼 마스터 클래스", "customerName": "최와인", "seatNo": "VIP 테이블 A-1 (메인 오크관)", "classDate": "2026-08-05", "priceWon": 120000, "kitStatus": "준비완료", "status": "CONFIRMED" },
+    { "id": "BKG-3002", "bookingCode": "WC-20260805-02", "className": "이탈리아 토스카나 바롤로 시음반", "customerName": "강마리아주", "seatNo": "일반석 B-1 (테이스팅 바)", "classDate": "2026-08-06", "priceWon": 95000, "kitStatus": "준비중", "status": "PENDING" },
+    { "id": "BKG-3003", "bookingCode": "WC-20260805-03", "className": "신대륙 나파밸리 카베르네 소비뇽 세미나", "customerName": "윤소믈리에", "seatNo": "VIP 테이블 A-2 (메인 오크관)", "classDate": "2026-08-04", "priceWon": 110000, "kitStatus": "제공완료", "status": "ATTENDED" }
+  ],
+  "kitLogs": [
+    { "id": "KLOG-4001", "bkgId": "BKG-3001", "className": "프랑스 보르도 마스터반", "customerName": "최와인", "kitItems": "보르도 잔 3종 & 크래커 치즈 핑거푸드", "preparedTime": "2026-08-05 13:45", "status": "READY" },
+    { "id": "KLOG-4002", "bkgId": "BKG-3003", "className": "나파밸리 세미나", "customerName": "윤소믈리에", "kitItems": "나파벨리 시음잔 & 샤퀴테리 플래터", "preparedTime": "2026-08-04 14:00", "status": "DELIVERED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9101", "bkgId": "BKG-3001", "operator": "김소믈리에 (총괄)", "action": "예약 BKG-3001 최와인 님 VIP A-1 좌석 배정 및 예약확정 처리 완료", "timestamp": "2026-08-05 13:46:00", "status": "SUCCESS" },
+    { "id": "ACT-9102", "bkgId": "BKG-3003", "operator": "이시음 (관리자)", "action": "예약 BKG-3003 윤소믈리에 님 와인 클래스 참석 및 시음 키트 제공 완료", "timestamp": "2026-08-04 14:05:00", "status": "SUCCESS" }
+  ],
+  "wineStats": {
+    "totalClasses": 30,
+    "totalBookings": 55,
+    "totalCustomers": 45,
+    "totalSeats": 80,
+    "pendingKitCount": 11,
+    "attendedCount": 32,
+    "avgOccupancyPercent": 88.6
+  }
+}

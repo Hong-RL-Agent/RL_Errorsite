@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'/%3E%3Cline x1='16' y1='2' x2='16' y2='6'/%3E%3Cline x1='8' y1='2' x2='8' y2='6'/%3E%3Cline x1='3' y1='10' x2='21' y2='10'/%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkTime | 스마트 회사 근태 및 휴가 관리 포털</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Vue 3 Global CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- Header Navigation Bar -->
+      <header class="app-header">
+        <div class="logo-group">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          <span class="logo-title">WorkTime</span>
+          <span class="logo-subtitle">HR Attendance & Leave Console</span>
+        </div>
+
+        <!-- Admin KPI & Session selector (Error 6 Target) -->
+        <div class="header-dashboard">
+          <div class="kpis-group">
+            <div class="stat-card">
+              <span>📊 월간 사용 휴가 총합:</span>
+              <strong class="stat-value">{{ cachedUsedLeaveTotal }}일</strong>
+            </div>
+            <div class="stat-card">
+              <span>⏳ 승인 대기 결재건:</span>
+              <strong class="stat-value-alert">{{ cachedPendingCount }}건</strong>
+            </div>
+          </div>
+          <small class="warn-desc">* 관리자 계정(A ➔ B) 변경 시 직원 목록은 B 권한으로 바뀌나 상단 잔여 휴가/대기건 요약은 A 캐시가 남음 (Error 6)</small>
+        </div>
+
+        <div class="header-controls">
+          <div class="admin-selector">
+            <span>관리자 권한:</span>
+            <select :value="activeAdmin" @change="handleAdminSwitch($event.target.value)">
+              <option value="ADMIN_A">김철수 팀장 (개발 1팀 - ADMIN_A)</option>
+              <option value="ADMIN_B">박민수 팀장 (디자인팀 - ADMIN_B)</option>
+            </select>
+          </div>
+          <button class="sandbox-reset-btn" @click="resetSandbox">
+            🔄 근태 시스템 초기화
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Layout grid -->
+      <div class="worktime-grid">
+
+        <!-- Left Column: Team & Filter controls -->
+        <aside class="panel-section filter-sidebar">
+          <h3>👥 소속 부서 및 직원 필터</h3>
+          
+          <div class="filter-group">
+            <label>부서 팀 필터 선택:</label>
+            <select v-model="filterTeam" @change="triggerSearchRace">
+              <option value="ALL">전체 부서</option>
+              <option value="DEVELOPMENT">개발팀 (DEVELOPMENT)</option>
+              <option value="DESIGN">디자인팀 (DESIGN)</option>
+              <option value="HR">인사팀 (HR)</option>
+              <option value="MARKETING">마케팅팀 (MARKETING)</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>직원 검색 (Error 5):</label>
+            <input 
+              type="text" 
+              placeholder="직원 이름 또는 직급 검색..."
+              v-model="employeeSearchQuery"
+              @input="triggerSearchRace"
+            />
+            <small class="warn-desc">* 이영희(3초 지연) ➔ 정수진(0.2초 완료) 연속 검색 시 늦게 끝난 이영희 결과가 덮어써져 찢어짐 (Error 5)</small>
+          </div>
+
+          <div class="filter-group">
+            <label>승인 대기 목록 신청일순 정렬 (Error 4):</label>
+            <select v-model="leaveSortOrder">
+              <option value="NONE">기본 순서</option>
+              <option value="ASC">신청일 빠른순</option>
+              <option value="DESC">신청일 늦은순 (Error 4)</option>
+            </select>
+            <small class="warn-desc">* 신청일순 정렬 후 승인 클릭 시 인덱스 꼬임으로 다른 직원의 휴가가 승인 처리됨 (Error 4)</small>
+          </div>
+
+          <!-- Employee Catalog Stack -->
+          <div class="employees-stack">
+            <h4>📋 부서 팀원 대장 (최소 20명)</h4>
+            <div 
+              v-for="emp in sortedEmployees" 
+              :key="emp.id"
+              :class="['emp-card', selectedEmployee?.id === emp.id ? 'active' : '']"
+              @click="selectedEmployee = emp"
+            >
+              <div class="emp-head">
+                <strong>{{ emp.name }} {{ emp.position }}</strong>
+                <span class="team-tag">{{ emp.team }}</span>
+              </div>
+              <div class="emp-body">
+                <span>잔여 연차: <strong>{{ emp.remainingLeave }}일</strong></span>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Center Column: Monthly Attendance & Pending Approval Queue -->
+        <main class="panel-section attendance-center">
+          
+          <!-- Monthly Attendance Calendar Mock -->
+          <div class="widget-section">
+            <h2>📅 2026년 8월 팀원 월간 근태 현황 캘린더</h2>
+            <div class="calendar-grid">
+              <div class="cal-day-header" v-for="d in ['일','월','화','수','목','금','토']" :key="d">{{ d }}</div>
+              <div class="cal-cell empty" v-for="e in 6" :key="'empty-'+e"></div>
+              <div class="cal-cell" v-for="day in 31" :key="'day-'+day">
+                <span class="day-num">{{ day }}</span>
+                <div class="day-events">
+                  <div 
+                    v-for="req in getDayLeaveEvents(day)" 
+                    :key="req.id"
+                    :class="['event-chip', req.type.toLowerCase()]"
+                  >
+                    {{ req.empName }} ({{ getLeaveTypeLabel(req.type) }})
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Approval Queue Table (Error 4 Target) -->
+          <div class="widget-section approval-widget">
+            <div class="widget-header">
+              <h2>📑 관리자 승인 대기 휴가 신청함 (최소 25개)</h2>
+            </div>
+
+            <div class="table-scroll-box">
+              <table>
+                <thead>
+                  <tr>
+                    <th>신청 ID</th>
+                    <th>신청자</th>
+                    <th>휴가 유형</th>
+                    <th>기간</th>
+                    <th>상태</th>
+                    <th>결재</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr 
+                    v-for="(req, idx) in sortedLeaveRequests" 
+                    :key="req.id"
+                    :class="['leave-tr', selectedLeaveRequest?.id === req.id ? 'active' : '']"
+                    @click="selectedLeaveRequest = req"
+                  >
+                    <td><strong>{{ req.id }}</strong></td>
+                    <td>{{ req.empName }} ({{ req.team }})</td>
+                    <td><span class="type-tag">{{ getLeaveTypeLabel(req.type) }}</span></td>
+                    <td>{{ req.startDate }} ~ {{ req.endDate }} ({{ req.days }}일)</td>
+                    <td><span :class="['status-badge', req.status.toLowerCase()]">{{ req.status }}</span></td>
+                    <td class="action-td">
+                      <button class="approve-btn-sm" @click.stop="confirmLeaveApprove(idx)">
+                        승인 (Error 4)
+                      </button>
+                      <button class="delete-btn-sm" @click.stop="deleteLeaveRequest(req.id)">
+                        🗑️ 삭제 (Error 3)
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <small class="warn-desc">* 휴가 신청 삭제(DELETE) 시 대장에서는 지워지나 잔여 휴가 차감 및 월간 통계에는 기산 포함됨 (Error 3)</small>
+          </div>
+
+        </main>
+
+        <!-- Right Column: Employee Detail & Leave Editor -->
+        <aside class="panel-section operations-sidebar">
+          
+          <!-- Selected Employee detail panel (Error 5 target) -->
+          <div class="detail-widget">
+            <h3>👤 선택 직원 근태 및 프로필</h3>
+            <div v-if="selectedEmployee" class="detail-panel">
+              <p>직원 ID: <strong>{{ selectedEmployee.id }}</strong></p>
+              <p>이름: <strong>{{ selectedEmployee.name }}</strong> ({{ selectedEmployee.position }})</p>
+              <p>소속 팀: <span class="team-lbl">{{ selectedEmployee.team }}</span></p>
+              <p>남은 연차: <strong>{{ selectedEmployee.remainingLeave }}일</strong></p>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              직원 목록을 클릭하여 선택해 주십시오.
+            </div>
+          </div>
+
+          <!-- Leave Dates & Type adjust form (Error 1 Target) -->
+          <div class="detail-widget">
+            <h3>📅 휴가 신청 기간 및 유형 변경</h3>
+            <div v-if="selectedLeaveRequest" class="detail-panel">
+              <p>신청 ID: <strong>{{ selectedLeaveRequest.id }}</strong> ({{ selectedLeaveRequest.empName }})</p>
+              
+              <div class="form-group">
+                <label>시작일 ~ 종료일 변경:</label>
+                <div class="input-row">
+                  <input type="date" v-model="selectedLeaveRequest.startDate" />
+                  <input type="date" v-model="selectedLeaveRequest.endDate" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>휴가 구분 유형 선택:</label>
+                <div class="input-row">
+                  <select v-model="selectedLeaveRequest.type">
+                    <option value="ANNUAL">연차 휴가 (ANNUAL)</option>
+                    <option value="HALF_AM">오전 반차 (HALF_AM)</option>
+                    <option value="HALF_PM">오후 반차 (HALF_PM)</option>
+                    <option value="SICK">병가 (SICK)</option>
+                  </select>
+                  <button class="save-btn" @click="triggerDatesTypeRace(selectedLeaveRequest)">
+                    신청 수정 (Error 1)
+                  </button>
+                </div>
+                <small class="warn-desc">* 기간 수정(3초 지연 완료) 직후 휴가 유형 변경(0.1초 완료) 시, 3초 뒤 이전 유형 값이 동봉되어 덮어써짐 (Error 1)</small>
+              </div>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              신청 목록 대장에서 수정할 휴가 항목을 먼저 클릭하십시오.
+            </div>
+          </div>
+
+          <!-- Leave Actions (Error 2 & Error 7 Target) -->
+          <div class="detail-widget">
+            <h3>⚡ 휴가 결재 승인 및 취소</h3>
+            <div v-if="selectedLeaveRequest" class="detail-panel">
+              <p>현재 결재 상태: <span :class="['status-badge', selectedLeaveRequest.status.toLowerCase()]">{{ selectedLeaveRequest.status }}</span></p>
+
+              <div class="front-actions-group">
+                <button 
+                  class="approve-leave-btn"
+                  @click="triggerApproveCancelConflict(selectedLeaveRequest)"
+                >
+                  ⚡ 승인 처리 (Error 2)
+                </button>
+                <button 
+                  class="cancel-leave-btn"
+                  @click="cancelLeaveRequest(selectedLeaveRequest.id)"
+                >
+                  ⚡ 휴가 신청 취소 (Error 2)
+                </button>
+              </div>
+              <small class="warn-desc">* 승인(4초 지연 완료) 직후 취소(0.5초 완료) 시 취소 완료된 건이 APPROVED 승인 상태로 부활함 (Error 2)</small>
+
+              <!-- Unauthorized approve trigger (Error 7 Target) -->
+              <div class="unauth-section">
+                <button class="unauth-btn" @click="triggerUnauthorizedApprove(selectedLeaveRequest)">
+                  🚨 미권한자 무단 승인 시도 (Error 7)
+                </button>
+                <small class="warn-desc">* HTTP 403 에러를 반환하나 서버 승인 감사 로그(approvalLogs)에는 정상 승인으로 기록됨 (Error 7)</small>
+              </div>
+
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              휴가를 결재하려면 먼저 선택해 주십시오.
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+      <!-- Toast notifications -->
+      <div class="toast-container">
+        <div 
+          v-for="t in toasts" 
+          :key="t.id" 
+          :class="['toast-card', t.type]"
+        >
+          <span class="toast-icon">
+            {{ t.type === 'success' ? '✅' : t.type === 'danger' ? '❌' : '⚠️' }}
+          </span>
+          <span class="toast-message">{{ t.message }}</span>
+          <button class="toast-close" @click="removeToast(t.id)">
+            &times;
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

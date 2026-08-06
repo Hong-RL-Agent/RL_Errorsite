@@ -1,0 +1,49 @@
+{
+  "courses": [
+    { "id": "CS-101", "title": "모던 자바스크립트 ES6+ 완전 정복", "category": "개발", "instructor": "김코딩", "popularity": 98, "progress": 85, "isPublic": true, "materialTitle": "JavaScript_Master_Note.pdf", "materialSize": "14.2MB" },
+    { "id": "CS-102", "title": "Svelte와 Vite 기반 프론트엔드 입문", "category": "개발", "instructor": "이화면", "popularity": 92, "progress": 30, "isPublic": true, "materialTitle": "Svelte_Cheatsheet.pdf", "materialSize": "5.8MB" },
+    { "id": "CS-103", "title": "Node.js와 Express로 구축하는 REST API", "category": "개발", "instructor": "박서버", "popularity": 95, "progress": 60, "isPublic": true, "materialTitle": "Express_Architecture.pdf", "materialSize": "8.1MB" },
+    { "id": "CS-104", "title": "실전 UI/UX 디자인 시스템 마스터클래스", "category": "디자인", "instructor": "최디자인", "popularity": 88, "progress": 15, "isPublic": true, "materialTitle": "Figma_Design_System.fig", "materialSize": "42.5MB" },
+    { "id": "CS-105", "title": "파이썬 데이터 분석과 시각화 기초", "category": "데이터", "instructor": "정데이터", "popularity": 96, "progress": 45, "isPublic": true, "materialTitle": "Python_Data_Analysis.ipynb", "materialSize": "12.0MB" },
+    { "id": "CS-106", "title": "리액트 18 프로덕션 앱 개발 테크닉", "category": "개발", "instructor": "김코딩", "popularity": 94, "progress": 10, "isPublic": true, "materialTitle": "React18_Advanced.pdf", "materialSize": "18.3MB" },
+    { "id": "CS-107", "title": "뷰 3 Composition API 실전 웹 서비스", "category": "개발", "instructor": "이화면", "popularity": 85, "progress": 0, "isPublic": true, "materialTitle": "Vue3_Guide.pdf", "materialSize": "6.7MB" },
+    { "id": "CS-108", "title": "쿠버네티스와 도커 클라우드 배포 입문", "category": "데브옵스", "instructor": "한클라우드", "popularity": 91, "progress": 70, "isPublic": true, "materialTitle": "K8s_Deployment_Manifest.yaml", "materialSize": "2.4MB" },
+    { "id": "CS-109", "title": "인공지능 머신러닝 모델 튜닝 실습", "category": "AI", "instructor": "정데이터", "popularity": 97, "progress": 55, "isPublic": true, "materialTitle": "ML_Hyperparameters.zip", "materialSize": "105.0MB" },
+    { "id": "CS-110", "title": "모바일 앱 반응형 UX 레이아웃 실무", "category": "디자인", "instructor": "최디자인", "popularity": 82, "progress": 25, "isPublic": true, "materialTitle": "Mobile_Layout_Guidelines.pdf", "materialSize": "9.4MB" },
+    { "id": "CS-111", "title": "SQL 데이터베이스 성능 최적화 풀코스", "category": "DB", "instructor": "박서버", "popularity": 89, "progress": 40, "isPublic": true, "materialTitle": "SQL_Tuning_Queries.sql", "materialSize": "1.8MB" },
+    { "id": "CS-112", "title": "타입스크립트 객체지향 설계 패턴", "category": "개발", "instructor": "김코딩", "popularity": 93, "progress": 90, "isPublic": true, "materialTitle": "TypeScript_Patterns.pdf", "materialSize": "11.1MB" },
+    { "id": "CS-113", "title": "웹 보안과 화이트햇 해킹 패킷 분석", "category": "보안", "instructor": "강보안", "popularity": 87, "progress": 20, "isPublic": true, "materialTitle": "Wireshark_Analysis.pcap", "materialSize": "25.0MB" },
+    { "id": "CS-114", "title": "디지털 마케팅 퍼널과 전환율 개선", "category": "마케팅", "instructor": "임마케팅", "popularity": 84, "progress": 5, "isPublic": true, "materialTitle": "Marketing_Funnel.pptx", "materialSize": "31.2MB" },
+    { "id": "CS-115", "title": "깃허브 액션 CI/CD 자동화 파이프라인", "category": "데브옵스", "instructor": "한클라우드", "popularity": 90, "progress": 80, "isPublic": true, "materialTitle": "GitHub_Actions_Workflow.yml", "materialSize": "1.2MB" }
+  ],
+  "students": [
+    { "id": "STU-001", "name": "강동원", "role": "STUDENT_A", "enrolledCourses": ["CS-101", "CS-103", "CS-112"], "lastWatchedId": "CS-101", "lastWatchedTitle": "모던 자바스크립트 ES6+ 넓은 범위 개념" },
+    { "id": "STU-002", "name": "한효주", "role": "STUDENT_B", "enrolledCourses": ["CS-102", "CS-104"], "lastWatchedId": "CS-102", "lastWatchedTitle": "Svelte 컴포넌트 라이프사이클" },
+    { "id": "STU-003", "name": "조인성", "role": "STUDENT", "enrolledCourses": ["CS-105", "CS-109"], "lastWatchedId": "CS-105", "lastWatchedTitle": "판다스 데이터프레임 조작" },
+    { "id": "STU-004", "name": "송혜교", "role": "STUDENT", "enrolledCourses": ["CS-101", "CS-106"], "lastWatchedId": "CS-106", "lastWatchedTitle": "Concurrent Mode 개념" },
+    { "id": "STU-005", "name": "공유", "role": "STUDENT", "enrolledCourses": ["CS-108", "CS-115"], "lastWatchedId": "CS-108", "lastWatchedTitle": "파드 및 서비스 생성" },
+    { "id": "STU-006", "name": "김태리", "role": "STUDENT", "enrolledCourses": ["CS-104", "CS-110"], "lastWatchedId": "CS-104", "lastWatchedTitle": "색상 시스템 토큰" },
+    { "id": "STU-007", "name": "이병헌", "role": "STUDENT", "enrolledCourses": ["CS-111", "CS-113"], "lastWatchedId": "CS-111", "lastWatchedTitle": "인덱스 스캔과 테이블 풀스캔" },
+    { "id": "STU-008", "name": "손예진", "role": "STUDENT", "enrolledCourses": ["CS-102", "CS-107"], "lastWatchedId": "CS-107", "lastWatchedTitle": "Ref와 Reactive 차이점" },
+    { "id": "STU-009", "name": "현빈", "role": "STUDENT", "enrolledCourses": ["CS-103", "CS-112"], "lastWatchedId": "CS-103", "lastWatchedTitle": "미들웨어 체이닝" },
+    { "id": "STU-010", "name": "박보검", "role": "STUDENT", "enrolledCourses": ["CS-101", "CS-114"], "lastWatchedId": "CS-114", "lastWatchedTitle": "A/B 테스트 설계" },
+    { "id": "STU-011", "name": "수지", "role": "STUDENT", "enrolledCourses": ["CS-105", "CS-109"], "lastWatchedId": "CS-109", "lastWatchedTitle": "딥러닝 역전파 알고리즘" },
+    { "id": "STU-012", "name": "박서준", "role": "STUDENT", "enrolledCourses": ["CS-106", "CS-112"], "lastWatchedId": "CS-112", "lastWatchedTitle": "의존성 주입 패턴" },
+    { "id": "STU-013", "name": "아이유", "role": "STUDENT", "enrolledCourses": ["CS-104", "CS-110"], "lastWatchedId": "CS-110", "lastWatchedTitle": "모바일 반응형 그리드" },
+    { "id": "STU-014", "name": "남주혁", "role": "STUDENT", "enrolledCourses": ["CS-108", "CS-115"], "lastWatchedId": "CS-115", "lastWatchedTitle": "자동 빌드 파이프라인" },
+    { "id": "STU-015", "name": "김수현", "role": "STUDENT", "enrolledCourses": ["CS-101", "CS-103"], "lastWatchedId": "CS-101", "lastWatchedTitle": "비동기 Promise와 async/await" },
+    { "id": "STU-016", "name": "전지현", "role": "STUDENT", "enrolledCourses": ["CS-105", "CS-111"], "lastWatchedId": "CS-111", "lastWatchedTitle": "트랜잭션 격리 수준" },
+    { "id": "STU-017", "name": "차은우", "role": "STUDENT", "enrolledCourses": ["CS-102", "CS-106"], "lastWatchedId": "CS-102", "lastWatchedTitle": "스토어 상태 관리" },
+    { "id": "STU-018", "name": "신민아", "role": "STUDENT", "enrolledCourses": ["CS-107", "CS-114"], "lastWatchedId": "CS-114", "lastWatchedTitle": "고객 획득 비용 계산" },
+    { "id": "STU-019", "name": "변우석", "role": "STUDENT", "enrolledCourses": ["CS-109", "CS-113"], "lastWatchedId": "CS-113", "lastWatchedTitle": "XSS 및 CSRF 방어" },
+    { "id": "STU-020", "name": "고윤정", "role": "STUDENT", "enrolledCourses": ["CS-110", "CS-112"], "lastWatchedId": "CS-110", "lastWatchedTitle": "터치 제스처 처리" }
+  ],
+  "quizzes": [
+    { "id": "QZ-01", "courseId": "CS-101", "question": "자바스크립트에서 let과 const의 블록 스코프 차이점은 무엇인가요?", "savedAnswer": "A. const는 재할당이 불가능하다.", "score": 100, "submitted": false }
+  ],
+  "dashboardStats": {
+    "totalEnrolledStudents": 150,
+    "avgProgressRate": 58.5,
+    "totalReviewsCount": 42
+  }
+}

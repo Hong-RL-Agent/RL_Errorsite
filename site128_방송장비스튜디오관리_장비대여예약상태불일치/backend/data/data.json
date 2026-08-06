@@ -1,0 +1,42 @@
+{
+  "staffs": [
+    { "id": "STF-6001", "name": "김스튜디오 (방송기술 총괄감독 - 관리자 A)", "role": "MANAGER", "dept": "방송 제작기술본부", "handledRentals": 185 },
+    { "id": "STF-6002", "name": "이장비 (영상장비 관리팀장 - 관리자 B)", "role": "MANAGER", "dept": "미디어 장비 보관실", "handledRentals": 170 },
+    { "id": "STF-6003", "name": "박음향 (음향오디오 엔지니어)", "role": "STAFF", "dept": "음향 믹싱 스튜디오", "handledRentals": 140 },
+    { "id": "STF-6004", "name": "최조명 (조명디렉터 기술원)", "role": "STAFF", "dept": "스튜디오 조명기술팀", "handledRentals": 125 },
+    { "id": "STF-6005", "name": "정점검 (장비수리 정비기사)", "role": "STAFF", "dept": "장비 점검 수리실", "handledRentals": 105 }
+  ],
+  "studios": [
+    { "id": "STD-01", "name": "A스튜디오 (메인 뉴스/대형제작)", "floor": "3층", "maxCapacity": 50, "hourlyRateWon": 150000 },
+    { "id": "STD-02", "name": "B스튜디오 (크로마키 가상스튜디오)", "floor": "4층", "maxCapacity": 20, "hourlyRateWon": 100000 },
+    { "id": "STD-03", "name": "C스튜디오 (팟캐스트/오디오녹음)", "floor": "2층", "maxCapacity": 8, "hourlyRateWon": 50000 },
+    { "id": "STD-04", "name": "D스튜디오 (유튜브/라이브커머스)", "floor": "2층", "maxCapacity": 12, "hourlyRateWon": 75000 }
+  ],
+  "gears": [
+    { "id": "GER-1001", "gearName": "RED V-RAPTOR 8K 시네마 카메라", "category": "4K 시네마 카메라", "location": "장비실 A-1", "dailyFeeWon": 250000, "utilizationRate": 88.5, "inspectionDate": "2026-07-28", "status": "RENTED" },
+    { "id": "GER-1002", "gearName": "ARRI SkyPanel S60-C LED 조명셋", "category": "방송 조명셋", "location": "장비실 B-3", "dailyFeeWon": 120000, "utilizationRate": 76.0, "inspectionDate": "2026-07-30", "status": "RESERVED" },
+    { "id": "GER-1003", "gearName": "Sennheiser MKH-416 샷건 마이크", "category": "음향 마이크", "location": "장비실 C-2", "dailyFeeWon": 45000, "utilizationRate": 92.0, "inspectionDate": "2026-08-01", "status": "COMPLETED" },
+    { "id": "GER-1004", "gearName": "DJI Ronin 2 3축 짐벌 스테디캠", "category": "지미집/크레인", "location": "장비실 D-5", "dailyFeeWon": 95000, "utilizationRate": 64.5, "inspectionDate": "2026-07-25", "status": "INSPECTING" }
+  ],
+  "reservations": [
+    { "id": "RES-3001", "gearId": "GER-1001", "gearName": "RED V-RAPTOR 8K 시네마 카메라", "userName": "김PD (드라마제작국)", "studioName": "A스튜디오 (메인 뉴스/대형)", "reserveDate": "2026-08-05", "startTime": "09:00", "endTime": "18:00", "status": "RENTED" },
+    { "id": "RES-3002", "gearId": "GER-1002", "gearName": "ARRI SkyPanel S60-C LED 조명셋", "userName": "이조연출 (교양국)", "studioName": "B스튜디오 (크로마키 가상)", "reserveDate": "2026-08-06", "startTime": "13:00", "endTime": "19:00", "status": "RESERVED" }
+  ],
+  "rentalLogs": [
+    { "id": "RLOG-5001", "reservationId": "RES-3001", "gearName": "RED V-RAPTOR 8K 시네마 카메라", "userName": "김PD", "checkoutTime": "2026-08-04 08:50:00", "returnTime": "2026-08-04 18:10:00", "checkNotes": "렌즈 줌링 정상 동작 확인" },
+    { "id": "RLOG-5002", "reservationId": "RES-3002", "gearName": "ARRI SkyPanel S60-C LED 조명셋", "userName": "이조연출", "checkoutTime": "2026-08-04 12:45:00", "returnTime": "2026-08-04 19:05:00", "checkNotes": "디밍 콘솔 통신 이상 없음" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-8801", "reservationId": "RES-3001", "operator": "김스튜디오 (총괄감독)", "action": "RED 8K 시네마 카메라 A스튜디오 대여 출고 승인 완료", "timestamp": "2026-08-04 08:55:00", "status": "SUCCESS" },
+    { "id": "ACT-8802", "reservationId": "RES-3002", "operator": "이장비 (팀장)", "action": "ARRI SkyPanel 조명셋 B스튜디오 사전 배치 완료", "timestamp": "2026-08-04 12:50:00", "status": "SUCCESS" }
+  ],
+  "gearStats": {
+    "totalGears": 50,
+    "totalStudios": 12,
+    "rentedCount": 18,
+    "reservedCount": 20,
+    "inspectingCount": 8,
+    "avgUtilizationRate": 79.4,
+    "topCategory": "4K 시네마 카메라"
+  }
+}

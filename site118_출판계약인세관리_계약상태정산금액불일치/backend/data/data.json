@@ -1,0 +1,56 @@
+{
+  "staffs": [
+    { "id": "STF-3001", "name": "김출판 (편집 기획 총괄 이사 - 직원 A)", "role": "MANAGER", "dept": "편집 기획 본부", "handledContracts": 54 },
+    { "id": "STF-3002", "name": "이정산 (재무 회계팀장 - 직원 B)", "role": "MANAGER", "dept": "재무 정산팀", "handledContracts": 48 },
+    { "id": "STF-3003", "name": "박계약 (저작권 라이선스 담당)", "role": "STAFF", "dept": "저작권법무팀", "handledContracts": 38 },
+    { "id": "STF-3004", "name": "최마케팅 (출판 마케터)", "role": "STAFF", "dept": "영업 마케팅팀", "handledContracts": 32 },
+    { "id": "STF-3005", "name": "정교정 (교정 교열 에디터)", "role": "STAFF", "dept": "교정 교열실", "handledContracts": 29 }
+  ],
+  "authors": [
+    { "id": "ATH-1001", "name": "한강희 소설가", "category": "소설/문학", "totalRoyaltyPaid": 42500000, "status": "ACTIVE" },
+    { "id": "ATH-1002", "name": "김철학 에세이스트", "category": "인문/교양", "totalRoyaltyPaid": 28400000, "status": "ACTIVE" },
+    { "id": "ATH-1003", "name": "박경영 경영학 박사", "category": "경제/경영", "totalRoyaltyPaid": 35000000, "status": "ACTIVE" },
+    { "id": "ATH-1004", "name": "최개발 IT 기술이사", "category": "자기계발/IT", "totalRoyaltyPaid": 19500000, "status": "ACTIVE" },
+    { "id": "ATH-1005", "name": "정역사 인문학 교수", "category": "역사/사회", "totalRoyaltyPaid": 31200000, "status": "ACTIVE" }
+  ],
+  "books": [
+    { "id": "BK-2001", "title": "바람이 불어오는 숲의 경계", "authorId": "ATH-1001", "authorName": "한강희 소설가", "genre": "소설", "priceWon": 16800, "royaltyRate": 10.0, "totalSalesCopies": 38500, "pubDate": "2025-09-15", "status": "PUBLISHED" },
+    { "id": "BK-2002", "title": "마음이 쉬어가는 인문학 서재", "authorId": "ATH-1002", "authorName": "김철학 에세이스트", "genre": "인문/교양", "priceWon": 18000, "royaltyRate": 8.5, "totalSalesCopies": 24200, "pubDate": "2025-11-20", "status": "PUBLISHED" },
+    { "id": "BK-2003", "title": "2026 AI 경영 전략 가이드", "authorId": "ATH-1003", "authorName": "박경영 경영학 박사", "genre": "경제/경영", "priceWon": 22000, "royaltyRate": 12.0, "totalSalesCopies": 42000, "pubDate": "2026-01-10", "status": "PUBLISHED" },
+    { "id": "BK-2004", "title": "React 19 & Next.js 풀스택 마스터", "authorId": "ATH-1004", "authorName": "최개발 IT 기술이사", "genre": "자기계발/IT", "priceWon": 34000, "royaltyRate": 10.0, "totalSalesCopies": 18500, "pubDate": "2026-02-05", "status": "PUBLISHED" },
+    { "id": "BK-2005", "title": "조선 시대 생활사 깊이 읽기", "authorId": "ATH-1005", "authorName": "정역사 인문학 교수", "genre": "역사/사회", "priceWon": 25000, "royaltyRate": 9.0, "totalSalesCopies": 29000, "pubDate": "2025-08-01", "status": "PUBLISHED" },
+    { "id": "BK-2006", "title": "새벽 5시 몰입의 법칙", "authorId": "ATH-1004", "authorName": "최개발 IT 기술이사", "genre": "자기계발/IT", "priceWon": 17000, "royaltyRate": 10.0, "totalSalesCopies": 51000, "pubDate": "2025-06-10", "status": "PUBLISHED" },
+    { "id": "BK-2007", "title": "그 여름의 비밀 연가", "authorId": "ATH-1001", "authorName": "한강희 소설가", "genre": "소설", "priceWon": 15500, "royaltyRate": 10.0, "totalSalesCopies": 31000, "pubDate": "2025-07-20", "status": "PUBLISHED" },
+    { "id": "BK-2008", "title": "금리 상승기 자산 방어 전략", "authorId": "ATH-1003", "authorName": "박경영 경영학 박사", "genre": "경제/경영", "priceWon": 21000, "royaltyRate": 11.5, "totalSalesCopies": 27500, "pubDate": "2025-10-05", "status": "PUBLISHED" },
+    { "id": "BK-2009", "title": "미출간 원고 - 미래의 인류 2050", "authorId": "ATH-1002", "authorName": "김철학 에세이스트", "genre": "인문/교양", "priceWon": 19000, "royaltyRate": 8.0, "totalSalesCopies": 0, "pubDate": "2026-09-01", "status": "REVIEWING" },
+    { "id": "BK-2010", "title": "계약 해지 도서 - 절판된 시집", "authorId": "ATH-1001", "authorName": "한강희 소설가", "genre": "소설", "priceWon": 13000, "royaltyRate": 7.0, "totalSalesCopies": 5400, "pubDate": "2024-03-01", "status": "CANCELLED" }
+  ],
+  "contracts": [
+    { "id": "CTR-4001", "bookId": "BK-2001", "bookTitle": "바람이 불어오는 숲의 경계", "authorId": "ATH-1001", "authorName": "한강희 소설가", "royaltyRate": 10.0, "advanceWon": 10000000, "contractDate": "2025-03-10", "status": "PUBLISHED" },
+    { "id": "CTR-4002", "bookId": "BK-2002", "bookTitle": "마음이 쉬어가는 인문학 서재", "authorId": "ATH-1002", "authorName": "김철학 에세이스트", "royaltyRate": 8.5, "advanceWon": 5000000, "contractDate": "2025-05-15", "status": "PUBLISHED" },
+    { "id": "CTR-4003", "bookId": "BK-2003", "bookTitle": "2026 AI 경영 전략 가이드", "authorId": "ATH-1003", "authorName": "박경영 경영학 박사", "royaltyRate": 12.0, "advanceWon": 15000000, "contractDate": "2025-08-20", "status": "PUBLISHED" },
+    { "id": "CTR-4004", "bookId": "BK-2004", "bookTitle": "React 19 & Next.js 풀스택 마스터", "authorId": "ATH-1004", "authorName": "최개발 IT 기술이사", "royaltyRate": 10.0, "advanceWon": 8000000, "contractDate": "2025-09-01", "status": "SETTLING" },
+    { "id": "CTR-4005", "bookId": "BK-2010", "bookTitle": "계약 해지 도서 - 절판된 시집", "authorId": "ATH-1001", "authorName": "한강희 소설가", "royaltyRate": 7.0, "advanceWon": 3000000, "contractDate": "2024-01-10", "status": "CANCELLED" }
+  ],
+  "settlements": [
+    { "id": "STL-6001", "contractId": "CTR-4001", "bookTitle": "바람이 불어오는 숲의 경계", "authorName": "한강희 소설가", "salesPeriod": "2026년 2분기 정산", "soldCopies": 12500, "grossSalesWon": 210000000, "royaltyWon": 21000000, "taxDeductionWon": 700000, "netPayoutWon": 20300000, "status": "COMPLETED" },
+    { "id": "STL-6002", "contractId": "CTR-4004", "bookTitle": "React 19 & Next.js 풀스택 마스터", "authorName": "최개발 IT 기술이사", "salesPeriod": "2026년 2분기 정산", "soldCopies": 6800, "grossSalesWon": 231200000, "royaltyWon": 23120000, "taxDeductionWon": 770000, "netPayoutWon": 22350000, "status": "SETTLING" }
+  ],
+  "salesLogs": [
+    { "id": "SLOG-8001", "bookId": "BK-2001", "bookTitle": "바람이 불어오는 숲의 경계", "channel": "교보문고 전국 온·오프라인", "copies": 3500, "amountWon": 58800000, "timestamp": "2026-08-01 15:30:00" },
+    { "id": "SLOG-8002", "bookId": "BK-2003", "bookTitle": "2026 AI 경영 전략 가이드", "channel": "예스24 온라인 몰", "copies": 4200, "amountWon": 92400000, "timestamp": "2026-08-02 11:20:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-7001", "contractId": "CTR-4001", "operator": "김출판 (기획이사)", "action": "바람이 불어오는 숲의 경계 출간확정 처리 및 인세율 10.0% 정산 승인 완료", "timestamp": "2025-09-15 10:00:00", "status": "SUCCESS" },
+    { "id": "ACT-7002", "contractId": "CTR-4004", "operator": "이정산 (재무팀장)", "action": "React 19 풀스택 마스터 2분기 인세 22,350,000원 정산대기 승인", "timestamp": "2026-07-01 14:15:00", "status": "SUCCESS" }
+  ],
+  "publishStats": {
+    "totalBooks": 40,
+    "publishedCount": 32,
+    "settlingCount": 5,
+    "totalSalesCopies": 485000,
+    "totalRoyaltyPaidWon": 542000000,
+    "topGenre": "경제/경영",
+    "avgRoyaltyRate": 9.8
+  }
+}

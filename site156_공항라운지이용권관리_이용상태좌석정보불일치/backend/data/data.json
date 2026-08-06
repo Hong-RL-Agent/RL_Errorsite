@@ -1,0 +1,47 @@
+{
+  "staffs": [
+    { "id": "STF-8001", "name": "김라운지 (제1여객터미널 동편 마스터 매니저 - 직원 A)", "role": "MANAGER", "terminal": "제1여객터미널 동편 4층 라운지", "handledPasses": 520 },
+    { "id": "STF-8002", "name": "이체크 (제2여객터미널 퍼스트 라운지 - 직원 B)", "role": "MANAGER", "terminal": "제2여객터미널 250번 게이트 퍼스트", "handledPasses": 460 },
+    { "id": "STF-8003", "name": "박승객 (탑승동 프리미엄 라운지 매니저)", "role": "STAFF", "terminal": "탑승동 115번 게이트 중앙 라운지", "handledPasses": 380 },
+    { "id": "STF-8004", "name": "최좌석 (VIP 리프레시 릴랙스룸 관제원)", "role": "STAFF", "terminal": "제1여객터미널 서편 VIP 스위트", "handledPasses": 290 },
+    { "id": "STF-8005", "name": "정식음 (뷔페 라이브 키친 및 포장 담당)", "role": "STAFF", "terminal": "제2여객터미널 비즈니스 라운지", "handledPasses": 210 }
+  ],
+  "lounges": [
+    { "id": "LNG-01", "loungeName": "제1여객터미널 동편 마스터 라운지", "terminal": "제1여객터미널 동편 4층 라운지", "gateNo": "게이트 28번 부근", "totalSeats": 35, "occupiedSeats": 28, "congestion": "BUSY (혼잡 80%)" },
+    { "id": "LNG-02", "loungeName": "제2여객터미널 퍼스트 클래스 라운지", "terminal": "제2여객터미널 250번 게이트 퍼스트", "gateNo": "게이트 250번 상층", "totalSeats": 25, "occupiedSeats": 12, "congestion": "NORMAL (원활 48%)" },
+    { "id": "LNG-03", "loungeName": "탑승동 중앙 스카이 프리미엄 라운지", "terminal": "탑승동 115번 게이트 중앙 라운지", "gateNo": "탑승동 115번 맞은편", "totalSeats": 40, "occupiedSeats": 32, "congestion": "BUSY (혼잡 80%)" }
+  ],
+  "seats": [
+    { "id": "SET-01", "seatNo": "A-12 (싱글 프라이빗 리클라이너)", "loungeName": "제1여객터미널 동편 마스터 라운지", "zone": "RELAX_ZONE", "status": "OCCUPIED" },
+    { "id": "SET-02", "seatNo": "F-05 (퍼스트클래스 스위트 룸)", "loungeName": "제2여객터미널 퍼스트 클래스 라운지", "zone": "SUITE_ZONE", "status": "AVAILABLE" },
+    { "id": "SET-03", "seatNo": "B-08 (뷔페 다이닝 테이블)", "loungeName": "탑승동 중앙 스카이 프리미엄 라운지", "zone": "DINING_ZONE", "status": "OCCUPIED" }
+  ],
+  "passengers": [
+    { "id": "PSG-2001", "passengerName": "최공항", "phone": "010-7777-9999", "flightNo": "KE-081 (인천 -> 뉴욕 JFK)", "seatNo": "A-12 (싱글 프라이빗 리클라이너)", "tier": "FIRST_CLASS", "visitCount": 12 },
+    { "id": "PSG-2002", "passengerName": "강비행", "phone": "010-6666-8888", "flightNo": "OZ-222 (인천 -> 로스앤젤레스 LAX)", "seatNo": "F-05 (퍼스트클래스 스위트 룸)", "tier": "PREMIUM_VIP", "visitCount": 8 },
+    { "id": "PSG-2003", "passengerName": "윤여객", "phone": "010-5555-7777", "flightNo": "DL-158 (인천 -> 애틀랜타 ATL)", "seatNo": "B-08 (뷔페 다이닝 테이블)", "tier": "BUSINESS", "visitCount": 5 }
+  ],
+  "passes": [
+    { "id": "PSS-7001", "passCode": "LP-20260805-01", "terminal": "제1여객터미널 동편 4층 라운지", "passengerName": "최공항", "flightNo": "KE-081 (인천 -> 뉴욕 JFK)", "tier": "FIRST_CLASS", "seatNo": "A-12 (싱글 프라이빗 리클라이너)", "expireTime": "2026-08-05 23:59", "feeWon": 150000, "status": "IN_USE" },
+    { "id": "PSS-7002", "passCode": "LP-20260805-02", "terminal": "제2여객터미널 250번 게이트 퍼스트", "passengerName": "강비행", "flightNo": "OZ-222 (인천 -> 로스앤젤레스 LAX)", "tier": "PREMIUM_VIP", "seatNo": "F-05 (퍼스트클래스 스위트 룸)", "expireTime": "2026-08-06 18:30", "feeWon": 180000, "status": "CHECKED_IN" },
+    { "id": "PSS-7003", "passCode": "LP-20260805-03", "terminal": "탑승동 115번 게이트 중앙 라운지", "passengerName": "윤여객", "flightNo": "DL-158 (인천 -> 애틀랜타 ATL)", "tier": "BUSINESS", "seatNo": "B-08 (뷔페 다이닝 테이블)", "expireTime": "2026-08-04 15:00", "feeWon": 95000, "status": "COMPLETED" }
+  ],
+  "checkinLogs": [
+    { "id": "CLOG-6001", "passId": "PSS-7001", "passengerName": "최공항", "loungeName": "제1여객터미널 동편 마스터 라운지", "seatNo": "A-12", "checkinTime": "2026-08-05 14:10", "status": "CHECKED_IN" },
+    { "id": "CLOG-6002", "passId": "PSS-7003", "passengerName": "윤여객", "loungeName": "탑승동 중앙 스카이 프리미엄 라운지", "seatNo": "B-08", "checkinTime": "2026-08-04 13:00", "status": "COMPLETED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9991", "passId": "PSS-7001", "operator": "김라운지 (매니저)", "action": "이용권 PSS-7001 최공항 승객님 퍼스트 라운지 체크인 및 좌석 A-12 배정 완료", "timestamp": "2026-08-05 14:11:00", "status": "SUCCESS" },
+    { "id": "ACT-9992", "passId": "PSS-7003", "operator": "이체크 (관제원)", "action": "이용권 PSS-7003 윤여객 승객님 라운지 이용 완료 및 퇴장 관제 처리", "timestamp": "2026-08-04 15:05:00", "status": "SUCCESS" }
+  ],
+  "loungeStats": {
+    "totalPasses": 60,
+    "totalPassengers": 50,
+    "totalLounges": 10,
+    "totalSeats": 100,
+    "totalCheckinLogs": 90,
+    "expiringSoonCount": 8,
+    "inUseCount": 26,
+    "avgStayMinutes": 85
+  }
+}

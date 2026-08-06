@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-5001", "name": "김문화 (시민 문화센터 강좌 기획 총괄팀장 - 직원 A)", "role": "MANAGER", "category": "인문학 & 서양 미술사", "handledCourses": 390 },
+    { "id": "STF-5002", "name": "이강좌 (예술 및 음악 아카데미 학장 - 직원 B)", "role": "MANAGER", "category": "음악 & 바이올린 클래스", "handledCourses": 340 },
+    { "id": "STF-5003", "name": "박강사 (강사 파견 및 출석 관리원)", "role": "STAFF", "category": "요가 & 피트니스 건강반", "handledCourses": 280 },
+    { "id": "STF-5004", "name": "최수강 (수강생 종합 상담사)", "role": "STAFF", "category": "쿠킹 & 힐링 베이킹", "handledCourses": 220 },
+    { "id": "STF-5005", "name": "정시설 (문화센터 강의실 배정관)", "role": "STAFF", "category": "서예 & 한국화 화실", "handledCourses": 160 }
+  ],
+  "instructors": [
+    { "id": "INS-01", "instructorName": "김교수 강사", "phone": "010-9999-3333", "major": "서양 미술사 & 인문학", "assignedCourses": 4, "rating": 4.9 },
+    { "id": "INS-02", "instructorName": "이음악 마스터", "phone": "010-8888-2222", "major": "클래식 바이올린 & 앙상블", "assignedCourses": 3, "rating": 4.8 },
+    { "id": "INS-03", "instructorName": "박요가 인스트럭터", "phone": "010-7777-1111", "major": "힐링 요가 & 필라테스", "assignedCourses": 5, "rating": 4.7 }
+  ],
+  "students": [
+    { "id": "STD-01", "studentName": "최수강생", "phone": "010-5555-1111", "roomNo": "301호 서양화 실습실", "courseName": "명화로 읽는 서양 미술사", "totalEnrolled": 6, "attendanceRate": 95 },
+    { "id": "STD-02", "studentName": "강수강생", "phone": "010-4444-2222", "roomNo": "205호 음악 앙상블실", "courseName": "바이올린 초급 아카데미", "totalEnrolled": 4, "attendanceRate": 90 },
+    { "id": "STD-03", "studentName": "윤수강생", "phone": "010-3333-3333", "roomNo": "102호 필라테스 피트니스룸", "courseName": "저녁 힐링 요가 & 스트레칭", "totalEnrolled": 5, "attendanceRate": 88 }
+  ],
+  "courses": [
+    { "id": "CRS-1001", "courseCode": "CC-20260805-01", "category": "인문학 & 서양 미술사", "courseName": "명화로 읽는 서양 미술사 마스터반", "instructorName": "김교수 강사", "roomNo": "301호 서양화 실습실", "startDate": "2026-08-05", "maxCapacity": 30, "enrolledCount": 28, "tuitionFeeWon": 150000, "status": "RECRUITING" },
+    { "id": "CRS-1002", "courseCode": "CC-20260805-02", "category": "음악 & 바이올린 클래스", "courseName": "바이올린 초급 아카데미 레슨", "instructorName": "이음악 마스터", "roomNo": "205호 음악 앙상블실", "startDate": "2026-08-06", "maxCapacity": 15, "enrolledCount": 15, "tuitionFeeWon": 180000, "status": "CLOSED" },
+    { "id": "CRS-1003", "courseCode": "CC-20260805-03", "category": "요가 & 피트니스 건강반", "courseName": "저녁 힐링 요가 & 스트레칭반", "instructorName": "박요가 인스트럭터", "roomNo": "102호 필라테스 피트니스룸", "startDate": "2026-08-04", "maxCapacity": 20, "enrolledCount": 20, "tuitionFeeWon": 120000, "status": "IN_SESSION" }
+  ],
+  "enrollments": [
+    { "id": "ENR-8001", "courseId": "CRS-1001", "courseName": "명화로 읽는 서양 미술사", "studentName": "최수강생", "enrollDate": "2026-08-05", "tuitionFeeWon": 150000, "status": "ENROLLED" },
+    { "id": "ENR-8002", "courseId": "CRS-1003", "courseName": "저녁 힐링 요가", "studentName": "윤수강생", "enrollDate": "2026-08-04", "tuitionFeeWon": 120000, "status": "ATTENDED" }
+  ],
+  "attendanceLogs": [
+    { "id": "ALOG-9001", "courseId": "CRS-1001", "courseName": "명화 서양 미술사", "studentName": "최수강생", "attendDate": "2026-08-05 14:00", "instructorName": "김교수 강사", "status": "PRESENT" },
+    { "id": "ALOG-9002", "courseId": "CRS-1003", "courseName": "힐링 요가", "studentName": "윤수강생", "attendDate": "2026-08-04 19:00", "instructorName": "박요가 강사", "status": "PRESENT" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9801", "courseId": "CRS-1001", "operator": "김문화 (팀장)", "action": "강좌 CRS-1001 최수강생 님 서양 미술사 28명 수강 등록 완료", "timestamp": "2026-08-05 14:05:00", "status": "SUCCESS" },
+    { "id": "ACT-9802", "courseId": "CRS-1003", "operator": "이강좌 (학장)", "action": "강좌 CRS-1003 윤수강생 님 힐링 요가 1회차 출석 확인 완료", "timestamp": "2026-08-04 19:10:00", "status": "SUCCESS" }
+  ],
+  "cultureStats": {
+    "totalCourses": 40,
+    "totalStudents": 80,
+    "totalInstructors": 20,
+    "totalEnrollments": 70,
+    "totalAttendanceLogs": 100,
+    "recruitingCount": 14,
+    "closedCount": 18,
+    "avgAttendanceRate": 92.4
+  }
+}

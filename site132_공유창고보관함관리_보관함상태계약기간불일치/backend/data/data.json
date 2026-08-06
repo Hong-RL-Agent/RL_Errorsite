@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-1001", "name": "김창고 (강남점 매니저 - 직원 A)", "role": "MANAGER", "dept": "공유창고 운영1팀", "handledContracts": 230 },
+    { "id": "STF-1002", "name": "이보관 (홍대점 총괄팀장 - 직원 B)", "role": "MANAGER", "dept": "스마트 라커 서비스팀", "handledContracts": 205 },
+    { "id": "STF-1003", "name": "박스마트 (출입 보안 관제원)", "role": "STAFF", "dept": "24h 스마트 보안실", "handledContracts": 170 },
+    { "id": "STF-1004", "name": "최온습 (환경 제어 정기점검원)", "role": "STAFF", "dept": "항온항습 설비팀", "handledContracts": 145 },
+    { "id": "STF-1005", "name": "정계약 (고객 서비스 매니저)", "role": "STAFF", "dept": "고객 계약 지원팀", "handledContracts": 120 }
+  ],
+  "branches": [
+    { "id": "BRN-01", "name": "BoxSpace 강남역점", "location": "서울 서초구 강남대로 391 B1층", "totalLockers": 120, "occupiedCount": 98, "occupancyRate": 81.6 },
+    { "id": "BRN-02", "name": "BoxSpace 홍대입구점", "location": "서울 마포구 양화로 160 B2층", "totalLockers": 90, "occupiedCount": 75, "occupancyRate": 83.3 },
+    { "id": "BRN-03", "name": "BoxSpace 여의도금융점", "location": "서울 영등포구 국제금융로 10 B1층", "totalLockers": 100, "occupiedCount": 82, "occupancyRate": 82.0 },
+    { "id": "BRN-04", "name": "BoxSpace 성수밸리점", "location": "서울 성동구 연무장길 45 2층", "totalLockers": 80, "occupiedCount": 64, "occupancyRate": 80.0 }
+  ],
+  "customers": [
+    { "id": "CUST-5001", "customerName": "홍길동", "phone": "010-1234-5678", "memo": "캠핑용품 및 차박 장비 보관", "riskLevel": "NORMAL" },
+    { "id": "CUST-5002", "customerName": "김철수", "phone": "010-2345-6789", "memo": "계절 의류 및 명품 수집품 보관", "riskLevel": "VIP" },
+    { "id": "CUST-5003", "customerName": "이영희", "phone": "010-3456-7890", "memo": "사무용 서류 및 서적 보관", "riskLevel": "NORMAL" }
+  ],
+  "lockers": [
+    { "id": "LCK-2001", "lockerNo": "A-101", "branchId": "BRN-01", "branchName": "BoxSpace 강남역점", "size": "Large (1.5m x 1.5m)", "monthlyFeeWon": 120000, "startDate": "2026-08-01", "endDate": "2026-08-31", "customerName": "홍길동", "status": "IN_USE" },
+    { "id": "LCK-2002", "lockerNo": "B-205", "branchId": "BRN-02", "branchName": "BoxSpace 홍대입구점", "size": "Medium (1.0m x 1.0m)", "monthlyFeeWon": 85000, "startDate": "2026-07-15", "endDate": "2026-08-15", "customerName": "김철수", "status": "EXPIRING_SOON" },
+    { "id": "LCK-2003", "lockerNo": "C-302", "branchId": "BRN-03", "branchName": "BoxSpace 여의도금융점", "size": "Small (0.5m x 0.5m)", "monthlyFeeWon": 50000, "startDate": "2026-08-05", "endDate": "2027-02-05", "customerName": "이영희", "status": "AVAILABLE" }
+  ],
+  "contracts": [
+    { "id": "CTR-3001", "lockerId": "LCK-2001", "lockerNo": "A-101", "customerName": "홍길동", "phone": "010-1234-5678", "startDate": "2026-08-01", "endDate": "2026-08-31", "monthlyFeeWon": 120000, "status": "IN_USE" },
+    { "id": "CTR-3002", "lockerId": "LCK-2002", "lockerNo": "B-205", "customerName": "김철수", "phone": "010-2345-6789", "startDate": "2026-07-15", "endDate": "2026-08-15", "monthlyFeeWon": 85000, "status": "EXPIRING_SOON" }
+  ],
+  "inOutLogs": [
+    { "id": "IOLOG-7001", "contractId": "CTR-3001", "lockerNo": "A-101", "customerName": "홍길동", "actionType": "입고", "itemsDesc": "캠핑 텐트 및 쿨러 박스 추가 입고", "timestamp": "2026-08-04 14:20:00" },
+    { "id": "IOLOG-7002", "contractId": "CTR-3002", "lockerNo": "B-205", "customerName": "김철수", "actionType": "출고", "itemsDesc": "겨울 패딩 및 보드복 일부 출고", "timestamp": "2026-08-04 16:45:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9601", "contractId": "CTR-3001", "operator": "김창고 (매니저)", "action": "보관함 A-101 계약 연장 완료 (2026-08-31까지)", "timestamp": "2026-08-04 11:00:00", "status": "SUCCESS" },
+    { "id": "ACT-9602", "contractId": "CTR-3002", "operator": "이보관 (팀장)", "action": "보관함 B-205 만료 7일전 안내 문자 발송 완료", "timestamp": "2026-08-04 13:30:00", "status": "SUCCESS" }
+  ],
+  "boxStats": {
+    "totalLockers": 70,
+    "totalCustomers": 45,
+    "totalContracts": 50,
+    "inUseCount": 38,
+    "expiringSoonCount": 12,
+    "avgOccupancyRatePercent": 81.7,
+    "topBranch": "BoxSpace 홍대입구점"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "staffs": [
+    { "id": "STF-3301", "name": "김위탁 (알라딘/YES24 위탁 정산 총괄 - 직원 A)", "role": "MANAGER", "category": "인문/교양/철학", "handledConsignments": 740 },
+    { "id": "STF-3302", "name": "이정산 (소설/에세이/외국도서 매니저 - 직원 B)", "role": "MANAGER", "category": "소설/에세이/시", "handledConsignments": 630 },
+    { "id": "STF-3303", "name": "박검수 (중고책 상태 실물 등급 감정사)", "role": "STAFF", "category": "경제/경영/자기계발", "handledConsignments": 480 },
+    { "id": "STF-3304", "name": "최입고 (물류검수 및 포장 바코드 기사)", "role": "STAFF", "category": "과학/IT/컴퓨터", "handledConsignments": 370 },
+    { "id": "STF-3305", "name": "정입금 (위탁 정산금 계좌 정산원)", "role": "STAFF", "category": "수험서/자격증/교재", "handledConsignments": 260 }
+  ],
+  "consignors": [
+    { "id": "CSG-2001", "consignorCode": "UBC-20260805-01", "consignorName": "최독서", "bankAccount": "국민은행 110-222-333333", "phone": "010-3333-7777", "totalBooks": 5, "registeredDate": "2026-08-01" },
+    { "id": "CSG-2002", "consignorCode": "UBC-20260805-02", "consignorName": "강책방", "bankAccount": "신한은행 110-444-555555", "phone": "010-4444-8888", "totalBooks": 8, "registeredDate": "2026-08-03" },
+    { "id": "CSG-2003", "consignorCode": "UBC-20260805-03", "consignorName": "윤서재", "bankAccount": "우리은행 1002-555-666666", "phone": "010-5555-9999", "totalBooks": 3, "registeredDate": "2026-07-29" }
+  ],
+  "books": [
+    { "id": "BOOK-1001", "bookCode": "UBC-BK-20260805-01", "title": "사피엔스 (유발 하라리 저)", "author": "유발 하라리", "category": "인문/교양/철학", "consignorName": "최독서", "priceWon": 14000, "payoutAmount": 10500, "qualityGrade": "S급 (최상)", "consignDate": "2026-08-05", "status": "SOLD" },
+    { "id": "BOOK-1002", "bookCode": "UBC-BK-20260805-02", "title": "트렌드 코리아 2026", "author": "김난도 외", "category": "경제/경영/자기계발", "consignorName": "강책방", "priceWon": 12000, "payoutAmount": 9000, "qualityGrade": "A급 (상)", "consignDate": "2026-08-06", "status": "ON_SALE" },
+    { "id": "BOOK-1003", "bookCode": "UBC-BK-20260805-03", "title": "불편한 편의점 1권", "author": "김호연", "category": "소설/에세이/시", "consignorName": "윤서재", "priceWon": 9500, "payoutAmount": 7100, "qualityGrade": "S급 (최상)", "consignDate": "2026-08-04", "status": "SETTLED" }
+  ],
+  "sales": [
+    { "id": "SALE-7001", "bookId": "BOOK-1001", "title": "사피엔스", "consignorName": "최독서", "salePriceWon": 14000, "payoutAmount": 10500, "soldDate": "2026-08-05 15:30", "status": "SOLD" },
+    { "id": "SALE-7002", "bookId": "BOOK-1003", "title": "불편한 편의점 1권", "consignorName": "윤서재", "salePriceWon": 9500, "payoutAmount": 7100, "soldDate": "2026-08-04 11:20", "status": "SETTLED" }
+  ],
+  "settlements": [
+    { "id": "SETTL-5001", "bookId": "BOOK-1001", "consignorName": "최독서", "bankAccount": "국민 110-222-333333", "settleAmount": 10500, "settleDate": "2026-08-05 16:00", "status": "PENDING" },
+    { "id": "SETTL-5002", "bookId": "BOOK-1003", "consignorName": "윤서재", "bankAccount": "우리 1002-555-666666", "settleAmount": 7100, "settleDate": "2026-08-04 14:00", "status": "COMPLETED" }
+  ],
+  "inspectionLogs": [
+    { "id": "ILOG-6001", "bookId": "BOOK-1001", "title": "사피엔스", "inspector": "박검수", "memo": "표지 밑줄 및 형광펜 없음. 낙서 및 페이지 훼손 무. S급 판정", "logTime": "2026-08-05 10:15", "status": "PASSED" },
+    { "id": "ILOG-6002", "bookId": "BOOK-1003", "title": "불편한 편의점 1권", "inspector": "박검수", "memo": "변색 미세, 띠지 포함. S급 판정", "logTime": "2026-08-04 09:40", "status": "PASSED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9930", "bookId": "BOOK-1001", "operator": "김위탁 (총괄)", "action": "도서 BOOK-1001 사피엔스 중고 구매자 결제 완료 및 정산대기 상태 전환", "timestamp": "2026-08-05 15:35:00", "status": "SUCCESS" },
+    { "id": "ACT-9931", "bookId": "BOOK-1003", "operator": "정입금 (정산원)", "action": "도서 BOOK-1003 불편한 편의점 윤서재 위탁자 계좌로 7,100원 송금 완료", "timestamp": "2026-08-04 14:05:00", "status": "SUCCESS" }
+  ],
+  "consignStats": {
+    "totalBooks": 80,
+    "totalConsignors": 50,
+    "totalSales": 60,
+    "totalSettlements": 55,
+    "totalInspectionLogs": 70,
+    "pendingSettlementCount": 7,
+    "onSaleCount": 34,
+    "avgConsignPayoutRate": 75.0
+  }
+}

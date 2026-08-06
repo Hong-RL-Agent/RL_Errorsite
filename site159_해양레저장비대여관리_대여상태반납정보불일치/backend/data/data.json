@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-9901", "name": "김해양 (부산 해운대 마리나 총괄 지점장 - 직원 A)", "role": "MANAGER", "branchName": "부산 해운대 마리나 센터", "handledRentals": 510 },
+    { "id": "STF-9902", "name": "이서핑 (제주 서귀포 보트&서핑 지점장 - 직원 B)", "role": "MANAGER", "branchName": "제주 서귀포 마리나 센터", "handledRentals": 440 },
+    { "id": "STF-9903", "name": "박안전 (강릉 경포 해양 레저 수석교관)", "role": "STAFF", "branchName": "강릉 경포 마리나 센터", "handledRentals": 360 },
+    { "id": "STF-9904", "name": "최점검 (제트스키 및 보트 장비 정비사)", "role": "STAFF", "branchName": "여수 엑스포 해양 센터", "handledRentals": 270 },
+    { "id": "STF-9905", "name": "정반납 (해양 안전교육 및 인수담당원)", "role": "STAFF", "branchName": "인천 왕산 마리나 센터", "handledRentals": 190 }
+  ],
+  "equipments": [
+    { "id": "EQP-5001", "equipmentCode": "MR-20260805-01", "equipmentName": "야마하 FX 크루저 3인승 제트스키", "category": "제트스키 & 수상오토바이", "branchName": "부산 해운대 마리나 센터", "storageLocation": "해운대 A선착장 03번 계류장", "safetyGrade": "A (최우수)", "usageRate": 92.5, "status": "IN_USE" },
+    { "id": "EQP-5002", "equipmentCode": "MR-20260805-02", "equipmentName": "카본 카이트 패들보드 SUP 세트", "category": "패들보드 & 서핑보드", "branchName": "제주 서귀포 마리나 센터", "storageLocation": "서귀포 보관소 B동 12번 보관함", "safetyGrade": "B (우수)", "usageRate": 78.0, "status": "RESERVED" },
+    { "id": "EQP-5003", "equipmentCode": "MR-20260805-03", "equipmentName": "고성능 투어링 수중 스쿠터 (DVP)", "category": "스쿠버 & 수중 스쿠터", "branchName": "강릉 경포 마리나 센터", "storageLocation": "경포 보관소 C동 05번 보관함", "safetyGrade": "A (최우수)", "usageRate": 85.4, "status": "COMPLETED" }
+  ],
+  "customers": [
+    { "id": "CST-8001", "customerName": "최해양", "phone": "010-9999-1111", "safetyCert": "COMPLETED (안전교육 이수)", "totalRentals": 9, "preferredBranch": "부산 해운대 마리나 센터" },
+    { "id": "CST-8002", "customerName": "강레저", "phone": "010-8888-2222", "safetyCert": "COMPLETED (안전교육 이수)", "totalRentals": 6, "preferredBranch": "제주 서귀포 마리나 센터" },
+    { "id": "CST-8003", "customerName": "윤서핑", "phone": "010-7777-3333", "safetyCert": "PENDING (교육 대기)", "totalRentals": 4, "preferredBranch": "강릉 경포 마리나 센터" }
+  ],
+  "rentals": [
+    { "id": "RNT-7001", "rentalCode": "RN-20260805-01", "equipmentName": "야마하 FX 크루저 3인승 제트스키", "customerName": "최해양", "branchName": "부산 해운대 마리나 센터", "storageLocation": "해운대 A선착장 03번 계류장", "startTime": "2026-08-05 14:00", "returnTime": "2026-08-05 17:00", "feeWon": 180000, "status": "IN_USE" },
+    { "id": "RNT-7002", "rentalCode": "RN-20260805-02", "equipmentName": "카본 카이트 패들보드 SUP 세트", "customerName": "강레저", "branchName": "제주 서귀포 마리나 센터", "storageLocation": "서귀포 보관소 B동 12번 보관함", "startTime": "2026-08-06 10:00", "returnTime": "2026-08-06 13:00", "feeWon": 60000, "status": "RESERVED" },
+    { "id": "RNT-7003", "rentalCode": "RN-20260805-03", "equipmentName": "고성능 투어링 수중 스쿠터 (DVP)", "customerName": "윤서핑", "branchName": "강릉 경포 마리나 센터", "storageLocation": "경포 보관소 C동 05번 보관함", "startTime": "2026-08-04 11:00", "returnTime": "2026-08-04 14:00", "feeWon": 120000, "status": "COMPLETED" }
+  ],
+  "returnLogs": [
+    { "id": "RLOG-3001", "rntId": "RNT-7001", "equipmentName": "야마하 제트스키", "customerName": "최해양", "inspector": "김해양 지점장", "inspectionResult": "외관 무손상, 동력 기관 양호, 구명조끼 반납 완료", "returnDate": "2026-08-05 17:05", "status": "PASSED" },
+    { "id": "RLOG-3002", "rntId": "RNT-7003", "equipmentName": "수중 스쿠터", "customerName": "윤서핑", "inspector": "박안전 교관", "inspectionResult": "배터리 충전 정상 및 수밀 미세 점검 이상 없음", "returnDate": "2026-08-04 14:10", "status": "PASSED" }
+  ],
+  "safetyLogs": [
+    { "id": "SLOG-2001", "customerName": "최해양", "courseName": "해양 제트스키 안전 운항 및 파도 대처법 교육", "certDate": "2026-08-05 13:30", "instructor": "박안전 교관", "status": "PASSED" },
+    { "id": "SLOG-2002", "customerName": "강레저", "courseName": "SUP 패들보드 조난 대처 및 조류 구명 교육", "certDate": "2026-08-06 09:30", "instructor": "이서핑 교관", "status": "PASSED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9990", "rntId": "RNT-7001", "operator": "김해양 (지점장)", "action": "대여 RNT-7001 최해양 님 제트스키 대여 시작 및 구명장비 안전교육 확인 완료", "timestamp": "2026-08-05 14:05:00", "status": "SUCCESS" },
+    { "id": "ACT-9991", "rntId": "RNT-7003", "operator": "박안전 (교관)", "action": "대여 RNT-7003 윤서핑 님 수중 스쿠터 반납 점검 통과 및 반납완료 모니터링 완료", "timestamp": "2026-08-04 14:12:00", "status": "SUCCESS" }
+  ],
+  "marineStats": {
+    "totalEquipments": 60,
+    "totalCustomers": 50,
+    "totalRentals": 55,
+    "totalReturnLogs": 70,
+    "totalSafetyLogs": 60,
+    "delayedReturnCount": 6,
+    "inUseCount": 24,
+    "avgUtilizationRate": 88.4
+  }
+}

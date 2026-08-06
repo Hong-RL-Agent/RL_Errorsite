@@ -1,0 +1,49 @@
+{
+  "staffs": [
+    { "id": "STF-7001", "name": "김영양 (대표 수석 영양사 - 영양사 A)", "role": "MANAGER", "dept": "학교 급식 영양관리실", "handledMeals": 240 },
+    { "id": "STF-7002", "name": "이조리 (급식 조리장 - 영양사 B)", "role": "MANAGER", "dept": "중앙 조리실", "handledMeals": 210 },
+    { "id": "STF-7003", "name": "박위생 (급식 위생 검수원)", "role": "STAFF", "dept": "식자재 위생 검수실", "handledMeals": 175 },
+    { "id": "STF-7004", "name": "최대체 (알레르기 대체식 담당원)", "role": "STAFF", "dept": "특별 식단 관리팀", "handledMeals": 150 },
+    { "id": "STF-7005", "name": "정배식 (식당 배식 관제원)", "role": "STAFF", "dept": "학생 식당 관리실", "handledMeals": 130 }
+  ],
+  "menus": [
+    { "id": "MNU-1001", "menuName": "수제 등심 돈가스 & 브로콜리 샐러드", "mealDate": "2026-08-05", "mealType": "중식", "allergiesInfo": "돼지고기, 밀, 대두, 유제품", "substituteOption": "두부 스테이크 & 버섯 샐러드", "riskLevel": "HIGH" },
+    { "id": "MNU-1002", "menuName": "궁중 해물 볶음밥 & 새우 튀김", "mealDate": "2026-08-06", "mealType": "중식", "allergiesInfo": "새우, 오징어, 대두, 조개류", "substituteOption": "야채 계란 볶음밥", "riskLevel": "HIGH" },
+    { "id": "MNU-1003", "menuName": "한우 차돌 된장찌개 & 계란말이", "mealDate": "2026-08-07", "mealType": "중식", "allergiesInfo": "쇠고기, 대두, 난류", "substituteOption": "맑은 콩나물국 & 묵무침", "riskLevel": "MEDIUM" },
+    { "id": "MNU-1004", "menuName": "견과류 닭갈비 & 고구마 튀김", "mealDate": "2026-08-08", "mealType": "중식", "allergiesInfo": "닭고기, 땅콩, 호두, 대두", "substituteOption": "간장 찜닭 (견과류 제외)", "riskLevel": "CRITICAL" }
+  ],
+  "students": [
+    { "id": "STD-4001", "studentName": "홍길동", "gradeClass": "1학년 2반", "allergies": "돼지고기, 밀, 유제품", "riskLevel": "HIGH", "parentPhone": "010-9876-5432" },
+    { "id": "STD-4002", "studentName": "김철수", "gradeClass": "2학년 1반", "allergies": "새우, 땅콩, 조개류", "riskLevel": "CRITICAL", "parentPhone": "010-8765-4321" },
+    { "id": "STD-4003", "studentName": "이영희", "gradeClass": "3학년 4반", "allergies": "난류(계란), 복숭아", "riskLevel": "MEDIUM", "parentPhone": "010-7654-3210" },
+    { "id": "STD-4004", "studentName": "박민수", "gradeClass": "1학년 3반", "allergies": "대두(콩), 메밀", "riskLevel": "MEDIUM", "parentPhone": "010-6543-2109" }
+  ],
+  "allergies": [
+    { "id": "ALG-5001", "allergyName": "난류 (계란)", "category": "축산물", "riskSeverity": "HIGH", "studentCount": 18 },
+    { "id": "ALG-5002", "allergyName": "갑각류 (새우/게)", "category": "수산물", "riskSeverity": "CRITICAL", "studentCount": 24 },
+    { "id": "ALG-5003", "allergyName": "견과류 (땅콩/호두)", "category": "농산물", "riskSeverity": "CRITICAL", "studentCount": 15 },
+    { "id": "ALG-5004", "allergyName": "대두 / 밀가루", "category": "곡류", "riskSeverity": "MEDIUM", "studentCount": 32 }
+  ],
+  "subMealRequests": [
+    { "id": "SUB-2001", "studentId": "STD-4001", "studentName": "홍길동", "gradeClass": "1학년 2반", "menuId": "MNU-1001", "menuName": "수제 등심 돈가스", "requestedSubMenu": "두부 스테이크 & 버섯 샐러드", "requestDate": "2026-08-04", "status": "APPROVED" },
+    { "id": "SUB-2002", "studentId": "STD-4002", "studentName": "김철수", "gradeClass": "2학년 1반", "menuId": "MNU-1002", "menuName": "궁중 해물 볶음밥", "requestedSubMenu": "야채 계란 볶음밥", "requestDate": "2026-08-04", "status": "PENDING" }
+  ],
+  "servingLogs": [
+    { "id": "SLOG-9001", "subMealId": "SUB-2001", "studentName": "홍길동", "menuName": "두부 스테이크 대체식", "servedQuantity": 1, "timestamp": "2026-08-04 12:15:00" },
+    { "id": "SLOG-9002", "subMealId": "SUB-2002", "studentName": "김철수", "menuName": "야채 볶음밥 대체식", "servedQuantity": 1, "timestamp": "2026-08-04 12:30:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9501", "subMealId": "SUB-2001", "operator": "김영양 (영양사)", "action": "홍길동 학생 돼지고기 알레르기 대체식 두부스테이크 승인 완료", "timestamp": "2026-08-04 10:00:00", "status": "SUCCESS" },
+    { "id": "ACT-9502", "subMealId": "SUB-2002", "operator": "이조리 (조리장)", "action": "김철수 학생 갑각류 알레르기 대체식 조리 검수 완료", "timestamp": "2026-08-04 11:30:00", "status": "SUCCESS" }
+  ],
+  "mealStats": {
+    "totalStudents": 60,
+    "totalMenus": 35,
+    "totalAllergies": 45,
+    "subRequestsCount": 40,
+    "approvedCount": 28,
+    "servedCount": 22,
+    "topAllergy": "갑각류 (새우/게)",
+    "approvalRatePercent": 87.5
+  }
+}

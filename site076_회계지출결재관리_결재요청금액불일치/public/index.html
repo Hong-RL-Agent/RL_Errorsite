@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230284c7' stroke-width='2'%3E%3Crect x='2' y='5' width='20' height='14' rx='2'/%3E%3Cline x1='2' y1='10' x2='22' y2='10'/%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExpenseGate | 기업 지출결재 및 예산 집행 관리 포털</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Vue 3 Global CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- Header Navigation Bar -->
+      <header class="app-header">
+        <div class="logo-group">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="5" width="20" height="14" rx="2" />
+            <line x1="2" y1="10" x2="22" y2="10" />
+          </svg>
+          <span class="logo-title">ExpenseGate</span>
+          <span class="logo-subtitle">Corporate Expense Console</span>
+        </div>
+
+        <div class="header-dashboard">
+          <div class="kpis-group">
+            <div class="stat-card">
+              <span>💳 총 지출 집행액:</span>
+              <strong class="stat-value">{{ formatPrice(totalUsedBudgetSum) }}</strong>
+            </div>
+            <div class="stat-card">
+              <span>⏳ 승인 대기 결재건:</span>
+              <strong class="stat-value-alert">{{ pendingExpensesCount }}건</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-controls">
+          <div class="admin-selector">
+            <span>결재 권한자:</span>
+            <select :value="activeAdmin" @change="handleAdminSwitch($event.target.value)">
+              <option value="ADMIN_A">최고 재무이사 (ADMIN_A)</option>
+              <option value="ADMIN_B">총무팀장 (ADMIN_B)</option>
+            </select>
+          </div>
+          <button class="sandbox-reset-btn" @click="resetSandbox">
+            🔄 회계 초기화
+          </button>
+        </div>
+      </header>
+
+      <!-- App Main Workspace Grid Layout -->
+      <div class="expensegate-grid">
+
+        <!-- Left Column: Department & Type Filters -->
+        <aside class="panel-section filter-sidebar">
+          <h3>📌 부서 및 지출 항목 필터</h3>
+          
+          <div class="filter-group">
+            <label>부서 필터 선택 (Error 5):</label>
+            <select v-model="filterDepartment" @change="triggerSearchRace">
+              <option value="ALL">전체 부서</option>
+              <option value="DEV">개발팀 (DEV - Error 5)</option>
+              <option value="DESIGN">디자인팀 (DESIGN)</option>
+              <option value="HR">인사팀 (HR)</option>
+              <option value="MARKETING">마케팅팀 (MARKETING)</option>
+              <option value="SALES">영업팀 (SALES)</option>
+            </select>
+            <small class="warn-desc">* 필터 고속 변경 시 이전 응답(개발팀 3초)이 최신 결과를 덮어쓰고 상세에 없는 데이터가 남음 (Error 5)</small>
+          </div>
+
+          <div class="filter-group">
+            <label>지출 유형 필터:</label>
+            <select v-model="filterType" @change="triggerSearchRace">
+              <option value="ALL">전체 지출 유형</option>
+              <option value="ITEM">비품/장비 (ITEM)</option>
+              <option value="MEAL">식대/접대 (MEAL)</option>
+              <option value="TRAVEL">여비/교통 (TRAVEL)</option>
+              <option value="SOFTWARE">소프트웨어 (SOFTWARE)</option>
+              <option value="MARKETING">광고/홍보 (MARKETING)</option>
+              <option value="EDU">교육/도서 (EDU)</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>승인 대기함 금액순 정렬 (Error 4):</label>
+            <select v-model="amountSortOrder">
+              <option value="NONE">기본 순서</option>
+              <option value="AMOUNT_ASC">금액 낮은순</option>
+              <option value="AMOUNT_DESC">금액 높은순 (Error 4)</option>
+            </select>
+            <small class="warn-desc">* 금액순 정렬 상태에서 승인 클릭 시, 정렬 인덱스 불일치로 엉뚱한 지출건이 승인됨 (Error 4)</small>
+          </div>
+        </aside>
+
+        <!-- Center Column: Budget Chart & Expense Table -->
+        <main class="panel-section center-section">
+          
+          <!-- SVG Department Budget Graph Widget -->
+          <div class="widget-section budget-graph-widget">
+            <div class="widget-header">
+              <h2>📊 부서별 예산 소진율 현황 (SVG Graph)</h2>
+            </div>
+            <div class="budget-graph-canvas">
+              <div v-for="(stat, deptKey) in budgetStats" :key="deptKey" class="budget-bar-row">
+                <span class="dept-lbl">{{ getDeptName(deptKey) }}</span>
+                <div class="bar-track">
+                  <div 
+                    class="bar-fill" 
+                    :style="{ width: Math.min(100, Math.round((stat.usedAmount / stat.totalBudget) * 100)) + '%' }"
+                    :class="(stat.usedAmount / stat.totalBudget) >= 0.8 ? 'high' : 'normal'"
+                  ></div>
+                </div>
+                <span class="pct-lbl">{{ Math.round((stat.usedAmount / stat.totalBudget) * 100) }}% ({{ formatPrice(stat.usedAmount) }})</span>
+              </div>
+            </div>
+            <small class="warn-desc">* 지출 항목 삭제(DELETE) 시에도 부서별 예산 소진율 및 그래프 수치에는 계속 포함 유지됨 (Error 3)</small>
+          </div>
+
+          <!-- Expenses Table Matrix -->
+          <div class="widget-section">
+            <h2>📋 지출결재 대장 목록 (최소 25개)</h2>
+            <div class="table-scroll-box">
+              <table>
+                <thead>
+                  <tr>
+                    <th>결재 ID</th>
+                    <th>지출 항목명</th>
+                    <th>신청금액</th>
+                    <th>신청자</th>
+                    <th>상태</th>
+                    <th>결재</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr 
+                    v-for="(exp, idx) in sortedExpenses" 
+                    :key="exp.id"
+                    :class="['exp-tr', selectedExpense?.id === exp.id ? 'active' : '']"
+                    @click="selectExpense(exp)"
+                  >
+                    <td><strong>{{ exp.id }}</strong></td>
+                    <td>{{ exp.title }}</td>
+                    <td><strong>{{ formatPrice(exp.requestedAmount) }}</strong></td>
+                    <td>{{ exp.applicant }}</td>
+                    <td><span :class="['status-badge', exp.status.toLowerCase()]">{{ exp.status }}</span></td>
+                    <td class="action-td">
+                      <button class="approve-btn-sm" @click.stop="confirmApprove(idx)">
+                        승인 (Error 4)
+                      </button>
+                      <button class="delete-btn-sm" @click.stop="deleteExpense(exp.id)">
+                        🗑️ (Error 3)
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </main>
+
+        <!-- Right Column: Receipt Preview & Operations Drawer -->
+        <aside class="panel-section operations-sidebar">
+          
+          <!-- Selected Expense details & Receipt Image Preview (Error 6 & 7 Target) -->
+          <div class="detail-widget">
+            <h3>🧾 선택 지출 상세 및 영수증 미리보기</h3>
+            <div v-if="selectedExpense" class="detail-panel">
+              <p>결재번호: <strong>{{ selectedExpense.id }}</strong> (신청자: {{ selectedExpense.applicant }})</p>
+              <p>지출 항목: <strong>{{ selectedExpense.title }}</strong></p>
+              <p>신청 금액: <strong>{{ formatPrice(selectedExpense.requestedAmount) }}</strong></p>
+
+              <!-- Receipt Image Preview (Error 6 & 7 Target) -->
+              <div class="receipt-preview-group">
+                <label>첨부 영수증 증빙:</label>
+                <div v-if="cachedReceiptUrl" class="img-frame">
+                  <img :src="cachedReceiptUrl" alt="영수증 사진" class="receipt-img" />
+                  <span class="img-path-lbl">URL: {{ cachedReceiptUrl }}</span>
+                </div>
+                <div v-else class="img-placeholder">
+                  첨부된 영수증이 없습니다.
+                </div>
+                <small class="warn-desc">* 관리자 B 로그인 후에도 관리자 A가 보던 영수증 미리보기가 남음 (Error 6)</small>
+                <small class="warn-desc">* 파일명에 공백과 괄호 포함 시(영수증 (복사본).jpg) 이중 인코딩으로 미리보기에서만 404 발생 (Error 7)</small>
+              </div>
+
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              지출 대장 행을 클릭해 미리보기를 띄우세요.
+            </div>
+          </div>
+
+          <!-- Amount adjustment & Approval Request form (Error 1 Target) -->
+          <div class="detail-widget">
+            <h3>💰 지출 금액 수정 및 결재 요청</h3>
+            <div v-if="selectedExpense" class="detail-panel">
+              <div class="form-group">
+                <label>조정 지출 금액 (원):</label>
+                <div class="input-row">
+                  <input type="number" v-model="selectedExpense.amount" />
+                  <button class="save-btn" @click="triggerAmountRequestRace(selectedExpense)">
+                    금액 수정 & 결재요청 (Error 1)
+                  </button>
+                </div>
+                <small class="warn-desc">* 금액 수정(3초 지연 완료) 직후 결재 요청(0.1초 완료) 시, 3초 뒤 이전 금액이 동봉되어 대기함에는 구형 금액으로 노출됨 (Error 1)</small>
+              </div>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              금액을 변경하려면 항목을 먼저 선택하십시오.
+            </div>
+          </div>
+
+          <!-- Post-Approval Modification form (Error 2 Target) -->
+          <div class="detail-widget">
+            <h3>⚡ 승인 후 지출 내용 수정</h3>
+            <div v-if="selectedExpense" class="detail-panel">
+              <p>현재 상태: <span :class="['status-badge', selectedExpense.status.toLowerCase()]">{{ selectedExpense.status }}</span></p>
+
+              <div class="form-group">
+                <label>항목명 수정:</label>
+                <input type="text" v-model="selectedExpense.title" />
+              </div>
+
+              <div class="front-actions-group">
+                <button 
+                  class="approve-exp-btn"
+                  @click="triggerApproveModifyConflict(selectedExpense)"
+                >
+                  ⚡ 승인 후 수정 (Error 2)
+                </button>
+              </div>
+              <small class="warn-desc">* 결재 승인(0.5초 완료) 직후 항목 수정(4초 지연 완료) 요청 시 승인 완료된 상태에서 금액/제목이 오버라이트됨 (Error 2)</small>
+            </div>
+            <div class="empty-lbl-dark" v-else>
+              승인 후 수정을 테스트하려면 항목을 선택하세요.
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+      <!-- Toast notifications -->
+      <div class="toast-container">
+        <div 
+          v-for="t in toasts" 
+          :key="t.id" 
+          :class="['toast-card', t.type]"
+        >
+          <span class="toast-icon">
+            {{ t.type === 'success' ? '✅' : t.type === 'danger' ? '❌' : '⚠️' }}
+          </span>
+          <span class="toast-message">{{ t.message }}</span>
+          <button class="toast-close" @click="removeToast(t.id)">
+            &times;
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

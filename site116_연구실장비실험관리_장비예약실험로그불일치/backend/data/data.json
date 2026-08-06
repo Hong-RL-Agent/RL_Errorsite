@@ -1,0 +1,79 @@
+{
+  "researchers": [
+    { "id": "RES-2001", "name": "김연구 (중앙 분석실 책임연구원 - 연구원 A)", "role": "MANAGER", "dept": "나노소재 분석 센터", "completedExpCount": 48 },
+    { "id": "RES-2002", "name": "이실험 (분자생물학 선임연구원 - 연구원 B)", "role": "MANAGER", "dept": "생명공학 연구소", "completedExpCount": 42 },
+    { "id": "RES-2003", "name": "박측정 (정밀계측 박사과정)", "role": "STAFF", "dept": "양자물리 연구실", "completedExpCount": 35 },
+    { "id": "RES-2004", "name": "최광학 (레이저 광학 연구원)", "role": "STAFF", "dept": "광학 시스템 연구팀", "completedExpCount": 30 },
+    { "id": "RES-2005", "name": "정화학 (유기합성 석사과정)", "role": "STAFF", "dept": "신소재 합성 연구실", "completedExpCount": 28 },
+    { "id": "RES-2006", "name": "강나노 (전자현미경 전문연구원)", "role": "STAFF", "dept": "전자현미경 분석실", "completedExpCount": 38 },
+    { "id": "RES-2007", "name": "조바이오 (세포배양 전문연구원)", "role": "STAFF", "dept": "줄기세포 연구팀", "completedExpCount": 26 },
+    { "id": "RES-2008", "name": "윤반도체 (박막증착 기술원)", "role": "STAFF", "dept": "반도체 소자 연구소", "completedExpCount": 33 },
+    { "id": "RES-2009", "name": "장크로마 (질량분석 전문기사)", "role": "STAFF", "dept": "약학 분석 센타", "completedExpCount": 31 },
+    { "id": "RES-2010", "name": "임열역학 (열분석 연구원)", "role": "STAFF", "dept": "에너지 재료 연구실", "completedExpCount": 27 }
+  ],
+  "equipments": [
+    { "id": "EQ-1001", "name": "전계방출 투과전자현미경 (FE-TEM)", "category": "분석장비", "location": "제1공학관 101호", "usageRate": 92.5, "inspectCycleDays": 30, "status": "IN_USE", "managerName": "강나노" },
+    { "id": "EQ-1002", "name": "고분해능 주사전자현미경 (FE-SEM)", "category": "분석장비", "location": "제1공학관 102호", "usageRate": 88.0, "inspectCycleDays": 30, "status": "RESERVED", "managerName": "강나노" },
+    { "id": "EQ-1003", "name": "X선 회절분석기 (XRD)", "category": "분석장비", "location": "제1공학관 103호", "usageRate": 76.2, "inspectCycleDays": 60, "status": "AVAILABLE", "managerName": "김연구" },
+    { "id": "EQ-1004", "name": "핵자기공명분석기 (NMR 600MHz)", "category": "분석장비", "location": "제2공학관 201호", "usageRate": 95.0, "inspectCycleDays": 30, "status": "IN_USE", "managerName": "정화학" },
+    { "id": "EQ-1005", "name": "유체크로마토그래피 질량분석기 (LC-MS/MS)", "category": "분석장비", "location": "제2공학관 202호", "usageRate": 84.5, "inspectCycleDays": 45, "status": "MAINTENANCE", "managerName": "장크로마" },
+    { "id": "EQ-1006", "name": "원자힘현미경 (AFM)", "category": "측정장비", "location": "제1공학관 104호", "usageRate": 68.0, "inspectCycleDays": 60, "status": "AVAILABLE", "managerName": "박측정" },
+    { "id": "EQ-1007", "name": "펠스 레이저 가공기 (Femtosecond Laser)", "category": "광학장비", "location": "제3공학관 301호", "usageRate": 55.4, "inspectCycleDays": 90, "status": "BROKEN", "managerName": "최광학" },
+    { "id": "EQ-1008", "name": "유기금속화학증착장비 (MOCVD)", "category": "반도체장비", "location": "클린룸 1동", "usageRate": 91.0, "inspectCycleDays": 30, "status": "IN_USE", "managerName": "윤반도체" },
+    { "id": "EQ-1009", "name": "유세포분석기 (FACS)", "category": "바이오장비", "location": "생명관 401호", "usageRate": 82.3, "inspectCycleDays": 30, "status": "RESERVED", "managerName": "조바이오" },
+    { "id": "EQ-1010", "name": "시차열역학분석기 (DSC/TGA)", "category": "측정장비", "location": "제2공학관 205호", "usageRate": 64.0, "inspectCycleDays": 60, "status": "AVAILABLE", "managerName": "임열역학" },
+    { "id": "EQ-1011", "name": "유도결합플라즈마 분광분석기 (ICP-OES)", "category": "분석장비", "location": "제1공학관 105호", "usageRate": 79.1, "inspectCycleDays": 45, "status": "DISABLED", "managerName": "김연구" },
+    { "id": "EQ-1012", "name": "자외선/가시광선 분광광도계 (UV-Vis)", "category": "측정장비", "location": "제2공학관 203호", "usageRate": 45.0, "inspectCycleDays": 90, "status": "AVAILABLE", "managerName": "정화학" },
+    { "id": "EQ-1013", "name": "적외선 분광광도계 (FT-IR)", "category": "측정장비", "location": "제2공학관 204호", "usageRate": 52.0, "inspectCycleDays": 90, "status": "AVAILABLE", "managerName": "정화학" },
+    { "id": "EQ-1014", "name": "실시간 유전자증폭기 (qPCR)", "category": "바이오장비", "location": "생명관 402호", "usageRate": 89.4, "inspectCycleDays": 30, "status": "IN_USE", "managerName": "이실험" },
+    { "id": "EQ-1015", "name": "초고속 원심분리기 (Ultracentrifuge)", "category": "바이오장비", "location": "생명관 403호", "usageRate": 60.5, "inspectCycleDays": 60, "status": "AVAILABLE", "managerName": "이실험" },
+    { "id": "EQ-1016", "name": "플라즈마 식각기 (ICP-RIE)", "category": "반도체장비", "location": "클린룸 2동", "usageRate": 87.2, "inspectCycleDays": 30, "status": "IN_USE", "managerName": "윤반도체" },
+    { "id": "EQ-1017", "name": "RF 스퍼터링 시스템 (Sputter)", "category": "반도체장비", "location": "클린룸 2동", "usageRate": 83.0, "inspectCycleDays": 45, "status": "RESERVED", "managerName": "윤반도체" },
+    { "id": "EQ-1018", "name": "엘립소미터 (Ellipsometer)", "category": "측정장비", "location": "클린룸 1동", "usageRate": 40.0, "inspectCycleDays": 90, "status": "AVAILABLE", "managerName": "박측정" },
+    { "id": "EQ-1019", "name": "공초점 레이저 현미경 (CLSM)", "category": "광학장비", "location": "제3공학관 302호", "usageRate": 90.1, "inspectCycleDays": 30, "status": "IN_USE", "managerName": "최광학" },
+    { "id": "EQ-1020", "name": "공동초점 마이크로 라만 분광기 (Raman)", "category": "분석장비", "location": "제1공학관 106호", "usageRate": 81.5, "inspectCycleDays": 45, "status": "AVAILABLE", "managerName": "김연구" },
+    { "id": "EQ-1021", "name": "X선 광전자분광기 (XPS)", "category": "분석장비", "location": "제1공학관 107호", "usageRate": 94.2, "inspectCycleDays": 30, "status": "IN_USE", "managerName": "김연구" },
+    { "id": "EQ-1022", "name": "기체크로마토그래피 질량분석기 (GC-MS)", "category": "분석장비", "location": "제2공학관 206호", "usageRate": 77.8, "inspectCycleDays": 45, "status": "AVAILABLE", "managerName": "장크로마" },
+    { "id": "EQ-1023", "name": "동적 광산란 입도분석기 (DLS/Zeta)", "category": "측정장비", "location": "제1공학관 108호", "usageRate": 58.0, "inspectCycleDays": 60, "status": "AVAILABLE", "managerName": "박측정" },
+    { "id": "EQ-1024", "name": "만능재료시험기 (UTM 50kN)", "category": "측정장비", "location": "제3공학관 305호", "usageRate": 71.0, "inspectCycleDays": 60, "status": "AVAILABLE", "managerName": "임열역학" },
+    { "id": "EQ-1025", "name": "임피던스 분광분석기 (EIS)", "category": "측정장비", "location": "제2공학관 207호", "usageRate": 66.5, "inspectCycleDays": 60, "status": "AVAILABLE", "managerName": "김연구" },
+    { "id": "EQ-1026", "name": "초임계 추출 장비 (Supercritical CO2)", "category": "분석장비", "location": "제2공학관 208호", "usageRate": 38.0, "inspectCycleDays": 90, "status": "AVAILABLE", "managerName": "정화학" },
+    { "id": "EQ-1027", "name": "동결건조기 (Freeze Dryer)", "category": "바이오장비", "location": "생명관 404호", "usageRate": 49.0, "inspectCycleDays": 90, "status": "AVAILABLE", "managerName": "이실험" },
+    { "id": "EQ-1028", "name": "공기제어 그로브박스 (Glovebox)", "category": "반도체장비", "location": "클린룸 3동", "usageRate": 88.0, "inspectCycleDays": 30, "status": "IN_USE", "managerName": "윤반도체" },
+    { "id": "EQ-1029", "name": "전자빔 증착기 (E-beam Evaporator)", "category": "반도체장비", "location": "클린룸 3동", "usageRate": 85.5, "inspectCycleDays": 30, "status": "RESERVED", "managerName": "윤반도체" },
+    { "id": "EQ-1030", "name": "고압 멸균기 (Autoclave)", "category": "바이오장비", "location": "생명관 405호", "usageRate": 62.0, "inspectCycleDays": 60, "status": "AVAILABLE", "managerName": "이실험" },
+    { "id": "EQ-1031", "name": "형광 실루엣 카메라 (Fluorescence)", "category": "광학장비", "location": "제3공학관 303호", "usageRate": 51.0, "inspectCycleDays": 90, "status": "AVAILABLE", "managerName": "최광학" },
+    { "id": "EQ-1032", "name": "비접촉 3D 표면조도계 (Profiler)", "category": "측정장비", "location": "제1공학관 109호", "usageRate": 44.0, "inspectCycleDays": 90, "status": "AVAILABLE", "managerName": "박측정" },
+    { "id": "EQ-1033", "name": "질소 흡착 비표면적 분석기 (BET)", "category": "분석장비", "location": "제1공학관 110호", "usageRate": 73.0, "inspectCycleDays": 60, "status": "AVAILABLE", "managerName": "김연구" },
+    { "id": "EQ-1034", "name": "회전식 점도계 (Rheometer)", "category": "측정장비", "location": "제2공학관 209호", "usageRate": 56.0, "inspectCycleDays": 60, "status": "AVAILABLE", "managerName": "임열역학" },
+    { "id": "EQ-1035", "name": "홀 효과 측정장치 (Hall Effect)", "category": "측정장비", "location": "제3공학관 304호", "usageRate": 63.5, "inspectCycleDays": 60, "status": "AVAILABLE", "managerName": "박측정" }
+  ],
+  "reservations": [
+    { "id": "RSV-3001", "equipmentId": "EQ-1001", "equipmentName": "전계방출 투과전자현미경 (FE-TEM)", "researcherId": "RES-2001", "researcherName": "김연구 (중앙 분석실 책임연구원)", "reserveDate": "2026-08-05", "startTime": "09:00", "endTime": "12:00", "purpose": "나노입자 결정구조 HR-TEM 분석", "status": "IN_USE" },
+    { "id": "RSV-3002", "equipmentId": "EQ-1004", "equipmentName": "핵자기공명분석기 (NMR 600MHz)", "researcherId": "RES-2005", "researcherName": "정화학 (유기합성 석사과정)", "reserveDate": "2026-08-05", "startTime": "13:00", "endTime": "17:00", "purpose": "천연물 1H-NMR / 13C-NMR 측정", "status": "IN_USE" },
+    { "id": "RSV-3003", "equipmentId": "EQ-1002", "equipmentName": "고분해능 주사전자현미경 (FE-SEM)", "researcherId": "RES-2006", "researcherName": "강나노 (전자현미경 전문연구원)", "reserveDate": "2026-08-06", "startTime": "10:00", "endTime": "14:00", "purpose": "반도체 에칭 단면 SEM 관찰", "status": "RESERVED" },
+    { "id": "RSV-3004", "equipmentId": "EQ-1008", "equipmentName": "유기금속화학증착장비 (MOCVD)", "researcherId": "RES-2008", "researcherName": "윤반도체 (박막증착 기술원)", "reserveDate": "2026-08-05", "startTime": "09:00", "endTime": "18:00", "purpose": "GaN 에피층 성장에 따른 PL 특성 평가", "status": "IN_USE" },
+    { "id": "RSV-3005", "equipmentId": "EQ-1009", "equipmentName": "유세포분석기 (FACS)", "researcherId": "RES-2007", "researcherName": "조바이오 (세포배양 전문연구원)", "reserveDate": "2026-08-07", "startTime": "14:00", "endTime": "18:00", "purpose": "암세포 주기 사멸율 FACS 분석", "status": "RESERVED" }
+  ],
+  "expLogs": [
+    { "id": "LOG-5001", "equipmentId": "EQ-1001", "equipmentName": "전계방출 투과전자현미경 (FE-TEM)", "researcherId": "RES-2001", "researcherName": "김연구 (중앙 분석실 책임연구원)", "expTitle": "격자 상수 및 고분해능 회절 패턴 관찰", "logTime": "2026-08-05 11:30:00", "note": "고전압 200kV 안정적 동작 확인" },
+    { "id": "LOG-5002", "equipmentId": "EQ-1004", "equipmentName": "핵자기공명분석기 (NMR 600MHz)", "researcherId": "RES-2005", "researcherName": "정화학 (유기합성 석사과정)", "expTitle": "화합물 A-14 분자구조 피크 동정", "logTime": "2026-08-05 15:45:00", "note": "락킹 신호 우수" }
+  ],
+  "maintenanceRequests": [
+    { "id": "MNT-4001", "equipmentId": "EQ-1005", "equipmentName": "유체크로마토그래피 질량분석기 (LC-MS/MS)", "applicant": "장크로마 (질량분석 전문기사)", "issueType": "이온원 튜닝 압력 저하 및 노즐 막힘", "status": "IN_PROGRESS", "requestDate": "2026-08-02" },
+    { "id": "MNT-4002", "equipmentId": "EQ-1007", "equipmentName": "펠스 레이저 가공기 (Femtosecond Laser)", "applicant": "최광학 (레이저 광학 연구원)", "issueType": "광학 렌즈 타점 편차 및 레이저 튜브 불량", "status": "PENDING", "requestDate": "2026-08-03" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-6001", "equipmentId": "EQ-1001", "operator": "김연구 (책임연구원)", "action": "FE-TEM 8월 5일 오전 예약 및 실험 로그 연동 완료", "timestamp": "2026-08-05 09:05:00", "status": "SUCCESS" },
+    { "id": "ACT-6002", "equipmentId": "EQ-1005", "operator": "장크로마 (질량분석 기사)", "action": "LC-MS/MS 노즐 긴급 정비 요청 등록 완료", "timestamp": "2026-08-02 11:20:00", "status": "SUCCESS" }
+  ],
+  "labStats": {
+    "totalEquipments": 35,
+    "inUseCount": 10,
+    "reservedCount": 5,
+    "maintenanceCount": 2,
+    "avgUsageRate": 72.4,
+    "totalMonthlyExpCount": 248,
+    "dangerousChemCount": 6
+  }
+}

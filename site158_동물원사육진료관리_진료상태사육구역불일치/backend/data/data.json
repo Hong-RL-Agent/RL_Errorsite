@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-9501", "name": "김사육 (야생동물 총괄 수의과 수석 - 직원 A)", "role": "MANAGER", "habitatZone": "아프리카 사바나 야생사육장", "handledAnimals": 580 },
+    { "id": "STF-9502", "name": "이동물 (유인원 및 맹수 특수관리원 - 직원 B)", "role": "MANAGER", "habitatZone": "열대우림 유인원 특별관", "handledAnimals": 490 },
+    { "id": "STF-9503", "name": "박진료 (동물병원 입원실 수의사)", "role": "STAFF", "habitatZone": "남극 펭귄 & 해양동물 수족관", "handledTasks": 410 },
+    { "id": "STF-9504", "name": "최급여 (영양 영양식 조리사)", "role": "STAFF", "habitatZone": "조류 및 초식동물 평원", "handledTasks": 310 },
+    { "id": "STF-9505", "name": "정격리 (야간 긴급 응급실 수의사)", "role": "STAFF", "habitatZone": "야행성 동물 및 파충류관", "handledTasks": 230 }
+  ],
+  "habitats": [
+    { "id": "HBT-01", "habitatZone": "아프리카 사바나 야생사육장", "capacity": 25, "currentAnimals": 22, "temperatureC": 26.5, "status": "OPTIMAL" },
+    { "id": "HBT-02", "habitatZone": "열대우림 유인원 특별관", "capacity": 15, "currentAnimals": 14, "temperatureC": 28.0, "status": "ATTENTION_REQUIRED" },
+    { "id": "HBT-03", "habitatZone": "남극 펭귄 & 해양동물 수족관", "capacity": 30, "currentAnimals": 28, "temperatureC": 2.0, "status": "OPTIMAL" }
+  ],
+  "zookeepers": [
+    { "id": "ZKP-4001", "zookeeperName": "김사육 사육사", "phone": "010-9999-7777", "specialty": "맹수 및 사바나 대형포유류", "assignedAnimals": 16, "rating": 4.9 },
+    { "id": "ZKP-4002", "zookeeperName": "이동물 수의사", "phone": "010-8888-6666", "specialty": "유인원 수술 및 야생동물 의학", "assignedAnimals": 12, "rating": 4.8 },
+    { "id": "ZKP-4003", "zookeeperName": "박진료 수의사", "phone": "010-7777-5555", "specialty": "해양동물 및 조류 질병 케어", "assignedAnimals": 14, "rating": 4.7 }
+  ],
+  "animals": [
+    { "id": "ANM-3001", "animalCode": "ZC-20260805-01", "species": "아프리카 사자", "animalName": "심바 (Simba)", "ageYears": 7, "habitatZone": "아프리카 사바나 야생사육장", "healthGrade": "A (우수)", "riskLevel": "NORMAL (안정)", "zookeeperName": "김사육 사육사", "admitDate": "2026-08-05", "status": "IN_TREATMENT" },
+    { "id": "ANM-3002", "animalCode": "ZC-20260805-02", "species": "보르네오 오랑우탄", "animalName": "코코 (Koko)", "ageYears": 12, "habitatZone": "열대우림 유인원 특별관", "healthGrade": "C (주의)", "riskLevel": "WARNING (주의)", "zookeeperName": "이동물 수의사", "admitDate": "2026-08-06", "status": "OBSERVING" },
+    { "id": "ANM-3003", "animalCode": "ZC-20260805-03", "species": "황제펭귄", "animalName": "페니 (Penny)", "ageYears": 4, "habitatZone": "남극 펭귄 & 해양동물 수족관", "healthGrade": "A (우수)", "riskLevel": "NORMAL (안정)", "zookeeperName": "박진료 수의사", "admitDate": "2026-08-04", "status": "COMPLETED" }
+  ],
+  "medicalRecords": [
+    { "id": "MED-6001", "anmId": "ANM-3001", "animalName": "심바 (사자)", "zookeeperName": "김사육 사육사", "diagnosis": "우측 후지 가벼운 염좌 및 소화기 영양제 처방", "treatDate": "2026-08-05 15:00", "status": "IN_TREATMENT" },
+    { "id": "MED-6002", "anmId": "ANM-3003", "animalName": "페니 (황제펭귄)", "zookeeperName": "박진료 수의사", "diagnosis": "정기 구충제 투여 및 깃털 종합 검진 완료", "treatDate": "2026-08-04 10:30", "status": "COMPLETED" }
+  ],
+  "feedingLogs": [
+    { "id": "FLOG-8001", "anmId": "ANM-3001", "animalName": "심바 (사자)", "habitatZone": "아프리카 사바나 사육장", "foodItem": "신선 생고기 8kg + 비타민 영양제 50g", "feedTime": "2026-08-05 17:00", "status": "FED" },
+    { "id": "FLOG-8002", "anmId": "ANM-3003", "animalName": "페니 (황제펭귄)", "habitatZone": "남극 펭귄 수족관", "foodItem": "냉동 열목어 1.5kg + 칼슘제 20g", "feedTime": "2026-08-04 16:00", "status": "FED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9998", "anmId": "ANM-3001", "operator": "김사육 (수석)", "action": "동물 ANM-3001 심바 수의 진료 진행중 및 집중 사육실 관제 시작", "timestamp": "2026-08-05 15:05:00", "status": "SUCCESS" },
+    { "id": "ACT-9999", "anmId": "ANM-3003", "operator": "박진료 (수의사)", "action": "동물 ANM-3003 페니 정기 검진 완료 및 수족관 구역 복귀 완료", "timestamp": "2026-08-04 10:35:00", "status": "SUCCESS" }
+  ],
+  "zooStats": {
+    "totalAnimals": 70,
+    "totalHabitats": 20,
+    "totalMedicalRecords": 65,
+    "totalFeedingLogs": 90,
+    "totalZookeepers": 25,
+    "inTreatmentCount": 8,
+    "observingCount": 18,
+    "avgHealthScore": 93.5
+  }
+}

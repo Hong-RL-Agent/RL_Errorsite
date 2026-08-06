@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-7001", "name": "김심리 (수석 심리상담 센터장 - 직원 A)", "role": "MANAGER", "specialty": "성인 자아 탐색 & 스트레스 케어", "handledCounsels": 490 },
+    { "id": "STF-7002", "name": "이마음 (청소년 및 가족상담 전문관 - 직원 B)", "role": "MANAGER", "specialty": "청소년 진로 & 가족 정서 케어", "handledCounsels": 430 },
+    { "id": "STF-7003", "name": "박코칭 (커리어 & 대인관계 수석상담사)", "role": "STAFF", "specialty": "직장인 커리어 코칭 & 대인관계", "handledCounsels": 350 },
+    { "id": "STF-7004", "name": "최정서 (임상심리 및 인지행동치료사)", "role": "STAFF", "specialty": "인지행동 치료 & 불안장애 케어", "handledCounsels": 270 },
+    { "id": "STF-7005", "name": "정일정 (상담 예약 및 후속 스케줄러)", "role": "STAFF", "specialty": "상담 일정 및 검사 검수", "handledCounsels": 190 }
+  ],
+  "counselors": [
+    { "id": "CNS-01", "counselorName": "김심리 수석상담사", "phone": "010-9999-6666", "license": "전문상담사 1급", "assignedClients": 18, "rating": 4.9 },
+    { "id": "CNS-02", "counselorName": "이마음 멘탈케어관", "phone": "010-8888-5555", "license": "임상심리사 2급", "assignedClients": 14, "rating": 4.8 },
+    { "id": "CNS-03", "counselorName": "박코칭 상담사", "phone": "010-7777-4444", "license": "커리어코치 자격", "assignedClients": 12, "rating": 4.7 }
+  ],
+  "clients": [
+    { "id": "CLT-1001", "clientName": "최내담", "phone": "010-5555-8888", "topic": "직장 스트레스 및 자아 존중감 향상", "totalSessions": 10, "counselorName": "김심리 수석상담사", "priority": "HIGH (중요)" },
+    { "id": "CLT-1002", "clientName": "강마음", "phone": "010-4444-7777", "topic": "대인관계 불안 및 가족 갈등 완화", "totalSessions": 6, "counselorName": "이마음 멘탈케어관", "priority": "URGENT (긴급)" },
+    { "id": "CLT-1003", "clientName": "윤정서", "phone": "010-3333-6666", "topic": "커리어 이직 고민 및 인지재구성", "totalSessions": 8, "counselorName": "박코칭 상담사", "priority": "NORMAL (보통)" }
+  ],
+  "counsels": [
+    { "id": "CNSL-9001", "counselCode": "CN-20260805-01", "topic": "직장 스트레스 및 자아 존중감 향상", "clientName": "최내담", "counselorName": "김심리 수석상담사", "counselDate": "2026-08-05 14:00", "noteText": "자아존중감 척도 측정 완료, 긍정적 자기대화 연습 부여", "priority": "HIGH (중요)", "feeWon": 100000, "status": "IN_COUNSEL" },
+    { "id": "CNSL-9002", "counselCode": "CN-20260805-02", "topic": "대인관계 불안 및 가족 갈등 완화", "clientName": "강마음", "counselorName": "이마음 멘탈케어관", "counselDate": "2026-08-06 16:00", "noteText": "가족 대화 패턴 분석 및 정서적 경계선 설정 과제", "priority": "URGENT (긴급)", "feeWon": 120000, "status": "SCHEDULED" },
+    { "id": "CNSL-9003", "counselCode": "CN-20260805-03", "topic": "커리어 이직 고민 및 인지재구성", "clientName": "윤정서", "counselorName": "박코칭 상담사", "counselDate": "2026-08-04 11:00", "noteText": "직업가치관 진단검사 실시 및 후속 4회차 일정 조율", "priority": "NORMAL (보통)", "feeWon": 90000, "status": "COMPLETED" }
+  ],
+  "followups": [
+    { "id": "FLW-8001", "cnslId": "CNSL-9001", "clientName": "최내담", "counselorName": "김심리 수석상담사", "nextDate": "2026-08-12 14:00", "goal": "스트레스 자기관리 일지 작성 검토", "status": "SCHEDULED" },
+    { "id": "FLW-8002", "cnslId": "CNSL-9003", "clientName": "윤정서", "counselorName": "박코칭 상담사", "nextDate": "2026-08-11 11:00", "goal": "이직 역량기술서 면담 진행", "status": "CONFIRMED" }
+  ],
+  "counselLogs": [
+    { "id": "CLOG-5001", "cnslId": "CNSL-9001", "clientName": "최내담", "counselorName": "김심리 수석상담사", "sessionSummary": "상담 회차 3회차 진행. 스트레스 지수 감소 경향성 확인.", "logTime": "2026-08-05 14:55", "status": "RECORDED" },
+    { "id": "CLOG-5002", "cnslId": "CNSL-9003", "clientName": "윤정서", "counselorName": "박코칭 상담사", "sessionSummary": "종합 진단 검사결과 피드백 제공 완료.", "logTime": "2026-08-04 11:50", "status": "RECORDED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9981", "cnslId": "CNSL-9001", "operator": "김심리 (센터장)", "action": "상담 CNSL-9001 최내담 님 심리상담 진행중 상태 및 관제 로그 기록 완료", "timestamp": "2026-08-05 14:56:00", "status": "SUCCESS" },
+    { "id": "ACT-9982", "cnslId": "CNSL-9003", "operator": "이마음 (관제원)", "action": "상담 CNSL-9003 윤정서 님 커리어 코칭 상담 종결 및 결제 완료", "timestamp": "2026-08-04 11:55:00", "status": "SUCCESS" }
+  ],
+  "counselStats": {
+    "totalCounsels": 60,
+    "totalClients": 50,
+    "totalCounselors": 20,
+    "totalCounselLogs": 80,
+    "totalFollowups": 40,
+    "todayCounselCount": 11,
+    "completedCount": 26,
+    "avgClientSatisfaction": 94.6
+  }
+}

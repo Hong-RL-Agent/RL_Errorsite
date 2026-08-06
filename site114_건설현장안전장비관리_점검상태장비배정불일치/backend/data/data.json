@@ -1,0 +1,75 @@
+{
+  "workers": [
+    { "id": "WRK-A001", "name": "김안전 (총괄 안전보건총괄책임자 - 관리자 A)", "role": "MANAGER", "dept": "안전보건 총괄본부", "safetyScore": 98 },
+    { "id": "WRK-A002", "name": "이현장 (현장 안전감독관 - 관리자 B)", "role": "MANAGER", "dept": "현장 안전점검팀", "safetyScore": 95 },
+    { "id": "WRK-A003", "name": "박비계 (비계설치 반장)", "role": "STAFF", "dept": "가설물 구조물팀", "safetyScore": 90 },
+    { "id": "WRK-A004", "name": "최크레인 (타워크레인 기사)", "role": "STAFF", "dept": "중장비 운용팀", "safetyScore": 92 },
+    { "id": "WRK-A005", "name": "정용접 (특수용접 기사)", "role": "STAFF", "dept": "철골 구조용접팀", "safetyScore": 88 },
+    { "id": "WRK-A006", "name": "강전기 (고압 전기점검원)", "role": "STAFF", "dept": "임시 전력배선팀", "safetyScore": 94 },
+    { "id": "WRK-A007", "name": "조굴착 (굴착기 운전원)", "role": "STAFF", "dept": "토목 굴착작업팀", "safetyScore": 89 },
+    { "id": "WRK-A008", "name": "윤화물 (리프트 운전원)", "role": "STAFF", "dept": "수직양중 관리팀", "safetyScore": 91 },
+    { "id": "WRK-A009", "name": "장추락 (추락방지망 설치원)", "role": "STAFF", "dept": "안전시설물 작업팀", "safetyScore": 96 },
+    { "id": "WRK-A010", "name": "임화재 (화재감시원)", "role": "STAFF", "dept": "화재예방 안전팀", "safetyScore": 93 },
+    { "id": "WRK-A011", "name": "한신호 (크레인 신호수)", "role": "STAFF", "dept": "양중 신호관제팀", "safetyScore": 87 },
+    { "id": "WRK-A012", "name": "오방수 (방수공사 반장)", "role": "STAFF", "dept": "지하 방수공사팀", "safetyScore": 89 },
+    { "id": "WRK-A013", "name": "서철근 (철근가공 반장)", "role": "STAFF", "dept": "철근 배근작업팀", "safetyScore": 92 },
+    { "id": "WRK-A014", "name": "권거푸집 (유로폼 조립원)", "role": "STAFF", "dept": "형틀 거푸집팀", "safetyScore": 86 },
+    { "id": "WRK-A015", "name": "신밀폐 (밀폐공간 점검원)", "role": "STAFF", "dept": "지하 환기감시팀", "safetyScore": 95 }
+  ],
+  "zones": [
+    { "id": "ZONE-A1", "name": "A동 (주거타워 1F~10F)", "riskLevel": "HIGH", "inspectStatus": "WARNING", "activeWorkerCount": 18 },
+    { "id": "ZONE-A2", "name": "A동 (주거타워 11F~20F)", "riskLevel": "HIGH", "inspectStatus": "WARNING", "activeWorkerCount": 15 },
+    { "id": "ZONE-A3", "name": "A동 (옥상 헬리포트)", "riskLevel": "CRITICAL", "inspectStatus": "DANGER", "activeWorkerCount": 8 },
+    { "id": "ZONE-B1", "name": "B동 (상가동 1F~3F)", "riskLevel": "MEDIUM", "inspectStatus": "NORMAL", "activeWorkerCount": 12 },
+    { "id": "ZONE-B2", "name": "B동 (커뮤니티센터)", "riskLevel": "LOW", "inspectStatus": "NORMAL", "activeWorkerCount": 10 },
+    { "id": "ZONE-C1", "name": "지하주차장 B1F (전기실)", "riskLevel": "HIGH", "inspectStatus": "WARNING", "activeWorkerCount": 14 },
+    { "id": "ZONE-C2", "name": "지하주차장 B2F (기계실)", "riskLevel": "CRITICAL", "inspectStatus": "DANGER", "activeWorkerCount": 9 },
+    { "id": "ZONE-C3", "name": "지하주차장 B3F (저수조)", "riskLevel": "HIGH", "inspectStatus": "WARNING", "activeWorkerCount": 6 },
+    { "id": "ZONE-D1", "name": "자재하역장 (동측 게이트)", "riskLevel": "MEDIUM", "inspectStatus": "NORMAL", "activeWorkerCount": 11 },
+    { "id": "ZONE-D2", "name": "철근·형틀 가공장", "riskLevel": "HIGH", "inspectStatus": "WARNING", "activeWorkerCount": 16 },
+    { "id": "ZONE-D3", "name": "위험물 저장소 (유류/가스)", "riskLevel": "CRITICAL", "inspectStatus": "DANGER", "activeWorkerCount": 4 },
+    { "id": "ZONE-E1", "name": "타워크레인 1호기 거치구역", "riskLevel": "CRITICAL", "inspectStatus": "DANGER", "activeWorkerCount": 5 },
+    { "id": "ZONE-E2", "name": "타워크레인 2호기 거치구역", "riskLevel": "CRITICAL", "inspectStatus": "DANGER", "activeWorkerCount": 5 },
+    { "id": "ZONE-F1", "name": "현장 사무소 및 안심쉼터", "riskLevel": "LOW", "inspectStatus": "NORMAL", "activeWorkerCount": 20 },
+    { "id": "ZONE-F2", "name": "근로자 안전교육장", "riskLevel": "LOW", "inspectStatus": "NORMAL", "activeWorkerCount": 25 }
+  ],
+  "equipments": [
+    { "id": "EQP-4001", "name": "타워크레인 15톤 (TC-1)", "zoneId": "ZONE-E1", "zoneName": "타워크레인 1호기 거치구역", "inspectCycleDays": 30, "lastInspectDate": "2026-07-15", "status": "IN_USE" },
+    { "id": "EQP-4002", "name": "건설용 리프트 2호기 (LIFT-2)", "zoneId": "ZONE-A2", "zoneName": "A동 (주거타워 11F~20F)", "inspectCycleDays": 14, "lastInspectDate": "2026-07-20", "status": "IN_USE" },
+    { "id": "EQP-4003", "name": "유압식 굴착기 30톤 (EXC-3)", "zoneId": "ZONE-D2", "zoneName": "철근·형틀 가공장", "inspectCycleDays": 30, "lastInspectDate": "2026-07-10", "status": "IN_USE" },
+    { "id": "EQP-4004", "name": "고소작업대 시저스리프트 (SJL-1)", "zoneId": "ZONE-B1", "zoneName": "B동 (상가동 1F~3F)", "inspectCycleDays": 7, "lastInspectDate": "2026-08-01", "status": "IN_USE" },
+    { "id": "EQP-4005", "name": "이동식 가설 발전기 500kW", "zoneId": "ZONE-C1", "zoneName": "지하주차장 B1F (전기실)", "inspectCycleDays": 14, "lastInspectDate": "2026-07-25", "status": "REPAIR" },
+    { "id": "EQP-4006", "name": "스카이 차량 45m (SKY-1)", "zoneId": "ZONE-A3", "zoneName": "A동 (옥상 헬리포트)", "inspectCycleDays": 7, "lastInspectDate": "2026-08-02", "status": "IN_USE" },
+    { "id": "EQP-4007", "name": "밀폐공간 산소/유해가스 측정기", "zoneId": "ZONE-C2", "zoneName": "지하주차장 B2F (기계실)", "inspectCycleDays": 1, "lastInspectDate": "2026-08-04", "status": "IN_USE" },
+    { "id": "EQP-4008", "name": "추락방지 안전대 착용감지 센서", "zoneId": "ZONE-A1", "zoneName": "A동 (주거타워 1F~10F)", "inspectCycleDays": 7, "lastInspectDate": "2026-07-28", "status": "IN_USE" },
+    { "id": "EQP-4009", "name": "자동화재탐지 송수신기", "zoneId": "ZONE-D3", "zoneName": "위험물 저장소 (유류/가스)", "inspectCycleDays": 7, "lastInspectDate": "2026-08-01", "status": "IN_USE" },
+    { "id": "EQP-4010", "name": "지하 환기용 송풍기 100HP", "zoneId": "ZONE-C3", "zoneName": "지하주차장 B3F (저수조)", "inspectCycleDays": 14, "lastInspectDate": "2026-07-18", "status": "REPAIR" }
+  ],
+  "safetyInspections": [
+    { "id": "INSP-5001", "title": "A동 옥상 난간대 미설치 위험", "zoneId": "ZONE-A3", "zoneName": "A동 (옥상 헬리포트)", "riskGrade": "CRITICAL", "equipmentId": "EQP-4006", "equipmentName": "스카이 차량 45m (SKY-1)", "workerId": "WRK-A009", "workerName": "장추락 (추락방지망 설치원)", "dueDate": "2026-08-06", "status": "IN_PROGRESS" },
+    { "id": "INSP-5002", "title": "지하 B2F 환기팬 정지로 유해가스 체류", "zoneId": "ZONE-C2", "zoneName": "지하주차장 B2F (기계실)", "riskGrade": "CRITICAL", "equipmentId": "EQP-4007", "equipmentName": "밀폐공간 산소/유해가스 측정기", "workerId": "WRK-A015", "workerName": "신밀폐 (밀폐공간 점검원)", "dueDate": "2026-08-05", "status": "IN_PROGRESS" },
+    { "id": "INSP-5003", "title": "철근 가공장 절단기 안전커버 훼손", "zoneId": "ZONE-D2", "zoneName": "철근·형틀 가공장", "riskGrade": "HIGH", "equipmentId": "EQP-4003", "equipmentName": "유압식 굴착기 30톤 (EXC-3)", "workerId": "WRK-A013", "workerName": "서철근 (철근가공 반장)", "dueDate": "2026-08-07", "status": "COMPLETED" },
+    { "id": "INSP-5004", "title": "위험물 저장소 유류누출 위험 및 소화기 미비", "zoneId": "ZONE-D3", "zoneName": "위험물 저장소 (유류/가스)", "riskGrade": "CRITICAL", "equipmentId": "EQP-4009", "equipmentName": "자동화재탐지 송수신기", "workerId": "WRK-A010", "workerName": "임화재 (화재감시원)", "dueDate": "2026-08-05", "status": "IN_PROGRESS" },
+    { "id": "INSP-5005", "title": "B동 2층 개구부 방호조치 미흡", "zoneId": "ZONE-B1", "zoneName": "B동 (상가동 1F~3F)", "riskGrade": "MEDIUM", "equipmentId": "EQP-4004", "equipmentName": "고소작업대 시저스리프트 (SJL-1)", "workerId": "WRK-A003", "workerName": "박비계 (비계설치 반장)", "dueDate": "2026-08-08", "status": "CANCELLED" }
+  ],
+  "safetyTrainings": [
+    { "id": "TRN-6001", "workerId": "WRK-A003", "workerName": "박비계 (비계설치 반장)", "courseName": "고소작업 추락재해 예방 특별교육", "completedDate": "2026-08-01", "status": "PASSED" },
+    { "id": "TRN-6002", "workerId": "WRK-A015", "workerName": "신밀폐 (밀폐공간 점검원)", "courseName": "밀폐공간 질식재해 긴급구조 교육", "completedDate": "2026-08-02", "status": "PASSED" },
+    { "id": "TRN-6003", "workerId": "WRK-A010", "workerName": "임화재 (화재감시원)", "courseName": "용접화기작업 화재감시관 수료", "completedDate": "2026-08-03", "status": "PASSED" }
+  ],
+  "activityLogs": [
+    { "id": "ALOG-7001", "inspectionId": "INSP-5001", "operator": "김안전 (안전보건총괄책임자)", "action": "A동 옥상 난간대 추락위험 긴급 점검지시 및 장추락 반장 배정 완료", "timestamp": "2026-08-01 08:30:00", "status": "SUCCESS" },
+    { "id": "ALOG-7002", "inspectionId": "INSP-5002", "operator": "이현장 (현장 안전감독관)", "action": "지하 B2F 산소농도 17.5% 측정이상 확인 및 작업중지 명령 발령", "timestamp": "2026-08-01 10:15:00", "status": "SUCCESS" },
+    { "id": "ALOG-7003", "inspectionId": "INSP-5003", "operator": "서철근 (철근가공 반장)", "action": "철근가공장 안전커버 교체 및 점검 완료보고", "timestamp": "2026-08-02 14:20:00", "status": "SUCCESS" }
+  ],
+  "safetyStats": {
+    "totalInspections": 50,
+    "inProgressCount": 18,
+    "completedCount": 27,
+    "criticalRiskCount": 8,
+    "highRiskCount": 15,
+    "totalEquipments": 35,
+    "trainedWorkerRate": 93.5,
+    "safetyIncidentZeroDays": 142
+  }
+}

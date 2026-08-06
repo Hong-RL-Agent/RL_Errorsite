@@ -1,0 +1,41 @@
+{
+  "staffs": [
+    { "id": "STF-6001", "name": "김수영 (스포츠센터 수영 총괄 팀장 - 직원 A)", "role": "MANAGER", "laneNo": "수심 1.5m 1번 레인", "handledClasses": 340 },
+    { "id": "STF-6002", "name": "이레인 (안전요원 및 강습 배치관 - 직원 B)", "role": "MANAGER", "laneNo": "수심 1.5m 3번 레인", "handledClasses": 290 },
+    { "id": "STF-6003", "name": "박강사 (상급반 자유형 수석강사)", "role": "STAFF", "laneNo": "수심 1.2m 5번 레인", "handledClasses": 250 },
+    { "id": "STF-6004", "name": "최출석 (회원 출석 관리원)", "role": "STAFF", "laneNo": "어린이 전용 레인 A", "handledClasses": 210 },
+    { "id": "STF-6005", "name": "정배정 (레인 스케줄 조율관)", "role": "STAFF", "laneNo": "다이빙 전용 레인", "handledClasses": 170 }
+  ],
+  "lanes": [
+    { "id": "LNE-01", "laneNo": "1번 레인 (수심 1.5m / 25m)", "type": "성인 경영용", "assignedClass": "상급자 자유형 & 턴 특화반", "instructor": "박강사", "status": "IN_PROGRESS" },
+    { "id": "LNE-02", "laneNo": "2번 레인 (수심 1.5m / 25m)", "type": "성인 경영용", "assignedClass": "중급 접영 & 평영 교정반", "instructor": "이순항 강사", "status": "OPEN" },
+    { "id": "LNE-03", "laneNo": "3번 레인 (수심 1.2m / 25m)", "type": "초급자용", "assignedClass": "초급 마스터 발차기반", "instructor": "최수평 강사", "status": "ATTENDED" }
+  ],
+  "instructors": [
+    { "id": "INS-01", "name": "박강사 (자유형 전문)", "phone": "010-5555-1111", "cert": "생활스포츠지도사 1급 (수영)", "assignedLanes": 3, "rating": 4.9 },
+    { "id": "INS-02", "name": "이순항 강사 (접영/평영)", "phone": "010-6666-2222", "cert": "인명구조요원 자격증", "assignedLanes": 2, "rating": 4.8 },
+    { "id": "INS-03", "name": "최수평 강사 (초급 레슨)", "phone": "010-7777-3333", "cert": "수영 지도자 자격증 2급", "assignedLanes": 2, "rating": 4.7 }
+  ],
+  "members": [
+    { "id": "MBR-7001", "mbCode": "SW-20260805-01", "name": "홍길동", "phone": "010-1111-2222", "className": "상급자 자유형 & 턴 특화반", "level": "상급 (ADVANCED)", "laneNo": "1번 레인 (수심 1.5m / 25m)", "instructor": "박강사", "regDate": "2026-08-01", "attendanceRatePercent": 95, "status": "IN_PROGRESS" },
+    { "id": "MBR-7002", "mbCode": "SW-20260805-02", "name": "김영희", "phone": "010-2222-3333", "className": "중급 접영 & 평영 교정반", "level": "중급 (INTERMEDIATE)", "laneNo": "2번 레인 (수심 1.5m / 25m)", "instructor": "이순항 강사", "regDate": "2026-08-02", "attendanceRatePercent": 88, "status": "OPEN" },
+    { "id": "MBR-7003", "mbCode": "SW-20260805-03", "name": "이철수", "phone": "010-3333-4444", "className": "초급 마스터 발차기반", "level": "초급 (BEGINNER)", "laneNo": "3번 레인 (수심 1.2m / 25m)", "instructor": "최수평 강사", "regDate": "2026-08-03", "attendanceRatePercent": 100, "status": "ATTENDED" }
+  ],
+  "attendanceLogs": [
+    { "id": "ATT-8001", "mbId": "MBR-7001", "name": "홍길동", "className": "상급자 자유형 특화반", "laneNo": "1번 레인", "checkInTime": "2026-08-05 08:55", "authMethod": "바코드 락커키", "status": "PRESENT" },
+    { "id": "ATT-8002", "mbId": "MBR-7003", "name": "이철수", "className": "초급 마스터 발차기반", "laneNo": "3번 레인", "checkInTime": "2026-08-04 10:00", "authMethod": "얼굴인식 카운터", "status": "PRESENT" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9401", "mbId": "MBR-7001", "operator": "김수영 (총괄 팀장)", "action": "회원 홍길동 님 1번 레인 배정 및 강습 상태 진행중 전환 완료", "timestamp": "2026-08-05 08:56:00", "status": "SUCCESS" },
+    { "id": "ACT-9402", "mbId": "MBR-7003", "operator": "최출석 (관리원)", "action": "회원 이철수 님 초급반 100% 출석 확인 및 출석완료 처리", "timestamp": "2026-08-04 10:05:00", "status": "SUCCESS" }
+  ],
+  "swimStats": {
+    "totalClasses": 30,
+    "totalMembers": 70,
+    "totalInstructors": 15,
+    "totalLanes": 20,
+    "inProgressCount": 14,
+    "attendedCount": 38,
+    "avgAttendanceRatePercent": 91.2
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "staffs": [
+    { "id": "STF-6001", "name": "김기증 (수기증 수석 사서 - 담당자 A)", "role": "MANAGER", "dept": "도서 수집 기증팀", "handledBooks": 240 },
+    { "id": "STF-6002", "name": "이분류 (십진분류 전담 사서 - 담당자 B)", "role": "MANAGER", "dept": "목록 정리 분류팀", "handledBooks": 210 },
+    { "id": "STF-6003", "name": "박배포 (지역아동센터 배포 담당원)", "role": "STAFF", "dept": "나눔 배포 지원팀", "handledBooks": 180 },
+    { "id": "STF-6004", "name": "최검수 (도서 훼손도 보존검수원)", "role": "STAFF", "dept": "장서 상태 검수실", "handledBooks": 150 },
+    { "id": "STF-6005", "name": "정수거 (기증 도서 방문수거원)", "role": "STAFF", "dept": "현장 기증 수거팀", "handledBooks": 125 }
+  ],
+  "donors": [
+    { "id": "DNR-2001", "donorName": "홍길동 (개인 기증자)", "phone": "010-1234-5678", "donatedCount": 45, "address": "서울 강남구 역삼동" },
+    { "id": "DNR-2002", "donorName": "김철수 (출판사 기증)", "phone": "010-2345-6789", "donatedCount": 120, "address": "서울 마포구 서교동" },
+    { "id": "DNR-2003", "donorName": "이영희 (문화재단)", "phone": "010-3456-7890", "donatedCount": 80, "address": "서울 종로구 인사동" }
+  ],
+  "distributors": [
+    { "id": "DST-3001", "orgName": "햇살 지역아동센터", "category": "아동복지시설", "requiredCategory": "어린이/동화", "allocatedBooks": 150 },
+    { "id": "DST-3002", "orgName": "푸른꿈 작은도서관", "category": "마을 도서관", "requiredCategory": "인문/사회", "allocatedBooks": 200 },
+    { "id": "DST-3003", "orgName": "행복 노인복지관", "category": "노인복지시설", "requiredCategory": "건강/취미", "allocatedBooks": 90 }
+  ],
+  "books": [
+    { "id": "BK-1001", "bookCode": "BD-20260805-01", "title": "코스모스 (Cosmos)", "author": "칼 세이건", "category": "자연과학", "conditionGrade": "A등급 (양호)", "donorName": "홍길동 (개인 기증자)", "distributorName": "푸른꿈 작은도서관", "receivedDate": "2026-08-01", "status": "CLASSIFIED" },
+    { "id": "BK-1002", "bookCode": "BD-20260805-02", "title": "사피엔스 (Sapiens)", "author": "유발 하라리", "category": "인문/사회", "conditionGrade": "B등급 (보통)", "donorName": "김철수 (출판사 기증)", "distributorName": "햇살 지역아동센터", "receivedDate": "2026-08-03", "status": "PENDING" },
+    { "id": "BK-1003", "bookCode": "BD-20260805-03", "title": "어린 왕자", "author": "앙투안 드 생텍쥐페리", "category": "어린이/동화", "conditionGrade": "S등급 (최상)", "donorName": "이영희 (문화재단)", "distributorName": "햇살 지역아동센터", "receivedDate": "2026-08-04", "status": "DISTRIBUTED" }
+  ],
+  "classifyLogs": [
+    { "id": "CLOG-7001", "bookId": "BK-1001", "title": "코스모스 (Cosmos)", "category": "자연과학", "kdcCode": "400 (자연과학)", "assignedBy": "김기증 (사서)", "timestamp": "2026-08-04 11:30:00" },
+    { "id": "CLOG-7002", "bookId": "BK-1003", "title": "어린 왕자", "category": "어린이/동화", "kdcCode": "800 (문학)", "assignedBy": "이분류 (사서)", "timestamp": "2026-08-04 15:10:00" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9201", "bookId": "BK-1001", "operator": "김기증 (사서)", "action": "도서 BK-1001 KDC 십진분류 및 푸른꿈 작은도서관 배포처 지정 완료", "timestamp": "2026-08-04 10:00:00", "status": "SUCCESS" },
+    { "id": "ACT-9202", "bookId": "BK-1003", "operator": "박배포 (지원원)", "action": "도서 BK-1003 햇살 지역아동센터 기증 배포 수령 완료", "timestamp": "2026-08-04 16:30:00", "status": "SUCCESS" }
+  ],
+  "donateStats": {
+    "totalBooks": 70,
+    "totalDonors": 35,
+    "totalDistributors": 20,
+    "pendingCount": 18,
+    "classifiedCount": 26,
+    "distributedCount": 26,
+    "topCategory": "인문/사회"
+  }
+}

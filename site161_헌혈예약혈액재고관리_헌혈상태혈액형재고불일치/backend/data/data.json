@@ -1,0 +1,46 @@
+{
+  "staffs": [
+    { "id": "STF-7701", "name": "김혈액 (서울 중앙 헌혈의 집 총괄 센터장 - 직원 A)", "role": "MANAGER", "centerName": "서울 중앙 헌혈의 집", "handledDonations": 640 },
+    { "id": "STF-7702", "name": "이문진 (강남역 헌혈 센터 수석 간호사 - 직원 B)", "role": "MANAGER", "centerName": "강남역 헌혈 센터", "handledDonations": 550 },
+    { "id": "STF-7703", "name": "박재고 (신촌 헌혈의 집 혈액검수 기사)", "role": "STAFF", "centerName": "신촌 헌혈의 집", "handledDonations": 420 },
+    { "id": "STF-7704", "name": "최채혈 (부산 서면 헌혈의 집 전담 채혈사)", "role": "STAFF", "centerName": "부산 서면 헌혈의 집", "handledDonations": 330 },
+    { "id": "STF-7705", "name": "정보급 (대구 동성로 헌혈 센터 공급원)", "role": "STAFF", "centerName": "대구 동성로 헌혈 센터", "handledDonations": 240 }
+  ],
+  "centers": [
+    { "id": "CTR-01", "centerName": "서울 중앙 헌혈의 집", "region": "서울 중구", "dailyCapacity": 120, "currentDonations": 95, "status": "OPTIMAL" },
+    { "id": "CTR-02", "centerName": "강남역 헌혈 센터", "region": "서울 강남구", "dailyCapacity": 150, "currentDonations": 138, "status": "BUSY" },
+    { "id": "CTR-03", "centerName": "신촌 헌혈의 집", "region": "서울 마포구", "dailyCapacity": 90, "currentDonations": 72, "status": "OPTIMAL" }
+  ],
+  "donors": [
+    { "id": "DNR-2001", "donorCode": "BR-20260805-01", "donorName": "최생명", "phone": "010-8888-9999", "bloodType": "O+ (Rh+ O형)", "totalDonations": 14, "healthStatus": "NORMAL (양호)", "registeredCenter": "서울 중앙 헌혈의 집" },
+    { "id": "DNR-2002", "donorCode": "BR-20260805-02", "donorName": "강나눔", "phone": "010-7777-8888", "bloodType": "A+ (Rh+ A형)", "totalDonations": 8, "healthStatus": "NORMAL (양호)", "registeredCenter": "강남역 헌혈 센터" },
+    { "id": "DNR-2003", "donorCode": "BR-20260805-03", "donorName": "윤봉사", "phone": "010-6666-7777", "bloodType": "AB- (Rh- AB형)", "totalDonations": 25, "healthStatus": "EXCELLENT (우수)", "registeredCenter": "신촌 헌혈의 집" }
+  ],
+  "reservations": [
+    { "id": "RSV-6001", "rsvCode": "BS-20260805-01", "donorName": "최생명", "bloodType": "O+ (Rh+ O형)", "centerName": "서울 중앙 헌혈의 집", "reservationTime": "2026-08-05 14:00", "donationType": "전혈 400mL", "bloodStockUnits": 48, "status": "IN_PROGRESS" },
+    { "id": "RSV-6002", "rsvCode": "BS-20260805-02", "donorName": "강나눔", "bloodType": "A+ (Rh+ A형)", "centerName": "강남역 헌혈 센터", "reservationTime": "2026-08-06 10:30", "donationType": "혈소판 성분헌혈", "bloodStockUnits": 62, "status": "SCREENED" },
+    { "id": "RSV-6003", "rsvCode": "BS-20260805-03", "donorName": "윤봉사", "bloodType": "AB- (Rh- AB형)", "centerName": "신촌 헌혈의 집", "reservationTime": "2026-08-04 15:00", "donationType": "전혈 320mL", "bloodStockUnits": 12, "status": "COMPLETED" }
+  ],
+  "questionnaires": [
+    { "id": "QST-5001", "rsvId": "RSV-6001", "donorName": "최생명", "doctorComment": "혈압 120/80, 헤모글로빈 14.2g/dL 정상. 채혈 부적격 사유 없음 적격 판정", "screenDate": "2026-08-05 13:45", "status": "PASSED" },
+    { "id": "QST-5002", "rsvId": "RSV-6003", "donorName": "윤봉사", "doctorComment": "희귀 혈액형 Rh- AB형. 건강 상태 최우수 전혈 320mL 채혈 완료", "screenDate": "2026-08-04 14:45", "status": "PASSED" }
+  ],
+  "bloodLogs": [
+    { "id": "BLOG-3001", "rsvId": "RSV-6001", "bloodType": "O+형", "centerName": "서울 중앙 헌혈의 집", "unitPacks": "400mL x 1팩 추가 입고", "logTime": "2026-08-05 14:35", "status": "STORED" },
+    { "id": "BLOG-3002", "rsvId": "RSV-6003", "bloodType": "AB-형", "centerName": "신촌 헌혈의 집", "unitPacks": "320mL x 1팩 입고 및 냉장 혈액 보관창고 이송 완료", "logTime": "2026-08-04 15:30", "status": "STORED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9970", "rsvId": "RSV-6001", "operator": "김혈액 (센터장)", "action": "예약 RSV-6001 최생명 님 채혈실 입실 및 실시간 헌혈 진행중 관제 시작", "timestamp": "2026-08-05 14:05:00", "status": "SUCCESS" },
+    { "id": "ACT-9971", "rsvId": "RSV-6003", "operator": "박재고 (검수기사)", "action": "예약 RSV-6003 윤봉사 님 헌혈 완료 및 Rh- AB형 혈액 재고 장부 반영 완료", "timestamp": "2026-08-04 15:35:00", "status": "SUCCESS" }
+  ],
+  "bloodStats": {
+    "totalDonors": 70,
+    "totalReservations": 60,
+    "totalQuestionnaires": 55,
+    "totalBloodLogs": 80,
+    "totalCenters": 10,
+    "criticalShortageTypes": 3,
+    "inProgressCount": 14,
+    "avgFulfillmentRate": 94.2
+  }
+}

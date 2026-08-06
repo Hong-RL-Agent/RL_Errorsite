@@ -1,0 +1,58 @@
+{
+  "staffs": [
+    { "id": "STF-4001", "name": "김캠프 (선거대책 총괄본부장 - 운영자 A)", "role": "MANAGER", "dept": "중앙 선거대책본부", "managedSchedules": 62 },
+    { "id": "STF-4002", "name": "이봉사 (자원봉사 조직위원장 - 운영자 B)", "role": "MANAGER", "dept": "조직국 봉사지원팀", "managedSchedules": 55 },
+    { "id": "STF-4003", "name": "박유세 (유세 현장팀장)", "role": "STAFF", "dept": "현장 유세 지원팀", "managedSchedules": 48 },
+    { "id": "STF-4004", "name": "최홍보 (홍보물 배포담당)", "role": "STAFF", "dept": "홍보 기획팀", "managedSchedules": 39 },
+    { "id": "STF-4005", "name": "정소통 (청년 봉사단장)", "role": "STAFF", "dept": "청년 자원봉사단", "managedSchedules": 34 }
+  ],
+  "districts": [
+    { "id": "DIS-01", "name": "종로구 선거구", "headquarters": "종로 중앙 캠프", "targetVoters": 120000, "assignedVolunteers": 18 },
+    { "id": "DIS-02", "name": "강남구 갑 선거구", "headquarters": "강남 1지구 캠프", "targetVoters": 180000, "assignedVolunteers": 25 },
+    { "id": "DIS-03", "name": "강남구 을 선거구", "headquarters": "강남 2지구 캠프", "targetVoters": 160000, "assignedVolunteers": 22 },
+    { "id": "DIS-04", "name": "마포구 선거구", "headquarters": "마포 청년 캠프", "targetVoters": 140000, "assignedVolunteers": 20 },
+    { "id": "DIS-05", "name": "영등포구 선거구", "headquarters": "여의도 중앙 캠프", "targetVoters": 150000, "assignedVolunteers": 21 },
+    { "id": "DIS-06", "name": "송파구 선거구", "headquarters": "잠실 지역 캠프", "targetVoters": 210000, "assignedVolunteers": 28 },
+    { "id": "DIS-07", "name": "서초구 선거구", "headquarters": "서초 지역 캠프", "targetVoters": 170000, "assignedVolunteers": 24 },
+    { "id": "DIS-08", "name": "용산구 선거구", "headquarters": "이태원 캠프", "targetVoters": 110000, "assignedVolunteers": 16 },
+    { "id": "DIS-09", "name": "성동구 선거구", "headquarters": "성수 문화 캠프", "targetVoters": 130000, "assignedVolunteers": 19 },
+    { "id": "DIS-10", "name": "광진구 선거구", "headquarters": "건대 지역 캠프", "targetVoters": 145000, "assignedVolunteers": 17 },
+    { "id": "DIS-11", "name": "동대문구 선거구", "headquarters": "청량리 캠프", "targetVoters": 135000, "assignedVolunteers": 15 },
+    { "id": "DIS-12", "name": "중구 선거구", "headquarters": "명동 통합 캠프", "targetVoters": 95000, "assignedVolunteers": 14 }
+  ],
+  "volunteers": [
+    { "id": "VOL-1001", "name": "강열정", "phone": "010-1234-5678", "assignedDistrictId": "DIS-01", "districtName": "종로구 선거구", "activeHours": 45, "status": "AVAILABLE" },
+    { "id": "VOL-1002", "name": "조희망", "phone": "010-2345-6789", "assignedDistrictId": "DIS-02", "districtName": "강남구 갑 선거구", "activeHours": 52, "status": "BUSY" },
+    { "id": "VOL-1003", "name": "윤청년", "phone": "010-3456-7890", "assignedDistrictId": "DIS-04", "districtName": "마포구 선거구", "activeHours": 38, "status": "AVAILABLE" },
+    { "id": "VOL-1004", "name": "장행복", "phone": "010-4567-8901", "assignedDistrictId": "DIS-05", "districtName": "영등포구 선거구", "activeHours": 60, "status": "BUSY" },
+    { "id": "VOL-1005", "name": "임시민", "phone": "010-5678-9012", "assignedDistrictId": "DIS-06", "districtName": "송파구 선거구", "activeHours": 41, "status": "AVAILABLE" }
+  ],
+  "schedules": [
+    { "id": "SCH-2001", "title": "종로 출근길 인사 및 정책 피켓 유세", "districtId": "DIS-01", "districtName": "종로구 선거구", "location": "종각역 4번 출구", "eventDate": "2026-08-05", "startTime": "07:30", "endTime": "09:00", "requiredCount": 10, "assignedVolunteerId": "VOL-1001", "assignedVolunteerName": "강열정", "status": "CONFIRMED" },
+    { "id": "SCH-2002", "title": "강남역 서명운동 및 공약 소책자 배포", "districtId": "DIS-02", "districtName": "강남구 갑 선거구", "location": "강남역 11번 출구 앞", "eventDate": "2026-08-05", "startTime": "12:00", "endTime": "14:00", "requiredCount": 15, "assignedVolunteerId": "VOL-1002", "assignedVolunteerName": "조희망", "status": "CONFIRMED" },
+    { "id": "SCH-2003", "title": "마포 전통시장 방문 상인 간담회 지원", "districtId": "DIS-04", "districtName": "마포구 선거구", "location": "망원시장 입구", "eventDate": "2026-08-06", "startTime": "15:00", "endTime": "17:00", "requiredCount": 8, "assignedVolunteerId": "VOL-1003", "assignedVolunteerName": "윤청년", "status": "IN_PROGRESS" },
+    { "id": "SCH-2004", "title": "여의도 퇴근길 유세 차량 음향 지원", "districtId": "DIS-05", "districtName": "영등포구 선거구", "location": "여의도역 광장", "eventDate": "2026-08-05", "startTime": "18:00", "endTime": "19:30", "requiredCount": 12, "assignedVolunteerId": "VOL-1004", "assignedVolunteerName": "장행복", "status": "CONFIRMED" },
+    { "id": "SCH-2005", "title": "송파 올림픽공원 주말 클린 캠페인", "districtId": "DIS-06", "districtName": "송파구 선거구", "location": "올림픽공원 평화의 문", "eventDate": "2026-08-08", "startTime": "10:00", "endTime": "13:00", "requiredCount": 20, "assignedVolunteerId": "VOL-1005", "assignedVolunteerName": "임시민", "status": "REVIEWING" }
+  ],
+  "reports": [
+    { "id": "RPT-5001", "scheduleId": "SCH-2001", "scheduleTitle": "종로 출근길 인사", "reporterName": "강열정", "voterFeedback": "정책 피켓 호응도 매우 높음, 추가 소책자 필요", "photoCount": 4, "reportTime": "2026-08-05 09:15:00", "status": "COMPLETED" },
+    { "id": "RPT-5002", "scheduleId": "SCH-2003", "scheduleTitle": "마포 전통시장 간담회", "reporterName": "윤청년", "voterFeedback": "상인 연합회 건의사항 10건 수집 완료", "photoCount": 6, "reportTime": "2026-08-06 17:10:00", "status": "COMPLETED" }
+  ],
+  "assignmentLogs": [
+    { "id": "ALOG-3001", "scheduleId": "SCH-2001", "volunteerName": "강열정", "districtName": "종로구 선거구", "assignedDate": "2026-08-04", "hours": 2 },
+    { "id": "ALOG-3002", "scheduleId": "SCH-2002", "volunteerName": "조희망", "districtName": "강남구 갑 선거구", "assignedDate": "2026-08-04", "hours": 2 }
+  ],
+  "activityLogs": [
+    { "id": "ACT-6001", "scheduleId": "SCH-2001", "operator": "김캠프 (총괄본부장)", "action": "종로 출근길 인사 일정 진행확정 승인 및 강열정 봉사자 배정 완료", "timestamp": "2026-08-04 18:00:00", "status": "SUCCESS" },
+    { "id": "ACT-6002", "scheduleId": "SCH-2002", "operator": "이봉사 (조직위원장)", "action": "강남역 서명운동 조희망 리더 배정 완료", "timestamp": "2026-08-04 19:20:00", "status": "SUCCESS" }
+  ],
+  "campaignStats": {
+    "totalSchedules": 45,
+    "confirmedCount": 22,
+    "inProgressCount": 8,
+    "completedCount": 12,
+    "totalVolunteers": 60,
+    "avgParticipationRate": 88.5,
+    "totalVotersReached": 350000
+  }
+}

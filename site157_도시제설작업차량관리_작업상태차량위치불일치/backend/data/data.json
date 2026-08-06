@@ -1,0 +1,47 @@
+{
+  "staffs": [
+    { "id": "STF-9001", "name": "김제설 (도시 제설 재난안전 총괄관 - 관리자 A)", "role": "MANAGER", "zoneName": "강남권역 제설1구역 (테헤란로/강남대로)", "handledTasks": 540 },
+    { "id": "STF-9002", "name": "이방설 (도심 및 터널 급경사 전담관 - 관리자 B)", "role": "MANAGER", "zoneName": "강북권역 제설2구역 (남산소파로/소월로)", "handledTasks": 480 },
+    { "id": "STF-9003", "name": "박차량 (제설 살포기 및 덤프 장비관)", "role": "STAFF", "zoneName": "서의도 고가도로 및 마포대교", "handledTasks": 390 },
+    { "id": "STF-9004", "name": "최염화 (친환경 염화칼슘 자재 재고원)", "role": "STAFF", "zoneName": "동대문 패션타운 및 청계천로", "handledTasks": 290 },
+    { "id": "STF-9005", "name": "정모니터 (GPS 관제 및 도로 CCTV 반장)", "role": "STAFF", "zoneName": "성산대교 북단 간선도로", "handledTasks": 220 }
+  ],
+  "zones": [
+    { "id": "ZON-01", "zoneName": "강남권역 제설1구역 (테헤란로/강남대로)", "region": "강남권역", "priority": "EMERGENCY (최우선)", "roadLengthKm": 24.5, "snowDepthCm": 8.5, "status": "SALTING_NEEDED" },
+    { "id": "ZON-02", "zoneName": "강북권역 제설2구역 (남산소파로/소월로)", "region": "강북권역", "priority": "URGENT (긴급)", "roadLengthKm": 18.2, "snowDepthCm": 11.2, "status": "SALTING_NEEDED" },
+    { "id": "ZON-03", "zoneName": "서의도 고가도로 및 마포대교 접근로", "region": "여의도/영등포", "priority": "NORMAL (보통)", "roadLengthKm": 14.0, "snowDepthCm": 5.0, "status": "IN_PROGRESS" }
+  ],
+  "vehicles": [
+    { "id": "VHC-1001", "vehicleNo": "서울01-제설-8801 (15톤 염화칼슘 살포차)", "assignedZone": "강남권역 제설1구역 (테헤란로/강남대로)", "currentLocation": "테헤란로 역삼역 사거리 (101km/h 구역)", "equipmentStatus": "NORMAL (정상작동)", "saltCapacityKg": 5000 },
+    { "id": "VHC-1002", "vehicleNo": "서울02-제설-7702 (특수 제설 배토판 덤프)", "assignedZone": "강북권역 제설2구역 (남산소파로/소월로)", "currentLocation": "남산 소월로 하얏트호텔 앞 급경사", "equipmentStatus": "NORMAL (정상작동)", "saltCapacityKg": 4500 },
+    { "id": "VHC-1003", "vehicleNo": "서울03-제설-6603 (친환경 용액 살포차)", "assignedZone": "서의도 고가도로 및 마포대교", "currentLocation": "마포대교 남단 진입로 램프 구간", "equipmentStatus": "CHECK_NEEDED", "saltCapacityKg": 3000 }
+  ],
+  "workers": [
+    { "id": "WRK-3001", "workerName": "김제설 운전원", "phone": "010-8888-1111", "vehicleNo": "서울01-제설-8801", "assignedZone": "강남권역 제설1구역", "shift": "DAY (주간 08:00~20:00)" },
+    { "id": "WRK-3002", "workerName": "이방설 작업원", "phone": "010-7777-2222", "vehicleNo": "서울02-제설-7702", "assignedZone": "강북권역 제설2구역", "shift": "NIGHT (야간 20:00~08:00)" },
+    { "id": "WRK-3003", "workerName": "박차량 반장", "phone": "010-6666-3333", "vehicleNo": "서울03-제설-6603", "assignedZone": "서의도 고가도로", "shift": "DAY (주간 08:00~20:00)" }
+  ],
+  "tasks": [
+    { "id": "TSK-5001", "taskCode": "SF-20260805-01", "zoneName": "강남권역 제설1구역 (테헤란로/강남대로)", "vehicleNo": "서울01-제설-8801 (15톤 염화칼슘 살포차)", "workerName": "김제설 운전원", "currentLocation": "테헤란로 역삼역 사거리 (101km/h 구역)", "startTime": "2026-08-05 06:00", "saltAmountKg": 1200, "priority": "EMERGENCY (최우선)", "status": "IN_PROGRESS" },
+    { "id": "TSK-5002", "taskCode": "SF-20260805-02", "zoneName": "강북권역 제설2구역 (남산소파로/소월로)", "vehicleNo": "서울02-제설-7702 (특수 제설 배토판 덤프)", "workerName": "이방설 작업원", "currentLocation": "남산 소월로 하얏트호텔 앞 급경사", "startTime": "2026-08-05 07:30", "saltAmountKg": 950, "priority": "URGENT (긴급)", "status": "PENDING" },
+    { "id": "TSK-5003", "taskCode": "SF-20260805-03", "zoneName": "서의도 고가도로 및 마포대교 접근로", "vehicleNo": "서울03-제설-6603 (친환경 용액 살포차)", "workerName": "박차량 반장", "currentLocation": "마포대교 남단 진입로 램프 구간", "startTime": "2026-08-04 22:00", "saltAmountKg": 1500, "priority": "NORMAL (보통)", "status": "COMPLETED" }
+  ],
+  "snowLogs": [
+    { "id": "SLOG-4001", "taskId": "TSK-5001", "zoneName": "강남권역 제설1구역", "vehicleNo": "서울01-제설-8801", "workDetail": "1차 염화칼슘 1.2톤 자동 살포 및 배토판 도로 제설 작업 진행 중", "logTime": "2026-08-05 06:45", "status": "IN_PROGRESS" },
+    { "id": "SLOG-4002", "taskId": "TSK-5003", "zoneName": "서의도 고가도로", "vehicleNo": "서울03-제설-6603", "workDetail": "친환경 용액 1.5톤 분사 완료 및 블랙아이스 제거 완료", "logTime": "2026-08-05 01:15", "status": "COMPLETED" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9995", "taskId": "TSK-5001", "operator": "김제설 (총괄관)", "action": "작업 TSK-5001 강남1구역 서울01 차량 투입 및 실시간 관제 시작", "timestamp": "2026-08-05 06:05:00", "status": "SUCCESS" },
+    { "id": "ACT-9996", "taskId": "TSK-5003", "operator": "이방설 (전담관)", "action": "작업 TSK-5003 서의도 고가도로 제설 작업 완료 및 도로 통행 정상화 확인", "timestamp": "2026-08-05 01:20:00", "status": "SUCCESS" }
+  ],
+  "snowStats": {
+    "totalZones": 30,
+    "totalVehicles": 35,
+    "totalTasks": 60,
+    "totalSnowLogs": 90,
+    "totalWorkers": 40,
+    "delayedTaskCount": 7,
+    "inProgressCount": 22,
+    "avgClearanceRate": 91.8
+  }
+}

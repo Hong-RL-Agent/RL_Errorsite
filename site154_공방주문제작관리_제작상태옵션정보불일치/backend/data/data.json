@@ -1,0 +1,47 @@
+{
+  "staffs": [
+    { "id": "STF-6001", "name": "김공방 (수제 핸드메이드 총괄 아티잔 - 직원 A)", "role": "MANAGER", "optionType": "천연 가극 각인 커스텀 지갑", "handledOrders": 420 },
+    { "id": "STF-6002", "name": "이목수 (원목 커스텀 가구 조작장 - 직원 B)", "role": "MANAGER", "optionType": "원목 커스텀 테이블 세트", "handledOrders": 360 },
+    { "id": "STF-6003", "name": "박도예 (수제 도자기 공예 장인)", "role": "STAFF", "optionType": "핸드메이드 도자기 식기 럭셔리", "handledOrders": 290 },
+    { "id": "STF-6004", "name": "최금속 (커스텀 실버 주얼리 각인관)", "role": "STAFF", "optionType": "실버 925 커스텀 반작 각인", "handledOrders": 210 },
+    { "id": "STF-6005", "name": "정검수 (품질 및 출고 포장 전담)", "role": "STAFF", "optionType": "수제 자수 페브릭 에코백", "handledOrders": 150 }
+  ],
+  "artisans": [
+    { "id": "ART-01", "artisanName": "김공방 아티잔", "phone": "010-9999-4444", "specialty": "천연 가죽 각인 & 염색 공예", "assignedOrders": 14, "rating": 4.9 },
+    { "id": "ART-02", "artisanName": "이목수 장인", "phone": "010-8888-3333", "specialty": "원목 커스텀 가구 및 장인 샌딩", "assignedOrders": 10, "rating": 4.8 },
+    { "id": "ART-03", "artisanName": "박도예 장인", "phone": "010-7777-2222", "specialty": "수제 도자기 소성 및 이중 유약", "assignedOrders": 8, "rating": 4.7 }
+  ],
+  "options": [
+    { "id": "OPT-01", "optionName": "이탈리아 풀그레인 천연 가죽 지갑", "optionType": "천연 가극 각인 커스텀 지갑", "optionColor": "딥 탄 브라운 (Deep Tan)", "extraCostWon": 25000, "status": "AVAILABLE" },
+    { "id": "OPT-02", "optionName": "북미산 월넛 원목 다이닝 식탁", "optionType": "원목 커스텀 테이블 세트", "optionColor": "다크 월넛 우드", "extraCostWon": 150000, "status": "AVAILABLE" },
+    { "id": "OPT-03", "optionName": "백자 2인 머그 세트 (각인 포함)", "optionType": "핸드메이드 도자기 식기 럭셔리", "optionColor": "매트 아이보리", "extraCostWon": 18000, "status": "LIMITED" }
+  ],
+  "customers": [
+    { "id": "CST-9001", "customerName": "최공방", "phone": "010-6666-1111", "optionColor": "딥 탄 브라운 (Deep Tan)", "deliveryNote": "부재시 문 앞 택배함 보관 부탁드립니다.", "totalOrders": 7, "rating": 4.9 },
+    { "id": "CST-9002", "customerName": "강목재", "phone": "010-5555-2222", "optionColor": "다크 월넛 우드", "deliveryNote": "배송 전 미리 전화 연락 주시기 바랍니다.", "totalOrders": 4, "rating": 4.8 },
+    { "id": "CST-9003", "customerName": "윤도예", "phone": "010-4444-3333", "optionColor": "매트 아이보리", "deliveryNote": "파손 주의 표시 부탁드립니다.", "totalOrders": 5, "rating": 4.7 }
+  ],
+  "orders": [
+    { "id": "ORD-8001", "orderCode": "CO-20260805-01", "optionType": "천연 가극 각인 커스텀 지갑", "productName": "이탈리아 풀그레인 천연 가죽 지갑", "customerName": "최공방", "optionColor": "딥 탄 브라운 (Deep Tan)", "artisanName": "김공방 아티잔", "dueDate": "2026-08-10", "orderPriceWon": 125000, "deliveryNote": "부재시 문 앞 택배함 보관 부탁드립니다.", "status": "IN_PRODUCTION" },
+    { "id": "ORD-8002", "orderCode": "CO-20260805-02", "optionType": "원목 커스텀 테이블 세트", "productName": "북미산 월넛 원목 다이닝 식탁", "customerName": "강목재", "optionColor": "다크 월넛 우드", "artisanName": "이목수 장인", "dueDate": "2026-08-15", "orderPriceWon": 850000, "deliveryNote": "배송 전 미리 전화 연락 주시기 바랍니다.", "status": "ORDERED" },
+    { "id": "ORD-8003", "orderCode": "CO-20260805-03", "optionType": "핸드메이드 도자기 식기 럭셔리", "productName": "백자 2인 머그 세트 (각인 포함)", "customerName": "윤도예", "optionColor": "매트 아이보리", "artisanName": "박도예 장인", "dueDate": "2026-08-08", "orderPriceWon": 98000, "deliveryNote": "파손 주의 표시 부탁드립니다.", "status": "SHIPPED" }
+  ],
+  "craftLogs": [
+    { "id": "CLOG-7001", "ordId": "ORD-8001", "productName": "천연 가죽 지갑", "artisanName": "김공방 아티잔", "craftStep": "가죽 재단 완료 및 이니셜 불박 각인 1차 완료", "craftTime": "2026-08-05 13:00", "status": "IN_PROGRESS" },
+    { "id": "CLOG-7002", "ordId": "ORD-8003", "productName": "백자 머그 세트", "artisanName": "박도예 장인", "craftStep": "재소성 완료 및 완충재 친환경 안전 포장 완료 출고", "craftTime": "2026-08-04 17:30", "status": "DONE" }
+  ],
+  "activityLogs": [
+    { "id": "ACT-9951", "ordId": "ORD-8001", "operator": "김공방 (총괄)", "action": "주문 ORD-8001 최공방 님 천연 가죽 지갑 제작중 상태 전환 및 아티잔 배정 완료", "timestamp": "2026-08-05 13:05:00", "status": "SUCCESS" },
+    { "id": "ACT-9952", "ordId": "ORD-8003", "operator": "이목수 (장인)", "action": "주문 ORD-8003 윤도예 님 도자기 머그 세트 최종 품질검수 합격 및 발송 완료", "timestamp": "2026-08-04 17:35:00", "status": "SUCCESS" }
+  ],
+  "craftStats": {
+    "totalOrders": 60,
+    "totalCustomers": 45,
+    "totalOptions": 40,
+    "totalArtisans": 15,
+    "delayedProductionCount": 9,
+    "inProductionCount": 24,
+    "shippedCount": 21,
+    "avgCraftDays": 4.5
+  }
+}
