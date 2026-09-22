@@ -1,0 +1,51 @@
+{
+  "sites": 50,
+  "site_range": "error-site-v02..error-site-v51",
+  "bugs_total": 390,
+  "unique_source_ids": 390,
+  "duplicate_source_ids": 0,
+  "bugs_per_site_distribution": {
+    "7": 10,
+    "8": 40
+  },
+  "vulnerability_family_count": 13,
+  "each_family_assignment_count": 30,
+  "category_counts": {
+    "access-control": 90,
+    "input-data": 120,
+    "session-config": 90,
+    "business-logic": 60,
+    "availability": 30
+  },
+  "structural_documentation_verification": "PASS: 50 sites",
+  "manual_full_stack_smoke_test": {
+    "site": "error-site-v02",
+    "environment": "Windows, Node.js 24.21.0",
+    "result": "PASS",
+    "evidence": "backend/frontend start; login; item UI; cart count 0→1"
+  },
+  "representative_runtime_verification": {
+    "sites": [
+      "error-site-v02",
+      "error-site-v12",
+      "error-site-v22",
+      "error-site-v32",
+      "error-site-v42"
+    ],
+    "result": "PASS",
+    "bug_family_checks": 40,
+    "family_coverage": "13/13",
+    "scope": "backend runtime + local intentional-bug fixtures"
+  },
+  "diversity": {
+    "unique_app_js_hashes": "50/50",
+    "unique_server_js_hashes": "50/50",
+    "css_archetype_variants": 5
+  },
+  "runtime_artifacts_excluded": [
+    "node_modules",
+    "frontend/dist",
+    "*.sqlite",
+    "*.db"
+  ]
+}

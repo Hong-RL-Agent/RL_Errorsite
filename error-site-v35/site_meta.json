@@ -1,0 +1,62 @@
+{
+  "brand": "Flowboard · 근태 관리",
+  "tagline": "프로젝트의 진행 상황과 작업 흐름을 한 화면에서",
+  "accent": "#2563eb",
+  "soft": "#eff6ff",
+  "resource_label": "프로젝트",
+  "action_label": "작업 생성",
+  "items": [
+    [
+      "홈페이지 리뉴얼",
+      "디자인 시스템과 주요 화면 개편",
+      68,
+      "🧩"
+    ],
+    [
+      "결제 플로우 개선",
+      "체크아웃 단계 단축 및 오류 처리",
+      44,
+      "💳"
+    ],
+    [
+      "모바일 접근성",
+      "키보드·스크린리더 테스트",
+      81,
+      "📱"
+    ],
+    [
+      "고객지원 대시보드",
+      "상담 현황과 SLA 시각화",
+      36,
+      "🎧"
+    ],
+    [
+      "검색 품질 개선",
+      "필터와 정렬 UX 개선",
+      57,
+      "🔎"
+    ],
+    [
+      "온보딩 자동화",
+      "신규 사용자 가이드 및 체크리스트",
+      72,
+      "🚀"
+    ]
+  ],
+  "site_id": "error-site-v35",
+  "theme": "근태 관리",
+  "archetype": "Dashboard",
+  "layout_variant": "tabs-list",
+  "dom_variant": "tabbed-list",
+  "features": [
+    "login",
+    "overview",
+    "list/detail",
+    "create/edit",
+    "search/filter",
+    "reports",
+    "profile",
+    "admin"
+  ],
+  "bug_count": 8
+}

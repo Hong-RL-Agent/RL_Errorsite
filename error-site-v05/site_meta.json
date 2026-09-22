@@ -1,0 +1,62 @@
+{
+  "brand": "Paper & Day · 패션 편집숍",
+  "tagline": "작고 유용한 물건을 고르는 온라인 스토어",
+  "accent": "#b45309",
+  "soft": "#fff7ed",
+  "resource_label": "상품",
+  "action_label": "장바구니 담기",
+  "items": [
+    [
+      "그리드 노트",
+      "매일 기록하기 좋은 하드커버 노트",
+      12000,
+      "📓"
+    ],
+    [
+      "브라스 펜",
+      "무게감 있는 금속 바디 펜",
+      18000,
+      "🖊️"
+    ],
+    [
+      "데스크 트레이",
+      "작은 물건을 정리하는 트레이",
+      22000,
+      "🗂️"
+    ],
+    [
+      "클립 세트",
+      "메모와 문서를 위한 컬러 클립",
+      7000,
+      "📎"
+    ],
+    [
+      "위클리 플래너",
+      "한 주를 한눈에 보는 플래너",
+      15000,
+      "🗓️"
+    ],
+    [
+      "북마크 세트",
+      "얇고 단정한 금속 북마크",
+      9000,
+      "🔖"
+    ]
+  ],
+  "site_id": "error-site-v05",
+  "theme": "패션 편집숍",
+  "archetype": "Commerce",
+  "layout_variant": "tabs-list",
+  "dom_variant": "tabbed-list",
+  "features": [
+    "login",
+    "catalog",
+    "search/filter",
+    "cart",
+    "checkout",
+    "orders",
+    "mypage",
+    "admin"
+  ],
+  "bug_count": 8
+}

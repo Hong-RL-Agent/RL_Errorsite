@@ -1,0 +1,62 @@
+{
+  "brand": "Hobby Loop · 개발 Q&A",
+  "tagline": "취미를 기록하고 서로의 경험을 나누는 커뮤니티",
+  "accent": "#7c3aed",
+  "soft": "#f5f3ff",
+  "resource_label": "게시글",
+  "action_label": "반응 남기기",
+  "items": [
+    [
+      "주말 드로잉 모임 후기",
+      "연필 하나로 시작한 90분 드로잉",
+      12,
+      "✏️"
+    ],
+    [
+      "초보 러닝화 추천",
+      "첫 5km를 준비하며 신어본 러닝화",
+      18,
+      "🏃"
+    ],
+    [
+      "집에서 만드는 핸드드립",
+      "분쇄도와 물 온도를 바꿔본 기록",
+      23,
+      "☕"
+    ],
+    [
+      "필름 카메라 입문",
+      "첫 롤에서 배운 세 가지",
+      31,
+      "📷"
+    ],
+    [
+      "한 달 독서 기록",
+      "짧게라도 매일 읽는 루틴",
+      16,
+      "📚"
+    ],
+    [
+      "베란다 허브 키우기",
+      "바질과 로즈마리의 성장 기록",
+      27,
+      "🪴"
+    ]
+  ],
+  "site_id": "error-site-v30",
+  "theme": "개발 Q&A",
+  "archetype": "Community",
+  "layout_variant": "stepper-form",
+  "dom_variant": "multi-step-form",
+  "features": [
+    "login",
+    "feed",
+    "post",
+    "comment",
+    "search",
+    "messages",
+    "profile",
+    "admin"
+  ],
+  "bug_count": 8
+}

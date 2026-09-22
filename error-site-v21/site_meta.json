@@ -1,0 +1,62 @@
+{
+  "brand": "Stayline · 영화 티켓 예약",
+  "tagline": "일정과 취향에 맞는 숙소를 빠르게 예약하세요",
+  "accent": "#0f766e",
+  "soft": "#f0fdfa",
+  "resource_label": "객실",
+  "action_label": "예약하기",
+  "items": [
+    [
+      "리버뷰 스튜디오",
+      "강 전망과 퀸베드가 있는 객실",
+      138000,
+      "🌊"
+    ],
+    [
+      "시티 트윈룸",
+      "출장과 짧은 여행에 적합한 트윈룸",
+      112000,
+      "🏙️"
+    ],
+    [
+      "가든 테라스",
+      "작은 테라스와 정원이 연결된 객실",
+      164000,
+      "🌿"
+    ],
+    [
+      "패밀리 스위트",
+      "4인 가족을 위한 넓은 스위트",
+      219000,
+      "🛋️"
+    ],
+    [
+      "컴팩트 싱글",
+      "혼자 머물기 좋은 실용적인 객실",
+      88000,
+      "🛏️"
+    ],
+    [
+      "루프탑 로프트",
+      "높은 층고와 야경을 즐기는 로프트",
+      196000,
+      "🌃"
+    ]
+  ],
+  "site_id": "error-site-v21",
+  "theme": "영화 티켓 예약",
+  "archetype": "Booking",
+  "layout_variant": "kanban-panels",
+  "dom_variant": "drag-panel-structure",
+  "features": [
+    "login",
+    "search",
+    "availability",
+    "reservation",
+    "payment",
+    "my-bookings",
+    "mypage",
+    "admin"
+  ],
+  "bug_count": 7
+}
