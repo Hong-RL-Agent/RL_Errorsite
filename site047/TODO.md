@@ -1,0 +1,5 @@
+- [x] SEC-391 reservation price validation issue
+- [x] SEC-392 reservation ownership validation issue
+- [x] SEC-393 coupon condition validation issue
+- [x] SEC-394 cancelled reservation review issue
+- [x] SEC-395 excessive event detail response

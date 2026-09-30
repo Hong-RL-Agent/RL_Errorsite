@@ -1,0 +1,21 @@
+# TODO: FitFlow (site042) Development Checklist
+
+- [x] Home
+- [x] Authentication
+- [x] Class Search
+- [x] Class Detail
+- [x] Instructor
+- [x] Booking
+- [x] Reservation History
+- [x] Products
+- [x] Cart
+- [x] Checkout
+- [x] Calendar
+- [x] Favorites
+- [x] Reviews
+- [x] My Page
+- [x] SEC-391 (Double-booking race condition)
+- [x] SEC-392 (Stale price checkout)
+- [x] SEC-393 (Pagination state mismatch)
+- [x] SEC-394 (Timezone midnight boundary)
+- [x] SEC-395 (Cart quantity vs Stock consistency)

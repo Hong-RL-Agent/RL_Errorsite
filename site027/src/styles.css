@@ -1,0 +1,603 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --color-sky-blue: #0ea5e9;
+  --color-sky-blue-hover: #0284c7;
+  --color-sky-light: #e0f2fe;
+  --color-deep-navy: #0f172a;
+  --color-navy-light: #1e293b;
+  --color-warm-sand: #fef3c7;
+  --color-sand-border: #fde68a;
+  --color-sand-text: #b45309;
+  --color-white: #ffffff;
+  --color-soft-gray: #f8fafc;
+  --color-gray-border: #e2e8f0;
+  --color-text-dark: #0f172a;
+  --color-text-muted: #64748b;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+  --font-family: 'Plus Jakarta Sans', sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.15);
+  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-soft-gray);
+  color: var(--color-text-dark);
+  font-family: var(--font-family);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ts-app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header & Navigation Bar */
+.ts-header {
+  background-color: var(--color-deep-navy);
+  color: var(--color-white);
+  padding: 1.1rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.3);
+}
+
+.ts-logo {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--color-sky-blue);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: -0.5px;
+}
+
+.ts-logo span {
+  color: var(--color-white);
+}
+
+.ts-nav {
+  display: flex;
+  gap: 2.2rem;
+}
+
+.ts-nav-item {
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.ts-nav-item:hover, .ts-nav-item.active {
+  color: var(--color-sky-blue);
+}
+
+.ts-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Buttons */
+.ts-btn {
+  background-color: var(--color-sky-blue);
+  color: var(--color-white);
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-family: var(--font-family);
+  transition: var(--transition-smooth);
+  box-shadow: 0 2px 10px rgba(14, 165, 233, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.ts-btn:hover {
+  background-color: var(--color-sky-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+}
+
+.ts-btn-outline {
+  background-color: transparent;
+  border: 1.5px solid var(--color-gray-border);
+  color: var(--color-text-dark);
+  box-shadow: none;
+}
+
+.ts-btn-outline:hover {
+  border-color: var(--color-sky-blue);
+  color: var(--color-sky-blue);
+  background-color: var(--color-sky-light);
+  box-shadow: none;
+}
+
+.ts-btn-dark {
+  background-color: var(--color-deep-navy);
+  color: var(--color-white);
+  box-shadow: none;
+}
+
+.ts-btn-dark:hover {
+  background-color: var(--color-navy-light);
+}
+
+/* Hero Section */
+.ts-hero {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.82), rgba(14, 165, 233, 0.65)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&auto=format&fit=crop&q=80');
+  background-size: cover;
+  background-position: center;
+  padding: 5.5rem 2rem;
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.ts-hero h1 {
+  font-size: 2.9rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.ts-hero p {
+  color: #e2e8f0;
+  max-width: 680px;
+  font-size: 1.15rem;
+}
+
+/* Large Travel Search Bar */
+.ts-search-hero-box {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.5rem;
+  box-shadow: var(--shadow-lg);
+  max-width: 1000px;
+  width: 100%;
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  color: var(--color-text-dark);
+}
+
+@media (max-width: 900px) {
+  .ts-search-hero-box {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .ts-search-hero-box {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ts-search-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  text-align: left;
+}
+
+.ts-search-field label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  letter-spacing: 0.5px;
+}
+
+.ts-search-field input, .ts-search-field select {
+  border: 1px solid var(--color-gray-border);
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+  background-color: var(--color-soft-gray);
+}
+
+.ts-search-field input:focus, .ts-search-field select:focus {
+  outline: none;
+  border-color: var(--color-sky-blue);
+  background-color: var(--color-white);
+}
+
+/* Recent Search Chips */
+.ts-chips-container {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.ts-chip {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: var(--color-white);
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.ts-chip:hover {
+  background-color: var(--color-white);
+  color: var(--color-deep-navy);
+  font-weight: 600;
+}
+
+/* Main Container */
+.ts-main {
+  padding: 3rem 2.5rem;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.ts-section-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-deep-navy);
+  letter-spacing: -0.5px;
+}
+
+.ts-section-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-top: 0.2rem;
+}
+
+/* Recommended Destinations Cards */
+.ts-destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.ts-dest-card {
+  height: 170px;
+  border-radius: var(--radius-md);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+
+.ts-dest-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.ts-dest-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent 70%);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: var(--color-white);
+}
+
+.ts-dest-card-overlay h4 {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.ts-dest-card-overlay p {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* Product Filter Tabs & Cards Grid */
+.ts-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.ts-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+
+.ts-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-sky-blue);
+}
+
+.ts-card-img-wrap {
+  height: 210px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.ts-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: var(--color-deep-navy);
+  color: var(--color-white);
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.ts-card-wish-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: var(--transition-smooth);
+}
+
+.ts-card-wish-btn:hover {
+  background-color: var(--color-white);
+  transform: scale(1.1);
+}
+
+.ts-card-body {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+}
+
+.ts-card-body h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-deep-navy);
+  line-height: 1.4;
+}
+
+.ts-card-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--color-gray-border);
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ts-price {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-sky-blue);
+}
+
+.ts-price span {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* Dashboard Panel & Tables */
+.ts-dashboard-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 868px) {
+  .ts-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ts-panel {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-border);
+  border-radius: var(--radius-md);
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.ts-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ts-table th, .ts-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-gray-border);
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.ts-table th {
+  background-color: var(--color-soft-gray);
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+/* Form Controls */
+.ts-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ts-form-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-deep-navy);
+}
+
+.ts-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-gray-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+}
+
+.ts-input:focus {
+  outline: none;
+  border-color: var(--color-sky-blue);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+/* Drawer / Slide-Over Modal */
+.ts-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ts-drawer {
+  background-color: var(--color-white);
+  width: 100%;
+  max-width: 520px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  animation: slideInRight 0.3s ease;
+}
+
+.ts-drawer-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-gray-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ts-drawer-body {
+  padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.ts-drawer-footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--color-gray-border);
+  display: flex;
+  gap: 0.8rem;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Toast Notifications */
+.ts-toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  z-index: 2000;
+}
+
+.ts-toast {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-border);
+  border-left: 5px solid var(--color-sky-blue);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.4rem;
+  box-shadow: var(--shadow-md);
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  animation: slideInUp 0.3s ease;
+}
+
+.ts-toast strong {
+  color: var(--color-deep-navy);
+  font-size: 0.95rem;
+}
+
+.ts-toast span {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Footer */
+.ts-footer {
+  background-color: var(--color-deep-navy);
+  color: #94a3b8;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: auto;
+}

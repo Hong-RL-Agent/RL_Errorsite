@@ -1,0 +1,59 @@
+import * as esbuild from 'esbuild';
+import fs from 'fs';
+
+async function buildApp() {
+  if (!fs.existsSync('dist')) {
+    fs.mkdirSync('dist', { recursive: true });
+  }
+  if (!fs.existsSync('dist/assets')) {
+    fs.mkdirSync('dist/assets', { recursive: true });
+  }
+
+  // Bundle JS & CSS
+  await esbuild.build({
+    entryPoints: ['src/main.jsx'],
+    bundle: true,
+    minify: true,
+    sourcemap: false,
+    format: 'esm',
+    target: ['es2020'],
+    outfile: 'dist/assets/index.js',
+    loader: {
+      '.jsx': 'jsx',
+      '.js': 'js',
+      '.css': 'css',
+      '.png': 'dataurl',
+      '.svg': 'dataurl'
+    },
+    define: {
+      'process.env.NODE_ENV': '"production"'
+    }
+  });
+
+  const htmlContent = `<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'><path d='M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.45 9L12 4.34 20.55 9 12 13.66 3.45 9zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z'/></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClassMate | 커뮤니티 기반 원데이 클래스 & 워크숍 플랫폼</title>
+    <meta name="description" content="나에게 맞는 새로운 취미와 워크숍을 발견하세요. 도예, 베이킹, 드로잉, 가죽공예 등 검증된 강사와 함께하는 로컬 클래스 커뮤니티" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/index.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/assets/index.js"></script>
+  </body>
+</html>`;
+
+  fs.writeFileSync('dist/index.html', htmlContent);
+  console.log('✅ ClassMate production bundle built in dist/');
+}
+
+buildApp().catch(e => {
+  console.error('Build error:', e);
+  process.exit(1);
+});
