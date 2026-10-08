@@ -1,0 +1,11 @@
+{
+  "name": "a-05",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 9515 --strictPort",
+    "build": "vite build",
+    "start": "vite preview --host 127.0.0.1 --port 9515 --strictPort",
+    "api": "node ../backend/server.mjs A-05"
+  }
+}

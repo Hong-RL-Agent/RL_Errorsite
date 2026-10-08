@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" role="img" aria-label="체크 노트">
+  <rect x="46" y="28" width="128" height="164" rx="10" fill="#fff8dc" stroke="#74bfe8" stroke-width="6"/>
+  <rect x="46" y="28" width="24" height="164" rx="10" fill="#9fd4f3"/>
+  <path d="M91 58h63M91 86h63M91 114h63M91 142h63" stroke="#b8dff3" stroke-width="4" stroke-linecap="round"/>
+  <path d="M91 58v92M122 58v92M153 58v92" stroke="#f0d983" stroke-width="3" opacity=".75"/>
+</svg>

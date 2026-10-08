@@ -1,0 +1,609 @@
+{
+  "bug": {
+    "bug_id": "A-05-01",
+    "name": "예약 기간 금액 누락",
+    "strategy": "SEQUENCE_REPLAY",
+    "precondition": "초기 예약 없음",
+    "trigger": "2박 선택 → 객실 찾기 → 스탠다드/1명 → 옵션 확인 → 예상 금액 보기",
+    "expected": "100000원",
+    "actual": "50000원",
+    "evidence": "ActionLog + State + UI + DOM + Network",
+    "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+    "source": {
+      "sheet": "전체_분류",
+      "excel_row": 440,
+      "No": 439,
+      "error_name": "구독 및 예약 주기의 오버랩",
+      "DQN_학습대상": "O",
+      "필요_Evidence": "ActionLog + State + UI + DOM + Network",
+      "Confirmation_Oracle": "동일 초기 상태에서 정의된 행동 sequence를 끝까지 재실행한 뒤 동일 비정상 end-state/Evidence가 재현되면 Confirmed.",
+      "실행조건_Precondition": "초기 상태를 복원하고 trigger부터 결과 확인까지 전체 sequence 재실행"
+    },
+    "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+    "test": "tests/e2e.mjs#A-05-01"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "pass": true,
+      "initial": {
+        "flow": {
+          "step": 0,
+          "room": "standard",
+          "nights": 1,
+          "guests": 1,
+          "breakfast": false,
+          "dates": "2026-10-20",
+          "quote": 0,
+          "history": []
+        },
+        "availability": {
+          "standard": 3,
+          "deluxe": 3,
+          "suite": 3,
+          "garden": 3
+        },
+        "charged": 0,
+        "reservations": []
+      },
+      "final": {
+        "flow": {
+          "step": 3,
+          "room": "standard",
+          "nights": 2,
+          "guests": 1,
+          "breakfast": false,
+          "dates": "2026-10-20",
+          "quote": 50000,
+          "history": [
+            "dates",
+            "options",
+            "review"
+          ]
+        },
+        "availability": {
+          "standard": 3,
+          "deluxe": 3,
+          "suite": 3,
+          "garden": 3
+        },
+        "charged": 0,
+        "reservations": []
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "select 숙박일=2"
+        },
+        {
+          "order": 2,
+          "description": "click 객실 찾기"
+        },
+        {
+          "order": 3,
+          "description": "click 옵션 확인"
+        },
+        {
+          "order": 4,
+          "description": "click 예상 금액 보기"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9515/api/stays",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "flow": {
+              "step": 0,
+              "room": "standard",
+              "nights": 1,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 0,
+              "history": []
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9515/api/stays/dates",
+          "method": "POST",
+          "request": {
+            "date": "2026-10-20",
+            "nights": "2"
+          },
+          "status": 200,
+          "response": {
+            "flow": {
+              "step": 1,
+              "room": "standard",
+              "nights": 2,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 0,
+              "history": [
+                "dates"
+              ]
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9515/api/stays/options",
+          "method": "POST",
+          "request": {
+            "room": "standard",
+            "guests": "1",
+            "breakfast": false
+          },
+          "status": 200,
+          "response": {
+            "flow": {
+              "step": 2,
+              "room": "standard",
+              "nights": 2,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 0,
+              "history": [
+                "dates",
+                "options"
+              ]
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9515/api/stays/review",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "flow": {
+              "step": 3,
+              "room": "standard",
+              "nights": 2,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 50000,
+              "history": [
+                "dates",
+                "options",
+                "review"
+              ]
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/stays/dates",
+          "request": {
+            "date": "2026-10-20",
+            "nights": "2"
+          },
+          "response": {
+            "flow": {
+              "step": 1,
+              "room": "standard",
+              "nights": 2,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 0,
+              "history": [
+                "dates"
+              ]
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          },
+          "status": 200
+        },
+        {
+          "seq": 2,
+          "method": "POST",
+          "endpoint": "/api/stays/options",
+          "request": {
+            "room": "standard",
+            "guests": "1",
+            "breakfast": false
+          },
+          "response": {
+            "flow": {
+              "step": 2,
+              "room": "standard",
+              "nights": 2,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 0,
+              "history": [
+                "dates",
+                "options"
+              ]
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          },
+          "status": 200
+        },
+        {
+          "seq": 3,
+          "method": "POST",
+          "endpoint": "/api/stays/review",
+          "request": {},
+          "response": {
+            "flow": {
+              "step": 3,
+              "room": "standard",
+              "nights": 2,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 50000,
+              "history": [
+                "dates",
+                "options",
+                "review"
+              ]
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          },
+          "status": 200
+        }
+      ],
+      "UI": "스테이 온\n처음부터\n스테이 온\n\n1인 1박: 스탠다드 50,000원 / 디럭스 80,000원 / 스위트 120,000원 / 가든 60,000원. 조식 1인 1박 10,000원.\n\n예약 단계 3\n\n예약 예상액 50,000원\n\n조식 없음\n\n결제하고 확정\n결제 기록 0원\n스탠다드 남은 객실 3\n디럭스 남은 객실 3\n스위트 남은 객실 3\n가든 남은 객실 3\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "100000원",
+      "actual": "50000원",
+      "Evidence": "ActionLog + State + UI + DOM + Network"
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "initial": {
+        "flow": {
+          "step": 0,
+          "room": "standard",
+          "nights": 1,
+          "guests": 1,
+          "breakfast": false,
+          "dates": "2026-10-20",
+          "quote": 0,
+          "history": []
+        },
+        "availability": {
+          "standard": 3,
+          "deluxe": 3,
+          "suite": 3,
+          "garden": 3
+        },
+        "charged": 0,
+        "reservations": []
+      },
+      "final": {
+        "flow": {
+          "step": 3,
+          "room": "standard",
+          "nights": 2,
+          "guests": 1,
+          "breakfast": false,
+          "dates": "2026-10-20",
+          "quote": 50000,
+          "history": [
+            "dates",
+            "options",
+            "review"
+          ]
+        },
+        "availability": {
+          "standard": 3,
+          "deluxe": 3,
+          "suite": 3,
+          "garden": 3
+        },
+        "charged": 0,
+        "reservations": []
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "select 숙박일=2"
+        },
+        {
+          "order": 2,
+          "description": "click 객실 찾기"
+        },
+        {
+          "order": 3,
+          "description": "click 옵션 확인"
+        },
+        {
+          "order": 4,
+          "description": "click 예상 금액 보기"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9515/api/stays",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "flow": {
+              "step": 0,
+              "room": "standard",
+              "nights": 1,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 0,
+              "history": []
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9515/api/stays/dates",
+          "method": "POST",
+          "request": {
+            "date": "2026-10-20",
+            "nights": "2"
+          },
+          "status": 200,
+          "response": {
+            "flow": {
+              "step": 1,
+              "room": "standard",
+              "nights": 2,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 0,
+              "history": [
+                "dates"
+              ]
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9515/api/stays/options",
+          "method": "POST",
+          "request": {
+            "room": "standard",
+            "guests": "1",
+            "breakfast": false
+          },
+          "status": 200,
+          "response": {
+            "flow": {
+              "step": 2,
+              "room": "standard",
+              "nights": 2,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 0,
+              "history": [
+                "dates",
+                "options"
+              ]
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9515/api/stays/review",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "flow": {
+              "step": 3,
+              "room": "standard",
+              "nights": 2,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 50000,
+              "history": [
+                "dates",
+                "options",
+                "review"
+              ]
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/stays/dates",
+          "request": {
+            "date": "2026-10-20",
+            "nights": "2"
+          },
+          "response": {
+            "flow": {
+              "step": 1,
+              "room": "standard",
+              "nights": 2,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 0,
+              "history": [
+                "dates"
+              ]
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          },
+          "status": 200
+        },
+        {
+          "seq": 2,
+          "method": "POST",
+          "endpoint": "/api/stays/options",
+          "request": {
+            "room": "standard",
+            "guests": "1",
+            "breakfast": false
+          },
+          "response": {
+            "flow": {
+              "step": 2,
+              "room": "standard",
+              "nights": 2,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 0,
+              "history": [
+                "dates",
+                "options"
+              ]
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          },
+          "status": 200
+        },
+        {
+          "seq": 3,
+          "method": "POST",
+          "endpoint": "/api/stays/review",
+          "request": {},
+          "response": {
+            "flow": {
+              "step": 3,
+              "room": "standard",
+              "nights": 2,
+              "guests": 1,
+              "breakfast": false,
+              "dates": "2026-10-20",
+              "quote": 50000,
+              "history": [
+                "dates",
+                "options",
+                "review"
+              ]
+            },
+            "availability": {
+              "standard": 3,
+              "deluxe": 3,
+              "suite": 3,
+              "garden": 3
+            },
+            "charged": 0,
+            "reservations": []
+          },
+          "status": 200
+        }
+      ],
+      "UI": "스테이 온\n처음부터\n스테이 온\n\n1인 1박: 스탠다드 50,000원 / 디럭스 80,000원 / 스위트 120,000원 / 가든 60,000원. 조식 1인 1박 10,000원.\n\n예약 단계 3\n\n예약 예상액 50,000원\n\n조식 없음\n\n결제하고 확정\n결제 기록 0원\n스탠다드 남은 객실 3\n디럭스 남은 객실 3\n스위트 남은 객실 3\n가든 남은 객실 3\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "100000원",
+      "actual": "50000원",
+      "Evidence": "ActionLog + State + UI + DOM + Network"
+    }
+  ]
+}

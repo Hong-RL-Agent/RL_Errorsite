@@ -1,0 +1,729 @@
+{
+  "bug": {
+    "bug_id": "A-06-02",
+    "name": "취소된 일정의 공개 상태 전이 허용",
+    "strategy": "SEQUENCE_REPLAY",
+    "precondition": "초기 여행 없음",
+    "trigger": "부산 → 여행 계획 시작 → 경로 미리보기 → 일정 확정하기 → 일정 취소하기 → 여행 노트 공개",
+    "expected": "취소 상태 유지 및 공개 거부",
+    "actual": "취소 일정이 published로 바뀜",
+    "evidence": "ActionLog + State + UI + DOM + Network",
+    "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+    "source": {
+      "sheet": "전체_분류",
+      "excel_row": 442,
+      "No": 441,
+      "error_name": "부적절한 상태 전이",
+      "DQN_학습대상": "O",
+      "필요_Evidence": "ActionLog + State + UI + DOM + Network",
+      "Confirmation_Oracle": "동일 초기 상태에서 정의된 행동 sequence를 끝까지 재실행한 뒤 동일 비정상 end-state/Evidence가 재현되면 Confirmed.",
+      "실행조건_Precondition": "초기 상태를 복원하고 trigger부터 결과 확인까지 전체 sequence 재실행"
+    },
+    "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+    "test": "tests/e2e.mjs#A-06-02"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "pass": true,
+      "initial": {
+        "city": "서울",
+        "transport": "기차",
+        "stage": "start",
+        "route": [],
+        "capacity": 4,
+        "balance": 100000,
+        "history": []
+      },
+      "final": {
+        "city": "부산",
+        "transport": "기차",
+        "stage": "published",
+        "route": [
+          {
+            "city": "부산",
+            "transport": "기차",
+            "status": "published"
+          }
+        ],
+        "capacity": 4,
+        "balance": 100000,
+        "history": [
+          "destination",
+          "draft",
+          "commit",
+          "undo",
+          "share"
+        ]
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "select 여행지=부산"
+        },
+        {
+          "order": 2,
+          "description": "select 이동 수단=기차"
+        },
+        {
+          "order": 3,
+          "description": "click 여행 계획 시작"
+        },
+        {
+          "order": 4,
+          "description": "click 경로 미리보기"
+        },
+        {
+          "order": 5,
+          "description": "click 일정 확정하기"
+        },
+        {
+          "order": 6,
+          "description": "click 일정 취소하기"
+        },
+        {
+          "order": 7,
+          "description": "click 여행 노트 공개"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9516/api/journeys",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "city": "서울",
+            "transport": "기차",
+            "stage": "start",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "city": "서울",
+            "transport": "기차",
+            "stage": "start",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/destination",
+          "method": "POST",
+          "request": {
+            "city": "부산",
+            "transport": "기차"
+          },
+          "status": 200,
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/draft",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "review",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/commit",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "confirmed",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "confirmed"
+              }
+            ],
+            "capacity": 3,
+            "balance": 80000,
+            "history": [
+              "destination",
+              "draft",
+              "commit"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/undo",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "cancelled",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "cancelled"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "commit",
+              "undo"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/share",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "published",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "published"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "commit",
+              "undo",
+              "share"
+            ]
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/journeys/destination",
+          "request": {
+            "city": "부산",
+            "transport": "기차"
+          },
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 2,
+          "method": "POST",
+          "endpoint": "/api/journeys/draft",
+          "request": {},
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "review",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 3,
+          "method": "POST",
+          "endpoint": "/api/journeys/commit",
+          "request": {},
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "confirmed",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "confirmed"
+              }
+            ],
+            "capacity": 3,
+            "balance": 80000,
+            "history": [
+              "destination",
+              "draft",
+              "commit"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 4,
+          "method": "POST",
+          "endpoint": "/api/journeys/undo",
+          "request": {},
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "cancelled",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "cancelled"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "commit",
+              "undo"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 5,
+          "method": "POST",
+          "endpoint": "/api/journeys/share",
+          "request": {},
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "published",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "published"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "commit",
+              "undo",
+              "share"
+            ]
+          },
+          "status": 200
+        }
+      ],
+      "UI": "길따라 여행\n처음부터\n길따라 여행\n목적지\n계획\n확정\n현재 진행: published\n여행 기록\n잔여 이동권 4\n여행 지갑 100,000원\n부산 · 기차 · published\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "취소 상태 유지 및 공개 거부",
+      "actual": "취소 일정이 published로 바뀜",
+      "Evidence": "ActionLog + State + UI + DOM + Network"
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "initial": {
+        "city": "서울",
+        "transport": "기차",
+        "stage": "start",
+        "route": [],
+        "capacity": 4,
+        "balance": 100000,
+        "history": []
+      },
+      "final": {
+        "city": "부산",
+        "transport": "기차",
+        "stage": "published",
+        "route": [
+          {
+            "city": "부산",
+            "transport": "기차",
+            "status": "published"
+          }
+        ],
+        "capacity": 4,
+        "balance": 100000,
+        "history": [
+          "destination",
+          "draft",
+          "commit",
+          "undo",
+          "share"
+        ]
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "select 여행지=부산"
+        },
+        {
+          "order": 2,
+          "description": "select 이동 수단=기차"
+        },
+        {
+          "order": 3,
+          "description": "click 여행 계획 시작"
+        },
+        {
+          "order": 4,
+          "description": "click 경로 미리보기"
+        },
+        {
+          "order": 5,
+          "description": "click 일정 확정하기"
+        },
+        {
+          "order": 6,
+          "description": "click 일정 취소하기"
+        },
+        {
+          "order": 7,
+          "description": "click 여행 노트 공개"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9516/api/journeys",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "city": "서울",
+            "transport": "기차",
+            "stage": "start",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "city": "서울",
+            "transport": "기차",
+            "stage": "start",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/destination",
+          "method": "POST",
+          "request": {
+            "city": "부산",
+            "transport": "기차"
+          },
+          "status": 200,
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/draft",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "review",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/commit",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "confirmed",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "confirmed"
+              }
+            ],
+            "capacity": 3,
+            "balance": 80000,
+            "history": [
+              "destination",
+              "draft",
+              "commit"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/undo",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "cancelled",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "cancelled"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "commit",
+              "undo"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/share",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "published",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "published"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "commit",
+              "undo",
+              "share"
+            ]
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/journeys/destination",
+          "request": {
+            "city": "부산",
+            "transport": "기차"
+          },
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 2,
+          "method": "POST",
+          "endpoint": "/api/journeys/draft",
+          "request": {},
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "review",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 3,
+          "method": "POST",
+          "endpoint": "/api/journeys/commit",
+          "request": {},
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "confirmed",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "confirmed"
+              }
+            ],
+            "capacity": 3,
+            "balance": 80000,
+            "history": [
+              "destination",
+              "draft",
+              "commit"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 4,
+          "method": "POST",
+          "endpoint": "/api/journeys/undo",
+          "request": {},
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "cancelled",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "cancelled"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "commit",
+              "undo"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 5,
+          "method": "POST",
+          "endpoint": "/api/journeys/share",
+          "request": {},
+          "response": {
+            "city": "부산",
+            "transport": "기차",
+            "stage": "published",
+            "route": [
+              {
+                "city": "부산",
+                "transport": "기차",
+                "status": "published"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "commit",
+              "undo",
+              "share"
+            ]
+          },
+          "status": 200
+        }
+      ],
+      "UI": "길따라 여행\n처음부터\n길따라 여행\n목적지\n계획\n확정\n현재 진행: published\n여행 기록\n잔여 이동권 4\n여행 지갑 100,000원\n부산 · 기차 · published\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "취소 상태 유지 및 공개 거부",
+      "actual": "취소 일정이 published로 바뀜",
+      "Evidence": "ActionLog + State + UI + DOM + Network"
+    }
+  ]
+}

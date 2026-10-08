@@ -1,0 +1,11 @@
+{
+  "name": "a-06",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 9516",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 9516",
+    "api": "node ../backend/server.mjs A-06"
+  }
+}

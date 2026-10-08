@@ -1,0 +1,8 @@
+[
+  {
+    "site": "A-08",
+    "url": "http://127.0.0.1:9518",
+    "catalog": "catalogs/validation/A-08.json",
+    "backend": "http://127.0.0.1:9418"
+  }
+]

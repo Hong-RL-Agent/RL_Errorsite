@@ -1,0 +1,68 @@
+{
+  "createdAt": "2026-10-08T10:18:19.986Z",
+  "purpose": "QA regression only; never training episodes/reward data",
+  "results": [
+    {
+      "site": "A-01",
+      "bug": "A-01-01",
+      "pass": true
+    },
+    {
+      "site": "A-01",
+      "bug": "A-01-02",
+      "pass": true
+    },
+    {
+      "site": "A-01",
+      "bug": "A-01-03",
+      "pass": true
+    },
+    {
+      "site": "A-01",
+      "bug": "A-01-04",
+      "pass": true
+    },
+    {
+      "site": "A-01",
+      "check": "healthy-persistence",
+      "pass": true
+    },
+    {
+      "site": "A-01",
+      "check": "reset",
+      "pass": true
+    },
+    {
+      "site": "A-02",
+      "bug": "A-02-01",
+      "pass": true
+    },
+    {
+      "site": "A-02",
+      "bug": "A-02-02",
+      "pass": true
+    },
+    {
+      "site": "A-02",
+      "bug": "A-02-03",
+      "pass": true
+    },
+    {
+      "site": "A-02",
+      "bug": "A-02-04",
+      "pass": true
+    },
+    {
+      "site": "A-02",
+      "check": "healthy-persistence",
+      "pass": true
+    },
+    {
+      "site": "A-02",
+      "check": "reset",
+      "pass": true
+    }
+  ],
+  "passed": 12,
+  "failed": 0
+}

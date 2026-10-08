@@ -1,0 +1,54 @@
+{
+  "results": [
+    {
+      "site": "A-01",
+      "pass": true,
+      "check": "SQLite survives backend restart; reset restores initial state"
+    },
+    {
+      "site": "A-02",
+      "pass": true,
+      "check": "SQLite survives backend restart; reset restores initial state"
+    },
+    {
+      "site": "A-03",
+      "pass": true,
+      "check": "SQLite survives backend restart; reset restores initial state"
+    },
+    {
+      "site": "A-04",
+      "pass": true,
+      "check": "SQLite survives backend restart; reset restores initial state"
+    },
+    {
+      "site": "A-05",
+      "pass": true,
+      "check": "SQLite survives backend restart; reset restores initial state"
+    },
+    {
+      "site": "A-06",
+      "pass": true,
+      "check": "SQLite survives backend restart; reset restores initial state"
+    },
+    {
+      "site": "A-07",
+      "pass": true,
+      "check": "SQLite survives backend restart; reset restores initial state"
+    },
+    {
+      "site": "A-08",
+      "pass": true,
+      "check": "SQLite survives backend restart; reset restores initial state"
+    },
+    {
+      "site": "A-09",
+      "pass": true,
+      "check": "SQLite survives backend restart; reset restores initial state"
+    },
+    {
+      "site": "A-10",
+      "pass": true,
+      "check": "SQLite survives backend restart; reset restores initial state"
+    }
+  ]
+}

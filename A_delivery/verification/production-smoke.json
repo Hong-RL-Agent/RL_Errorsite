@@ -1,0 +1,64 @@
+{
+  "results": [
+    {
+      "site": "A-01",
+      "production_http": "PASS",
+      "frontend_api_proxy": "PASS",
+      "reset_button_and_form": "PASS"
+    },
+    {
+      "site": "A-02",
+      "production_http": "PASS",
+      "frontend_api_proxy": "PASS",
+      "reset_button_and_form": "PASS"
+    },
+    {
+      "site": "A-03",
+      "production_http": "PASS",
+      "frontend_api_proxy": "PASS",
+      "reset_button_and_form": "PASS"
+    },
+    {
+      "site": "A-04",
+      "production_http": "PASS",
+      "frontend_api_proxy": "PASS",
+      "reset_button_and_form": "PASS"
+    },
+    {
+      "site": "A-05",
+      "production_http": "PASS",
+      "frontend_api_proxy": "PASS",
+      "reset_button_and_form": "PASS"
+    },
+    {
+      "site": "A-06",
+      "production_http": "PASS",
+      "frontend_api_proxy": "PASS",
+      "reset_button_and_form": "PASS"
+    },
+    {
+      "site": "A-07",
+      "production_http": "PASS",
+      "frontend_api_proxy": "PASS",
+      "reset_button_and_form": "PASS"
+    },
+    {
+      "site": "A-08",
+      "production_http": "PASS",
+      "frontend_api_proxy": "PASS",
+      "reset_button_and_form": "PASS"
+    },
+    {
+      "site": "A-09",
+      "production_http": "PASS",
+      "frontend_api_proxy": "PASS",
+      "reset_button_and_form": "PASS"
+    },
+    {
+      "site": "A-10",
+      "production_http": "PASS",
+      "frontend_api_proxy": "PASS",
+      "reset_button_and_form": "PASS"
+    }
+  ]
+}

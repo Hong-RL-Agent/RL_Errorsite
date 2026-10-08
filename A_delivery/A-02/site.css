@@ -1,0 +1,2 @@
+:root{--accent:#785b38}
+.threads{list-style:none;padding:0;max-width:820px}.threads article{border-left:5px solid var(--accent)}

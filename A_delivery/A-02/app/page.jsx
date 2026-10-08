@@ -1,0 +1,6 @@
+'use client';
+import React,{useState} from 'react';
+import {Frame,useService} from '../../shared/client.jsx';
+
+function Board(){const svc=useService('/api/threads'),s=svc.state,[title,setTitle]=useState(''),[content,setContent]=useState(''),[edits,setEdits]=useState({});return <Frame name="동네 소식함" service={svc}>{s&&<><form onSubmit={e=>{e.preventDefault();svc.send('publish',{title,content});}}><fieldset><legend>새 소식 작성</legend><label>제목<input aria-label="소식 제목" required value={title} onChange={e=>setTitle(e.target.value)}/></label><label>본문<textarea aria-label="소식 본문" value={content} onChange={e=>setContent(e.target.value)}/></label><button type="submit">소식 올리기</button></fieldset></form><ol className="threads">{s.posts.map(p=><li key={p.id}><article><h2>{p.title}</h2><p className="content">{p.content}</p><label>내용 수정<input aria-label={`${p.title} 수정 내용`} value={edits[p.id]??p.content} onChange={e=>setEdits({...edits,[p.id]:e.target.value})}/></label><button onClick={()=>svc.send('revise',{id:p.id,content:edits[p.id]??p.content})}>{p.title} 고치기</button><button onClick={()=>svc.send('remove',{id:p.id})}>{p.title} 지우기</button><button onClick={()=>svc.send('applaud',{id:p.id})}>{p.title} 공감 {p.likes}</button></article></li>)}</ol><output>전체 소식 {s.posts.length}건</output></>}</Frame>}
+export default Board;

@@ -1,0 +1,441 @@
+{
+  "bug": {
+    "bug_id": "A-03-03",
+    "name": "강의 신청 중복 처리",
+    "strategy": "ACTION_REPLAY",
+    "precondition": "드로잉 시작 미신청",
+    "trigger": "드로잉 시작 수강하기",
+    "expected": "신청 1건",
+    "actual": "같은 강의 신청 2건",
+    "evidence": "ActionLog + UI + State + Network",
+    "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+    "source": {
+      "sheet": "전체_분류",
+      "excel_row": 519,
+      "No": 518,
+      "error_name": "멱등성 처리 실패 중복 트랜잭션",
+      "DQN_학습대상": "O",
+      "필요_Evidence": "ActionLog + UI + State + Network",
+      "Confirmation_Oracle": "동일 precondition에서 동일 target action/request를 재실행했을 때 기대 변화가 없거나 동일 비정상 Evidence가 재발하면 Confirmed.",
+      "실행조건_Precondition": "후보를 만든 원래 precondition과 target을 복원한 뒤 동일 action/request 재실행"
+    },
+    "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+    "test": "tests/e2e.mjs#A-03-03"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "pass": true,
+      "initial": {
+        "courses": [
+          {
+            "id": 1,
+            "title": "파이썬 기초",
+            "hours": 12
+          },
+          {
+            "id": 2,
+            "title": "사진 입문",
+            "hours": 8
+          },
+          {
+            "id": 3,
+            "title": "드로잉 시작",
+            "hours": 6
+          },
+          {
+            "id": 4,
+            "title": "웹 개발",
+            "hours": 15
+          },
+          {
+            "id": 5,
+            "title": "생활 영어",
+            "hours": 10
+          }
+        ],
+        "enrolled": [
+          2
+        ]
+      },
+      "final": {
+        "courses": [
+          {
+            "id": 1,
+            "title": "파이썬 기초",
+            "hours": 12
+          },
+          {
+            "id": 2,
+            "title": "사진 입문",
+            "hours": 8
+          },
+          {
+            "id": 3,
+            "title": "드로잉 시작",
+            "hours": 6
+          },
+          {
+            "id": 4,
+            "title": "웹 개발",
+            "hours": 15
+          },
+          {
+            "id": 5,
+            "title": "생활 영어",
+            "hours": 10
+          }
+        ],
+        "enrolled": [
+          2,
+          3,
+          3
+        ]
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "click 드로잉 시작 수강하기"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9513/api/enrolments",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "courses": [
+              {
+                "id": 1,
+                "title": "파이썬 기초",
+                "hours": 12
+              },
+              {
+                "id": 2,
+                "title": "사진 입문",
+                "hours": 8
+              },
+              {
+                "id": 3,
+                "title": "드로잉 시작",
+                "hours": 6
+              },
+              {
+                "id": 4,
+                "title": "웹 개발",
+                "hours": 15
+              },
+              {
+                "id": 5,
+                "title": "생활 영어",
+                "hours": 10
+              }
+            ],
+            "enrolled": [
+              2
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9513/api/enrolments/join",
+          "method": "POST",
+          "request": {
+            "id": 3
+          },
+          "status": 200,
+          "response": {
+            "courses": [
+              {
+                "id": 1,
+                "title": "파이썬 기초",
+                "hours": 12
+              },
+              {
+                "id": 2,
+                "title": "사진 입문",
+                "hours": 8
+              },
+              {
+                "id": 3,
+                "title": "드로잉 시작",
+                "hours": 6
+              },
+              {
+                "id": 4,
+                "title": "웹 개발",
+                "hours": 15
+              },
+              {
+                "id": 5,
+                "title": "생활 영어",
+                "hours": 10
+              }
+            ],
+            "enrolled": [
+              2,
+              3,
+              3
+            ]
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/enrolments/join",
+          "request": {
+            "id": 3
+          },
+          "response": {
+            "courses": [
+              {
+                "id": 1,
+                "title": "파이썬 기초",
+                "hours": 12
+              },
+              {
+                "id": 2,
+                "title": "사진 입문",
+                "hours": 8
+              },
+              {
+                "id": 3,
+                "title": "드로잉 시작",
+                "hours": 6
+              },
+              {
+                "id": 4,
+                "title": "웹 개발",
+                "hours": 15
+              },
+              {
+                "id": 5,
+                "title": "생활 영어",
+                "hours": 10
+              }
+            ],
+            "enrolled": [
+              2,
+              3,
+              3
+            ]
+          },
+          "status": 200
+        }
+      ],
+      "UI": "배움 스튜디오\n처음부터\n배움 스튜디오\n\n학습 시간을 확인하고 원하는 강의를 신청하세요.\n\n강의\t시간\t신청\n파이썬 기초\t12시간\t파이썬 기초 수강하기파이썬 기초 취소\n사진 입문\t8시간\t사진 입문 수강하기사진 입문 취소\n드로잉 시작\t6시간\t드로잉 시작 수강하기드로잉 시작 취소\n웹 개발\t15시간\t웹 개발 수강하기웹 개발 취소\n생활 영어\t10시간\t생활 영어 수강하기생활 영어 취소\n내 강의실\n사진 입문\n드로잉 시작\n드로잉 시작\n신청 내역 조회\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "신청 1건",
+      "actual": "같은 강의 신청 2건",
+      "Evidence": "ActionLog + UI + State + Network"
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "initial": {
+        "courses": [
+          {
+            "id": 1,
+            "title": "파이썬 기초",
+            "hours": 12
+          },
+          {
+            "id": 2,
+            "title": "사진 입문",
+            "hours": 8
+          },
+          {
+            "id": 3,
+            "title": "드로잉 시작",
+            "hours": 6
+          },
+          {
+            "id": 4,
+            "title": "웹 개발",
+            "hours": 15
+          },
+          {
+            "id": 5,
+            "title": "생활 영어",
+            "hours": 10
+          }
+        ],
+        "enrolled": [
+          2
+        ]
+      },
+      "final": {
+        "courses": [
+          {
+            "id": 1,
+            "title": "파이썬 기초",
+            "hours": 12
+          },
+          {
+            "id": 2,
+            "title": "사진 입문",
+            "hours": 8
+          },
+          {
+            "id": 3,
+            "title": "드로잉 시작",
+            "hours": 6
+          },
+          {
+            "id": 4,
+            "title": "웹 개발",
+            "hours": 15
+          },
+          {
+            "id": 5,
+            "title": "생활 영어",
+            "hours": 10
+          }
+        ],
+        "enrolled": [
+          2,
+          3,
+          3
+        ]
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "click 드로잉 시작 수강하기"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9513/api/enrolments",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "courses": [
+              {
+                "id": 1,
+                "title": "파이썬 기초",
+                "hours": 12
+              },
+              {
+                "id": 2,
+                "title": "사진 입문",
+                "hours": 8
+              },
+              {
+                "id": 3,
+                "title": "드로잉 시작",
+                "hours": 6
+              },
+              {
+                "id": 4,
+                "title": "웹 개발",
+                "hours": 15
+              },
+              {
+                "id": 5,
+                "title": "생활 영어",
+                "hours": 10
+              }
+            ],
+            "enrolled": [
+              2
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9513/api/enrolments/join",
+          "method": "POST",
+          "request": {
+            "id": 3
+          },
+          "status": 200,
+          "response": {
+            "courses": [
+              {
+                "id": 1,
+                "title": "파이썬 기초",
+                "hours": 12
+              },
+              {
+                "id": 2,
+                "title": "사진 입문",
+                "hours": 8
+              },
+              {
+                "id": 3,
+                "title": "드로잉 시작",
+                "hours": 6
+              },
+              {
+                "id": 4,
+                "title": "웹 개발",
+                "hours": 15
+              },
+              {
+                "id": 5,
+                "title": "생활 영어",
+                "hours": 10
+              }
+            ],
+            "enrolled": [
+              2,
+              3,
+              3
+            ]
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/enrolments/join",
+          "request": {
+            "id": 3
+          },
+          "response": {
+            "courses": [
+              {
+                "id": 1,
+                "title": "파이썬 기초",
+                "hours": 12
+              },
+              {
+                "id": 2,
+                "title": "사진 입문",
+                "hours": 8
+              },
+              {
+                "id": 3,
+                "title": "드로잉 시작",
+                "hours": 6
+              },
+              {
+                "id": 4,
+                "title": "웹 개발",
+                "hours": 15
+              },
+              {
+                "id": 5,
+                "title": "생활 영어",
+                "hours": 10
+              }
+            ],
+            "enrolled": [
+              2,
+              3,
+              3
+            ]
+          },
+          "status": 200
+        }
+      ],
+      "UI": "배움 스튜디오\n처음부터\n배움 스튜디오\n\n학습 시간을 확인하고 원하는 강의를 신청하세요.\n\n강의\t시간\t신청\n파이썬 기초\t12시간\t파이썬 기초 수강하기파이썬 기초 취소\n사진 입문\t8시간\t사진 입문 수강하기사진 입문 취소\n드로잉 시작\t6시간\t드로잉 시작 수강하기드로잉 시작 취소\n웹 개발\t15시간\t웹 개발 수강하기웹 개발 취소\n생활 영어\t10시간\t생활 영어 수강하기생활 영어 취소\n내 강의실\n사진 입문\n드로잉 시작\n드로잉 시작\n신청 내역 조회\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "신청 1건",
+      "actual": "같은 강의 신청 2건",
+      "Evidence": "ActionLog + UI + State + Network"
+    }
+  ]
+}

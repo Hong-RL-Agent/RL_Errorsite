@@ -1,0 +1,107 @@
+{
+  "site": "A-08",
+  "split": "validation",
+  "training_allowed": false,
+  "reward_tuning_allowed": false,
+  "frontend": "Next.js",
+  "reset": {
+    "method": "POST",
+    "path": "/api/test/reset",
+    "backend_port": 9418,
+    "scope": "사이트 DB 상태 및 사건 로그; UI 처음부터 또는 새로고침으로 폼 상태도 초기화"
+  },
+  "bugs": [
+    {
+      "bug_id": "A-08-01",
+      "name": "도서 대출 중복 생성",
+      "strategy": "ACTION_REPLAY",
+      "precondition": "달빛 서재 미대출",
+      "trigger": "달빛 서재 빌리기",
+      "expected": "대출 1건",
+      "actual": "동일 대출 2건",
+      "evidence": "ActionLog + UI + State + Network",
+      "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+      "source": {
+        "sheet": "전체_분류",
+        "excel_row": 519,
+        "No": 518,
+        "error_name": "멱등성 처리 실패 중복 트랜잭션",
+        "DQN_학습대상": "O",
+        "필요_Evidence": "ActionLog + UI + State + Network",
+        "Confirmation_Oracle": "동일 precondition에서 동일 target action/request를 재실행했을 때 기대 변화가 없거나 동일 비정상 Evidence가 재발하면 Confirmed.",
+        "실행조건_Precondition": "후보를 만든 원래 precondition과 target을 복원한 뒤 동일 action/request 재실행"
+      },
+      "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+      "test": "tests/e2e.mjs#A-08-01"
+    },
+    {
+      "bug_id": "A-08-02",
+      "name": "반납 후 연체료 집계 잔존",
+      "strategy": "ACTION_REPLAY",
+      "precondition": "마음의 정원 연체료 1000원",
+      "trigger": "마음의 정원 반납",
+      "expected": "미반납 도서 연체료 0",
+      "actual": "책은 제거되지만 연체료 1000원 유지",
+      "evidence": "ActionLog + UI + State + Network",
+      "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+      "source": {
+        "sheet": "전체_분류",
+        "excel_row": 15,
+        "No": 14,
+        "error_name": "집계 데이터 이중 장부 오류 / 좀비 데이터",
+        "DQN_학습대상": "O",
+        "필요_Evidence": "ActionLog + UI + State + Network",
+        "Confirmation_Oracle": "동일 precondition에서 동일 target action/request를 재실행했을 때 기대 변화가 없거나 동일 비정상 Evidence가 재발하면 Confirmed.",
+        "실행조건_Precondition": "후보를 만든 원래 precondition과 target을 복원한 뒤 동일 action/request 재실행"
+      },
+      "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+      "test": "tests/e2e.mjs#A-08-02"
+    },
+    {
+      "bug_id": "A-08-03",
+      "name": "검색 조건 연결 중 저자 필터 유실",
+      "strategy": "SEQUENCE_REPLAY",
+      "precondition": "초기 검색 없음",
+      "trigger": "저자 박지현 → 저자로 찾기 → 출판 연도 2024 → 연도 좁히기",
+      "expected": "조건 일치 도서 없음",
+      "actual": "다른 저자 도서 노출",
+      "evidence": "ActionLog + State + UI + DOM + Network",
+      "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+      "source": {
+        "sheet": "전체_분류",
+        "excel_row": 98,
+        "No": 97,
+        "error_name": "벡터 데이터베이스 메타데이터 스키마 드리프트",
+        "DQN_학습대상": "O",
+        "필요_Evidence": "ActionLog + State + UI + DOM + Network",
+        "Confirmation_Oracle": "동일 초기 상태에서 정의된 행동 sequence를 끝까지 재실행한 뒤 동일 비정상 end-state/Evidence가 재현되면 Confirmed.",
+        "실행조건_Precondition": "초기 상태를 복원하고 trigger부터 결과 확인까지 전체 sequence 재실행"
+      },
+      "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+      "test": "tests/e2e.mjs#A-08-03"
+    },
+    {
+      "bug_id": "A-08-04",
+      "name": "연장 기한 재방문 시 복원 실패",
+      "strategy": "STATE_REVISIT",
+      "precondition": "우주의 시간 기한 2026-10-25",
+      "trigger": "우주의 시간 연장 → 새로고침",
+      "expected": "2026-11-01 유지",
+      "actual": "2026-10-25 복귀",
+      "evidence": "ActionLog + State + UI + DOM + Network",
+      "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 저장 직후 성공 UI와 재방문 뒤 GET 결과를 비교.",
+      "source": {
+        "sheet": "전체_분류",
+        "excel_row": 195,
+        "No": 194,
+        "error_name": "정보 지속성 부족 (Persistence)",
+        "DQN_학습대상": "조건부",
+        "필요_Evidence": "ActionLog + State + UI + DOM + Network",
+        "Confirmation_Oracle": "상태 변경/저장 후 reload·revisit·relogin 경계를 지난 뒤 기대 상태와 실제 상태 불일치가 반복되면 Confirmed.",
+        "실행조건_Precondition": "상태 변경/저장 후 reload·back·재접속·재로그인 등의 persistence boundary 수행"
+      },
+      "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+      "test": "tests/e2e.mjs#A-08-04"
+    }
+  ]
+}

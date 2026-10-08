@@ -1,0 +1,437 @@
+{
+  "bug": {
+    "bug_id": "A-10-02",
+    "name": "낮 회차 예약일 불일치",
+    "strategy": "SEQUENCE_REPLAY",
+    "precondition": "접수 없음",
+    "trigger": "공연일 2026-10-20 → 해당 날짜 회차 찾기 → 회차 낮 → 관람 회차 결정 → 관람 예약 접수",
+    "expected": "2026-10-20 낮",
+    "actual": "2026-10-21 낮",
+    "evidence": "ActionLog + State + UI + DOM + Network",
+    "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+    "source": {
+      "sheet": "전체_분류",
+      "excel_row": 440,
+      "No": 439,
+      "error_name": "구독 및 예약 주기의 오버랩",
+      "DQN_학습대상": "O",
+      "필요_Evidence": "ActionLog + State + UI + DOM + Network",
+      "Confirmation_Oracle": "동일 초기 상태에서 정의된 행동 sequence를 끝까지 재실행한 뒤 동일 비정상 end-state/Evidence가 재현되면 Confirmed.",
+      "실행조건_Precondition": "초기 상태를 복원하고 trigger부터 결과 확인까지 전체 sequence 재실행"
+    },
+    "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+    "test": "tests/e2e.mjs#A-10-02"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "pass": true,
+      "initial": {
+        "qty": 1,
+        "day": "2026-10-20",
+        "session": "저녁",
+        "reservation": null,
+        "balance": 120000,
+        "note": "계단 이용 가능",
+        "guest": "",
+        "stage": "schedule"
+      },
+      "final": {
+        "qty": 1,
+        "day": "2026-10-20",
+        "session": "낮",
+        "reservation": {
+          "day": "2026-10-21",
+          "session": "낮",
+          "status": "held"
+        },
+        "balance": 90000,
+        "note": "계단 이용 가능",
+        "guest": "",
+        "stage": "held"
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "fill 공연일=2026-10-20"
+        },
+        {
+          "order": 2,
+          "description": "click 해당 날짜 회차 찾기"
+        },
+        {
+          "order": 3,
+          "description": "select 회차=낮"
+        },
+        {
+          "order": 4,
+          "description": "click 관람 회차 결정"
+        },
+        {
+          "order": 5,
+          "description": "click 관람 예약 접수"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9520/api/boxoffice",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "저녁",
+            "reservation": null,
+            "balance": 120000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "schedule"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9520/api/boxoffice",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "저녁",
+            "reservation": null,
+            "balance": 120000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "schedule"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9520/api/boxoffice/calendar",
+          "method": "POST",
+          "request": {
+            "day": "2026-10-20"
+          },
+          "status": 200,
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "저녁",
+            "reservation": null,
+            "balance": 120000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "times"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9520/api/boxoffice/showtime",
+          "method": "POST",
+          "request": {
+            "session": "낮"
+          },
+          "status": 200,
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "낮",
+            "reservation": null,
+            "balance": 120000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "review"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9520/api/boxoffice/hold",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "낮",
+            "reservation": {
+              "day": "2026-10-21",
+              "session": "낮",
+              "status": "held"
+            },
+            "balance": 90000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "held"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/boxoffice/calendar",
+          "request": {
+            "day": "2026-10-20"
+          },
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "저녁",
+            "reservation": null,
+            "balance": 120000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "times"
+          },
+          "status": 200
+        },
+        {
+          "seq": 2,
+          "method": "POST",
+          "endpoint": "/api/boxoffice/showtime",
+          "request": {
+            "session": "낮"
+          },
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "낮",
+            "reservation": null,
+            "balance": 120000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "review"
+          },
+          "status": 200
+        },
+        {
+          "seq": 3,
+          "method": "POST",
+          "endpoint": "/api/boxoffice/hold",
+          "request": {},
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "낮",
+            "reservation": {
+              "day": "2026-10-21",
+              "session": "낮",
+              "status": "held"
+            },
+            "balance": 90000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "held"
+          },
+          "status": 200
+        }
+      ],
+      "UI": "공연의 밤\n처음부터\n공연의 밤\n이번 주 공연 · 좌석당 30,000원\n동행 인원\t\n관람 인원 1명\n\t동행 한 명 추가인원 다시 정하기\n공연 일정\n공연일\n해당 날짜 회차 찾기\n접수 내역 2026-10-21 낮 held\n초대장 보내기\n받는 분\n\n초대장 수수료 10,000원 · 취소 시 전액 환불\n\n초대장 발송초대장 회수\n보낸 초대 없음\n예매 지갑 90,000원\n관람 지원 요청\n지원 요청 남기기\n등록된 요청 계단 이용 가능\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "2026-10-20 낮",
+      "actual": "2026-10-21 낮",
+      "Evidence": "ActionLog + State + UI + DOM + Network"
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "initial": {
+        "qty": 1,
+        "day": "2026-10-20",
+        "session": "저녁",
+        "reservation": null,
+        "balance": 120000,
+        "note": "계단 이용 가능",
+        "guest": "",
+        "stage": "schedule"
+      },
+      "final": {
+        "qty": 1,
+        "day": "2026-10-20",
+        "session": "낮",
+        "reservation": {
+          "day": "2026-10-21",
+          "session": "낮",
+          "status": "held"
+        },
+        "balance": 90000,
+        "note": "계단 이용 가능",
+        "guest": "",
+        "stage": "held"
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "fill 공연일=2026-10-20"
+        },
+        {
+          "order": 2,
+          "description": "click 해당 날짜 회차 찾기"
+        },
+        {
+          "order": 3,
+          "description": "select 회차=낮"
+        },
+        {
+          "order": 4,
+          "description": "click 관람 회차 결정"
+        },
+        {
+          "order": 5,
+          "description": "click 관람 예약 접수"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9520/api/boxoffice",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "저녁",
+            "reservation": null,
+            "balance": 120000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "schedule"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9520/api/boxoffice",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "저녁",
+            "reservation": null,
+            "balance": 120000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "schedule"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9520/api/boxoffice/calendar",
+          "method": "POST",
+          "request": {
+            "day": "2026-10-20"
+          },
+          "status": 200,
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "저녁",
+            "reservation": null,
+            "balance": 120000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "times"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9520/api/boxoffice/showtime",
+          "method": "POST",
+          "request": {
+            "session": "낮"
+          },
+          "status": 200,
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "낮",
+            "reservation": null,
+            "balance": 120000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "review"
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9520/api/boxoffice/hold",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "낮",
+            "reservation": {
+              "day": "2026-10-21",
+              "session": "낮",
+              "status": "held"
+            },
+            "balance": 90000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "held"
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/boxoffice/calendar",
+          "request": {
+            "day": "2026-10-20"
+          },
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "저녁",
+            "reservation": null,
+            "balance": 120000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "times"
+          },
+          "status": 200
+        },
+        {
+          "seq": 2,
+          "method": "POST",
+          "endpoint": "/api/boxoffice/showtime",
+          "request": {
+            "session": "낮"
+          },
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "낮",
+            "reservation": null,
+            "balance": 120000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "review"
+          },
+          "status": 200
+        },
+        {
+          "seq": 3,
+          "method": "POST",
+          "endpoint": "/api/boxoffice/hold",
+          "request": {},
+          "response": {
+            "qty": 1,
+            "day": "2026-10-20",
+            "session": "낮",
+            "reservation": {
+              "day": "2026-10-21",
+              "session": "낮",
+              "status": "held"
+            },
+            "balance": 90000,
+            "note": "계단 이용 가능",
+            "guest": "",
+            "stage": "held"
+          },
+          "status": 200
+        }
+      ],
+      "UI": "공연의 밤\n처음부터\n공연의 밤\n이번 주 공연 · 좌석당 30,000원\n동행 인원\t\n관람 인원 1명\n\t동행 한 명 추가인원 다시 정하기\n공연 일정\n공연일\n해당 날짜 회차 찾기\n접수 내역 2026-10-21 낮 held\n초대장 보내기\n받는 분\n\n초대장 수수료 10,000원 · 취소 시 전액 환불\n\n초대장 발송초대장 회수\n보낸 초대 없음\n예매 지갑 90,000원\n관람 지원 요청\n지원 요청 남기기\n등록된 요청 계단 이용 가능\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "2026-10-20 낮",
+      "actual": "2026-10-21 낮",
+      "Evidence": "ActionLog + State + UI + DOM + Network"
+    }
+  ]
+}

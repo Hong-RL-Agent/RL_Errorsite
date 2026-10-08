@@ -1,0 +1,6 @@
+'use client';
+import React,{useState} from 'react';
+import {Frame,useService} from '../../shared/client.jsx';
+
+function Shop(){const svc=useService('/api/basket'),s=svc.state;return <Frame name="모노마켓" service={svc}>{s&&<div className="columns"><section><h2>오늘의 문구</h2><div className="cards">{s.items.map(p=><article key={p.id}><img src={p.id===1?'/assets/notebook.svg':'/assets/gelpen.svg'} alt="문구 상품"/><h3>{p.title}</h3><p>{p.price.toLocaleString()}원</p><button onClick={()=>svc.send('items',{id:p.id})}>{p.title} 담기</button><button aria-pressed={s.saved.includes(p.id)} onClick={()=>svc.send('collection',{id:p.id})}>{p.title} 찜</button></article>)}</div><output>보관 목록: {s.saved.map(id=>s.items.find(p=>p.id===id).title).join(', ')||'없음'}</output></section><aside><h2>장바구니</h2>{s.cart.map(p=><div key={p.id}><strong>{s.items.find(x=>x.id===p.id).title}</strong><label>수량<input aria-label={`${s.items.find(x=>x.id===p.id).title} 수량`} type="number" value={p.qty} onChange={e=>svc.send('quantity',{id:p.id,qty:Number(e.target.value)})}/></label><span>{p.qty}개</span><button onClick={()=>svc.send('items',{id:p.id},'DELETE')}>{s.items.find(x=>x.id===p.id).title} 빼기</button></div>)}<output>담긴 수량: {s.cart.reduce((a,x)=>a+x.qty,0)}</output></aside></div>}</Frame>}
+export default Shop;

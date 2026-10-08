@@ -1,0 +1,14 @@
+[
+  {
+    "site": "A-09",
+    "url": "http://127.0.0.1:9519",
+    "catalog": "catalogs/unseen-test/A-09.json",
+    "backend": "http://127.0.0.1:9419"
+  },
+  {
+    "site": "A-10",
+    "url": "http://127.0.0.1:9520",
+    "catalog": "catalogs/unseen-test/A-10.json",
+    "backend": "http://127.0.0.1:9420"
+  }
+]

@@ -1,0 +1,6 @@
+'use client';
+import React,{useState} from 'react';
+import {Frame,useService} from '../../shared/client.jsx';
+
+function Dining(){const svc=useService('/api/dining'),s=svc.state,[code,setCode]=useState('');return <Frame name="한끼 식탁" service={svc}>{s&&<><div className="cards">{s.menus.map(m=><article key={m.id}><h2>{m.title}</h2><p>{m.price.toLocaleString()}원</p><button onClick={()=>svc.send('dish',{id:m.id})}>{m.title} 주문표에 추가</button></article>)}</div><section className="panel"><h2>주문표</h2><dl>{s.order.map(m=><div key={m.id}><dt>{s.menus.find(x=>x.id===m.id).title}</dt><dd>{m.qty}인분 <button onClick={()=>svc.send('clear-dish',{id:m.id})}>{s.menus.find(x=>x.id===m.id).title} 제외</button></dd></div>)}</dl><form onSubmit={e=>{e.preventDefault();svc.send('voucher',{code});}}><label>쿠폰 코드<input aria-label="쿠폰 코드" value={code} onChange={e=>setCode(e.target.value)}/></label><p>SAVE10: 10% 할인 · TAKE20: 20% 할인</p><button>할인 적용</button></form><output>결제 금액 {s.total.toLocaleString()}원</output><button onClick={()=>svc.send('send')}>주방으로 보내기</button></section><section><h2>접수된 메뉴</h2><ul>{s.receipt.map((m,i)=><li key={i}>{s.menus.find(x=>x.id===m.id).title} {m.qty}인분</li>)}</ul></section></>}</Frame>}
+export default Dining;
