@@ -1,0 +1,165 @@
+{
+  "site_id": "C-01",
+  "site_type": "Training",
+  "replay_type": "ACTION_REPLAY",
+  "reset_api": "POST /api/test/reset",
+  "bugs": [
+    {
+      "bug_id": "C-01-112",
+      "original_id": 112,
+      "error_name": "데이터 삭제 불가 (Delete Failure)",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "folder": "Documents",
+        "target_file": "A.txt",
+        "target_id": "file-a-txt"
+      },
+      "trigger": {
+        "action": "delete_file",
+        "steps": [
+          "Click delete icon on A.txt",
+          "Click Delete button in confirmation modal"
+        ]
+      },
+      "expected_behavior": "DELETE /api/files/file-a-txt returns 200 OK and permanently deletes the file from the database.",
+      "actual_behavior": "Optimistic UI removes A.txt from list, but DELETE /api/files/file-a-txt returns 500 Internal Server Error. File remains in storage and reappears upon list reload/refetch.",
+      "evidence": {
+        "network": {
+          "method": "DELETE",
+          "url": "/api/files/file-a-txt",
+          "status": 500
+        },
+        "dom": {
+          "immediate": "A.txt element removed from DOM",
+          "after_refetch": "A.txt element reappears in DOM"
+        }
+      },
+      "verification_method": "Execute delete on A.txt -> Observe 500 in network -> Refetch files -> Verify A.txt is still present."
+    },
+    {
+      "bug_id": "C-01-885",
+      "original_id": 885,
+      "error_name": "멱등성 위반 (Duplicate Folder on Double Click)",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "target_folder_name_not_exists": true
+      },
+      "trigger": {
+        "action": "create_folder_duplicate",
+        "steps": [
+          "Open New Folder modal",
+          "Input folder name",
+          "Click Create button rapidly twice / double-click"
+        ]
+      },
+      "expected_behavior": "Only 1 folder is created due to debouncing or idempotency checks.",
+      "actual_behavior": "Two POST /api/folders requests are fired and both return 201 Created. Two identical folders are rendered in DOM.",
+      "evidence": {
+        "network": {
+          "requests": [
+            { "method": "POST", "url": "/api/folders", "status": 201 },
+            { "method": "POST", "url": "/api/folders", "status": 201 }
+          ]
+        },
+        "dom": {
+          "duplicate_count": 2,
+          "element": "Two folder cards with identical names"
+        }
+      },
+      "verification_method": "Perform double-click on Create folder -> Verify 2x 201 responses -> Verify 2 duplicate folder elements in DOM."
+    },
+    {
+      "bug_id": "C-01-007",
+      "original_id": 7,
+      "error_name": "비즈니스 참조 무결성 파괴 (Wrong Target Mutation)",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "file_list_order": ["A.txt", "B.txt", "Report.pdf"]
+      },
+      "trigger": {
+        "action": "rename_file",
+        "target": "A.txt",
+        "new_name": "A_final.txt",
+        "steps": [
+          "Click Rename on A.txt",
+          "Enter A_final.txt",
+          "Click Save"
+        ]
+      },
+      "expected_behavior": "A.txt is renamed to A_final.txt, and B.txt remains unchanged.",
+      "actual_behavior": "Frontend index/reference error causes target ID to resolve to B.txt. PATCH /api/files/file-b-txt is sent. A.txt remains unchanged, and B.txt becomes A_final.txt.",
+      "evidence": {
+        "network": {
+          "method": "PATCH",
+          "url": "/api/files/file-b-txt",
+          "body": { "name": "A_final.txt" },
+          "status": 200
+        },
+        "dom": {
+          "a_txt_remains": true,
+          "b_txt_becomes": "A_final.txt"
+        }
+      },
+      "verification_method": "Rename A.txt to A_final.txt -> Inspect DOM -> Verify A.txt still exists and B.txt became A_final.txt."
+    },
+    {
+      "bug_id": "C-01-2002",
+      "original_id": 2002,
+      "error_name": "텍스트 잘림 (Data Truncation on Rename)",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "file_exists": true
+      },
+      "trigger": {
+        "action": "rename_file_long_name",
+        "input_name": "Quarterly_Project_Review_Document_Final_2026.txt",
+        "input_length": 47,
+        "steps": [
+          "Click Rename on file",
+          "Enter long filename (> 30 chars)",
+          "Click Save"
+        ]
+      },
+      "expected_behavior": "The full 47-character name is saved and displayed.",
+      "actual_behavior": "Backend storage truncates name to 30 characters (Quarterly_Project_Review_Docum) and returns 200 OK. UI displays truncated string.",
+      "evidence": {
+        "input_length": 47,
+        "persisted_length": 30,
+        "persisted_name": "Quarterly_Project_Review_Docum",
+        "mismatch": "input_name !== persisted_name"
+      },
+      "verification_method": "Rename with >30 char string -> Check returned name in API/DOM -> Verify truncation to 30 chars."
+    },
+    {
+      "bug_id": "C-01-1800",
+      "original_id": 1800,
+      "error_name": "부분적 롤백에 따른 UI-서버 불일치 (Silent Move Failure)",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "source_folder": "Documents",
+        "target_folder": "Archive",
+        "file": "A.txt"
+      },
+      "trigger": {
+        "action": "move_file",
+        "steps": [
+          "Click Move on A.txt",
+          "Select Archive folder",
+          "Click Move Here"
+        ]
+      },
+      "expected_behavior": "PUT /api/files/file-a-txt/move succeeds (200 OK) and file parent folder is updated to Archive on server and UI.",
+      "actual_behavior": "Backend returns 500 Internal Server Error, but frontend silently ignores the error and updates UI to show A.txt in Archive. On server refetch, A.txt is still in Documents.",
+      "evidence": {
+        "network": {
+          "method": "PUT",
+          "url": "/api/files/file-a-txt/move",
+          "status": 500
+        },
+        "dom": "UI displays file moved to Archive",
+        "server_state": "GET /api/files?folderId=folder-documents still contains A.txt"
+      },
+      "verification_method": "Move A.txt to Archive -> Observe 500 PUT response -> Observe UI shows file moved -> Query Documents via GET /api/files?folderId=folder-documents -> Verify A.txt still in Documents."
+    }
+  ]
+}

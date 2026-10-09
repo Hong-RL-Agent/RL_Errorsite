@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+*/node_modules/
+*/*/node_modules/
+
+# Build Outputs
+dist/
+*/dist/
+*/*/dist/
+build/
+*/build/
+*/*/build/
+.vite/
+*/.vite/
+*/*/.vite/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment & Local settings
+.env
+.env.local
+.env.*.local
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary Scripts
+clean.ps1
+clean_all.bat
+clean_node_modules.js

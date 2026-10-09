@@ -1,0 +1,154 @@
+{
+  "site_id": "C-02",
+  "site_type": "Training",
+  "replay_type": "ACTION_REPLAY",
+  "reset_api": "POST /api/test/reset",
+  "bugs": [
+    {
+      "bug_id": "C-02-424",
+      "original_id": 424,
+      "error_name": "Invalid State Transition",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "task_id": 1,
+        "initial_status": "TODO"
+      },
+      "trigger": {
+        "action": "drag_or_move_todo_to_done",
+        "steps": [
+          "Select a task in TODO column",
+          "Drag directly to DONE column or click -> Done"
+        ]
+      },
+      "expected_behavior": "Direct transition from TODO to DONE is rejected with 400 Bad Request according to workflow rule.",
+      "actual_behavior": "Backend lacks transition validation and returns 200 OK, directly mutating status to DONE in database.",
+      "evidence": {
+        "network": {
+          "method": "PUT",
+          "url": "/api/tasks/1/status",
+          "body": { "status": "DONE" },
+          "status": 200
+        },
+        "dom": {
+          "column": "DONE",
+          "task_id": 1
+        }
+      },
+      "verification_method": "Move TODO task to DONE -> Verify 200 response -> Verify task is placed in DONE column."
+    },
+    {
+      "bug_id": "C-02-726",
+      "original_id": 726,
+      "error_name": "Optimistic UI Revert Failure",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "task_id": 2,
+        "title": "API Documentation"
+      },
+      "trigger": {
+        "action": "click_completion_checkbox",
+        "steps": [
+          "Switch to List view",
+          "Click the checkbox for API Documentation"
+        ]
+      },
+      "expected_behavior": "Frontend rolls back checkbox to unchecked when backend returns 400 Bad Request.",
+      "actual_behavior": "Frontend optimistically checks the checkbox, receives 400 Bad Request, but does not revert the checked state.",
+      "evidence": {
+        "network": {
+          "method": "PUT",
+          "url": "/api/tasks/2/status",
+          "status": 400
+        },
+        "dom": {
+          "checkbox_checked": true
+        }
+      },
+      "verification_method": "Click checkbox -> Verify 400 response in network -> Verify checkbox remains checked in DOM."
+    },
+    {
+      "bug_id": "C-02-051",
+      "original_id": 51,
+      "error_name": "Task Priority Sorting Bug",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "tasks_count": 7
+      },
+      "trigger": {
+        "action": "sort_by_priority",
+        "steps": [
+          "Open sort dropdown",
+          "Select 'Sort by Priority'"
+        ]
+      },
+      "expected_behavior": "Tasks are ordered strictly HIGH -> MEDIUM -> LOW.",
+      "actual_behavior": "Backend query ignores priority weighting and returns tasks by ID/creation order.",
+      "evidence": {
+        "network": {
+          "url": "/api/tasks?sort=priority"
+        },
+        "dom": {
+          "priority_order_correct": false,
+          "first_five_priorities": ["HIGH", "MEDIUM", "LOW", "HIGH", "LOW"]
+        }
+      },
+      "verification_method": "Select Sort by Priority -> Inspect DOM badges -> Verify order is not HIGH -> MED -> LOW."
+    },
+    {
+      "bug_id": "C-02-865",
+      "original_id": 865,
+      "error_name": "Assignee Dropdown Loss",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "task_id": 4,
+        "current_assignee": "Alice"
+      },
+      "trigger": {
+        "action": "edit_assignee",
+        "steps": [
+          "Click Edit on Payment Integration",
+          "Change assignee to Brian",
+          "Click Save Changes"
+        ]
+      },
+      "expected_behavior": "PATCH request contains assignee_id: 2 and saves Brian.",
+      "actual_behavior": "Frontend update payload omits assignee_id, causing backend to reset assignee to null (미지정).",
+      "evidence": {
+        "network": {
+          "method": "PATCH",
+          "payload_missing_field": "assignee_id"
+        },
+        "dom": {
+          "assignee_text": "미지정",
+          "avatar_removed": true
+        }
+      },
+      "verification_method": "Edit task assignee -> Observe missing assignee_id in network payload -> Observe '미지정' in DOM."
+    },
+    {
+      "bug_id": "C-02-006",
+      "original_id": 6,
+      "error_name": "Deleted Task Resurrected",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "task_id": 1,
+        "title": "Landing Page Review"
+      },
+      "trigger": {
+        "action": "delete_and_refresh",
+        "steps": [
+          "Delete Landing Page Review",
+          "Click All filter or refresh list"
+        ]
+      },
+      "expected_behavior": "Deleted task with is_deleted=true is excluded from list queries.",
+      "actual_behavior": "Backend query lacks `WHERE is_deleted = 0` filter, so deleted task reappears in DOM upon refetch.",
+      "evidence": {
+        "step_1_dom": "Task removed from DOM after delete",
+        "step_2_dom": "Task reappears in DOM after filter change / refetch",
+        "network": "GET /api/tasks returns deleted task"
+      },
+      "verification_method": "Delete task 1 -> Confirm disappearance -> Switch filter to ALL -> Verify task 1 reappears in DOM."
+    }
+  ]
+}

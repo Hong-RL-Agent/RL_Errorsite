@@ -1,0 +1,16 @@
+{
+  "name": "flowdesk-backend",
+  "version": "1.0.0",
+  "description": "Backend for C-02 Task Management Platform (ACTION_REPLAY Training)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "sqlite3": "^5.1.7"
+  }
+}
