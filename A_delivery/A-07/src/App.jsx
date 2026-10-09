@@ -1,0 +1,6 @@
+'use client';
+import React,{useState} from 'react';
+import {Frame,useService} from '../../shared/client.jsx';
+
+function Profile(){const svc=useService('/api/member'),s=svc.state,[draft,setDraft]=useState({});const fields=[['displayName','표시 이름','identity'],['bio','자기소개','introduction'],['locale','사용 언어','language'],['newsletter','소식 수신','notifications'],['phone','연락처','contact']];return <Frame name="마이 페이지" service={svc}>{s&&<><nav><a href="/?tab=account">계정</a><a href="/?tab=activity">활동</a></nav><div className="profile-list">{fields.map(([key,label,endpoint])=><fieldset key={key}><legend>{label}</legend>{key==='newsletter'?<label><input type="checkbox" aria-label={label} checked={draft[key]??s.profile[key]} onChange={e=>setDraft({...draft,[key]:e.target.checked})}/>소식 받기</label>:<label>{label}<input aria-label={label} value={draft[key]??s.profile[key]} onChange={e=>setDraft({...draft,[key]:e.target.value})}/></label>}<button onClick={()=>svc.send(endpoint,{value:draft[key]??s.profile[key]})}>{label} 저장</button><output>{label}: {typeof s.profile[key]==='boolean'?(s.profile[key]?'수신':'미수신'):s.profile[key]}</output></fieldset>)}</div><a href="/?tab=account">계정 다시 방문</a></>}</Frame>}
+export default Profile;

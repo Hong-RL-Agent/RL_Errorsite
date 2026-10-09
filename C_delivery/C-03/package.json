@@ -1,0 +1,13 @@
+{
+  "name": "c-03-admindesk",
+  "version": "1.0.0",
+  "description": "C-03 AdminDesk User Management Console - ACTION_REPLAY Training Environment for DQN",
+  "scripts": {
+    "server": "cd backend && node server.js",
+    "client": "cd frontend && npm run dev",
+    "start": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

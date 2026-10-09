@@ -1,0 +1,709 @@
+{
+  "bug": {
+    "bug_id": "A-08-01",
+    "name": "도서 대출 중복 생성",
+    "strategy": "ACTION_REPLAY",
+    "precondition": "달빛 서재 미대출",
+    "trigger": "달빛 서재 빌리기",
+    "expected": "대출 1건",
+    "actual": "동일 대출 2건",
+    "evidence": "ActionLog + UI + State + Network",
+    "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+    "source": {
+      "sheet": "전체_분류",
+      "excel_row": 519,
+      "No": 518,
+      "error_name": "멱등성 처리 실패 중복 트랜잭션",
+      "DQN_학습대상": "O",
+      "필요_Evidence": "ActionLog + UI + State + Network",
+      "Confirmation_Oracle": "동일 precondition에서 동일 target action/request를 재실행했을 때 기대 변화가 없거나 동일 비정상 Evidence가 재발하면 Confirmed.",
+      "실행조건_Precondition": "후보를 만든 원래 precondition과 target을 복원한 뒤 동일 action/request 재실행"
+    },
+    "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+    "test": "tests/e2e.mjs#A-08-01"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "pass": true,
+      "initial": {
+        "books": [
+          {
+            "id": 1,
+            "title": "달빛 서재",
+            "author": "이수아",
+            "year": 2024
+          },
+          {
+            "id": 2,
+            "title": "마음의 정원",
+            "author": "박지현",
+            "year": 2023
+          },
+          {
+            "id": 3,
+            "title": "우주의 시간",
+            "author": "박성훈",
+            "year": 2022
+          },
+          {
+            "id": 4,
+            "title": "파이썬으로 배우는 AI",
+            "author": "김현준",
+            "year": 2024
+          }
+        ],
+        "loans": [
+          {
+            "id": 2,
+            "due": "2026-10-25",
+            "fee": 1000
+          },
+          {
+            "id": 3,
+            "due": "2026-10-25",
+            "fee": 0
+          }
+        ],
+        "fee": 1000,
+        "query": "",
+        "year": "전체",
+        "matches": []
+      },
+      "final": {
+        "books": [
+          {
+            "id": 1,
+            "title": "달빛 서재",
+            "author": "이수아",
+            "year": 2024
+          },
+          {
+            "id": 2,
+            "title": "마음의 정원",
+            "author": "박지현",
+            "year": 2023
+          },
+          {
+            "id": 3,
+            "title": "우주의 시간",
+            "author": "박성훈",
+            "year": 2022
+          },
+          {
+            "id": 4,
+            "title": "파이썬으로 배우는 AI",
+            "author": "김현준",
+            "year": 2024
+          }
+        ],
+        "loans": [
+          {
+            "id": 2,
+            "due": "2026-10-25",
+            "fee": 1000
+          },
+          {
+            "id": 3,
+            "due": "2026-10-25",
+            "fee": 0
+          },
+          {
+            "id": 1,
+            "due": "2026-10-25",
+            "fee": 0
+          },
+          {
+            "id": 1,
+            "due": "2026-10-25",
+            "fee": 0
+          }
+        ],
+        "fee": 1000,
+        "query": "",
+        "year": "전체",
+        "matches": []
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "click 달빛 서재 빌리기"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9518/api/loans",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "books": [
+              {
+                "id": 1,
+                "title": "달빛 서재",
+                "author": "이수아",
+                "year": 2024
+              },
+              {
+                "id": 2,
+                "title": "마음의 정원",
+                "author": "박지현",
+                "year": 2023
+              },
+              {
+                "id": 3,
+                "title": "우주의 시간",
+                "author": "박성훈",
+                "year": 2022
+              },
+              {
+                "id": 4,
+                "title": "파이썬으로 배우는 AI",
+                "author": "김현준",
+                "year": 2024
+              }
+            ],
+            "loans": [
+              {
+                "id": 2,
+                "due": "2026-10-25",
+                "fee": 1000
+              },
+              {
+                "id": 3,
+                "due": "2026-10-25",
+                "fee": 0
+              }
+            ],
+            "fee": 1000,
+            "query": "",
+            "year": "전체",
+            "matches": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9518/api/loans",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "books": [
+              {
+                "id": 1,
+                "title": "달빛 서재",
+                "author": "이수아",
+                "year": 2024
+              },
+              {
+                "id": 2,
+                "title": "마음의 정원",
+                "author": "박지현",
+                "year": 2023
+              },
+              {
+                "id": 3,
+                "title": "우주의 시간",
+                "author": "박성훈",
+                "year": 2022
+              },
+              {
+                "id": 4,
+                "title": "파이썬으로 배우는 AI",
+                "author": "김현준",
+                "year": 2024
+              }
+            ],
+            "loans": [
+              {
+                "id": 2,
+                "due": "2026-10-25",
+                "fee": 1000
+              },
+              {
+                "id": 3,
+                "due": "2026-10-25",
+                "fee": 0
+              }
+            ],
+            "fee": 1000,
+            "query": "",
+            "year": "전체",
+            "matches": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9518/api/loans/checkout",
+          "method": "POST",
+          "request": {
+            "id": 1
+          },
+          "status": 200,
+          "response": {
+            "books": [
+              {
+                "id": 1,
+                "title": "달빛 서재",
+                "author": "이수아",
+                "year": 2024
+              },
+              {
+                "id": 2,
+                "title": "마음의 정원",
+                "author": "박지현",
+                "year": 2023
+              },
+              {
+                "id": 3,
+                "title": "우주의 시간",
+                "author": "박성훈",
+                "year": 2022
+              },
+              {
+                "id": 4,
+                "title": "파이썬으로 배우는 AI",
+                "author": "김현준",
+                "year": 2024
+              }
+            ],
+            "loans": [
+              {
+                "id": 2,
+                "due": "2026-10-25",
+                "fee": 1000
+              },
+              {
+                "id": 3,
+                "due": "2026-10-25",
+                "fee": 0
+              },
+              {
+                "id": 1,
+                "due": "2026-10-25",
+                "fee": 0
+              },
+              {
+                "id": 1,
+                "due": "2026-10-25",
+                "fee": 0
+              }
+            ],
+            "fee": 1000,
+            "query": "",
+            "year": "전체",
+            "matches": []
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/loans/checkout",
+          "request": {
+            "id": 1
+          },
+          "response": {
+            "books": [
+              {
+                "id": 1,
+                "title": "달빛 서재",
+                "author": "이수아",
+                "year": 2024
+              },
+              {
+                "id": 2,
+                "title": "마음의 정원",
+                "author": "박지현",
+                "year": 2023
+              },
+              {
+                "id": 3,
+                "title": "우주의 시간",
+                "author": "박성훈",
+                "year": 2022
+              },
+              {
+                "id": 4,
+                "title": "파이썬으로 배우는 AI",
+                "author": "김현준",
+                "year": 2024
+              }
+            ],
+            "loans": [
+              {
+                "id": 2,
+                "due": "2026-10-25",
+                "fee": 1000
+              },
+              {
+                "id": 3,
+                "due": "2026-10-25",
+                "fee": 0
+              },
+              {
+                "id": 1,
+                "due": "2026-10-25",
+                "fee": 0
+              },
+              {
+                "id": 1,
+                "due": "2026-10-25",
+                "fee": 0
+              }
+            ],
+            "fee": 1000,
+            "query": "",
+            "year": "전체",
+            "matches": []
+          },
+          "status": 200
+        }
+      ],
+      "UI": "책마루\n처음부터\n책마루\n서가 검색\n저자\n저자로 찾기\n출판 연도\n전체\n2024\n2023\n2022\n연도 좁히기\n도서\t저자\t대출\n달빛 서재\t이수아\t달빛 서재 빌리기\n마음의 정원\t박지현\t마음의 정원 빌리기\n우주의 시간\t박성훈\t우주의 시간 빌리기\n파이썬으로 배우는 AI\t김현준\t파이썬으로 배우는 AI 빌리기\n대출 수첩\n마음의 정원 · 기한 2026-10-25마음의 정원 반납마음의 정원 연장\n우주의 시간 · 기한 2026-10-25우주의 시간 반납우주의 시간 연장\n달빛 서재 · 기한 2026-10-25달빛 서재 반납달빛 서재 연장\n달빛 서재 · 기한 2026-10-25달빛 서재 반납달빛 서재 연장\n미반납 도서 연체료 1,000원\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "대출 1건",
+      "actual": "동일 대출 2건",
+      "Evidence": "ActionLog + UI + State + Network"
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "initial": {
+        "books": [
+          {
+            "id": 1,
+            "title": "달빛 서재",
+            "author": "이수아",
+            "year": 2024
+          },
+          {
+            "id": 2,
+            "title": "마음의 정원",
+            "author": "박지현",
+            "year": 2023
+          },
+          {
+            "id": 3,
+            "title": "우주의 시간",
+            "author": "박성훈",
+            "year": 2022
+          },
+          {
+            "id": 4,
+            "title": "파이썬으로 배우는 AI",
+            "author": "김현준",
+            "year": 2024
+          }
+        ],
+        "loans": [
+          {
+            "id": 2,
+            "due": "2026-10-25",
+            "fee": 1000
+          },
+          {
+            "id": 3,
+            "due": "2026-10-25",
+            "fee": 0
+          }
+        ],
+        "fee": 1000,
+        "query": "",
+        "year": "전체",
+        "matches": []
+      },
+      "final": {
+        "books": [
+          {
+            "id": 1,
+            "title": "달빛 서재",
+            "author": "이수아",
+            "year": 2024
+          },
+          {
+            "id": 2,
+            "title": "마음의 정원",
+            "author": "박지현",
+            "year": 2023
+          },
+          {
+            "id": 3,
+            "title": "우주의 시간",
+            "author": "박성훈",
+            "year": 2022
+          },
+          {
+            "id": 4,
+            "title": "파이썬으로 배우는 AI",
+            "author": "김현준",
+            "year": 2024
+          }
+        ],
+        "loans": [
+          {
+            "id": 2,
+            "due": "2026-10-25",
+            "fee": 1000
+          },
+          {
+            "id": 3,
+            "due": "2026-10-25",
+            "fee": 0
+          },
+          {
+            "id": 1,
+            "due": "2026-10-25",
+            "fee": 0
+          },
+          {
+            "id": 1,
+            "due": "2026-10-25",
+            "fee": 0
+          }
+        ],
+        "fee": 1000,
+        "query": "",
+        "year": "전체",
+        "matches": []
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "click 달빛 서재 빌리기"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9518/api/loans",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "books": [
+              {
+                "id": 1,
+                "title": "달빛 서재",
+                "author": "이수아",
+                "year": 2024
+              },
+              {
+                "id": 2,
+                "title": "마음의 정원",
+                "author": "박지현",
+                "year": 2023
+              },
+              {
+                "id": 3,
+                "title": "우주의 시간",
+                "author": "박성훈",
+                "year": 2022
+              },
+              {
+                "id": 4,
+                "title": "파이썬으로 배우는 AI",
+                "author": "김현준",
+                "year": 2024
+              }
+            ],
+            "loans": [
+              {
+                "id": 2,
+                "due": "2026-10-25",
+                "fee": 1000
+              },
+              {
+                "id": 3,
+                "due": "2026-10-25",
+                "fee": 0
+              }
+            ],
+            "fee": 1000,
+            "query": "",
+            "year": "전체",
+            "matches": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9518/api/loans",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "books": [
+              {
+                "id": 1,
+                "title": "달빛 서재",
+                "author": "이수아",
+                "year": 2024
+              },
+              {
+                "id": 2,
+                "title": "마음의 정원",
+                "author": "박지현",
+                "year": 2023
+              },
+              {
+                "id": 3,
+                "title": "우주의 시간",
+                "author": "박성훈",
+                "year": 2022
+              },
+              {
+                "id": 4,
+                "title": "파이썬으로 배우는 AI",
+                "author": "김현준",
+                "year": 2024
+              }
+            ],
+            "loans": [
+              {
+                "id": 2,
+                "due": "2026-10-25",
+                "fee": 1000
+              },
+              {
+                "id": 3,
+                "due": "2026-10-25",
+                "fee": 0
+              }
+            ],
+            "fee": 1000,
+            "query": "",
+            "year": "전체",
+            "matches": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9518/api/loans/checkout",
+          "method": "POST",
+          "request": {
+            "id": 1
+          },
+          "status": 200,
+          "response": {
+            "books": [
+              {
+                "id": 1,
+                "title": "달빛 서재",
+                "author": "이수아",
+                "year": 2024
+              },
+              {
+                "id": 2,
+                "title": "마음의 정원",
+                "author": "박지현",
+                "year": 2023
+              },
+              {
+                "id": 3,
+                "title": "우주의 시간",
+                "author": "박성훈",
+                "year": 2022
+              },
+              {
+                "id": 4,
+                "title": "파이썬으로 배우는 AI",
+                "author": "김현준",
+                "year": 2024
+              }
+            ],
+            "loans": [
+              {
+                "id": 2,
+                "due": "2026-10-25",
+                "fee": 1000
+              },
+              {
+                "id": 3,
+                "due": "2026-10-25",
+                "fee": 0
+              },
+              {
+                "id": 1,
+                "due": "2026-10-25",
+                "fee": 0
+              },
+              {
+                "id": 1,
+                "due": "2026-10-25",
+                "fee": 0
+              }
+            ],
+            "fee": 1000,
+            "query": "",
+            "year": "전체",
+            "matches": []
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/loans/checkout",
+          "request": {
+            "id": 1
+          },
+          "response": {
+            "books": [
+              {
+                "id": 1,
+                "title": "달빛 서재",
+                "author": "이수아",
+                "year": 2024
+              },
+              {
+                "id": 2,
+                "title": "마음의 정원",
+                "author": "박지현",
+                "year": 2023
+              },
+              {
+                "id": 3,
+                "title": "우주의 시간",
+                "author": "박성훈",
+                "year": 2022
+              },
+              {
+                "id": 4,
+                "title": "파이썬으로 배우는 AI",
+                "author": "김현준",
+                "year": 2024
+              }
+            ],
+            "loans": [
+              {
+                "id": 2,
+                "due": "2026-10-25",
+                "fee": 1000
+              },
+              {
+                "id": 3,
+                "due": "2026-10-25",
+                "fee": 0
+              },
+              {
+                "id": 1,
+                "due": "2026-10-25",
+                "fee": 0
+              },
+              {
+                "id": 1,
+                "due": "2026-10-25",
+                "fee": 0
+              }
+            ],
+            "fee": 1000,
+            "query": "",
+            "year": "전체",
+            "matches": []
+          },
+          "status": 200
+        }
+      ],
+      "UI": "책마루\n처음부터\n책마루\n서가 검색\n저자\n저자로 찾기\n출판 연도\n전체\n2024\n2023\n2022\n연도 좁히기\n도서\t저자\t대출\n달빛 서재\t이수아\t달빛 서재 빌리기\n마음의 정원\t박지현\t마음의 정원 빌리기\n우주의 시간\t박성훈\t우주의 시간 빌리기\n파이썬으로 배우는 AI\t김현준\t파이썬으로 배우는 AI 빌리기\n대출 수첩\n마음의 정원 · 기한 2026-10-25마음의 정원 반납마음의 정원 연장\n우주의 시간 · 기한 2026-10-25우주의 시간 반납우주의 시간 연장\n달빛 서재 · 기한 2026-10-25달빛 서재 반납달빛 서재 연장\n달빛 서재 · 기한 2026-10-25달빛 서재 반납달빛 서재 연장\n미반납 도서 연체료 1,000원\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "대출 1건",
+      "actual": "동일 대출 2건",
+      "Evidence": "ActionLog + UI + State + Network"
+    }
+  ]
+}

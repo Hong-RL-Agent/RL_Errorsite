@@ -1,0 +1,633 @@
+{
+  "bug": {
+    "bug_id": "A-02-01",
+    "name": "소식 중복 등록",
+    "strategy": "ACTION_REPLAY",
+    "precondition": "회의 안내 제목이 없음",
+    "trigger": "제목 회의 안내, 본문 내일 회의 입력 → 소식 올리기",
+    "expected": "소식 1건 추가",
+    "actual": "동일 소식 2건 추가",
+    "evidence": "ActionLog + UI + State + Network",
+    "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+    "source": {
+      "sheet": "전체_분류",
+      "excel_row": 519,
+      "No": 518,
+      "error_name": "멱등성 처리 실패 중복 트랜잭션",
+      "DQN_학습대상": "O",
+      "필요_Evidence": "ActionLog + UI + State + Network",
+      "Confirmation_Oracle": "동일 precondition에서 동일 target action/request를 재실행했을 때 기대 변화가 없거나 동일 비정상 Evidence가 재발하면 Confirmed.",
+      "실행조건_Precondition": "후보를 만든 원래 precondition과 target을 복원한 뒤 동일 action/request 재실행"
+    },
+    "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+    "test": "tests/e2e.mjs#A-02-01"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "pass": true,
+      "initial": {
+        "posts": [
+          {
+            "id": 1,
+            "title": "주말 장터",
+            "content": "토요일 오전에 만나요.",
+            "likes": 0
+          },
+          {
+            "id": 2,
+            "title": "분실물 안내",
+            "content": "도서관에서 우산을 보관합니다.",
+            "likes": 0
+          },
+          {
+            "id": 3,
+            "title": "독서 모임",
+            "content": "금요일 저녁 모임입니다.",
+            "likes": 0
+          },
+          {
+            "id": 4,
+            "title": "운동 친구",
+            "content": "주말 산책을 함께해요.",
+            "likes": 0
+          },
+          {
+            "id": 5,
+            "title": "카페 추천",
+            "content": "동네 카페를 소개합니다.",
+            "likes": 0
+          }
+        ],
+        "nextId": 6
+      },
+      "final": {
+        "posts": [
+          {
+            "id": 1,
+            "title": "주말 장터",
+            "content": "토요일 오전에 만나요.",
+            "likes": 0
+          },
+          {
+            "id": 2,
+            "title": "분실물 안내",
+            "content": "도서관에서 우산을 보관합니다.",
+            "likes": 0
+          },
+          {
+            "id": 3,
+            "title": "독서 모임",
+            "content": "금요일 저녁 모임입니다.",
+            "likes": 0
+          },
+          {
+            "id": 4,
+            "title": "운동 친구",
+            "content": "주말 산책을 함께해요.",
+            "likes": 0
+          },
+          {
+            "id": 5,
+            "title": "카페 추천",
+            "content": "동네 카페를 소개합니다.",
+            "likes": 0
+          },
+          {
+            "id": 6,
+            "title": "회의 안내",
+            "content": "내일 회의",
+            "likes": 0
+          },
+          {
+            "id": 7,
+            "title": "회의 안내",
+            "content": "내일 회의",
+            "likes": 0
+          }
+        ],
+        "nextId": 8
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "fill 소식 제목=회의 안내"
+        },
+        {
+          "order": 2,
+          "description": "fill 소식 본문=내일 회의"
+        },
+        {
+          "order": 3,
+          "description": "click 소식 올리기"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9512/api/threads",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "posts": [
+              {
+                "id": 1,
+                "title": "주말 장터",
+                "content": "토요일 오전에 만나요.",
+                "likes": 0
+              },
+              {
+                "id": 2,
+                "title": "분실물 안내",
+                "content": "도서관에서 우산을 보관합니다.",
+                "likes": 0
+              },
+              {
+                "id": 3,
+                "title": "독서 모임",
+                "content": "금요일 저녁 모임입니다.",
+                "likes": 0
+              },
+              {
+                "id": 4,
+                "title": "운동 친구",
+                "content": "주말 산책을 함께해요.",
+                "likes": 0
+              },
+              {
+                "id": 5,
+                "title": "카페 추천",
+                "content": "동네 카페를 소개합니다.",
+                "likes": 0
+              }
+            ],
+            "nextId": 6
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9512/api/threads",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "posts": [
+              {
+                "id": 1,
+                "title": "주말 장터",
+                "content": "토요일 오전에 만나요.",
+                "likes": 0
+              },
+              {
+                "id": 2,
+                "title": "분실물 안내",
+                "content": "도서관에서 우산을 보관합니다.",
+                "likes": 0
+              },
+              {
+                "id": 3,
+                "title": "독서 모임",
+                "content": "금요일 저녁 모임입니다.",
+                "likes": 0
+              },
+              {
+                "id": 4,
+                "title": "운동 친구",
+                "content": "주말 산책을 함께해요.",
+                "likes": 0
+              },
+              {
+                "id": 5,
+                "title": "카페 추천",
+                "content": "동네 카페를 소개합니다.",
+                "likes": 0
+              }
+            ],
+            "nextId": 6
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9512/api/threads/publish",
+          "method": "POST",
+          "request": {
+            "title": "회의 안내",
+            "content": "내일 회의"
+          },
+          "status": 200,
+          "response": {
+            "posts": [
+              {
+                "id": 1,
+                "title": "주말 장터",
+                "content": "토요일 오전에 만나요.",
+                "likes": 0
+              },
+              {
+                "id": 2,
+                "title": "분실물 안내",
+                "content": "도서관에서 우산을 보관합니다.",
+                "likes": 0
+              },
+              {
+                "id": 3,
+                "title": "독서 모임",
+                "content": "금요일 저녁 모임입니다.",
+                "likes": 0
+              },
+              {
+                "id": 4,
+                "title": "운동 친구",
+                "content": "주말 산책을 함께해요.",
+                "likes": 0
+              },
+              {
+                "id": 5,
+                "title": "카페 추천",
+                "content": "동네 카페를 소개합니다.",
+                "likes": 0
+              },
+              {
+                "id": 6,
+                "title": "회의 안내",
+                "content": "내일 회의",
+                "likes": 0
+              },
+              {
+                "id": 7,
+                "title": "회의 안내",
+                "content": "내일 회의",
+                "likes": 0
+              }
+            ],
+            "nextId": 8
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/threads/publish",
+          "request": {
+            "title": "회의 안내",
+            "content": "내일 회의"
+          },
+          "response": {
+            "posts": [
+              {
+                "id": 1,
+                "title": "주말 장터",
+                "content": "토요일 오전에 만나요.",
+                "likes": 0
+              },
+              {
+                "id": 2,
+                "title": "분실물 안내",
+                "content": "도서관에서 우산을 보관합니다.",
+                "likes": 0
+              },
+              {
+                "id": 3,
+                "title": "독서 모임",
+                "content": "금요일 저녁 모임입니다.",
+                "likes": 0
+              },
+              {
+                "id": 4,
+                "title": "운동 친구",
+                "content": "주말 산책을 함께해요.",
+                "likes": 0
+              },
+              {
+                "id": 5,
+                "title": "카페 추천",
+                "content": "동네 카페를 소개합니다.",
+                "likes": 0
+              },
+              {
+                "id": 6,
+                "title": "회의 안내",
+                "content": "내일 회의",
+                "likes": 0
+              },
+              {
+                "id": 7,
+                "title": "회의 안내",
+                "content": "내일 회의",
+                "likes": 0
+              }
+            ],
+            "nextId": 8
+          },
+          "status": 200
+        }
+      ],
+      "UI": "동네 소식함\n처음부터\n동네 소식함\n새 소식 작성\n제목\n본문\n소식 올리기\n주말 장터\n\n토요일 오전에 만나요.\n\n내용 수정\n주말 장터 고치기주말 장터 지우기주말 장터 공감 0\n분실물 안내\n\n도서관에서 우산을 보관합니다.\n\n내용 수정\n분실물 안내 고치기분실물 안내 지우기분실물 안내 공감 0\n독서 모임\n\n금요일 저녁 모임입니다.\n\n내용 수정\n독서 모임 고치기독서 모임 지우기독서 모임 공감 0\n운동 친구\n\n주말 산책을 함께해요.\n\n내용 수정\n운동 친구 고치기운동 친구 지우기운동 친구 공감 0\n카페 추천\n\n동네 카페를 소개합니다.\n\n내용 수정\n카페 추천 고치기카페 추천 지우기카페 추천 공감 0\n회의 안내\n\n내일 회의\n\n내용 수정\n회의 안내 고치기회의 안내 지우기회의 안내 공감 0\n회의 안내\n\n내일 회의\n\n내용 수정\n회의 안내 고치기회의 안내 지우기회의 안내 공감 0\n전체 소식 7건\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "소식 1건 추가",
+      "actual": "동일 소식 2건 추가",
+      "Evidence": "ActionLog + UI + State + Network"
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "initial": {
+        "posts": [
+          {
+            "id": 1,
+            "title": "주말 장터",
+            "content": "토요일 오전에 만나요.",
+            "likes": 0
+          },
+          {
+            "id": 2,
+            "title": "분실물 안내",
+            "content": "도서관에서 우산을 보관합니다.",
+            "likes": 0
+          },
+          {
+            "id": 3,
+            "title": "독서 모임",
+            "content": "금요일 저녁 모임입니다.",
+            "likes": 0
+          },
+          {
+            "id": 4,
+            "title": "운동 친구",
+            "content": "주말 산책을 함께해요.",
+            "likes": 0
+          },
+          {
+            "id": 5,
+            "title": "카페 추천",
+            "content": "동네 카페를 소개합니다.",
+            "likes": 0
+          }
+        ],
+        "nextId": 6
+      },
+      "final": {
+        "posts": [
+          {
+            "id": 1,
+            "title": "주말 장터",
+            "content": "토요일 오전에 만나요.",
+            "likes": 0
+          },
+          {
+            "id": 2,
+            "title": "분실물 안내",
+            "content": "도서관에서 우산을 보관합니다.",
+            "likes": 0
+          },
+          {
+            "id": 3,
+            "title": "독서 모임",
+            "content": "금요일 저녁 모임입니다.",
+            "likes": 0
+          },
+          {
+            "id": 4,
+            "title": "운동 친구",
+            "content": "주말 산책을 함께해요.",
+            "likes": 0
+          },
+          {
+            "id": 5,
+            "title": "카페 추천",
+            "content": "동네 카페를 소개합니다.",
+            "likes": 0
+          },
+          {
+            "id": 6,
+            "title": "회의 안내",
+            "content": "내일 회의",
+            "likes": 0
+          },
+          {
+            "id": 7,
+            "title": "회의 안내",
+            "content": "내일 회의",
+            "likes": 0
+          }
+        ],
+        "nextId": 8
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "fill 소식 제목=회의 안내"
+        },
+        {
+          "order": 2,
+          "description": "fill 소식 본문=내일 회의"
+        },
+        {
+          "order": 3,
+          "description": "click 소식 올리기"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9512/api/threads",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "posts": [
+              {
+                "id": 1,
+                "title": "주말 장터",
+                "content": "토요일 오전에 만나요.",
+                "likes": 0
+              },
+              {
+                "id": 2,
+                "title": "분실물 안내",
+                "content": "도서관에서 우산을 보관합니다.",
+                "likes": 0
+              },
+              {
+                "id": 3,
+                "title": "독서 모임",
+                "content": "금요일 저녁 모임입니다.",
+                "likes": 0
+              },
+              {
+                "id": 4,
+                "title": "운동 친구",
+                "content": "주말 산책을 함께해요.",
+                "likes": 0
+              },
+              {
+                "id": 5,
+                "title": "카페 추천",
+                "content": "동네 카페를 소개합니다.",
+                "likes": 0
+              }
+            ],
+            "nextId": 6
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9512/api/threads",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "posts": [
+              {
+                "id": 1,
+                "title": "주말 장터",
+                "content": "토요일 오전에 만나요.",
+                "likes": 0
+              },
+              {
+                "id": 2,
+                "title": "분실물 안내",
+                "content": "도서관에서 우산을 보관합니다.",
+                "likes": 0
+              },
+              {
+                "id": 3,
+                "title": "독서 모임",
+                "content": "금요일 저녁 모임입니다.",
+                "likes": 0
+              },
+              {
+                "id": 4,
+                "title": "운동 친구",
+                "content": "주말 산책을 함께해요.",
+                "likes": 0
+              },
+              {
+                "id": 5,
+                "title": "카페 추천",
+                "content": "동네 카페를 소개합니다.",
+                "likes": 0
+              }
+            ],
+            "nextId": 6
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9512/api/threads/publish",
+          "method": "POST",
+          "request": {
+            "title": "회의 안내",
+            "content": "내일 회의"
+          },
+          "status": 200,
+          "response": {
+            "posts": [
+              {
+                "id": 1,
+                "title": "주말 장터",
+                "content": "토요일 오전에 만나요.",
+                "likes": 0
+              },
+              {
+                "id": 2,
+                "title": "분실물 안내",
+                "content": "도서관에서 우산을 보관합니다.",
+                "likes": 0
+              },
+              {
+                "id": 3,
+                "title": "독서 모임",
+                "content": "금요일 저녁 모임입니다.",
+                "likes": 0
+              },
+              {
+                "id": 4,
+                "title": "운동 친구",
+                "content": "주말 산책을 함께해요.",
+                "likes": 0
+              },
+              {
+                "id": 5,
+                "title": "카페 추천",
+                "content": "동네 카페를 소개합니다.",
+                "likes": 0
+              },
+              {
+                "id": 6,
+                "title": "회의 안내",
+                "content": "내일 회의",
+                "likes": 0
+              },
+              {
+                "id": 7,
+                "title": "회의 안내",
+                "content": "내일 회의",
+                "likes": 0
+              }
+            ],
+            "nextId": 8
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/threads/publish",
+          "request": {
+            "title": "회의 안내",
+            "content": "내일 회의"
+          },
+          "response": {
+            "posts": [
+              {
+                "id": 1,
+                "title": "주말 장터",
+                "content": "토요일 오전에 만나요.",
+                "likes": 0
+              },
+              {
+                "id": 2,
+                "title": "분실물 안내",
+                "content": "도서관에서 우산을 보관합니다.",
+                "likes": 0
+              },
+              {
+                "id": 3,
+                "title": "독서 모임",
+                "content": "금요일 저녁 모임입니다.",
+                "likes": 0
+              },
+              {
+                "id": 4,
+                "title": "운동 친구",
+                "content": "주말 산책을 함께해요.",
+                "likes": 0
+              },
+              {
+                "id": 5,
+                "title": "카페 추천",
+                "content": "동네 카페를 소개합니다.",
+                "likes": 0
+              },
+              {
+                "id": 6,
+                "title": "회의 안내",
+                "content": "내일 회의",
+                "likes": 0
+              },
+              {
+                "id": 7,
+                "title": "회의 안내",
+                "content": "내일 회의",
+                "likes": 0
+              }
+            ],
+            "nextId": 8
+          },
+          "status": 200
+        }
+      ],
+      "UI": "동네 소식함\n처음부터\n동네 소식함\n새 소식 작성\n제목\n본문\n소식 올리기\n주말 장터\n\n토요일 오전에 만나요.\n\n내용 수정\n주말 장터 고치기주말 장터 지우기주말 장터 공감 0\n분실물 안내\n\n도서관에서 우산을 보관합니다.\n\n내용 수정\n분실물 안내 고치기분실물 안내 지우기분실물 안내 공감 0\n독서 모임\n\n금요일 저녁 모임입니다.\n\n내용 수정\n독서 모임 고치기독서 모임 지우기독서 모임 공감 0\n운동 친구\n\n주말 산책을 함께해요.\n\n내용 수정\n운동 친구 고치기운동 친구 지우기운동 친구 공감 0\n카페 추천\n\n동네 카페를 소개합니다.\n\n내용 수정\n카페 추천 고치기카페 추천 지우기카페 추천 공감 0\n회의 안내\n\n내일 회의\n\n내용 수정\n회의 안내 고치기회의 안내 지우기회의 안내 공감 0\n회의 안내\n\n내일 회의\n\n내용 수정\n회의 안내 고치기회의 안내 지우기회의 안내 공감 0\n전체 소식 7건\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "소식 1건 추가",
+      "actual": "동일 소식 2건 추가",
+      "Evidence": "ActionLog + UI + State + Network"
+    }
+  ]
+}

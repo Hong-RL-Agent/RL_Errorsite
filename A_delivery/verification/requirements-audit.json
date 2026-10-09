@@ -1,0 +1,66 @@
+{
+  "checked_date": "2026-10-08",
+  "basis": {
+    "pdf": "RAWD_DQN_재학습용_웹사이트_제작_가이드.pdf",
+    "pdf_pages": [
+      2,
+      3,
+      6
+    ],
+    "xlsx": "RAWD_오류_2331건_확인전략_분류.xlsx",
+    "sheets": [
+      "전략_정의",
+      "전체_분류"
+    ]
+  },
+  "result": "PASS",
+  "sites": 10,
+  "React": 5,
+  "Next.js": 5,
+  "errors": 40,
+  "training_sites": 7,
+  "validation_sites": 1,
+  "unseen_test_sites": 2,
+  "strategies_by_site": {
+    "A-01": {
+      "ACTION_REPLAY": 4
+    },
+    "A-02": {
+      "ACTION_REPLAY": 4
+    },
+    "A-03": {
+      "ACTION_REPLAY": 4
+    },
+    "A-04": {
+      "ACTION_REPLAY": 4
+    },
+    "A-05": {
+      "SEQUENCE_REPLAY": 4
+    },
+    "A-06": {
+      "SEQUENCE_REPLAY": 4
+    },
+    "A-07": {
+      "STATE_REVISIT": 4
+    },
+    "A-08": {
+      "ACTION_REPLAY": 2,
+      "SEQUENCE_REPLAY": 1,
+      "STATE_REVISIT": 1
+    },
+    "A-09": {
+      "ACTION_REPLAY": 1,
+      "SEQUENCE_REPLAY": 2,
+      "STATE_REVISIT": 1
+    },
+    "A-10": {
+      "ACTION_REPLAY": 1,
+      "SEQUENCE_REPLAY": 2,
+      "STATE_REVISIT": 1
+    }
+  },
+  "source_metadata_and_two_replays_verified": 40,
+  "runtime_code_changed": false,
+  "existing_sites_changed": false,
+  "verification_scope": "Static final comparison and validation of previously saved execution evidence; no unnecessary rerun of passed application tests."
+}

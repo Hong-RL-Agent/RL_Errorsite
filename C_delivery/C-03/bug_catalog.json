@@ -1,0 +1,135 @@
+{
+  "site_id": "C-03",
+  "site_type": "Training",
+  "replay_type": "ACTION_REPLAY",
+  "reset_api": "POST /api/test/reset",
+  "bugs": [
+    {
+      "bug_id": "C-03-936",
+      "original_id": 936,
+      "error_name": "Role Toggle Desync",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "user_id": 102,
+        "name": "Brian Lee",
+        "initial_role": "USER"
+      },
+      "trigger": {
+        "action": "change_role_to_admin",
+        "steps": [
+          "Select Brian Lee in user table",
+          "Change Role dropdown from USER to ADMIN"
+        ]
+      },
+      "expected_behavior": "Role is updated to ADMIN in backend database and remains ADMIN on subsequent requests.",
+      "actual_behavior": "Frontend shows ADMIN badge and success toast, but backend keeps role as USER in SQLite database.",
+      "evidence": {
+        "ui": "Role badge shows ADMIN with success toast",
+        "backend_state": "GET /api/users/102 returns role: USER",
+        "mismatch": true
+      },
+      "verification_method": "Change Brian Lee role to ADMIN -> Observe success toast -> Refresh list -> Verify role reverted to USER."
+    },
+    {
+      "bug_id": "C-03-182",
+      "original_id": 182,
+      "error_name": "Wrong Target / ID Parameter Mutation",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "user_a_id": 101,
+        "user_a_name": "Alice Kim",
+        "user_b_id": 102,
+        "user_b_name": "Brian Lee"
+      },
+      "trigger": {
+        "action": "edit_user_b",
+        "steps": [
+          "Click Edit on Brian Lee (User B)",
+          "Change name to Brian Lee - Updated",
+          "Click Save Changes"
+        ]
+      },
+      "expected_behavior": "User B (Brian Lee) is updated with new info, User A remains untouched.",
+      "actual_behavior": "Frontend edit modal sends targetId=101, updating User A (Alice Kim) instead of User B.",
+      "evidence": {
+        "network": {
+          "method": "PATCH",
+          "url": "/api/users/101"
+        },
+        "dom": {
+          "user_b_unchanged": true,
+          "user_a_mutated": "Brian Lee - Updated"
+        }
+      },
+      "verification_method": "Edit Brian Lee -> Click Save -> Verify Alice Kim is mutated to Brian's input."
+    },
+    {
+      "bug_id": "C-03-1783",
+      "original_id": 1783,
+      "error_name": "Search Query Persistence Loss",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "users_loaded": true
+      },
+      "trigger": {
+        "action": "search_then_filter_status",
+        "steps": [
+          "Input 'brian' into search box",
+          "Click Search button",
+          "Change Status filter dropdown to 'Active Only'"
+        ]
+      },
+      "expected_behavior": "Search keyword 'brian' is retained and combined in GET /api/users?search=brian&status=ACTIVE.",
+      "actual_behavior": "Search input is cleared to empty string and query sent without search parameter.",
+      "evidence": {
+        "dom": "Search input value is cleared to empty",
+        "network": "GET /api/users?status=ACTIVE (search parameter omitted)"
+      },
+      "verification_method": "Search for brian -> Change status dropdown -> Observe input value becomes empty and search parameter is lost."
+    },
+    {
+      "bug_id": "C-03-889",
+      "original_id": 889,
+      "error_name": "Active Status Inversion",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "target_user_active": true
+      },
+      "trigger": {
+        "action": "click_block_button",
+        "steps": [
+          "Click the Active badge/button to block user"
+        ]
+      },
+      "expected_behavior": "User is_active becomes false and badge changes to Inactive/Blocked.",
+      "actual_behavior": "Backend boolean inversion bug forces is_active=true, leaving user active in DB and DOM.",
+      "evidence": {
+        "network": "PATCH /api/users/:id/status returns isActive: true",
+        "dom": "Status badge remains Active"
+      },
+      "verification_method": "Click Block on active user -> Verify response isActive is true -> Verify badge remains Active."
+    },
+    {
+      "bug_id": "C-03-2088",
+      "original_id": 2088,
+      "error_name": "Action Confirm Without Feedback",
+      "strategy": "ACTION_REPLAY",
+      "precondition": {
+        "user_exists": true
+      },
+      "trigger": {
+        "action": "send_password_reset_link",
+        "steps": [
+          "Click 'Reset Link' action button on user row"
+        ]
+      },
+      "expected_behavior": "Visual feedback such as toast, loading indicator, or confirmation is displayed.",
+      "actual_behavior": "API 200 OK is received but UI produces zero feedback (no toast, no loader, no DOM change).",
+      "evidence": {
+        "network": "POST /api/users/:id/password-reset -> 200 OK",
+        "dom_diff": "Zero DOM mutations before vs after click"
+      },
+      "verification_method": "Click Reset Link -> Observe 200 OK in Network -> Verify no visual feedback in DOM."
+    }
+  ]
+}

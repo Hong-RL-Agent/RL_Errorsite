@@ -1,0 +1,243 @@
+{
+  "bug": {
+    "bug_id": "A-07-04",
+    "name": "소식 수신 설정 저장 후 재방문 시 유실",
+    "strategy": "STATE_REVISIT",
+    "precondition": "미수신",
+    "trigger": "소식 수신 체크 → 소식 수신 저장 → 새로고침",
+    "expected": "수신 유지",
+    "actual": "미수신으로 복귀",
+    "evidence": "ActionLog + State + UI + DOM + Network",
+    "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 저장 직후 성공 UI와 재방문 뒤 GET 결과를 비교.",
+    "source": {
+      "sheet": "전체_분류",
+      "excel_row": 195,
+      "No": 194,
+      "error_name": "정보 지속성 부족 (Persistence)",
+      "DQN_학습대상": "조건부",
+      "필요_Evidence": "ActionLog + State + UI + DOM + Network",
+      "Confirmation_Oracle": "상태 변경/저장 후 reload·revisit·relogin 경계를 지난 뒤 기대 상태와 실제 상태 불일치가 반복되면 Confirmed.",
+      "실행조건_Precondition": "상태 변경/저장 후 reload·back·재접속·재로그인 등의 persistence boundary 수행"
+    },
+    "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+    "test": "tests/e2e.mjs#A-07-04"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "pass": true,
+      "initial": {
+        "profile": {
+          "displayName": "김하늘",
+          "bio": "여행과 독서를 좋아합니다.",
+          "locale": "한국어",
+          "newsletter": false,
+          "phone": "010-1234-5678"
+        }
+      },
+      "final": {
+        "profile": {
+          "displayName": "김하늘",
+          "bio": "여행과 독서를 좋아합니다.",
+          "locale": "한국어",
+          "newsletter": false,
+          "phone": "010-1234-5678"
+        }
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "check 소식 수신=true"
+        },
+        {
+          "order": 2,
+          "description": "click 소식 수신 저장"
+        },
+        {
+          "description": "reload"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9517/api/member",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "profile": {
+              "displayName": "김하늘",
+              "bio": "여행과 독서를 좋아합니다.",
+              "locale": "한국어",
+              "newsletter": false,
+              "phone": "010-1234-5678"
+            }
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9517/api/member/notifications",
+          "method": "POST",
+          "request": {
+            "value": true
+          },
+          "status": 200,
+          "response": {
+            "profile": {
+              "displayName": "김하늘",
+              "bio": "여행과 독서를 좋아합니다.",
+              "locale": "한국어",
+              "newsletter": true,
+              "phone": "010-1234-5678"
+            }
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9517/api/member",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "profile": {
+              "displayName": "김하늘",
+              "bio": "여행과 독서를 좋아합니다.",
+              "locale": "한국어",
+              "newsletter": false,
+              "phone": "010-1234-5678"
+            }
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/member/notifications",
+          "request": {
+            "value": true
+          },
+          "response": {
+            "profile": {
+              "displayName": "김하늘",
+              "bio": "여행과 독서를 좋아합니다.",
+              "locale": "한국어",
+              "newsletter": true,
+              "phone": "010-1234-5678"
+            }
+          },
+          "status": 200
+        }
+      ],
+      "UI": "마이 페이지\n처음부터\n마이 페이지\n계정\n활동\n표시 이름\n표시 이름\n표시 이름 저장\n표시 이름: 김하늘\n자기소개\n자기소개\n자기소개 저장\n자기소개: 여행과 독서를 좋아합니다.\n사용 언어\n사용 언어\n사용 언어 저장\n사용 언어: 한국어\n소식 수신\n소식 받기\n소식 수신 저장\n소식 수신: 미수신\n연락처\n연락처\n연락처 저장\n연락처: 010-1234-5678\n계정 다시 방문\n\n개인 실습 서비스 · 2026",
+      "expected": "수신 유지",
+      "actual": "미수신으로 복귀",
+      "Evidence": "ActionLog + State + UI + DOM + Network"
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "initial": {
+        "profile": {
+          "displayName": "김하늘",
+          "bio": "여행과 독서를 좋아합니다.",
+          "locale": "한국어",
+          "newsletter": false,
+          "phone": "010-1234-5678"
+        }
+      },
+      "final": {
+        "profile": {
+          "displayName": "김하늘",
+          "bio": "여행과 독서를 좋아합니다.",
+          "locale": "한국어",
+          "newsletter": false,
+          "phone": "010-1234-5678"
+        }
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "check 소식 수신=true"
+        },
+        {
+          "order": 2,
+          "description": "click 소식 수신 저장"
+        },
+        {
+          "description": "reload"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9517/api/member",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "profile": {
+              "displayName": "김하늘",
+              "bio": "여행과 독서를 좋아합니다.",
+              "locale": "한국어",
+              "newsletter": false,
+              "phone": "010-1234-5678"
+            }
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9517/api/member/notifications",
+          "method": "POST",
+          "request": {
+            "value": true
+          },
+          "status": 200,
+          "response": {
+            "profile": {
+              "displayName": "김하늘",
+              "bio": "여행과 독서를 좋아합니다.",
+              "locale": "한국어",
+              "newsletter": true,
+              "phone": "010-1234-5678"
+            }
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9517/api/member",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "profile": {
+              "displayName": "김하늘",
+              "bio": "여행과 독서를 좋아합니다.",
+              "locale": "한국어",
+              "newsletter": false,
+              "phone": "010-1234-5678"
+            }
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/member/notifications",
+          "request": {
+            "value": true
+          },
+          "response": {
+            "profile": {
+              "displayName": "김하늘",
+              "bio": "여행과 독서를 좋아합니다.",
+              "locale": "한국어",
+              "newsletter": true,
+              "phone": "010-1234-5678"
+            }
+          },
+          "status": 200
+        }
+      ],
+      "UI": "마이 페이지\n처음부터\n마이 페이지\n계정\n활동\n표시 이름\n표시 이름\n표시 이름 저장\n표시 이름: 김하늘\n자기소개\n자기소개\n자기소개 저장\n자기소개: 여행과 독서를 좋아합니다.\n사용 언어\n사용 언어\n사용 언어 저장\n사용 언어: 한국어\n소식 수신\n소식 받기\n소식 수신 저장\n소식 수신: 미수신\n연락처\n연락처\n연락처 저장\n연락처: 010-1234-5678\n계정 다시 방문\n\n개인 실습 서비스 · 2026",
+      "expected": "수신 유지",
+      "actual": "미수신으로 복귀",
+      "Evidence": "ActionLog + State + UI + DOM + Network"
+    }
+  ]
+}

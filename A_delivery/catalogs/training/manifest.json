@@ -1,0 +1,44 @@
+[
+  {
+    "site": "A-01",
+    "url": "http://127.0.0.1:9511",
+    "catalog": "catalogs/training/A-01.json",
+    "backend": "http://127.0.0.1:9411"
+  },
+  {
+    "site": "A-02",
+    "url": "http://127.0.0.1:9512",
+    "catalog": "catalogs/training/A-02.json",
+    "backend": "http://127.0.0.1:9412"
+  },
+  {
+    "site": "A-03",
+    "url": "http://127.0.0.1:9513",
+    "catalog": "catalogs/training/A-03.json",
+    "backend": "http://127.0.0.1:9413"
+  },
+  {
+    "site": "A-04",
+    "url": "http://127.0.0.1:9514",
+    "catalog": "catalogs/training/A-04.json",
+    "backend": "http://127.0.0.1:9414"
+  },
+  {
+    "site": "A-05",
+    "url": "http://127.0.0.1:9515",
+    "catalog": "catalogs/training/A-05.json",
+    "backend": "http://127.0.0.1:9415"
+  },
+  {
+    "site": "A-06",
+    "url": "http://127.0.0.1:9516",
+    "catalog": "catalogs/training/A-06.json",
+    "backend": "http://127.0.0.1:9416"
+  },
+  {
+    "site": "A-07",
+    "url": "http://127.0.0.1:9517",
+    "catalog": "catalogs/training/A-07.json",
+    "backend": "http://127.0.0.1:9417"
+  }
+]

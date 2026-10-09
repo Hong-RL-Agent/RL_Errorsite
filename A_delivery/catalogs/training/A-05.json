@@ -1,0 +1,107 @@
+{
+  "site": "A-05",
+  "split": "training",
+  "training_allowed": true,
+  "reward_tuning_allowed": true,
+  "frontend": "React",
+  "reset": {
+    "method": "POST",
+    "path": "/api/test/reset",
+    "backend_port": 9415,
+    "scope": "사이트 DB 상태 및 사건 로그; UI 처음부터 또는 새로고침으로 폼 상태도 초기화"
+  },
+  "bugs": [
+    {
+      "bug_id": "A-05-01",
+      "name": "예약 기간 금액 누락",
+      "strategy": "SEQUENCE_REPLAY",
+      "precondition": "초기 예약 없음",
+      "trigger": "2박 선택 → 객실 찾기 → 스탠다드/1명 → 옵션 확인 → 예상 금액 보기",
+      "expected": "100000원",
+      "actual": "50000원",
+      "evidence": "ActionLog + State + UI + DOM + Network",
+      "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+      "source": {
+        "sheet": "전체_분류",
+        "excel_row": 440,
+        "No": 439,
+        "error_name": "구독 및 예약 주기의 오버랩",
+        "DQN_학습대상": "O",
+        "필요_Evidence": "ActionLog + State + UI + DOM + Network",
+        "Confirmation_Oracle": "동일 초기 상태에서 정의된 행동 sequence를 끝까지 재실행한 뒤 동일 비정상 end-state/Evidence가 재현되면 Confirmed.",
+        "실행조건_Precondition": "초기 상태를 복원하고 trigger부터 결과 확인까지 전체 sequence 재실행"
+      },
+      "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+      "test": "tests/e2e.mjs#A-05-01"
+    },
+    {
+      "bug_id": "A-05-02",
+      "name": "선택 해제한 조식 강제 포함",
+      "strategy": "SEQUENCE_REPLAY",
+      "precondition": "초기 예약 없음",
+      "trigger": "객실 찾기 → 디럭스/조식 포함 → 옵션 확인 → 옵션 다시 선택 → 조식 해제 → 옵션 확인 → 예상 금액 보기",
+      "expected": "80000원, 조식 없음",
+      "actual": "90000원, 조식 포함",
+      "evidence": "ActionLog + State + UI + DOM + Network",
+      "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+      "source": {
+        "sheet": "전체_분류",
+        "excel_row": 622,
+        "No": 621,
+        "error_name": "보험/옵션 강제 추가",
+        "DQN_학습대상": "O",
+        "필요_Evidence": "ActionLog + State + UI + DOM + Network",
+        "Confirmation_Oracle": "동일 초기 상태에서 정의된 행동 sequence를 끝까지 재실행한 뒤 동일 비정상 end-state/Evidence가 재현되면 Confirmed.",
+        "실행조건_Precondition": "초기 상태를 복원하고 trigger부터 결과 확인까지 전체 sequence 재실행"
+      },
+      "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+      "test": "tests/e2e.mjs#A-05-02"
+    },
+    {
+      "bug_id": "A-05-03",
+      "name": "확정 실패 후 결제 롤백 누락",
+      "strategy": "SEQUENCE_REPLAY",
+      "precondition": "초기 결제 0",
+      "trigger": "객실 찾기 → 스위트 → 옵션 확인 → 예상 금액 보기 → 결제하고 확정",
+      "expected": "확정 실패 시 결제 0",
+      "actual": "HTTP 409인데 결제 기록 120000원 유지",
+      "evidence": "ActionLog + State + UI + DOM + Network",
+      "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+      "source": {
+        "sheet": "전체_분류",
+        "excel_row": 592,
+        "No": 591,
+        "error_name": "다단계 워크플로우 부분적 롤백 실패",
+        "DQN_학습대상": "O",
+        "필요_Evidence": "ActionLog + State + UI + DOM + Network",
+        "Confirmation_Oracle": "동일 초기 상태에서 정의된 행동 sequence를 끝까지 재실행한 뒤 동일 비정상 end-state/Evidence가 재현되면 Confirmed.",
+        "실행조건_Precondition": "초기 상태를 복원하고 trigger부터 결과 확인까지 전체 sequence 재실행"
+      },
+      "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+      "test": "tests/e2e.mjs#A-05-03"
+    },
+    {
+      "bug_id": "A-05-04",
+      "name": "취소 후 객실 재고 복원 실패",
+      "strategy": "SEQUENCE_REPLAY",
+      "precondition": "가든 잔여 3",
+      "trigger": "객실 찾기 → 가든 → 옵션 확인 → 예상 금액 보기 → 결제하고 확정 → 예약 철회",
+      "expected": "가든 잔여 3, 결제 0",
+      "actual": "가든 잔여 2, 결제 0",
+      "evidence": "ActionLog + State + UI + DOM + Network",
+      "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+      "source": {
+        "sheet": "전체_분류",
+        "excel_row": 13,
+        "No": 12,
+        "error_name": "환불에 의한 인벤토리 고스트",
+        "DQN_학습대상": "O",
+        "필요_Evidence": "ActionLog + State + UI + DOM + Network",
+        "Confirmation_Oracle": "동일 초기 상태에서 정의된 행동 sequence를 끝까지 재실행한 뒤 동일 비정상 end-state/Evidence가 재현되면 Confirmed.",
+        "실행조건_Precondition": "초기 상태를 복원하고 trigger부터 결과 확인까지 전체 sequence 재실행"
+      },
+      "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+      "test": "tests/e2e.mjs#A-05-04"
+    }
+  ]
+}

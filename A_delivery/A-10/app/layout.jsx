@@ -1,0 +1,1 @@
+import '../../shared/base.css';import '../site.css';export const metadata={title:'공연 예약'};export default function Layout({children}){return <html lang="ko"><body>{children}</body></html>}

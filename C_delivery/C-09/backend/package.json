@@ -1,0 +1,15 @@
+{
+  "name": "pulseform-backend",
+  "version": "1.0.0",
+  "description": "PulseForm C-09 Unseen Test Environment Backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "sqlite3": "^5.1.7"
+  }
+}

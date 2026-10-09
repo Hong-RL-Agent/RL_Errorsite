@@ -1,0 +1,2 @@
+:root{--accent:#a34b32}
+main{max-width:1000px}.cards article{border-top:4px solid var(--accent)}

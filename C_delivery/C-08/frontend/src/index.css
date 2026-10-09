@@ -1,0 +1,175 @@
+:root {
+  --bg-main: #0c1210;
+  --bg-surface: #141e1a;
+  --bg-card: #1a2822;
+  --bg-card-hover: #22342c;
+  --bg-elevated: #243830;
+  --border-subtle: #2d4239;
+  --border-focus: #84a98c;
+  
+  --brand-primary: #84a98c;
+  --brand-primary-hover: #a3c4ab;
+  --brand-accent: #e76f51;
+  --brand-accent-hover: #f48467;
+  --brand-subtle: rgba(132, 169, 140, 0.15);
+  
+  --text-main: #f0f4f1;
+  --text-secondary: #cad2c5;
+  --text-muted: #7d938a;
+  
+  --status-confirmed-bg: rgba(132, 169, 140, 0.2);
+  --status-confirmed-text: #a3c4ab;
+  --status-cancelled-bg: rgba(231, 111, 81, 0.2);
+  --status-cancelled-text: #f4a261;
+  --status-completed-bg: rgba(82, 121, 111, 0.2);
+  --status-completed-text: #84a98c;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+  
+  --font-sans: 'Plus Jakarta Sans', 'Noto Sans KR', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-primary);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input, select, textarea {
+  font-family: inherit;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.badge-confirmed {
+  background: var(--status-confirmed-bg);
+  color: var(--status-confirmed-text);
+  border: 1px solid rgba(132, 169, 140, 0.3);
+}
+
+.badge-cancelled {
+  background: var(--status-cancelled-bg);
+  color: var(--status-cancelled-text);
+  border: 1px solid rgba(231, 111, 81, 0.3);
+}
+
+.badge-completed {
+  background: var(--status-completed-bg);
+  color: var(--status-completed-text);
+  border: 1px solid rgba(82, 121, 111, 0.3);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand-primary), #52796f);
+  color: #0c1210;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(132, 169, 140, 0.25);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--brand-primary-hover), #6b9080);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(132, 169, 140, 0.35);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-main);
+  border-color: var(--brand-primary);
+}
+
+.btn-danger {
+  background: rgba(231, 111, 81, 0.15);
+  color: #f48467;
+  border: 1px solid rgba(231, 111, 81, 0.3);
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-danger:hover {
+  background: rgba(231, 111, 81, 0.25);
+  border-color: var(--brand-accent);
+}

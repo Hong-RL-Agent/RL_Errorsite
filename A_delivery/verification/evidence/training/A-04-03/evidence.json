@@ -1,0 +1,585 @@
+{
+  "bug": {
+    "bug_id": "A-04-03",
+    "name": "할인이 할증으로 적용됨",
+    "strategy": "ACTION_REPLAY",
+    "precondition": "짜장면 1인분, 금액 6000원",
+    "trigger": "쿠폰 코드 TAKE20 입력 → 할인 적용",
+    "expected": "4800원",
+    "actual": "7200원",
+    "evidence": "ActionLog + UI + State + Network",
+    "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+    "source": {
+      "sheet": "전체_분류",
+      "excel_row": 10,
+      "No": 9,
+      "error_name": "그림자 장부의 진실의 원천 불일치",
+      "DQN_학습대상": "O",
+      "필요_Evidence": "ActionLog + UI + State + Network",
+      "Confirmation_Oracle": "동일 precondition에서 동일 target action/request를 재실행했을 때 기대 변화가 없거나 동일 비정상 Evidence가 재발하면 Confirmed.",
+      "실행조건_Precondition": "후보를 만든 원래 precondition과 target을 복원한 뒤 동일 action/request 재실행"
+    },
+    "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+    "test": "tests/e2e.mjs#A-04-03"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "pass": true,
+      "initial": {
+        "menus": [
+          {
+            "id": 1,
+            "title": "후라이드 치킨",
+            "price": 20000
+          },
+          {
+            "id": 2,
+            "title": "짜장면",
+            "price": 6000
+          },
+          {
+            "id": 3,
+            "title": "비빔밥",
+            "price": 9000
+          },
+          {
+            "id": 4,
+            "title": "김치찌개",
+            "price": 8500
+          },
+          {
+            "id": 5,
+            "title": "샌드위치",
+            "price": 7000
+          }
+        ],
+        "order": [
+          {
+            "id": 2,
+            "qty": 1
+          }
+        ],
+        "discount": 0,
+        "total": 6000,
+        "receipt": []
+      },
+      "final": {
+        "menus": [
+          {
+            "id": 1,
+            "title": "후라이드 치킨",
+            "price": 20000
+          },
+          {
+            "id": 2,
+            "title": "짜장면",
+            "price": 6000
+          },
+          {
+            "id": 3,
+            "title": "비빔밥",
+            "price": 9000
+          },
+          {
+            "id": 4,
+            "title": "김치찌개",
+            "price": 8500
+          },
+          {
+            "id": 5,
+            "title": "샌드위치",
+            "price": 7000
+          }
+        ],
+        "order": [
+          {
+            "id": 2,
+            "qty": 1
+          }
+        ],
+        "discount": -0.2,
+        "total": 7200,
+        "receipt": []
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "fill 쿠폰 코드=TAKE20"
+        },
+        {
+          "order": 2,
+          "description": "click 할인 적용"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9514/api/dining",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "menus": [
+              {
+                "id": 1,
+                "title": "후라이드 치킨",
+                "price": 20000
+              },
+              {
+                "id": 2,
+                "title": "짜장면",
+                "price": 6000
+              },
+              {
+                "id": 3,
+                "title": "비빔밥",
+                "price": 9000
+              },
+              {
+                "id": 4,
+                "title": "김치찌개",
+                "price": 8500
+              },
+              {
+                "id": 5,
+                "title": "샌드위치",
+                "price": 7000
+              }
+            ],
+            "order": [
+              {
+                "id": 2,
+                "qty": 1
+              }
+            ],
+            "discount": 0,
+            "total": 6000,
+            "receipt": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9514/api/dining",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "menus": [
+              {
+                "id": 1,
+                "title": "후라이드 치킨",
+                "price": 20000
+              },
+              {
+                "id": 2,
+                "title": "짜장면",
+                "price": 6000
+              },
+              {
+                "id": 3,
+                "title": "비빔밥",
+                "price": 9000
+              },
+              {
+                "id": 4,
+                "title": "김치찌개",
+                "price": 8500
+              },
+              {
+                "id": 5,
+                "title": "샌드위치",
+                "price": 7000
+              }
+            ],
+            "order": [
+              {
+                "id": 2,
+                "qty": 1
+              }
+            ],
+            "discount": 0,
+            "total": 6000,
+            "receipt": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9514/api/dining/voucher",
+          "method": "POST",
+          "request": {
+            "code": "TAKE20"
+          },
+          "status": 200,
+          "response": {
+            "menus": [
+              {
+                "id": 1,
+                "title": "후라이드 치킨",
+                "price": 20000
+              },
+              {
+                "id": 2,
+                "title": "짜장면",
+                "price": 6000
+              },
+              {
+                "id": 3,
+                "title": "비빔밥",
+                "price": 9000
+              },
+              {
+                "id": 4,
+                "title": "김치찌개",
+                "price": 8500
+              },
+              {
+                "id": 5,
+                "title": "샌드위치",
+                "price": 7000
+              }
+            ],
+            "order": [
+              {
+                "id": 2,
+                "qty": 1
+              }
+            ],
+            "discount": -0.2,
+            "total": 7200,
+            "receipt": []
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/dining/voucher",
+          "request": {
+            "code": "TAKE20"
+          },
+          "response": {
+            "menus": [
+              {
+                "id": 1,
+                "title": "후라이드 치킨",
+                "price": 20000
+              },
+              {
+                "id": 2,
+                "title": "짜장면",
+                "price": 6000
+              },
+              {
+                "id": 3,
+                "title": "비빔밥",
+                "price": 9000
+              },
+              {
+                "id": 4,
+                "title": "김치찌개",
+                "price": 8500
+              },
+              {
+                "id": 5,
+                "title": "샌드위치",
+                "price": 7000
+              }
+            ],
+            "order": [
+              {
+                "id": 2,
+                "qty": 1
+              }
+            ],
+            "discount": -0.2,
+            "total": 7200,
+            "receipt": []
+          },
+          "status": 200
+        }
+      ],
+      "UI": "한끼 식탁\n처음부터\n한끼 식탁\n후라이드 치킨\n\n20,000원\n\n후라이드 치킨 주문표에 추가\n짜장면\n\n6,000원\n\n짜장면 주문표에 추가\n비빔밥\n\n9,000원\n\n비빔밥 주문표에 추가\n김치찌개\n\n8,500원\n\n김치찌개 주문표에 추가\n샌드위치\n\n7,000원\n\n샌드위치 주문표에 추가\n주문표\n짜장면\n1인분 짜장면 제외\n쿠폰 코드\n\nSAVE10: 10% 할인 · TAKE20: 20% 할인\n\n할인 적용\n결제 금액 7,200원\n주방으로 보내기\n접수된 메뉴\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "4800원",
+      "actual": "7200원",
+      "Evidence": "ActionLog + UI + State + Network"
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "initial": {
+        "menus": [
+          {
+            "id": 1,
+            "title": "후라이드 치킨",
+            "price": 20000
+          },
+          {
+            "id": 2,
+            "title": "짜장면",
+            "price": 6000
+          },
+          {
+            "id": 3,
+            "title": "비빔밥",
+            "price": 9000
+          },
+          {
+            "id": 4,
+            "title": "김치찌개",
+            "price": 8500
+          },
+          {
+            "id": 5,
+            "title": "샌드위치",
+            "price": 7000
+          }
+        ],
+        "order": [
+          {
+            "id": 2,
+            "qty": 1
+          }
+        ],
+        "discount": 0,
+        "total": 6000,
+        "receipt": []
+      },
+      "final": {
+        "menus": [
+          {
+            "id": 1,
+            "title": "후라이드 치킨",
+            "price": 20000
+          },
+          {
+            "id": 2,
+            "title": "짜장면",
+            "price": 6000
+          },
+          {
+            "id": 3,
+            "title": "비빔밥",
+            "price": 9000
+          },
+          {
+            "id": 4,
+            "title": "김치찌개",
+            "price": 8500
+          },
+          {
+            "id": 5,
+            "title": "샌드위치",
+            "price": 7000
+          }
+        ],
+        "order": [
+          {
+            "id": 2,
+            "qty": 1
+          }
+        ],
+        "discount": -0.2,
+        "total": 7200,
+        "receipt": []
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "fill 쿠폰 코드=TAKE20"
+        },
+        {
+          "order": 2,
+          "description": "click 할인 적용"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9514/api/dining",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "menus": [
+              {
+                "id": 1,
+                "title": "후라이드 치킨",
+                "price": 20000
+              },
+              {
+                "id": 2,
+                "title": "짜장면",
+                "price": 6000
+              },
+              {
+                "id": 3,
+                "title": "비빔밥",
+                "price": 9000
+              },
+              {
+                "id": 4,
+                "title": "김치찌개",
+                "price": 8500
+              },
+              {
+                "id": 5,
+                "title": "샌드위치",
+                "price": 7000
+              }
+            ],
+            "order": [
+              {
+                "id": 2,
+                "qty": 1
+              }
+            ],
+            "discount": 0,
+            "total": 6000,
+            "receipt": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9514/api/dining",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "menus": [
+              {
+                "id": 1,
+                "title": "후라이드 치킨",
+                "price": 20000
+              },
+              {
+                "id": 2,
+                "title": "짜장면",
+                "price": 6000
+              },
+              {
+                "id": 3,
+                "title": "비빔밥",
+                "price": 9000
+              },
+              {
+                "id": 4,
+                "title": "김치찌개",
+                "price": 8500
+              },
+              {
+                "id": 5,
+                "title": "샌드위치",
+                "price": 7000
+              }
+            ],
+            "order": [
+              {
+                "id": 2,
+                "qty": 1
+              }
+            ],
+            "discount": 0,
+            "total": 6000,
+            "receipt": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9514/api/dining/voucher",
+          "method": "POST",
+          "request": {
+            "code": "TAKE20"
+          },
+          "status": 200,
+          "response": {
+            "menus": [
+              {
+                "id": 1,
+                "title": "후라이드 치킨",
+                "price": 20000
+              },
+              {
+                "id": 2,
+                "title": "짜장면",
+                "price": 6000
+              },
+              {
+                "id": 3,
+                "title": "비빔밥",
+                "price": 9000
+              },
+              {
+                "id": 4,
+                "title": "김치찌개",
+                "price": 8500
+              },
+              {
+                "id": 5,
+                "title": "샌드위치",
+                "price": 7000
+              }
+            ],
+            "order": [
+              {
+                "id": 2,
+                "qty": 1
+              }
+            ],
+            "discount": -0.2,
+            "total": 7200,
+            "receipt": []
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/dining/voucher",
+          "request": {
+            "code": "TAKE20"
+          },
+          "response": {
+            "menus": [
+              {
+                "id": 1,
+                "title": "후라이드 치킨",
+                "price": 20000
+              },
+              {
+                "id": 2,
+                "title": "짜장면",
+                "price": 6000
+              },
+              {
+                "id": 3,
+                "title": "비빔밥",
+                "price": 9000
+              },
+              {
+                "id": 4,
+                "title": "김치찌개",
+                "price": 8500
+              },
+              {
+                "id": 5,
+                "title": "샌드위치",
+                "price": 7000
+              }
+            ],
+            "order": [
+              {
+                "id": 2,
+                "qty": 1
+              }
+            ],
+            "discount": -0.2,
+            "total": 7200,
+            "receipt": []
+          },
+          "status": 200
+        }
+      ],
+      "UI": "한끼 식탁\n처음부터\n한끼 식탁\n후라이드 치킨\n\n20,000원\n\n후라이드 치킨 주문표에 추가\n짜장면\n\n6,000원\n\n짜장면 주문표에 추가\n비빔밥\n\n9,000원\n\n비빔밥 주문표에 추가\n김치찌개\n\n8,500원\n\n김치찌개 주문표에 추가\n샌드위치\n\n7,000원\n\n샌드위치 주문표에 추가\n주문표\n짜장면\n1인분 짜장면 제외\n쿠폰 코드\n\nSAVE10: 10% 할인 · TAKE20: 20% 할인\n\n할인 적용\n결제 금액 7,200원\n주방으로 보내기\n접수된 메뉴\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "4800원",
+      "actual": "7200원",
+      "Evidence": "ActionLog + UI + State + Network"
+    }
+  ]
+}

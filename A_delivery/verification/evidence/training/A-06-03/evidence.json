@@ -1,0 +1,609 @@
+{
+  "bug": {
+    "bug_id": "A-06-03",
+    "name": "편집 복귀 후 단계 순환",
+    "strategy": "SEQUENCE_REPLAY",
+    "precondition": "초기 여행 없음",
+    "trigger": "강릉 → 여행 계획 시작 → 경로 미리보기 → 경로 편집으로 → 경로 미리보기",
+    "expected": "review 단계",
+    "actual": "planning 단계에 머무름",
+    "evidence": "ActionLog + State + UI + DOM + Network",
+    "confirmation_oracle": "초기화 후 동일 행동을 두 번 독립 재실행하여 expected와 actual 불일치가 반복되는지 확인. 네트워크 응답·UI·서버 상태를 함께 비교.",
+    "source": {
+      "sheet": "전체_분류",
+      "excel_row": 575,
+      "No": 574,
+      "error_name": "상태 머신 내 순환 탐색 루프",
+      "DQN_학습대상": "O",
+      "필요_Evidence": "ActionLog + State + UI + DOM + Network",
+      "Confirmation_Oracle": "동일 초기 상태에서 정의된 행동 sequence를 끝까지 재실행한 뒤 동일 비정상 end-state/Evidence가 재현되면 Confirmed.",
+      "실행조건_Precondition": "초기 상태를 복원하고 trigger부터 결과 확인까지 전체 sequence 재실행"
+    },
+    "fixture_adaptation": "실제 서비스 도메인의 격리된 로컬 deterministic fixture로 구체화. 인프라 장애·보안·동시성·부하 주입 없음.",
+    "test": "tests/e2e.mjs#A-06-03"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "pass": true,
+      "initial": {
+        "city": "서울",
+        "transport": "기차",
+        "stage": "start",
+        "route": [],
+        "capacity": 4,
+        "balance": 100000,
+        "history": []
+      },
+      "final": {
+        "city": "강릉",
+        "transport": "기차",
+        "stage": "planning",
+        "route": [
+          {
+            "city": "강릉",
+            "transport": "기차",
+            "status": "draft"
+          }
+        ],
+        "capacity": 4,
+        "balance": 100000,
+        "history": [
+          "destination",
+          "draft",
+          "return",
+          "draft"
+        ]
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "select 여행지=강릉"
+        },
+        {
+          "order": 2,
+          "description": "select 이동 수단=기차"
+        },
+        {
+          "order": 3,
+          "description": "click 여행 계획 시작"
+        },
+        {
+          "order": 4,
+          "description": "click 경로 미리보기"
+        },
+        {
+          "order": 5,
+          "description": "click 경로 편집으로"
+        },
+        {
+          "order": 6,
+          "description": "click 경로 미리보기"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9516/api/journeys",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "city": "서울",
+            "transport": "기차",
+            "stage": "start",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "city": "서울",
+            "transport": "기차",
+            "stage": "start",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/destination",
+          "method": "POST",
+          "request": {
+            "city": "강릉",
+            "transport": "기차"
+          },
+          "status": 200,
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/draft",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "review",
+            "route": [
+              {
+                "city": "강릉",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/return",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [
+              {
+                "city": "강릉",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "return"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/draft",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [
+              {
+                "city": "강릉",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "return",
+              "draft"
+            ]
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/journeys/destination",
+          "request": {
+            "city": "강릉",
+            "transport": "기차"
+          },
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 2,
+          "method": "POST",
+          "endpoint": "/api/journeys/draft",
+          "request": {},
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "review",
+            "route": [
+              {
+                "city": "강릉",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 3,
+          "method": "POST",
+          "endpoint": "/api/journeys/return",
+          "request": {},
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [
+              {
+                "city": "강릉",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "return"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 4,
+          "method": "POST",
+          "endpoint": "/api/journeys/draft",
+          "request": {},
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [
+              {
+                "city": "강릉",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "return",
+              "draft"
+            ]
+          },
+          "status": 200
+        }
+      ],
+      "UI": "길따라 여행\n처음부터\n길따라 여행\n목적지\n계획\n확정\n현재 진행: planning\n강릉 일정 구성\n\n이동권 20,000원 · 잔여 이동권 4\n\n경로 미리보기\n여행 기록\n잔여 이동권 4\n여행 지갑 100,000원\n강릉 · 기차 · draft\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "review 단계",
+      "actual": "planning 단계에 머무름",
+      "Evidence": "ActionLog + State + UI + DOM + Network"
+    },
+    {
+      "round": 2,
+      "pass": true,
+      "initial": {
+        "city": "서울",
+        "transport": "기차",
+        "stage": "start",
+        "route": [],
+        "capacity": 4,
+        "balance": 100000,
+        "history": []
+      },
+      "final": {
+        "city": "강릉",
+        "transport": "기차",
+        "stage": "planning",
+        "route": [
+          {
+            "city": "강릉",
+            "transport": "기차",
+            "status": "draft"
+          }
+        ],
+        "capacity": 4,
+        "balance": 100000,
+        "history": [
+          "destination",
+          "draft",
+          "return",
+          "draft"
+        ]
+      },
+      "actions": [
+        {
+          "order": 1,
+          "description": "select 여행지=강릉"
+        },
+        {
+          "order": 2,
+          "description": "select 이동 수단=기차"
+        },
+        {
+          "order": 3,
+          "description": "click 여행 계획 시작"
+        },
+        {
+          "order": 4,
+          "description": "click 경로 미리보기"
+        },
+        {
+          "order": 5,
+          "description": "click 경로 편집으로"
+        },
+        {
+          "order": 6,
+          "description": "click 경로 미리보기"
+        }
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:9516/api/journeys",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "city": "서울",
+            "transport": "기차",
+            "stage": "start",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys",
+          "method": "GET",
+          "request": null,
+          "status": 200,
+          "response": {
+            "city": "서울",
+            "transport": "기차",
+            "stage": "start",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": []
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/destination",
+          "method": "POST",
+          "request": {
+            "city": "강릉",
+            "transport": "기차"
+          },
+          "status": 200,
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/draft",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "review",
+            "route": [
+              {
+                "city": "강릉",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/return",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [
+              {
+                "city": "강릉",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "return"
+            ]
+          }
+        },
+        {
+          "url": "http://127.0.0.1:9516/api/journeys/draft",
+          "method": "POST",
+          "request": {},
+          "status": 200,
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [
+              {
+                "city": "강릉",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "return",
+              "draft"
+            ]
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "method": "POST",
+          "endpoint": "/api/journeys/destination",
+          "request": {
+            "city": "강릉",
+            "transport": "기차"
+          },
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 2,
+          "method": "POST",
+          "endpoint": "/api/journeys/draft",
+          "request": {},
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "review",
+            "route": [
+              {
+                "city": "강릉",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 3,
+          "method": "POST",
+          "endpoint": "/api/journeys/return",
+          "request": {},
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [
+              {
+                "city": "강릉",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "return"
+            ]
+          },
+          "status": 200
+        },
+        {
+          "seq": 4,
+          "method": "POST",
+          "endpoint": "/api/journeys/draft",
+          "request": {},
+          "response": {
+            "city": "강릉",
+            "transport": "기차",
+            "stage": "planning",
+            "route": [
+              {
+                "city": "강릉",
+                "transport": "기차",
+                "status": "draft"
+              }
+            ],
+            "capacity": 4,
+            "balance": 100000,
+            "history": [
+              "destination",
+              "draft",
+              "return",
+              "draft"
+            ]
+          },
+          "status": 200
+        }
+      ],
+      "UI": "길따라 여행\n처음부터\n길따라 여행\n목적지\n계획\n확정\n현재 진행: planning\n강릉 일정 구성\n\n이동권 20,000원 · 잔여 이동권 4\n\n경로 미리보기\n여행 기록\n잔여 이동권 4\n여행 지갑 100,000원\n강릉 · 기차 · draft\n\n처리되었습니다.\n\n개인 실습 서비스 · 2026",
+      "expected": "review 단계",
+      "actual": "planning 단계에 머무름",
+      "Evidence": "ActionLog + State + UI + DOM + Network"
+    }
+  ]
+}

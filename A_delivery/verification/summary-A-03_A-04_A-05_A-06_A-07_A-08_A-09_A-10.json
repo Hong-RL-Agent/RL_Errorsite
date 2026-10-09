@@ -1,0 +1,248 @@
+{
+  "createdAt": "2026-10-08T10:19:45.065Z",
+  "purpose": "QA regression only; never training episodes/reward data",
+  "results": [
+    {
+      "site": "A-03",
+      "bug": "A-03-01",
+      "pass": true
+    },
+    {
+      "site": "A-03",
+      "bug": "A-03-02",
+      "pass": true
+    },
+    {
+      "site": "A-03",
+      "bug": "A-03-03",
+      "pass": true
+    },
+    {
+      "site": "A-03",
+      "bug": "A-03-04",
+      "pass": true
+    },
+    {
+      "site": "A-03",
+      "check": "healthy-persistence",
+      "pass": true
+    },
+    {
+      "site": "A-03",
+      "check": "reset",
+      "pass": true
+    },
+    {
+      "site": "A-04",
+      "bug": "A-04-01",
+      "pass": true
+    },
+    {
+      "site": "A-04",
+      "bug": "A-04-02",
+      "pass": true
+    },
+    {
+      "site": "A-04",
+      "bug": "A-04-03",
+      "pass": true
+    },
+    {
+      "site": "A-04",
+      "bug": "A-04-04",
+      "pass": true
+    },
+    {
+      "site": "A-04",
+      "check": "healthy-persistence",
+      "pass": true
+    },
+    {
+      "site": "A-04",
+      "check": "reset",
+      "pass": true
+    },
+    {
+      "site": "A-05",
+      "bug": "A-05-01",
+      "pass": true
+    },
+    {
+      "site": "A-05",
+      "bug": "A-05-02",
+      "pass": true
+    },
+    {
+      "site": "A-05",
+      "bug": "A-05-03",
+      "pass": true
+    },
+    {
+      "site": "A-05",
+      "bug": "A-05-04",
+      "pass": true
+    },
+    {
+      "site": "A-05",
+      "check": "healthy-persistence",
+      "pass": true
+    },
+    {
+      "site": "A-05",
+      "check": "reset",
+      "pass": true
+    },
+    {
+      "site": "A-06",
+      "bug": "A-06-01",
+      "pass": true
+    },
+    {
+      "site": "A-06",
+      "bug": "A-06-02",
+      "pass": true
+    },
+    {
+      "site": "A-06",
+      "bug": "A-06-03",
+      "pass": true
+    },
+    {
+      "site": "A-06",
+      "bug": "A-06-04",
+      "pass": true
+    },
+    {
+      "site": "A-06",
+      "check": "healthy-persistence",
+      "pass": true
+    },
+    {
+      "site": "A-06",
+      "check": "reset",
+      "pass": true
+    },
+    {
+      "site": "A-07",
+      "bug": "A-07-01",
+      "pass": true
+    },
+    {
+      "site": "A-07",
+      "bug": "A-07-02",
+      "pass": true
+    },
+    {
+      "site": "A-07",
+      "bug": "A-07-03",
+      "pass": true
+    },
+    {
+      "site": "A-07",
+      "bug": "A-07-04",
+      "pass": true
+    },
+    {
+      "site": "A-07",
+      "check": "healthy-persistence",
+      "pass": true
+    },
+    {
+      "site": "A-07",
+      "check": "reset",
+      "pass": true
+    },
+    {
+      "site": "A-08",
+      "bug": "A-08-01",
+      "pass": true
+    },
+    {
+      "site": "A-08",
+      "bug": "A-08-02",
+      "pass": true
+    },
+    {
+      "site": "A-08",
+      "bug": "A-08-03",
+      "pass": true
+    },
+    {
+      "site": "A-08",
+      "bug": "A-08-04",
+      "pass": true
+    },
+    {
+      "site": "A-08",
+      "check": "healthy-persistence",
+      "pass": true
+    },
+    {
+      "site": "A-08",
+      "check": "reset",
+      "pass": true
+    },
+    {
+      "site": "A-09",
+      "bug": "A-09-01",
+      "pass": true
+    },
+    {
+      "site": "A-09",
+      "bug": "A-09-02",
+      "pass": true
+    },
+    {
+      "site": "A-09",
+      "bug": "A-09-03",
+      "pass": true
+    },
+    {
+      "site": "A-09",
+      "bug": "A-09-04",
+      "pass": true
+    },
+    {
+      "site": "A-09",
+      "check": "healthy-persistence",
+      "pass": true
+    },
+    {
+      "site": "A-09",
+      "check": "reset",
+      "pass": true
+    },
+    {
+      "site": "A-10",
+      "bug": "A-10-01",
+      "pass": true
+    },
+    {
+      "site": "A-10",
+      "bug": "A-10-02",
+      "pass": true
+    },
+    {
+      "site": "A-10",
+      "bug": "A-10-03",
+      "pass": true
+    },
+    {
+      "site": "A-10",
+      "bug": "A-10-04",
+      "pass": true
+    },
+    {
+      "site": "A-10",
+      "check": "healthy-persistence",
+      "pass": true
+    },
+    {
+      "site": "A-10",
+      "check": "reset",
+      "pass": true
+    }
+  ],
+  "passed": 48,
+  "failed": 0
+}
