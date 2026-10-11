@@ -1,0 +1,521 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #080b16;
+  color: #f7f2df;
+  font-family: Arial, "Noto Sans KR", sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  background: #7757ff;
+  color: white;
+  cursor: pointer;
+  padding: 10px 14px;
+}
+
+button:hover {
+  background: #9279ff;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+input,
+select {
+  border: 1px solid #32384e;
+  border-radius: 8px;
+  background: #111827;
+  color: #f7f2df;
+  padding: 10px 12px;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 32px;
+  border-bottom: 1px solid #22283a;
+  background: rgba(8, 11, 22, 0.94);
+  backdrop-filter: blur(16px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.brand span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #d7b76a;
+  color: #11131f;
+}
+
+.search {
+  display: flex;
+  gap: 8px;
+}
+
+.search input {
+  flex: 1;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 24px;
+  align-items: end;
+  margin: 28px 32px;
+  min-height: 310px;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 38px;
+  background: linear-gradient(120deg, rgba(119, 87, 255, 0.36), rgba(215, 183, 106, 0.18)), #111827;
+  border: 1px solid #27304a;
+}
+
+.hero p {
+  color: #d7b76a;
+  font-weight: 800;
+}
+
+.hero h1 {
+  margin: 8px 0 12px;
+  font-size: 54px;
+}
+
+.hero img {
+  width: 100%;
+  max-height: 270px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.42);
+}
+
+.movieControls,
+.mainGrid,
+.bookingFlow,
+.ticketArea,
+.infoGrid {
+  margin: 0 32px 28px;
+}
+
+.movieControls {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.tabs button,
+.showtimeGrid button {
+  background: #171d2d;
+  color: #f7f2df;
+  border: 1px solid #30374f;
+}
+
+.tabs button.active,
+.showtimeGrid button.active {
+  border-color: #d7b76a;
+  background: #2a2140;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 22px;
+}
+
+.posterGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.posterCard,
+.panel,
+.detailPanel,
+.ticket,
+.stats div {
+  border: 1px solid #26304a;
+  border-radius: 8px;
+  background: #101624;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
+}
+
+.posterCard {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.posterCard.active {
+  outline: 2px solid #d7b76a;
+}
+
+.posterCard img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.posterCard div,
+.panel,
+.detailPanel {
+  padding: 16px;
+}
+
+.posterCard h3,
+.detailPanel h2,
+.panel h2 {
+  margin: 0 0 10px;
+}
+
+.posterCard p,
+.detailPanel p,
+.log,
+.ticket p {
+  color: #b8c0d7;
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.metaGrid span {
+  border-radius: 8px;
+  background: #171d2d;
+  padding: 10px;
+}
+
+.bookingFlow {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr) 280px;
+  gap: 18px;
+}
+
+.fieldRow {
+  display: grid;
+  gap: 10px;
+}
+
+.showtimeGrid {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.showtimeGrid button {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.seatsPanel {
+  min-width: 0;
+}
+
+.seatShell {
+  overflow-x: auto;
+}
+
+.screen {
+  margin: 4px auto 12px;
+  width: 70%;
+  border-radius: 999px;
+  border: 1px solid #d7b76a;
+  color: #d7b76a;
+  text-align: center;
+  padding: 8px;
+  letter-spacing: 4px;
+}
+
+.seatSvg {
+  width: 100%;
+  min-width: 600px;
+  border-radius: 8px;
+  background: #090d18;
+}
+
+.screenCurve {
+  fill: none;
+  stroke: #d7b76a;
+  stroke-width: 4;
+}
+
+.rowLabel {
+  fill: #d7b76a;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.seat {
+  cursor: pointer;
+}
+
+.seat rect {
+  stroke: #303b58;
+  stroke-width: 1;
+}
+
+.seat text {
+  fill: #ffffff;
+  font-size: 10px;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.seat.available rect,
+.legend .available {
+  fill: #1d263a;
+  background: #1d263a;
+}
+
+.seat.selected rect,
+.legend .selected {
+  fill: #7757ff;
+  background: #7757ff;
+}
+
+.seat.booked rect,
+.legend .booked {
+  fill: #6b2438;
+  background: #6b2438;
+}
+
+.legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  color: #b8c0d7;
+}
+
+.legend i {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+.summary {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.summary strong {
+  color: #d7b76a;
+  font-size: 24px;
+}
+
+.ticketArea {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 18px;
+}
+
+.stats {
+  display: grid;
+  gap: 12px;
+}
+
+.stats div {
+  padding: 18px;
+}
+
+.stats strong {
+  display: block;
+  color: #d7b76a;
+  font-size: 34px;
+}
+
+.tickets {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.ticket {
+  min-height: 190px;
+  padding: 16px;
+  background: linear-gradient(145deg, #141b2d, #0d1220);
+}
+
+.ticket.completed {
+  border-color: #d7b76a;
+}
+
+.ticket small {
+  color: #d7b76a;
+}
+
+.ticket h3 {
+  margin: 8px 0;
+}
+
+.ticketActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ticketActions button {
+  padding: 8px 10px;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding-bottom: 28px;
+}
+
+.notice {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  text-align: left;
+  background: #171d2d;
+}
+
+.notice.read {
+  color: #8790aa;
+  opacity: 0.7;
+}
+
+.log {
+  border-bottom: 1px solid #26304a;
+  padding-bottom: 8px;
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.62);
+}
+
+.modal {
+  position: relative;
+  width: min(460px, calc(100vw - 32px));
+  border: 1px solid #354063;
+  border-radius: 8px;
+  background: #101624;
+  padding: 24px;
+}
+
+.modal.wide {
+  width: min(940px, calc(100vw - 32px));
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.closeButton {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  background: #242b3f;
+}
+
+.toastStack {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 40;
+  display: grid;
+  gap: 10px;
+}
+
+.toast {
+  border-radius: 8px;
+  background: #d7b76a;
+  color: #11131f;
+  padding: 12px 16px;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+}
+
+.toast.error {
+  background: #d05d6d;
+  color: white;
+}
+
+@media (max-width: 1180px) {
+  .mainGrid,
+  .bookingFlow,
+  .ticketArea,
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .posterGrid,
+  .tickets {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .topbar,
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar,
+  .hero,
+  .movieControls,
+  .mainGrid,
+  .bookingFlow,
+  .ticketArea,
+  .infoGrid {
+    margin-left: 16px;
+    margin-right: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .topbar {
+    margin: 0;
+  }
+
+  .posterGrid,
+  .tickets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,39 @@
+# TODO
+
+- [x] `siteB10_온라인클래스` 단일 폴더 생성
+- [x] Frontend와 Backend 분리
+- [x] Next.js App Router 구조 생성
+- [x] catalog, classroom, assignments, dashboard, certificates 경로 폴더 생성
+- [x] Express API 서버 작성
+- [x] SQLite schema 작성
+- [x] 고정 seed 및 Reset API 작성
+- [x] 강의 120개 이상 seed
+- [x] 강사 50명 이상 seed
+- [x] 수강생 150명 이상 seed
+- [x] 강의 섹션 300개 이상 seed
+- [x] 학습 콘텐츠 500개 이상 seed
+- [x] 수강 신청 220개 이상 seed
+- [x] 학습 진도 400개 이상 seed
+- [x] 학습 메모 200개 이상 seed
+- [x] 퀴즈 120개 이상 seed
+- [x] 과제 140개 이상 seed
+- [x] 과제 제출 200개 이상 seed
+- [x] 수료 기록 100개 이상 seed
+- [x] 알림 120개 이상 seed
+- [x] 활동 로그 150개 이상 seed
+- [x] 강의 검색, 필터, 정렬 구현
+- [x] 수강 신청, 강의실, 진도 저장 구현
+- [x] 메모, 퀴즈, 과제 제출 구현
+- [x] 수료 조건 확인 및 수료증 발급 구현
+- [x] B10-ERR01 구현
+- [x] B10-ERR02 구현
+- [x] B10-ERR03 구현
+- [x] B10-ERR04 구현
+- [x] B10-ERR05 구현
+- [x] README.md 작성
+- [x] BUGS.md 작성
+- [x] TODO.md 작성
+- [ ] npm install 실행
+- [ ] npm run build 실행
+- [ ] 서버 실행 검증
+- [ ] 브라우저 클릭 검증

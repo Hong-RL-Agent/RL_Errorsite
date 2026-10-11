@@ -1,0 +1,37 @@
+# TODO
+
+- [x] `siteB08_커뮤니티` 단일 폴더 생성
+- [x] Frontend와 Backend 분리
+- [x] Next.js App Router 구조 생성
+- [x] boards, discussions, compose, account 경로 폴더 생성
+- [x] Express API 서버 작성
+- [x] SQLite schema 작성
+- [x] 고정 seed 및 Reset API 작성
+- [x] 사용자 120명 이상 seed
+- [x] 게시판 15개 이상 seed
+- [x] 게시글 250개 이상 seed
+- [x] 댓글·답글 500개 이상 seed
+- [x] 추천 기록 300개 이상 seed
+- [x] 북마크 기록 180개 이상 seed
+- [x] 임시저장 기록 100개 이상 seed
+- [x] 질문 해결 기록 100개 이상 seed
+- [x] 알림 120개 이상 seed
+- [x] 활동 로그 150개 이상 seed
+- [x] 게시글 검색, 게시판 필터, 태그 검색, 정렬 구현
+- [x] 게시글 상세, 작성, 수정, 삭제 API 구현
+- [x] 댓글, 답글, 수정, 삭제 API 구현
+- [x] 추천, 북마크, 해결 처리 구현
+- [x] 임시저장 생성 및 조회 구현
+- [x] 알림 읽음 및 활동 로그 구현
+- [x] B08-ERR01 구현
+- [x] B08-ERR02 구현
+- [x] B08-ERR03 구현
+- [x] B08-ERR04 구현
+- [x] B08-ERR05 구현
+- [x] README.md 작성
+- [x] BUGS.md 작성
+- [x] TODO.md 작성
+- [ ] npm install 실행
+- [ ] npm run build 실행
+- [ ] 서버 실행 검증
+- [ ] 브라우저 클릭 검증

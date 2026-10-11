@@ -1,0 +1,38 @@
+# TODO
+
+- [x] `siteB06_회원가입계정관리` 단일 폴더 생성
+- [x] Frontend와 Backend 분리
+- [x] Next.js App Router 구조 생성
+- [x] signup, login, onboarding, profile, settings 경로 폴더 생성
+- [x] Express 서버 작성
+- [x] SQLite schema 작성
+- [x] 고정 seed 및 Reset API 작성
+- [x] 기존 회원 120명 이상 seed
+- [x] 계정 프로필 120개 이상 seed
+- [x] 가입 진행 기록 100개 이상 seed
+- [x] 가상 이메일 인증 기록 120개 이상 seed
+- [x] 계정 설정 기록 120개 이상 seed
+- [x] 프로필 변경 기록 150개 이상 seed
+- [x] 사용자 알림 120개 이상 seed
+- [x] 계정 활동 로그 200개 이상 seed
+- [x] 온보딩 안내 콘텐츠 8개 이상 seed
+- [x] 회원가입, 인증, 완료 흐름 구현
+- [x] 로그인 및 로그아웃 구현
+- [x] 프로필 조회 및 수정 구현
+- [x] 연락처 수정 구현
+- [x] 비밀번호 변경 구현
+- [x] 알림 설정 및 공개 설정 변경 구현
+- [x] 사용자 검색, 알림 읽음, 활동 로그 구현
+- [x] 계정 삭제 구현
+- [x] B06-ERR01 구현
+- [x] B06-ERR02 구현
+- [x] B06-ERR03 구현
+- [x] B06-ERR04 구현
+- [x] B06-ERR05 구현
+- [x] README.md 작성
+- [x] BUGS.md 작성
+- [x] TODO.md 작성
+- [ ] npm install 실행
+- [ ] npm run build 실행
+- [ ] 서버 실행 검증
+- [ ] 브라우저 클릭 검증

@@ -1,0 +1,37 @@
+# TODO
+
+- [x] `siteB04_영화예매` 단일 폴더 생성
+- [x] Frontend와 Backend 독립 구조 생성
+- [x] Next.js App Router 구조 생성
+- [x] `movies`, `booking`, `my-tickets` 경로 폴더 생성
+- [x] Express API 서버 작성
+- [x] SQLite schema 작성
+- [x] 고정 seed 및 reset 작성
+- [x] 영화 70개 이상 seed
+- [x] 영화관 지점 20개 이상 seed
+- [x] 상영관 60개 이상 seed
+- [x] 상영 일정 250개 이상 seed
+- [x] 좌석 데이터 1,200개 이상 seed
+- [x] 고객 100명 이상 seed
+- [x] 예매 기록 180개 이상 seed
+- [x] 좌석 변경 기록 160개 이상 seed
+- [x] 예매 취소 기록 80개 이상 seed
+- [x] 알림 100개 이상 seed
+- [x] 활동 로그 120개 이상 seed
+- [x] 영화 검색, 장르 필터, 상영 상태 필터 구현
+- [x] 지점, 날짜, 상영시간 선택 구현
+- [x] SVG 좌석 배치도 구현
+- [x] 예매 신청, 취소, 삭제, 좌석 변경 구현
+- [x] 알림 읽음 처리 및 활동 로그 구현
+- [x] B04-ERR01 구현
+- [x] B04-ERR02 구현
+- [x] B04-ERR03 구현
+- [x] B04-ERR04 구현
+- [x] B04-ERR05 구현
+- [x] README.md 작성
+- [x] BUGS.md 작성
+- [x] TODO.md 작성
+- [ ] npm install 실행
+- [ ] npm run build 실행
+- [ ] 서버 실행 검증
+- [ ] 브라우저 클릭 검증

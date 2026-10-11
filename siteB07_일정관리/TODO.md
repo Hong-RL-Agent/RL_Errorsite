@@ -1,0 +1,22 @@
+# TODO.md — B-07 DayNest
+
+- [x] 프로젝트 기본 구조 (frontend / backend 분리, 포트 5322 / 9721)
+- [x] React 캘린더 UI (월간·주간·일간, 미니 캘린더, 상세 패널, 통계/요약/알림/변경 내역)
+- [x] React Router 화면 이동 (BrowserRouter)
+- [x] Express API (명세 엔드포인트)
+- [x] SQLite 초기 데이터 (고정 seed, 최소 수량 충족 — 생성 로직을 node 로 실행해 개수 확인)
+- [x] 일정 생성·수정·삭제 (모달 + 전체 화면 + 미리보기)
+- [x] 검색 및 필터 (제목/날짜 범위/카테고리/상태)
+- [x] 반복 일정 (생성, 시리즈 수정·삭제)
+- [x] 할 일 관리
+- [x] 메모 관리
+- [x] 오류 5개 구현 (전부 STATE_REVISIT, DQN_학습대상 조건부)
+- [x] Reset API (`POST /api/test/reset`, 프론트 `window.__dayNestReset()`)
+- [x] README
+- [x] BUGS.md
+- [x] 정적 점검 (backend `node --check` 전체 통과, 산출물 없음)
+- [ ] npm install
+- [ ] 프론트엔드 JSX 빌드/구문 검증 (npm 미설치로 미수행)
+- [ ] 서버 실행 및 API 동작 테스트
+- [ ] 브라우저 뒤로가기 테스트 (ERR01~ERR04)
+- [ ] 새로고침 및 재방문 테스트 (ERR05, ERR03/04 해소 확인)

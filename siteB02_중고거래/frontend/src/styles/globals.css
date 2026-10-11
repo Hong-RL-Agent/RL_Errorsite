@@ -1,0 +1,464 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f7f6f1;
+  color: #27302d;
+  font-family: Arial, "Noto Sans KR", sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  background: #6d9278;
+  color: white;
+  cursor: pointer;
+  padding: 10px 14px;
+}
+
+button:hover {
+  background: #587964;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid #d8d4c8;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: white;
+  min-width: 0;
+}
+
+textarea {
+  min-height: 82px;
+  resize: vertical;
+}
+
+main {
+  min-height: 100vh;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 220px 1fr auto;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 32px;
+  border-bottom: 1px solid #e5e1d7;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.brandMark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #6d9278;
+  color: white;
+}
+
+.search {
+  display: flex;
+  gap: 8px;
+}
+
+.search input {
+  flex: 1;
+}
+
+.headerStats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.filters {
+  padding: 18px 32px;
+  border-bottom: 1px solid #e9e4d9;
+  background: #fbfaf6;
+}
+
+.filters nav,
+.filterControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filters nav {
+  margin-bottom: 12px;
+}
+
+.filters button {
+  background: #e8eee8;
+  color: #32463a;
+}
+
+.filters button.active {
+  background: #6d9278;
+  color: white;
+}
+
+.filterControls input {
+  width: 120px;
+}
+
+.layoutGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  gap: 24px;
+  padding: 28px 32px;
+}
+
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 18px;
+}
+
+.sectionHead p {
+  color: #6d9278;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.sectionHead h1 {
+  margin: 0;
+  font-size: 34px;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.productCard,
+.panel,
+.detailPanel {
+  border: 1px solid #e2ded3;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 12px 28px rgba(60, 55, 44, 0.06);
+}
+
+.productCard {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.productCard img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.cardBody {
+  padding: 14px;
+}
+
+.cardBody h3 {
+  margin: 10px 0 8px;
+  font-size: 16px;
+}
+
+.cardBody p,
+.description,
+.sellerPanel p,
+.listItem p {
+  color: #6d6b62;
+  margin: 6px 0 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: #edf1ed;
+  color: #506756;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 9px;
+}
+
+.badge.예약중 {
+  background: #fff2cb;
+  color: #8b670d;
+}
+
+.badge.거래완료 {
+  background: #e7e7e7;
+  color: #666;
+}
+
+.loadMore {
+  width: 100%;
+  margin-top: 18px;
+  background: #26352c;
+}
+
+.detailPanel {
+  align-self: start;
+  padding: 16px;
+  position: sticky;
+  top: 96px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 92px;
+  gap: 8px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  min-height: 94px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.gallery > img {
+  aspect-ratio: 1 / 1;
+}
+
+.gallery div {
+  display: grid;
+  gap: 8px;
+}
+
+.detailTitle h2 {
+  margin: 14px 0 8px;
+}
+
+.detailTitle strong {
+  font-size: 24px;
+}
+
+.sellerPanel,
+.detailActions,
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.sellerPanel {
+  margin: 18px 0;
+  padding: 14px;
+  border-radius: 8px;
+  background: #f5f7f3;
+}
+
+.detailActions button {
+  flex: 1;
+}
+
+.dashboard,
+.community {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  padding: 0 32px 28px;
+}
+
+.panel {
+  padding: 18px;
+}
+
+.panel h2 {
+  margin: 0 0 14px;
+  font-size: 20px;
+}
+
+.productForm {
+  display: grid;
+  gap: 10px;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+}
+
+.listItem {
+  border-bottom: 1px solid #eee9dd;
+  padding-bottom: 10px;
+}
+
+.listItem div {
+  flex: 1;
+  min-width: 0;
+}
+
+.listItem button {
+  padding: 8px 10px;
+}
+
+.compact p {
+  margin: 0;
+  padding: 9px 0;
+  border-bottom: 1px solid #eee9dd;
+  color: #56564f;
+}
+
+.chatPanel {
+  grid-column: span 1;
+}
+
+.chatLayout {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 12px;
+}
+
+.chatList {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.chatList button {
+  background: #edf1ed;
+  color: #344538;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chatList button.active {
+  background: #6d9278;
+  color: white;
+}
+
+.messages {
+  display: grid;
+  gap: 8px;
+}
+
+.messages p {
+  margin: 0;
+  border-radius: 8px;
+  background: #f3f1ea;
+  padding: 10px;
+}
+
+.messages p.mine {
+  background: #e4eee6;
+}
+
+.messages form {
+  display: flex;
+  gap: 8px;
+}
+
+.messages input {
+  flex: 1;
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: rgba(27, 31, 27, 0.45);
+}
+
+.modal {
+  width: min(420px, calc(100vw - 32px));
+  border-radius: 8px;
+  background: white;
+  padding: 24px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.toastStack {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 30;
+  display: grid;
+  gap: 10px;
+}
+
+.toast {
+  border-radius: 8px;
+  background: #26352c;
+  color: white;
+  padding: 12px 16px;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.16);
+}
+
+.toast.error {
+  background: #a94442;
+}
+
+@media (max-width: 1180px) {
+  .layoutGrid,
+  .dashboard,
+  .community {
+    grid-template-columns: 1fr;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .detailPanel {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    grid-template-columns: 1fr;
+  }
+
+  .layoutGrid,
+  .dashboard,
+  .community,
+  .filters,
+  .topbar {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

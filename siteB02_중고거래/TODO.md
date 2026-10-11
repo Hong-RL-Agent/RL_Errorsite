@@ -1,0 +1,37 @@
+# TODO
+
+- [x] `siteB02_중고거래` 단일 폴더 생성
+- [x] Frontend와 Backend 분리
+- [x] Next.js App Router 구조 작성
+- [x] Express API 서버 작성
+- [x] SQLite schema 및 seed/reset 구현
+- [x] 사용자 100명 이상 seed
+- [x] 판매 상품 180개 이상 seed
+- [x] 거래 예약 120개 이상 seed
+- [x] 찜 기록 200개 이상 seed
+- [x] 채팅 메시지 300개 이상 seed
+- [x] 거래 내역 120개 이상 seed
+- [x] 알림 100개 이상 seed
+- [x] 활동 로그 120개 이상 seed
+- [x] 상품 검색 구현
+- [x] 카테고리, 지역, 가격 필터 구현
+- [x] 최신순, 가격순, 인기순 정렬 구현
+- [x] 상품 상세 조회 구현
+- [x] 상품 등록, 수정, 삭제 구현
+- [x] 찜 추가 및 취소 구현
+- [x] 거래 예약, 예약 취소, 거래 완료 처리 구현
+- [x] 채팅 조회 및 메시지 작성 구현
+- [x] 거래 내역, 활동 로그, 알림 조회 구현
+- [x] B02-ERR01 구현
+- [x] B02-ERR02 구현
+- [x] B02-ERR03 구현
+- [x] B02-ERR04 구현
+- [x] B02-ERR05 구현
+- [x] 각 오류 코드 주석 및 `data-bug-id` 부여
+- [x] README.md 작성
+- [x] BUGS.md 작성
+- [x] 정적 파일 작성 완료
+- [ ] npm install 실행
+- [ ] npm run build 실행
+- [ ] 서버 실행 검증
+- [ ] 브라우저 클릭 검증

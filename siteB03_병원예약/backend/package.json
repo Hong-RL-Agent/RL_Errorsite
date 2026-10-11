@@ -1,0 +1,17 @@
+{
+  "name": "medislot-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MediSlot B-03 병원 예약 플랫폼 Backend (Express + SQLite)",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "seed": "node db/seed.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
